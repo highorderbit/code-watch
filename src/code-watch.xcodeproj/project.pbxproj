@@ -8,18 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		0599363C0F6975A80005B934 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059936380F6975A80005B934 /* MainWindow.xib */; };
-		0599363D0F6975A80005B934 /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0599363A0F6975A80005B934 /* SecondView.xib */; };
 		1D3623260D0F684500981E51 /* CodeWatchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* CodeWatchAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28216C970DB411BC00E5133A /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28216C960DB411BC00E5133A /* FirstViewController.m */; };
 		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
+		910D80CC0F697DB30068CBF3 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D80CA0F697DB30068CBF3 /* UserView.xib */; };
+		910D81160F6987EB0068CBF3 /* LogInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D81140F6987EB0068CBF3 /* LogInView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		059936390F6975A80005B934 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		0599363B0F6975A80005B934 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondView.xib; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* CodeWatchAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* CodeWatchAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeWatchAppDelegate.m; sourceTree = "<group>"; };
@@ -31,6 +31,8 @@
 		28A0AB4B0D9B1048005BE974 /* code_watch_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = code_watch_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		910D80CB0F697DB30068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UserView.xib; sourceTree = "<group>"; };
+		910D81150F6987EB0068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LogInView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +93,9 @@
 			isa = PBXGroup;
 			children = (
 				059936380F6975A80005B934 /* MainWindow.xib */,
-				0599363A0F6975A80005B934 /* SecondView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				910D80CA0F697DB30068CBF3 /* UserView.xib */,
+				910D81140F6987EB0068CBF3 /* LogInView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -157,7 +160,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0599363C0F6975A80005B934 /* MainWindow.xib in Resources */,
-				0599363D0F6975A80005B934 /* SecondView.xib in Resources */,
+				910D80CC0F697DB30068CBF3 /* UserView.xib in Resources */,
+				910D81160F6987EB0068CBF3 /* LogInView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,12 +189,20 @@
 			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
-		0599363A0F6975A80005B934 /* SecondView.xib */ = {
+		910D80CA0F697DB30068CBF3 /* UserView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0599363B0F6975A80005B934 /* en */,
+				910D80CB0F697DB30068CBF3 /* en */,
 			);
-			name = SecondView.xib;
+			name = UserView.xib;
+			sourceTree = "<group>";
+		};
+		910D81140F6987EB0068CBF3 /* LogInView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				910D81150F6987EB0068CBF3 /* en */,
+			);
+			name = LogInView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
