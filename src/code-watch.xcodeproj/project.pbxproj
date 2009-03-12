@@ -16,6 +16,8 @@
 		910D80CC0F697DB30068CBF3 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D80CA0F697DB30068CBF3 /* UserView.xib */; };
 		910D81160F6987EB0068CBF3 /* LogInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D81140F6987EB0068CBF3 /* LogInView.xib */; };
 		910D812B0F699C680068CBF3 /* SearchRepoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D81290F699C680068CBF3 /* SearchRepoView.xib */; };
+		910D81570F69B1C00068CBF3 /* CodeWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D81560F69B1C00068CBF3 /* CodeWatchAppController.m */; };
+		910D81A90F69B9AD0068CBF3 /* UILogInMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D81A80F69B9AD0068CBF3 /* UILogInMgr.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,12 @@
 		910D80CB0F697DB30068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UserView.xib; sourceTree = "<group>"; };
 		910D81150F6987EB0068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LogInView.xib; sourceTree = "<group>"; };
 		910D812A0F699C680068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SearchRepoView.xib; sourceTree = "<group>"; };
+		910D81550F69B1C00068CBF3 /* CodeWatchAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchAppController.h; sourceTree = "<group>"; };
+		910D81560F69B1C00068CBF3 /* CodeWatchAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeWatchAppController.m; sourceTree = "<group>"; };
+		910D81A40F69B8FE0068CBF3 /* LogInMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInMgr.h; sourceTree = "<group>"; };
+		910D81A70F69B9AD0068CBF3 /* UILogInMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILogInMgr.h; sourceTree = "<group>"; };
+		910D81A80F69B9AD0068CBF3 /* UILogInMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILogInMgr.m; sourceTree = "<group>"; };
+		910D820B0F69C18D0068CBF3 /* LogInPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInPersistenceStore.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +59,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1D3623240D0F684500981E51 /* CodeWatchAppDelegate.h */,
-				1D3623250D0F684500981E51 /* CodeWatchAppDelegate.m */,
+				910D816A0F69B21F0068CBF3 /* Log In */,
+				910D81690F69B20D0068CBF3 /* App Controller */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -106,6 +114,28 @@
 				288765070DF74369002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		910D81690F69B20D0068CBF3 /* App Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* CodeWatchAppDelegate.h */,
+				1D3623250D0F684500981E51 /* CodeWatchAppDelegate.m */,
+				910D81550F69B1C00068CBF3 /* CodeWatchAppController.h */,
+				910D81560F69B1C00068CBF3 /* CodeWatchAppController.m */,
+			);
+			name = "App Controller";
+			sourceTree = "<group>";
+		};
+		910D816A0F69B21F0068CBF3 /* Log In */ = {
+			isa = PBXGroup;
+			children = (
+				910D81A40F69B8FE0068CBF3 /* LogInMgr.h */,
+				910D81A70F69B9AD0068CBF3 /* UILogInMgr.h */,
+				910D81A80F69B9AD0068CBF3 /* UILogInMgr.m */,
+				910D820B0F69C18D0068CBF3 /* LogInPersistenceStore.h */,
+			);
+			name = "Log In";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,6 +203,8 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* CodeWatchAppDelegate.m in Sources */,
+				910D81570F69B1C00068CBF3 /* CodeWatchAppController.m in Sources */,
+				910D81A90F69B9AD0068CBF3 /* UILogInMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
