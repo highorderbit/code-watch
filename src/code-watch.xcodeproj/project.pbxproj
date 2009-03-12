@@ -16,6 +16,7 @@
 		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		910D80CC0F697DB30068CBF3 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D80CA0F697DB30068CBF3 /* UserView.xib */; };
 		910D81160F6987EB0068CBF3 /* LogInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D81140F6987EB0068CBF3 /* LogInView.xib */; };
+		910D812B0F699C680068CBF3 /* SearchRepoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D81290F699C680068CBF3 /* SearchRepoView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		910D80CB0F697DB30068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UserView.xib; sourceTree = "<group>"; };
 		910D81150F6987EB0068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LogInView.xib; sourceTree = "<group>"; };
+		910D812A0F699C680068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SearchRepoView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				8D1107310486CEB800E47090 /* Info.plist */,
 				910D80CA0F697DB30068CBF3 /* UserView.xib */,
 				910D81140F6987EB0068CBF3 /* LogInView.xib */,
+				910D81290F699C680068CBF3 /* SearchRepoView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 				0599363C0F6975A80005B934 /* MainWindow.xib in Resources */,
 				910D80CC0F697DB30068CBF3 /* UserView.xib in Resources */,
 				910D81160F6987EB0068CBF3 /* LogInView.xib in Resources */,
+				910D812B0F699C680068CBF3 /* SearchRepoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +207,14 @@
 				910D81150F6987EB0068CBF3 /* en */,
 			);
 			name = LogInView.xib;
+			sourceTree = "<group>";
+		};
+		910D81290F699C680068CBF3 /* SearchRepoView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				910D812A0F699C680068CBF3 /* en */,
+			);
+			name = SearchRepoView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
