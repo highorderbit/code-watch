@@ -24,6 +24,8 @@
 		910D82880F69DE0B0068CBF3 /* InfoPlistConfigReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D82870F69DE0B0068CBF3 /* InfoPlistConfigReader.m */; };
 		910D828B0F69E0180068CBF3 /* LogInState.plist in Resources */ = {isa = PBXBuildFile; fileRef = 910D828A0F69E0180068CBF3 /* LogInState.plist */; };
 		9152A0F70F6A1F540037A52F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A0F60F6A1F540037A52F /* Icon.png */; };
+		9152A10F0F6AB24B0037A52F /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */; };
+		9152A1280F6AB7570037A52F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152A1270F6AB7570037A52F /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,9 @@
 		910D830A0F6A01200068CBF3 /* LogInStateReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInStateReader.h; sourceTree = "<group>"; };
 		910D830D0F6A012B0068CBF3 /* LogInStateSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInStateSetter.h; sourceTree = "<group>"; };
 		9152A0F60F6A1F540037A52F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		9152A10D0F6AB24B0037A52F /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		9152A1270F6AB7570037A52F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +74,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */,
+				9152A1280F6AB7570037A52F /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +111,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9152A10B0F6AB24B0037A52F /* vendor */,
 				910D82840F69DE0B0068CBF3 /* config-mgmt */,
 				910D827F0F69DDF00068CBF3 /* persistence */,
 				0560A0580F69C83E0031A852 /* app-controller */,
@@ -158,6 +165,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9152A1270F6AB7570037A52F /* Security.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765070DF74369002DB57D /* CoreGraphics.framework */,
@@ -192,6 +200,23 @@
 				910D828A0F69E0180068CBF3 /* LogInState.plist */,
 			);
 			name = PLists;
+			sourceTree = "<group>";
+		};
+		9152A10B0F6AB24B0037A52F /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				9152A10C0F6AB24B0037A52F /* sfh-keychain-utils */,
+			);
+			path = vendor;
+			sourceTree = "<group>";
+		};
+		9152A10C0F6AB24B0037A52F /* sfh-keychain-utils */ = {
+			isa = PBXGroup;
+			children = (
+				9152A10D0F6AB24B0037A52F /* SFHFKeychainUtils.h */,
+				9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */,
+			);
+			path = "sfh-keychain-utils";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,6 +292,7 @@
 				910D823E0F69D4F50068CBF3 /* LogInPersistenceStore.m in Sources */,
 				910D82830F69DDF00068CBF3 /* PListUtils.m in Sources */,
 				910D82880F69DE0B0068CBF3 /* InfoPlistConfigReader.m in Sources */,
+				9152A10F0F6AB24B0037A52F /* SFHFKeychainUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
