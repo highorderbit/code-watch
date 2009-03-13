@@ -31,6 +31,8 @@
 		9152A0F70F6A1F540037A52F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A0F60F6A1F540037A52F /* Icon.png */; };
 		9152A10F0F6AB24B0037A52F /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */; };
 		9152A1280F6AB7570037A52F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152A1270F6AB7570037A52F /* Security.framework */; };
+		9152A1860F6ACE4A0037A52F /* UserIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1850F6ACE4A0037A52F /* UserIcon.png */; };
+		9152A1970F6ADAD20037A52F /* HomeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1960F6ADAD20037A52F /* HomeIcon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		9152A10D0F6AB24B0037A52F /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		9152A1270F6AB7570037A52F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		9152A1850F6ACE4A0037A52F /* UserIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserIcon.png; sourceTree = "<group>"; };
+		9152A1960F6ADAD20037A52F /* HomeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,8 @@
 			children = (
 				8D1107310486CEB800E47090 /* Info.plist */,
 				05158A6E0F6AC251009A7995 /* NIBs */,
+				9152A1960F6ADAD20037A52F /* HomeIcon.png */,
+				9152A1850F6ACE4A0037A52F /* UserIcon.png */,
 				9152A0F60F6A1F540037A52F /* Icon.png */,
 				910D82890F69DFD50068CBF3 /* PLists */,
 				05158A7B0F6AC293009A7995 /* Localizable.strings */,
@@ -316,6 +322,8 @@
 				910D828B0F69E0180068CBF3 /* LogInState.plist in Resources */,
 				05158A7D0F6AC293009A7995 /* Localizable.strings in Resources */,
 				9152A0F70F6A1F540037A52F /* Icon.png in Resources */,
+				9152A1860F6ACE4A0037A52F /* UserIcon.png in Resources */,
+				9152A1970F6ADAD20037A52F /* HomeIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
