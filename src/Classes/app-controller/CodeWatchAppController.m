@@ -6,9 +6,25 @@
 
 @implementation CodeWatchAppController
 
+- (void) dealloc
+{
+    [logInMgr release];
+    [logInState release];
+    [logInPersistenceStore release];
+    [super dealloc];
+}
+
 - (void) start
 {
-    [logInMgr collectCredentials];
+    [logInPersistenceStore load];
+    
+    if ([logInState prompt])
+        [logInMgr collectCredentials];
+}
+
+- (void) persistState
+{
+    [logInPersistenceStore save];
 }
 
 @end

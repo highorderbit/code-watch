@@ -10,7 +10,7 @@
 @synthesize tabBarController;
 @synthesize appController;
 
-- (void)dealloc
+- (void) dealloc
 {
     [tabBarController release];
     [appController release];
@@ -18,10 +18,15 @@
     [super dealloc];
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application
+- (void) applicationDidFinishLaunching:(UIApplication*) application
 {
     [window addSubview:tabBarController.view];
     [appController start];
+}
+
+- (void) applicationWillTerminate:(UIApplication*) application
+{
+    [appController persistState];
 }
 
 @end

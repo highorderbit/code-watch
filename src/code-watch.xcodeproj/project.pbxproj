@@ -18,6 +18,11 @@
 		910D80CC0F697DB30068CBF3 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D80CA0F697DB30068CBF3 /* UserView.xib */; };
 		910D81160F6987EB0068CBF3 /* LogInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D81140F6987EB0068CBF3 /* LogInView.xib */; };
 		910D812B0F699C680068CBF3 /* SearchRepoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D81290F699C680068CBF3 /* SearchRepoView.xib */; };
+		910D82240F69CAC90068CBF3 /* LogInState.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D82230F69CAC90068CBF3 /* LogInState.m */; };
+		910D823E0F69D4F50068CBF3 /* LogInPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D823D0F69D4F50068CBF3 /* LogInPersistenceStore.m */; };
+		910D82830F69DDF00068CBF3 /* PListUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D82820F69DDF00068CBF3 /* PListUtils.m */; };
+		910D82880F69DE0B0068CBF3 /* InfoPlistConfigReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D82870F69DE0B0068CBF3 /* InfoPlistConfigReader.m */; };
+		910D828B0F69E0180068CBF3 /* LogInState.plist in Resources */ = {isa = PBXBuildFile; fileRef = 910D828A0F69E0180068CBF3 /* LogInState.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +31,6 @@
 		0560A05B0F69C83E0031A852 /* CodeWatchAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchAppDelegate.h; sourceTree = "<group>"; };
 		0560A05C0F69C83E0031A852 /* CodeWatchAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeWatchAppDelegate.m; sourceTree = "<group>"; };
 		0560A05E0F69C83E0031A852 /* LogInMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInMgr.h; sourceTree = "<group>"; };
-		0560A05F0F69C83E0031A852 /* LogInPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInPersistenceStore.h; sourceTree = "<group>"; };
 		0560A0600F69C83E0031A852 /* UILogInMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILogInMgr.h; sourceTree = "<group>"; };
 		0560A0610F69C83E0031A852 /* UILogInMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILogInMgr.m; sourceTree = "<group>"; };
 		059936390F6975A80005B934 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
@@ -40,6 +44,17 @@
 		910D80CB0F697DB30068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UserView.xib; sourceTree = "<group>"; };
 		910D81150F6987EB0068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LogInView.xib; sourceTree = "<group>"; };
 		910D812A0F699C680068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SearchRepoView.xib; sourceTree = "<group>"; };
+		910D82220F69CAC90068CBF3 /* LogInState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInState.h; sourceTree = "<group>"; };
+		910D82230F69CAC90068CBF3 /* LogInState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInState.m; sourceTree = "<group>"; };
+		910D823C0F69D4F50068CBF3 /* LogInPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInPersistenceStore.h; sourceTree = "<group>"; };
+		910D823D0F69D4F50068CBF3 /* LogInPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInPersistenceStore.m; sourceTree = "<group>"; };
+		910D82800F69DDF00068CBF3 /* PersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistenceStore.h; sourceTree = "<group>"; };
+		910D82810F69DDF00068CBF3 /* PListUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PListUtils.h; sourceTree = "<group>"; };
+		910D82820F69DDF00068CBF3 /* PListUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PListUtils.m; sourceTree = "<group>"; };
+		910D82850F69DE0B0068CBF3 /* ConfigReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigReader.h; sourceTree = "<group>"; };
+		910D82860F69DE0B0068CBF3 /* InfoPlistConfigReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPlistConfigReader.h; sourceTree = "<group>"; };
+		910D82870F69DE0B0068CBF3 /* InfoPlistConfigReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoPlistConfigReader.m; sourceTree = "<group>"; };
+		910D828A0F69E0180068CBF3 /* LogInState.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LogInState.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,9 +86,12 @@
 			isa = PBXGroup;
 			children = (
 				0560A05E0F69C83E0031A852 /* LogInMgr.h */,
-				0560A05F0F69C83E0031A852 /* LogInPersistenceStore.h */,
 				0560A0600F69C83E0031A852 /* UILogInMgr.h */,
 				0560A0610F69C83E0031A852 /* UILogInMgr.m */,
+				910D82220F69CAC90068CBF3 /* LogInState.h */,
+				910D82230F69CAC90068CBF3 /* LogInState.m */,
+				910D823C0F69D4F50068CBF3 /* LogInPersistenceStore.h */,
+				910D823D0F69D4F50068CBF3 /* LogInPersistenceStore.m */,
 			);
 			path = "log-in";
 			sourceTree = "<group>";
@@ -81,6 +99,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				910D82840F69DE0B0068CBF3 /* config-mgmt */,
+				910D827F0F69DDF00068CBF3 /* persistence */,
 				0560A0580F69C83E0031A852 /* app-controller */,
 				0560A05D0F69C83E0031A852 /* log-in */,
 			);
@@ -119,8 +139,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				910D82890F69DFD50068CBF3 /* PLists */,
 				059936380F6975A80005B934 /* MainWindow.xib */,
-				8D1107310486CEB800E47090 /* Info.plist */,
 				910D80CA0F697DB30068CBF3 /* UserView.xib */,
 				910D81140F6987EB0068CBF3 /* LogInView.xib */,
 				910D81290F699C680068CBF3 /* SearchRepoView.xib */,
@@ -136,6 +156,35 @@
 				288765070DF74369002DB57D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		910D827F0F69DDF00068CBF3 /* persistence */ = {
+			isa = PBXGroup;
+			children = (
+				910D82800F69DDF00068CBF3 /* PersistenceStore.h */,
+				910D82810F69DDF00068CBF3 /* PListUtils.h */,
+				910D82820F69DDF00068CBF3 /* PListUtils.m */,
+			);
+			path = persistence;
+			sourceTree = "<group>";
+		};
+		910D82840F69DE0B0068CBF3 /* config-mgmt */ = {
+			isa = PBXGroup;
+			children = (
+				910D82850F69DE0B0068CBF3 /* ConfigReader.h */,
+				910D82860F69DE0B0068CBF3 /* InfoPlistConfigReader.h */,
+				910D82870F69DE0B0068CBF3 /* InfoPlistConfigReader.m */,
+			);
+			path = "config-mgmt";
+			sourceTree = "<group>";
+		};
+		910D82890F69DFD50068CBF3 /* PLists */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107310486CEB800E47090 /* Info.plist */,
+				910D828A0F69E0180068CBF3 /* LogInState.plist */,
+			);
+			name = PLists;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +240,7 @@
 				910D80CC0F697DB30068CBF3 /* UserView.xib in Resources */,
 				910D81160F6987EB0068CBF3 /* LogInView.xib in Resources */,
 				910D812B0F699C680068CBF3 /* SearchRepoView.xib in Resources */,
+				910D828B0F69E0180068CBF3 /* LogInState.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +255,10 @@
 				0560A0620F69C83E0031A852 /* CodeWatchAppController.m in Sources */,
 				0560A0630F69C83E0031A852 /* CodeWatchAppDelegate.m in Sources */,
 				0560A0640F69C83E0031A852 /* UILogInMgr.m in Sources */,
+				910D82240F69CAC90068CBF3 /* LogInState.m in Sources */,
+				910D823E0F69D4F50068CBF3 /* LogInPersistenceStore.m in Sources */,
+				910D82830F69DDF00068CBF3 /* PListUtils.m in Sources */,
+				910D82880F69DE0B0068CBF3 /* InfoPlistConfigReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
