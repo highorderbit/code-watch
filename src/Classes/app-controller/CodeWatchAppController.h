@@ -4,13 +4,13 @@
 
 #import <Foundation/Foundation.h>
 #import "LogInMgr.h"
-#import "LogInState.h"
+#import "LogInStateReader.h"
 #import "PersistenceStore.h"
 
 @interface CodeWatchAppController : NSObject {
     IBOutlet NSObject<LogInMgr>* logInMgr;
-    IBOutlet LogInState* logInState;
     IBOutlet NSObject<PersistenceStore>* logInPersistenceStore;
+    IBOutlet NSObject<LogInStateReader>* logInState;
 }
 
 - (void) start;

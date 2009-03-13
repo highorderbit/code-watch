@@ -3,18 +3,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LogInStateReader.h"
+#import "LogInStateSetter.h"
 
-@interface LogInState : NSObject
+@interface LogInState : NSObject <LogInStateReader, LogInStateSetter>
 {
     NSString* login;
     NSString* token;
     BOOL prompt;
 }
-
-@property (copy, readonly) NSString* login;
-@property (copy, readonly) NSString* token;
-@property (readonly) BOOL prompt;
-
-- (void) setLogin:(NSString*)login token:(NSString*)token prompt:(BOOL)prompt;
 
 @end

@@ -19,7 +19,8 @@
 
 - (void) dealloc
 {
-    [logInState release];
+    [logInStateReader release];
+    [logInStateSetter release];
     [super dealloc];
 }
 
@@ -32,18 +33,18 @@
     NSString* token = [dict objectForKey:[[self class] tokenKey]];
     BOOL prompt = [[dict objectForKey:[[self class] promptKey]] boolValue];
 
-    [logInState setLogin:login token:token prompt:prompt];
+    [logInStateSetter setLogin:login token:token prompt:prompt];
 }
 
 - (void) save
 {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     
-    if (logInState.login)
-        [dict setObject:logInState.login forKey:[[self class] loginKey]];
-    if (logInState.token)
-        [dict setObject:logInState.token forKey:[[self class] tokenKey]];
-    [dict setObject:[NSNumber numberWithBool:logInState.prompt]
+    if (logInStateReader.login)
+        [dict setObject:logInStateReader.login forKey:[[self class] loginKey]];
+    if (logInStateReader.token)
+        [dict setObject:logInStateReader.token forKey:[[self class] tokenKey]];
+    [dict setObject:[NSNumber numberWithBool:logInStateReader.prompt]
         forKey:[[self class] promptKey]];
     
     [PlistUtils saveDictionary:dict toPlist:[[self class] plistName]];

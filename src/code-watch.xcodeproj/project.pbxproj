@@ -55,6 +55,8 @@
 		910D82860F69DE0B0068CBF3 /* InfoPlistConfigReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPlistConfigReader.h; sourceTree = "<group>"; };
 		910D82870F69DE0B0068CBF3 /* InfoPlistConfigReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoPlistConfigReader.m; sourceTree = "<group>"; };
 		910D828A0F69E0180068CBF3 /* LogInState.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LogInState.plist; sourceTree = "<group>"; };
+		910D830A0F6A01200068CBF3 /* LogInStateReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInStateReader.h; sourceTree = "<group>"; };
+		910D830D0F6A012B0068CBF3 /* LogInStateSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInStateSetter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,8 @@
 				910D82230F69CAC90068CBF3 /* LogInState.m */,
 				910D823C0F69D4F50068CBF3 /* LogInPersistenceStore.h */,
 				910D823D0F69D4F50068CBF3 /* LogInPersistenceStore.m */,
+				910D830A0F6A01200068CBF3 /* LogInStateReader.h */,
+				910D830D0F6A012B0068CBF3 /* LogInStateSetter.h */,
 			);
 			path = "log-in";
 			sourceTree = "<group>";

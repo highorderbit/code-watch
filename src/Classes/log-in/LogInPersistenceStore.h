@@ -4,12 +4,14 @@
 
 #import <Foundation/Foundation.h>
 #import "PersistenceStore.h"
-#import "LogInState.h"
+#import "LogInStateReader.h"
+#import "LogInStateSetter.h"
 #import "PListUtils.h"
 
 @interface LogInPersistenceStore : NSObject <PersistenceStore>
 {
-    IBOutlet LogInState* logInState;
+    IBOutlet NSObject<LogInStateReader>* logInStateReader;
+    IBOutlet NSObject<LogInStateSetter>* logInStateSetter;
 }
 
 @end
