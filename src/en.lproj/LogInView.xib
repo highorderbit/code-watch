@@ -51,7 +51,7 @@
 				<float key="IBUISectionHeaderHeight">1.000000e+01</float>
 				<float key="IBUISectionFooterHeight">1.000000e+01</float>
 			</object>
-			<object class="IBUITextField" id="236745069">
+			<object class="IBUITextField" id="693908907">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<string key="NSFrameSize">{207, 31}</string>
@@ -64,16 +64,15 @@
 				<object class="NSColor" key="IBUITextColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MAA</bytes>
-					<object class="NSColorSpace" key="NSCustomColorSpace" id="744489164">
+					<object class="NSColorSpace" key="NSCustomColorSpace" id="244153976">
 						<int key="NSID">2</int>
 					</object>
 				</object>
-				<object class="NSFont" key="IBUIFont" id="917111476">
+				<object class="NSFont" key="IBUIFont" id="110670282">
 					<string key="NSName">Helvetica</string>
 					<double key="NSSize">1.400000e+01</double>
 					<int key="NSfFlags">16</int>
 				</object>
-				<bool key="IBUIClearsOnBeginEditing">YES</bool>
 				<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 				<float key="IBUIMinimumFontSize">1.700000e+01</float>
 				<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -81,7 +80,7 @@
 					<int key="IBUIReturnKeyType">4</int>
 				</object>
 			</object>
-			<object class="IBUITextField" id="531585164">
+			<object class="IBUITextField" id="701285042">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<string key="NSFrameSize">{207, 31}</string>
@@ -95,10 +94,9 @@
 				<object class="NSColor" key="IBUITextColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MAA</bytes>
-					<reference key="NSCustomColorSpace" ref="744489164"/>
+					<reference key="NSCustomColorSpace" ref="244153976"/>
 				</object>
-				<reference key="IBUIFont" ref="917111476"/>
-				<bool key="IBUIClearsOnBeginEditing">YES</bool>
+				<reference key="IBUIFont" ref="110670282"/>
 				<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 				<float key="IBUIMinimumFontSize">1.700000e+01</float>
 				<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -146,7 +144,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">usernameTextField</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="236745069"/>
+						<reference key="destination" ref="693908907"/>
 					</object>
 					<int key="connectionID">20</int>
 				</object>
@@ -154,7 +152,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">tokenTextField</string>
 						<reference key="source" ref="841351856"/>
-						<reference key="destination" ref="531585164"/>
+						<reference key="destination" ref="701285042"/>
 					</object>
 					<int key="connectionID">21</int>
 				</object>
@@ -188,12 +186,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">15</int>
-						<reference key="object" ref="236745069"/>
+						<reference key="object" ref="693908907"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">16</int>
-						<reference key="object" ref="531585164"/>
+						<reference key="object" ref="701285042"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
 				</object>
