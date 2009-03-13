@@ -3,8 +3,11 @@
 //
 
 #import "UILogInMgr.h"
+#import "LogInViewController.h"
 
 @implementation UILogInMgr
+
+@synthesize logInViewController;
 
 - (void) dealloc
 {
@@ -16,8 +19,22 @@
 - (void) collectCredentials
 {
     [rootViewController
-        presentModalViewController:logInViewController
+        presentModalViewController:self.logInViewController
         animated:YES];
+}
+
+#pragma mark Accessors
+
+- (LogInViewController *) logInViewController
+{
+    if (!logInViewController)
+        logInViewController =
+            [[[LogInViewController alloc]
+              initWithNibName:@"LogInView"
+                       bundle:nil]
+             autorelease];
+
+    return logInViewController;
 }
 
 @end

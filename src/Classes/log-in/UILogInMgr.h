@@ -5,10 +5,14 @@
 #import <Foundation/Foundation.h>
 #import "LogInMgr.h"
 
+@class LogInViewController;
+
 @interface UILogInMgr : NSObject <LogInMgr>
 {
-    IBOutlet UIViewController* rootViewController;
-    IBOutlet UIViewController* logInViewController;
+    IBOutlet UIViewController * rootViewController;
+    LogInViewController * logInViewController;
 }
+
+@property (nonatomic, retain) LogInViewController * logInViewController;
 
 @end

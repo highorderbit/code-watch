@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="142"/>
+			<integer value="106"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -64,7 +64,7 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 					</object>
-					<object class="NSArray" key="IBUIViewControllers">
+					<object class="NSMutableArray" key="IBUIViewControllers">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="IBUITableViewController" id="424443560">
 							<object class="IBUITableView" key="IBUIView" id="887748154">
@@ -234,10 +234,6 @@
 			</object>
 			<object class="IBUICustomObject" id="227671543"/>
 			<object class="IBUICustomObject" id="158299230"/>
-			<object class="IBUIViewController" id="822065865">
-				<string key="IBUINibName">LogInView</string>
-				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -305,14 +301,6 @@
 						<reference key="destination" ref="1034742383"/>
 					</object>
 					<int key="connectionID">172</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">logInViewController</string>
-						<reference key="source" ref="158299230"/>
-						<reference key="destination" ref="822065865"/>
-					</object>
-					<int key="connectionID">173</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -605,11 +593,6 @@
 						<reference key="object" ref="158299230"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">170</int>
-						<reference key="object" ref="822065865"/>
-						<reference key="parent" ref="957960031"/>
-					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -651,8 +634,6 @@
 					<string>165.IBPluginDependency</string>
 					<string>167.CustomClassName</string>
 					<string>167.IBPluginDependency</string>
-					<string>170.IBEditorWindowLastContentRect</string>
-					<string>170.IBPluginDependency</string>
 					<string>2.IBAttributePlaceholdersKey</string>
 					<string>2.IBEditorWindowLastContentRect</string>
 					<string>2.IBPluginDependency</string>
@@ -663,7 +644,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIApplication</string>
 					<string>UIResponder</string>
-					<string>{{199, 653}, {320, 480}}</string>
+					<string>{{113, 632}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -695,8 +676,6 @@
 					<string>CodeWatchAppController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UILogInMgr</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{105, 550}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSMutableDictionary">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -747,7 +726,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/CodeWatchAppController.h</string>
+						<string key="minorKey">Classes/app-controller/CodeWatchAppController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -770,28 +749,19 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/CodeWatchAppDelegate.h</string>
+						<string key="minorKey">Classes/app-controller/CodeWatchAppDelegate.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">UILogInMgr</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>logInViewController</string>
-							<string>rootViewController</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UIViewController</string>
-							<string>UIViewController</string>
-						</object>
+						<string key="NS.key.0">rootViewController</string>
+						<string key="NS.object.0">UIViewController</string>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/UILogInMgr.h</string>
+						<string key="minorKey">Classes/log-in/UILogInMgr.h</string>
 					</object>
 				</object>
 			</object>

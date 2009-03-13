@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		053420330F69E987000EECB1 /* NameValueTextEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */; };
+		053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */; };
+		053420400F69EBC4000EECB1 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0534203F0F69EBC4000EECB1 /* LogInViewController.m */; };
+		053420790F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */; };
 		0560A0620F69C83E0031A852 /* CodeWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05A0F69C83E0031A852 /* CodeWatchAppController.m */; };
 		0560A0630F69C83E0031A852 /* CodeWatchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05C0F69C83E0031A852 /* CodeWatchAppDelegate.m */; };
 		0560A0640F69C83E0031A852 /* UILogInMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A0610F69C83E0031A852 /* UILogInMgr.m */; };
@@ -21,6 +25,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		053420310F69E987000EECB1 /* NameValueTextEntryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameValueTextEntryTableViewCell.h; sourceTree = "<group>"; };
+		053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueTextEntryTableViewCell.m; sourceTree = "<group>"; };
+		053420360F69EAE6000EECB1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NameValueTextEntryTableViewCell.xib; sourceTree = "<group>"; };
+		0534203E0F69EBC4000EECB1 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
+		0534203F0F69EBC4000EECB1 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
+		053420770F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+CodeWatchAdditions.h"; sourceTree = "<group>"; };
+		053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+CodeWatchAdditions.m"; sourceTree = "<group>"; };
 		0560A0590F69C83E0031A852 /* CodeWatchAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchAppController.h; sourceTree = "<group>"; };
 		0560A05A0F69C83E0031A852 /* CodeWatchAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeWatchAppController.m; sourceTree = "<group>"; };
 		0560A05B0F69C83E0031A852 /* CodeWatchAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchAppDelegate.h; sourceTree = "<group>"; };
@@ -56,6 +67,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0534202C0F69DFEF000EECB1 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				053420310F69E987000EECB1 /* NameValueTextEntryTableViewCell.h */,
+				053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */,
+				053420770F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.h */,
+				053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */,
+			);
+			path = shared;
+			sourceTree = "<group>";
+		};
 		0560A0580F69C83E0031A852 /* app-controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +96,8 @@
 				0560A05F0F69C83E0031A852 /* LogInPersistenceStore.h */,
 				0560A0600F69C83E0031A852 /* UILogInMgr.h */,
 				0560A0610F69C83E0031A852 /* UILogInMgr.m */,
+				0534203E0F69EBC4000EECB1 /* LogInViewController.h */,
+				0534203F0F69EBC4000EECB1 /* LogInViewController.m */,
 			);
 			path = "log-in";
 			sourceTree = "<group>";
@@ -83,6 +107,7 @@
 			children = (
 				0560A0580F69C83E0031A852 /* app-controller */,
 				0560A05D0F69C83E0031A852 /* log-in */,
+				0534202C0F69DFEF000EECB1 /* shared */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -119,11 +144,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				059936380F6975A80005B934 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				059936380F6975A80005B934 /* MainWindow.xib */,
 				910D80CA0F697DB30068CBF3 /* UserView.xib */,
 				910D81140F6987EB0068CBF3 /* LogInView.xib */,
 				910D81290F699C680068CBF3 /* SearchRepoView.xib */,
+				053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -191,6 +217,7 @@
 				910D80CC0F697DB30068CBF3 /* UserView.xib in Resources */,
 				910D81160F6987EB0068CBF3 /* LogInView.xib in Resources */,
 				910D812B0F699C680068CBF3 /* SearchRepoView.xib in Resources */,
+				053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,12 +232,23 @@
 				0560A0620F69C83E0031A852 /* CodeWatchAppController.m in Sources */,
 				0560A0630F69C83E0031A852 /* CodeWatchAppDelegate.m in Sources */,
 				0560A0640F69C83E0031A852 /* UILogInMgr.m in Sources */,
+				053420330F69E987000EECB1 /* NameValueTextEntryTableViewCell.m in Sources */,
+				053420400F69EBC4000EECB1 /* LogInViewController.m in Sources */,
+				053420790F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				053420360F69EAE6000EECB1 /* en */,
+			);
+			name = NameValueTextEntryTableViewCell.xib;
+			sourceTree = "<group>";
+		};
 		059936380F6975A80005B934 /* MainWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
