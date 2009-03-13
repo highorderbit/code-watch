@@ -197,11 +197,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9152A1E90F6AFC240037A52F /* Images */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				05158A6E0F6AC251009A7995 /* NIBs */,
-				9152A1960F6ADAD20037A52F /* HomeIcon.png */,
-				9152A1850F6ACE4A0037A52F /* UserIcon.png */,
-				9152A0F60F6A1F540037A52F /* Icon.png */,
 				910D82890F69DFD50068CBF3 /* PLists */,
 				05158A7B0F6AC293009A7995 /* Localizable.strings */,
 			);
@@ -263,6 +261,16 @@
 				9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */,
 			);
 			path = "sfh-keychain-utils";
+			sourceTree = "<group>";
+		};
+		9152A1E90F6AFC240037A52F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				9152A1960F6ADAD20037A52F /* HomeIcon.png */,
+				9152A1850F6ACE4A0037A52F /* UserIcon.png */,
+				9152A0F60F6A1F540037A52F /* Icon.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
