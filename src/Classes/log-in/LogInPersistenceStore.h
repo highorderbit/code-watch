@@ -1,11 +1,17 @@
 //
-//  Copyright 2009 High Order Bit, Inc.. All rights reserved.
+//  Copyright 2009 High Order Bit, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "PersistenceStore.h"
+#import "LogInStateReader.h"
+#import "LogInStateSetter.h"
+#import "PListUtils.h"
 
-@protocol LogInPersistenceStore
-
-- (void) persistLogin:(NSString*)login token:(NSString*)token prompt:(BOOL)prompt;
+@interface LogInPersistenceStore : NSObject <PersistenceStore>
+{
+    IBOutlet NSObject<LogInStateReader>* logInStateReader;
+    IBOutlet NSObject<LogInStateSetter>* logInStateSetter;
+}
 
 @end
