@@ -16,28 +16,21 @@ enum CredentialsSection
 
 @implementation LogInViewController
 
+@synthesize delegate;
 @synthesize tableView;
 @synthesize usernameCell, tokenCell;
+@synthesize usernameTextField, tokenTextField;
 
 - (void)dealloc
 {
+    [delegate release];
     [tableView release];
     [usernameCell release];
     [tokenCell release];
+    [usernameTextField release];
+    [tokenTextField release];
     [super dealloc];
 }
-
-/*
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    // Override initWithStyle: if you create the controller programmatically and
-    // want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-
-    return self;
-}
-*/
 
 - (void)viewDidLoad
 {
@@ -47,10 +40,12 @@ enum CredentialsSection
 
     UIBarButtonItem * logInButtonItem =
         [[UIBarButtonItem alloc]
-         initWithTitle:NSLocalizedString(@"login.cancel.title", @"")
+         initWithTitle:NSLocalizedString(@"login.login.label", @"")
                  style:UIBarButtonItemStyleDone
                 target:self
-                action:@selector(userDidLogIn)];
+                action:@selector(userDidSave)];
+    logInButtonItem.enabled = NO;
+
     UIBarButtonItem * cancelButtonItem =
         [[UIBarButtonItem alloc]
          initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
@@ -62,45 +57,28 @@ enum CredentialsSection
 
     [logInButtonItem release];
     [cancelButtonItem release];
+
+    self.usernameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.tokenTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+
+    self.usernameTextField.delegate = self;
+    self.tokenTextField.delegate = self;
+
+    self.usernameCell.textField = self.usernameTextField;
+    self.tokenCell.textField = self.tokenTextField;
 }
 
-/*
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-}
-*/
 
-/*
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-*/
+    self.usernameCell.nameLabel.text =
+        NSLocalizedString(@"login.username.label", @"");
+    self.tokenCell.nameLabel.text =
+        NSLocalizedString(@"login.token.label", @"");
 
-/*
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
+    [self.usernameCell.textField becomeFirstResponder];
 }
-*/
-
-/*
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:
-    (UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning
 {
@@ -142,71 +120,67 @@ enum CredentialsSection
     return cell;
 }
 
-- (void)          tableView:(UITableView *)tv
-    didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tableView:(UITableView *)tableView
+    titleForHeaderInSection:(NSInteger)section
 {
-    // Navigation logic may go here. Create and push another view controller.
-    // AnotherViewController *anotherViewController =
-    //     [[AnotherViewController alloc]
-    //      initWithNibName:@"AnotherView" bundle:nil];
-    // [self.navigationController pushViewController:anotherViewController];
-    // [anotherViewController release];
+    return NSLocalizedString(@"login.credentials.header.label", @"");
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)        tableView:(UITableView *)tv
-    canEditRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark UITextFieldDelegate functions
+
+- (BOOL)                textField:(UITextField *)textField
+    shouldChangeCharactersInRange:(NSRange)range
+                replacementString:(NSString *)string
 {
-    // Return NO if you do not want the specified item to be editable.
+    if (textField == usernameTextField) {
+        NSString * text = [textField.text
+            stringByReplacingCharactersInRange:range withString:string];
+        self.navigationItem.rightBarButtonItem.enabled = text.length > 0;
+    }
+
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)     tableView:(UITableView *)tv
-    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-     forRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)textFieldShouldClear:(UITextField *)textField
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView
-         deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-               withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the
-        // array, and add a new row to the table view
-    }   
-}
-*/
+    if (textField == usernameTextField)
+        self.navigationItem.rightBarButtonItem.enabled = NO;
 
-/*
-// Override to support rearranging the table view.
-- (void)     tableView:(UITableView *)tv
-    moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
-           toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)        tableView:(UITableView *)tv
-    canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+
+    if (textField == usernameTextField)
+        [self.tokenTextField becomeFirstResponder];
+
+    return YES;
+}
+
+#pragma mark User actions
+
+- (void)userDidSave
+{
+    NSString * username = usernameTextField.text;
+    NSString * token = tokenTextField.text;
+
+    [delegate userProvidedUsername:username token:token];
+}
+
+- (void)userDidCancel
+{
+    [delegate userDidCancel];
+}
 
 #pragma mark Accessors
 
 - (NameValueTextEntryTableViewCell *) usernameCell
 {
     if (!usernameCell)
-        usernameCell = [NameValueTextEntryTableViewCell createInstance];
+        usernameCell =
+            [[NameValueTextEntryTableViewCell createCustomInstance] retain];
 
     return usernameCell;
 }
@@ -214,7 +188,8 @@ enum CredentialsSection
 - (NameValueTextEntryTableViewCell *) tokenCell
 {
     if (!tokenCell)
-        tokenCell = [NameValueTextEntryTableViewCell createInstance];
+        tokenCell =
+            [[NameValueTextEntryTableViewCell createCustomInstance] retain];
 
     return tokenCell;
 }

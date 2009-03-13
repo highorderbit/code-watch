@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05158A7D0F6AC293009A7995 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05158A7B0F6AC293009A7995 /* Localizable.strings */; };
 		053420330F69E987000EECB1 /* NameValueTextEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */; };
 		053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */; };
 		053420400F69EBC4000EECB1 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0534203F0F69EBC4000EECB1 /* LogInViewController.m */; };
@@ -30,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05158A7C0F6AC293009A7995 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		051FBA340F6ADED400DB8696 /* LogInViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewControllerDelegate.h; sourceTree = "<group>"; };
 		053420310F69E987000EECB1 /* NameValueTextEntryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameValueTextEntryTableViewCell.h; sourceTree = "<group>"; };
 		053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueTextEntryTableViewCell.m; sourceTree = "<group>"; };
 		053420360F69EAE6000EECB1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NameValueTextEntryTableViewCell.xib; sourceTree = "<group>"; };
@@ -84,6 +87,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05158A6E0F6AC251009A7995 /* NIBs */ = {
+			isa = PBXGroup;
+			children = (
+				059936380F6975A80005B934 /* MainWindow.xib */,
+				910D80CA0F697DB30068CBF3 /* UserView.xib */,
+				910D81140F6987EB0068CBF3 /* LogInView.xib */,
+				910D81290F699C680068CBF3 /* SearchRepoView.xib */,
+				053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */,
+			);
+			name = NIBs;
+			sourceTree = "<group>";
+		};
 		0534202C0F69DFEF000EECB1 /* shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +129,7 @@
 				0560A0610F69C83E0031A852 /* UILogInMgr.m */,
 				0534203E0F69EBC4000EECB1 /* LogInViewController.h */,
 				0534203F0F69EBC4000EECB1 /* LogInViewController.m */,
+				051FBA340F6ADED400DB8696 /* LogInViewControllerDelegate.h */,
 				910D82220F69CAC90068CBF3 /* LogInState.h */,
 				910D82230F69CAC90068CBF3 /* LogInState.m */,
 				910D823C0F69D4F50068CBF3 /* LogInPersistenceStore.h */,
@@ -169,12 +185,9 @@
 			isa = PBXGroup;
 			children = (
 				8D1107310486CEB800E47090 /* Info.plist */,
+				05158A6E0F6AC251009A7995 /* NIBs */,
 				910D82890F69DFD50068CBF3 /* PLists */,
-				059936380F6975A80005B934 /* MainWindow.xib */,
-				910D80CA0F697DB30068CBF3 /* UserView.xib */,
-				910D81140F6987EB0068CBF3 /* LogInView.xib */,
-				910D81290F699C680068CBF3 /* SearchRepoView.xib */,
-				053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */,
+				05158A7B0F6AC293009A7995 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -273,6 +286,7 @@
 				910D812B0F699C680068CBF3 /* SearchRepoView.xib in Resources */,
 				053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */,
 				910D828B0F69E0180068CBF3 /* LogInState.plist in Resources */,
+				05158A7D0F6AC293009A7995 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +314,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		05158A7B0F6AC293009A7995 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05158A7C0F6AC293009A7995 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

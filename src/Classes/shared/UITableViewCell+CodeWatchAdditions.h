@@ -6,10 +6,13 @@
 
 @interface UITableViewCell (CodeWatchAdditions)
 
-+ (id)createInstance;
-+ (id)createInstanceWithReuseIdentifier:(NSString *)reuseIdentifier;
-+ (id)createInstanceWithReuseIdentifier:(NSString *)reuseIdentifier
-                                  frame:(CGRect)frame;
++ (id)createStandardInstance;
++ (id)createStandardInstanceWithReuseIdentifier:(NSString *)identifier;
++ (id)createStandardInstanceWithReuseIdentifier:(NSString *)identifier
+                                          frame:(CGRect)frame;
+
++ (id)createCustomInstance;
++ (id)createCustomInstanceWithNibName:(NSString *)nibName;
 
 + (NSString *)reuseIdentifier;
 
