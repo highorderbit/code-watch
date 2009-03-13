@@ -3,6 +3,7 @@
 //
 
 #import "UITableViewCell+CodeWatchAdditions.h"
+#import "NSObject+RuntimeAdditions.h"
 
 @implementation UITableViewCell (CodeWatchAdditions)
 

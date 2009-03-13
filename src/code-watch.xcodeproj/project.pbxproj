@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05158A7D0F6AC293009A7995 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05158A7B0F6AC293009A7995 /* Localizable.strings */; };
+		051FBA900F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */; };
 		053420330F69E987000EECB1 /* NameValueTextEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */; };
 		053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */; };
 		053420400F69EBC4000EECB1 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0534203F0F69EBC4000EECB1 /* LogInViewController.m */; };
@@ -38,6 +39,8 @@
 /* Begin PBXFileReference section */
 		05158A7C0F6AC293009A7995 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		051FBA340F6ADED400DB8696 /* LogInViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewControllerDelegate.h; sourceTree = "<group>"; };
+		051FBA8E0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RuntimeAdditions.h"; sourceTree = "<group>"; };
+		051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RuntimeAdditions.m"; sourceTree = "<group>"; };
 		053420310F69E987000EECB1 /* NameValueTextEntryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameValueTextEntryTableViewCell.h; sourceTree = "<group>"; };
 		053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueTextEntryTableViewCell.m; sourceTree = "<group>"; };
 		053420360F69EAE6000EECB1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NameValueTextEntryTableViewCell.xib; sourceTree = "<group>"; };
@@ -118,6 +121,8 @@
 				053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */,
 				053420770F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.h */,
 				053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */,
+				051FBA8E0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.h */,
+				051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 				910D82830F69DDF00068CBF3 /* PListUtils.m in Sources */,
 				910D82880F69DE0B0068CBF3 /* InfoPlistConfigReader.m in Sources */,
 				9152A10F0F6AB24B0037A52F /* SFHFKeychainUtils.m in Sources */,
+				051FBA900F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
