@@ -28,6 +28,8 @@
 		910D82830F69DDF00068CBF3 /* PListUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D82820F69DDF00068CBF3 /* PListUtils.m */; };
 		910D82880F69DE0B0068CBF3 /* InfoPlistConfigReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D82870F69DE0B0068CBF3 /* InfoPlistConfigReader.m */; };
 		910D828B0F69E0180068CBF3 /* LogInState.plist in Resources */ = {isa = PBXBuildFile; fileRef = 910D828A0F69E0180068CBF3 /* LogInState.plist */; };
+		9127DD040F6B1065009CDBD5 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9127DD030F6B1065009CDBD5 /* UserViewController.m */; };
+		9127DDC30F6C25C1009CDBD5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9127DDC20F6C25C1009CDBD5 /* User.m */; };
 		9152A0F70F6A1F540037A52F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A0F60F6A1F540037A52F /* Icon.png */; };
 		9152A10F0F6AB24B0037A52F /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */; };
 		9152A1280F6AB7570037A52F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152A1270F6AB7570037A52F /* Security.framework */; };
@@ -77,6 +79,10 @@
 		910D828A0F69E0180068CBF3 /* LogInState.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LogInState.plist; sourceTree = "<group>"; };
 		910D830A0F6A01200068CBF3 /* LogInStateReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInStateReader.h; sourceTree = "<group>"; };
 		910D830D0F6A012B0068CBF3 /* LogInStateSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInStateSetter.h; sourceTree = "<group>"; };
+		9127DD020F6B1065009CDBD5 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		9127DD030F6B1065009CDBD5 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		9127DDC10F6C25C1009CDBD5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		9127DDC20F6C25C1009CDBD5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		9152A0F60F6A1F540037A52F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9152A10D0F6AB24B0037A52F /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
@@ -157,6 +163,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				9127DD010F6B1065009CDBD5 /* user */,
 				9152A10B0F6AB24B0037A52F /* vendor */,
 				910D82840F69DE0B0068CBF3 /* config-mgmt */,
 				910D827F0F69DDF00068CBF3 /* persistence */,
@@ -246,6 +253,17 @@
 				910D828A0F69E0180068CBF3 /* LogInState.plist */,
 			);
 			name = PLists;
+			sourceTree = "<group>";
+		};
+		9127DD010F6B1065009CDBD5 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				9127DD020F6B1065009CDBD5 /* UserViewController.h */,
+				9127DD030F6B1065009CDBD5 /* UserViewController.m */,
+				9127DDC10F6C25C1009CDBD5 /* User.h */,
+				9127DDC20F6C25C1009CDBD5 /* User.m */,
+			);
+			path = user;
 			sourceTree = "<group>";
 		};
 		9152A10B0F6AB24B0037A52F /* vendor */ = {
@@ -358,6 +376,8 @@
 				910D82830F69DDF00068CBF3 /* PListUtils.m in Sources */,
 				910D82880F69DE0B0068CBF3 /* InfoPlistConfigReader.m in Sources */,
 				9152A10F0F6AB24B0037A52F /* SFHFKeychainUtils.m in Sources */,
+				9127DD040F6B1065009CDBD5 /* UserViewController.m in Sources */,
+				9127DDC30F6C25C1009CDBD5 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

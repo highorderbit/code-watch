@@ -7,7 +7,8 @@
 #import "LogInStateReader.h"
 #import "PersistenceStore.h"
 
-@interface CodeWatchAppController : NSObject {
+@interface CodeWatchAppController : NSObject
+{
     IBOutlet NSObject<LogInMgr>* logInMgr;
     IBOutlet NSObject<PersistenceStore>* logInPersistenceStore;
     IBOutlet NSObject<LogInStateReader>* logInState;
