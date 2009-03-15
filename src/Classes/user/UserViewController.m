@@ -53,7 +53,7 @@ enum Section
         @"Doug Kurth", @"name", @"Boulder, CO", @"location",
         @"doug@highorderbit.com", @"email", nil];
     NSArray * someRepos =
-        [NSArray arrayWithObjects:@"Build Watch", @"Code Watch", nil];
+        [NSArray arrayWithObjects:@"build-watch", @"code-watch", nil];
     user =
         [[User alloc] initWithUsername:@"kurthd" details:someDetails
         repos:someRepos];
@@ -77,6 +77,14 @@ enum Section
         
     footerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.tableFooterView = footerView;
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    NSIndexPath * selectedRow = [self.tableView indexPathForSelectedRow];
+    [self.tableView deselectRowAtIndexPath:selectedRow animated:NO];
 }
 
 #pragma mark Table view methods
@@ -151,6 +159,12 @@ enum Section
         indexPath.section == kRepoSection) ?
         UITableViewCellAccessoryDisclosureIndicator :
         UITableViewCellAccessoryNone;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tv
+    willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return indexPath.section == kUserDetailsSection ? nil : indexPath;
 }
 
 #pragma mark User data update methods

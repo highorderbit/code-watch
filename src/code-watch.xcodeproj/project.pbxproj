@@ -40,6 +40,7 @@
 		9152A1F40F6AFF8A0037A52F /* UsersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1F30F6AFF8A0037A52F /* UsersIcon.png */; };
 		91B6205B0F6C54540077CDB9 /* UserDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */; };
 		91B6205E0F6C54830077CDB9 /* UserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */; };
+		91CC52350F6C9D98000AD3FB /* NetworkAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,8 @@
 		91B620590F6C54540077CDB9 /* UserDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailTableViewCell.h; sourceTree = "<group>"; };
 		91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailTableViewCell.m; sourceTree = "<group>"; };
 		91B6205D0F6C54830077CDB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UserDetailTableViewCell.xib; sourceTree = "<group>"; };
+		91CC52330F6C9D98000AD3FB /* NetworkAwareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkAwareViewController.h; sourceTree = "<group>"; };
+		91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkAwareViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,8 @@
 				053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */,
 				051FBA8E0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.h */,
 				051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */,
+				91CC52330F6C9D98000AD3FB /* NetworkAwareViewController.h */,
+				91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -398,6 +403,7 @@
 				9127DDC30F6C25C1009CDBD5 /* User.m in Sources */,
 				051FBA900F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m in Sources */,
 				91B6205B0F6C54540077CDB9 /* UserDetailTableViewCell.m in Sources */,
+				91CC52350F6C9D98000AD3FB /* NetworkAwareViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

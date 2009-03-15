@@ -8,12 +8,11 @@
 @interface UserViewController : UITableViewController {
     IBOutlet UIView * headerView;
     IBOutlet UIView * footerView;
-
+    IBOutlet UIImageView * avatarView;
+    
     IBOutlet UILabel * usernameLabel;    
     IBOutlet UILabel * featuredDetail1Label;
     IBOutlet UILabel * featuredDetail2Label;
-    
-    IBOutlet UIImageView * avatarView;
     
     User * user;
     
