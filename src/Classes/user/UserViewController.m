@@ -47,34 +47,12 @@ enum Section
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
-    // TEMPORARY
-    NSDictionary * someDetails =
-        [[NSDictionary alloc] initWithObjectsAndKeys:
-        @"Doug Kurth", @"name", @"Boulder, CO", @"location",
-        @"doug@highorderbit.com", @"email", nil];
-    NSArray * someRepos =
-        [NSArray arrayWithObjects:@"build-watch", @"code-watch", nil];
-    userInfo =
-        [[UserInfo alloc] initWithDetails:someDetails repoKeys:someRepos];
 
-    [self setUsername:@"kurthd"];
     [self setFeaturedDetail1Key:@"name"];
     [self setFeaturedDetail2Key:@"email"];
-    // TEMPORARY
-
+    
     headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.tableHeaderView = headerView;
-    
-    if (userInfo && userInfo.details) {
-        usernameLabel.text = username;
-        
-        NSString * name = [userInfo.details objectForKey:featuredDetail1Key];
-        featuredDetail1Label.text = name ? name : @"";
-        
-        NSString * email = [userInfo.details objectForKey:featuredDetail2Key];
-        featuredDetail2Label.text = email ? email : @"";
-    }
         
     footerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.tableFooterView = footerView;
@@ -86,6 +64,16 @@ enum Section
 
     NSIndexPath * selectedRow = [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:selectedRow animated:NO];
+    
+    if (userInfo && userInfo.details) {
+        usernameLabel.text = username;
+        
+        NSString * name = [userInfo.details objectForKey:featuredDetail1Key];
+        featuredDetail1Label.text = name ? name : @"";
+        
+        NSString * email = [userInfo.details objectForKey:featuredDetail2Key];
+        featuredDetail2Label.text = email ? email : @"";
+    }
 }
 
 #pragma mark Table view methods
