@@ -22,7 +22,6 @@
 - (void)awakeFromNib
 {
     [networkAwareViewController setUpdatingText:@"Updating..."];
-    [networkAwareViewController setNoConnectionText:@"No Connection"];
     [networkAwareViewController
         setNoConnectionCachedDataText:@"No Connection - Stale Data"];
     
@@ -33,14 +32,26 @@
 
 - (void)display
 {
-    [gitHub fetchInfoForUsername:logInState.login];
+    if (logInState && logInState.login) {
+        [networkAwareViewController setNoConnectionText:@"No Connection"];
+        
+        [gitHub fetchInfoForUsername:logInState.login];
 
-    UserInfo * userInfo = [userCache primaryUser];
-    [userViewController setUsername:logInState.login];
-    [userViewController updateWithUserInfo:userInfo];
+        UserInfo * userInfo = [userCache primaryUser];
+        [userViewController setUsername:logInState.login];
+        [userViewController updateWithUserInfo:userInfo];
     
-    [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
-    [networkAwareViewController setCachedDataAvailable:!!userInfo];
+        [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
+        [networkAwareViewController setCachedDataAvailable:!!userInfo];
+    } else {
+        // This is a bit of a hack, but a relatively simple solution:
+        // Configure the network-aware controller to 'disconnected' and set the
+        // disconnected text accordingly
+        [networkAwareViewController
+            setNoConnectionText:@"Please Log In to View Personal Info"];
+        [networkAwareViewController setUpdatingState:kDisconnected];
+        [networkAwareViewController setCachedDataAvailable:NO];
+    }
 }
 
 - (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username;
