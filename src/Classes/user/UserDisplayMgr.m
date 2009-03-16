@@ -27,7 +27,7 @@
         setNoConnectionCachedDataText:@"No Connection - Stale Data"];
     
     gitHub =
-        [[GitHub alloc] initWithBaseUrl:@"http://github.com/api"
+        [[GitHub alloc] initWithBaseUrl:@"http://github.com/api/"
         format:JsonGitHubApiFormat delegate:self];
 }
 
