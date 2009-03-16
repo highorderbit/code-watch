@@ -42,7 +42,7 @@
     NSObject<GitHubApiParserImpl> * impl;
 
     switch (format) {
-        case JsonApiFormat:
+        case JsonGitHubApiFormat:
             impl = [[JsonGitHubApiParserImpl alloc] init];
             break;
     }

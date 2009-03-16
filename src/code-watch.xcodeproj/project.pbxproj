@@ -74,6 +74,7 @@
 		0534203F0F69EBC4000EECB1 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		053420770F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+CodeWatchAdditions.h"; sourceTree = "<group>"; };
 		053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+CodeWatchAdditions.m"; sourceTree = "<group>"; };
+		054C06560F6F07EB00999FEA /* GitHubApiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiFormat.h; path = github/GitHubApiFormat.h; sourceTree = "<group>"; };
 		0560A0590F69C83E0031A852 /* CodeWatchAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchAppController.h; sourceTree = "<group>"; };
 		0560A05A0F69C83E0031A852 /* CodeWatchAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeWatchAppController.m; sourceTree = "<group>"; };
 		0560A05B0F69C83E0031A852 /* CodeWatchAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchAppDelegate.h; sourceTree = "<group>"; };
@@ -221,6 +222,7 @@
 				05BB60CF0F6B23710005A635 /* GitHubApi.m */,
 				051CDD270F6C263A0049D2BD /* GitHubApiRequest.h */,
 				051CDD280F6C263A0049D2BD /* GitHubApiRequest.m */,
+				054C06560F6F07EB00999FEA /* GitHubApiFormat.h */,
 				05F4CF2D0F6C5ECB00B107BB /* GitHubApiParser.h */,
 				05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */,
 				051CDCE00F6C0D140049D2BD /* JsonGitHubApiParserImpl.h */,

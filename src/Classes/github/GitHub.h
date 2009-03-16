@@ -4,10 +4,11 @@
 
 #import <Foundation/Foundation.h>
 #import "GitHubDelegate.h"
-#import "GitHubApiDelegate.h"
-#import "GitHubApiParser.h"
+#import "GitHubApiFormat.h"
 
-@class GitHubApi, GitHubApiRequest;
+#import "GitHubApiDelegate.h"
+
+@class GitHubApi, GitHubApiRequest, GitHubApiParser;
 
 @interface GitHub : NSObject <GitHubApiDelegate>
 {
@@ -35,5 +36,6 @@
 #pragma mark Working with repositories
 
 - (void)fetchInfoForUsername:(NSString *)username;
+- (void)fetchInfoForUsername:(NSString *)username token:(NSString *)token;
 
 @end

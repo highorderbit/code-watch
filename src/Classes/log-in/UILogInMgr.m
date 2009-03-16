@@ -38,10 +38,13 @@
 
     NSURL * url = [NSURL URLWithString:@"http://github.com/api/"];
     GitHub * gitHub = [[GitHub alloc] initWithBaseUrl:url
-                                               format:JsonApiFormat
+                                               format:JsonGitHubApiFormat
                                              delegate:self];
 
-    [gitHub fetchInfoForUsername:username];
+    if (token)
+        [gitHub fetchInfoForUsername:username token:token];
+    else
+        [gitHub fetchInfoForUsername:username];
 }
 
 - (void)userDidCancel

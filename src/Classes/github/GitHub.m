@@ -5,6 +5,7 @@
 #import "GitHub.h"
 #import "GitHubApi.h"
 #import "GitHubApiRequest.h"
+#import "GitHubApiParser.h"
 
 #import "UserInfo.h"
 
@@ -60,16 +61,29 @@
 
 - (void)fetchInfoForUsername:(NSString *)username
 {
-    NSURL * url = [self baseApiUrlForUsername:username];
-    GitHubApiRequest * req = [[GitHubApiRequest alloc] initWithBaseUrl:url];
+    [self fetchInfoForUsername:username token:nil];
+}
 
-    SEL sel = @selector(handleUserInfoResponse:toRequest:forUsername:);
+- (void)fetchInfoForUsername:(NSString *)username token:(NSString *)token
+{
+    NSURL * url = [self baseApiUrlForUsername:username];
+    GitHubApiRequest * req;
+    
+    if (token) {
+        NSDictionary * args = [NSDictionary dictionaryWithObjectsAndKeys:
+            username, @"login", token, @"token", nil];
+        req = [[GitHubApiRequest alloc] initWithBaseUrl:url arguments:args];
+    } else
+        req = [[GitHubApiRequest alloc] initWithBaseUrl:url];
+
+    SEL sel = @selector(handleUserInfoResponse:toRequest:forUsername:token:);
     NSMethodSignature * sig = [self methodSignatureForSelector:sel];
     NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
 
     [inv setTarget:self];
     [inv setSelector:sel];
     [inv setArgument:&username atIndex:4];
+    [inv setArgument:&token atIndex:5];
     [inv retainArguments];
 
     [self setInvocation:inv forRequest:req];
@@ -102,6 +116,7 @@
 - (void)handleUserInfoResponse:(NSData *)response
                      toRequest:(GitHubApiRequest *)request
                    forUsername:(NSString *)username
+                         token:(NSString *)token
 {
     NSDictionary * info = [parser parseResponse:response];
     NSLog(@"Have user info: '%@'.", info);
@@ -132,7 +147,7 @@
     NSString * responseFormat;
 
     switch (apiFormat) {
-        case JsonApiFormat:
+        case JsonGitHubApiFormat:
             responseFormat = @"json";
             break;
         default:
