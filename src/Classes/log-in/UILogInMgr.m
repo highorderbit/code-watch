@@ -4,6 +4,10 @@
 
 #import "UILogInMgr.h"
 #import "LogInViewController.h"
+#import "GitHub.h"
+
+// TODO: Remove once merged with user info
+@class UserInfo;
 
 @implementation UILogInMgr
 
@@ -32,12 +36,26 @@
     NSLog(@"Attempting login with username: '%@', token: '%@'.", username,
         token);
 
+    NSURL * url = [NSURL URLWithString:@"http://github.com/api/"];
+    GitHub * gitHub = [[GitHub alloc] initWithBaseUrl:url
+                                               format:JsonApiFormat
+                                             delegate:self];
+
+    [gitHub fetchInfoForUsername:username];
+
     [rootViewController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)userDidCancel
 {
     [rootViewController dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark GitHubDelegate implementation
+
+- (void)username:(NSString *)username hasInfo:(UserInfo *)info;
+{
+    NSLog(@"Received response for username: '%@'.", username);
 }
 
 #pragma mark Accessors

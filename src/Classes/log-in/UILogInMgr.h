@@ -5,11 +5,12 @@
 #import <Foundation/Foundation.h>
 #import "LogInMgr.h"
 #import "LogInViewControllerDelegate.h"
+#import "GitHubDelegate.h"
 
 @class LogInViewController;
 
 @interface UILogInMgr : NSObject
-                        <LogInMgr, LogInViewControllerDelegate>
+                        <LogInMgr, LogInViewControllerDelegate, GitHubDelegate>
 {
     IBOutlet UIViewController * rootViewController;
     LogInViewController * logInViewController;
