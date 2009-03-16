@@ -8,7 +8,7 @@
 
 @implementation JsonGitHubApiParserImpl
 
-- (NSArray *)parseResponse:(NSData *)response
+- (NSDictionary *)parseResponse:(NSData *)response
 {
     return [[NSString stringWithUTF8EncodedData:response] JSONValue];
 }

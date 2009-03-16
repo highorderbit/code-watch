@@ -43,7 +43,7 @@
     [networkAwareViewController setCachedDataAvailable:!!userInfo];
 }
 
-- (void)username:(NSString *)username hasInfo:(UserInfo *)info
+- (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username;
 {
     [userViewController updateWithUserInfo:info];
     

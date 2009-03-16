@@ -5,20 +5,20 @@
 #import "UILogInMgr.h"
 #import "LogInViewController.h"
 #import "GitHub.h"
-
-// TODO: Remove once merged with user info
-@class UserInfo;
+#import "UserInfo.h"
 
 @implementation UILogInMgr
 
 @synthesize logInViewController;
 @synthesize navigationController;
+@synthesize logInStateSetter;
 
 - (void) dealloc
 {
     [rootViewController release];
     [logInViewController release];
     [navigationController release];
+    [logInStateSetter release];
     [super dealloc];
 }
 
@@ -26,7 +26,7 @@
 {
     [rootViewController
         presentModalViewController:self.navigationController
-        animated:YES];
+                          animated:YES];
 }
 
 #pragma mark LogInViewControllerDelegate implementation
@@ -42,8 +42,6 @@
                                              delegate:self];
 
     [gitHub fetchInfoForUsername:username];
-
-    [rootViewController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)userDidCancel
@@ -53,9 +51,13 @@
 
 #pragma mark GitHubDelegate implementation
 
-- (void)username:(NSString *)username hasInfo:(UserInfo *)info;
+- (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
 {
-    NSLog(@"Received response for username: '%@'.", username);
+    NSLog(@"Username: '%@' has info: '%@'.", username, info);
+
+    [logInStateSetter setLogin:username token:nil prompt:NO];
+
+    [rootViewController dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark Accessors

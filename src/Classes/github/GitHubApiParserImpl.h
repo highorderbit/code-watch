@@ -6,6 +6,6 @@
 
 @protocol GitHubApiParserImpl
 
-- (NSArray *)parseResponse:(NSData *)response;
+- (NSDictionary *)parseResponse:(NSData *)response;
 
 @end

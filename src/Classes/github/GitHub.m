@@ -5,6 +5,9 @@
 #import "GitHub.h"
 #import "GitHubApi.h"
 #import "GitHubApiRequest.h"
+
+#import "UserInfo.h"
+
 #import "NSString+NSDataAdditions.h"
 
 @interface GitHub (Private)
@@ -15,6 +18,8 @@
 - (void)removeInvocationForRequest:(GitHubApiRequest *)request;
 + (NSValue *)keyForRequest:(GitHubApiRequest *)request;
 + (GitHubApiRequest *)requestFromKey:(NSValue *)key;
++ (NSDictionary *)extractUserDetails:(NSDictionary *)githubInfo;
++ (NSArray *)extractRepos:(NSDictionary *)githubInfo;
 - (void)setDelegate:(id<GitHubDelegate>)aDelegate;
 - (void)setBaseUrl:(NSURL *)url;
 - (void)setApi:(GitHubApi *)anApi;
@@ -58,12 +63,14 @@
     NSURL * url = [self baseApiUrlForUsername:username];
     GitHubApiRequest * req = [[GitHubApiRequest alloc] initWithBaseUrl:url];
 
-    SEL sel = @selector(handleUserInfoResponse:toRequest:);
+    SEL sel = @selector(handleUserInfoResponse:toRequest:forUsername:);
     NSMethodSignature * sig = [self methodSignatureForSelector:sel];
     NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
 
     [inv setTarget:self];
     [inv setSelector:sel];
+    [inv setArgument:&username atIndex:4];
+    [inv retainArguments];
 
     [self setInvocation:inv forRequest:req];
 
@@ -94,10 +101,21 @@
 
 - (void)handleUserInfoResponse:(NSData *)response
                      toRequest:(GitHubApiRequest *)request
+                   forUsername:(NSString *)username
 {
-    NSArray * repos = [parser parseResponse:response];
-    NSLog(@"Have repositories: '%@'.", repos);
-    //[delegate user:user hasRepositories:repositories];
+    NSDictionary * info = [parser parseResponse:response];
+    NSLog(@"Have user info: '%@'.", info);
+
+    NSDictionary * userDetails = [[self class] extractUserDetails:info];
+    NSArray * repos = [[self class] extractRepos:info];
+
+    UserInfo * ui =
+        [[UserInfo alloc] initWithDetails:userDetails
+                                 repoKeys:repos];
+
+    [delegate info:ui fetchedForUsername:username];
+
+    [ui release];
 }
 
 #pragma mark Functions to help with building API URLs
@@ -158,6 +176,20 @@
 + (GitHubApiRequest *)requestFromKey:(NSValue *)key
 {
     return [key nonretainedObjectValue];
+}
+
++ (NSDictionary *)extractUserDetails:(NSDictionary *)githubInfo
+{
+    NSMutableDictionary * info =
+        [[[githubInfo objectForKey:@"user"] mutableCopy] autorelease];
+    [info removeObjectForKey:@"repositories"];
+
+    return info;
+}
+
++ (NSArray *)extractRepos:(NSDictionary *)githubInfo
+{
+    return [[githubInfo objectForKey:@"user"] objectForKey:@"repositories"];
 }
 
 #pragma mark Accessors
