@@ -14,6 +14,7 @@
  */
 
 + (NSString *)className;
+- (NSString *)className;
 
 #endif
 

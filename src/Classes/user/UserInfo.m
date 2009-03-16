@@ -3,6 +3,7 @@
 //
 
 #import "UserInfo.h"
+#import "NSObject+RuntimeAdditions.h"
 
 @implementation UserInfo
 

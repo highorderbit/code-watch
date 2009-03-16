@@ -17,6 +17,11 @@
     return [NSString stringWithUTF8String:class_getName(self->isa)];
 }
 
+- (NSString *)className
+{
+    return [[self class] className];
+}
+
 #endif
 
 @end
