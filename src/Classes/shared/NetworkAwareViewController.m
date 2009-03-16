@@ -28,14 +28,12 @@
 - (void) awakeFromNib
 {
     noDataView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    
-    // TEMPORARY
-    [self setCachedDataAvailable:YES];
-    [self setUpdatingState:kConnectedAndUpdating];
-    [self setUpdatingText:@"Updating..."];
-    [self setNoConnectionText:@"No Connection"];
-    [self setNoConnectionCachedDataText:@"No Connection - Stale Data"];
-    // TEMPORARY
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [targetViewController viewWillAppear:animated];
 }
 
 #pragma mark State updating methods

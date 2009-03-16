@@ -19,7 +19,7 @@
 
 - (id)copy
 {
-    return self; // because immutable
+    return [self retain]; // because immutable
 }
 
 - (id)initWithDetails:(NSDictionary *)someDetails
