@@ -30,8 +30,8 @@
     noDataView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     // TEMPORARY
-    [self setCachedDataAvailable:NO];
-    [self setUpdatingState:kDisconnected];
+    [self setCachedDataAvailable:YES];
+    [self setUpdatingState:kConnectedAndUpdating];
     [self setUpdatingText:@"Updating..."];
     [self setNoConnectionText:@"No Connection"];
     [self setNoConnectionCachedDataText:@"No Connection - Stale Data"];

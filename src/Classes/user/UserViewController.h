@@ -3,7 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "User.h"
+#import "UserInfo.h"
 
 @interface UserViewController : UITableViewController {
     IBOutlet UIView * headerView;
@@ -13,8 +13,9 @@
     IBOutlet UILabel * usernameLabel;    
     IBOutlet UILabel * featuredDetail1Label;
     IBOutlet UILabel * featuredDetail2Label;
-    
-    User * user;
+        
+    NSString * username;
+    UserInfo * userInfo;
     
     NSString * featuredDetail1Key;
     NSString * featuredDetail2Key;
@@ -22,7 +23,8 @@
     NSMutableDictionary * nonFeaturedDetails;
 }
 
-- (void)updateWithUser:(User *)user;
+- (void)setUsername:(NSString *)username;
+- (void)updateWithUserInfo:(UserInfo *)userInfo;
 
 - (void)setFeaturedDetail1Key:(NSString *)key;
 - (void)setFeaturedDetail2Key:(NSString *)key;

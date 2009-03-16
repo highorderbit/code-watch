@@ -31,7 +31,7 @@
 		910D828B0F69E0180068CBF3 /* LogInState.plist in Resources */ = {isa = PBXBuildFile; fileRef = 910D828A0F69E0180068CBF3 /* LogInState.plist */; };
 		91129B2B0F6C7EBC00D32C90 /* DefaultAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 91129B2A0F6C7EBC00D32C90 /* DefaultAvatar.png */; };
 		9127DD040F6B1065009CDBD5 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9127DD030F6B1065009CDBD5 /* UserViewController.m */; };
-		9127DDC30F6C25C1009CDBD5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9127DDC20F6C25C1009CDBD5 /* User.m */; };
+		9127DDC30F6C25C1009CDBD5 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9127DDC20F6C25C1009CDBD5 /* UserInfo.m */; };
 		9152A0F70F6A1F540037A52F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A0F60F6A1F540037A52F /* Icon.png */; };
 		9152A10F0F6AB24B0037A52F /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */; };
 		9152A1280F6AB7570037A52F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152A1270F6AB7570037A52F /* Security.framework */; };
@@ -41,6 +41,7 @@
 		91B6205B0F6C54540077CDB9 /* UserDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */; };
 		91B6205E0F6C54830077CDB9 /* UserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */; };
 		91CC52350F6C9D98000AD3FB /* NetworkAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */; };
+		91CC52DC0F6DC6C4000AD3FB /* UserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52DB0F6DC6C4000AD3FB /* UserCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,8 +90,8 @@
 		91129B2A0F6C7EBC00D32C90 /* DefaultAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultAvatar.png; sourceTree = "<group>"; };
 		9127DD020F6B1065009CDBD5 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		9127DD030F6B1065009CDBD5 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
-		9127DDC10F6C25C1009CDBD5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		9127DDC20F6C25C1009CDBD5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		9127DDC10F6C25C1009CDBD5 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		9127DDC20F6C25C1009CDBD5 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		9152A0F60F6A1F540037A52F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9152A10D0F6AB24B0037A52F /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
@@ -103,6 +104,10 @@
 		91B6205D0F6C54830077CDB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UserDetailTableViewCell.xib; sourceTree = "<group>"; };
 		91CC52330F6C9D98000AD3FB /* NetworkAwareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkAwareViewController.h; sourceTree = "<group>"; };
 		91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkAwareViewController.m; sourceTree = "<group>"; };
+		91CC52DA0F6DC6C4000AD3FB /* UserCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCache.h; sourceTree = "<group>"; };
+		91CC52DB0F6DC6C4000AD3FB /* UserCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCache.m; sourceTree = "<group>"; };
+		91CC52DD0F6DC711000AD3FB /* UserCacheSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCacheSetter.h; sourceTree = "<group>"; };
+		91CC52E00F6DC729000AD3FB /* UserCacheReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCacheReader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,8 +285,12 @@
 				91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */,
 				9127DD020F6B1065009CDBD5 /* UserViewController.h */,
 				9127DD030F6B1065009CDBD5 /* UserViewController.m */,
-				9127DDC10F6C25C1009CDBD5 /* User.h */,
-				9127DDC20F6C25C1009CDBD5 /* User.m */,
+				9127DDC10F6C25C1009CDBD5 /* UserInfo.h */,
+				9127DDC20F6C25C1009CDBD5 /* UserInfo.m */,
+				91CC52DA0F6DC6C4000AD3FB /* UserCache.h */,
+				91CC52DB0F6DC6C4000AD3FB /* UserCache.m */,
+				91CC52DD0F6DC711000AD3FB /* UserCacheSetter.h */,
+				91CC52E00F6DC729000AD3FB /* UserCacheReader.h */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -400,10 +409,11 @@
 				910D82880F69DE0B0068CBF3 /* InfoPlistConfigReader.m in Sources */,
 				9152A10F0F6AB24B0037A52F /* SFHFKeychainUtils.m in Sources */,
 				9127DD040F6B1065009CDBD5 /* UserViewController.m in Sources */,
-				9127DDC30F6C25C1009CDBD5 /* User.m in Sources */,
+				9127DDC30F6C25C1009CDBD5 /* UserInfo.m in Sources */,
 				051FBA900F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m in Sources */,
 				91B6205B0F6C54540077CDB9 /* UserDetailTableViewCell.m in Sources */,
 				91CC52350F6C9D98000AD3FB /* NetworkAwareViewController.m in Sources */,
+				91CC52DC0F6DC6C4000AD3FB /* UserCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

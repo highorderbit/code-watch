@@ -35,8 +35,9 @@ enum Section
     [usernameLabel release];
     [featuredDetail1Label release];
     [featuredDetail2Label release];
-    
-    [user release];
+
+    [username release];
+    [userInfo release];
     
     [nonFeaturedDetails release];
     
@@ -54,10 +55,10 @@ enum Section
         @"doug@highorderbit.com", @"email", nil];
     NSArray * someRepos =
         [NSArray arrayWithObjects:@"build-watch", @"code-watch", nil];
-    user =
-        [[User alloc] initWithUsername:@"kurthd" details:someDetails
-        repos:someRepos];
+    userInfo =
+        [[UserInfo alloc] initWithDetails:someDetails repoKeys:someRepos];
 
+    [self setUsername:@"kurthd"];
     [self setFeaturedDetail1Key:@"name"];
     [self setFeaturedDetail2Key:@"email"];
     // TEMPORARY
@@ -65,13 +66,13 @@ enum Section
     headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.tableHeaderView = headerView;
     
-    if (user && user.details) {
-        usernameLabel.text = user.username;
+    if (userInfo && userInfo.details) {
+        usernameLabel.text = username;
         
-        NSString * name = [user.details objectForKey:featuredDetail1Key];
+        NSString * name = [userInfo.details objectForKey:featuredDetail1Key];
         featuredDetail1Label.text = name ? name : @"";
         
-        NSString * email = [user.details objectForKey:featuredDetail2Key];
+        NSString * email = [userInfo.details objectForKey:featuredDetail2Key];
         featuredDetail2Label.text = email ? email : @"";
     }
         
@@ -107,7 +108,7 @@ enum Section
             numRows = 1;
             break;
         case kRepoSection:
-            numRows = [user.repos count];
+            numRows = [userInfo.repoKeys count];
             break;
     }
     
@@ -138,7 +139,7 @@ enum Section
             cell.text = NSLocalizedString(@"user.recent.activity.label", @"");
             break;
         case kRepoSection:
-            cell.text = [user.repos objectAtIndex:indexPath.row];
+            cell.text = [userInfo.repoKeys objectAtIndex:indexPath.row];
             break;
     }
     
@@ -169,11 +170,20 @@ enum Section
 
 #pragma mark User data update methods
 
-- (void)updateWithUser:(User *)aUser
+- (void)setUsername:(NSString *)aUsername
 {
-    aUser = [aUser copy];
-    [user release];
-    user = aUser;
+    aUsername = [aUsername copy];
+    [username release];
+    username = aUsername;
+    
+    usernameLabel.text = username;
+}
+
+- (void)updateWithUserInfo:(UserInfo *)someUserInfo
+{
+    someUserInfo = [someUserInfo copy];
+    [userInfo release];
+    userInfo = someUserInfo;
     
     [self updateNonFeaturedDetails];
     
@@ -210,7 +220,7 @@ enum Section
     [nonFeaturedDetails release];
     nonFeaturedDetails = [[[NSMutableDictionary alloc] init] retain];
     
-    NSDictionary * details = user.details;
+    NSDictionary * details = userInfo.details;
     for (NSString * key in [details allKeys])
         if (![key isEqual:featuredDetail1Key] &&
             ![key isEqual:featuredDetail2Key]) {
