@@ -36,12 +36,18 @@
 		910D82830F69DDF00068CBF3 /* PListUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D82820F69DDF00068CBF3 /* PListUtils.m */; };
 		910D82880F69DE0B0068CBF3 /* InfoPlistConfigReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D82870F69DE0B0068CBF3 /* InfoPlistConfigReader.m */; };
 		910D828B0F69E0180068CBF3 /* LogInState.plist in Resources */ = {isa = PBXBuildFile; fileRef = 910D828A0F69E0180068CBF3 /* LogInState.plist */; };
+		91129B2B0F6C7EBC00D32C90 /* DefaultAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 91129B2A0F6C7EBC00D32C90 /* DefaultAvatar.png */; };
+		9127DD040F6B1065009CDBD5 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9127DD030F6B1065009CDBD5 /* UserViewController.m */; };
+		9127DDC30F6C25C1009CDBD5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9127DDC20F6C25C1009CDBD5 /* User.m */; };
 		9152A0F70F6A1F540037A52F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A0F60F6A1F540037A52F /* Icon.png */; };
 		9152A10F0F6AB24B0037A52F /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */; };
 		9152A1280F6AB7570037A52F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152A1270F6AB7570037A52F /* Security.framework */; };
 		9152A1860F6ACE4A0037A52F /* UserIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1850F6ACE4A0037A52F /* UserIcon.png */; };
 		9152A1970F6ADAD20037A52F /* HomeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1960F6ADAD20037A52F /* HomeIcon.png */; };
 		9152A1F40F6AFF8A0037A52F /* UsersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1F30F6AFF8A0037A52F /* UsersIcon.png */; };
+		91B6205B0F6C54540077CDB9 /* UserDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */; };
+		91B6205E0F6C54830077CDB9 /* UserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */; };
+		91CC52350F6C9D98000AD3FB /* NetworkAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +110,11 @@
 		910D828A0F69E0180068CBF3 /* LogInState.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LogInState.plist; sourceTree = "<group>"; };
 		910D830A0F6A01200068CBF3 /* LogInStateReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInStateReader.h; sourceTree = "<group>"; };
 		910D830D0F6A012B0068CBF3 /* LogInStateSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInStateSetter.h; sourceTree = "<group>"; };
+		91129B2A0F6C7EBC00D32C90 /* DefaultAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultAvatar.png; sourceTree = "<group>"; };
+		9127DD020F6B1065009CDBD5 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		9127DD030F6B1065009CDBD5 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		9127DDC10F6C25C1009CDBD5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		9127DDC20F6C25C1009CDBD5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		9152A0F60F6A1F540037A52F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9152A10D0F6AB24B0037A52F /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
@@ -111,6 +122,11 @@
 		9152A1850F6ACE4A0037A52F /* UserIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserIcon.png; sourceTree = "<group>"; };
 		9152A1960F6ADAD20037A52F /* HomeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeIcon.png; sourceTree = "<group>"; };
 		9152A1F30F6AFF8A0037A52F /* UsersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UsersIcon.png; sourceTree = "<group>"; };
+		91B620590F6C54540077CDB9 /* UserDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailTableViewCell.h; sourceTree = "<group>"; };
+		91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailTableViewCell.m; sourceTree = "<group>"; };
+		91B6205D0F6C54830077CDB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UserDetailTableViewCell.xib; sourceTree = "<group>"; };
+		91CC52330F6C9D98000AD3FB /* NetworkAwareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkAwareViewController.h; sourceTree = "<group>"; };
+		91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkAwareViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +152,7 @@
 				910D81140F6987EB0068CBF3 /* LogInView.xib */,
 				910D81290F699C680068CBF3 /* SearchRepoView.xib */,
 				053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */,
+				91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -153,6 +170,8 @@
 				051CDD2B0F6C29690049D2BD /* NSString+NSDataAdditions.m */,
 				051CDD3D0F6C33FE0049D2BD /* NSString+UrlAdditions.h */,
 				051CDD3E0F6C33FE0049D2BD /* NSString+UrlAdditions.m */,
+				91CC52330F6C9D98000AD3FB /* NetworkAwareViewController.h */,
+				91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -211,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				05BB60AA0F6B20F40005A635 /* github */,
+				9127DD010F6B1065009CDBD5 /* user */,
 				9152A10B0F6AB24B0037A52F /* vendor */,
 				910D82840F69DE0B0068CBF3 /* config-mgmt */,
 				910D827F0F69DDF00068CBF3 /* persistence */,
@@ -302,6 +322,19 @@
 			name = PLists;
 			sourceTree = "<group>";
 		};
+		9127DD010F6B1065009CDBD5 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				91B620590F6C54540077CDB9 /* UserDetailTableViewCell.h */,
+				91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */,
+				9127DD020F6B1065009CDBD5 /* UserViewController.h */,
+				9127DD030F6B1065009CDBD5 /* UserViewController.m */,
+				9127DDC10F6C25C1009CDBD5 /* User.h */,
+				9127DDC20F6C25C1009CDBD5 /* User.m */,
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
 		9152A10B0F6AB24B0037A52F /* vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +355,7 @@
 		9152A1E90F6AFC240037A52F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				91129B2A0F6C7EBC00D32C90 /* DefaultAvatar.png */,
 				9152A1F30F6AFF8A0037A52F /* UsersIcon.png */,
 				9152A1960F6ADAD20037A52F /* HomeIcon.png */,
 				9152A1850F6ACE4A0037A52F /* UserIcon.png */,
@@ -390,6 +424,8 @@
 				9152A1860F6ACE4A0037A52F /* UserIcon.png in Resources */,
 				9152A1970F6ADAD20037A52F /* HomeIcon.png in Resources */,
 				9152A1F40F6AFF8A0037A52F /* UsersIcon.png in Resources */,
+				91B6205E0F6C54830077CDB9 /* UserDetailTableViewCell.xib in Resources */,
+				91129B2B0F6C7EBC00D32C90 /* DefaultAvatar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +448,8 @@
 				910D82830F69DDF00068CBF3 /* PListUtils.m in Sources */,
 				910D82880F69DE0B0068CBF3 /* InfoPlistConfigReader.m in Sources */,
 				9152A10F0F6AB24B0037A52F /* SFHFKeychainUtils.m in Sources */,
+				9127DD040F6B1065009CDBD5 /* UserViewController.m in Sources */,
+				9127DDC30F6C25C1009CDBD5 /* User.m in Sources */,
 				051FBA900F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m in Sources */,
 				05BB60D00F6B23710005A635 /* GitHubApi.m in Sources */,
 				051CDCDE0F6C0CEC0049D2BD /* GitHub.m in Sources */,
@@ -420,6 +458,8 @@
 				051CDD2C0F6C29690049D2BD /* NSString+NSDataAdditions.m in Sources */,
 				051CDD3F0F6C33FE0049D2BD /* NSString+UrlAdditions.m in Sources */,
 				05F4CF2F0F6C5ECB00B107BB /* GitHubApiParser.m in Sources */,
+				91B6205B0F6C54540077CDB9 /* UserDetailTableViewCell.m in Sources */,
+				91CC52350F6C9D98000AD3FB /* NetworkAwareViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +512,14 @@
 				910D812A0F699C680068CBF3 /* en */,
 			);
 			name = SearchRepoView.xib;
+			sourceTree = "<group>";
+		};
+		91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91B6205D0F6C54830077CDB9 /* en */,
+			);
+			name = UserDetailTableViewCell.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

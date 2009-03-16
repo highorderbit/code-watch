@@ -20,6 +20,9 @@
 
 - (void) applicationDidFinishLaunching:(UIApplication*) application
 {
+    // fix tab bar text
+    
+    
     [window addSubview:tabBarController.view];
     [appController start];
 }
