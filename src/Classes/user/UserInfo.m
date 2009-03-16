@@ -25,7 +25,7 @@
     repoKeys:(NSArray *)someRepoKeys
 {
     someDetails = [someDetails copy];
-    [someDetails release];
+    [details release];
     details = someDetails;
     
     someRepoKeys = [someRepoKeys copy];
@@ -33,6 +33,12 @@
     repoKeys = someRepoKeys;
     
     return self;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ (%d):\ndetails: %@\nrepo keys: %@",
+        [self className], (NSUInteger) self, details, repoKeys];
 }
 
 @end

@@ -30,7 +30,7 @@
 
 #pragma mark Parsing GitHub API responses
 
-- (NSArray *)parseResponse:(NSData *)response
+- (NSDictionary *)parseResponse:(NSData *)response
 {
     return [impl parseResponse:response];
 }

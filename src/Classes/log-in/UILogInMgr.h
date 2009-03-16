@@ -5,6 +5,7 @@
 #import <Foundation/Foundation.h>
 #import "LogInMgr.h"
 #import "LogInViewControllerDelegate.h"
+#import "LogInStateSetter.h"
 #import "GitHubDelegate.h"
 
 @class LogInViewController;
@@ -16,9 +17,12 @@
     LogInViewController * logInViewController;
 
     UINavigationController * navigationController;
+
+    IBOutlet NSObject<LogInStateSetter> * logInStateSetter;
 }
 
 @property (nonatomic, retain) LogInViewController * logInViewController;
 @property (nonatomic, retain) UINavigationController * navigationController;
+@property (nonatomic, retain) NSObject<LogInStateSetter> * logInStateSetter;
 
 @end
