@@ -28,7 +28,7 @@
     
     gitHub =
         [[GitHub alloc] initWithBaseUrl:@"http://github.com/api"
-        format:JsonApiFormat delegate:self];
+        format:JsonGitHubApiFormat delegate:self];
 }
 
 - (void)display
