@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		05158A7D0F6AC293009A7995 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05158A7B0F6AC293009A7995 /* Localizable.strings */; };
+		051CDCDE0F6C0CEC0049D2BD /* GitHub.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDCDD0F6C0CEC0049D2BD /* GitHub.m */; };
+		051CDCE20F6C0D140049D2BD /* JsonGitHubApiParserImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDCE10F6C0D140049D2BD /* JsonGitHubApiParserImpl.m */; };
+		051CDD290F6C263A0049D2BD /* GitHubApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDD280F6C263A0049D2BD /* GitHubApiRequest.m */; };
+		051CDD2C0F6C29690049D2BD /* NSString+NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDD2B0F6C29690049D2BD /* NSString+NSDataAdditions.m */; };
+		051CDD3F0F6C33FE0049D2BD /* NSString+UrlAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDD3E0F6C33FE0049D2BD /* NSString+UrlAdditions.m */; };
 		051FBA900F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */; };
 		053420330F69E987000EECB1 /* NameValueTextEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */; };
 		053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */; };
@@ -17,6 +22,8 @@
 		0560A0630F69C83E0031A852 /* CodeWatchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05C0F69C83E0031A852 /* CodeWatchAppDelegate.m */; };
 		0560A0640F69C83E0031A852 /* UILogInMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A0610F69C83E0031A852 /* UILogInMgr.m */; };
 		0599363C0F6975A80005B934 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059936380F6975A80005B934 /* MainWindow.xib */; };
+		05BB60D00F6B23710005A635 /* GitHubApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BB60CF0F6B23710005A635 /* GitHubApi.m */; };
+		05F4CF2F0F6C5ECB00B107BB /* GitHubApiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -46,6 +53,17 @@
 
 /* Begin PBXFileReference section */
 		05158A7C0F6AC293009A7995 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		051CDCDC0F6C0CEC0049D2BD /* GitHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHub.h; path = github/GitHub.h; sourceTree = "<group>"; };
+		051CDCDD0F6C0CEC0049D2BD /* GitHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHub.m; path = github/GitHub.m; sourceTree = "<group>"; };
+		051CDCE00F6C0D140049D2BD /* JsonGitHubApiParserImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JsonGitHubApiParserImpl.h; path = github/JsonGitHubApiParserImpl.h; sourceTree = "<group>"; };
+		051CDCE10F6C0D140049D2BD /* JsonGitHubApiParserImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JsonGitHubApiParserImpl.m; path = github/JsonGitHubApiParserImpl.m; sourceTree = "<group>"; };
+		051CDCE40F6C0EAF0049D2BD /* GitHubDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubDelegate.h; path = github/GitHubDelegate.h; sourceTree = "<group>"; };
+		051CDD270F6C263A0049D2BD /* GitHubApiRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiRequest.h; path = github/GitHubApiRequest.h; sourceTree = "<group>"; };
+		051CDD280F6C263A0049D2BD /* GitHubApiRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubApiRequest.m; path = github/GitHubApiRequest.m; sourceTree = "<group>"; };
+		051CDD2A0F6C29690049D2BD /* NSString+NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSDataAdditions.h"; sourceTree = "<group>"; };
+		051CDD2B0F6C29690049D2BD /* NSString+NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSDataAdditions.m"; sourceTree = "<group>"; };
+		051CDD3D0F6C33FE0049D2BD /* NSString+UrlAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UrlAdditions.h"; sourceTree = "<group>"; };
+		051CDD3E0F6C33FE0049D2BD /* NSString+UrlAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UrlAdditions.m"; sourceTree = "<group>"; };
 		051FBA340F6ADED400DB8696 /* LogInViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewControllerDelegate.h; sourceTree = "<group>"; };
 		051FBA8E0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RuntimeAdditions.h"; sourceTree = "<group>"; };
 		051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RuntimeAdditions.m"; sourceTree = "<group>"; };
@@ -64,6 +82,12 @@
 		0560A0600F69C83E0031A852 /* UILogInMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILogInMgr.h; sourceTree = "<group>"; };
 		0560A0610F69C83E0031A852 /* UILogInMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILogInMgr.m; sourceTree = "<group>"; };
 		059936390F6975A80005B934 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		05BB60CE0F6B23710005A635 /* GitHubApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApi.h; path = github/GitHubApi.h; sourceTree = "<group>"; };
+		05BB60CF0F6B23710005A635 /* GitHubApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubApi.m; path = github/GitHubApi.m; sourceTree = "<group>"; };
+		05F4CF2D0F6C5ECB00B107BB /* GitHubApiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiParser.h; path = github/GitHubApiParser.h; sourceTree = "<group>"; };
+		05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubApiParser.m; path = github/GitHubApiParser.m; sourceTree = "<group>"; };
+		05F4CF480F6C614A00B107BB /* GitHubApiParserImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiParserImpl.h; path = github/GitHubApiParserImpl.h; sourceTree = "<group>"; };
+		05F4CFC30F6C65A300B107BB /* GitHubApiDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiDelegate.h; path = github/GitHubApiDelegate.h; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Code Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -147,6 +171,10 @@
 				053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */,
 				051FBA8E0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.h */,
 				051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */,
+				051CDD2A0F6C29690049D2BD /* NSString+NSDataAdditions.h */,
+				051CDD2B0F6C29690049D2BD /* NSString+NSDataAdditions.m */,
+				051CDD3D0F6C33FE0049D2BD /* NSString+UrlAdditions.h */,
+				051CDD3E0F6C33FE0049D2BD /* NSString+UrlAdditions.m */,
 				91CC52330F6C9D98000AD3FB /* NetworkAwareViewController.h */,
 				91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */,
 			);
@@ -183,9 +211,30 @@
 			path = "log-in";
 			sourceTree = "<group>";
 		};
+		05BB60AA0F6B20F40005A635 /* github */ = {
+			isa = PBXGroup;
+			children = (
+				051CDCDC0F6C0CEC0049D2BD /* GitHub.h */,
+				051CDCDD0F6C0CEC0049D2BD /* GitHub.m */,
+				051CDCE40F6C0EAF0049D2BD /* GitHubDelegate.h */,
+				05BB60CE0F6B23710005A635 /* GitHubApi.h */,
+				05BB60CF0F6B23710005A635 /* GitHubApi.m */,
+				051CDD270F6C263A0049D2BD /* GitHubApiRequest.h */,
+				051CDD280F6C263A0049D2BD /* GitHubApiRequest.m */,
+				05F4CF2D0F6C5ECB00B107BB /* GitHubApiParser.h */,
+				05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */,
+				051CDCE00F6C0D140049D2BD /* JsonGitHubApiParserImpl.h */,
+				051CDCE10F6C0D140049D2BD /* JsonGitHubApiParserImpl.m */,
+				05F4CF480F6C614A00B107BB /* GitHubApiParserImpl.h */,
+				05F4CFC30F6C65A300B107BB /* GitHubApiDelegate.h */,
+			);
+			name = github;
+			sourceTree = "<group>";
+		};
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				05BB60AA0F6B20F40005A635 /* github */,
 				9127DD010F6B1065009CDBD5 /* user */,
 				9152A10B0F6AB24B0037A52F /* vendor */,
 				910D82840F69DE0B0068CBF3 /* config-mgmt */,
@@ -229,11 +278,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9152A1E90F6AFC240037A52F /* Images */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				05158A7B0F6AC293009A7995 /* Localizable.strings */,
+				9152A1E90F6AFC240037A52F /* Images */,
 				05158A6E0F6AC251009A7995 /* NIBs */,
 				910D82890F69DFD50068CBF3 /* PLists */,
-				05158A7B0F6AC293009A7995 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -411,6 +460,13 @@
 				9127DD040F6B1065009CDBD5 /* UserViewController.m in Sources */,
 				9127DDC30F6C25C1009CDBD5 /* UserInfo.m in Sources */,
 				051FBA900F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m in Sources */,
+				05BB60D00F6B23710005A635 /* GitHubApi.m in Sources */,
+				051CDCDE0F6C0CEC0049D2BD /* GitHub.m in Sources */,
+				051CDCE20F6C0D140049D2BD /* JsonGitHubApiParserImpl.m in Sources */,
+				051CDD290F6C263A0049D2BD /* GitHubApiRequest.m in Sources */,
+				051CDD2C0F6C29690049D2BD /* NSString+NSDataAdditions.m in Sources */,
+				051CDD3F0F6C33FE0049D2BD /* NSString+UrlAdditions.m in Sources */,
+				05F4CF2F0F6C5ECB00B107BB /* GitHubApiParser.m in Sources */,
 				91B6205B0F6C54540077CDB9 /* UserDetailTableViewCell.m in Sources */,
 				91CC52350F6C9D98000AD3FB /* NetworkAwareViewController.m in Sources */,
 				91CC52DC0F6DC6C4000AD3FB /* UserCache.m in Sources */,
@@ -482,11 +538,17 @@
 		05B37E230F6976AB006644A2 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ljson",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
 				SDKROOT = iphoneos2.2.1;
@@ -498,6 +560,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
@@ -510,6 +576,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -524,6 +594,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
@@ -534,12 +608,18 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ljson",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
 				SDKROOT = iphoneos2.2.1;
@@ -549,11 +629,17 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ljson",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
 				SDKROOT = iphoneos2.2.1;
