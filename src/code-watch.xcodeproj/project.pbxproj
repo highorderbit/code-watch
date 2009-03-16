@@ -18,6 +18,7 @@
 		053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */; };
 		053420400F69EBC4000EECB1 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0534203F0F69EBC4000EECB1 /* LogInViewController.m */; };
 		053420790F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */; };
+		054C06F70F6F0D5000999FEA /* GitHubService.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C06F60F6F0D5000999FEA /* GitHubService.m */; };
 		0560A0620F69C83E0031A852 /* CodeWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05A0F69C83E0031A852 /* CodeWatchAppController.m */; };
 		0560A0630F69C83E0031A852 /* CodeWatchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05C0F69C83E0031A852 /* CodeWatchAppDelegate.m */; };
 		0560A0640F69C83E0031A852 /* UILogInMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A0610F69C83E0031A852 /* UILogInMgr.m */; };
@@ -77,6 +78,9 @@
 		053420770F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+CodeWatchAdditions.h"; sourceTree = "<group>"; };
 		053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+CodeWatchAdditions.m"; sourceTree = "<group>"; };
 		054C06560F6F07EB00999FEA /* GitHubApiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiFormat.h; path = github/GitHubApiFormat.h; sourceTree = "<group>"; };
+		054C06F50F6F0D5000999FEA /* GitHubService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubService.h; path = github/GitHubService.h; sourceTree = "<group>"; };
+		054C06F60F6F0D5000999FEA /* GitHubService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubService.m; path = github/GitHubService.m; sourceTree = "<group>"; };
+		054C06FE0F6F104200999FEA /* GitHubServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubServiceDelegate.h; path = github/GitHubServiceDelegate.h; sourceTree = "<group>"; };
 		0560A0590F69C83E0031A852 /* CodeWatchAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchAppController.h; sourceTree = "<group>"; };
 		0560A05A0F69C83E0031A852 /* CodeWatchAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeWatchAppController.m; sourceTree = "<group>"; };
 		0560A05B0F69C83E0031A852 /* CodeWatchAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchAppDelegate.h; sourceTree = "<group>"; };
@@ -225,6 +229,9 @@
 		05BB60AA0F6B20F40005A635 /* github */ = {
 			isa = PBXGroup;
 			children = (
+				054C06F50F6F0D5000999FEA /* GitHubService.h */,
+				054C06F60F6F0D5000999FEA /* GitHubService.m */,
+				054C06FE0F6F104200999FEA /* GitHubServiceDelegate.h */,
 				051CDCDC0F6C0CEC0049D2BD /* GitHub.h */,
 				051CDCDD0F6C0CEC0049D2BD /* GitHub.m */,
 				051CDCE40F6C0EAF0049D2BD /* GitHubDelegate.h */,
@@ -484,6 +491,7 @@
 				91B6205B0F6C54540077CDB9 /* UserDetailTableViewCell.m in Sources */,
 				91CC52350F6C9D98000AD3FB /* NetworkAwareViewController.m in Sources */,
 				91CC52DC0F6DC6C4000AD3FB /* UserCache.m in Sources */,
+				054C06F70F6F0D5000999FEA /* GitHubService.m in Sources */,
 				91CC535A0F6EC311000AD3FB /* UserDisplayMgr.m in Sources */,
 				91F970630F6F0A09007B2AB1 /* CodeWatchNavigationController.m in Sources */,
 			);

@@ -141,11 +141,11 @@ enum CredentialsSection
             stringByReplacingCharactersInRange:range withString:string];
 
         // TODO: For testing only; remove when appropriate
-        NSString * username = usernameTextField.text;
-        if ([username isEqual:@"jad"] && [token isEqual:@"898"]) {
+        NSString * user = usernameTextField.text;
+        if ([user isEqual:@"jad"] && [token isEqual:@"898"]) {
             textField.text = @"898dd101a9c690b6d48f91187d8c4652";
             return NO;
-        } else if([username isEqual:@"highorderbit"] && [token isEqual:@"245"]) {
+        } else if([user isEqual:@"highorderbit"] && [token isEqual:@"245"]) {
             textField.text = @"24579632190e7e1cc79f1c6a46090a7d";
             return NO;
         }
