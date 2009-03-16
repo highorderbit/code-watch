@@ -136,6 +136,19 @@ enum CredentialsSection
         NSString * text = [textField.text
             stringByReplacingCharactersInRange:range withString:string];
         self.navigationItem.rightBarButtonItem.enabled = text.length > 0;
+    } else {
+        NSString * token = [textField.text
+            stringByReplacingCharactersInRange:range withString:string];
+
+        // TODO: For testing only; remove when appropriate
+        NSString * username = usernameTextField.text;
+        if ([username isEqual:@"jad"] && [token isEqual:@"898"]) {
+            textField.text = @"898dd101a9c690b6d48f91187d8c4652";
+            return NO;
+        } else if([username isEqual:@"highorderbit"] && [token isEqual:@"245"]) {
+            textField.text = @"24579632190e7e1cc79f1c6a46090a7d";
+            return NO;
+        }
     }
 
     return YES;
@@ -164,7 +177,8 @@ enum CredentialsSection
 - (void)userDidSave
 {
     NSString * username = usernameTextField.text;
-    NSString * token = tokenTextField.text;
+    NSString * token =
+        tokenTextField.text.length > 0 ? tokenTextField.text : nil;
 
     [delegate userProvidedUsername:username token:token];
 }

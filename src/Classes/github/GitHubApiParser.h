@@ -3,13 +3,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GitHubApiFormat.h"
 #import "GitHubApiParserImpl.h"
-
-typedef enum GitHubApiFormat
-{
-    JsonApiFormat
-} GitHubApiFormat;
-
 
 @interface GitHubApiParser : NSObject
 {
