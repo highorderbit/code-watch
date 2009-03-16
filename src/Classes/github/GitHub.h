@@ -33,7 +33,7 @@
                format:(GitHubApiFormat)format
              delegate:(id<GitHubDelegate>)aDelegate;
 
-#pragma mark Working with repositories
+#pragma mark Fetching user info from GitHub
 
 - (void)fetchInfoForUsername:(NSString *)username;
 - (void)fetchInfoForUsername:(NSString *)username token:(NSString *)token;
