@@ -18,6 +18,7 @@
     [gitHub release];
     [logInStateReader release];
     [userCacheSetter release];
+    [configReader release];
     [super dealloc];
 }
 
@@ -30,12 +31,17 @@
 
 - (id)init
 {
-    if (self = [super init])
-        gitHub = [[GitHub alloc] initWithBaseUrl:@"http://github.com/api/"
-                                          format:JsonGitHubApiFormat
-                                        delegate:self];
+    return (self = [super init]);
+}
 
-    return self;
+- (void)awakeFromNib
+{
+    NSString * url = [configReader valueForKey:@"GitHubApiBaseUrl"];
+    NSURL * gitHubApiBaseUrl = [NSURL URLWithString:url];
+
+    gitHub = [[GitHub alloc] initWithBaseUrl:gitHubApiBaseUrl
+                                      format:JsonGitHubApiFormat
+                                    delegate:self];
 }
 
 #pragma mark Fetching user info from GitHub

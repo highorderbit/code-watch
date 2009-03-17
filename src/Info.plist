@@ -26,5 +26,7 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>GitHubApiBaseUrl</key>
+	<string>http://github.com/api/</string>
 </dict>
 </plist>
