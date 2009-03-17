@@ -221,6 +221,8 @@
 {
     NSMutableDictionary * info =
         [[[githubInfo objectForKey:@"user"] mutableCopy] autorelease];
+
+    [info removeObjectForKey:@"login"];
     [info removeObjectForKey:@"repositories"];
 
     return info;
