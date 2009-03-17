@@ -10,7 +10,7 @@
 #import "UserInfo.h"
 
 #import "NSString+NSDataAdditions.h"
-#import "NSError+ConvenienceAdditions.h"
+#import "NSError+InstantiationAdditions.h"
 
 @interface GitHub (Private)
 - (NSURL *)baseApiUrlForUsername:(NSString *)username;
