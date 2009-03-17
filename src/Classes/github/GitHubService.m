@@ -40,7 +40,10 @@
 
 - (void)fetchInfoForUsername:(NSString *)username
 {
-    [gitHub fetchInfoForUsername:username];
+    if ([username isEqual:logInStateReader.login])
+        [gitHub fetchInfoForUsername:username token:logInStateReader.token];
+    else
+        [gitHub fetchInfoForUsername:username];
 }
 
 - (void)fetchInfoForUsername:(NSString *)username token:(NSString *)token
@@ -52,10 +55,7 @@
 
 - (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
 {
-    [self saveInfo:info forUsername:username];
-
-    [delegate
-        info:info fetchedForUsername:username token:logInStateReader.token];
+    [self info:info fetchedForUsername:username token:nil];
 }
 
 - (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
@@ -63,7 +63,7 @@
 {
     [self saveInfo:info forUsername:username];
 
-    [delegate info:info fetchedForUsername:username token:token];
+    [delegate info:info fetchedForUsername:username];
 }
 
 #pragma mark Persisting retrieved data

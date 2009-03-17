@@ -51,7 +51,6 @@
 }
 
 - (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
-       token:(NSString *)token
 {
     [userViewController updateWithUserInfo:info];
 

@@ -8,7 +8,6 @@
 
 @protocol GitHubServiceDelegate
 
-- (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
-    token:(NSString *)token;
+- (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username;
 
 @end
