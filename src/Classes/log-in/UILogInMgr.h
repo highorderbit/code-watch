@@ -23,6 +23,7 @@
     
     IBOutlet UIBarButtonItem * homeBarButtonItem;
     IBOutlet UIBarButtonItem * userBarButtonItem;
+    IBOutlet UITabBarItem * userTabBarItem;
 
     IBOutlet GitHubService * gitHub;
     IBOutlet NSObject<LogInStateSetter> * logInStateSetter;
