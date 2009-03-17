@@ -29,6 +29,7 @@
     
     [homeBarButtonItem release];
     [userBarButtonItem release];
+    [userTabBarItem release];
     
     [gitHub release];
     [logInStateSetter release];
@@ -147,9 +148,11 @@
     if (logInStateReader.login) {
         homeBarButtonItem.title = @"Log Out";
         userBarButtonItem.title = @"Log Out";
+        userTabBarItem.title = logInStateReader.login;
     } else {
         homeBarButtonItem.title = @"Log In";
         userBarButtonItem.title = @"Log In";
+        userTabBarItem.title = @"User";
     }
 }
 
