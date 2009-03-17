@@ -44,8 +44,10 @@
 
 - (id)init
 {
-    if (self = [super init])
+    if (self = [super init]) {
         [self setButtonText];
+        connecting = NO;
+    }
 
     return self;
 }
@@ -72,6 +74,8 @@
     NSLog(@"Attempting login with username: '%@', token: '%@'.", username,
         token);
 
+    connecting = YES;
+
     if (token)
         [gitHub fetchInfoForUsername:username token:token];
     else
@@ -85,8 +89,9 @@
 
 - (void)provideHelp
 {
-    [self.navigationController pushViewController:self.logInHelpViewController
-                                         animated:YES];
+    if (!connecting)
+        [self.navigationController
+            pushViewController:self.logInHelpViewController animated:YES];
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -99,6 +104,7 @@
 
     [rootViewController dismissModalViewControllerAnimated:YES];
     
+    connecting = NO;
     [self setButtonText];
 }
 
@@ -119,7 +125,8 @@
          autorelease];
 
     [alertView show];
-
+ 
+    connecting = NO;
     [self.logInViewController viewWillAppear:NO];
     
 }

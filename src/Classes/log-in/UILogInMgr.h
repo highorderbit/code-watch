@@ -31,6 +31,8 @@
     IBOutlet NSObject<LogInStateSetter> * logInStateSetter;
     IBOutlet NSObject<LogInStateReader> * logInStateReader;
     IBOutlet NSObject<UserCacheSetter> * userCacheSetter;
+
+    BOOL connecting;
 }
 
 @property (nonatomic, retain) UINavigationController * navigationController;
