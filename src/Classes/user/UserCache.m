@@ -34,6 +34,11 @@ static const NSInteger RECENTLY_VIEWED_HISTORY_MAX = 100;
     return [[[recentlyViewedUsers objectForKey:username] copy] autorelease];
 }
 
+- (NSDictionary *)allUsers
+{
+    return [recentlyViewedUsers copy];
+}
+
 #pragma mark User cache setter methods
 
 - (void)setPrimaryUser:(UserInfo *)user

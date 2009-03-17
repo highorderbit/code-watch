@@ -52,6 +52,7 @@
 		91CC52DC0F6DC6C4000AD3FB /* UserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52DB0F6DC6C4000AD3FB /* UserCache.m */; };
 		91CC535A0F6EC311000AD3FB /* UserDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC53590F6EC311000AD3FB /* UserDisplayMgr.m */; };
 		91F970630F6F0A09007B2AB1 /* CodeWatchNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F970620F6F0A09007B2AB1 /* CodeWatchNavigationController.m */; };
+		91F9715B0F6F24F5007B2AB1 /* UserPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F9715A0F6F24F5007B2AB1 /* UserPersistenceStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +145,8 @@
 		91F970430F6F0705007B2AB1 /* CodeWatchDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchDisplayMgr.h; sourceTree = "<group>"; };
 		91F970610F6F0A09007B2AB1 /* CodeWatchNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchNavigationController.h; sourceTree = "<group>"; };
 		91F970620F6F0A09007B2AB1 /* CodeWatchNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeWatchNavigationController.m; sourceTree = "<group>"; };
+		91F971590F6F24F5007B2AB1 /* UserPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPersistenceStore.h; sourceTree = "<group>"; };
+		91F9715A0F6F24F5007B2AB1 /* UserPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPersistenceStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,6 +364,8 @@
 				91CC52E00F6DC729000AD3FB /* UserCacheReader.h */,
 				91CC53580F6EC311000AD3FB /* UserDisplayMgr.h */,
 				91CC53590F6EC311000AD3FB /* UserDisplayMgr.m */,
+				91F971590F6F24F5007B2AB1 /* UserPersistenceStore.h */,
+				91F9715A0F6F24F5007B2AB1 /* UserPersistenceStore.m */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -494,6 +499,7 @@
 				054C06F70F6F0D5000999FEA /* GitHubService.m in Sources */,
 				91CC535A0F6EC311000AD3FB /* UserDisplayMgr.m in Sources */,
 				91F970630F6F0A09007B2AB1 /* CodeWatchNavigationController.m in Sources */,
+				91F9715B0F6F24F5007B2AB1 /* UserPersistenceStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

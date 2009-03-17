@@ -9,5 +9,6 @@
 
 - (UserInfo *)primaryUser;
 - (UserInfo *)userWithUsername:(NSString *)username;
+- (NSDictionary *)allUsers;
 
 @end

@@ -11,12 +11,16 @@
     [logInMgr release];
     [logInState release];
     [logInPersistenceStore release];
+    
+    [userCachePersistenceStore release];
+    
     [super dealloc];
 }
 
 - (void) start
 {
     [logInPersistenceStore load];
+    [userCachePersistenceStore load];
     
     if ([logInState prompt])
         [logInMgr collectCredentials];
@@ -25,6 +29,7 @@
 - (void) persistState
 {
     [logInPersistenceStore save];
+    [userCachePersistenceStore save];
 }
 
 @end
