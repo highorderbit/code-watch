@@ -10,6 +10,7 @@
 #import "UserInfo.h"
 
 #import "NSString+NSDataAdditions.h"
+#import "NSError+ConvenienceAdditions.h"
 
 @interface GitHub (Private)
 - (NSURL *)baseApiUrlForUsername:(NSString *)username;
@@ -121,17 +122,23 @@
     NSDictionary * info = [parser parseResponse:response];
     NSLog(@"Have user info: '%@'.", info);
 
-    NSDictionary * userDetails = [[self class] extractUserDetails:info];
-    NSArray * repos = [[self class] extractRepos:info];
+    if (info == nil) {  // parsing failed
+        NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
+        NSError * error = [NSError errorWithLocalizedDescription:desc];
+        [delegate failedToFetchInfoForUsername:username error:error];
+    } else {
+        NSDictionary * userDetails = [[self class] extractUserDetails:info];
+        NSArray * repos = [[self class] extractRepos:info];
 
-    UserInfo * ui =
-        [[UserInfo alloc] initWithDetails:userDetails
-                                 repoKeys:repos];
+        UserInfo * ui =
+            [[UserInfo alloc] initWithDetails:userDetails
+                                     repoKeys:repos];
 
-    NSLog(@"Have username: '%@' and token: '%@'.", username, token);
-    [delegate info:ui fetchedForUsername:username];
+        NSLog(@"Have username: '%@' and token: '%@'.", username, token);
+        [delegate info:ui fetchedForUsername:username];
 
-    [ui release];
+        [ui release];
+    }
 }
 
 #pragma mark Functions to help with building API URLs

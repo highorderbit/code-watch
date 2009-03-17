@@ -18,6 +18,8 @@
 		053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */; };
 		053420400F69EBC4000EECB1 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0534203F0F69EBC4000EECB1 /* LogInViewController.m */; };
 		053420790F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */; };
+		053B7B3F0F700C3B0084B219 /* NSError+InstantiationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053B7B3E0F700C3B0084B219 /* NSError+InstantiationAdditions.m */; };
+		053B7B610F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053B7B600F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m */; };
 		054C06F70F6F0D5000999FEA /* GitHubService.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C06F60F6F0D5000999FEA /* GitHubService.m */; };
 		0560A0620F69C83E0031A852 /* CodeWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05A0F69C83E0031A852 /* CodeWatchAppController.m */; };
 		0560A0630F69C83E0031A852 /* CodeWatchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05C0F69C83E0031A852 /* CodeWatchAppDelegate.m */; };
@@ -78,6 +80,10 @@
 		0534203F0F69EBC4000EECB1 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		053420770F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+CodeWatchAdditions.h"; sourceTree = "<group>"; };
 		053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+CodeWatchAdditions.m"; sourceTree = "<group>"; };
+		053B7B3D0F700C3B0084B219 /* NSError+InstantiationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+InstantiationAdditions.h"; sourceTree = "<group>"; };
+		053B7B3E0F700C3B0084B219 /* NSError+InstantiationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+InstantiationAdditions.m"; sourceTree = "<group>"; };
+		053B7B5F0F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+NetworkActivityIndicatorAdditions.h"; sourceTree = "<group>"; };
+		053B7B600F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+NetworkActivityIndicatorAdditions.m"; sourceTree = "<group>"; };
 		054C06560F6F07EB00999FEA /* GitHubApiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiFormat.h; path = github/GitHubApiFormat.h; sourceTree = "<group>"; };
 		054C06F50F6F0D5000999FEA /* GitHubService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubService.h; path = github/GitHubService.h; sourceTree = "<group>"; };
 		054C06F60F6F0D5000999FEA /* GitHubService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubService.m; path = github/GitHubService.m; sourceTree = "<group>"; };
@@ -190,8 +196,12 @@
 				051CDD2B0F6C29690049D2BD /* NSString+NSDataAdditions.m */,
 				051CDD3D0F6C33FE0049D2BD /* NSString+UrlAdditions.h */,
 				051CDD3E0F6C33FE0049D2BD /* NSString+UrlAdditions.m */,
+				053B7B3D0F700C3B0084B219 /* NSError+InstantiationAdditions.h */,
+				053B7B3E0F700C3B0084B219 /* NSError+InstantiationAdditions.m */,
 				91CC52330F6C9D98000AD3FB /* NetworkAwareViewController.h */,
 				91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */,
+				053B7B5F0F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.h */,
+				053B7B600F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -500,6 +510,8 @@
 				91CC535A0F6EC311000AD3FB /* UserDisplayMgr.m in Sources */,
 				91F970630F6F0A09007B2AB1 /* CodeWatchNavigationController.m in Sources */,
 				91F9715B0F6F24F5007B2AB1 /* UserPersistenceStore.m in Sources */,
+				053B7B3F0F700C3B0084B219 /* NSError+InstantiationAdditions.m in Sources */,
+				053B7B610F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

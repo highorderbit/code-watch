@@ -4,25 +4,27 @@
 
 #import "UILogInMgr.h"
 #import "LogInViewController.h"
-#import "GitHub.h"
+#import "GitHubService.h"
 #import "UserInfo.h"
 
 @implementation UILogInMgr
 
 @synthesize logInViewController;
 @synthesize navigationController;
+@synthesize gitHub;
 @synthesize logInStateSetter;
 
-- (void) dealloc
+- (void)dealloc
 {
     [rootViewController release];
     [logInViewController release];
     [navigationController release];
+    [gitHub release];
     [logInStateSetter release];
     [super dealloc];
 }
 
-- (void) collectCredentials
+- (void)collectCredentials
 {
     [rootViewController
         presentModalViewController:self.navigationController
@@ -36,11 +38,6 @@
     NSLog(@"Attempting login with username: '%@', token: '%@'.", username,
         token);
 
-    NSURL * url = [NSURL URLWithString:@"http://github.com/api/"];
-    GitHub * gitHub = [[GitHub alloc] initWithBaseUrl:url
-                                               format:JsonGitHubApiFormat
-                                             delegate:self];
-
     if (token)
         [gitHub fetchInfoForUsername:username token:token];
     else
@@ -52,7 +49,7 @@
     [rootViewController dismissModalViewControllerAnimated:YES];
 }
 
-#pragma mark GitHubDelegate implementation
+#pragma mark GitHubServiceDelegate implementation
 
 - (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
 {
@@ -63,16 +60,31 @@
     [rootViewController dismissModalViewControllerAnimated:YES];
 }
 
-- (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
-       token:(NSString *)token
+- (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
 {
-    [logInStateSetter setLogin:username token:token prompt:NO];
-    [rootViewController dismissModalViewControllerAnimated:YES];
+    NSString * title =
+        NSLocalizedString(@"github.login.failed.alert.title", @"");
+    NSString * cancelTitle =
+        NSLocalizedString(@"github.login.failed.alert.ok", @"");
+
+    UIAlertView * alertView =
+        [[[UIAlertView alloc]
+          initWithTitle:title
+                message:error.localizedDescription
+               delegate:self
+      cancelButtonTitle:cancelTitle
+      otherButtonTitles:nil]
+         autorelease];
+
+    [alertView show];
+
+    [self.logInViewController viewWillAppear:NO];
+    
 }
 
 #pragma mark Accessors
 
-- (LogInViewController *) logInViewController
+- (LogInViewController *)logInViewController
 {
     if (!logInViewController) {
         logInViewController =
@@ -86,7 +98,7 @@
     return logInViewController;
 }
 
-- (UINavigationController *) navigationController
+- (UINavigationController *)navigationController
 {
     if (!navigationController)
         navigationController = [[UINavigationController alloc]

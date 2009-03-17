@@ -50,6 +50,8 @@
     }
 }
 
+#pragma mark GitHubServiceDelegate implementation
+
 - (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
 {
     [userViewController updateWithUserInfo:info];
@@ -58,9 +60,9 @@
     [networkAwareViewController setCachedDataAvailable:YES];
 }
 
-// - (void)requestFailedForUsername:(NSString *username) withError:(NSError *)error
-// {
-//     [networkAwareViewController setUpdatingState:kDisconnecte];
-// }
+- (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
+{
+     [networkAwareViewController setUpdatingState:kDisconnected];
+}
 
 @end

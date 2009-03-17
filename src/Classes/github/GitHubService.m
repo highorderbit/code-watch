@@ -5,6 +5,8 @@
 #import "GitHubService.h"
 #import "GitHub.h"
 
+#import "UIApplication+NetworkActivityIndicatorAdditions.h"
+
 @interface GitHubService (Private)
 - (void)saveInfo:(UserInfo *)info forUsername:(NSString *)username;
 @end
@@ -40,6 +42,8 @@
 
 - (void)fetchInfoForUsername:(NSString *)username
 {
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
     if ([username isEqual:logInStateReader.login])
         [gitHub fetchInfoForUsername:username token:logInStateReader.token];
     else
@@ -48,6 +52,8 @@
 
 - (void)fetchInfoForUsername:(NSString *)username token:(NSString *)token
 {
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
     [gitHub fetchInfoForUsername:username token:token];
 }
 
@@ -55,15 +61,26 @@
 
 - (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
 {
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+
     [self info:info fetchedForUsername:username token:nil];
 }
 
 - (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
     token:(NSString *)token
 {
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+
     [self saveInfo:info forUsername:username];
 
     [delegate info:info fetchedForUsername:username];
+}
+
+- (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
+{
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+
+    [delegate failedToFetchInfoForUsername:username error:error];
 }
 
 #pragma mark Persisting retrieved data
