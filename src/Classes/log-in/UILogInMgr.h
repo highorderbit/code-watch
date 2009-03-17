@@ -6,7 +6,9 @@
 #import "LogInMgr.h"
 #import "LogInViewControllerDelegate.h"
 #import "LogInStateSetter.h"
+#import "LogInStateReader.h"
 #import "GitHubServiceDelegate.h"
+#import "UserCacheSetter.h"
 
 @class GitHubService;
 @class LogInViewController;
@@ -18,9 +20,14 @@
     LogInViewController * logInViewController;
 
     UINavigationController * navigationController;
+    
+    IBOutlet UIBarButtonItem * homeBarButtonItem;
+    IBOutlet UIBarButtonItem * userBarButtonItem;
 
     IBOutlet GitHubService * gitHub;
     IBOutlet NSObject<LogInStateSetter> * logInStateSetter;
+    IBOutlet NSObject<LogInStateReader> * logInStateReader;
+    IBOutlet NSObject<UserCacheSetter> * userCacheSetter;
 }
 
 @property (nonatomic, retain) LogInViewController * logInViewController;

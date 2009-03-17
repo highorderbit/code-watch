@@ -7,6 +7,12 @@
 #import "GitHubService.h"
 #import "UserInfo.h"
 
+@interface UILogInMgr (Private)
+
+- (void)setButtonText;
+
+@end
+
 @implementation UILogInMgr
 
 @synthesize logInViewController;
@@ -18,17 +24,42 @@
 {
     [rootViewController release];
     [logInViewController release];
+    
     [navigationController release];
+    
+    [homeBarButtonItem release];
+    [userBarButtonItem release];
+    
     [gitHub release];
     [logInStateSetter release];
+    [logInStateReader release];
+    [userCacheSetter release];
+    
     [super dealloc];
+}
+
+- (id)init
+{
+    [super init];
+    
+    [self setButtonText];
+    
+    return self;
 }
 
 - (IBAction)collectCredentials:(id)sender
 {
+    if (logInStateReader.login) { // if logged in, log out
+        BOOL prompt = logInStateReader.prompt;
+        [logInStateSetter setLogin:nil token:nil prompt:prompt];
+        [userCacheSetter setPrimaryUser:nil];
+    }
+    
     [rootViewController
         presentModalViewController:self.navigationController
-                          animated:YES];
+        animated:YES];
+
+    [self setButtonText];
 }
 
 #pragma mark LogInViewControllerDelegate implementation
@@ -58,6 +89,8 @@
     [logInStateSetter setLogin:username token:nil prompt:NO];
 
     [rootViewController dismissModalViewControllerAnimated:YES];
+    
+    [self setButtonText];
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
@@ -105,6 +138,19 @@
             initWithRootViewController:self.logInViewController];
 
     return navigationController;
+}
+
+#pragma mark Helper methods
+
+- (void)setButtonText
+{
+    if (logInStateReader.login) {
+        homeBarButtonItem.title = @"Log Out";
+        userBarButtonItem.title = @"Log Out";
+    } else {
+        homeBarButtonItem.title = @"Log In";
+        userBarButtonItem.title = @"Log In";
+    }
 }
 
 @end

@@ -6,8 +6,8 @@
 
 @protocol LogInStateReader
 
-@property (copy, readonly) NSString* login;
-@property (copy, readonly) NSString* token;
+@property (copy, readonly) NSString * login;
+@property (copy, readonly) NSString * token;
 @property (readonly) BOOL prompt;
 
 @end
