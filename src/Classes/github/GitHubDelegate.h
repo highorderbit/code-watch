@@ -8,8 +8,13 @@
 
 @protocol GitHubDelegate
 
+#pragma mark Fetching user information
+
 - (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username;
-- (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
-    token:(NSString *)token;
+- (void)          info:(UserInfo *)info
+    fetchedForUsername:(NSString *)username
+                 token:(NSString *)token;
+- (void)failedToFetchInfoForUsername:(NSString *)username
+                               error:(NSError *)error;
 
 @end

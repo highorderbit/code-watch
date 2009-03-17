@@ -6,23 +6,26 @@
 #import "LogInMgr.h"
 #import "LogInViewControllerDelegate.h"
 #import "LogInStateSetter.h"
-#import "GitHubDelegate.h"
+#import "GitHubServiceDelegate.h"
 
+@class GitHubService;
 @class LogInViewController;
 
-@interface UILogInMgr : NSObject
-                        <LogInMgr, LogInViewControllerDelegate, GitHubDelegate>
+@interface UILogInMgr :
+    NSObject <LogInMgr, LogInViewControllerDelegate, GitHubServiceDelegate>
 {
     IBOutlet UIViewController * rootViewController;
     LogInViewController * logInViewController;
 
     UINavigationController * navigationController;
 
+    IBOutlet GitHubService * gitHub;
     IBOutlet NSObject<LogInStateSetter> * logInStateSetter;
 }
 
 @property (nonatomic, retain) LogInViewController * logInViewController;
 @property (nonatomic, retain) UINavigationController * navigationController;
+@property (nonatomic, retain) GitHubService * gitHub;
 @property (nonatomic, retain) NSObject<LogInStateSetter> * logInStateSetter;
 
 @end
