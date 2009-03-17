@@ -77,7 +77,7 @@
     } else
         req = [[GitHubApiRequest alloc] initWithBaseUrl:url];
 
-    SEL sel = @selector(handleUserInfoResponse:toRequest:forUsername:token:);
+    SEL sel = @selector(handleUserInfoResponse:toRequest:username:token:);
     NSMethodSignature * sig = [self methodSignatureForSelector:sel];
     NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
 
@@ -97,6 +97,9 @@
 - (void)request:(GitHubApiRequest *)request
     didCompleteWithResponse:(NSData *)response
 {
+    NSLog(@"Request: '%@' succeeded: %d bytes in response.", request,
+        response.length);
+
     NSInvocation * invocation = [self invocationForRequest:request];
     [invocation setArgument:&response atIndex:2];
     [invocation setArgument:&request atIndex:3];
@@ -110,22 +113,35 @@
     didFailWithError:(NSError *)error
 {
     NSLog(@"Request: '%@' failed: '%@'.", request, error);
+
+    NSInvocation * invocation = [self invocationForRequest:request];
+    [invocation setArgument:&error atIndex:2];
+    [invocation setArgument:&request atIndex:3];
+
+    [invocation invoke];
+
+    [self removeInvocationForRequest:request];
 }
 
 #pragma mark Processing API responses
 
-- (void)handleUserInfoResponse:(NSData *)response
+- (void)handleUserInfoResponse:(id)response
                      toRequest:(GitHubApiRequest *)request
-                   forUsername:(NSString *)username
+                      username:(NSString *)username
                          token:(NSString *)token
 {
+    if ([response isKindOfClass:[NSError class]]) {
+        [delegate failedToFetchInfoForUsername:username error:response];
+        return;
+    }
+
     NSDictionary * info = [parser parseResponse:response];
     NSLog(@"Have user info: '%@'.", info);
 
     if (info == nil) {  // parsing failed
         NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
-        NSError * error = [NSError errorWithLocalizedDescription:desc];
-        [delegate failedToFetchInfoForUsername:username error:error];
+        NSError * err = [NSError errorWithLocalizedDescription:desc];
+        [delegate failedToFetchInfoForUsername:username error:err];
     } else {
         NSDictionary * userDetails = [[self class] extractUserDetails:info];
         NSArray * repos = [[self class] extractRepos:info];
