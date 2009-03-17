@@ -82,8 +82,10 @@
     NSMutableDictionary * dict =
         [[[NSMutableDictionary alloc] init] autorelease];
     
-    [dict setObject:userInfo.details forKey:[[self class] detailsKey]];
-    [dict setObject:userInfo.repoKeys forKey:[[self class] reposKey]];
+    if (userInfo.details)
+        [dict setObject:userInfo.details forKey:[[self class] detailsKey]];
+    if (userInfo.repoKeys)
+        [dict setObject:userInfo.repoKeys forKey:[[self class] reposKey]];
     
     return dict;
 }
