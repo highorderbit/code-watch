@@ -8,6 +8,8 @@ static const NSInteger RECENTLY_VIEWED_HISTORY_MAX = 100;
 
 @implementation UserCache
 
+@synthesize primaryUser;
+
 - (void)dealloc
 {
     [primaryUser release];
@@ -23,11 +25,6 @@ static const NSInteger RECENTLY_VIEWED_HISTORY_MAX = 100;
 }
 
 #pragma mark User cache reader methods
-
-- (UserInfo *)primaryUser
-{
-    return [[primaryUser copy] autorelease];
-}
 
 - (UserInfo *)userWithUsername:(NSString *)username
 {

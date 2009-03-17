@@ -6,7 +6,6 @@
 #import "PersistenceStore.h"
 #import "LogInStateReader.h"
 #import "LogInStateSetter.h"
-#import "PListUtils.h"
 
 @interface LogInPersistenceStore : NSObject <PersistenceStore>
 {

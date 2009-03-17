@@ -7,8 +7,8 @@
 
 @protocol UserCacheReader
 
-- (UserInfo *)primaryUser;
+@property (readonly, copy) UserInfo * primaryUser;
+@property (readonly, copy) NSDictionary * allUsers;
 - (UserInfo *)userWithUsername:(NSString *)username;
-- (NSDictionary *)allUsers;
 
 @end
