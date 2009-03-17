@@ -68,7 +68,7 @@
 								<string key="IBUIText">Company</string>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">1.300000e+01</double>
+									<double key="NSSize">1.400000e+01</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<object class="NSColor" key="IBUITextColor">

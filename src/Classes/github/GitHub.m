@@ -128,6 +128,7 @@
         [[UserInfo alloc] initWithDetails:userDetails
                                  repoKeys:repos];
 
+    NSLog(@"Have username: '%@' and token: '%@'.", username, token);
     [delegate info:ui fetchedForUsername:username];
 
     [ui release];
@@ -204,7 +205,14 @@
 
 + (NSArray *)extractRepos:(NSDictionary *)githubInfo
 {
-    return [[githubInfo objectForKey:@"user"] objectForKey:@"repositories"];
+    NSArray * repos =
+        [[githubInfo objectForKey:@"user"] objectForKey:@"repositories"];
+    NSMutableArray * repoNames =
+        [NSMutableArray arrayWithCapacity:repos.count];
+    for (NSDictionary * repo in repos)
+        [repoNames addObject:[repo objectForKey:@"name"]];
+
+    return repoNames;
 }
 
 #pragma mark Accessors

@@ -5,6 +5,8 @@
 #import <Foundation/Foundation.h>
 #import "GitHubServiceDelegate.h"
 #import "GitHubDelegate.h"
+#import "LogInStateReader.h"
+#import "UserCacheSetter.h"
 
 @class GitHub, GitHubServiceDelegate;
 
@@ -12,7 +14,10 @@
 {
     id<GitHubServiceDelegate> delegate;
 
-    IBOutlet GitHub * gitHub;
+    GitHub * gitHub;
+
+    IBOutlet NSObject<LogInStateReader> * logInStateReader;
+    IBOutlet NSObject<UserCacheSetter> * userCacheSetter;
 }
 
 #pragma mark Instantiation

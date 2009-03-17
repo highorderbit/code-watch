@@ -63,6 +63,13 @@
     [rootViewController dismissModalViewControllerAnimated:YES];
 }
 
+- (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
+       token:(NSString *)token
+{
+    [logInStateSetter setLogin:username token:token prompt:NO];
+    [rootViewController dismissModalViewControllerAnimated:YES];
+}
+
 #pragma mark Accessors
 
 - (LogInViewController *) logInViewController

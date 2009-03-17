@@ -8,9 +8,9 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="16"/>
-			<integer value="5"/>
 			<integer value="15"/>
+			<integer value="5"/>
+			<integer value="16"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -68,9 +68,9 @@
 						<int key="NSID">2</int>
 					</object>
 				</object>
-				<object class="NSFont" key="IBUIFont" id="110670282">
+				<object class="NSFont" key="IBUIFont" id="680347889">
 					<string key="NSName">Helvetica</string>
-					<double key="NSSize">1.400000e+01</double>
+					<double key="NSSize">1.800000e+01</double>
 					<int key="NSfFlags">16</int>
 				</object>
 				<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
@@ -96,7 +96,7 @@
 					<bytes key="NSWhite">MAA</bytes>
 					<reference key="NSCustomColorSpace" ref="244153976"/>
 				</object>
-				<reference key="IBUIFont" ref="110670282"/>
+				<reference key="IBUIFont" ref="680347889"/>
 				<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 				<float key="IBUIMinimumFontSize">1.700000e+01</float>
 				<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -267,6 +267,13 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/log-in/LogInViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/shared/NSObject+RuntimeAdditions.h</string>
 					</object>
 				</object>
 			</object>
