@@ -24,7 +24,7 @@
     [super dealloc];
 }
 
-- (void)collectCredentials
+- (IBAction)collectCredentials:(id)sender
 {
     [rootViewController
         presentModalViewController:self.navigationController

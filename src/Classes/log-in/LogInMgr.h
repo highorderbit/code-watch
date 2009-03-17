@@ -6,6 +6,6 @@
 
 @protocol LogInMgr 
 
-- (void) collectCredentials;
+- (IBAction)collectCredentials:(id)sender;
 
 @end

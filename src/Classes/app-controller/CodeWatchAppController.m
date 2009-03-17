@@ -23,7 +23,7 @@
     [userCachePersistenceStore load];
     
     if ([logInState prompt])
-        [logInMgr collectCredentials];
+        [logInMgr collectCredentials:self];
 }
 
 - (void)persistState
