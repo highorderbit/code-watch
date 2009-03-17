@@ -4,5 +4,5 @@
 
 typedef enum
 {
-    JsonGitHubApiFormat
+    JsonGitHubApiFormat = 1
 } GitHubApiFormat;

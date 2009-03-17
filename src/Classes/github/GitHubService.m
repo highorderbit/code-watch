@@ -39,8 +39,11 @@
     NSString * url = [configReader valueForKey:@"GitHubApiBaseUrl"];
     NSURL * gitHubApiBaseUrl = [NSURL URLWithString:url];
 
+    GitHubApiFormat apiFormat =
+        [[configReader valueForKey:@"GitHubApiFormat"] intValue];
+
     gitHub = [[GitHub alloc] initWithBaseUrl:gitHubApiBaseUrl
-                                      format:JsonGitHubApiFormat
+                                      format:apiFormat
                                     delegate:self];
 }
 

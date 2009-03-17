@@ -52,6 +52,7 @@
         [self setBaseUrl:url];
         [self setApi:[[[GitHubApi alloc] initWithDelegate:self] autorelease]];
         [self setParser:[GitHubApiParser parserWithApiFormat:format]];
+        apiFormat = format;
         requests = [[NSMutableDictionary alloc] init];
     }
 
