@@ -96,6 +96,7 @@
 		0560A0600F69C83E0031A852 /* UILogInMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILogInMgr.h; sourceTree = "<group>"; };
 		0560A0610F69C83E0031A852 /* UILogInMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILogInMgr.m; sourceTree = "<group>"; };
 		059936390F6975A80005B934 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		05B98F440F7053EF0039602B /* GitHubApiVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiVersion.h; path = github/GitHubApiVersion.h; sourceTree = "<group>"; };
 		05BB60CE0F6B23710005A635 /* GitHubApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApi.h; path = github/GitHubApi.h; sourceTree = "<group>"; };
 		05BB60CF0F6B23710005A635 /* GitHubApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubApi.m; path = github/GitHubApi.m; sourceTree = "<group>"; };
 		05F4CF2D0F6C5ECB00B107BB /* GitHubApiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiParser.h; path = github/GitHubApiParser.h; sourceTree = "<group>"; };
@@ -253,6 +254,7 @@
 				051CDD270F6C263A0049D2BD /* GitHubApiRequest.h */,
 				051CDD280F6C263A0049D2BD /* GitHubApiRequest.m */,
 				054C06560F6F07EB00999FEA /* GitHubApiFormat.h */,
+				05B98F440F7053EF0039602B /* GitHubApiVersion.h */,
 				05F4CF2D0F6C5ECB00B107BB /* GitHubApiParser.h */,
 				05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */,
 				051CDCE00F6C0D140049D2BD /* JsonGitHubApiParserImpl.h */,

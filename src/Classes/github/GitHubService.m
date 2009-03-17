@@ -42,8 +42,12 @@
     GitHubApiFormat apiFormat =
         [[configReader valueForKey:@"GitHubApiFormat"] intValue];
 
+    GitHubApiVersion apiVersion =
+        [[configReader valueForKey:@"GitHubApiVersion"] intValue];
+
     gitHub = [[GitHub alloc] initWithBaseUrl:gitHubApiBaseUrl
                                       format:apiFormat
+                                     version:apiVersion
                                     delegate:self];
 }
 

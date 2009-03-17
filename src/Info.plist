@@ -30,5 +30,7 @@
 	<string>http://github.com/api/</string>
 	<key>GitHubApiFormat</key>
 	<string>1</string>
+	<key>GitHubApiVersion</key>
+	<string>1</string>
 </dict>
 </plist>
