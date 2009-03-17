@@ -7,17 +7,19 @@
 #import "UserViewController.h"
 #import "UserCacheReader.h"
 #import "LogInStateReader.h"
-#import "GitHub.h"
+#import "GitHubService.h"
 #import "CodeWatchDisplayMgr.h"
 
-@interface UserDisplayMgr : NSObject <CodeWatchDisplayMgr, GitHubDelegate> {
+@interface UserDisplayMgr :
+    NSObject <CodeWatchDisplayMgr, GitHubServiceDelegate>
+{
     IBOutlet NetworkAwareViewController * networkAwareViewController;
     IBOutlet UserViewController * userViewController;
     
     IBOutlet NSObject<UserCacheReader> * userCache;
     IBOutlet NSObject<LogInStateReader> * logInState;
     
-    GitHub * gitHub;
+    IBOutlet GitHubService * gitHub;
 }
 
 @end

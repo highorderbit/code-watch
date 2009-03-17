@@ -24,10 +24,6 @@
     [networkAwareViewController setUpdatingText:@"Updating..."];
     [networkAwareViewController
         setNoConnectionCachedDataText:@"No Connection - Stale Data"];
-    
-    gitHub =
-        [[GitHub alloc] initWithBaseUrl:@"http://github.com/api/"
-        format:JsonGitHubApiFormat delegate:self];
 }
 
 - (void)display
@@ -35,7 +31,7 @@
     if (logInState && logInState.login) {
         [networkAwareViewController setNoConnectionText:@"No Connection"];
         
-        [gitHub fetchInfoForUsername:logInState.login];
+        [gitHub fetchInfoForUsername:logInState.login token:logInState.token];
 
         UserInfo * userInfo = [userCache primaryUser];
         [userViewController setUsername:logInState.login];
@@ -54,10 +50,11 @@
     }
 }
 
-- (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username;
+- (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
+       token:(NSString *)token
 {
     [userViewController updateWithUserInfo:info];
-    
+
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];
 }
