@@ -14,6 +14,11 @@ enum CredentialsSection
     kTokenRow
 };
 
+@interface LogInViewController (Private)
+- (void)userDidSave;
+- (void)userDidCancel;
+@end
+
 @implementation LogInViewController
 
 @synthesize delegate;
