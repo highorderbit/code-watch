@@ -91,8 +91,10 @@
     } else
         self.navigationItem.prompt = nil;
     
-    if (cachedDataAvailable)
+    if (cachedDataAvailable) {
         self.view = targetViewController.view;
+        [targetViewController viewWillAppear:YES];
+    }
     else {
         self.view = noDataView;
         noDataLabel.text =

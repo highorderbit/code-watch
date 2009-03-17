@@ -28,4 +28,7 @@
 @property (nonatomic, retain) GitHubService * gitHub;
 @property (nonatomic, retain) NSObject<LogInStateSetter> * logInStateSetter;
 
+// Neede re-definition to work in interface builder
+- (IBAction)collectCredentials:(id)sender;
+
 @end
