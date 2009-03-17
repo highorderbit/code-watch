@@ -5,13 +5,24 @@
 #import "LogInViewController.h"
 #import "NameValueTextEntryTableViewCell.h"
 
-static const NSInteger NUM_SECTIONS = 1;
+static const NSInteger NUM_SECTIONS = 2;
+enum Sections
+{
+    kCredentialsSection,
+    kHelpSection
+};
 
 static const NSInteger NUM_CREDENTIALS_ROWS = 2;
 enum CredentialsSection
 {
     kUsernameRow,
     kTokenRow
+};
+
+static const NSInteger NUM_HELP_ROWS = 1;
+enum HelpSection
+{
+    kHelpRow
 };
 
 @interface LogInViewController (Private)
@@ -23,7 +34,7 @@ enum CredentialsSection
 
 @synthesize delegate;
 @synthesize tableView;
-@synthesize usernameCell, tokenCell;
+@synthesize usernameCell, tokenCell, helpCell;
 @synthesize usernameTextField, tokenTextField;
 
 - (void)dealloc
@@ -32,6 +43,7 @@ enum CredentialsSection
     [tableView release];
     [usernameCell release];
     [tokenCell release];
+    [helpCell release];
     [usernameTextField release];
     [tokenTextField release];
     [super dealloc];
@@ -42,6 +54,7 @@ enum CredentialsSection
     [super viewDidLoad];
 
     self.navigationItem.title = NSLocalizedString(@"login.view.title", @"");
+    self.navigationItem.prompt = NSLocalizedString(@"login.view.prompt", @"");
 
     UIBarButtonItem * logInButtonItem =
         [[UIBarButtonItem alloc]
@@ -77,6 +90,11 @@ enum CredentialsSection
 {
     [super viewWillAppear:animated];
 
+    self.helpCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+
+    NSIndexPath * selection = [tableView indexPathForSelectedRow];
+    [tableView deselectRowAtIndexPath:selection animated:NO];
+
     self.usernameCell.nameLabel.text =
         NSLocalizedString(@"login.username.label", @"");
     self.tokenCell.nameLabel.text =
@@ -104,31 +122,50 @@ enum CredentialsSection
 - (NSInteger)tableView:(UITableView *)tv
  numberOfRowsInSection:(NSInteger)section
 {
-    return NUM_CREDENTIALS_ROWS;
+    NSInteger nrows = 0;
+
+    switch (section) {
+        case kCredentialsSection:
+            nrows = NUM_CREDENTIALS_ROWS;
+            break;
+        case kHelpSection:
+            nrows = NUM_HELP_ROWS;
+            break;
+    }
+
+    return nrows;
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tv
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NameValueTextEntryTableViewCell * cell;
+    UITableViewCell * cell;
 
-    switch (indexPath.row) {
-        case kUsernameRow:
-            cell = self.usernameCell;
-            break;
-        case kTokenRow:
-            cell = self.tokenCell;
-            break;
-    }
+    if (indexPath.section == kCredentialsSection)
+        switch (indexPath.row) {
+            case kUsernameRow:
+                cell = self.usernameCell;
+                break;
+            case kTokenRow:
+                cell = self.tokenCell;
+                break;
+        }
+    else if (indexPath.section == kHelpSection)
+        switch (indexPath.row) {
+            case kHelpRow:
+                cell = self.helpCell;
+                break;
+        }
 
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView
-    titleForHeaderInSection:(NSInteger)section
+- (void)tableView:(UITableView *)tableView
+    didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NSLocalizedString(@"login.credentials.header.label", @"");
+    if (indexPath.section == kHelpSection && indexPath.row == kHelpRow)
+        [delegate provideHelp];
 }
 
 #pragma mark UITextFieldDelegate functions
@@ -183,6 +220,8 @@ enum CredentialsSection
 
 - (void)userDidSave
 {
+    self.helpCell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     NSString * username = usernameTextField.text;
     NSString * token =
         tokenTextField.text.length > 0 ? tokenTextField.text : nil;
@@ -197,7 +236,7 @@ enum CredentialsSection
 
 #pragma mark Accessors
 
-- (NameValueTextEntryTableViewCell *) usernameCell
+- (NameValueTextEntryTableViewCell *)usernameCell
 {
     if (!usernameCell)
         usernameCell =
@@ -206,13 +245,29 @@ enum CredentialsSection
     return usernameCell;
 }
 
-- (NameValueTextEntryTableViewCell *) tokenCell
+- (NameValueTextEntryTableViewCell *)tokenCell
 {
     if (!tokenCell)
         tokenCell =
             [[NameValueTextEntryTableViewCell createCustomInstance] retain];
 
     return tokenCell;
+}
+
+- (UITableViewCell *)helpCell
+{
+    if (helpCell == nil) {
+        static NSString * reuseIdentifier = @"HelpTableViewCell";
+
+        helpCell =
+            [[UITableViewCell
+                createStandardInstanceWithReuseIdentifier:reuseIdentifier]
+             retain];
+        helpCell.text = NSLocalizedString(@"login.help.label", @"");
+        helpCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+
+    return helpCell;
 }
 
 @end

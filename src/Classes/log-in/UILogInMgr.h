@@ -12,14 +12,16 @@
 
 @class GitHubService;
 @class LogInViewController;
+@class LogInHelpViewController;
 
 @interface UILogInMgr :
     NSObject <LogInMgr, LogInViewControllerDelegate, GitHubServiceDelegate>
 {
     IBOutlet UIViewController * rootViewController;
-    LogInViewController * logInViewController;
 
     UINavigationController * navigationController;
+    LogInViewController * logInViewController;
+    LogInHelpViewController * logInHelpViewController;
     
     IBOutlet UIBarButtonItem * homeBarButtonItem;
     IBOutlet UIBarButtonItem * userBarButtonItem;
@@ -31,8 +33,9 @@
     IBOutlet NSObject<UserCacheSetter> * userCacheSetter;
 }
 
-@property (nonatomic, retain) LogInViewController * logInViewController;
 @property (nonatomic, retain) UINavigationController * navigationController;
+@property (nonatomic, retain) LogInViewController * logInViewController;
+@property (nonatomic, retain) LogInHelpViewController * logInHelpViewController;
 @property (nonatomic, retain) GitHubService * gitHub;
 @property (nonatomic, retain) NSObject<LogInStateSetter> * logInStateSetter;
 

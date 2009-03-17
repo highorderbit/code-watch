@@ -4,6 +4,7 @@
 
 #import "UILogInMgr.h"
 #import "LogInViewController.h"
+#import "LogInHelpViewController.h"
 #import "GitHubService.h"
 #import "UserInfo.h"
 
@@ -15,18 +16,20 @@
 
 @implementation UILogInMgr
 
-@synthesize logInViewController;
 @synthesize navigationController;
+@synthesize logInViewController;
+@synthesize logInHelpViewController;
 @synthesize gitHub;
 @synthesize logInStateSetter;
 
 - (void)dealloc
 {
     [rootViewController release];
-    [logInViewController release];
-    
+
     [navigationController release];
-    
+    [logInViewController release];
+    [logInHelpViewController release];
+
     [homeBarButtonItem release];
     [userBarButtonItem release];
     [userTabBarItem release];
@@ -41,10 +44,9 @@
 
 - (id)init
 {
-    [super init];
-    
-    [self setButtonText];
-    
+    if (self = [super init])
+        [self setButtonText];
+
     return self;
 }
 
@@ -79,6 +81,12 @@
 - (void)userDidCancel
 {
     [rootViewController dismissModalViewControllerAnimated:YES];
+}
+
+- (void)provideHelp
+{
+    [self.navigationController pushViewController:self.logInHelpViewController
+                                         animated:YES];
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -122,14 +130,22 @@
 {
     if (!logInViewController) {
         logInViewController =
-            [[[LogInViewController alloc]
-              initWithNibName:@"LogInView"
-                       bundle:nil]
-             autorelease];
+            [[LogInViewController alloc]
+             initWithNibName:@"LogInView" bundle:nil];
         logInViewController.delegate = self;
     }
 
     return logInViewController;
+}
+
+- (LogInHelpViewController *)logInHelpViewController
+{
+    if (!logInHelpViewController)
+        logInHelpViewController =
+            [[LogInHelpViewController alloc]
+             initWithNibName:@"LogInHelpView" bundle:nil];
+
+    return logInHelpViewController;
 }
 
 - (UINavigationController *)navigationController
