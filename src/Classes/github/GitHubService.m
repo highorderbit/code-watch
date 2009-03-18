@@ -127,9 +127,8 @@
 {
     [[UIApplication sharedApplication] networkActivityDidFinish];
 
-    // TODO: Do something meaningful here
-    NSLog(@"Fetched info for repo: user: '%@', repo: '%@'.",
-        username, info);
+    if ([delegate respondsToSelector:@selector(repoInfo:fetchedForUsername:)])
+        [delegate repoInfo:info fetchedForUsername:username];
 }
 
 - (void)failedToFetchInfoForRepo:(NSString *)repo

@@ -44,7 +44,11 @@
 
 - (void)repoInfo:(RepoInfo *)info fetchedForUsername:(NSString *)username
 {
-    NSLog(@"Info received: '%@' for user: '%@'.", info);
+    NSLog(@"Providing info: '%@'.", info);
+    [repoViewController updateWithRepoInfo:info];
+
+    [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
+    [networkAwareViewController setCachedDataAvailable:YES];
 }
 
 - (void)failedToFetchInfoForRepo:(NSString *)repo

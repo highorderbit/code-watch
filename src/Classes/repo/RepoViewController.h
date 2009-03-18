@@ -4,8 +4,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class RepoInfo;
+
 @interface RepoViewController : UITableViewController
 {
+    RepoInfo * repoInfo;
 }
+
+- (void)updateWithRepoInfo:(RepoInfo *)info;
 
 @end

@@ -20,8 +20,9 @@
 - (void)removeInvocationForRequest:(GitHubApiRequest *)request;
 + (NSValue *)keyForRequest:(GitHubApiRequest *)request;
 + (GitHubApiRequest *)requestFromKey:(NSValue *)key;
-+ (NSDictionary *)extractUserDetails:(NSDictionary *)githubInfo;
-+ (NSArray *)extractRepos:(NSDictionary *)githubInfo;
++ (NSDictionary *)extractUserDetails:(NSDictionary *)gitHubInfo;
++ (NSArray *)extractRepos:(NSDictionary *)gitHubInfo;
++ (NSArray *)extractRepoCommits:(NSDictionary *)gitHubInfo;
 - (void)setDelegate:(id<GitHubDelegate>)aDelegate;
 - (void)setBaseUrl:(NSURL *)url;
 - (void)setApi:(GitHubApi *)anApi;
@@ -189,7 +190,6 @@
             [[UserInfo alloc] initWithDetails:userDetails
                                      repoKeys:repos];
 
-        NSLog(@"Have username: '%@' and token: '%@'.", username, token);
         [delegate userInfo:ui fetchedForUsername:username];
 
         [ui release];
@@ -211,6 +211,10 @@
 
     NSDictionary * info = [parser parseResponse:response];
     NSLog(@"Have repo info: '%@'", info);
+
+    //SArray * commits = [[self class] extractRepoCommits:info];
+
+    //[delegate repoInfo:info fetchedForUsername:username];
 }
 
 #pragma mark Functions to help with building API URLs
@@ -279,10 +283,10 @@
     return [key nonretainedObjectValue];
 }
 
-+ (NSDictionary *)extractUserDetails:(NSDictionary *)githubInfo
++ (NSDictionary *)extractUserDetails:(NSDictionary *)gitHubInfo
 {
     NSMutableDictionary * info =
-        [[[githubInfo objectForKey:@"user"] mutableCopy] autorelease];
+        [[[gitHubInfo objectForKey:@"user"] mutableCopy] autorelease];
 
     [info removeObjectForKey:@"login"];
     [info removeObjectForKey:@"repositories"];
@@ -290,16 +294,21 @@
     return info;
 }
 
-+ (NSArray *)extractRepos:(NSDictionary *)githubInfo
++ (NSArray *)extractRepos:(NSDictionary *)gitHubInfo
 {
     NSArray * repos =
-        [[githubInfo objectForKey:@"user"] objectForKey:@"repositories"];
+        [[gitHubInfo objectForKey:@"user"] objectForKey:@"repositories"];
     NSMutableArray * repoNames =
         [NSMutableArray arrayWithCapacity:repos.count];
     for (NSDictionary * repo in repos)
         [repoNames addObject:[repo objectForKey:@"name"]];
 
     return repoNames;
+}
+
++ (NSArray *)extractRepoCommits:(NSDictionary *)gitHubInfo
+{
+    return [gitHubInfo objectForKey:@"commits"];
 }
 
 #pragma mark Accessors

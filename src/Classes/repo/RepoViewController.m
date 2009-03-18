@@ -4,11 +4,13 @@
 
 #import "RepoViewController.h"
 #import "RepoActivityTableViewCell.h"
+#import "RepoInfo.h"
 
 @implementation RepoViewController
 
 - (void)dealloc
 {
+    [repoInfo release];
     [super dealloc];
 }
 
@@ -159,5 +161,16 @@
     return YES;
 }
 */
+
+#pragma mark Resetting the displayed data
+
+- (void)updateWithRepoInfo:(RepoInfo *)info
+{
+    RepoInfo * tmp = [info copy];
+    [repoInfo release];
+    repoInfo = tmp;
+
+    [self.tableView reloadData];
+}
 
 @end
