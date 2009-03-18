@@ -42,4 +42,10 @@
 - (void)fetchInfoForUsername:(NSString *)username;
 - (void)fetchInfoForUsername:(NSString *)username token:(NSString *)token;
 
+#pragma mark Fetching repository information
+
+- (void)fetchInfoForRepo:(NSString *)repo
+                username:(NSString *)username
+                   token:(NSString *)token;
+
 @end

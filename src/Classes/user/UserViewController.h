@@ -4,8 +4,11 @@
 
 #import <Foundation/Foundation.h>
 #import "UserInfo.h"
+#import "UserViewControllerDelegate.h"
 
 @interface UserViewController : UITableViewController {
+    IBOutlet NSObject<UserViewControllerDelegate> * delegate;
+
     IBOutlet UIView * headerView;
     IBOutlet UIView * footerView;
     IBOutlet UIImageView * avatarView;

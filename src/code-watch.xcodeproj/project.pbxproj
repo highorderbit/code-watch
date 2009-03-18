@@ -28,6 +28,12 @@
 		05B98FC70F705AD60039602B /* LogInHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B98FC60F705AD60039602B /* LogInHelpViewController.m */; };
 		05B98FCA0F705B010039602B /* LogInHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B98FC80F705B010039602B /* LogInHelpView.xib */; };
 		05B98FEE0F705CFE0039602B /* log-in-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 05B98FED0F705CFE0039602B /* log-in-help.html */; };
+		05B990180F7062B10039602B /* RepoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B990170F7062B10039602B /* RepoInfo.m */; };
+		05B990830F7079F20039602B /* RepoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B990820F7079F20039602B /* RepoViewController.m */; };
+		05B990860F707B6E0039602B /* RepoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B990840F707B6E0039602B /* RepoView.xib */; };
+		05B9908A0F707DD20039602B /* RepoActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B990880F707DD20039602B /* RepoActivityTableViewCell.xib */; };
+		05B9908E0F7080940039602B /* RepoActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B9908D0F7080940039602B /* RepoActivityTableViewCell.m */; };
+		05B990A50F70886E0039602B /* RepoDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B990A40F70886E0039602B /* RepoDisplayMgr.m */; };
 		05BB60D00F6B23710005A635 /* GitHubApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BB60CF0F6B23710005A635 /* GitHubApi.m */; };
 		05F4CF2F0F6C5ECB00B107BB /* GitHubApiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -104,6 +110,18 @@
 		05B98FC60F705AD60039602B /* LogInHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInHelpViewController.m; sourceTree = "<group>"; };
 		05B98FC90F705B010039602B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LogInHelpView.xib; sourceTree = "<group>"; };
 		05B98FED0F705CFE0039602B /* log-in-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "log-in-help.html"; sourceTree = "<group>"; };
+		05B990160F7062B10039602B /* RepoInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoInfo.h; path = repo/RepoInfo.h; sourceTree = "<group>"; };
+		05B990170F7062B10039602B /* RepoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepoInfo.m; path = repo/RepoInfo.m; sourceTree = "<group>"; };
+		05B990810F7079F20039602B /* RepoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoViewController.h; path = repo/RepoViewController.h; sourceTree = "<group>"; };
+		05B990820F7079F20039602B /* RepoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepoViewController.m; path = repo/RepoViewController.m; sourceTree = "<group>"; };
+		05B990850F707B6E0039602B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RepoView.xib; sourceTree = "<group>"; };
+		05B990890F707DD20039602B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RepoActivityTableViewCell.xib; sourceTree = "<group>"; };
+		05B9908C0F7080940039602B /* RepoActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoActivityTableViewCell.h; path = repo/RepoActivityTableViewCell.h; sourceTree = "<group>"; };
+		05B9908D0F7080940039602B /* RepoActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepoActivityTableViewCell.m; path = repo/RepoActivityTableViewCell.m; sourceTree = "<group>"; };
+		05B990A30F70886E0039602B /* RepoDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoDisplayMgr.h; path = repo/RepoDisplayMgr.h; sourceTree = "<group>"; };
+		05B990A40F70886E0039602B /* RepoDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepoDisplayMgr.m; path = repo/RepoDisplayMgr.m; sourceTree = "<group>"; };
+		05B990A80F708B660039602B /* RepoSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoSelector.h; path = repo/RepoSelector.h; sourceTree = "<group>"; };
+		05B990C10F7154640039602B /* UserViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewControllerDelegate.h; sourceTree = "<group>"; };
 		05BB60CE0F6B23710005A635 /* GitHubApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApi.h; path = github/GitHubApi.h; sourceTree = "<group>"; };
 		05BB60CF0F6B23710005A635 /* GitHubApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubApi.m; path = github/GitHubApi.m; sourceTree = "<group>"; };
 		05F4CF2D0F6C5ECB00B107BB /* GitHubApiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiParser.h; path = github/GitHubApiParser.h; sourceTree = "<group>"; };
@@ -188,6 +206,8 @@
 				053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */,
 				91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */,
 				05B98FC80F705B010039602B /* LogInHelpView.xib */,
+				05B990840F707B6E0039602B /* RepoView.xib */,
+				05B990880F707DD20039602B /* RepoActivityTableViewCell.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -258,6 +278,22 @@
 			name = "Help Files";
 			sourceTree = "<group>";
 		};
+		05B990150F7062850039602B /* repo */ = {
+			isa = PBXGroup;
+			children = (
+				05B990160F7062B10039602B /* RepoInfo.h */,
+				05B990170F7062B10039602B /* RepoInfo.m */,
+				05B990810F7079F20039602B /* RepoViewController.h */,
+				05B990820F7079F20039602B /* RepoViewController.m */,
+				05B9908C0F7080940039602B /* RepoActivityTableViewCell.h */,
+				05B9908D0F7080940039602B /* RepoActivityTableViewCell.m */,
+				05B990A30F70886E0039602B /* RepoDisplayMgr.h */,
+				05B990A40F70886E0039602B /* RepoDisplayMgr.m */,
+				05B990A80F708B660039602B /* RepoSelector.h */,
+			);
+			name = repo;
+			sourceTree = "<group>";
+		};
 		05BB60AA0F6B20F40005A635 /* github */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +324,7 @@
 			children = (
 				05BB60AA0F6B20F40005A635 /* github */,
 				9127DD010F6B1065009CDBD5 /* user */,
+				05B990150F7062850039602B /* repo */,
 				9152A10B0F6AB24B0037A52F /* vendor */,
 				910D82840F69DE0B0068CBF3 /* config-mgmt */,
 				910D827F0F69DDF00068CBF3 /* persistence */,
@@ -387,6 +424,7 @@
 				91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */,
 				9127DD020F6B1065009CDBD5 /* UserViewController.h */,
 				9127DD030F6B1065009CDBD5 /* UserViewController.m */,
+				05B990C10F7154640039602B /* UserViewControllerDelegate.h */,
 				9127DDC10F6C25C1009CDBD5 /* UserInfo.h */,
 				9127DDC20F6C25C1009CDBD5 /* UserInfo.m */,
 				91CC52DA0F6DC6C4000AD3FB /* UserCache.h */,
@@ -494,6 +532,8 @@
 				91129B2B0F6C7EBC00D32C90 /* DefaultAvatar.png in Resources */,
 				05B98FCA0F705B010039602B /* LogInHelpView.xib in Resources */,
 				05B98FEE0F705CFE0039602B /* log-in-help.html in Resources */,
+				05B990860F707B6E0039602B /* RepoView.xib in Resources */,
+				05B9908A0F707DD20039602B /* RepoActivityTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,6 +576,10 @@
 				053B7B3F0F700C3B0084B219 /* NSError+InstantiationAdditions.m in Sources */,
 				053B7B610F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m in Sources */,
 				05B98FC70F705AD60039602B /* LogInHelpViewController.m in Sources */,
+				05B990180F7062B10039602B /* RepoInfo.m in Sources */,
+				05B990830F7079F20039602B /* RepoViewController.m in Sources */,
+				05B9908E0F7080940039602B /* RepoActivityTableViewCell.m in Sources */,
+				05B990A50F70886E0039602B /* RepoDisplayMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +616,22 @@
 				05B98FC90F705B010039602B /* en */,
 			);
 			name = LogInHelpView.xib;
+			sourceTree = "<group>";
+		};
+		05B990840F707B6E0039602B /* RepoView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05B990850F707B6E0039602B /* en */,
+			);
+			name = RepoView.xib;
+			sourceTree = "<group>";
+		};
+		05B990880F707DD20039602B /* RepoActivityTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05B990890F707DD20039602B /* en */,
+			);
+			name = RepoActivityTableViewCell.xib;
 			sourceTree = "<group>";
 		};
 		910D80CA0F697DB30068CBF3 /* UserView.xib */ = {

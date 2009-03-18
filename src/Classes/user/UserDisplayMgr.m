@@ -13,6 +13,8 @@
     
     [userCache release];
     [logInState release];
+
+    [repoSelector release];
     
     [gitHub release];
     
@@ -50,9 +52,16 @@
     }
 }
 
+#pragma mark UserViewControllerDelegate implementation
+
+- (void)userDidSelectRepo:(NSString *)repo
+{
+    [repoSelector user:logInState.login didSelectRepo:repo];
+}
+
 #pragma mark GitHubServiceDelegate implementation
 
-- (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
+- (void)userInfo:(UserInfo *)info fetchedForUsername:(NSString *)username
 {
     [userViewController updateWithUserInfo:info];
 

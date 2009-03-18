@@ -4,17 +4,26 @@
 
 #import <Foundation/Foundation.h>
 
-@class UserInfo;
+@class UserInfo, RepoInfo;
 
-@protocol GitHubDelegate
+@protocol GitHubDelegate <NSObject>
 
 #pragma mark Fetching user information
 
-- (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username;
+- (void)userInfo:(UserInfo *)info fetchedForUsername:(NSString *)username;
+/*
 - (void)          info:(UserInfo *)info
     fetchedForUsername:(NSString *)username
                  token:(NSString *)token;
+ */
 - (void)failedToFetchInfoForUsername:(NSString *)username
                                error:(NSError *)error;
+
+#pragma mark Fetching repo information
+
+- (void)repoInfo:(RepoInfo *)info fetchedForUsername:(NSString *)username;
+- (void)failedToFetchInfoForRepo:(NSString *)repo
+                        username:(NSString *)username
+                           error:(NSError *)error;
 
 @end

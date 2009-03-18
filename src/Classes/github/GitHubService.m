@@ -72,13 +72,19 @@
 
 #pragma mark GitHubDelegate implementation
 
-- (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
+- (void)userInfo:(UserInfo *)info fetchedForUsername:(NSString *)username
 {
     [[UIApplication sharedApplication] networkActivityDidFinish];
 
-    [self info:info fetchedForUsername:username token:nil];
+    //[self info:info fetchedForUsername:username token:nil];
+
+    [self saveInfo:info forUsername:username];
+
+    if ([delegate respondsToSelector:@selector(info:fetchedForUsername:)])
+        [delegate userInfo:info fetchedForUsername:username];
 }
 
+/*
 - (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
     token:(NSString *)token
 {
@@ -88,12 +94,53 @@
 
     [delegate info:info fetchedForUsername:username];
 }
+*/
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
 {
     [[UIApplication sharedApplication] networkActivityDidFinish];
 
-    [delegate failedToFetchInfoForUsername:username error:error];
+    SEL selector = @selector(failedToFetchInfoForUsername:error:);
+    if ([delegate respondsToSelector:selector])
+        [delegate failedToFetchInfoForUsername:username error:error];
+}
+
+- (void)fetchInfoForRepo:(NSString *)repo username:(NSString *)username
+{
+    NSString * token = nil;
+    if ([username isEqual:logInStateReader.login])
+        token = logInStateReader.token;
+
+    [self fetchInfoForRepo:repo username:username token:token];
+}
+
+- (void)fetchInfoForRepo:(NSString *)repo
+                username:(NSString *)username
+                   token:(NSString *)token
+{
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
+    [gitHub fetchInfoForRepo:repo username:username token:token];
+}
+
+- (void)repoInfo:(RepoInfo *)info fetchedForUsername:(NSString *)username
+{
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+
+    // TODO: Do something meaningful here
+    NSLog(@"Fetched info for repo: user: '%@', repo: '%@'.",
+        username, info);
+}
+
+- (void)failedToFetchInfoForRepo:(NSString *)repo
+                        username:(NSString *)username
+                           error:(NSError *)error
+{
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+
+    // TODO: Do something meaningful here
+    NSLog(@"Failed to fetch info for repo: user: '%@', repo: '%@', error: '%@'",
+        username, repo, error);
 }
 
 #pragma mark Persisting retrieved data

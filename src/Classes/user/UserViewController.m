@@ -28,6 +28,8 @@ enum Section
 
 - (void) dealloc
 {
+    [delegate release];
+
     [headerView release];
     [footerView release];
     [avatarView release];
@@ -155,6 +157,15 @@ enum Section
     willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return indexPath.section == kUserDetailsSection ? nil : indexPath;
+}
+
+- (void)tableView:(UITableView *)tv
+    didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == kRepoSection) {
+        NSString * repo = [userInfo.repoKeys objectAtIndex:indexPath.row];
+        [delegate userDidSelectRepo:repo];
+    }
 }
 
 #pragma mark User data update methods

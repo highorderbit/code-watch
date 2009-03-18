@@ -13,7 +13,7 @@
 #import "NSError+InstantiationAdditions.h"
 
 @interface GitHub (Private)
-- (NSURL *)baseApiUrlForUsername:(NSString *)username;
+- (NSString *)baseApiUrl;
 - (NSInvocation *)invocationForRequest:(GitHubApiRequest *)request;
 - (void)setInvocation:(NSInvocation *)invocation
            forRequest:(GitHubApiRequest *)request;
@@ -72,9 +72,11 @@
 
 - (void)fetchInfoForUsername:(NSString *)username token:(NSString *)token
 {
-    NSURL * url = [self baseApiUrlForUsername:username];
+    NSURL * url =
+        [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",
+            [self baseApiUrl], username]];
     GitHubApiRequest * req;
-    
+
     if (token) {
         NSDictionary * args = [NSDictionary dictionaryWithObjectsAndKeys:
             username, @"login", token, @"token", nil];
@@ -97,12 +99,44 @@
     [api sendRequest:req];
 }
 
+- (void)fetchInfoForRepo:(NSString *)repo
+                username:(NSString *)username
+                   token:(NSString *)token
+{
+    NSURL * url = [NSURL URLWithString:
+        [NSString stringWithFormat:@"%@/%@/%@/commits/master",
+        [self baseApiUrl], username, repo]];
+    GitHubApiRequest * req;
+
+    if (token) {
+        NSDictionary * args = [NSDictionary dictionaryWithObjectsAndKeys:
+            username, @"login", token, @"token", nil];
+        req = [[GitHubApiRequest alloc] initWithBaseUrl:url arguments:args];
+    } else
+        req = [[GitHubApiRequest alloc] initWithBaseUrl:url];
+
+    SEL sel = @selector(handleRepoResponse:toRequest:username:token:repo:);
+    NSMethodSignature * sig = [self methodSignatureForSelector:sel];
+    NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
+
+    [inv setTarget:self];
+    [inv setSelector:sel];
+    [inv setArgument:&username atIndex:4];
+    [inv setArgument:&token atIndex:5];
+    [inv setArgument:&repo atIndex:6];
+    [inv retainArguments];
+
+    [self setInvocation:inv forRequest:req];
+
+    [api sendRequest:req];
+}
+
 #pragma mark GitHubApiDelegate functions
 
 - (void)request:(GitHubApiRequest *)request
     didCompleteWithResponse:(NSData *)response
 {
-    NSLog(@"Request: '%@' succeeded: %d bytes in response.", request,
+    NSLog(@"Request: '%@' succeeded: received %d bytes in response.", request,
         response.length);
 
     NSInvocation * invocation = [self invocationForRequest:request];
@@ -156,15 +190,32 @@
                                      repoKeys:repos];
 
         NSLog(@"Have username: '%@' and token: '%@'.", username, token);
-        [delegate info:ui fetchedForUsername:username];
+        [delegate userInfo:ui fetchedForUsername:username];
 
         [ui release];
     }
 }
 
+- (void)handleRepoResponse:(id)response
+                 toRequest:(GitHubApiRequest *)request
+                  username:(NSString *)username
+                     token:(NSString *)token
+                      repo:(NSString *)repo
+{
+    if ([response isKindOfClass:[NSError class]]) {
+        [delegate failedToFetchInfoForRepo:repo
+                                  username:username
+                                     error:response];
+        return;
+    }
+
+    NSDictionary * info = [parser parseResponse:response];
+    NSLog(@"Have repo info: '%@'", info);
+}
+
 #pragma mark Functions to help with building API URLs
 
-- (NSURL *)baseApiUrlForUsername:(NSString *)username
+- (NSString *)baseApiUrl
 {
     //
     // GitHub API URL format is:
@@ -172,7 +223,6 @@
     //
 
     NSString * responseFormat;
-
     switch (apiFormat) {
         case JsonGitHubApiFormat:
             responseFormat = @"json";
@@ -183,7 +233,6 @@
     }
 
     NSString * version;
-
     switch (apiVersion) {
         case GitHubApiVersion1:
             version = @"v1";
@@ -193,9 +242,8 @@
             break;
     }
 
-    NSString * s = [NSString stringWithFormat:@"%@%@/%@/%@",
-        baseUrl, version, responseFormat, username];
-    return [NSURL URLWithString:s];
+    return [NSString stringWithFormat:@"%@%@/%@",
+        baseUrl, version, responseFormat];
 }
 
 #pragma mark Tracking requests
