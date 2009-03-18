@@ -7,15 +7,6 @@
 
 @implementation NSDate (StringHelpers)
 
-- (NSString *) buildWatchDescription
-{
-    NSDateFormatter * formatter = [[[NSDateFormatter alloc] init]  autorelease];
-    [formatter setDateStyle:NSDateFormatterShortStyle];
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
-    
-    return [formatter stringFromDate:self];
-}
-
 - (NSString *) shortDescription
 {
     NSDateFormatter * formatter = [[[NSDateFormatter alloc] init] autorelease];

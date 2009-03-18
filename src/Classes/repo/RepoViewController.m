@@ -7,6 +7,8 @@
 #import "RepoInfo.h"
 #import "CommitInfo.h"
 
+#import "NSDate+GitHubStringHelpers.h"
+
 @implementation RepoViewController
 
 - (void)dealloc
@@ -71,10 +73,12 @@
     NSString * message = [info.details objectForKey:@"message"];
     NSString * committer =
         [[info.details objectForKey:@"committer"] objectForKey:@"name"];
+    NSDate * date = [NSDate dateWithGitHubString:
+        [info.details objectForKey:@"committed_date"]];
 
     [cell setMessage:message];
     [cell setCommitter:committer];
-    [cell setDate:[NSDate date]];
+    [cell setDate:date];
 
     return cell;
 }

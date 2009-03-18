@@ -3,6 +3,7 @@
 //
 
 #import "RepoActivityTableViewCell.h"
+#import "NSDate+StringHelpers.h"
 
 @implementation RepoActivityTableViewCell
 
@@ -42,7 +43,7 @@
 
 - (void)setDate:(NSDate *)date
 {
-    dateLabel.text = [date description];
+    dateLabel.text = [date shortDescription];
 }
 
 @end
