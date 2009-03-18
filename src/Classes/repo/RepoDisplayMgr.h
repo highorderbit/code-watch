@@ -12,6 +12,8 @@
 @interface RepoDisplayMgr :
     NSObject <CodeWatchDisplayMgr, RepoSelector, GitHubServiceDelegate>
 {
+    IBOutlet UINavigationController * navigationController;
+
     IBOutlet NetworkAwareViewController * networkAwareViewController;
     IBOutlet RepoViewController * repoViewController;
 

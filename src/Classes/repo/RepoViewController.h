@@ -9,8 +9,9 @@
 @interface RepoViewController : UITableViewController
 {
     RepoInfo * repoInfo;
+    NSArray * commits;
 }
 
-- (void)updateWithRepoInfo:(RepoInfo *)info;
+- (void)updateWithCommits:(NSArray *)commits;
 
 @end

@@ -28,7 +28,7 @@
 + (NSArray *)extractCommitInfo:(NSDictionary *)gitHubInfo;
 + (NSDictionary *)extractUserDetails:(NSDictionary *)gitHubInfo;
 + (NSArray *)extractRepos:(NSDictionary *)gitHubInfo;
-+ (NSArray *)extractRepoCommits:(NSDictionary *)gitHubInfo;
++ (NSArray *)extractCommitDetails:(NSDictionary *)gitHubInfo;
 - (void)setDelegate:(id<GitHubDelegate>)aDelegate;
 - (void)setBaseUrl:(NSURL *)url;
 - (void)setApi:(GitHubApi *)anApi;
@@ -205,6 +205,7 @@
             [repoInfo release];
         }
 
+        // TODO: Add array of RepoInfo instances to delegate method
         [delegate userInfo:ui fetchedForUsername:username];
 
         [ui release];
@@ -227,7 +228,7 @@
     NSDictionary * info = [parser parseResponse:response];
     NSLog(@"Have repo info: '%@'", info);
 
-    NSArray * commits = [[self class] extractRepoCommits:info];
+    NSArray * commits = [[self class] extractCommitDetails:info];
 
     NSMutableArray * commitsInfo =
         [NSMutableArray arrayWithCapacity:commits.count];
@@ -334,7 +335,7 @@
     return [[gitHubInfo objectForKey:@"user"] objectForKey:@"repositories"];
 }
 
-+ (NSArray *)extractCommitInfo:(NSDictionary *)gitHubInfo
++ (NSArray *)extractCommitDetails:(NSDictionary *)gitHubInfo
 {
     return [gitHubInfo objectForKey:@"commits"];
 }

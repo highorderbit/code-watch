@@ -114,11 +114,12 @@
         NSLocalizedString(@"github.login.failed.alert.title", @"");
     NSString * cancelTitle =
         NSLocalizedString(@"github.login.failed.alert.ok", @"");
+    NSString * message = error.localizedDescription;
 
     UIAlertView * alertView =
         [[[UIAlertView alloc]
           initWithTitle:title
-                message:error.localizedDescription
+                message:message
                delegate:self
       cancelButtonTitle:cancelTitle
       otherButtonTitles:nil]

@@ -19,8 +19,11 @@
 
 - (void)display
 {
-    [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
-    [networkAwareViewController setCachedDataAvailable:YES];    
+    [navigationController
+        pushViewController:networkAwareViewController animated:YES];
+
+    [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
+    [networkAwareViewController setCachedDataAvailable:NO];    
 }
 
 #pragma mark RepoSelector implementation
@@ -36,16 +39,15 @@
     //
     [gitHub fetchInfoForRepo:repo username:username];
 
-    [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
-    [networkAwareViewController setCachedDataAvailable:NO];
+    [self display];
 }
 
 #pragma mark GitHubServiceDelegate implementation
 
-- (void)repoInfo:(RepoInfo *)info fetchedForUsername:(NSString *)username
+- (void)commits:(NSArray *)commits fetchedForRepo:(NSString *)repo
+    username:(NSString *)username;
 {
-    NSLog(@"Providing info: '%@'.", info);
-    [repoViewController updateWithRepoInfo:info];
+    [repoViewController updateWithCommits:commits];
 
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];

@@ -5,12 +5,14 @@
 #import "RepoViewController.h"
 #import "RepoActivityTableViewCell.h"
 #import "RepoInfo.h"
+#import "CommitInfo.h"
 
 @implementation RepoViewController
 
 - (void)dealloc
 {
     [repoInfo release];
+    [commits release];
     [super dealloc];
 }
 
@@ -40,36 +42,6 @@
     [super viewWillAppear:animated];
 }
 
-/*
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-*/
-
-/*
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-*/
-
-/*
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:
-    (UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tv
@@ -77,14 +49,13 @@
     return 1;
 }
 
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tv
  numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    NSLog(@"Number of rows: %d.", commits.count);
+    return commits.count;
 }
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tv
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -96,11 +67,22 @@
     if (cell == nil)
         cell = [RepoActivityTableViewCell createCustomInstance];
 
-    [cell setMessage:@"This is an amazing commit"];
-    [cell setCommitter:@"John Debay"];
+    CommitInfo * info = [commits objectAtIndex:indexPath.row];
+    NSString * message = [info.details objectForKey:@"message"];
+    NSString * committer =
+        [[info.details objectForKey:@"committer"] objectForKey:@"name"];
+
+    [cell setMessage:message];
+    [cell setCommitter:committer];
     [cell setDate:[NSDate date]];
 
     return cell;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tv
+  willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
 }
 
 - (void)          tableView:(UITableView *)tv
@@ -114,62 +96,15 @@
     // [anotherViewController release];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)        tableView:(UITableView *)tv
-    canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)     tableView:(UITableView *)tv
-    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-     forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView
-         deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-               withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the
-        // array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)     tableView:(UITableView *)tv
-    moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
-           toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)        tableView:(UITableView *)tv
-    canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark Resetting the displayed data
 
-- (void)updateWithRepoInfo:(RepoInfo *)info
+- (void)updateWithCommits:(NSArray *)someCommits
 {
-    RepoInfo * tmp = [info copy];
-    [repoInfo release];
-    repoInfo = tmp;
+    NSArray * tmp = [someCommits copy];
+    [commits release];
+    commits = tmp;
 
+    NSLog(@"table view: '%@'.", self.tableView);
     [self.tableView reloadData];
 }
 

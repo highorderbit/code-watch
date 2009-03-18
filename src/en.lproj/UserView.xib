@@ -35,7 +35,7 @@
 			<object class="IBUITableView" id="301251604">
 				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
-				<string key="NSFrame">{{0, 107}, {320, 247}}</string>
+				<string key="NSFrameSize">{320, 247}</string>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClipsSubviews">YES</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -346,12 +346,12 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{331, 920}, {320, 75}}</string>
+					<string>{{331, 781}, {320, 75}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{0, 598}, {320, 247}}</string>
+					<string>{{315, 598}, {320, 247}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{329, 1031}, {320, 90}}</string>
+					<string>{{329, 766}, {320, 90}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -395,6 +395,7 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>avatarView</string>
+							<string>delegate</string>
 							<string>featuredDetail1Label</string>
 							<string>featuredDetail2Label</string>
 							<string>footerView</string>
@@ -404,6 +405,7 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIImageView</string>
+							<string>NSObject</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UIView</string>
