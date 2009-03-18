@@ -76,7 +76,7 @@
 		91FD171F0F715018004549F9 /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91FD171D0F715018004549F9 /* NoDataView.xib */; };
 		91FD17260F7152A7004549F9 /* NoDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD17250F7152A7004549F9 /* NoDataViewController.m */; };
 		91FD17620F715D2F004549F9 /* NewsFeedPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD17610F715D2F004549F9 /* NewsFeedPersistenceStore.m */; };
-		91FD17D20F719993004549F9 /* RepoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD17D10F719993004549F9 /* RepoCache.m */; };
+		91FD18480F71A388004549F9 /* RepoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD18450F71A388004549F9 /* RepoCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -216,10 +216,10 @@
 		91FD17250F7152A7004549F9 /* NoDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoDataViewController.m; sourceTree = "<group>"; };
 		91FD17600F715D2F004549F9 /* NewsFeedPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedPersistenceStore.h; sourceTree = "<group>"; };
 		91FD17610F715D2F004549F9 /* NewsFeedPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedPersistenceStore.m; sourceTree = "<group>"; };
-		91FD17D00F719993004549F9 /* RepoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoCache.h; sourceTree = "<group>"; };
-		91FD17D10F719993004549F9 /* RepoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoCache.m; sourceTree = "<group>"; };
-		91FD17D30F7199DA004549F9 /* RepoCacheReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoCacheReader.h; sourceTree = "<group>"; };
-		91FD17D60F7199F1004549F9 /* RepoCacheSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoCacheSetter.h; sourceTree = "<group>"; };
+		91FD18440F71A388004549F9 /* RepoCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoCache.h; path = repo/RepoCache.h; sourceTree = "<group>"; };
+		91FD18450F71A388004549F9 /* RepoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepoCache.m; path = repo/RepoCache.m; sourceTree = "<group>"; };
+		91FD18460F71A388004549F9 /* RepoCacheReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoCacheReader.h; path = repo/RepoCacheReader.h; sourceTree = "<group>"; };
+		91FD18470F71A388004549F9 /* RepoCacheSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoCacheSetter.h; path = repo/RepoCacheSetter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,6 +339,10 @@
 		05B990150F7062850039602B /* repo */ = {
 			isa = PBXGroup;
 			children = (
+				91FD18440F71A388004549F9 /* RepoCache.h */,
+				91FD18450F71A388004549F9 /* RepoCache.m */,
+				91FD18460F71A388004549F9 /* RepoCacheReader.h */,
+				91FD18470F71A388004549F9 /* RepoCacheSetter.h */,
 				05B990160F7062B10039602B /* RepoInfo.h */,
 				05B990170F7062B10039602B /* RepoInfo.m */,
 				05B990810F7079F20039602B /* RepoViewController.h */,
@@ -348,10 +352,6 @@
 				05B990A30F70886E0039602B /* RepoDisplayMgr.h */,
 				05B990A40F70886E0039602B /* RepoDisplayMgr.m */,
 				05B990A80F708B660039602B /* RepoSelector.h */,
-				91FD17D00F719993004549F9 /* RepoCache.h */,
-				91FD17D10F719993004549F9 /* RepoCache.m */,
-				91FD17D30F7199DA004549F9 /* RepoCacheReader.h */,
-				91FD17D60F7199F1004549F9 /* RepoCacheSetter.h */,
 			);
 			name = repo;
 			sourceTree = "<group>";
@@ -677,7 +677,7 @@
 				91FD17260F7152A7004549F9 /* NoDataViewController.m in Sources */,
 				91FD17620F715D2F004549F9 /* NewsFeedPersistenceStore.m in Sources */,
 				0524D2D20F719BC3006BA721 /* CommitInfo.m in Sources */,
-				91FD17D20F719993004549F9 /* RepoCache.m in Sources */,
+				91FD18480F71A388004549F9 /* RepoCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
