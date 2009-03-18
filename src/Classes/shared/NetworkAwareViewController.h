@@ -1,8 +1,9 @@
 //
-//  Copyright 2009 High Order Bit, Inc.. All rights reserved.
+//  Copyright 2009 High Order Bit, Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "NoDataViewController.h"
 
 enum UpdatingState
 {
@@ -11,11 +12,10 @@ enum UpdatingState
     kDisconnected
 };
 
-@interface NetworkAwareViewController : UIViewController {
+@interface NetworkAwareViewController : UIViewController
+{
     IBOutlet UIViewController * targetViewController;
-    IBOutlet UIView * noDataView;
-    IBOutlet UILabel * noDataLabel;
-    IBOutlet UIActivityIndicatorView * activityIndicator;
+    NoDataViewController * noDataViewController;
     
     NSInteger updatingState;
     BOOL cachedDataAvailable;

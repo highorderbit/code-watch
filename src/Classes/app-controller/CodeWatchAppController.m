@@ -14,6 +14,8 @@
     
     [userCachePersistenceStore release];
     
+    [newsFeedPersistenceStore release];
+    
     [super dealloc];
 }
 
@@ -21,6 +23,7 @@
 {
     [logInPersistenceStore load];
     [userCachePersistenceStore load];
+    [newsFeedPersistenceStore load];
     
     if ([logInState prompt])
         [logInMgr collectCredentials:self];
@@ -32,6 +35,7 @@
 {
     [logInPersistenceStore save];
     [userCachePersistenceStore save];
+    [newsFeedPersistenceStore save];
 }
 
 @end

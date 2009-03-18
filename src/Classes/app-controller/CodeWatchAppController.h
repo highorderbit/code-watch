@@ -14,6 +14,8 @@
     IBOutlet NSObject<LogInStateReader> * logInState;
     
     IBOutlet NSObject<PersistenceStore> * userCachePersistenceStore;
+    
+    IBOutlet NSObject<PersistenceStore> * newsFeedPersistenceStore;
 }
 
 - (void) start;

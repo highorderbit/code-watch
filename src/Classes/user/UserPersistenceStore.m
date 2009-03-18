@@ -59,7 +59,8 @@
     
     NSDictionary * primaryUserDict =
         [[self class] dictionaryFromUserInfo:userCacheReader.primaryUser];
-    [dict setObject:primaryUserDict forKey:[[self class] primaryUserKey]];
+    if (primaryUserDict)
+        [dict setObject:primaryUserDict forKey:[[self class] primaryUserKey]];
     
     NSMutableDictionary * userHistoryDict =
         [[[NSMutableDictionary alloc] init] autorelease];
@@ -79,25 +80,32 @@
 
 + (NSDictionary *)dictionaryFromUserInfo:(UserInfo *)userInfo
 {
-    NSMutableDictionary * dict =
-        [[[NSMutableDictionary alloc] init] autorelease];
+    NSMutableDictionary * dict;
+    if (userInfo) {
+        dict = [[[NSMutableDictionary alloc] init] autorelease];
     
-    if (userInfo.details)
-        [dict setObject:userInfo.details forKey:[[self class] detailsKey]];
-    if (userInfo.repoKeys)
-        [dict setObject:userInfo.repoKeys forKey:[[self class] reposKey]];
+        if (userInfo.details)
+            [dict setObject:userInfo.details forKey:[[self class] detailsKey]];
+        if (userInfo.repoKeys)
+            [dict setObject:userInfo.repoKeys forKey:[[self class] reposKey]];
+    } else
+        dict = nil;
     
     return dict;
 }
 
 + (UserInfo *)userInfoFromDictionary:(NSDictionary *)dict
 {
-    NSDictionary * details = [dict objectForKey:[[self class] detailsKey]];
-    NSArray * repoKeys = [dict objectForKey:[[self class] reposKey]];
+    UserInfo * userInfo;
+    if (dict) {
+        NSDictionary * details = [dict objectForKey:[[self class] detailsKey]];
+        NSArray * repoKeys = [dict objectForKey:[[self class] reposKey]];
     
-    UserInfo * userInfo =
-        [[[UserInfo alloc]
-        initWithDetails:details repoKeys:repoKeys] autorelease];
+        userInfo =
+            [[[UserInfo alloc]
+            initWithDetails:details repoKeys:repoKeys] autorelease];
+    } else
+        userInfo = nil;
     
     return userInfo;
 }

@@ -1,11 +1,12 @@
 //
-//  Copyright 2009 High Order Bit, Inc.. All rights reserved.
+//  Copyright 2009 High Order Bit, Inc. All rights reserved.
 //
 
 #import "NetworkAwareViewController.h"
 
 @interface NetworkAwareViewController (Private)
 
+- (NoDataViewController *)noDataViewController;
 - (void)updateView;
 
 @end
@@ -14,10 +15,8 @@
 
 - (void)dealloc {
     [targetViewController release];
-    [noDataView release];
-    [noDataLabel release];
+    [noDataViewController release];
     
-    [activityIndicator release];
     [updatingText release];
     [noConnectionText release];
     [noConnectionCachedDataText release];
@@ -27,7 +26,8 @@
 
 - (void) awakeFromNib
 {
-    noDataView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [self noDataViewController].view.backgroundColor =
+        [UIColor groupTableViewBackgroundColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -79,6 +79,16 @@
 
 #pragma mark Private helper methods
 
+- (NoDataViewController *)noDataViewController
+{    
+    if (!noDataViewController)
+        noDataViewController =
+            [[NoDataViewController alloc] initWithNibName:@"NoDataView"
+            bundle:nil];
+    
+    return noDataViewController;
+}
+
 - (void)updateView
 {
     if (cachedDataAvailable) {
@@ -96,15 +106,16 @@
         [targetViewController viewWillAppear:YES];
     }
     else {
-        self.view = noDataView;
-        noDataLabel.text =
+        self.view = [[self noDataViewController] view];
+        NSString * labelText =
             updatingState == kDisconnected ? noConnectionText : updatingText;
+        [[self noDataViewController] setLabelText:labelText];
     }
     
     if (updatingState == kDisconnected)
-        [activityIndicator stopAnimating];
+        [[self noDataViewController] stopAnimatingActivityIndicator];
     else
-        [activityIndicator startAnimating];
+        [[self noDataViewController] startAnimatingActivityIndicator];
 }
 
 @end
