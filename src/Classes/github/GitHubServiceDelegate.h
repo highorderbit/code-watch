@@ -20,7 +20,8 @@
 
 #pragma mark Fetching repository information
 
-- (void)repoInfo:(RepoInfo *)info fetchedForUsername:(NSString *)username;
+- (void)commits:(NSArray *)commitsInfo fetchedForRepo:(NSString *)repo
+    username:(NSString *)username;
 - (void)failedToFetchInfoForRepo:(NSString *)repo
                         username:(NSString *)username
                            error:(NSError *)error;

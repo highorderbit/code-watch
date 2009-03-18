@@ -80,7 +80,7 @@
 
     [self saveInfo:info forUsername:username];
 
-    if ([delegate respondsToSelector:@selector(info:fetchedForUsername:)])
+    if ([delegate respondsToSelector:@selector(userInfo:fetchedForUsername:)])
         [delegate userInfo:info fetchedForUsername:username];
 }
 
@@ -123,12 +123,14 @@
     [gitHub fetchInfoForRepo:repo username:username token:token];
 }
 
-- (void)repoInfo:(RepoInfo *)info fetchedForUsername:(NSString *)username
+- (void)commits:(NSArray *)commits fetchedForRepo:(NSString *)repo
+    username:(NSString *)username
 {
     [[UIApplication sharedApplication] networkActivityDidFinish];
 
-    if ([delegate respondsToSelector:@selector(repoInfo:fetchedForUsername:)])
-        [delegate repoInfo:info fetchedForUsername:username];
+    SEL selector = @selector(commits:fetchedForRepo:username:);
+    if ([delegate respondsToSelector:selector])
+        [delegate commits:commits fetchedForRepo:repo username:username];
 }
 
 - (void)failedToFetchInfoForRepo:(NSString *)repo

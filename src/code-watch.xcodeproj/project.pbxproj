@@ -14,6 +14,7 @@
 		051CDD2C0F6C29690049D2BD /* NSString+NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDD2B0F6C29690049D2BD /* NSString+NSDataAdditions.m */; };
 		051CDD3F0F6C33FE0049D2BD /* NSString+UrlAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDD3E0F6C33FE0049D2BD /* NSString+UrlAdditions.m */; };
 		051FBA900F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */; };
+		0524D2D20F719BC3006BA721 /* CommitInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524D2D10F719BC3006BA721 /* CommitInfo.m */; };
 		053420330F69E987000EECB1 /* NameValueTextEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */; };
 		053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */; };
 		053420400F69EBC4000EECB1 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0534203F0F69EBC4000EECB1 /* LogInViewController.m */; };
@@ -93,6 +94,8 @@
 		051FBA340F6ADED400DB8696 /* LogInViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewControllerDelegate.h; sourceTree = "<group>"; };
 		051FBA8E0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RuntimeAdditions.h"; sourceTree = "<group>"; };
 		051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RuntimeAdditions.m"; sourceTree = "<group>"; };
+		0524D2D00F719BC3006BA721 /* CommitInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitInfo.h; path = commit/CommitInfo.h; sourceTree = "<group>"; };
+		0524D2D10F719BC3006BA721 /* CommitInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitInfo.m; path = commit/CommitInfo.m; sourceTree = "<group>"; };
 		053420310F69E987000EECB1 /* NameValueTextEntryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameValueTextEntryTableViewCell.h; sourceTree = "<group>"; };
 		053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueTextEntryTableViewCell.m; sourceTree = "<group>"; };
 		053420360F69EAE6000EECB1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NameValueTextEntryTableViewCell.xib; sourceTree = "<group>"; };
@@ -247,6 +250,15 @@
 			name = NIBs;
 			sourceTree = "<group>";
 		};
+		0524D2CF0F719BAE006BA721 /* commit */ = {
+			isa = PBXGroup;
+			children = (
+				0524D2D00F719BC3006BA721 /* CommitInfo.h */,
+				0524D2D10F719BC3006BA721 /* CommitInfo.m */,
+			);
+			name = commit;
+			sourceTree = "<group>";
+		};
 		0534202C0F69DFEF000EECB1 /* shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,6 +379,7 @@
 				05BB60AA0F6B20F40005A635 /* github */,
 				9127DD010F6B1065009CDBD5 /* user */,
 				05B990150F7062850039602B /* repo */,
+				0524D2CF0F719BAE006BA721 /* commit */,
 				9152A10B0F6AB24B0037A52F /* vendor */,
 				910D82840F69DE0B0068CBF3 /* config-mgmt */,
 				910D827F0F69DDF00068CBF3 /* persistence */,
@@ -654,6 +667,7 @@
 				91F89C0D0F708B0000993921 /* NewsFeedCache.m in Sources */,
 				91FD17260F7152A7004549F9 /* NoDataViewController.m in Sources */,
 				91FD17620F715D2F004549F9 /* NewsFeedPersistenceStore.m in Sources */,
+				0524D2D20F719BC3006BA721 /* CommitInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

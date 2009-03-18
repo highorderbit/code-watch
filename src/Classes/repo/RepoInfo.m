@@ -6,18 +6,29 @@
 
 @implementation RepoInfo
 
-@synthesize details;
+@synthesize details, commitKeys;
 
 - (void)dealloc
 {
     [details release];
+    [commitKeys release];
     [super dealloc];
 }
 
+#pragma mark Initialization
+
 - (id)initWithDetails:(NSDictionary *)someDetails
 {
-    if (self = [super init])
+    return [self initWithDetails:someDetails commitKeys:nil];
+}
+
+- (id)initWithDetails:(NSDictionary *)someDetails
+           commitKeys:(NSArray *)someCommitKeys
+{
+    if (self = [super init]) {
         details = [someDetails copy];
+        commitKeys = [someCommitKeys copy];
+    }
 
     return self;
 }
@@ -26,10 +37,8 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    RepoInfo * copy =
-        [[[self class] allocWithZone:zone] initWithDetails:details];
-
-    return copy;
+    return [[[self class] allocWithZone:zone] initWithDetails:details
+                                                   commitKeys:commitKeys];
 }
 
 @end

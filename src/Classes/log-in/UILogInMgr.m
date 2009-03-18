@@ -96,7 +96,7 @@
 
 #pragma mark GitHubServiceDelegate implementation
 
-- (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
+- (void)userInfo:(UserInfo *)info fetchedForUsername:(NSString *)username
 {
     NSLog(@"Username: '%@' has info: '%@'.", username, info);
 
