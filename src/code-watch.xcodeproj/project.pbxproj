@@ -62,6 +62,8 @@
 		91F89B4C0F7060F600993921 /* RssItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B4B0F7060F600993921 /* RssItem.m */; };
 		91F89BA40F7072D500993921 /* NSDate+IsToday.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89BA10F7072D500993921 /* NSDate+IsToday.m */; };
 		91F89BA50F7072D500993921 /* NSDate+StringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89BA30F7072D500993921 /* NSDate+StringHelpers.m */; };
+		91F89BF80F70836A00993921 /* NewsFeedDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89BF70F70836A00993921 /* NewsFeedDisplayMgr.m */; };
+		91F89C0D0F708B0000993921 /* NewsFeedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89C0C0F708B0000993921 /* NewsFeedCache.m */; };
 		91F970630F6F0A09007B2AB1 /* CodeWatchNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F970620F6F0A09007B2AB1 /* CodeWatchNavigationController.m */; };
 		91F9715B0F6F24F5007B2AB1 /* UserPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F9715A0F6F24F5007B2AB1 /* UserPersistenceStore.m */; };
 /* End PBXBuildFile section */
@@ -173,6 +175,12 @@
 		91F89BA10F7072D500993921 /* NSDate+IsToday.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+IsToday.m"; sourceTree = "<group>"; };
 		91F89BA20F7072D500993921 /* NSDate+StringHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+StringHelpers.h"; sourceTree = "<group>"; };
 		91F89BA30F7072D500993921 /* NSDate+StringHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+StringHelpers.m"; sourceTree = "<group>"; };
+		91F89BF60F70836A00993921 /* NewsFeedDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedDisplayMgr.h; sourceTree = "<group>"; };
+		91F89BF70F70836A00993921 /* NewsFeedDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedDisplayMgr.m; sourceTree = "<group>"; };
+		91F89C0B0F708B0000993921 /* NewsFeedCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedCache.h; sourceTree = "<group>"; };
+		91F89C0C0F708B0000993921 /* NewsFeedCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedCache.m; sourceTree = "<group>"; };
+		91F89C0E0F708B3C00993921 /* NewsFeedCacheReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedCacheReader.h; sourceTree = "<group>"; };
+		91F89C110F708B5300993921 /* NewsFeedCacheSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedCacheSetter.h; sourceTree = "<group>"; };
 		91F970430F6F0705007B2AB1 /* CodeWatchDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchDisplayMgr.h; sourceTree = "<group>"; };
 		91F970610F6F0A09007B2AB1 /* CodeWatchNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchNavigationController.h; sourceTree = "<group>"; };
 		91F970620F6F0A09007B2AB1 /* CodeWatchNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeWatchNavigationController.m; sourceTree = "<group>"; };
@@ -462,6 +470,12 @@
 				91F89B3F0F705EB300993921 /* NewsFeedTableViewController.m */,
 				91F89B4A0F7060F600993921 /* RssItem.h */,
 				91F89B4B0F7060F600993921 /* RssItem.m */,
+				91F89BF60F70836A00993921 /* NewsFeedDisplayMgr.h */,
+				91F89BF70F70836A00993921 /* NewsFeedDisplayMgr.m */,
+				91F89C0B0F708B0000993921 /* NewsFeedCache.h */,
+				91F89C0C0F708B0000993921 /* NewsFeedCache.m */,
+				91F89C0E0F708B3C00993921 /* NewsFeedCacheReader.h */,
+				91F89C110F708B5300993921 /* NewsFeedCacheSetter.h */,
 			);
 			path = "news-feed";
 			sourceTree = "<group>";
@@ -578,6 +592,8 @@
 				91F89BA40F7072D500993921 /* NSDate+IsToday.m in Sources */,
 				91F89BA50F7072D500993921 /* NSDate+StringHelpers.m in Sources */,
 				05B98FC70F705AD60039602B /* LogInHelpViewController.m in Sources */,
+				91F89BF80F70836A00993921 /* NewsFeedDisplayMgr.m in Sources */,
+				91F89C0D0F708B0000993921 /* NewsFeedCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
