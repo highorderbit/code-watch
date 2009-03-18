@@ -4,6 +4,7 @@
 
 #import "UILogInMgr.h"
 #import "LogInViewController.h"
+#import "LogInHelpViewController.h"
 #import "GitHubService.h"
 #import "UserInfo.h"
 
@@ -15,18 +16,20 @@
 
 @implementation UILogInMgr
 
-@synthesize logInViewController;
 @synthesize navigationController;
+@synthesize logInViewController;
+@synthesize logInHelpViewController;
 @synthesize gitHub;
 @synthesize logInStateSetter;
 
 - (void)dealloc
 {
     [rootViewController release];
-    [logInViewController release];
-    
+
     [navigationController release];
-    
+    [logInViewController release];
+    [logInHelpViewController release];
+
     [homeBarButtonItem release];
     [userBarButtonItem release];
     [userTabBarItem release];
@@ -41,10 +44,11 @@
 
 - (id)init
 {
-    [super init];
-    
-    [self setButtonText];
-    
+    if (self = [super init]) {
+        [self setButtonText];
+        connecting = NO;
+    }
+
     return self;
 }
 
@@ -70,6 +74,8 @@
     NSLog(@"Attempting login with username: '%@', token: '%@'.", username,
         token);
 
+    connecting = YES;
+
     if (token)
         [gitHub fetchInfoForUsername:username token:token];
     else
@@ -79,6 +85,13 @@
 - (void)userDidCancel
 {
     [rootViewController dismissModalViewControllerAnimated:YES];
+}
+
+- (void)provideHelp
+{
+    if (!connecting)
+        [self.navigationController
+            pushViewController:self.logInHelpViewController animated:YES];
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -91,6 +104,7 @@
 
     [rootViewController dismissModalViewControllerAnimated:YES];
     
+    connecting = NO;
     [self setButtonText];
 }
 
@@ -111,7 +125,8 @@
          autorelease];
 
     [alertView show];
-
+ 
+    connecting = NO;
     [self.logInViewController viewWillAppear:NO];
     
 }
@@ -122,14 +137,22 @@
 {
     if (!logInViewController) {
         logInViewController =
-            [[[LogInViewController alloc]
-              initWithNibName:@"LogInView"
-                       bundle:nil]
-             autorelease];
+            [[LogInViewController alloc]
+             initWithNibName:@"LogInView" bundle:nil];
         logInViewController.delegate = self;
     }
 
     return logInViewController;
+}
+
+- (LogInHelpViewController *)logInHelpViewController
+{
+    if (!logInHelpViewController)
+        logInHelpViewController =
+            [[LogInHelpViewController alloc]
+             initWithNibName:@"LogInHelpView" bundle:nil];
+
+    return logInHelpViewController;
 }
 
 - (UINavigationController *)navigationController

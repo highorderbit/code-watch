@@ -9,4 +9,6 @@
 - (void)userProvidedUsername:(NSString *)username token:(NSString *)token;
 - (void)userDidCancel;
 
+- (void)provideHelp;
+
 @end

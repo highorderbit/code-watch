@@ -30,7 +30,7 @@
 
 @implementation GitHub
 
-@synthesize delegate, baseUrl, apiFormat;
+@synthesize delegate, baseUrl, apiFormat, apiVersion;
 
 - (void)dealloc
 {
@@ -45,6 +45,7 @@
 
 - (id)initWithBaseUrl:(NSURL *)url
                format:(GitHubApiFormat)format
+              version:(GitHubApiVersion)version
              delegate:(id<GitHubDelegate>)aDelegate
 {
     if (self = [super init]) {
@@ -52,6 +53,10 @@
         [self setBaseUrl:url];
         [self setApi:[[[GitHubApi alloc] initWithDelegate:self] autorelease]];
         [self setParser:[GitHubApiParser parserWithApiFormat:format]];
+
+        apiFormat = format;
+        apiVersion = version;
+
         requests = [[NSMutableDictionary alloc] init];
     }
 
@@ -166,8 +171,6 @@
     //     http://github.com/api/version/format/username/
     //
 
-    static NSString * VERSION = @"v1";
-
     NSString * responseFormat;
 
     switch (apiFormat) {
@@ -179,8 +182,19 @@
             break;
     }
 
+    NSString * version;
+
+    switch (apiVersion) {
+        case GitHubApiVersion1:
+            version = @"v1";
+            break;
+        default:
+            NSAssert1(0, @"Unknown GitHub version: %d.", apiVersion);
+            break;
+    }
+
     NSString * s = [NSString stringWithFormat:@"%@%@/%@/%@",
-        baseUrl, VERSION, responseFormat, username];
+        baseUrl, version, responseFormat, username];
     return [NSURL URLWithString:s];
 }
 

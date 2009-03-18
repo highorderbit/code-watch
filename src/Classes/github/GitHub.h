@@ -5,6 +5,7 @@
 #import <Foundation/Foundation.h>
 #import "GitHubDelegate.h"
 #import "GitHubApiFormat.h"
+#import "GitHubApiVersion.h"
 
 #import "GitHubApiDelegate.h"
 
@@ -16,6 +17,7 @@
 
     NSURL * baseUrl;
     GitHubApiFormat apiFormat;
+    GitHubApiVersion apiVersion;
 
     GitHubApi * api;
     GitHubApiParser * parser;
@@ -25,12 +27,14 @@
 
 @property (nonatomic, readonly) id<GitHubDelegate> delegate;
 @property (nonatomic, readonly) NSURL * baseUrl;
-@property (nonatomic, readonly, assign) GitHubApiFormat apiFormat;
+@property (nonatomic, readonly) GitHubApiFormat apiFormat;
+@property (nonatomic, readonly) GitHubApiVersion apiVersion;
 
 #pragma mark Initialization
 
 - (id)initWithBaseUrl:(NSURL *)url
                format:(GitHubApiFormat)format
+              version:(GitHubApiVersion)version
              delegate:(id<GitHubDelegate>)aDelegate;
 
 #pragma mark Fetching user info from GitHub
