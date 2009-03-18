@@ -68,6 +68,7 @@
 		91F9715B0F6F24F5007B2AB1 /* UserPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F9715A0F6F24F5007B2AB1 /* UserPersistenceStore.m */; };
 		91FD171F0F715018004549F9 /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91FD171D0F715018004549F9 /* NoDataView.xib */; };
 		91FD17260F7152A7004549F9 /* NoDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD17250F7152A7004549F9 /* NoDataViewController.m */; };
+		91FD17620F715D2F004549F9 /* NewsFeedPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD17610F715D2F004549F9 /* NewsFeedPersistenceStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -191,6 +192,8 @@
 		91FD171E0F715018004549F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NoDataView.xib; sourceTree = "<group>"; };
 		91FD17240F7152A7004549F9 /* NoDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoDataViewController.h; sourceTree = "<group>"; };
 		91FD17250F7152A7004549F9 /* NoDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoDataViewController.m; sourceTree = "<group>"; };
+		91FD17600F715D2F004549F9 /* NewsFeedPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedPersistenceStore.h; sourceTree = "<group>"; };
+		91FD17610F715D2F004549F9 /* NewsFeedPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedPersistenceStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -484,6 +487,8 @@
 				91F89C0C0F708B0000993921 /* NewsFeedCache.m */,
 				91F89C0E0F708B3C00993921 /* NewsFeedCacheReader.h */,
 				91F89C110F708B5300993921 /* NewsFeedCacheSetter.h */,
+				91FD17600F715D2F004549F9 /* NewsFeedPersistenceStore.h */,
+				91FD17610F715D2F004549F9 /* NewsFeedPersistenceStore.m */,
 			);
 			path = "news-feed";
 			sourceTree = "<group>";
@@ -604,6 +609,7 @@
 				91F89BF80F70836A00993921 /* NewsFeedDisplayMgr.m in Sources */,
 				91F89C0D0F708B0000993921 /* NewsFeedCache.m in Sources */,
 				91FD17260F7152A7004549F9 /* NoDataViewController.m in Sources */,
+				91FD17620F715D2F004549F9 /* NewsFeedPersistenceStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
