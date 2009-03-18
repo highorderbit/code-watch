@@ -19,17 +19,12 @@
     [super dealloc];
 }
 
-- (void)awakeFromNib
-{
-    [networkAwareViewController setUpdatingText:@"Updating..."];
-    [networkAwareViewController
-        setNoConnectionCachedDataText:@"No Connection - Stale Data"];
-}
-
 - (void)display
 {
     if (logInState && logInState.login) {
-        [networkAwareViewController setNoConnectionText:@"No Connection"];
+        [networkAwareViewController
+            setNoConnectionText:
+            NSLocalizedString(@"nodata.noconnection.text", @"")];
         
         [gitHub fetchInfoForUsername:logInState.login token:logInState.token];
 
@@ -44,7 +39,8 @@
         // Configure the network-aware controller to 'disconnected' and set the
         // disconnected text accordingly
         [networkAwareViewController
-            setNoConnectionText:@"Please Log In to View Personal Info"];
+            setNoConnectionText:
+            NSLocalizedString(@"userdisplaymgr.login.text", @"")];
         [networkAwareViewController setUpdatingState:kDisconnected];
         [networkAwareViewController setCachedDataAvailable:NO];
     }
