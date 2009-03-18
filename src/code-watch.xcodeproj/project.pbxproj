@@ -66,6 +66,8 @@
 		91F89C0D0F708B0000993921 /* NewsFeedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89C0C0F708B0000993921 /* NewsFeedCache.m */; };
 		91F970630F6F0A09007B2AB1 /* CodeWatchNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F970620F6F0A09007B2AB1 /* CodeWatchNavigationController.m */; };
 		91F9715B0F6F24F5007B2AB1 /* UserPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F9715A0F6F24F5007B2AB1 /* UserPersistenceStore.m */; };
+		91FD171F0F715018004549F9 /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91FD171D0F715018004549F9 /* NoDataView.xib */; };
+		91FD17260F7152A7004549F9 /* NoDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD17250F7152A7004549F9 /* NoDataViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -186,6 +188,9 @@
 		91F970620F6F0A09007B2AB1 /* CodeWatchNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeWatchNavigationController.m; sourceTree = "<group>"; };
 		91F971590F6F24F5007B2AB1 /* UserPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPersistenceStore.h; sourceTree = "<group>"; };
 		91F9715A0F6F24F5007B2AB1 /* UserPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPersistenceStore.m; sourceTree = "<group>"; };
+		91FD171E0F715018004549F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NoDataView.xib; sourceTree = "<group>"; };
+		91FD17240F7152A7004549F9 /* NoDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoDataViewController.h; sourceTree = "<group>"; };
+		91FD17250F7152A7004549F9 /* NoDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoDataViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +219,7 @@
 				91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */,
 				91F89B290F7057C500993921 /* NewsFeedTableViewCell.xib */,
 				05B98FC80F705B010039602B /* LogInHelpView.xib */,
+				91FD171D0F715018004549F9 /* NoDataView.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -241,6 +247,8 @@
 				91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */,
 				053B7B5F0F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.h */,
 				053B7B600F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m */,
+				91FD17240F7152A7004549F9 /* NoDataViewController.h */,
+				91FD17250F7152A7004549F9 /* NoDataViewController.m */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -545,6 +553,7 @@
 				91F89B2B0F7057C500993921 /* NewsFeedTableViewCell.xib in Resources */,
 				05B98FCA0F705B010039602B /* LogInHelpView.xib in Resources */,
 				05B98FEE0F705CFE0039602B /* log-in-help.html in Resources */,
+				91FD171F0F715018004549F9 /* NoDataView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +603,7 @@
 				05B98FC70F705AD60039602B /* LogInHelpViewController.m in Sources */,
 				91F89BF80F70836A00993921 /* NewsFeedDisplayMgr.m in Sources */,
 				91F89C0D0F708B0000993921 /* NewsFeedCache.m in Sources */,
+				91FD17260F7152A7004549F9 /* NoDataViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +680,14 @@
 				91F89B2A0F7057C500993921 /* en */,
 			);
 			name = NewsFeedTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		91FD171D0F715018004549F9 /* NoDataView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91FD171E0F715018004549F9 /* en */,
+			);
+			name = NoDataView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
