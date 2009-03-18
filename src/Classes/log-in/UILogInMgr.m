@@ -169,13 +169,18 @@
 - (void)setButtonText
 {
     if (logInStateReader.login) {
-        homeBarButtonItem.title = @"Log Out";
-        userBarButtonItem.title = @"Log Out";
+        homeBarButtonItem.title =
+            NSLocalizedString(@"loginmgr.logout.text", @"");
+        userBarButtonItem.title =
+            NSLocalizedString(@"loginmgr.logout.text", @"");
         userTabBarItem.title = logInStateReader.login;
     } else {
-        homeBarButtonItem.title = @"Log In";
-        userBarButtonItem.title = @"Log In";
-        userTabBarItem.title = @"User";
+        homeBarButtonItem.title =
+            NSLocalizedString(@"loginmgr.login.text", @"");
+        userBarButtonItem.title =
+            NSLocalizedString(@"loginmgr.login.text", @"");
+        userTabBarItem.title =
+            NSLocalizedString(@"loginmgr.user.text", @"");
     }
 }
 

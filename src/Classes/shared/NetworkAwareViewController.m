@@ -28,6 +28,11 @@
 {
     [self noDataViewController].view.backgroundColor =
         [UIColor groupTableViewBackgroundColor];
+        
+    [self setUpdatingText:NSLocalizedString(@"nodata.updating.text", @"")];
+    [self
+        setNoConnectionCachedDataText:
+        NSLocalizedString(@"nodata.noconnectioncacheddata.text", @"")];
 }
 
 - (void)viewWillAppear:(BOOL)animated
