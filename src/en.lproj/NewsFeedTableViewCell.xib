@@ -38,7 +38,7 @@
 							<object class="IBUILabel" id="301205153">
 								<reference key="NSNextResponder" ref="340586627"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{80, 8}, {134, 24}}</string>
+								<string key="NSFrame">{{80, 8}, {134, 21}}</string>
 								<reference key="NSSuperview" ref="340586627"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -46,7 +46,7 @@
 								<string key="IBUIText">Author</string>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">2.000000e+01</double>
+									<double key="NSSize">1.800000e+01</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<object class="NSColor" key="IBUITextColor" id="743483522">
@@ -67,9 +67,9 @@
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">Date</string>
-								<object class="NSFont" key="IBUIFont">
+								<object class="NSFont" key="IBUIFont" id="672540651">
 									<string key="NSName">Helvetica</string>
-									<double key="NSSize">1.600000e+01</double>
+									<double key="NSSize">1.400000e+01</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<object class="NSColor" key="IBUITextColor">
@@ -84,27 +84,24 @@
 							<object class="IBUILabel" id="504732756">
 								<reference key="NSNextResponder" ref="340586627"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{80, 34}, {217, 34}}</string>
+								<string key="NSFrame">{{80, 32}, {217, 36}}</string>
 								<reference key="NSSuperview" ref="340586627"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="IBUIText">Subject subject subject subject subject</string>
-								<object class="NSFont" key="IBUIFont" id="672540651">
-									<string key="NSName">Helvetica</string>
-									<double key="NSSize">1.400000e+01</double>
-									<int key="NSfFlags">16</int>
-								</object>
+								<reference key="IBUIFont" ref="672540651"/>
 								<reference key="IBUITextColor" ref="743483522"/>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
+								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">1.000000e+01</float>
 								<int key="IBUINumberOfLines">2</int>
 							</object>
 							<object class="IBUILabel" id="197716277">
 								<reference key="NSNextResponder" ref="340586627"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{12, 71}, {285, 20}}</string>
+								<string key="NSFrame">{{12, 70}, {285, 20}}</string>
 								<reference key="NSSuperview" ref="340586627"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -228,10 +225,10 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="440017233"/>
-							<reference ref="301205153"/>
-							<reference ref="173250757"/>
 							<reference ref="197716277"/>
 							<reference ref="504732756"/>
+							<reference ref="173250757"/>
+							<reference ref="301205153"/>
 						</object>
 						<reference key="parent" ref="957960031"/>
 					</object>
@@ -280,7 +277,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIResponder</string>
 					<string>NewsFeedTableViewCell</string>
-					<string>{{257, 669}, {320, 95}}</string>
+					<string>{{592, 668}, {320, 95}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
