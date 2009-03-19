@@ -6,8 +6,6 @@
 #import "NSObject+RuntimeAdditions.h"
 #import "UserDetailTableViewCell.h"
 
-static const NSInteger NUM_SECTIONS = 3;
-
 enum Section
 {
     kUserDetailsSection,
@@ -18,9 +16,9 @@ enum Section
 @interface UserViewController (Private)
 
 - (void)updateNonFeaturedDetails;
-
-+ (UITableViewCell *)createCellForSection:(NSInteger)section;
-+ (NSString *)reuseIdentifierForSection:(NSInteger)section;
+- (NSInteger)effectiveSectionForSection:(NSInteger)section;
+- (UITableViewCell *)createCellForSection:(NSInteger)section;
+- (NSString *)reuseIdentifierForSection:(NSInteger)section;
 
 @end
 
@@ -82,7 +80,14 @@ enum Section
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*)tv
 {
-    return NUM_SECTIONS;
+    NSInteger numSections = 1;
+    
+    if ([nonFeaturedDetails count] > 0)
+        numSections++;
+    if (userInfo.repoKeys && [userInfo.repoKeys count] > 0)
+        numSections++;
+        
+    return numSections;
 }
 
 - (NSInteger) tableView:(UITableView*)tv
@@ -90,7 +95,7 @@ enum Section
 {
     NSInteger numRows = 0;
     
-    switch (section) {
+    switch ([self effectiveSectionForSection:section]) {
         case kUserDetailsSection:
             numRows = [nonFeaturedDetails count];
             break;
@@ -109,14 +114,14 @@ enum Section
     cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     NSString * reuseIdentifier =
-        [[self class] reuseIdentifierForSection:indexPath.section];
+        [self reuseIdentifierForSection:indexPath.section];
     UITableViewCell * cell =
         [tv dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil)
-        cell = [[self class] createCellForSection:indexPath.section];
+        cell = [self createCellForSection:indexPath.section];
     
     UserDetailTableViewCell * detailCell;
-    switch (indexPath.section) {
+    switch ([self effectiveSectionForSection:indexPath.section]) {
         case kUserDetailsSection:
             detailCell = (UserDetailTableViewCell *)cell;
             NSString * key =
@@ -140,15 +145,16 @@ enum Section
 - (NSString*) tableView:(UITableView *)tv
     titleForHeaderInSection:(NSInteger)section
 {
-    return section == kRepoSection ?
+    return [self effectiveSectionForSection:section] == kRepoSection &&
+        userInfo.repoKeys && [userInfo.repoKeys count] > 0 ?
         NSLocalizedString(@"user.repo.header.label", @"") : nil;
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*)tv
     accessoryTypeForRowWithIndexPath:(NSIndexPath*)indexPath
 {
-    return (indexPath.section == kRecentActivitySection ||
-        indexPath.section == kRepoSection) ?
+    NSInteger section = [self effectiveSectionForSection:indexPath.section];
+    return (section == kRecentActivitySection || section == kRepoSection) ?
         UITableViewCellAccessoryDisclosureIndicator :
         UITableViewCellAccessoryNone;
 }
@@ -156,13 +162,14 @@ enum Section
 - (NSIndexPath *)tableView:(UITableView *)tv
     willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.section == kUserDetailsSection ? nil : indexPath;
+    NSInteger section = [self effectiveSectionForSection:indexPath.section];
+    return section == kUserDetailsSection ? nil : indexPath;
 }
 
 - (void)tableView:(UITableView *)tv
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == kRepoSection) {
+    if ([self effectiveSectionForSection:indexPath.section] == kRepoSection) {
         NSString * repo = [userInfo.repoKeys objectAtIndex:indexPath.row];
         [delegate userDidSelectRepo:repo];
     }
@@ -230,14 +237,17 @@ enum Section
         }
 }
 
-#pragma mark Static helper methods
+- (NSInteger)effectiveSectionForSection:(NSInteger)section
+{
+    return [nonFeaturedDetails count] > 0 ? section : section + 1;
+}
 
-+ (UITableViewCell *)createCellForSection:(NSInteger)section
+- (UITableViewCell *)createCellForSection:(NSInteger)section
 {
     UITableViewCell * cell;
     
     NSArray * nib;
-    switch (section) {
+    switch ([self effectiveSectionForSection:section]) {
         case kUserDetailsSection:
             nib =
                 [[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell"
@@ -254,9 +264,9 @@ enum Section
     return cell;
 }
 
-+ (NSString *)reuseIdentifierForSection:(NSInteger)section
+- (NSString *)reuseIdentifierForSection:(NSInteger)section
 {
-    return (section == kUserDetailsSection) ?
+    return ([self effectiveSectionForSection:section] == kUserDetailsSection) ?
         @"UserDetailTableViewCell" : @"UITableViewCell";
 }
 
