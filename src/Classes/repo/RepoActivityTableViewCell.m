@@ -9,7 +9,7 @@
 
 - (void)dealloc
 {
-    [messageTextView release];
+    [messageLabel release];
     [committerLabel release];
     [dateLabel release];
     [super dealloc];
@@ -33,7 +33,7 @@
 
 - (void)setMessage:(NSString *)message
 {
-    messageTextView.text = message;
+    messageLabel.text = message;
 }
 
 - (void)setCommitter:(NSString *)committer
