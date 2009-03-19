@@ -77,6 +77,7 @@
 		91FD17260F7152A7004549F9 /* NoDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD17250F7152A7004549F9 /* NoDataViewController.m */; };
 		91FD17620F715D2F004549F9 /* NewsFeedPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD17610F715D2F004549F9 /* NewsFeedPersistenceStore.m */; };
 		91FD18480F71A388004549F9 /* RepoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD18450F71A388004549F9 /* RepoCache.m */; };
+		91FD190C0F71DD91004549F9 /* RepoPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD190B0F71DD91004549F9 /* RepoPersistenceStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -220,6 +221,8 @@
 		91FD18460F71A388004549F9 /* RepoCacheReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoCacheReader.h; path = repo/RepoCacheReader.h; sourceTree = "<group>"; };
 		91FD18470F71A388004549F9 /* RepoCacheSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoCacheSetter.h; path = repo/RepoCacheSetter.h; sourceTree = "<group>"; };
 		91FD18BD0F71D1C1004549F9 /* NetworkAwareViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkAwareViewControllerDelegate.h; sourceTree = "<group>"; };
+		91FD190A0F71DD91004549F9 /* RepoPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoPersistenceStore.h; path = repo/RepoPersistenceStore.h; sourceTree = "<group>"; };
+		91FD190B0F71DD91004549F9 /* RepoPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepoPersistenceStore.m; path = repo/RepoPersistenceStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +355,8 @@
 				05B990A30F70886E0039602B /* RepoDisplayMgr.h */,
 				05B990A40F70886E0039602B /* RepoDisplayMgr.m */,
 				05B990A80F708B660039602B /* RepoSelector.h */,
+				91FD190A0F71DD91004549F9 /* RepoPersistenceStore.h */,
+				91FD190B0F71DD91004549F9 /* RepoPersistenceStore.m */,
 			);
 			name = repo;
 			sourceTree = "<group>";
@@ -678,6 +683,7 @@
 				0524D2D20F719BC3006BA721 /* CommitInfo.m in Sources */,
 				91FD18480F71A388004549F9 /* RepoCache.m in Sources */,
 				0524D4380F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m in Sources */,
+				91FD190C0F71DD91004549F9 /* RepoPersistenceStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

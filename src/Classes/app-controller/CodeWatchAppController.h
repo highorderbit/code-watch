@@ -16,6 +16,8 @@
     IBOutlet NSObject<PersistenceStore> * userCachePersistenceStore;
     
     IBOutlet NSObject<PersistenceStore> * newsFeedPersistenceStore;
+    
+    IBOutlet NSObject<PersistenceStore> * repoCachePersistenceStore;
 }
 
 - (void) start;

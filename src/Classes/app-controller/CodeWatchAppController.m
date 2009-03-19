@@ -1,5 +1,5 @@
 //
-//  Copyright 2009 High Order Bit, Inc.. All rights reserved.
+//  Copyright 2009 High Order Bit, Inc. All rights reserved.
 //
 
 #import "CodeWatchAppController.h"
@@ -10,11 +10,11 @@
 {
     [logInMgr release];
     [logInState release];
+    
     [logInPersistenceStore release];
-    
     [userCachePersistenceStore release];
-    
     [newsFeedPersistenceStore release];
+    [repoCachePersistenceStore release];
     
     [super dealloc];
 }
@@ -24,6 +24,7 @@
     [logInPersistenceStore load];
     [userCachePersistenceStore load];
     [newsFeedPersistenceStore load];
+    [repoCachePersistenceStore load];
     
     if ([logInState prompt])
         [logInMgr collectCredentials:self];
@@ -36,6 +37,7 @@
     [logInPersistenceStore save];
     [userCachePersistenceStore save];
     [newsFeedPersistenceStore save];
+    [repoCachePersistenceStore save];
 }
 
 @end
