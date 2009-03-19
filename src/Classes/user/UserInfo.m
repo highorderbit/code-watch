@@ -25,13 +25,15 @@
 - (id)initWithDetails:(NSDictionary *)someDetails
     repoKeys:(NSArray *)someRepoKeys
 {
-    someDetails = [someDetails copy];
-    [details release];
-    details = someDetails;
+    if (self = [super init]) {
+        someDetails = [someDetails copy];
+        [details release];
+        details = someDetails;
     
-    someRepoKeys = [someRepoKeys copy];
-    [repoKeys release];
-    repoKeys = someRepoKeys;
+        someRepoKeys = [someRepoKeys copy];
+        [repoKeys release];
+        repoKeys = someRepoKeys;
+    }
     
     return self;
 }

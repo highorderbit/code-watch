@@ -113,8 +113,7 @@
     if (cachedDataAvailable) {
         self.view = targetViewController.view;
         [targetViewController viewWillAppear:YES];
-    }
-    else {
+    } else {
         self.view = [[self noDataViewController] view];
         NSString * labelText =
             updatingState == kDisconnected ? noConnectionText : updatingText;
