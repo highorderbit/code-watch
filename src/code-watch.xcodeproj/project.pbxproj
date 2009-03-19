@@ -15,6 +15,7 @@
 		051CDD3F0F6C33FE0049D2BD /* NSString+UrlAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDD3E0F6C33FE0049D2BD /* NSString+UrlAdditions.m */; };
 		051FBA900F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */; };
 		0524D2D20F719BC3006BA721 /* CommitInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524D2D10F719BC3006BA721 /* CommitInfo.m */; };
+		0524D4380F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524D4370F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m */; };
 		053420330F69E987000EECB1 /* NameValueTextEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */; };
 		053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */; };
 		053420400F69EBC4000EECB1 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0534203F0F69EBC4000EECB1 /* LogInViewController.m */; };
@@ -97,6 +98,8 @@
 		051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RuntimeAdditions.m"; sourceTree = "<group>"; };
 		0524D2D00F719BC3006BA721 /* CommitInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitInfo.h; path = commit/CommitInfo.h; sourceTree = "<group>"; };
 		0524D2D10F719BC3006BA721 /* CommitInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitInfo.m; path = commit/CommitInfo.m; sourceTree = "<group>"; };
+		0524D4360F71AFBF006BA721 /* NSDate+GitHubStringHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+GitHubStringHelpers.h"; sourceTree = "<group>"; };
+		0524D4370F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+GitHubStringHelpers.m"; sourceTree = "<group>"; };
 		053420310F69E987000EECB1 /* NameValueTextEntryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameValueTextEntryTableViewCell.h; sourceTree = "<group>"; };
 		053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueTextEntryTableViewCell.m; sourceTree = "<group>"; };
 		053420360F69EAE6000EECB1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NameValueTextEntryTableViewCell.xib; sourceTree = "<group>"; };
@@ -291,6 +294,8 @@
 				91FD17240F7152A7004549F9 /* NoDataViewController.h */,
 				91FD17250F7152A7004549F9 /* NoDataViewController.m */,
 				91FD18BD0F71D1C1004549F9 /* NetworkAwareViewControllerDelegate.h */,
+				0524D4360F71AFBF006BA721 /* NSDate+GitHubStringHelpers.h */,
+				0524D4370F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -680,6 +685,7 @@
 				0524D2D20F719BC3006BA721 /* CommitInfo.m in Sources */,
 				91FD18480F71A388004549F9 /* RepoCache.m in Sources */,
 				91FD18950F71C510004549F9 /* CodeWatchTabBarControllerDelegate.m in Sources */,
+				0524D4380F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

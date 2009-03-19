@@ -6,8 +6,6 @@
 
 @interface NSDate (StringHelpers)
 
-- (NSString *) buildWatchDescription;
-
 - (NSString *) shortDescription;
 
 + (NSDate *) dateFromString:(NSString *)string format:(NSString *)formatString;
