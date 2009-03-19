@@ -211,6 +211,7 @@
 			<object class="IBUICustomObject" id="578646318"/>
 			<object class="IBUICustomObject" id="89581905"/>
 			<object class="IBUICustomObject" id="247858435"/>
+			<object class="IBUICustomObject" id="35697489"/>
 			<object class="IBUIViewController" id="881094522">
 				<string key="IBUINibName">UserView</string>
 			</object>
@@ -706,27 +707,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">configReader</string>
-						<reference key="source" ref="89581905"/>
-						<reference key="destination" ref="174296820"/>
-					</object>
-					<int key="connectionID">298</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">userCacheSetter</string>
 						<reference key="source" ref="89581905"/>
 						<reference key="destination" ref="354817096"/>
 					</object>
 					<int key="connectionID">299</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">repoCacheSetter</string>
-						<reference key="source" ref="89581905"/>
-						<reference key="destination" ref="232313576"/>
-					</object>
-					<int key="connectionID">300</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -759,6 +744,142 @@
 						<reference key="destination" ref="1064436881"/>
 					</object>
 					<int key="connectionID">305</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">repoCacheReader</string>
+						<reference key="source" ref="948085587"/>
+						<reference key="destination" ref="232313576"/>
+					</object>
+					<int key="connectionID">306</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">logInStateReader</string>
+						<reference key="source" ref="948085587"/>
+						<reference key="destination" ref="578646318"/>
+					</object>
+					<int key="connectionID">307</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">repoCacheSetter</string>
+						<reference key="source" ref="978630306"/>
+						<reference key="destination" ref="232313576"/>
+					</object>
+					<int key="connectionID">308</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">repoCacheSetter</string>
+						<reference key="source" ref="420092180"/>
+						<reference key="destination" ref="232313576"/>
+					</object>
+					<int key="connectionID">309</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gitHub</string>
+						<reference key="source" ref="89581905"/>
+						<reference key="destination" ref="35697489"/>
+					</object>
+					<int key="connectionID">311</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="35697489"/>
+						<reference key="destination" ref="89581905"/>
+					</object>
+					<int key="connectionID">312</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">configReader</string>
+						<reference key="source" ref="35697489"/>
+						<reference key="destination" ref="174296820"/>
+					</object>
+					<int key="connectionID">313</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">logInStateReader</string>
+						<reference key="source" ref="35697489"/>
+						<reference key="destination" ref="578646318"/>
+					</object>
+					<int key="connectionID">314</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">logInStateSetter</string>
+						<reference key="source" ref="35697489"/>
+						<reference key="destination" ref="578646318"/>
+					</object>
+					<int key="connectionID">315</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">repoCacheReader</string>
+						<reference key="source" ref="35697489"/>
+						<reference key="destination" ref="232313576"/>
+					</object>
+					<int key="connectionID">316</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">repoCacheSetter</string>
+						<reference key="source" ref="35697489"/>
+						<reference key="destination" ref="232313576"/>
+					</object>
+					<int key="connectionID">317</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">userCacheReader</string>
+						<reference key="source" ref="35697489"/>
+						<reference key="destination" ref="354817096"/>
+					</object>
+					<int key="connectionID">318</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">userCacheSetter</string>
+						<reference key="source" ref="35697489"/>
+						<reference key="destination" ref="354817096"/>
+					</object>
+					<int key="connectionID">319</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">logInStateSetter</string>
+						<reference key="source" ref="420092180"/>
+						<reference key="destination" ref="578646318"/>
+					</object>
+					<int key="connectionID">320</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">repoCacheReader</string>
+						<reference key="source" ref="420092180"/>
+						<reference key="destination" ref="232313576"/>
+					</object>
+					<int key="connectionID">321</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">logInStateSetter</string>
+						<reference key="source" ref="978630306"/>
+						<reference key="destination" ref="578646318"/>
+					</object>
+					<int key="connectionID">322</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">repoCacheReader</string>
+						<reference key="source" ref="978630306"/>
+						<reference key="destination" ref="232313576"/>
+					</object>
+					<int key="connectionID">323</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1144,6 +1265,11 @@
 						<reference key="object" ref="1064436881"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">310</int>
+						<reference key="object" ref="35697489"/>
+						<reference key="parent" ref="957960031"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1228,6 +1354,8 @@
 					<string>3.IBPluginDependency</string>
 					<string>302.CustomClassName</string>
 					<string>302.IBPluginDependency</string>
+					<string>310.CustomClassName</string>
+					<string>310.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1317,6 +1445,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>RepoPersistenceStore</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>GitHubService</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -1339,7 +1469,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">305</int>
+			<int key="maxID">323</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1406,6 +1536,8 @@
 							<string>configReader</string>
 							<string>delegate</string>
 							<string>logInStateReader</string>
+							<string>logInStateSetter</string>
+							<string>repoCacheReader</string>
 							<string>repoCacheSetter</string>
 							<string>userCacheReader</string>
 							<string>userCacheSetter</string>
@@ -1414,6 +1546,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSObject</string>
 							<string>id</string>
+							<string>NSObject</string>
+							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>NSObject</string>
@@ -1568,15 +1702,19 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>gitHub</string>
+							<string>logInStateReader</string>
 							<string>navigationController</string>
 							<string>networkAwareViewController</string>
+							<string>repoCacheReader</string>
 							<string>repoViewController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>GitHubService</string>
+							<string>NSObject</string>
 							<string>UINavigationController</string>
 							<string>NetworkAwareViewController</string>
+							<string>NSObject</string>
 							<string>RepoViewController</string>
 						</object>
 					</object>
@@ -1632,11 +1770,10 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>configReader</string>
+							<string>gitHub</string>
 							<string>homeBarButtonItem</string>
 							<string>logInStateReader</string>
 							<string>logInStateSetter</string>
-							<string>repoCacheSetter</string>
 							<string>rootViewController</string>
 							<string>userBarButtonItem</string>
 							<string>userCacheSetter</string>
@@ -1644,9 +1781,8 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>NSObject</string>
+							<string>GitHubService</string>
 							<string>UIBarButtonItem</string>
-							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>UIViewController</string>

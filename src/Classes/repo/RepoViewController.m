@@ -9,6 +9,11 @@
 
 #import "NSDate+GitHubStringHelpers.h"
 
+@interface RepoViewController (Private)
+- (void)setCommits:(NSArray *)someCommits;
+- (void)setRepoInfo:(RepoInfo *)repo;
+@end
+
 @implementation RepoViewController
 
 - (void)dealloc
@@ -54,7 +59,6 @@
 - (NSInteger)tableView:(UITableView *)tv
  numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"Number of rows: %d.", commits.count);
     return commits.count;
 }
 
@@ -69,7 +73,9 @@
     if (cell == nil)
         cell = [RepoActivityTableViewCell createCustomInstance];
 
+    NSString * commitKey = [repoInfo.commitKeys objectAtIndex:indexPath.row];
     CommitInfo * info = [commits objectAtIndex:indexPath.row];
+
     NSString * message = [info.details objectForKey:@"message"];
     NSString * committer =
         [[info.details objectForKey:@"committer"] objectForKey:@"name"];
@@ -79,6 +85,7 @@
     [cell setMessage:message];
     [cell setCommitter:committer];
     [cell setDate:date];
+    [cell setCommitId:commitKey];
 
     return cell;
 }
@@ -102,14 +109,28 @@
 
 #pragma mark Resetting the displayed data
 
-- (void)updateWithCommits:(NSArray *)someCommits
+- (void)updateWithCommits:(NSArray *)someCommits forRepo:(RepoInfo *)repo
+{
+    [self setCommits:someCommits];
+    [self setRepoInfo:repo];
+
+    [self.tableView reloadData];
+}
+
+#pragma mark Accessors
+
+- (void)setCommits:(NSArray *)someCommits
 {
     NSArray * tmp = [someCommits copy];
     [commits release];
     commits = tmp;
+}
 
-    NSLog(@"table view: '%@'.", self.tableView);
-    [self.tableView reloadData];
+- (void)setRepoInfo:(RepoInfo *)repo
+{
+    RepoInfo * tmp = [repo copy];
+    [repoInfo release];
+    repoInfo = tmp;
 }
 
 @end

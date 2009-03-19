@@ -7,10 +7,6 @@
 #import "GitHubApiRequest.h"
 #import "GitHubApiParser.h"
 
-#import "UserInfo.h"
-#import "RepoInfo.h"
-#import "CommitInfo.h"
-
 #import "NSString+NSDataAdditions.h"
 #import "NSError+InstantiationAdditions.h"
 
@@ -20,15 +16,10 @@
 - (void)setInvocation:(NSInvocation *)invocation
            forRequest:(GitHubApiRequest *)request;
 - (void)removeInvocationForRequest:(GitHubApiRequest *)request;
+
 + (NSValue *)keyForRequest:(GitHubApiRequest *)request;
 + (GitHubApiRequest *)requestFromKey:(NSValue *)key;
-+ (NSDictionary *)extractUserDetails:(NSDictionary *)gitHubInfo;
-+ (NSArray *)extractRepoKeys:(NSDictionary *)gitHubInfo;
-+ (NSArray *)extractRepoDetails:(NSDictionary *)gitHubInfo;
-+ (NSArray *)extractCommitKeys:(NSDictionary *)gitHubInfo;
-+ (NSArray *)extractCommitDetails:(NSDictionary *)gitHubInfo;
-+ (NSArray *)extractRepos:(NSDictionary *)gitHubInfo;
-+ (NSArray *)extractCommitDetails:(NSDictionary *)gitHubInfo;
+
 - (void)setDelegate:(id<GitHubDelegate>)aDelegate;
 - (void)setBaseUrl:(NSURL *)url;
 - (void)setApi:(GitHubApi *)anApi;
@@ -181,36 +172,15 @@
         return;
     }
 
-    NSDictionary * info = [parser parseResponse:response];
-    NSLog(@"Have user info: '%@'.", info);
+    NSDictionary * details = [parser parseResponse:response];
+    NSLog(@"Have user details: '%@'.", details);
 
-    if (info == nil) {  // parsing failed
+    if (details)
+        [delegate userInfo:details fetchedForUsername:username token:token];
+    else {  // parsing failed
         NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
         NSError * err = [NSError errorWithLocalizedDescription:desc];
         [delegate failedToFetchInfoForUsername:username error:err];
-    } else {
-        NSDictionary * userDetails = [[self class] extractUserDetails:info];
-        NSArray * repoKeys = [[self class] extractRepoKeys:info];
-        NSArray * repoDetails = [[self class] extractRepoDetails:info];
-
-        UserInfo * ui =
-            [[UserInfo alloc] initWithDetails:userDetails
-                                     repoKeys:repoKeys];
-
-        NSMutableDictionary * repoInfos = [NSMutableDictionary dictionary];
-        for (NSUInteger i = 0, count = repoKeys.count; i < count; ++i) {
-            NSString * repoKey = [repoKeys objectAtIndex:i];
-            NSDictionary * details = [repoDetails objectAtIndex:i];
-
-            RepoInfo * repoInfo = [[RepoInfo alloc] initWithDetails:details];
-            [repoInfos setObject:repoInfo forKey:repoKey];
-            [repoInfo release];
-        }
-
-        [delegate userInfo:ui repoInfos:repoInfos
-            fetchedForUsername:username token:token];
-
-        [ui release];
     }
 }
 
@@ -230,22 +200,17 @@
         }
     }
 
-    NSDictionary * info = [parser parseResponse:response];
-    NSLog(@"Have repo info: '%@'", info);
+    NSDictionary * details = [parser parseResponse:response];
+    NSLog(@"Have repo details: '%@'", details);
 
-    NSArray * commits = [[self class] extractCommitDetails:info];
-
-    NSMutableArray * commitInfos =
-        [NSMutableArray arrayWithCapacity:commits.count];
-    for (NSDictionary * commit in commits) {
-        CommitInfo * commitInfo = [[CommitInfo alloc] initWithDetails:commit];
-        [commitInfos addObject:commitInfo];
-        [commitInfo release];
+    if (details)
+       [delegate
+            commits:details fetchedForRepo:repo username:username token:token];
+    else {
+        NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
+        NSError * err = [NSError errorWithLocalizedDescription:desc];
+        [delegate failedToFetchInfoForUsername:username error:err];
     }
-
-    SEL selector = @selector(commits:fetchedForRepo:username:);
-    if ([delegate respondsToSelector:selector])
-        [delegate commits:commitInfos fetchedForRepo:repo username:username];
 }
 
 #pragma mark Functions to help with building API URLs
@@ -312,74 +277,6 @@
 + (GitHubApiRequest *)requestFromKey:(NSValue *)key
 {
     return [key nonretainedObjectValue];
-}
-
-+ (NSDictionary *)extractUserDetails:(NSDictionary *)gitHubInfo
-{
-    NSMutableDictionary * info =
-        [[[gitHubInfo objectForKey:@"user"] mutableCopy] autorelease];
-
-    [info removeObjectForKey:@"login"];
-    [info removeObjectForKey:@"repositories"];
-
-    return info;
-}
-
-+ (NSArray *)extractRepoKeys:(NSDictionary *)gitHubInfo
-{
-    NSArray * repos =
-        [[gitHubInfo objectForKey:@"user"] objectForKey:@"repositories"];
-    NSMutableArray * repoNames =
-        [NSMutableArray arrayWithCapacity:repos.count];
-    for (NSDictionary * repo in repos)
-        [repoNames addObject:[repo objectForKey:@"name"]];
-
-    return repoNames;
-}
-
-+ (NSArray *)extractRepoDetails:(NSDictionary *)gitHubInfo
-{
-    NSArray * repos =
-        [[gitHubInfo objectForKey:@"user"] objectForKey:@"repositories"];
-
-    NSMutableArray * repoDetails =
-        [NSMutableArray arrayWithCapacity:repos.count];
-    for (NSDictionary * repo in repos) {
-        NSMutableDictionary * mrepo = [[repo mutableCopy] autorelease];
-        [mrepo removeObjectForKey:@"name"];
-        [repoDetails addObject:mrepo];
-    }
-
-    return repoDetails;
-}
-
-+ (NSArray *)extractCommitKeys:(NSDictionary *)gitHubInfo
-{
-    NSArray * commits = [gitHubInfo objectForKey:@"commits"];
-
-    NSMutableArray * commitKeys =
-        [NSMutableArray arrayWithCapacity:commits.count];
-    for (NSDictionary * commit in commits) {
-        NSString * key = [commit objectForKey:@"id"];
-        [commitKeys addObject:key];
-    }
-
-    return commitKeys;
-}
-
-+ (NSArray *)extractCommitDetails:(NSDictionary *)gitHubInfo
-{
-    NSArray * commits = [gitHubInfo objectForKey:@"commits"];
-
-    NSMutableArray * commitDetails =
-        [NSMutableArray arrayWithCapacity:commits.count];
-    for (NSDictionary * commit in commits) {
-        NSMutableDictionary * mcommit = [[commit mutableCopy] autorelease];
-        [mcommit removeObjectForKey:@"id"];
-        [commitDetails addObject:mcommit];
-    }
-
-    return commitDetails;
 }
 
 #pragma mark Accessors

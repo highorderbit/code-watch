@@ -6,7 +6,7 @@
 #import "LogInViewController.h"
 #import "LogInHelpViewController.h"
 #import "UIApplication+NetworkActivityIndicatorAdditions.h"
-#import "GitHub.h"
+#import "GitHubService.h"
 #import "UserInfo.h"
 
 @interface UILogInMgr (Private)
@@ -20,7 +20,6 @@
 @synthesize navigationController;
 @synthesize logInViewController;
 @synthesize logInHelpViewController;
-@synthesize logInStateSetter;
 
 - (void)dealloc
 {
@@ -34,11 +33,9 @@
     [userBarButtonItem release];
     [userTabBarItem release];
     
-    [configReader release];
     [logInStateSetter release];
     [logInStateReader release];
     [userCacheSetter release];
-    [repoCacheSetter release];
 
     [gitHub release];
     
@@ -55,23 +52,6 @@
     return self;
 }
 
-- (void)awakeFromNib
-{
-    NSString * url = [configReader valueForKey:@"GitHubApiBaseUrl"];
-    NSURL * gitHubApiBaseUrl = [NSURL URLWithString:url];
-
-    GitHubApiFormat apiFormat =
-        [[configReader valueForKey:@"GitHubApiFormat"] intValue];
-
-    GitHubApiVersion apiVersion =
-        [[configReader valueForKey:@"GitHubApiVersion"] intValue];
-
-    gitHub = [[GitHub alloc] initWithBaseUrl:gitHubApiBaseUrl
-                                      format:apiFormat
-                                     version:apiVersion
-                                    delegate:self];
-}
-
 - (IBAction)collectCredentials:(id)sender
 {
     if (logInStateReader.login) { // if logged in, log out
@@ -79,7 +59,7 @@
         [logInStateSetter setLogin:nil token:nil prompt:prompt];
         [userCacheSetter setPrimaryUser:nil];
     }
-    
+
     [rootViewController
         presentModalViewController:self.navigationController
         animated:YES];
@@ -97,11 +77,9 @@
     connecting = YES;
 
     if (token)
-        [gitHub fetchInfoForUsername:username token:token];
+        [gitHub logIn:username token:token];
     else
-        [gitHub fetchInfoForUsername:username];
-
-    [[UIApplication sharedApplication] networkActivityIsStarting];
+        [gitHub logIn:username];
 }
 
 - (void)userDidCancel
@@ -118,26 +96,15 @@
 
 #pragma mark GitHubDelegate implementation
 
-- (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
-    fetchedForUsername:(NSString *)username token:(NSString *)token
+- (void)logInSucceeded:(NSString *)username
 {
-    NSLog(@"Username: '%@' has info: '%@'.", username, info);
-
-    [logInStateSetter setLogin:username token:token prompt:NO];
-    [userCacheSetter setPrimaryUser:info];
-    for (NSString * repo in info.repoKeys)
-        [repoCacheSetter setPrimaryUserRepo:[repos objectForKey:repo]
-                                forRepoName:repo];
-
     [rootViewController dismissModalViewControllerAnimated:YES];
     
     connecting = NO;
     [self setButtonText];
-
-    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
-- (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
+- (void)logInFailed:(NSString *)username error:(NSError *)error
 {
     NSString * title =
         NSLocalizedString(@"github.login.failed.alert.title", @"");
@@ -158,8 +125,6 @@
  
     connecting = NO;
     [self.logInViewController viewWillAppear:NO];
-
-    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 #pragma mark Accessors

@@ -46,4 +46,9 @@
     dateLabel.text = [date shortDescription];
 }
 
+- (void)setCommitId:(NSString *)commitId
+{
+    commitIdLabel.text = commitId;
+}
+
 @end
