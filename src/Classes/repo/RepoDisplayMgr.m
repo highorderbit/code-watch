@@ -7,10 +7,16 @@
 #import "RepoViewController.h"
 #import "GitHubService.h"
 
+@interface RepoDisplayMgr (Private)
+- (BOOL)isPrimaryUser:(NSString *)username;
+@end
+
 @implementation RepoDisplayMgr
 
 - (void)dealloc
 {
+    [logInStateReader release];
+    [repoCacheReader release];
     [networkAwareViewController release];
     [repoViewController release];
     [gitHub release];
@@ -47,7 +53,13 @@
 - (void)commits:(NSArray *)commits fetchedForRepo:(NSString *)repo
     username:(NSString *)username;
 {
-    [repoViewController updateWithCommits:commits];
+    RepoInfo * repoInfo = nil;
+    if ([self isPrimaryUser:username])
+        repoInfo = [repoCacheReader primaryUserRepoWithName:repo];
+    else
+        repoInfo = [repoCacheReader repoWithUsername:username repoName:repo];
+
+    [repoViewController updateWithCommits:commits forRepo:repoInfo];
 
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];
@@ -59,6 +71,13 @@
 {
     NSLog(@"Failed to retrieve info for repo: '%@' for user: '%@' error: '%@'.",
         repo, username, error);
+}
+
+#pragma mark Helper methods
+
+- (BOOL)isPrimaryUser:(NSString *)username
+{
+    return [username isEqualToString:logInStateReader.login];
 }
 
 @end

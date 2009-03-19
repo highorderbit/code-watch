@@ -3,14 +3,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GitHubServiceDelegate.h"
 #import "RepoSelector.h"
+#import "GitHubServiceDelegate.h"
+#import "LogInStateReader.h"
+#import "RepoCacheReader.h"
 
 @class NetworkAwareViewController, RepoViewController, GitHubService;
 
-@interface RepoDisplayMgr :
-    NSObject <RepoSelector, GitHubServiceDelegate>
+@interface RepoDisplayMgr : NSObject <RepoSelector, GitHubServiceDelegate>
 {
+    IBOutlet NSObject<LogInStateReader> * logInStateReader;
+    IBOutlet NSObject<RepoCacheReader> * repoCacheReader;
+
     IBOutlet UINavigationController * navigationController;
 
     IBOutlet NetworkAwareViewController * networkAwareViewController;

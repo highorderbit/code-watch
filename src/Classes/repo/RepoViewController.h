@@ -12,6 +12,6 @@
     NSArray * commits;
 }
 
-- (void)updateWithCommits:(NSArray *)commits;
+- (void)updateWithCommits:(NSArray *)commits forRepo:(RepoInfo *)repoInfo;
 
 @end

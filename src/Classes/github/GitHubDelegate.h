@@ -10,19 +10,16 @@
 
 #pragma mark Fetching user information
 
-- (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
+- (void)userInfo:(NSDictionary *)userInfo
     fetchedForUsername:(NSString *)username token:(NSString *)token;
 - (void)failedToFetchInfoForUsername:(NSString *)username
-                               error:(NSError *)error;
+    error:(NSError *)error;
 
 #pragma mark Fetching repo information
 
-@optional
-
-- (void)commits:(NSArray *)commitInfos fetchedForRepo:(NSString *)repo
-    username:(NSString *)username;
-- (void)failedToFetchInfoForRepo:(NSString *)repo
-                        username:(NSString *)username
-                           error:(NSError *)error;
+- (void)commits:(NSDictionary *)commits fetchedForRepo:(NSString *)repo
+    username:(NSString *)username token:(NSString *)token;
+- (void)failedToFetchInfoForRepo:(NSString *)repo username:(NSString *)username
+    error:(NSError *)error;
 
 @end
