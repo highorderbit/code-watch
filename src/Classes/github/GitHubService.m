@@ -96,31 +96,18 @@
 
 #pragma mark GitHubDelegate implementation
 
-- (void)userInfo:(UserInfo *)info repos:(NSDictionary *)repos
+- (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
     fetchedForUsername:(NSString *)username
 {
     [[UIApplication sharedApplication] networkActivityDidFinish];
 
-    //[self info:info fetchedForUsername:username token:nil];
-
     [self saveInfo:info forUsername:username];
     [self saveRepos:repos forUsername:username];
 
-    if ([delegate respondsToSelector:@selector(userInfo:fetchedForUsername:)])
-        [delegate userInfo:info fetchedForUsername:username];
+    SEL selector = @selector(userInfo:repoInfos:fetchedForUsername:);
+    if ([delegate respondsToSelector:selector])
+        [delegate userInfo:info repoInfos:repos fetchedForUsername:username];
 }
-
-/*
-- (void)info:(UserInfo *)info fetchedForUsername:(NSString *)username
-    token:(NSString *)token
-{
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-
-    [self saveInfo:info forUsername:username];
-
-    [delegate info:info fetchedForUsername:username];
-}
-*/
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
 {

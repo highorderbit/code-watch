@@ -57,7 +57,8 @@
 
 #pragma mark GitHubServiceDelegate implementation
 
-- (void)userInfo:(UserInfo *)info fetchedForUsername:(NSString *)username
+- (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
+    fetchedForUsername:(NSString *)username
 {
     [userViewController updateWithUserInfo:info];
 
