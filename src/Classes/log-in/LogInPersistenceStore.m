@@ -81,7 +81,7 @@
 #if TARGET_IPHONE_SIMULATOR
 
     if (logInStateReader.token)
-        [dict setObject:logInStateReader.token forKey:[[self class] loginKey]];
+        [dict setObject:logInStateReader.token forKey:[[self class] tokenKey]];
 
 #else
 
