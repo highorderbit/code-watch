@@ -9,12 +9,13 @@
 #import "UserCacheReader.h"
 #import "LogInStateReader.h"
 #import "GitHubService.h"
-#import "CodeWatchDisplayMgr.h"
+#import "NetworkAwareViewControllerDelegate.h"
 #import "RepoSelector.h"
 
 @interface UserDisplayMgr :
     NSObject
-    <CodeWatchDisplayMgr, GitHubServiceDelegate, UserViewControllerDelegate>
+    <NetworkAwareViewControllerDelegate, GitHubServiceDelegate,
+    UserViewControllerDelegate>
 {
     IBOutlet NetworkAwareViewController * networkAwareViewController;
     IBOutlet UserViewController * userViewController;

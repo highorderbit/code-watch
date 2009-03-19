@@ -14,6 +14,8 @@
 @implementation NetworkAwareViewController
 
 - (void)dealloc {
+    [delegate release];
+    
     [targetViewController release];
     [noDataViewController release];
     
@@ -39,6 +41,8 @@
 {
     [super viewWillAppear:animated];
     [targetViewController viewWillAppear:animated];
+    
+    [delegate viewWillAppear];
 }
 
 #pragma mark State updating methods

@@ -3,14 +3,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CodeWatchDisplayMgr.h"
 #import "GitHubServiceDelegate.h"
 #import "RepoSelector.h"
 
 @class NetworkAwareViewController, RepoViewController, GitHubService;
 
 @interface RepoDisplayMgr :
-    NSObject <CodeWatchDisplayMgr, RepoSelector, GitHubServiceDelegate>
+    NSObject <RepoSelector, GitHubServiceDelegate>
 {
     IBOutlet UINavigationController * navigationController;
 

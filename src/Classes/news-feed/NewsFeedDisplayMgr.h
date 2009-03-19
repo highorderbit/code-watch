@@ -3,13 +3,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CodeWatchDisplayMgr.h"
+#import "NetworkAwareViewControllerDelegate.h"
 #import "NetworkAwareViewController.h"
 #import "NewsFeedTableViewController.h"
 #import "NewsFeedCacheReader.h"
 #import "LogInStateReader.h"
 
-@interface NewsFeedDisplayMgr : NSObject <CodeWatchDisplayMgr>
+@interface NewsFeedDisplayMgr : NSObject <NetworkAwareViewControllerDelegate>
 {
     IBOutlet NetworkAwareViewController * networkAwareViewController;
     IBOutlet NewsFeedTableViewController * newsFeedTableViewController;

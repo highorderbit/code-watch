@@ -21,7 +21,7 @@
     [super dealloc];
 }
 
-- (void)display
+- (void)viewWillAppear
 {
     if (logInState && logInState.login) {
         [networkAwareViewController

@@ -4,6 +4,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NoDataViewController.h"
+#import "NetworkAwareViewControllerDelegate.h"
 
 enum UpdatingState
 {
@@ -14,6 +15,8 @@ enum UpdatingState
 
 @interface NetworkAwareViewController : UIViewController
 {
+    IBOutlet NSObject<NetworkAwareViewControllerDelegate> * delegate;
+    
     IBOutlet UIViewController * targetViewController;
     NoDataViewController * noDataViewController;
     

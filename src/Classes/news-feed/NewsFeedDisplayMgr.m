@@ -17,7 +17,7 @@
     [super dealloc];
 }
 
-- (void)display
+- (void)viewWillAppear
 {
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];
