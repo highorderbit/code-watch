@@ -9,6 +9,8 @@
 
 @interface GitHubService (Private)
 - (void)saveInfo:(UserInfo *)info forUsername:(NSString *)username;
+- (void)saveRepos:(NSDictionary *)repos forUsername:(NSString *)username;
+- (BOOL)isPrimaryUser:(NSString *)username;
 @end
 
 @implementation GitHubService
@@ -18,6 +20,8 @@
     [gitHub release];
     [logInStateReader release];
     [userCacheSetter release];
+    [userCacheReader release];
+    [repoCacheSetter release];
     [configReader release];
     [super dealloc];
 }
@@ -28,6 +32,8 @@
 {
     return [[[[self class] alloc] init] autorelease];
 }
+
+#pragma mark Initialization
 
 - (id)init
 {
@@ -57,7 +63,7 @@
 {
     [[UIApplication sharedApplication] networkActivityIsStarting];
 
-    if ([username isEqual:logInStateReader.login])
+    if ([self isPrimaryUser:username])
         [gitHub fetchInfoForUsername:username token:logInStateReader.token];
     else
         [gitHub fetchInfoForUsername:username];
@@ -70,15 +76,35 @@
     [gitHub fetchInfoForUsername:username token:token];
 }
 
+- (void)fetchInfoForRepo:(NSString *)repo username:(NSString *)username
+{
+    NSString * token = nil;
+    if ([self isPrimaryUser:username])
+        token = logInStateReader.token;
+
+    [self fetchInfoForRepo:repo username:username token:token];
+}
+
+- (void)fetchInfoForRepo:(NSString *)repo
+                username:(NSString *)username
+                   token:(NSString *)token
+{
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
+    [gitHub fetchInfoForRepo:repo username:username token:token];
+}
+
 #pragma mark GitHubDelegate implementation
 
-- (void)userInfo:(UserInfo *)info fetchedForUsername:(NSString *)username
+- (void)userInfo:(UserInfo *)info repos:(NSDictionary *)repos
+    fetchedForUsername:(NSString *)username
 {
     [[UIApplication sharedApplication] networkActivityDidFinish];
 
     //[self info:info fetchedForUsername:username token:nil];
 
     [self saveInfo:info forUsername:username];
+    [self saveRepos:repos forUsername:username];
 
     if ([delegate respondsToSelector:@selector(userInfo:fetchedForUsername:)])
         [delegate userInfo:info fetchedForUsername:username];
@@ -103,24 +129,6 @@
     SEL selector = @selector(failedToFetchInfoForUsername:error:);
     if ([delegate respondsToSelector:selector])
         [delegate failedToFetchInfoForUsername:username error:error];
-}
-
-- (void)fetchInfoForRepo:(NSString *)repo username:(NSString *)username
-{
-    NSString * token = nil;
-    if ([username isEqual:logInStateReader.login])
-        token = logInStateReader.token;
-
-    [self fetchInfoForRepo:repo username:username token:token];
-}
-
-- (void)fetchInfoForRepo:(NSString *)repo
-                username:(NSString *)username
-                   token:(NSString *)token
-{
-    [[UIApplication sharedApplication] networkActivityIsStarting];
-
-    [gitHub fetchInfoForRepo:repo username:username token:token];
 }
 
 - (void)commits:(NSArray *)commits fetchedForRepo:(NSString *)repo
@@ -148,10 +156,34 @@
 
 - (void)saveInfo:(UserInfo *)info forUsername:(NSString *)username
 {
-    if ([username isEqual:logInStateReader.login])
+    if ([self isPrimaryUser:username])
         [userCacheSetter setPrimaryUser:info];
     else
         [userCacheSetter addRecentlyViewedUser:info withUsername:username];
+}
+
+- (void)saveRepos:(NSDictionary *)repos forUsername:(NSString *)username
+{
+    BOOL primaryUser = [self isPrimaryUser:username];
+
+    UserInfo * userInfo = primaryUser ?
+        userCacheReader.primaryUser :
+        [userCacheReader userWithUsername:username];
+
+    for (NSString * repoKey in userInfo.repoKeys) {
+        RepoInfo * repoInfo = [repos objectForKey:repoKey];
+        if (primaryUser)
+            [repoCacheSetter setPrimaryUserRepo:repoInfo forRepoName:repoKey];
+        else
+            [repoCacheSetter addRecentlyViewedRepo:repoInfo
+                                      withRepoName:repoKey
+                                          username:username];
+    }
+}
+
+- (BOOL)isPrimaryUser:(NSString *)username
+{
+    return [username isEqualToString:logInStateReader.login];
 }
 
 @end

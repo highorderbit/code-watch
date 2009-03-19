@@ -25,8 +25,8 @@
 + (NSDictionary *)extractUserDetails:(NSDictionary *)gitHubInfo;
 + (NSArray *)extractRepoKeys:(NSDictionary *)gitHubInfo;
 + (NSArray *)extractRepoDetails:(NSDictionary *)gitHubInfo;
-+ (NSArray *)extractCommitInfo:(NSDictionary *)gitHubInfo;
-+ (NSDictionary *)extractUserDetails:(NSDictionary *)gitHubInfo;
++ (NSArray *)extractCommitKeys:(NSDictionary *)gitHubInfo;
++ (NSArray *)extractCommitDetails:(NSDictionary *)gitHubInfo;
 + (NSArray *)extractRepos:(NSDictionary *)gitHubInfo;
 + (NSArray *)extractCommitDetails:(NSDictionary *)gitHubInfo;
 - (void)setDelegate:(id<GitHubDelegate>)aDelegate;
@@ -197,16 +197,17 @@
             [[UserInfo alloc] initWithDetails:userDetails
                                      repoKeys:repoKeys];
 
-        NSMutableArray * reposInfo =
-            [NSMutableArray arrayWithCapacity:repoDetails.count];
-        for (NSDictionary * details in repoDetails) {
+        NSMutableDictionary * repoInfos = [NSMutableDictionary dictionary];
+        for (NSUInteger i = 0, count = repoKeys.count; i < count; ++i) {
+            NSString * repoKey = [repoKeys objectAtIndex:i];
+            NSDictionary * details = [repoDetails objectAtIndex:i];
+
             RepoInfo * repoInfo = [[RepoInfo alloc] initWithDetails:details];
-            [reposInfo addObject:repoInfo];
+            [repoInfos setObject:repoInfo forKey:repoKey];
             [repoInfo release];
         }
 
-        // TODO: Add array of RepoInfo instances to delegate method
-        [delegate userInfo:ui fetchedForUsername:username];
+        [delegate userInfo:ui repos:repoInfos fetchedForUsername:username];
 
         [ui release];
     }
@@ -230,15 +231,15 @@
 
     NSArray * commits = [[self class] extractCommitDetails:info];
 
-    NSMutableArray * commitsInfo =
+    NSMutableArray * commitInfos =
         [NSMutableArray arrayWithCapacity:commits.count];
     for (NSDictionary * commit in commits) {
         CommitInfo * commitInfo = [[CommitInfo alloc] initWithDetails:commit];
-        [commitsInfo addObject:commitInfo];
+        [commitInfos addObject:commitInfo];
         [commitInfo release];
     }
 
-    [delegate commits:commitsInfo fetchedForRepo:repo username:username];
+    [delegate commits:commitInfos fetchedForRepo:repo username:username];
 }
 
 #pragma mark Functions to help with building API URLs
@@ -332,12 +333,47 @@
 
 + (NSArray *)extractRepoDetails:(NSDictionary *)gitHubInfo
 {
-    return [[gitHubInfo objectForKey:@"user"] objectForKey:@"repositories"];
+    NSArray * repos =
+        [[gitHubInfo objectForKey:@"user"] objectForKey:@"repositories"];
+
+    NSMutableArray * repoDetails =
+        [NSMutableArray arrayWithCapacity:repos.count];
+    for (NSDictionary * repo in repos) {
+        NSMutableDictionary * mrepo = [[repo mutableCopy] autorelease];
+        [mrepo removeObjectForKey:@"name"];
+        [repoDetails addObject:mrepo];
+    }
+
+    return repoDetails;
+}
+
++ (NSArray *)extractCommitKeys:(NSDictionary *)gitHubInfo
+{
+    NSArray * commits = [gitHubInfo objectForKey:@"commits"];
+
+    NSMutableArray * commitKeys =
+        [NSMutableArray arrayWithCapacity:commits.count];
+    for (NSDictionary * commit in commits) {
+        NSString * key = [commit objectForKey:@"id"];
+        [commitKeys addObject:key];
+    }
+
+    return commitKeys;
 }
 
 + (NSArray *)extractCommitDetails:(NSDictionary *)gitHubInfo
 {
-    return [gitHubInfo objectForKey:@"commits"];
+    NSArray * commits = [gitHubInfo objectForKey:@"commits"];
+
+    NSMutableArray * commitDetails =
+        [NSMutableArray arrayWithCapacity:commits.count];
+    for (NSDictionary * commit in commits) {
+        NSMutableDictionary * mcommit = [[commit mutableCopy] autorelease];
+        [mcommit removeObjectForKey:@"id"];
+        [commitDetails addObject:mcommit];
+    }
+
+    return commitDetails;
 }
 
 #pragma mark Accessors

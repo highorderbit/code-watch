@@ -7,6 +7,8 @@
 #import "GitHubDelegate.h"
 #import "LogInStateReader.h"
 #import "UserCacheSetter.h"
+#import "UserCacheReader.h"
+#import "RepoCacheSetter.h"
 #import "ConfigReader.h"
 
 @class GitHub, GitHubServiceDelegate;
@@ -19,6 +21,8 @@
 
     IBOutlet NSObject<LogInStateReader> * logInStateReader;
     IBOutlet NSObject<UserCacheSetter> * userCacheSetter;
+    IBOutlet NSObject<UserCacheReader> * userCacheReader;
+    IBOutlet NSObject<RepoCacheSetter> * repoCacheSetter;
 
     IBOutlet NSObject<ConfigReader> * configReader;
 }
