@@ -7,7 +7,7 @@
 
 @interface RepoActivityTableViewCell : UITableViewCell
 {
-    IBOutlet UITextView * messageTextView;
+    IBOutlet UILabel * messageLabel;
     IBOutlet UILabel * committerLabel;
     IBOutlet UILabel * dateLabel;
     IBOutlet UILabel * commitIdLabel;
