@@ -3,14 +3,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UserInfo.h"
-#import "UserCacheReader.h"
-#import "UserCacheSetter.h"
+#import "CommitCacheReader.h"
+#import "CommitCacheSetter.h"
 #import "RecentHistoryCache.h"
 
-@interface UserCache : NSObject <UserCacheReader, UserCacheSetter>
+@interface CommitCache : NSObject <CommitCacheReader, CommitCacheSetter>
 {
-    UserInfo * primaryUser;
     RecentHistoryCache * recentHistoryCache;
 }
 

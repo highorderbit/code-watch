@@ -78,6 +78,8 @@
 		91FD17620F715D2F004549F9 /* NewsFeedPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD17610F715D2F004549F9 /* NewsFeedPersistenceStore.m */; };
 		91FD18480F71A388004549F9 /* RepoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD18450F71A388004549F9 /* RepoCache.m */; };
 		91FD190C0F71DD91004549F9 /* RepoPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD190B0F71DD91004549F9 /* RepoPersistenceStore.m */; };
+		91FD19E00F72C0EE004549F9 /* CommitCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD19DF0F72C0EE004549F9 /* CommitCache.m */; };
+		91FD19EA0F72C4A5004549F9 /* RecentHistoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD19E90F72C4A5004549F9 /* RecentHistoryCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -223,6 +225,12 @@
 		91FD18BD0F71D1C1004549F9 /* NetworkAwareViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkAwareViewControllerDelegate.h; sourceTree = "<group>"; };
 		91FD190A0F71DD91004549F9 /* RepoPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoPersistenceStore.h; path = repo/RepoPersistenceStore.h; sourceTree = "<group>"; };
 		91FD190B0F71DD91004549F9 /* RepoPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepoPersistenceStore.m; path = repo/RepoPersistenceStore.m; sourceTree = "<group>"; };
+		91FD19DE0F72C0EE004549F9 /* CommitCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitCache.h; path = commit/CommitCache.h; sourceTree = "<group>"; };
+		91FD19DF0F72C0EE004549F9 /* CommitCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitCache.m; path = commit/CommitCache.m; sourceTree = "<group>"; };
+		91FD19E80F72C4A5004549F9 /* RecentHistoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentHistoryCache.h; sourceTree = "<group>"; };
+		91FD19E90F72C4A5004549F9 /* RecentHistoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentHistoryCache.m; sourceTree = "<group>"; };
+		91FD1A150F72D68D004549F9 /* CommitCacheReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitCacheReader.h; path = commit/CommitCacheReader.h; sourceTree = "<group>"; };
+		91FD1A160F72D68D004549F9 /* CommitCacheSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitCacheSetter.h; path = commit/CommitCacheSetter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,8 +269,12 @@
 		0524D2CF0F719BAE006BA721 /* commit */ = {
 			isa = PBXGroup;
 			children = (
+				91FD1A150F72D68D004549F9 /* CommitCacheReader.h */,
+				91FD1A160F72D68D004549F9 /* CommitCacheSetter.h */,
 				0524D2D00F719BC3006BA721 /* CommitInfo.h */,
 				0524D2D10F719BC3006BA721 /* CommitInfo.m */,
+				91FD19DE0F72C0EE004549F9 /* CommitCache.h */,
+				91FD19DF0F72C0EE004549F9 /* CommitCache.m */,
 			);
 			name = commit;
 			sourceTree = "<group>";
@@ -295,6 +307,8 @@
 				91FD18BD0F71D1C1004549F9 /* NetworkAwareViewControllerDelegate.h */,
 				0524D4360F71AFBF006BA721 /* NSDate+GitHubStringHelpers.h */,
 				0524D4370F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m */,
+				91FD19E80F72C4A5004549F9 /* RecentHistoryCache.h */,
+				91FD19E90F72C4A5004549F9 /* RecentHistoryCache.m */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -684,6 +698,8 @@
 				91FD18480F71A388004549F9 /* RepoCache.m in Sources */,
 				0524D4380F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m in Sources */,
 				91FD190C0F71DD91004549F9 /* RepoPersistenceStore.m in Sources */,
+				91FD19E00F72C0EE004549F9 /* CommitCache.m in Sources */,
+				91FD19EA0F72C4A5004549F9 /* RecentHistoryCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

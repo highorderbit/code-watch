@@ -225,7 +225,7 @@ enum Section
 - (void)updateNonFeaturedDetails
 {
     [nonFeaturedDetails release];
-    nonFeaturedDetails = [[[NSMutableDictionary alloc] init] retain];
+    nonFeaturedDetails = [[NSMutableDictionary alloc] init];
     
     NSDictionary * details = userInfo.details;
     for (NSString * key in [details allKeys])

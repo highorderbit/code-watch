@@ -13,27 +13,25 @@ static const NSInteger RECENTLY_VIEWED_HISTORY_MAX = 100;
 - (void)dealloc
 {
     [primaryUser release];
-    [recentlyViewedUsers release];
+    [recentHistoryCache release];
     [super dealloc];
 }
 
 - (void)awakeFromNib
 {
-    recentlyViewedUsers = [[NSMutableDictionary alloc] init];
-    userHistory = [[NSMutableArray alloc] init];
-    historyAppearances = [[NSMutableDictionary alloc] init];
+    recentHistoryCache = [[RecentHistoryCache alloc] init];
 }
 
 #pragma mark User cache reader methods
 
 - (UserInfo *)userWithUsername:(NSString *)username
 {
-    return [[[recentlyViewedUsers objectForKey:username] copy] autorelease];
+    return [[[recentHistoryCache objectForKey:username] copy] autorelease];
 }
 
 - (NSDictionary *)allUsers
 {
-    return [recentlyViewedUsers copy];
+    return [recentHistoryCache allRecentlyViewed];
 }
 
 #pragma mark User cache setter methods
@@ -47,34 +45,7 @@ static const NSInteger RECENTLY_VIEWED_HISTORY_MAX = 100;
 
 - (void)addRecentlyViewedUser:(UserInfo *)user withUsername:(NSString *)username
 {
-    user = [[user copy] autorelease];
-    [recentlyViewedUsers setObject:user forKey:username];
-    
-    [userHistory insertObject:user atIndex:0];
-    
-    NSNumber * numAppearances = [historyAppearances objectForKey:username];
-    if (numAppearances) {
-        NSInteger appearancesAsInt = [numAppearances integerValue] + 1;
-        numAppearances = [NSNumber numberWithInteger:appearancesAsInt];
-        [historyAppearances setObject:numAppearances forKey:username];
-    } else
-        [historyAppearances setObject:[NSNumber numberWithInteger:1]
-            forKey:username];
-
-    if ([userHistory count] > RECENTLY_VIEWED_HISTORY_MAX) {
-        NSString * oldestUsername =
-            [userHistory objectAtIndex:RECENTLY_VIEWED_HISTORY_MAX];
-        [userHistory removeObjectAtIndex:RECENTLY_VIEWED_HISTORY_MAX];
-        NSInteger oldestNumAppearances =
-            [[historyAppearances objectForKey:oldestUsername] integerValue] - 1;
-        
-        if (oldestNumAppearances == 0)
-            [historyAppearances removeObjectForKey:oldestUsername];
-        else
-            [historyAppearances
-                setObject:[NSNumber numberWithInteger:oldestNumAppearances]
-                forKey:oldestUsername];
-    }
+    [recentHistoryCache setObject:user forKey:username];
 }
 
 @end
