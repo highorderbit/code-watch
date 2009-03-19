@@ -134,7 +134,6 @@ enum Section
             cell.text = NSLocalizedString(@"user.recent.activity.label", @"");
             break;
         case kRepoSection:
-            NSLog(@"%@", userInfo.repoKeys);
             cell.text = [userInfo.repoKeys objectAtIndex:indexPath.row];
             break;
     }
