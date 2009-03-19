@@ -7,7 +7,7 @@
 
 @protocol CommitCacheReader
 
+@property (readonly, copy) NSDictionary * allCommits;
 - (CommitInfo *)commitWithKey:(NSString *)key;
-- (NSDictionary *)allCommits;
 
 @end
