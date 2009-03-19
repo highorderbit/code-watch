@@ -28,7 +28,7 @@
             setNoConnectionText:
             NSLocalizedString(@"nodata.noconnection.text", @"")];
         
-        [gitHub fetchInfoForUsername:logInState.login token:logInState.token];
+        [gitHub fetchInfoForUsername:logInState.login];
 
         UserInfo * userInfo = [userCache primaryUser];
         [userViewController setUsername:logInState.login];

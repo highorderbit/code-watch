@@ -69,27 +69,13 @@
         [gitHub fetchInfoForUsername:username];
 }
 
-- (void)fetchInfoForUsername:(NSString *)username token:(NSString *)token
+- (void)fetchInfoForRepo:(NSString *)repo username:(NSString *)username
 {
     [[UIApplication sharedApplication] networkActivityIsStarting];
 
-    [gitHub fetchInfoForUsername:username token:token];
-}
-
-- (void)fetchInfoForRepo:(NSString *)repo username:(NSString *)username
-{
     NSString * token = nil;
     if ([self isPrimaryUser:username])
         token = logInStateReader.token;
-
-    [self fetchInfoForRepo:repo username:username token:token];
-}
-
-- (void)fetchInfoForRepo:(NSString *)repo
-                username:(NSString *)username
-                   token:(NSString *)token
-{
-    [[UIApplication sharedApplication] networkActivityIsStarting];
 
     [gitHub fetchInfoForRepo:repo username:username token:token];
 }
@@ -97,7 +83,7 @@
 #pragma mark GitHubDelegate implementation
 
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
-    fetchedForUsername:(NSString *)username
+    fetchedForUsername:(NSString *)username token:(NSString *)token
 {
     [[UIApplication sharedApplication] networkActivityDidFinish];
 

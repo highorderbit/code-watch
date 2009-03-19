@@ -207,7 +207,8 @@
             [repoInfo release];
         }
 
-        [delegate userInfo:ui repoInfos:repoInfos fetchedForUsername:username];
+        [delegate userInfo:ui repoInfos:repoInfos
+            fetchedForUsername:username token:token];
 
         [ui release];
     }
@@ -220,10 +221,13 @@
                       repo:(NSString *)repo
 {
     if ([response isKindOfClass:[NSError class]]) {
-        [delegate failedToFetchInfoForRepo:repo
-                                  username:username
-                                     error:response];
-        return;
+        SEL selector = @selector(failedToFetchInfoForRepo:username:error:);
+        if ([delegate respondsToSelector:selector]) {
+            [delegate failedToFetchInfoForRepo:repo
+                                      username:username
+                                         error:response];
+            return;
+        }
     }
 
     NSDictionary * info = [parser parseResponse:response];
@@ -239,7 +243,9 @@
         [commitInfo release];
     }
 
-    [delegate commits:commitInfos fetchedForRepo:repo username:username];
+    SEL selector = @selector(commits:fetchedForRepo:username:);
+    if ([delegate respondsToSelector:selector])
+        [delegate commits:commitInfos fetchedForRepo:repo username:username];
 }
 
 #pragma mark Functions to help with building API URLs

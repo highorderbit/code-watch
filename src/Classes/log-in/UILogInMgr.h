@@ -5,17 +5,19 @@
 #import <Foundation/Foundation.h>
 #import "LogInMgr.h"
 #import "LogInViewControllerDelegate.h"
+#import "ConfigReader.h"
 #import "LogInStateSetter.h"
 #import "LogInStateReader.h"
-#import "GitHubServiceDelegate.h"
+#import "GitHubDelegate.h"
 #import "UserCacheSetter.h"
+#import "RepoCacheSetter.h"
 
-@class GitHubService;
+@class GitHub;
 @class LogInViewController;
 @class LogInHelpViewController;
 
 @interface UILogInMgr :
-    NSObject <LogInMgr, LogInViewControllerDelegate, GitHubServiceDelegate>
+    NSObject <LogInMgr, LogInViewControllerDelegate, GitHubDelegate>
 {
     IBOutlet UIViewController * rootViewController;
 
@@ -27,10 +29,13 @@
     IBOutlet UIBarButtonItem * userBarButtonItem;
     IBOutlet UITabBarItem * userTabBarItem;
 
-    IBOutlet GitHubService * gitHub;
+    IBOutlet NSObject<ConfigReader> * configReader;
     IBOutlet NSObject<LogInStateSetter> * logInStateSetter;
     IBOutlet NSObject<LogInStateReader> * logInStateReader;
     IBOutlet NSObject<UserCacheSetter> * userCacheSetter;
+    IBOutlet NSObject<RepoCacheSetter> * repoCacheSetter;
+
+    GitHub * gitHub;
 
     BOOL connecting;
 }
@@ -38,7 +43,6 @@
 @property (nonatomic, retain) UINavigationController * navigationController;
 @property (nonatomic, retain) LogInViewController * logInViewController;
 @property (nonatomic, retain) LogInHelpViewController * logInHelpViewController;
-@property (nonatomic, retain) GitHubService * gitHub;
 @property (nonatomic, retain) NSObject<LogInStateSetter> * logInStateSetter;
 
 // Neede re-definition to work in interface builder

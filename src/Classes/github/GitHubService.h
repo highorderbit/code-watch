@@ -35,13 +35,9 @@
 #pragma mark Fetching user info from GitHub
 
 - (void)fetchInfoForUsername:(NSString *)username;
-- (void)fetchInfoForUsername:(NSString *)username token:(NSString *)token;
 
 #pragma mark Fetching repository information from GitHub
 
 - (void)fetchInfoForRepo:(NSString *)repo username:(NSString *)username;
-- (void)fetchInfoForRepo:(NSString *)repo
-                username:(NSString *)username
-                   token:(NSString *)token;
 
 @end

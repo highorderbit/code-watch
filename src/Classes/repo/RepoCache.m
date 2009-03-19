@@ -13,6 +13,12 @@
     [super dealloc];
 }
 
+- (void)awakeFromNib
+{
+    recentlyViewedRepos = [[NSMutableDictionary alloc] init];
+    primaryUserRepos = [[NSMutableDictionary alloc] init];
+}
+
 #pragma mark RepoCacheReader implementation
 
 - (NSDictionary *)allRepos

@@ -5,7 +5,8 @@
 #import "UILogInMgr.h"
 #import "LogInViewController.h"
 #import "LogInHelpViewController.h"
-#import "GitHubService.h"
+#import "UIApplication+NetworkActivityIndicatorAdditions.h"
+#import "GitHub.h"
 #import "UserInfo.h"
 
 @interface UILogInMgr (Private)
@@ -19,7 +20,6 @@
 @synthesize navigationController;
 @synthesize logInViewController;
 @synthesize logInHelpViewController;
-@synthesize gitHub;
 @synthesize logInStateSetter;
 
 - (void)dealloc
@@ -34,10 +34,13 @@
     [userBarButtonItem release];
     [userTabBarItem release];
     
-    [gitHub release];
+    [configReader release];
     [logInStateSetter release];
     [logInStateReader release];
     [userCacheSetter release];
+    [repoCacheSetter release];
+
+    [gitHub release];
     
     [super dealloc];
 }
@@ -50,6 +53,23 @@
     }
 
     return self;
+}
+
+- (void)awakeFromNib
+{
+    NSString * url = [configReader valueForKey:@"GitHubApiBaseUrl"];
+    NSURL * gitHubApiBaseUrl = [NSURL URLWithString:url];
+
+    GitHubApiFormat apiFormat =
+        [[configReader valueForKey:@"GitHubApiFormat"] intValue];
+
+    GitHubApiVersion apiVersion =
+        [[configReader valueForKey:@"GitHubApiVersion"] intValue];
+
+    gitHub = [[GitHub alloc] initWithBaseUrl:gitHubApiBaseUrl
+                                      format:apiFormat
+                                     version:apiVersion
+                                    delegate:self];
 }
 
 - (IBAction)collectCredentials:(id)sender
@@ -80,6 +100,8 @@
         [gitHub fetchInfoForUsername:username token:token];
     else
         [gitHub fetchInfoForUsername:username];
+
+    [[UIApplication sharedApplication] networkActivityIsStarting];
 }
 
 - (void)userDidCancel
@@ -94,19 +116,25 @@
             pushViewController:self.logInHelpViewController animated:YES];
 }
 
-#pragma mark GitHubServiceDelegate implementation
+#pragma mark GitHubDelegate implementation
 
-- (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)respos
-    fetchedForUsername:(NSString *)username
+- (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
+    fetchedForUsername:(NSString *)username token:(NSString *)token
 {
     NSLog(@"Username: '%@' has info: '%@'.", username, info);
 
-    [logInStateSetter setLogin:username token:nil prompt:NO];
+    [logInStateSetter setLogin:username token:token prompt:NO];
+    [userCacheSetter setPrimaryUser:info];
+    for (NSString * repo in info.repoKeys)
+        [repoCacheSetter setPrimaryUserRepo:[repos objectForKey:repo]
+                                forRepoName:repo];
 
     [rootViewController dismissModalViewControllerAnimated:YES];
     
     connecting = NO;
     [self setButtonText];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
@@ -130,7 +158,8 @@
  
     connecting = NO;
     [self.logInViewController viewWillAppear:NO];
-    
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 #pragma mark Accessors
