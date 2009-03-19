@@ -207,7 +207,7 @@
             [repoInfo release];
         }
 
-        [delegate userInfo:ui repos:repoInfos fetchedForUsername:username];
+        [delegate userInfo:ui repoInfos:repoInfos fetchedForUsername:username];
 
         [ui release];
     }

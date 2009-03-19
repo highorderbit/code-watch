@@ -12,7 +12,8 @@
 
 #pragma mark Fetching user information
 
-- (void)userInfo:(UserInfo *)info fetchedForUsername:(NSString *)username;
+- (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
+    fetchedForUsername:(NSString *)username;
 - (void)failedToFetchInfoForUsername:(NSString *)username
                                error:(NSError *)error;
 
