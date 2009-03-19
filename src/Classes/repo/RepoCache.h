@@ -8,8 +8,8 @@
 
 @interface RepoCache : NSObject <RepoCacheReader, RepoCacheSetter>
 {
-    NSDictionary * allRepos;
-    NSDictionary * allPrimaryUserRepos;
+    NSMutableDictionary * recentlyViewedRepos;
+    NSMutableDictionary * primaryUserRepos;
 }
 
 @end

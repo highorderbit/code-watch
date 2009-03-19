@@ -29,7 +29,7 @@ enum Section
 - (void) dealloc
 {
     [delegate release];
-
+    
     [headerView release];
     [footerView release];
     [avatarView release];

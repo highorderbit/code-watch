@@ -67,7 +67,7 @@
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
 {
-     [networkAwareViewController setUpdatingState:kDisconnected];
+    [networkAwareViewController setUpdatingState:kDisconnected];
 }
 
 @end

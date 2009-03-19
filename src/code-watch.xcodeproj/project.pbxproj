@@ -71,12 +71,12 @@
 		91F89BA50F7072D500993921 /* NSDate+StringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89BA30F7072D500993921 /* NSDate+StringHelpers.m */; };
 		91F89BF80F70836A00993921 /* NewsFeedDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89BF70F70836A00993921 /* NewsFeedDisplayMgr.m */; };
 		91F89C0D0F708B0000993921 /* NewsFeedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89C0C0F708B0000993921 /* NewsFeedCache.m */; };
-		91F970630F6F0A09007B2AB1 /* CodeWatchNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F970620F6F0A09007B2AB1 /* CodeWatchNavigationController.m */; };
 		91F9715B0F6F24F5007B2AB1 /* UserPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F9715A0F6F24F5007B2AB1 /* UserPersistenceStore.m */; };
 		91FD171F0F715018004549F9 /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91FD171D0F715018004549F9 /* NoDataView.xib */; };
 		91FD17260F7152A7004549F9 /* NoDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD17250F7152A7004549F9 /* NoDataViewController.m */; };
 		91FD17620F715D2F004549F9 /* NewsFeedPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD17610F715D2F004549F9 /* NewsFeedPersistenceStore.m */; };
 		91FD18480F71A388004549F9 /* RepoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD18450F71A388004549F9 /* RepoCache.m */; };
+		91FD18950F71C510004549F9 /* CodeWatchTabBarControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD18940F71C510004549F9 /* CodeWatchTabBarControllerDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -207,8 +207,6 @@
 		91F89C0E0F708B3C00993921 /* NewsFeedCacheReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedCacheReader.h; sourceTree = "<group>"; };
 		91F89C110F708B5300993921 /* NewsFeedCacheSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedCacheSetter.h; sourceTree = "<group>"; };
 		91F970430F6F0705007B2AB1 /* CodeWatchDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchDisplayMgr.h; sourceTree = "<group>"; };
-		91F970610F6F0A09007B2AB1 /* CodeWatchNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchNavigationController.h; sourceTree = "<group>"; };
-		91F970620F6F0A09007B2AB1 /* CodeWatchNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeWatchNavigationController.m; sourceTree = "<group>"; };
 		91F971590F6F24F5007B2AB1 /* UserPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPersistenceStore.h; sourceTree = "<group>"; };
 		91F9715A0F6F24F5007B2AB1 /* UserPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPersistenceStore.m; sourceTree = "<group>"; };
 		91FD171E0F715018004549F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NoDataView.xib; sourceTree = "<group>"; };
@@ -220,6 +218,9 @@
 		91FD18450F71A388004549F9 /* RepoCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepoCache.m; path = repo/RepoCache.m; sourceTree = "<group>"; };
 		91FD18460F71A388004549F9 /* RepoCacheReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoCacheReader.h; path = repo/RepoCacheReader.h; sourceTree = "<group>"; };
 		91FD18470F71A388004549F9 /* RepoCacheSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoCacheSetter.h; path = repo/RepoCacheSetter.h; sourceTree = "<group>"; };
+		91FD18930F71C510004549F9 /* CodeWatchTabBarControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchTabBarControllerDelegate.h; sourceTree = "<group>"; };
+		91FD18940F71C510004549F9 /* CodeWatchTabBarControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeWatchTabBarControllerDelegate.m; sourceTree = "<group>"; };
+		91FD18BD0F71D1C1004549F9 /* NetworkAwareViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkAwareViewControllerDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +290,7 @@
 				053B7B600F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m */,
 				91FD17240F7152A7004549F9 /* NoDataViewController.h */,
 				91FD17250F7152A7004549F9 /* NoDataViewController.m */,
+				91FD18BD0F71D1C1004549F9 /* NetworkAwareViewControllerDelegate.h */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -296,13 +298,13 @@
 		0560A0580F69C83E0031A852 /* app-controller */ = {
 			isa = PBXGroup;
 			children = (
-				91F970610F6F0A09007B2AB1 /* CodeWatchNavigationController.h */,
-				91F970620F6F0A09007B2AB1 /* CodeWatchNavigationController.m */,
 				0560A0590F69C83E0031A852 /* CodeWatchAppController.h */,
 				0560A05A0F69C83E0031A852 /* CodeWatchAppController.m */,
 				0560A05B0F69C83E0031A852 /* CodeWatchAppDelegate.h */,
 				0560A05C0F69C83E0031A852 /* CodeWatchAppDelegate.m */,
 				91F970430F6F0705007B2AB1 /* CodeWatchDisplayMgr.h */,
+				91FD18930F71C510004549F9 /* CodeWatchTabBarControllerDelegate.h */,
+				91FD18940F71C510004549F9 /* CodeWatchTabBarControllerDelegate.m */,
 			);
 			path = "app-controller";
 			sourceTree = "<group>";
@@ -658,7 +660,6 @@
 				91CC52DC0F6DC6C4000AD3FB /* UserCache.m in Sources */,
 				054C06F70F6F0D5000999FEA /* GitHubService.m in Sources */,
 				91CC535A0F6EC311000AD3FB /* UserDisplayMgr.m in Sources */,
-				91F970630F6F0A09007B2AB1 /* CodeWatchNavigationController.m in Sources */,
 				91F9715B0F6F24F5007B2AB1 /* UserPersistenceStore.m in Sources */,
 				053B7B3F0F700C3B0084B219 /* NSError+InstantiationAdditions.m in Sources */,
 				053B7B610F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m in Sources */,
@@ -678,6 +679,7 @@
 				91FD17620F715D2F004549F9 /* NewsFeedPersistenceStore.m in Sources */,
 				0524D2D20F719BC3006BA721 /* CommitInfo.m in Sources */,
 				91FD18480F71A388004549F9 /* RepoCache.m in Sources */,
+				91FD18950F71C510004549F9 /* CodeWatchTabBarControllerDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

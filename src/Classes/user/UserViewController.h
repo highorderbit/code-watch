@@ -5,6 +5,7 @@
 #import <Foundation/Foundation.h>
 #import "UserInfo.h"
 #import "UserViewControllerDelegate.h"
+#import "CodeWatchDisplayMgr.h"
 
 @interface UserViewController : UITableViewController {
     IBOutlet NSObject<UserViewControllerDelegate> * delegate;
