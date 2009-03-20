@@ -1,9 +1,16 @@
 //
-//  Copyright 2009 High Order Bit, Inc.. All rights reserved.
+//  Copyright 2009 High Order Bit, Inc. All rights reserved.
 //
 
 #import "NewsFeedTableViewCell.h"
 #import "NSDate+StringHelpers.h"
+#import "UIColor+CodeWatchColors.h"
+
+@interface NewsFeedTableViewCell (Private)
+
+- (void)setNonSelectedTextColors;
+
+@end
 
 @implementation NewsFeedTableViewCell
 
@@ -15,6 +22,24 @@
     [super dealloc];
 }
 
+- (void)awakeFromNib
+{
+    [self setNonSelectedTextColors];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+        
+    if (selected) {
+        authorLabel.textColor = self.selectedTextColor;
+        pubDateLabel.textColor = self.selectedTextColor;
+        subjectLabel.textColor = self.selectedTextColor;
+        summaryLabel.textColor = self.selectedTextColor;
+    } else
+        [self setNonSelectedTextColors];
+}
+
 - (void)updateAuthor:(NSString *)author pubDate:(NSDate *)pubDate
     subject:(NSString *)subject summary:(NSString *)summary
 {
@@ -22,6 +47,14 @@
     pubDateLabel.text = [pubDate shortDescription];
     subjectLabel.text = subject;
     summaryLabel.text = summary;
+}
+
+- (void)setNonSelectedTextColors
+{
+    authorLabel.textColor = [UIColor blackColor];
+    pubDateLabel.textColor = [UIColor codeWatchBlueColor];
+    subjectLabel.textColor = [UIColor blackColor];
+    summaryLabel.textColor = [UIColor codeWatchGrayColor];
 }
     
 @end

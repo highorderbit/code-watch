@@ -81,6 +81,7 @@
 		91FD19E00F72C0EE004549F9 /* CommitCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD19DF0F72C0EE004549F9 /* CommitCache.m */; };
 		91FD19EA0F72C4A5004549F9 /* RecentHistoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD19E90F72C4A5004549F9 /* RecentHistoryCache.m */; };
 		91FD1A1A0F72D895004549F9 /* CommitPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD1A190F72D895004549F9 /* CommitPersistenceStore.m */; };
+		91FD1A890F731586004549F9 /* UIColor+CodeWatchColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD1A880F731586004549F9 /* UIColor+CodeWatchColors.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -234,6 +235,8 @@
 		91FD1A160F72D68D004549F9 /* CommitCacheSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitCacheSetter.h; path = commit/CommitCacheSetter.h; sourceTree = "<group>"; };
 		91FD1A180F72D895004549F9 /* CommitPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitPersistenceStore.h; path = commit/CommitPersistenceStore.h; sourceTree = "<group>"; };
 		91FD1A190F72D895004549F9 /* CommitPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitPersistenceStore.m; path = commit/CommitPersistenceStore.m; sourceTree = "<group>"; };
+		91FD1A870F731586004549F9 /* UIColor+CodeWatchColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CodeWatchColors.h"; sourceTree = "<group>"; };
+		91FD1A880F731586004549F9 /* UIColor+CodeWatchColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CodeWatchColors.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +317,8 @@
 				0524D4370F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m */,
 				91FD19E80F72C4A5004549F9 /* RecentHistoryCache.h */,
 				91FD19E90F72C4A5004549F9 /* RecentHistoryCache.m */,
+				91FD1A870F731586004549F9 /* UIColor+CodeWatchColors.h */,
+				91FD1A880F731586004549F9 /* UIColor+CodeWatchColors.m */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -706,6 +711,7 @@
 				91FD19E00F72C0EE004549F9 /* CommitCache.m in Sources */,
 				91FD19EA0F72C4A5004549F9 /* RecentHistoryCache.m in Sources */,
 				91FD1A1A0F72D895004549F9 /* CommitPersistenceStore.m in Sources */,
+				91FD1A890F731586004549F9 /* UIColor+CodeWatchColors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
