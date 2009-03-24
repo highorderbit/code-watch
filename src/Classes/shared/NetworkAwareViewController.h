@@ -24,8 +24,8 @@ enum UpdatingState
     BOOL cachedDataAvailable;
     
     NSString * updatingText;
+    NSString * loadingText;
     NSString * noConnectionText;
-    NSString * noConnectionCachedDataText;
     
     UIView * updatingView;
 }
@@ -34,7 +34,7 @@ enum UpdatingState
 - (void)setCachedDataAvailable:(BOOL)available;
 
 - (void)setUpdatingText:(NSString *)text;
+- (void)setLoadingText:(NSString *)text;
 - (void)setNoConnectionText:(NSString *)text;
-- (void)setNoConnectionCachedDataText:(NSString *)text;
 
 @end

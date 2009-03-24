@@ -29,8 +29,8 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
     [noDataViewController release];
     
     [updatingText release];
+    [loadingText release];
     [noConnectionText release];
-    [noConnectionCachedDataText release];
     
     [updatingView release];
     
@@ -43,9 +43,7 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
         [UIColor groupTableViewBackgroundColor];
         
     [self setUpdatingText:NSLocalizedString(@"nodata.updating.text", @"")];
-    [self
-        setNoConnectionCachedDataText:
-        NSLocalizedString(@"nodata.noconnectioncacheddata.text", @"")];
+    [self setLoadingText:NSLocalizedString(@"nodata.loading.text", @"")];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -54,6 +52,18 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
     [targetViewController viewWillAppear:animated];
     
     [delegate viewWillAppear];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.view.superview addSubview:[self updatingView]];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[self updatingView] removeFromSuperview];
 }
 
 #pragma mark State updating methods
@@ -79,20 +89,20 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
     [self updateView];
 }
 
+- (void)setLoadingText:(NSString *)text
+{
+    text = [text copy];
+    [loadingText release];
+    loadingText = text;
+    
+    [self updateView];
+}
+
 - (void)setNoConnectionText:(NSString *)text
 {
     text = [text copy];
     [noConnectionText release];
     noConnectionText = text;
-    
-    [self updateView];
-}
-
-- (void)setNoConnectionCachedDataText:(NSString *)text
-{
-    text = [text copy];
-    [noConnectionCachedDataText release];
-    noConnectionCachedDataText = text;
     
     [self updateView];
 }
@@ -117,7 +127,7 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
     } else {
         self.view = [[self noDataViewController] view];
         NSString * labelText =
-            updatingState == kDisconnected ? noConnectionText : updatingText;
+            updatingState == kDisconnected ? noConnectionText : loadingText;
         [[self noDataViewController] setLabelText:labelText];
     }
 
@@ -125,18 +135,11 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
     [UIView setAnimationTransition:UIViewAnimationTransitionNone
         forView:self.updatingView cache:NO];
 
-    if (cachedDataAvailable) {
-        if (updatingState == kConnectedAndUpdating)
-            self.updatingView.frame = [self shownUpdatingViewFrame];
-        else if (updatingState == kDisconnected)
-            self.navigationItem.prompt = noConnectionCachedDataText;
-        else {
-            self.navigationItem.prompt = nil;
-            self.updatingView.frame = [self hiddenUpdatingViewFrame];
-        }
-    } else
-        self.navigationItem.prompt = nil;
-        
+    if (cachedDataAvailable && updatingState == kConnectedAndUpdating)
+        self.updatingView.frame = [self shownUpdatingViewFrame];
+    else
+        self.updatingView.frame = [self hiddenUpdatingViewFrame];
+
     [UIView commitAnimations];
     
     if (updatingState == kDisconnected)
@@ -147,9 +150,9 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
 
 - (UIView *)updatingView
 {
-    if (!updatingView && self.view.superview) {
+    if (!updatingView) {
         updatingView =
-            [[UIView alloc] initWithFrame:[self shownUpdatingViewFrame]];
+            [[UIView alloc] initWithFrame:[self hiddenUpdatingViewFrame]];
         updatingView.backgroundColor =
             [[UIColor blackColor] colorWithAlphaComponent:0.7];
         
@@ -174,8 +177,6 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
         activityIndicator.frame = activityIndicatorFrame;
         [activityIndicator startAnimating];
         [updatingView addSubview:activityIndicator];
-        
-        [self.view.superview addSubview:updatingView];
     }
 
     return updatingView;
