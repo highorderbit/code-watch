@@ -5,6 +5,7 @@
 #import "UserViewController.h"
 #import "NSObject+RuntimeAdditions.h"
 #import "UserDetailTableViewCell.h"
+#import <AddressBookUI/ABPersonViewController.h>
 
 enum Section
 {
@@ -267,6 +268,16 @@ enum Section
 {
     return ([self effectiveSectionForSection:section] == kUserDetailsSection) ?
         @"UserDetailTableViewCell" : @"UITableViewCell";
+}
+
+- (IBAction)addContact:(id)sender
+{
+    NSLog(@"Adding contact");
+    // display modal ABPersonViewController
+    ABPersonViewController * personViewController =
+        [[ABPersonViewController alloc] init];
+    [self presentModalViewController:personViewController animated:YES];
+    [personViewController release];
 }
 
 @end

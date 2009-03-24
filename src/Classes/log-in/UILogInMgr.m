@@ -60,8 +60,7 @@
         [userCacheSetter setPrimaryUser:nil];
     }
 
-    [rootViewController
-        presentModalViewController:self.navigationController
+    [rootViewController presentModalViewController:self.navigationController
         animated:YES];
 
     [self setButtonText];
