@@ -9,8 +9,10 @@
 - (NoDataViewController *)noDataViewController;
 - (void)updateView;
 - (UIView *)updatingView;
-- (CGRect)shownUpdatingViewFrame;
-- (CGRect)hiddenUpdatingViewFrame;
+
++ (CGRect)shownUpdatingViewFrame;
++ (CGRect)hiddenUpdatingViewFrame;
++ (CGFloat)leftUpdatingViewMargin;
 
 @end
 
@@ -136,9 +138,9 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
         forView:self.updatingView cache:NO];
 
     if (cachedDataAvailable && updatingState == kConnectedAndUpdating)
-        self.updatingView.frame = [self shownUpdatingViewFrame];
+        self.updatingView.frame = [[self class] shownUpdatingViewFrame];
     else
-        self.updatingView.frame = [self hiddenUpdatingViewFrame];
+        self.updatingView.frame = [[self class] hiddenUpdatingViewFrame];
 
     [UIView commitAnimations];
     
@@ -152,7 +154,8 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
 {
     if (!updatingView) {
         updatingView =
-            [[UIView alloc] initWithFrame:[self hiddenUpdatingViewFrame]];
+            [[UIView alloc]
+            initWithFrame:[[self class] hiddenUpdatingViewFrame]];
         updatingView.backgroundColor =
             [[UIColor blackColor] colorWithAlphaComponent:0.7];
         
@@ -182,16 +185,23 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
     return updatingView;
 }
 
-- (CGRect)shownUpdatingViewFrame
+#pragma mark Static helper methods
+
++ (CGRect)shownUpdatingViewFrame
 {
-    return CGRectMake((SCREEN_WIDTH - VIEW_LENGTH) / 2, Y, VIEW_LENGTH,
-        VIEW_HEIGHT);
+    return CGRectMake([NetworkAwareViewController leftUpdatingViewMargin], Y,
+        VIEW_LENGTH, VIEW_HEIGHT);
 }
 
-- (CGRect)hiddenUpdatingViewFrame
++ (CGRect)hiddenUpdatingViewFrame
 {
-    return CGRectMake((SCREEN_WIDTH - VIEW_LENGTH) / 2, Y + 30, VIEW_LENGTH,
-        VIEW_HEIGHT);
+    return CGRectMake([NetworkAwareViewController leftUpdatingViewMargin],
+        Y + VIEW_HEIGHT, VIEW_LENGTH, VIEW_HEIGHT);
+}
+
++ (CGFloat)leftUpdatingViewMargin
+{
+    return (SCREEN_WIDTH - VIEW_LENGTH) / 2;
 }
 
 @end
