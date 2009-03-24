@@ -26,6 +26,8 @@ enum UpdatingState
     NSString * updatingText;
     NSString * noConnectionText;
     NSString * noConnectionCachedDataText;
+    
+    UIView * updatingView;
 }
 
 - (void)setUpdatingState:(NSInteger)state;

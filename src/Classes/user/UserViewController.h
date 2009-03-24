@@ -34,4 +34,6 @@
 
 - (void)setAvatarFilename:(NSString *)filename;
 
+- (IBAction)addContact:(id)sender;
+
 @end

@@ -8,8 +8,17 @@
 
 - (NoDataViewController *)noDataViewController;
 - (void)updateView;
+- (UIView *)updatingView;
+- (CGRect)shownUpdatingViewFrame;
+- (CGRect)hiddenUpdatingViewFrame;
 
 @end
+
+static const CGFloat Y = 338;
+static const CGFloat SCREEN_WIDTH = 320;
+static const CGFloat VIEW_LENGTH = 320;
+static const CGFloat VIEW_HEIGHT = 30;
+static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
 
 @implementation NetworkAwareViewController
 
@@ -22,6 +31,8 @@
     [updatingText release];
     [noConnectionText release];
     [noConnectionCachedDataText release];
+    
+    [updatingView release];
     
     [super dealloc];
 }
@@ -101,16 +112,6 @@
 - (void)updateView
 {
     if (cachedDataAvailable) {
-        if (updatingState == kConnectedAndUpdating)
-            self.navigationItem.prompt = updatingText;
-        else if (updatingState == kDisconnected)
-            self.navigationItem.prompt = noConnectionCachedDataText;
-        else
-            self.navigationItem.prompt = nil;
-    } else
-        self.navigationItem.prompt = nil;
-    
-    if (cachedDataAvailable) {
         self.view = targetViewController.view;
         [targetViewController viewWillAppear:YES];
     } else {
@@ -119,11 +120,77 @@
             updatingState == kDisconnected ? noConnectionText : updatingText;
         [[self noDataViewController] setLabelText:labelText];
     }
+
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationTransition:UIViewAnimationTransitionNone
+        forView:self.updatingView cache:NO];
+
+    if (cachedDataAvailable) {
+        if (updatingState == kConnectedAndUpdating)
+            self.updatingView.frame = [self shownUpdatingViewFrame];
+        else if (updatingState == kDisconnected)
+            self.navigationItem.prompt = noConnectionCachedDataText;
+        else {
+            self.navigationItem.prompt = nil;
+            self.updatingView.frame = [self hiddenUpdatingViewFrame];
+        }
+    } else
+        self.navigationItem.prompt = nil;
+        
+    [UIView commitAnimations];
     
     if (updatingState == kDisconnected)
         [[self noDataViewController] stopAnimatingActivityIndicator];
     else
         [[self noDataViewController] startAnimatingActivityIndicator];
+}
+
+- (UIView *)updatingView
+{
+    if (!updatingView && self.view.superview) {
+        updatingView =
+            [[UIView alloc] initWithFrame:[self shownUpdatingViewFrame]];
+        updatingView.backgroundColor =
+            [[UIColor blackColor] colorWithAlphaComponent:0.7];
+        
+        CGRect labelFrame =
+            CGRectMake(VIEW_HEIGHT, 0, VIEW_LENGTH - VIEW_HEIGHT, VIEW_HEIGHT);
+        UILabel * updatingLabel = [[UILabel alloc] initWithFrame:labelFrame];
+        updatingLabel.text = updatingText;
+        updatingLabel.textColor = [UIColor whiteColor];
+        updatingLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+        updatingLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+        updatingLabel.font = [UIFont boldSystemFontOfSize:18];
+        [updatingView addSubview:updatingLabel];
+        
+        const CGFloat ACTIVITY_INDICATOR_MARGIN =
+            (VIEW_HEIGHT - ACTIVITY_INDICATOR_LENGTH) / 2;
+        CGRect activityIndicatorFrame =
+            CGRectMake(ACTIVITY_INDICATOR_MARGIN, ACTIVITY_INDICATOR_MARGIN, 20,
+            20);
+        UIActivityIndicatorView * activityIndicator =
+            [[UIActivityIndicatorView alloc]
+            initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        activityIndicator.frame = activityIndicatorFrame;
+        [activityIndicator startAnimating];
+        [updatingView addSubview:activityIndicator];
+        
+        [self.view.superview addSubview:updatingView];
+    }
+
+    return updatingView;
+}
+
+- (CGRect)shownUpdatingViewFrame
+{
+    return CGRectMake((SCREEN_WIDTH - VIEW_LENGTH) / 2, Y, VIEW_LENGTH,
+        VIEW_HEIGHT);
+}
+
+- (CGRect)hiddenUpdatingViewFrame
+{
+    return CGRectMake((SCREEN_WIDTH - VIEW_LENGTH) / 2, Y + 30, VIEW_LENGTH,
+        VIEW_HEIGHT);
 }
 
 @end
