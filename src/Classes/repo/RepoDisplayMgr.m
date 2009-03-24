@@ -23,15 +23,6 @@
     [super dealloc];
 }
 
-- (void)display
-{
-    [navigationController
-        pushViewController:networkAwareViewController animated:YES];
-
-    [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
-    [networkAwareViewController setCachedDataAvailable:NO];    
-}
-
 #pragma mark RepoSelector implementation
 
 - (void)user:(NSString *)username didSelectRepo:(NSString *)repo
@@ -45,7 +36,13 @@
     //
     [gitHub fetchInfoForRepo:repo username:username];
 
-    [self display];
+    [navigationController
+        pushViewController:networkAwareViewController animated:YES];
+    networkAwareViewController.navigationItem.title =
+        NSLocalizedString(@"repo.view.title", @"");
+
+    [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
+    [networkAwareViewController setCachedDataAvailable:NO];    
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -59,7 +56,7 @@
     else
         repoInfo = [repoCacheReader repoWithUsername:username repoName:repo];
 
-    [repoViewController updateWithCommits:commits forRepo:repoInfo];
+    [repoViewController updateWithCommits:commits forRepo:repo info:repoInfo];
 
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];

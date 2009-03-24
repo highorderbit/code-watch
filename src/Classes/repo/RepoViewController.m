@@ -10,43 +10,58 @@
 #import "NSDate+GitHubStringHelpers.h"
 
 @interface RepoViewController (Private)
-- (void)setCommits:(NSArray *)someCommits;
+- (void)setRepoName:(NSString *)name;
 - (void)setRepoInfo:(RepoInfo *)repo;
+- (void)setCommits:(NSArray *)someCommits;
 @end
 
 @implementation RepoViewController
 
 - (void)dealloc
 {
+    [headerView release];
+    [repoNameLabel release];
+    [repoDescriptionLabel release];
+    [repoInfoLabel release];
+    [repoImageView release];
+    [repoName release];
     [repoInfo release];
     [commits release];
     [super dealloc];
 }
-
-/*
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    // Override initWithStyle: if you create the controller programmatically and
-    // want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-
-    return self;
-}
-*/
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to display an Edit button in the navigation
-    // bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.tableHeaderView = headerView;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    repoNameLabel.text = repoName;
+    repoDescriptionLabel.text = [repoInfo.details objectForKey:@"description"];
+
+    NSInteger nwatchers =
+        [[repoInfo.details objectForKey:@"watchers"] integerValue];
+    NSInteger nforks =
+        [[repoInfo.details objectForKey:@"forks"] integerValue];
+
+    NSString * watchersFormatString = nwatchers == 1 ?
+        NSLocalizedString(@"repo.watchers.label.formatstring.singular", @"") :
+        NSLocalizedString(@"repo.watchers.label.formatstring.plural", @"");
+    NSString * watchersLabel =
+        [NSString stringWithFormat:watchersFormatString, nwatchers];
+
+    NSString * forksFormatString = nforks == 1 ?
+        NSLocalizedString(@"repo.forks.label.formatstring.singular", @"") :
+        NSLocalizedString(@"repo.forks.label.formatstring.plural", @"");
+    NSString * forksLabel =
+        [NSString stringWithFormat:forksFormatString, nforks];
+
+    repoInfoLabel.text =
+        [NSString stringWithFormat:@"%@ / %@", watchersLabel, forksLabel];
 }
 
 #pragma mark Table view methods
@@ -60,6 +75,12 @@
  numberOfRowsInSection:(NSInteger)section
 {
     return commits.count;
+}
+
+- (NSString*) tableView:(UITableView *)tv
+    titleForHeaderInSection:(NSInteger)section
+{
+    return @"Commits";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv
@@ -109,21 +130,25 @@
 
 #pragma mark Resetting the displayed data
 
-- (void)updateWithCommits:(NSArray *)someCommits forRepo:(RepoInfo *)repo
+- (void)updateWithCommits:(NSArray *)someCommits
+                  forRepo:(NSString *)aRepoName
+                     info:(RepoInfo *)someRepoInfo
 {
     [self setCommits:someCommits];
-    [self setRepoInfo:repo];
+    [self setRepoName:aRepoName];
+    [self setRepoInfo:someRepoInfo];
 
+    self.navigationItem.title = repoName;
     [self.tableView reloadData];
 }
 
 #pragma mark Accessors
 
-- (void)setCommits:(NSArray *)someCommits
+- (void)setRepoName:(NSString *)name
 {
-    NSArray * tmp = [someCommits copy];
-    [commits release];
-    commits = tmp;
+    NSString * tmp = [name copy];
+    [repoName release];
+    repoName = tmp;
 }
 
 - (void)setRepoInfo:(RepoInfo *)repo
@@ -131,6 +156,13 @@
     RepoInfo * tmp = [repo copy];
     [repoInfo release];
     repoInfo = tmp;
+}
+
+- (void)setCommits:(NSArray *)someCommits
+{
+    NSArray * tmp = [someCommits copy];
+    [commits release];
+    commits = tmp;
 }
 
 @end
