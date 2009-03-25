@@ -5,19 +5,12 @@
 #import "CommitViewController.h"
 #import "CommitInfo.h"
 
-static const NSUInteger NUM_SECTIONS = 3;
+static const NSUInteger NUM_SECTIONS = 2;
 enum
 {
-    kMessageSection,
     kDiffSection,
     kActionSection
 } kSections;
-
-static const NSUInteger NUM_MESSAGE_ROWS = 1;
-enum
-{
-    kMessageRow
-} kMessageRows;
 
 static const NSUInteger NUM_DIFF_ROWS = 3;
 enum
@@ -45,10 +38,14 @@ enum
 - (void)dealloc
 {
     [headerView release];
+
+    [avatarImageView release];
     [nameLabel release];
     [emailLabel release];
-    [avatarImageView release];
+    [messageLabel release];
+
     [commitInfo release];
+
     [super dealloc];
 }
 
@@ -102,9 +99,6 @@ enum
     NSInteger nrows = 0;
 
     switch (section) {
-        case kMessageSection:
-            nrows = NUM_MESSAGE_ROWS;
-            break;
         case kDiffSection:
             nrows = NUM_DIFF_ROWS;
             break;
@@ -132,9 +126,6 @@ enum
              autorelease];
 
     switch (indexPath.section) {
-        case kMessageSection:
-            cell.text = @"This is my really long commit message.";
-            break;
         case kDiffSection:
             switch (indexPath.row) {
                 case kAddedRow:
@@ -239,9 +230,28 @@ enum
         [[info.details objectForKey:@"committer"] objectForKey:@"name"];
     NSString * committerEmail =
         [[info.details objectForKey:@"committer"] objectForKey:@"email"];
+    NSString * message = [info.details objectForKey:@"message"];
 
     nameLabel.text = committerName;
     emailLabel.text = committerEmail;
+
+    CGSize maximumLabelSize = CGSizeMake(298.0, 9999.0);
+
+    UIFont * font = messageLabel.font;
+    CGSize size = [message sizeWithFont:font constrainedToSize:maximumLabelSize
+        lineBreakMode:UILineBreakModeWordWrap];
+
+    CGRect newFrame = messageLabel.frame;
+    newFrame.size = size;
+
+    messageLabel.frame = newFrame;
+    messageLabel.text = message;
+
+    CGRect headerFrame = headerView.frame;
+    headerFrame.size.height = 85.0 + size.height;
+    headerView.frame = headerFrame;
+
+    self.tableView.tableHeaderView = headerView;
 
     [self.tableView reloadData];
 }
