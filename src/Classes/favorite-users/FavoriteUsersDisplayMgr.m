@@ -9,6 +9,7 @@
 - (void)dealloc
 {
     [viewController release];
+    [favoriteUsersStateReader release];
     [super dealloc];
 }
 
@@ -16,15 +17,7 @@
 
 - (void)viewWillAppear
 {
-    // read favorite users from state
-    // set favorite users in view
-    
-    // TEMPORARY
-    NSMutableArray * array = [NSMutableArray array];
-    [array addObject:@"jad"];
-    [array addObject:@"kurthd"];
-    [viewController setUsernames:array];
-    // TEMPORARY
+    [viewController setUsernames:favoriteUsersStateReader.favoriteUsers];
 }
 
 @end

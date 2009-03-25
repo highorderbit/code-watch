@@ -7,15 +7,24 @@
 #import "AddUserViewControllerDelegate.h"
 #import "AddUserViewController.h"
 #import "LogInHelpViewController.h"
+#import "GitHubService.h"
+#import "FavoriteUsersStateSetter.h"
 
-@interface UIAddUserMgr : NSObject <AddUserMgr, AddUserViewControllerDelegate>
+@interface UIAddUserMgr :
+    NSObject <AddUserMgr, AddUserViewControllerDelegate, GitHubServiceDelegate>
 {
     IBOutlet UIViewController * rootViewController;
     
     UINavigationController * navigationController;
     AddUserViewController * addUserViewController;
+
+    IBOutlet GitHubService * gitHub;
+    IBOutlet NSObject<FavoriteUsersStateSetter> * favoriteUsersStateSetter;
+        
+    BOOL connecting;
 }
 
+// Interface Builder requires re-definition
 - (IBAction)addUser:(id)sender;
 
 @end

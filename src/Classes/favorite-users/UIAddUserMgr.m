@@ -17,8 +17,13 @@
 - (void)dealloc
 {
     [rootViewController release];
+    
     [navigationController release];
     [addUserViewController release];
+    
+    [gitHub release];
+    [favoriteUsersStateSetter release];
+    
     [super dealloc];
 }
 
@@ -33,13 +38,52 @@
 #pragma mark AddUserControllerDelegate implementation
 
 - (void)userProvidedUsername:(NSString *)username
-{}
+{
+    NSLog(@"Attempting add user with username: '%@'.", username);
+    connecting = YES;
+    [gitHub fetchInfoForUsername:username];
+}
 
 - (void)userDidCancel
-{}
+{
+    [rootViewController dismissModalViewControllerAnimated:YES];
+}
 
 - (void)provideHelp
 {}
+
+#pragma mark GitHubServiceDelegate implementation
+
+- (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
+    fetchedForUsername:(NSString *)username
+{
+    [favoriteUsersStateSetter addFavoriteUser:username];
+    [rootViewController dismissModalViewControllerAnimated:YES];
+    connecting = NO;
+}
+
+- (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
+{
+    NSString * title =
+        NSLocalizedString(@"github.adduser.failed.alert.title", @"");
+    NSString * cancelTitle =
+        NSLocalizedString(@"github.adduser.failed.alert.ok", @"");
+    NSString * message = error.localizedDescription;
+
+    UIAlertView * alertView =
+        [[[UIAlertView alloc]
+          initWithTitle:title
+                message:message
+               delegate:self
+      cancelButtonTitle:cancelTitle
+      otherButtonTitles:nil]
+         autorelease];
+
+    [alertView show];
+ 
+    connecting = NO;
+    [self.addUserViewController viewWillAppear:NO];
+}
 
 #pragma mark Accessors
 

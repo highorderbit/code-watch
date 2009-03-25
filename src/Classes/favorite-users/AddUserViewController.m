@@ -78,30 +78,22 @@ enum HelpSection
     
     usernameTextField.delegate = self;
     
-    usernameCell.textField = usernameTextField;
+    self.usernameCell.textField = usernameTextField;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    helpCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    self.helpCell.selectionStyle = UITableViewCellSelectionStyleBlue;
     
     NSIndexPath * selection = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selection animated:NO];
     
-    usernameCell.nameLabel.text =
-    NSLocalizedString(@"login.username.label", @"");
+    self.usernameCell.nameLabel.text =
+        NSLocalizedString(@"adduser.username.label", @"");
     
-    [usernameCell.textField becomeFirstResponder];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];  // Releases the view if it doesn't have a
-    // superview
-    
-    // Release anything that's not essential, such as cached data
+    [self.usernameCell.textField becomeFirstResponder];
 }
 
 #pragma mark Table view methods
@@ -194,7 +186,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)userDidSave
 {
-    helpCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.helpCell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSString * username = usernameTextField.text;
     
     [delegate userProvidedUsername:username];

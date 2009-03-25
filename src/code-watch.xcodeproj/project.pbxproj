@@ -62,6 +62,7 @@
 		9152A1860F6ACE4A0037A52F /* UserIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1850F6ACE4A0037A52F /* UserIcon.png */; };
 		9152A1970F6ADAD20037A52F /* HomeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1960F6ADAD20037A52F /* HomeIcon.png */; };
 		9152A1F40F6AFF8A0037A52F /* UsersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1F30F6AFF8A0037A52F /* UsersIcon.png */; };
+		9157D9D40F7A9E9900DF83FF /* FavoriteUsersState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9157D9D30F7A9E9900DF83FF /* FavoriteUsersState.m */; };
 		91AB1E0E0F733272005AC590 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AB1E0D0F733272005AC590 /* AddressBook.framework */; };
 		91AB1E290F733BB6005AC590 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AB1E280F733BB6005AC590 /* AddressBookUI.framework */; };
 		91B6205B0F6C54540077CDB9 /* UserDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */; };
@@ -203,6 +204,10 @@
 		9152A1850F6ACE4A0037A52F /* UserIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserIcon.png; sourceTree = "<group>"; };
 		9152A1960F6ADAD20037A52F /* HomeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeIcon.png; sourceTree = "<group>"; };
 		9152A1F30F6AFF8A0037A52F /* UsersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UsersIcon.png; sourceTree = "<group>"; };
+		9157D9D20F7A9E9900DF83FF /* FavoriteUsersState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersState.h; path = "favorite-users/FavoriteUsersState.h"; sourceTree = "<group>"; };
+		9157D9D30F7A9E9900DF83FF /* FavoriteUsersState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteUsersState.m; path = "favorite-users/FavoriteUsersState.m"; sourceTree = "<group>"; };
+		9157D9D50F7A9F5100DF83FF /* FavoriteUsersStateReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersStateReader.h; path = "favorite-users/FavoriteUsersStateReader.h"; sourceTree = "<group>"; };
+		9157DA040F7AA79900DF83FF /* FavoriteUsersStateSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersStateSetter.h; path = "favorite-users/FavoriteUsersStateSetter.h"; sourceTree = "<group>"; };
 		91AB1E0D0F733272005AC590 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = /System/Library/Frameworks/AddressBook.framework; sourceTree = "<absolute>"; };
 		91AB1E280F733BB6005AC590 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		91B620590F6C54540077CDB9 /* UserDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailTableViewCell.h; sourceTree = "<group>"; };
@@ -611,6 +616,7 @@
 		91E25E5B0F79B81300E1594E /* favorite-users */ = {
 			isa = PBXGroup;
 			children = (
+				9157DA040F7AA79900DF83FF /* FavoriteUsersStateSetter.h */,
 				91E25E580F79B7C400E1594E /* FavoriteUsersViewController.h */,
 				91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */,
 				91E25E6E0F79B96900E1594E /* FavoriteUsersDisplayMgr.h */,
@@ -622,6 +628,9 @@
 				91E25EFE0F79DC8000E1594E /* AddUserMgr.h */,
 				91E25F010F79DD0E00E1594E /* UIAddUserMgr.h */,
 				91E25F020F79DD0E00E1594E /* UIAddUserMgr.m */,
+				9157D9D20F7A9E9900DF83FF /* FavoriteUsersState.h */,
+				9157D9D30F7A9E9900DF83FF /* FavoriteUsersState.m */,
+				9157D9D50F7A9F5100DF83FF /* FavoriteUsersStateReader.h */,
 			);
 			name = "favorite-users";
 			sourceTree = "<group>";
@@ -786,6 +795,7 @@
 				91E25E700F79B96900E1594E /* FavoriteUsersDisplayMgr.m in Sources */,
 				91E25EE80F79D6A200E1594E /* AddUserViewController.m in Sources */,
 				91E25F030F79DD0E00E1594E /* UIAddUserMgr.m in Sources */,
+				9157D9D40F7A9E9900DF83FF /* FavoriteUsersState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
