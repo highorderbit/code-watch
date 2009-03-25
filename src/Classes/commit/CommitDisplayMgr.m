@@ -24,18 +24,30 @@
 - (void)user:(NSString *)username didSelectCommit:(NSString *)commitKey
     forRepo:(NSString *)repoName
 {
-    [navigationController
-        pushViewController:networkAwareViewController animated:YES];
     networkAwareViewController.navigationItem.title =
         NSLocalizedString(@"commit.view.title", @"");
 
     CommitInfo * commitInfo = [commitCacheReader commitWithKey:commitKey];
-    [commitViewController updateWithCommitInfo:commitInfo];
 
-    [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
-    [networkAwareViewController setCachedDataAvailable:!!commitInfo];    
+    // TODO: Consider moving changeset into its own dictionary.
+    BOOL cached = [commitInfo.details objectForKey:@"added"] != nil;
 
-    [gitHub fetchInfoForCommit:commitKey repo:repoName username:username];
+
+    if (cached) {
+        [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
+        [networkAwareViewController setCachedDataAvailable:YES];
+
+        [commitViewController updateWithCommitInfo:commitInfo];
+    } else {
+        [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
+        [networkAwareViewController setCachedDataAvailable:NO];
+
+        // commits don't change, so only update if needed
+        [gitHub fetchInfoForCommit:commitKey repo:repoName username:username];
+    }
+
+    [navigationController
+        pushViewController:networkAwareViewController animated:YES];
 }
 
 #pragma mark GitHubServiceDelegate implementation
