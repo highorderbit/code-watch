@@ -178,7 +178,9 @@
     repoInfo = [[[RepoInfo alloc] initWithDetails:repoInfo.details
                                        commitKeys:commitKeys] autorelease];
 
+    NSLog(@"Caching repo info for repo: '%@'.", repo);
     [self cacheRepoInfo:repoInfo forUsername:username repoName:repo];
+    NSLog(@"Caching commit info for repo: '%@'.", repo);
     [self cacheCommits:commitInfos forUsername:username repo:repo];
 
     SEL selector = @selector(commits:fetchedForRepo:username:);
@@ -349,8 +351,6 @@
         [details removeObjectForKey:@"id"];
 
         CommitInfo * commitInfo = [[CommitInfo alloc] initWithDetails:details];
-        if (commitKey == nil)
-            NSLog(@"ABOUT TO CRASH THE PROGRAM");
         [commitInfos setObject:commitInfo forKey:commitKey];
         [commitInfo release];
     }

@@ -21,8 +21,12 @@
 
 - (id)initWithCacheLimit:(NSInteger)aCacheLimit
 {
-    if (self = [super init])
+    if (self = [super init]) {
+        recentlyViewed = [[NSMutableDictionary alloc] init];
+        history = [[NSMutableArray alloc] init];
+        historyAppearances = [[NSMutableDictionary alloc] init];
         cacheLimit = aCacheLimit;
+    }
 
     return self;
 }

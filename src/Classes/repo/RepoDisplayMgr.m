@@ -123,7 +123,8 @@
     NSMutableDictionary * cachedCommits = [NSMutableDictionary dictionary];
     for (NSString * commitKey in info.commitKeys) {
         CommitInfo * commitInfo = [commitCacheReader commitWithKey:commitKey];
-        [cachedCommits setObject:commitInfo forKey:commitKey];
+        if (commitInfo)
+            [cachedCommits setObject:commitInfo forKey:commitKey];
     }
 
     return cachedCommits.count > 0 ? cachedCommits : nil;
