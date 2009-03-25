@@ -14,6 +14,7 @@
     [navigationController release];
     [networkAwareViewController release];
     [commitViewController release];
+    [commitCacheReader release];
     [gitHub release];
     [super dealloc];
 }
@@ -27,6 +28,9 @@
         pushViewController:networkAwareViewController animated:YES];
     networkAwareViewController.navigationItem.title =
         NSLocalizedString(@"commit.view.title", @"");
+
+    CommitInfo * commitInfo = [commitCacheReader commitWithKey:commitKey];
+    [commitViewController updateWithCommitInfo:commitInfo];
 
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];    

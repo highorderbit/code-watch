@@ -3,6 +3,7 @@
 //
 
 #import "CommitViewController.h"
+#import "CommitInfo.h"
 
 static const NSUInteger NUM_SECTIONS = 3;
 enum
@@ -33,12 +34,21 @@ enum
     kEmailRow
 };
 
+@interface CommitViewController (Private)
+- (void)setCommitInfo:(CommitInfo *)info;
+@end
 
 @implementation CommitViewController
+
+@synthesize commitInfo;
 
 - (void)dealloc
 {
     [headerView release];
+    [nameLabel release];
+    [emailLabel release];
+    [avatarImageView release];
+    [commitInfo release];
     [super dealloc];
 }
 
@@ -75,16 +85,6 @@ enum
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:
-    (UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
 
@@ -164,6 +164,11 @@ enum
 
     return cell;
 }
+- (NSIndexPath *) tableView:(UITableView *)tv
+   willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
 
 - (void)          tableView:(UITableView *)tv
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -223,5 +228,31 @@ enum
     return YES;
 }
 */
+
+#pragma mark Updating the view with new data
+
+- (void)updateWithCommitInfo:(CommitInfo *)info
+{
+    [self setCommitInfo:info];
+
+    NSString * committerName =
+        [[info.details objectForKey:@"committer"] objectForKey:@"name"];
+    NSString * committerEmail =
+        [[info.details objectForKey:@"committer"] objectForKey:@"email"];
+
+    nameLabel.text = committerName;
+    emailLabel.text = committerEmail;
+
+    [self.tableView reloadData];
+}
+
+#pragma mark Accessors
+
+- (void)setCommitInfo:(CommitInfo *)info
+{
+    CommitInfo * tmp = [info copy];
+    [commitInfo release];
+    commitInfo = tmp;
+}
 
 @end

@@ -4,6 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CommitSelector.h"
+#import "CommitCacheReader.h"
 #import "GitHubServiceDelegate.h"
 
 @class NetworkAwareViewController, CommitViewController, GitHubService;
@@ -14,6 +15,8 @@
 
     IBOutlet NetworkAwareViewController * networkAwareViewController;
     IBOutlet CommitViewController * commitViewController;
+
+    IBOutlet NSObject<CommitCacheReader> * commitCacheReader;
 
     IBOutlet GitHubService * gitHub;
 }
