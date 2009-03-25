@@ -10,15 +10,14 @@
 @interface RepoDisplayMgr (Private)
 - (BOOL)loadCachedDataForUsername:(NSString *)username
                          repoName:(NSString *)repoName;
-- (RepoInfo *)repoInfoForUsername:(NSString *)username
-                         repoName:(NSString *)repoName;
-- (NSArray *)commitsForUsername:(NSString *)username
-                       repoName:(NSString *)repoName;
+- (RepoInfo *)cachedRepoInfoForUsername:(NSString *)username
+                               repoName:(NSString *)repoName;
+- (NSDictionary *)cachedCommitsForRepoInfo:(RepoInfo *)info;
 - (BOOL)isPrimaryUser:(NSString *)username;
 
 - (void)setRepoInfo:(RepoInfo *)info;
 - (void)setRepoName:(NSString *)name;
-- (void)setCommits:(NSArray *)someCommits;
+- (void)setCommits:(NSDictionary *)someCommits;
 @end
 
 @implementation RepoDisplayMgr
@@ -65,11 +64,12 @@
 
 #pragma mark GitHubServiceDelegate implementation
 
-- (void)commits:(NSArray *)newCommits fetchedForRepo:(NSString *)updatedRepoName
-    username:(NSString *)username
+- (void)commits:(NSDictionary*)newCommits
+ fetchedForRepo:(NSString *)updatedRepoName
+       username:(NSString *)username
 {
     RepoInfo * info =
-        [self repoInfoForUsername:username repoName:updatedRepoName];
+        [self cachedRepoInfoForUsername:username repoName:updatedRepoName];
     [self setRepoInfo:info];
 
     [self setRepoName:updatedRepoName];
@@ -101,33 +101,32 @@
                          repoName:(NSString *)repo
 {
     RepoInfo * cachedInfo =
-        [self repoInfoForUsername:username repoName:repo];
+        [self cachedRepoInfoForUsername:username repoName:repo];
     [self setRepoInfo:cachedInfo];
 
-    NSArray * cachedCommits = [self commitsForUsername:username repoName:repo];
+    NSDictionary * cachedCommits = [self cachedCommitsForRepoInfo:cachedInfo];
     [self setCommits:cachedCommits];
 
     return cachedInfo && cachedCommits;
 }
 
-- (RepoInfo *)repoInfoForUsername:(NSString *)username
-                         repoName:(NSString *)repo
+- (RepoInfo *)cachedRepoInfoForUsername:(NSString *)username
+                               repoName:(NSString *)repo
 {
     return [self isPrimaryUser:username] ?
         [repoCacheReader primaryUserRepoWithName:repo] :
         [repoCacheReader repoWithUsername:username repoName:repo];
 }
 
-- (NSArray *)commitsForUsername:(NSString *)username
-                       repoName:(NSString *)repo
+- (NSDictionary *)cachedCommitsForRepoInfo:(RepoInfo *)info
 {
-    //
-    // TODO: Provide real implementation
-    //
+    NSMutableDictionary * cachedCommits = [NSMutableDictionary dictionary];
+    for (NSString * commitKey in info.commitKeys) {
+        CommitInfo * commitInfo = [commitCacheReader commitWithKey:commitKey];
+        [cachedCommits setObject:commitInfo forKey:commitKey];
+    }
 
-    if ([self repoInfoForUsername:username repoName:repo])
-        return [NSArray array];
-    return nil;
+    return cachedCommits.count > 0 ? cachedCommits : nil;
 }
 
 - (BOOL)isPrimaryUser:(NSString *)username
@@ -151,9 +150,9 @@
     repoName = tmp;
 }
 
-- (void)setCommits:(NSArray *)someCommits
+- (void)setCommits:(NSDictionary *)someCommits
 {
-    NSArray * tmp = [someCommits copy];
+    NSDictionary * tmp = [someCommits copy];
     [commits release];
     commits = tmp;
 }

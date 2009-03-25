@@ -12,7 +12,7 @@
 @interface RepoViewController (Private)
 - (void)setRepoName:(NSString *)name;
 - (void)setRepoInfo:(RepoInfo *)repo;
-- (void)setCommits:(NSArray *)someCommits;
+- (void)setCommits:(NSDictionary *)someCommits;
 @end
 
 @implementation RepoViewController
@@ -95,7 +95,7 @@
         cell = [RepoActivityTableViewCell createCustomInstance];
 
     NSString * commitKey = [repoInfo.commitKeys objectAtIndex:indexPath.row];
-    CommitInfo * info = [commits objectAtIndex:indexPath.row];
+    CommitInfo * info = [commits objectForKey:commitKey];
 
     NSString * message = [info.details objectForKey:@"message"];
     NSString * committer =
@@ -130,7 +130,7 @@
 
 #pragma mark Resetting the displayed data
 
-- (void)updateWithCommits:(NSArray *)someCommits
+- (void)updateWithCommits:(NSDictionary *)someCommits
                   forRepo:(NSString *)aRepoName
                      info:(RepoInfo *)someRepoInfo
 {
@@ -158,9 +158,9 @@
     repoInfo = tmp;
 }
 
-- (void)setCommits:(NSArray *)someCommits
+- (void)setCommits:(NSDictionary *)someCommits
 {
-    NSArray * tmp = [someCommits copy];
+    NSDictionary * tmp = [someCommits copy];
     [commits release];
     commits = tmp;
 }

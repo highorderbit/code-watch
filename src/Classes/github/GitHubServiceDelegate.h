@@ -30,7 +30,7 @@
 
 @optional
 
-- (void)commits:(NSArray *)commitsInfo fetchedForRepo:(NSString *)repo
+- (void)commits:(NSDictionary *)commitInfos fetchedForRepo:(NSString *)repo
     username:(NSString *)username;
 - (void)failedToFetchInfoForRepo:(NSString *)repo
                         username:(NSString *)username

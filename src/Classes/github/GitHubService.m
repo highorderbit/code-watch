@@ -10,11 +10,11 @@
 
 @interface GitHubService (Private)
 - (void)setPrimaryUser:(NSString *)username token:(NSString *)token;
-- (void)saveUserInfo:(UserInfo *)info forUsername:(NSString *)username;
-- (void)saveRepos:(NSDictionary *)repos forUsername:(NSString *)username;
-- (void)saveRepoInfo:(RepoInfo *)repoInfo forUsername:(NSString *)username
+- (void)cacheUserInfo:(UserInfo *)info forUsername:(NSString *)username;
+- (void)cacheRepos:(NSDictionary *)repos forUsername:(NSString *)username;
+- (void)cacheRepoInfo:(RepoInfo *)repoInfo forUsername:(NSString *)username
     repoName:(NSString *)repoName;
-- (void)saveCommits:(NSArray *)commits forUsername:(NSString *)username
+- (void)cacheCommits:(NSDictionary *)commits forUsername:(NSString *)username
     repo:(NSString *)repoName;
 
 + (UserInfo *)extractUserInfo:(NSDictionary *)gitHubInfo;
@@ -22,7 +22,7 @@
 + (NSArray *)extractRepoKeys:(NSDictionary *)gitHubInfo;
 + (NSDictionary *)extractRepoInfos:(NSDictionary *)gitHubInfo;
 + (NSArray *)extractCommitKeys:(NSDictionary *)gitHubInfo;
-+ (NSArray *)extractCommitInfos:(NSDictionary *)gitHubInfo;
++ (NSDictionary *)extractCommitInfos:(NSDictionary *)gitHubInfo;
 
 - (RepoInfo *)repoInfoForUser:username repo:(NSString *)repo;
 - (BOOL)isPrimaryUser:(NSString *)username;
@@ -144,8 +144,8 @@
             [delegate logInSucceeded:username];
     }
 
-    [self saveUserInfo:ui forUsername:username];
-    [self saveRepos:repos forUsername:username];
+    [self cacheUserInfo:ui forUsername:username];
+    [self cacheRepos:repos forUsername:username];
 
     SEL selector = @selector(userInfo:repoInfos:fetchedForUsername:);
     if ([delegate respondsToSelector:selector])
@@ -174,12 +174,12 @@
 
     RepoInfo * repoInfo = [self repoInfoForUser:username repo:repo];
     NSArray * commitKeys = [[self class] extractCommitKeys:commits];
-    NSArray * commitInfos = [[self class] extractCommitInfos:commits];
+    NSDictionary * commitInfos = [[self class] extractCommitInfos:commits];
     repoInfo = [[[RepoInfo alloc] initWithDetails:repoInfo.details
                                        commitKeys:commitKeys] autorelease];
 
-    [self saveRepoInfo:repoInfo forUsername:username repoName:repo];
-    [self saveCommits:commitInfos forUsername:username repo:repo];
+    [self cacheRepoInfo:repoInfo forUsername:username repoName:repo];
+    [self cacheCommits:commitInfos forUsername:username repo:repo];
 
     SEL selector = @selector(commits:fetchedForRepo:username:);
     if ([delegate respondsToSelector:selector])
@@ -204,7 +204,7 @@
     [logInStateSetter setLogin:username token:token prompt:NO];
 }
 
-- (void)saveUserInfo:(UserInfo *)info forUsername:(NSString *)username
+- (void)cacheUserInfo:(UserInfo *)info forUsername:(NSString *)username
 {
     if ([self isPrimaryUser:username])
         [userCacheSetter setPrimaryUser:info];
@@ -212,20 +212,39 @@
         [userCacheSetter addRecentlyViewedUser:info withUsername:username];
 }
 
-- (void)saveRepos:(NSDictionary *)repos forUsername:(NSString *)username
+- (void)cacheRepos:(NSDictionary *)repos forUsername:(NSString *)username
 {
     UserInfo * userInfo = [self isPrimaryUser:username] ?
         userCacheReader.primaryUser :
         [userCacheReader userWithUsername:username];
 
     for (NSString * repoKey in userInfo.repoKeys)
-        [self saveRepoInfo:[repos objectForKey:repoKey] forUsername:username
+        [self cacheRepoInfo:[repos objectForKey:repoKey] forUsername:username
             repoName:repoKey];
 }
 
-- (void)saveRepoInfo:(RepoInfo *)repoInfo forUsername:(NSString *)username
+- (void)cacheRepoInfo:(RepoInfo *)repoInfo forUsername:(NSString *)username
     repoName:(NSString *)repoName
 {
+    RepoInfo * cachedInfo = nil;
+    if ([self isPrimaryUser:username])
+        cachedInfo = [repoCacheReader primaryUserRepoWithName:repoName];
+    else
+        cachedInfo =
+            [repoCacheReader repoWithUsername:username repoName:repoName];
+
+    if (cachedInfo) {
+        NSDictionary * details = nil;
+        NSArray * commitKeys = nil;
+
+        details = repoInfo.details ? repoInfo.details : cachedInfo.details;
+        commitKeys =
+            repoInfo.commitKeys ? repoInfo.commitKeys : cachedInfo.commitKeys;
+
+        repoInfo = [[[RepoInfo alloc]
+            initWithDetails:details commitKeys:commitKeys] autorelease];
+    }
+
     if ([self isPrimaryUser:username])
         [repoCacheSetter setPrimaryUserRepo:repoInfo forRepoName:repoName];
     else
@@ -234,7 +253,7 @@
                                       username:username];
 }
 
-- (void)saveCommits:(NSArray *)commits forUsername:(NSString *)username
+- (void)cacheCommits:(NSDictionary *)commits forUsername:(NSString *)username
     repo:(NSString *)repoName
 {
     RepoInfo * repoInfo = nil;
@@ -244,7 +263,10 @@
         repoInfo =
             [repoCacheReader repoWithUsername:username repoName:repoName];
 
-    // TODO: Implement me
+    for (NSString * commitKey in repoInfo.commitKeys) {
+        CommitInfo * commit = [commits objectForKey:commitKey];
+        [commitCacheSetter setCommit:commit forKey:commitKey];
+    }
 }
 
 #pragma mark Parsing received data
@@ -316,16 +338,20 @@
     return commitKeys;
 }
 
-+ (NSArray *)extractCommitInfos:(NSDictionary *)gitHubInfo
++ (NSDictionary *)extractCommitInfos:(NSDictionary *)gitHubInfo
 {
-    NSMutableArray * commitInfos = [NSMutableArray array];
+    NSMutableDictionary * commitInfos = [NSMutableDictionary dictionary];
 
     for (NSDictionary * commit in [gitHubInfo objectForKey:@"commits"]) {
         NSMutableDictionary * details = [commit mutableCopy];
+        NSString * commitKey = [details objectForKey:@"id"];
+
         [details removeObjectForKey:@"id"];
 
         CommitInfo * commitInfo = [[CommitInfo alloc] initWithDetails:details];
-        [commitInfos addObject:commitInfo];
+        if (commitKey == nil)
+            NSLog(@"ABOUT TO CRASH THE PROGRAM");
+        [commitInfos setObject:commitInfo forKey:commitKey];
         [commitInfo release];
     }
 

@@ -11,6 +11,8 @@
 #import "UserCacheReader.h"
 #import "RepoCacheSetter.h"
 #import "RepoCacheReader.h"
+#import "CommitCacheSetter.h"
+#import "CommitCacheReader.h"
 #import "ConfigReader.h"
 
 @class GitHub, GitHubServiceDelegate;
@@ -27,6 +29,8 @@
     IBOutlet NSObject<UserCacheReader> * userCacheReader;
     IBOutlet NSObject<RepoCacheSetter> * repoCacheSetter;
     IBOutlet NSObject<RepoCacheReader> * repoCacheReader;
+    IBOutlet NSObject<CommitCacheSetter> * commitCacheSetter;
+    IBOutlet NSObject<CommitCacheReader> * commitCacheReader;
 
     NSString * usernameForLogInAttempt;
 

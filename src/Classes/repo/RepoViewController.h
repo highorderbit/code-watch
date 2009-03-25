@@ -17,10 +17,10 @@
 
     NSString * repoName;
     RepoInfo * repoInfo;
-    NSArray * commits;
+    NSDictionary * commits;
 }
 
-- (void)updateWithCommits:(NSArray *)someCommits
+- (void)updateWithCommits:(NSDictionary *)someCommits
                   forRepo:(NSString *)aRepoName
                      info:(RepoInfo *)someRepoInfo;
 

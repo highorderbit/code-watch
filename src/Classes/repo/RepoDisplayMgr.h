@@ -7,6 +7,7 @@
 #import "GitHubServiceDelegate.h"
 #import "LogInStateReader.h"
 #import "RepoCacheReader.h"
+#import "CommitCacheReader.h"
 
 @class RepoInfo, NetworkAwareViewController, RepoViewController, GitHubService;
 
@@ -14,10 +15,11 @@
 {
     NSString * repoName;
     RepoInfo * repoInfo;
-    NSArray * commits;
+    NSDictionary * commits;
 
     IBOutlet NSObject<LogInStateReader> * logInStateReader;
     IBOutlet NSObject<RepoCacheReader> * repoCacheReader;
+    IBOutlet NSObject<CommitCacheReader> * commitCacheReader;
 
     IBOutlet UINavigationController * navigationController;
 
@@ -29,6 +31,6 @@
 
 @property (nonatomic, copy, readonly) NSString * repoName;
 @property (nonatomic, copy, readonly) RepoInfo * repoInfo;
-@property (nonatomic, copy, readonly) NSArray * commits;
+@property (nonatomic, copy, readonly) NSDictionary * commits;
 
 @end
