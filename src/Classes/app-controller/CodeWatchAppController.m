@@ -15,6 +15,7 @@
     [userCachePersistenceStore release];
     [newsFeedPersistenceStore release];
     [repoCachePersistenceStore release];
+    [favoriteUsersPersistenceStore release];
     
     [super dealloc];
 }
@@ -25,6 +26,7 @@
     [userCachePersistenceStore load];
     [newsFeedPersistenceStore load];
     [repoCachePersistenceStore load];
+    [favoriteUsersPersistenceStore load];
     
     if ([logInState prompt])
         [logInMgr collectCredentials:self];
@@ -38,6 +40,7 @@
     [userCachePersistenceStore save];
     [newsFeedPersistenceStore save];
     [repoCachePersistenceStore save];
+    [favoriteUsersPersistenceStore save];
 }
 
 @end
