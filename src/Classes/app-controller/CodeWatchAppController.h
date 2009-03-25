@@ -10,14 +10,13 @@
 @interface CodeWatchAppController : NSObject
 {
     IBOutlet NSObject<LogInMgr> * logInMgr;
-    IBOutlet NSObject<PersistenceStore> * logInPersistenceStore;
     IBOutlet NSObject<LogInStateReader> * logInState;
-    
+
+    IBOutlet NSObject<PersistenceStore> * logInPersistenceStore;    
     IBOutlet NSObject<PersistenceStore> * userCachePersistenceStore;
-    
     IBOutlet NSObject<PersistenceStore> * newsFeedPersistenceStore;
-    
     IBOutlet NSObject<PersistenceStore> * repoCachePersistenceStore;
+    IBOutlet NSObject<PersistenceStore> * favoriteUsersPersistenceStore;
 }
 
 - (void) start;

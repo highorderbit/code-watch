@@ -92,6 +92,7 @@ enum HelpSection
     
     self.usernameCell.nameLabel.text =
         NSLocalizedString(@"adduser.username.label", @"");
+    self.usernameCell.textField.text = @"";
     
     [self.usernameCell.textField becomeFirstResponder];
 }

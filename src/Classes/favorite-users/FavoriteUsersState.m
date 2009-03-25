@@ -15,11 +15,6 @@
 - (void)awakeFromNib
 {
     favoriteUsers = [[NSMutableArray array] retain];
-    
-    // TEMPORARY
-    [favoriteUsers addObject:@"jad"];
-    [favoriteUsers addObject:@"kurthd"];
-    // TEMPORARY
 }
 
 #pragma mark FavoriteUsersStateReader implementation
