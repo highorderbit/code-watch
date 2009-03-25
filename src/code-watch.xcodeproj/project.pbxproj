@@ -69,6 +69,9 @@
 		91CC52350F6C9D98000AD3FB /* NetworkAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */; };
 		91CC52DC0F6DC6C4000AD3FB /* UserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52DB0F6DC6C4000AD3FB /* UserCache.m */; };
 		91CC535A0F6EC311000AD3FB /* UserDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC53590F6EC311000AD3FB /* UserDisplayMgr.m */; };
+		91E25E540F79B3B100E1594E /* FavoriteUsersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E25E520F79B3B100E1594E /* FavoriteUsersView.xib */; };
+		91E25E5A0F79B7C400E1594E /* FavoriteUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */; };
+		91E25E700F79B96900E1594E /* FavoriteUsersDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */; };
 		91F89B2B0F7057C500993921 /* NewsFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F89B290F7057C500993921 /* NewsFeedTableViewCell.xib */; };
 		91F89B400F705EB300993921 /* NewsFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B3D0F705EB300993921 /* NewsFeedTableViewCell.m */; };
 		91F89B410F705EB300993921 /* NewsFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B3F0F705EB300993921 /* NewsFeedTableViewController.m */; };
@@ -209,6 +212,12 @@
 		91CC52E00F6DC729000AD3FB /* UserCacheReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCacheReader.h; sourceTree = "<group>"; };
 		91CC53580F6EC311000AD3FB /* UserDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDisplayMgr.h; sourceTree = "<group>"; };
 		91CC53590F6EC311000AD3FB /* UserDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDisplayMgr.m; sourceTree = "<group>"; };
+		91E25E530F79B3B100E1594E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FavoriteUsersView.xib; sourceTree = "<group>"; };
+		91E25E580F79B7C400E1594E /* FavoriteUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersViewController.h; path = "favorite-users/FavoriteUsersViewController.h"; sourceTree = "<group>"; };
+		91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteUsersViewController.m; path = "favorite-users/FavoriteUsersViewController.m"; sourceTree = "<group>"; };
+		91E25E6E0F79B96900E1594E /* FavoriteUsersDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersDisplayMgr.h; path = "favorite-users/FavoriteUsersDisplayMgr.h"; sourceTree = "<group>"; };
+		91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteUsersDisplayMgr.m; path = "favorite-users/FavoriteUsersDisplayMgr.m"; sourceTree = "<group>"; };
+		91E25E960F79C6FD00E1594E /* FavoriteUsersViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersViewControllerDelegate.h; path = "favorite-users/FavoriteUsersViewControllerDelegate.h"; sourceTree = "<group>"; };
 		91F89B2A0F7057C500993921 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NewsFeedTableViewCell.xib; sourceTree = "<group>"; };
 		91F89B3C0F705EB300993921 /* NewsFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedTableViewCell.h; sourceTree = "<group>"; };
 		91F89B3D0F705EB300993921 /* NewsFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedTableViewCell.m; sourceTree = "<group>"; };
@@ -284,6 +293,7 @@
 				05B990880F707DD20039602B /* RepoActivityTableViewCell.xib */,
 				91FD171D0F715018004549F9 /* NoDataView.xib */,
 				05AFEA2D0F79BD4F0008A91C /* CommitView.xib */,
+				91E25E520F79B3B100E1594E /* FavoriteUsersView.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -434,6 +444,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				91E25E5B0F79B81300E1594E /* favorite-users */,
 				91F89B3B0F705EB300993921 /* news-feed */,
 				05BB60AA0F6B20F40005A635 /* github */,
 				9127DD010F6B1065009CDBD5 /* user */,
@@ -584,6 +595,18 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		91E25E5B0F79B81300E1594E /* favorite-users */ = {
+			isa = PBXGroup;
+			children = (
+				91E25E580F79B7C400E1594E /* FavoriteUsersViewController.h */,
+				91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */,
+				91E25E6E0F79B96900E1594E /* FavoriteUsersDisplayMgr.h */,
+				91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */,
+				91E25E960F79C6FD00E1594E /* FavoriteUsersViewControllerDelegate.h */,
+			);
+			name = "favorite-users";
+			sourceTree = "<group>";
+		};
 		91F89B3B0F705EB300993921 /* news-feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -674,6 +697,7 @@
 				05B9908A0F707DD20039602B /* RepoActivityTableViewCell.xib in Resources */,
 				91FD171F0F715018004549F9 /* NoDataView.xib in Resources */,
 				05AFEA2F0F79BD4F0008A91C /* CommitView.xib in Resources */,
+				91E25E540F79B3B100E1594E /* FavoriteUsersView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,6 +762,8 @@
 				91FD1A890F731586004549F9 /* UIColor+CodeWatchColors.m in Sources */,
 				05AFEA330F79BD9A0008A91C /* CommitViewController.m in Sources */,
 				05DE59250F79C8F900189369 /* CommitDisplayMgr.m in Sources */,
+				91E25E5A0F79B7C400E1594E /* FavoriteUsersViewController.m in Sources */,
+				91E25E700F79B96900E1594E /* FavoriteUsersDisplayMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,6 +856,14 @@
 				91B6205D0F6C54830077CDB9 /* en */,
 			);
 			name = UserDetailTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		91E25E520F79B3B100E1594E /* FavoriteUsersView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91E25E530F79B3B100E1594E /* en */,
+			);
+			name = FavoriteUsersView.xib;
 			sourceTree = "<group>";
 		};
 		91F89B290F7057C500993921 /* NewsFeedTableViewCell.xib */ = {
