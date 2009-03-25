@@ -160,6 +160,7 @@
 		05DE59220F79C7BE00189369 /* CommitSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitSelector.h; path = commit/CommitSelector.h; sourceTree = "<group>"; };
 		05DE59230F79C8F900189369 /* CommitDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitDisplayMgr.h; path = commit/CommitDisplayMgr.h; sourceTree = "<group>"; };
 		05DE59240F79C8F900189369 /* CommitDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitDisplayMgr.m; path = commit/CommitDisplayMgr.m; sourceTree = "<group>"; };
+		05DE59680F79D81000189369 /* RepoViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoViewControllerDelegate.h; path = repo/RepoViewControllerDelegate.h; sourceTree = "<group>"; };
 		05F4CF2D0F6C5ECB00B107BB /* GitHubApiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiParser.h; path = github/GitHubApiParser.h; sourceTree = "<group>"; };
 		05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubApiParser.m; path = github/GitHubApiParser.m; sourceTree = "<group>"; };
 		05F4CF480F6C614A00B107BB /* GitHubApiParserImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiParserImpl.h; path = github/GitHubApiParserImpl.h; sourceTree = "<group>"; };
@@ -405,6 +406,7 @@
 				05B990170F7062B10039602B /* RepoInfo.m */,
 				05B990810F7079F20039602B /* RepoViewController.h */,
 				05B990820F7079F20039602B /* RepoViewController.m */,
+				05DE59680F79D81000189369 /* RepoViewControllerDelegate.h */,
 				05B9908C0F7080940039602B /* RepoActivityTableViewCell.h */,
 				05B9908D0F7080940039602B /* RepoActivityTableViewCell.m */,
 				05B990A30F70886E0039602B /* RepoDisplayMgr.h */,

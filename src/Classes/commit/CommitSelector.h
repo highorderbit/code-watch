@@ -7,6 +7,6 @@
 @protocol CommitSelector
 
 - (void)user:(NSString *)username didSelectCommit:(NSString *)commitKey
-    fromRepo:(NSString *)repoName;
+    forRepo:(NSString *)repoName;
 
 @end

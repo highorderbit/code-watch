@@ -21,7 +21,7 @@
 #pragma mark CommitSelector implementation
 
 - (void)user:(NSString *)username didSelectCommit:(NSString *)commitKey
-    fromRepo:(NSString *)repoName
+    forRepo:(NSString *)repoName
 {
     [navigationController
         pushViewController:networkAwareViewController animated:YES];
