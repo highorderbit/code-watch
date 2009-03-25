@@ -10,9 +10,10 @@
 {
     IBOutlet UIView * headerView;
 
+    IBOutlet UIImageView * avatarImageView;
     IBOutlet UILabel * nameLabel;
     IBOutlet UILabel * emailLabel;
-    IBOutlet UIImageView * avatarImageView;
+    IBOutlet UILabel * messageLabel;
 
     CommitInfo * commitInfo;
 }
