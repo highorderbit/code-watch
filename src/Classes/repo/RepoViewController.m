@@ -107,7 +107,6 @@
     [cell setMessage:message];
     [cell setCommitter:committer];
     [cell setDate:date];
-    [cell setCommitId:commitKey];
 
     return cell;
 }

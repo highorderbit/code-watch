@@ -4,6 +4,14 @@
 
 #import "RepoActivityTableViewCell.h"
 #import "NSDate+StringHelpers.h"
+#import "UIColor+CodeWatchColors.h"
+
+@interface RepoActivityTableViewCell (Private)
+
+- (void)setSelectedTextColors;
+- (void)setNonselectedTextColors;
+
+@end
 
 @implementation RepoActivityTableViewCell
 
@@ -24,11 +32,19 @@
     return self;
 }
 
+- (void)awakeFromNib
+{
+    [self setNonselectedTextColors];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+    if (selected)
+        [self setSelectedTextColors];
+    else
+        [self setNonselectedTextColors];
 }
 
 - (void)setMessage:(NSString *)message
@@ -46,9 +62,18 @@
     dateLabel.text = [date shortDescription];
 }
 
-- (void)setCommitId:(NSString *)commitId
+- (void)setSelectedTextColors
 {
-    commitIdLabel.text = commitId;
+    messageLabel.textColor = [UIColor whiteColor];
+    committerLabel.textColor = [UIColor whiteColor];
+    dateLabel.textColor = [UIColor whiteColor];
+}
+
+- (void)setNonselectedTextColors
+{
+    messageLabel.textColor = [UIColor blackColor];
+    committerLabel.textColor = [UIColor blackColor];
+    dateLabel.textColor = [UIColor codeWatchBlueColor];
 }
 
 @end
