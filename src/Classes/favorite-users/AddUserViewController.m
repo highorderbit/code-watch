@@ -25,21 +25,24 @@ enum HelpSection
 
 @interface AddUserViewController (Private)
 
-- (void)userDidSave;
-- (void)userDidCancel;
-
 @property (readonly) NameValueTextEntryTableViewCell * usernameCell;
 @property (readonly) UITableViewCell * helpCell;
+
+- (void)userDidSave;
+- (void)userDidCancel;
+- (BOOL)checkUsernameValid:(NSString *)text;
 
 @end
 
 @implementation AddUserViewController
 
 @synthesize delegate;
+@synthesize favoriteUsersStateReader;
 
 - (void)dealloc
 {
     [delegate release];
+    [favoriteUsersStateReader release];
     [tableView release];
     [usernameCell release];
     [helpCell release];
@@ -153,32 +156,34 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 #pragma mark UITextFieldDelegate functions
 
-- (BOOL)                textField:(UITextField *)textField
+- (BOOL)textField:(UITextField *)textField
     shouldChangeCharactersInRange:(NSRange)range
-                replacementString:(NSString *)string
+    replacementString:(NSString *)string
 {
     if (textField == usernameTextField) {
         NSString * text =
             [textField.text stringByReplacingCharactersInRange:range
             withString:string];
-        self.navigationItem.rightBarButtonItem.enabled = text.length > 0;
+
+        self.navigationItem.rightBarButtonItem.enabled =
+            [self checkUsernameValid:text];
     }
     
     return YES;
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    if ([self checkUsernameValid:textField.text])
+        [self userDidSave];
+
+    return NO;
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
     if (textField == usernameTextField)
         self.navigationItem.rightBarButtonItem.enabled = NO;
-    
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    [self userDidSave];
     
     return YES;
 }
@@ -223,6 +228,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     }
     
     return helpCell;
+}
+
+#pragma mark Helper methods
+
+- (BOOL)checkUsernameValid:(NSString *)text
+{
+    NSArray * favoriteUsers = favoriteUsersStateReader.favoriteUsers;
+    
+    return text.length > 0 && ![favoriteUsers containsObject:text];
 }
 
 @end

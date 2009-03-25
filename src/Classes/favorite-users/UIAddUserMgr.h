@@ -9,6 +9,7 @@
 #import "LogInHelpViewController.h"
 #import "GitHubService.h"
 #import "FavoriteUsersStateSetter.h"
+#import "FavoriteUsersStateReader.h"
 
 @interface UIAddUserMgr :
     NSObject <AddUserMgr, AddUserViewControllerDelegate, GitHubServiceDelegate>
@@ -20,6 +21,7 @@
 
     IBOutlet GitHubService * gitHub;
     IBOutlet NSObject<FavoriteUsersStateSetter> * favoriteUsersStateSetter;
+    IBOutlet NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
         
     BOOL connecting;
 }
