@@ -27,7 +27,7 @@
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>GitHubApiBaseUrl</key>
-	<string>http://github.com/api/</string>
+	<string>https://github.com/api/</string>
 	<key>GitHubApiFormat</key>
 	<string>1</string>
 	<key>GitHubApiVersion</key>
