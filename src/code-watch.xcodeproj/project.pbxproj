@@ -69,6 +69,9 @@
 		91E25E540F79B3B100E1594E /* FavoriteUsersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E25E520F79B3B100E1594E /* FavoriteUsersView.xib */; };
 		91E25E5A0F79B7C400E1594E /* FavoriteUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */; };
 		91E25E700F79B96900E1594E /* FavoriteUsersDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */; };
+		91E25EE00F79D5F900E1594E /* AddUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E25EDE0F79D5F900E1594E /* AddUserView.xib */; };
+		91E25EE80F79D6A200E1594E /* AddUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25EE70F79D6A200E1594E /* AddUserViewController.m */; };
+		91E25F030F79DD0E00E1594E /* UIAddUserMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25F020F79DD0E00E1594E /* UIAddUserMgr.m */; };
 		91F89B2B0F7057C500993921 /* NewsFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F89B290F7057C500993921 /* NewsFeedTableViewCell.xib */; };
 		91F89B400F705EB300993921 /* NewsFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B3D0F705EB300993921 /* NewsFeedTableViewCell.m */; };
 		91F89B410F705EB300993921 /* NewsFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B3F0F705EB300993921 /* NewsFeedTableViewController.m */; };
@@ -209,6 +212,13 @@
 		91E25E6E0F79B96900E1594E /* FavoriteUsersDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersDisplayMgr.h; path = "favorite-users/FavoriteUsersDisplayMgr.h"; sourceTree = "<group>"; };
 		91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteUsersDisplayMgr.m; path = "favorite-users/FavoriteUsersDisplayMgr.m"; sourceTree = "<group>"; };
 		91E25E960F79C6FD00E1594E /* FavoriteUsersViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersViewControllerDelegate.h; path = "favorite-users/FavoriteUsersViewControllerDelegate.h"; sourceTree = "<group>"; };
+		91E25EDF0F79D5F900E1594E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AddUserView.xib; sourceTree = "<group>"; };
+		91E25EE60F79D6A200E1594E /* AddUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddUserViewController.h; path = "favorite-users/AddUserViewController.h"; sourceTree = "<group>"; };
+		91E25EE70F79D6A200E1594E /* AddUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddUserViewController.m; path = "favorite-users/AddUserViewController.m"; sourceTree = "<group>"; };
+		91E25EE90F79D84200E1594E /* AddUserViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddUserViewControllerDelegate.h; path = "favorite-users/AddUserViewControllerDelegate.h"; sourceTree = "<group>"; };
+		91E25EFE0F79DC8000E1594E /* AddUserMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddUserMgr.h; path = "favorite-users/AddUserMgr.h"; sourceTree = "<group>"; };
+		91E25F010F79DD0E00E1594E /* UIAddUserMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIAddUserMgr.h; path = "favorite-users/UIAddUserMgr.h"; sourceTree = "<group>"; };
+		91E25F020F79DD0E00E1594E /* UIAddUserMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIAddUserMgr.m; path = "favorite-users/UIAddUserMgr.m"; sourceTree = "<group>"; };
 		91F89B2A0F7057C500993921 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NewsFeedTableViewCell.xib; sourceTree = "<group>"; };
 		91F89B3C0F705EB300993921 /* NewsFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedTableViewCell.h; sourceTree = "<group>"; };
 		91F89B3D0F705EB300993921 /* NewsFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedTableViewCell.m; sourceTree = "<group>"; };
@@ -272,6 +282,7 @@
 		05158A6E0F6AC251009A7995 /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
+				91E25EDE0F79D5F900E1594E /* AddUserView.xib */,
 				059936380F6975A80005B934 /* MainWindow.xib */,
 				910D80CA0F697DB30068CBF3 /* UserView.xib */,
 				910D81140F6987EB0068CBF3 /* LogInView.xib */,
@@ -588,6 +599,12 @@
 				91E25E6E0F79B96900E1594E /* FavoriteUsersDisplayMgr.h */,
 				91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */,
 				91E25E960F79C6FD00E1594E /* FavoriteUsersViewControllerDelegate.h */,
+				91E25EE60F79D6A200E1594E /* AddUserViewController.h */,
+				91E25EE70F79D6A200E1594E /* AddUserViewController.m */,
+				91E25EE90F79D84200E1594E /* AddUserViewControllerDelegate.h */,
+				91E25EFE0F79DC8000E1594E /* AddUserMgr.h */,
+				91E25F010F79DD0E00E1594E /* UIAddUserMgr.h */,
+				91E25F020F79DD0E00E1594E /* UIAddUserMgr.m */,
 			);
 			name = "favorite-users";
 			sourceTree = "<group>";
@@ -682,6 +699,7 @@
 				05B9908A0F707DD20039602B /* RepoActivityTableViewCell.xib in Resources */,
 				91FD171F0F715018004549F9 /* NoDataView.xib in Resources */,
 				91E25E540F79B3B100E1594E /* FavoriteUsersView.xib in Resources */,
+				91E25EE00F79D5F900E1594E /* AddUserView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,6 +764,8 @@
 				91FD1A890F731586004549F9 /* UIColor+CodeWatchColors.m in Sources */,
 				91E25E5A0F79B7C400E1594E /* FavoriteUsersViewController.m in Sources */,
 				91E25E700F79B96900E1594E /* FavoriteUsersDisplayMgr.m in Sources */,
+				91E25EE80F79D6A200E1594E /* AddUserViewController.m in Sources */,
+				91E25F030F79DD0E00E1594E /* UIAddUserMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,6 +858,14 @@
 				91E25E530F79B3B100E1594E /* en */,
 			);
 			name = FavoriteUsersView.xib;
+			sourceTree = "<group>";
+		};
+		91E25EDE0F79D5F900E1594E /* AddUserView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91E25EDF0F79D5F900E1594E /* en */,
+			);
+			name = AddUserView.xib;
 			sourceTree = "<group>";
 		};
 		91F89B290F7057C500993921 /* NewsFeedTableViewCell.xib */ = {
