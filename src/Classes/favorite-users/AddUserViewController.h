@@ -18,4 +18,7 @@
     IBOutlet UITextField * usernameTextField;
 }
 
+@property (nonatomic, retain)
+    NSObject<AddUserViewControllerDelegate> * delegate;
+
 @end

@@ -28,9 +28,14 @@ enum HelpSection
 - (void)userDidSave;
 - (void)userDidCancel;
 
+@property (readonly) NameValueTextEntryTableViewCell * usernameCell;
+@property (readonly) UITableViewCell * helpCell;
+
 @end
 
 @implementation AddUserViewController
+
+@synthesize delegate;
 
 - (void)dealloc
 {
@@ -133,13 +138,13 @@ enum HelpSection
     if (indexPath.section == kCredentialsSection)
         switch (indexPath.row) {
             case kUsernameRow:
-                cell = usernameCell;
+                cell = self.usernameCell;
                 break;
         }
     else if (indexPath.section == kHelpSection)
         switch (indexPath.row) {
             case kHelpRow:
-                cell = helpCell;
+                cell = self.helpCell;
                 break;
         }
     

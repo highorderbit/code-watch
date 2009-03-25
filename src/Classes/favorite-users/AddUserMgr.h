@@ -6,6 +6,6 @@
 
 @protocol AddUserMgr
 
-- (void)addUser;
+- (IBAction)addUser:(id)sender;
 
 @end

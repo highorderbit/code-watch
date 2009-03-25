@@ -6,11 +6,16 @@
 #import "AddUserMgr.h"
 #import "AddUserViewControllerDelegate.h"
 #import "AddUserViewController.h"
+#import "LogInHelpViewController.h"
 
 @interface UIAddUserMgr : NSObject <AddUserMgr, AddUserViewControllerDelegate>
 {
     IBOutlet UIViewController * rootViewController;
-    IBOutlet AddUserViewController * addUserViewController;
+    
+    UINavigationController * navigationController;
+    AddUserViewController * addUserViewController;
 }
+
+- (IBAction)addUser:(id)sender;
 
 @end
