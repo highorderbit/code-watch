@@ -6,6 +6,7 @@
 
 @interface CommitViewController : UITableViewController
 {
+    IBOutlet UIView * headerView;
 }
 
 @end

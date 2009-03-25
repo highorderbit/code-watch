@@ -4,35 +4,51 @@
 
 #import "CommitViewController.h"
 
+static const NSUInteger NUM_SECTIONS = 3;
+enum
+{
+    kMessageSection,
+    kDiffSection,
+    kActionSection
+} kSections;
+
+static const NSUInteger NUM_MESSAGE_ROWS = 1;
+enum
+{
+    kMessageRow
+} kMessageRows;
+
+static const NSUInteger NUM_DIFF_ROWS = 3;
+enum
+{
+    kRemovedRow,
+    kAddedRow,
+    kChangedRow
+} kDiffRows;
+
+static const NSUInteger NUM_ACTION_ROWS = 2;
+enum
+{
+    kSafariRow,
+    kEmailRow
+};
+
+
 @implementation CommitViewController
 
 - (void)dealloc
 {
+    [headerView release];
     [super dealloc];
 }
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    // Override initWithStyle: if you create the controller programmatically and
-    // want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-
-    return self;
-}
-*/
-
-/*
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to display an Edit button in the navigation
-    // bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.tableView.tableHeaderView = headerView;
 }
-*/
 
 /*
 - (void)viewWillAppear:(BOOL)animated
@@ -72,26 +88,32 @@
 }
 */
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];  // Releases the view if it doesn't have a
-                                      // superview
-
-    // Release anything that's not essential, such as cached data
-}
-
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tv
 {
-    return 1;
+    return NUM_SECTIONS;
 }
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tv
  numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    NSInteger nrows = 0;
+
+    switch (section) {
+        case kMessageSection:
+            nrows = NUM_MESSAGE_ROWS;
+            break;
+        case kDiffSection:
+            nrows = NUM_DIFF_ROWS;
+            break;
+        case kActionSection:
+            nrows = NUM_ACTION_ROWS;
+            break;
+    }
+
+    return nrows;
 }
 
 // Customize the appearance of table view cells.
@@ -103,14 +125,42 @@
     UITableViewCell * cell =
         [tv dequeueReusableCellWithIdentifier:CellIdentifier];
 
-    if (cell == nil) {
+    if (cell == nil)
         cell =
             [[[UITableViewCell alloc]
               initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
              autorelease];
-    }
 
-    // Set up the cell...
+    switch (indexPath.section) {
+        case kMessageSection:
+            cell.text = @"This is my really long commit message.";
+            break;
+        case kDiffSection:
+            switch (indexPath.row) {
+                case kAddedRow:
+                    cell.text = @"Added";
+                    break;
+                case kRemovedRow:
+                    cell.text = @"Removed";
+                    break;
+                case kChangedRow:
+                    cell.text = @"Modified";
+                    break;
+            }
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            break;
+
+        case kActionSection:
+            switch (indexPath.row) {
+                case kSafariRow:
+                    cell.text = @"Open in Safari";
+                    break;
+                case kEmailRow:
+                    cell.text = @"Email";
+                    break;
+            }
+            break;
+    }
 
     return cell;
 }
