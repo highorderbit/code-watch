@@ -10,6 +10,7 @@
 {
     [viewController release];
     [favoriteUsersStateReader release];
+    [favoriteUsersStateSetter release];
     [super dealloc];
 }
 
@@ -17,6 +18,12 @@
 
 - (void)viewWillAppear
 {
+    [viewController setUsernames:favoriteUsersStateReader.favoriteUsers];
+}
+
+- (void)removedUsername:(NSString *)username;
+{
+    [favoriteUsersStateSetter removeFavoriteUser:username];
     [viewController setUsernames:favoriteUsersStateReader.favoriteUsers];
 }
 

@@ -9,6 +9,8 @@
 {
     IBOutlet NSObject<FavoriteUsersViewControllerDelegate> * delegate;
     NSArray * sortedUsernames;
+    
+    UIBarButtonItem * rightButton;
 }
 
 - (void)setUsernames:(NSArray *)usernames;

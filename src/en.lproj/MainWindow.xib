@@ -8,6 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="337"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -55,6 +56,7 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">UsersIcon.png</string>
 						</object>
+						<reference key="IBUITabBar"/>
 					</object>
 					<reference key="IBUIParentViewController" ref="1034742383"/>
 					<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -70,11 +72,8 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="IBUITableViewController" id="789866461">
 							<object class="IBUINavigationItem" key="IBUINavigationItem" id="438693328">
+								<reference key="IBUINavigationBar"/>
 								<string key="IBUITitle">Favorite Users</string>
-								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="13411970">
-									<string key="IBUITitle">Edit</string>
-									<int key="IBUIStyle">1</int>
-								</object>
 								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="238640406">
 									<int key="IBUIStyle">1</int>
 									<int key="IBUISystemItemIdentifier">4</int>
@@ -95,6 +94,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">HomeIcon.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -128,6 +128,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">UserIcon.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -154,6 +155,7 @@
 					<object class="IBUINavigationController" id="801315089">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="1070274417">
 							<int key="IBUISystemItemIdentifier">7</int>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -178,6 +180,7 @@
 					<object class="IBUINavigationController" id="191333071">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="199204458">
 							<int key="IBUISystemItemIdentifier">8</int>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -254,7 +257,7 @@
 			<object class="IBUICustomObject" id="978630306"/>
 			<object class="IBUICustomObject" id="593092562"/>
 			<object class="IBUICustomObject" id="64959627"/>
-			<object class="IBUICustomObject" id="392993846"/>
+			<object class="IBUICustomObject" id="1069993124"/>
 			<object class="IBUICustomObject" id="1021056545"/>
 			<object class="IBUICustomObject" id="367099613"/>
 			<object class="IBUICustomObject" id="578646318"/>
@@ -1226,14 +1229,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">favoriteUsersPersistenceStore</string>
 						<reference key="source" ref="517652571"/>
-						<reference key="destination" ref="392993846"/>
+						<reference key="destination" ref="1069993124"/>
 					</object>
 					<int key="connectionID">394</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">stateReader</string>
-						<reference key="source" ref="392993846"/>
+						<reference key="source" ref="1069993124"/>
 						<reference key="destination" ref="64959627"/>
 					</object>
 					<int key="connectionID">395</int>
@@ -1241,10 +1244,18 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">stateSetter</string>
-						<reference key="source" ref="392993846"/>
+						<reference key="source" ref="1069993124"/>
 						<reference key="destination" ref="64959627"/>
 					</object>
 					<int key="connectionID">396</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">favoriteUsersStateSetter</string>
+						<reference key="source" ref="593092562"/>
+						<reference key="destination" ref="64959627"/>
+					</object>
+					<int key="connectionID">397</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1615,7 +1626,6 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="238640406"/>
-							<reference ref="13411970"/>
 						</object>
 						<reference key="parent" ref="789866461"/>
 					</object>
@@ -1676,18 +1686,13 @@
 						<string key="objectName">Add User GitHub Service</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">387</int>
-						<reference key="object" ref="13411970"/>
-						<reference key="parent" ref="438693328"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">388</int>
 						<reference key="object" ref="64959627"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">393</int>
-						<reference key="object" ref="392993846"/>
+						<reference key="object" ref="1069993124"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
 				</object>
@@ -1795,7 +1800,6 @@
 					<string>369.IBPluginDependency</string>
 					<string>373.CustomClassName</string>
 					<string>373.IBPluginDependency</string>
-					<string>387.IBPluginDependency</string>
 					<string>388.CustomClassName</string>
 					<string>388.IBPluginDependency</string>
 					<string>393.CustomClassName</string>
@@ -1910,7 +1914,6 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>GitHubService</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>FavoriteUsersState</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>FavoriteUsersPersistenceStore</string>
@@ -1937,7 +1940,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">396</int>
+			<int key="maxID">397</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2064,10 +2067,12 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>favoriteUsersStateReader</string>
+							<string>favoriteUsersStateSetter</string>
 							<string>viewController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>FavoriteUsersViewController</string>
 						</object>

@@ -10,15 +10,23 @@
 {
     [delegate release];
     [sortedUsernames release];
+    [rightButton release];
     [super dealloc];
 }
 
 #pragma mark General view controller methods
 
+- (void)viewDidLoad
+{
+    rightButton = [self.navigationItem.rightBarButtonItem retain];
+    [self.navigationItem setLeftBarButtonItem:self.editButtonItem animated:NO];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [delegate viewWillAppear];
+    [self.tableView reloadData];
 }
 
 #pragma mark Table view methods
@@ -52,6 +60,21 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tv
+    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+    forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSString * username = [sortedUsernames objectAtIndex:indexPath.row];
+        [delegate removedUsername:username];
+        
+        [tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+            withRowAnimation:UITableViewRowAnimationFade];
+        
+        [tv reloadData];
+    }
+}
+
 - (void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -63,6 +86,16 @@
     return UITableViewCellAccessoryDisclosureIndicator;
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    
+    if (editing)
+        [self.navigationItem setRightBarButtonItem:nil animated:NO];
+    else
+        [self.navigationItem setRightBarButtonItem:rightButton animated:NO];
+}
+
 #pragma mark Data updating methods
 
 - (void)setUsernames:(NSArray *)usernames
@@ -70,8 +103,6 @@
     usernames = [usernames copy]; // TODO: sort
     [sortedUsernames release];
     sortedUsernames = usernames;
-    
-    [self.tableView reloadData];
 }
 
 @end

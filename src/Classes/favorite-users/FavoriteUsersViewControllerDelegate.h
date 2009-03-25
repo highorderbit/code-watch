@@ -7,5 +7,6 @@
 @protocol FavoriteUsersViewControllerDelegate
 
 - (void)viewWillAppear;
+- (void)removedUsername:(NSString *)username;
 
 @end
