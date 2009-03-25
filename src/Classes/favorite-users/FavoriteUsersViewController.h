@@ -8,7 +8,7 @@
 @interface FavoriteUsersViewController : UITableViewController
 {
     IBOutlet NSObject<FavoriteUsersViewControllerDelegate> * delegate;
-    NSArray * sortedUsernames;
+    NSMutableArray * sortedUsernames;
     
     UIBarButtonItem * rightButton;
 }

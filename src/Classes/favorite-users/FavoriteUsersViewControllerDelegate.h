@@ -8,5 +8,6 @@
 
 - (void)viewWillAppear;
 - (void)removedUsername:(NSString *)username;
+- (void)setUsernameSortOrder:(NSArray *)sortedUsernames;
 
 @end

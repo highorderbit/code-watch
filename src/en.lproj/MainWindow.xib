@@ -1257,6 +1257,14 @@
 					</object>
 					<int key="connectionID">397</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">favoriteUsersStateReader</string>
+						<reference key="source" ref="1021056545"/>
+						<reference key="destination" ref="64959627"/>
+					</object>
+					<int key="connectionID">398</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1809,7 +1817,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIApplication</string>
 					<string>UIResponder</string>
-					<string>{{454, 334}, {320, 480}}</string>
+					<string>{{383, 315}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1940,7 +1948,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">397</int>
+			<int key="maxID">398</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2044,6 +2052,7 @@
 							<string>avatarImageView</string>
 							<string>emailLabel</string>
 							<string>headerView</string>
+							<string>messageLabel</string>
 							<string>nameLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -2051,6 +2060,7 @@
 							<string>UIImageView</string>
 							<string>UILabel</string>
 							<string>UIView</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 						</object>
 					</object>
@@ -2389,12 +2399,14 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>favoriteUsersStateReader</string>
 							<string>favoriteUsersStateSetter</string>
 							<string>gitHub</string>
 							<string>rootViewController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>GitHubService</string>
 							<string>UIViewController</string>

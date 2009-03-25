@@ -5,10 +5,12 @@
 #import <UIKit/UIKit.h>
 #import "AddUserViewControllerDelegate.h"
 #import "NameValueTextEntryTableViewCell.h"
+#import "FavoriteUsersStateReader.h"
 
 @interface AddUserViewController : UITableViewController <UITextFieldDelegate>
 {
     NSObject<AddUserViewControllerDelegate> * delegate;
+    NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
     
     IBOutlet UITableView * tableView;
     
@@ -20,5 +22,7 @@
 
 @property (nonatomic, retain)
     NSObject<AddUserViewControllerDelegate> * delegate;
-
+@property (nonatomic, retain)
+    NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
+    
 @end

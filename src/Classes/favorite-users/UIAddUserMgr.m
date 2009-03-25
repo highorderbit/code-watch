@@ -23,6 +23,7 @@
     
     [gitHub release];
     [favoriteUsersStateSetter release];
+    [favoriteUsersStateReader release];
     
     [super dealloc];
 }
@@ -94,6 +95,8 @@
             [[AddUserViewController alloc]
             initWithNibName:@"AddUserView" bundle:nil];
         addUserViewController.delegate = self;
+        addUserViewController.favoriteUsersStateReader =
+            favoriteUsersStateReader;
     }
 
     return addUserViewController;

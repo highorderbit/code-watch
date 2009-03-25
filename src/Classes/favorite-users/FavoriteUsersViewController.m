@@ -27,6 +27,7 @@
     [super viewWillAppear:animated];
     [delegate viewWillAppear];
     [self.tableView reloadData];
+    [self setEditing:NO animated:NO];
 }
 
 #pragma mark Table view methods
@@ -96,13 +97,41 @@
         [self.navigationItem setRightBarButtonItem:rightButton animated:NO];
 }
 
+- (BOOL)tableView:(UITableView *)tv
+    canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tv
+    targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath 
+    toProposedIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    // Allow the proposed destination.
+    return destinationIndexPath;
+}
+
+- (void)     tableView:(UITableView *)tv
+    moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
+           toIndexPath:(NSIndexPath *)toIndexPath
+{
+    NSObject * objectToMove =
+        [[sortedUsernames objectAtIndex:fromIndexPath.row] retain];
+    [sortedUsernames removeObjectAtIndex:fromIndexPath.row];
+    [sortedUsernames insertObject:objectToMove atIndex:toIndexPath.row];
+
+    [delegate setUsernameSortOrder:sortedUsernames];
+
+    [objectToMove release];
+}
+
 #pragma mark Data updating methods
 
 - (void)setUsernames:(NSArray *)usernames
 {
-    usernames = [usernames copy]; // TODO: sort
+    NSMutableArray * mutableCopy = [usernames mutableCopy];
     [sortedUsernames release];
-    sortedUsernames = usernames;
+    sortedUsernames = mutableCopy;
 }
 
 @end

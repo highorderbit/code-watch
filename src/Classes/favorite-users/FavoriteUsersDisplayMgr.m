@@ -27,4 +27,12 @@
     [viewController setUsernames:favoriteUsersStateReader.favoriteUsers];
 }
 
+- (void)setUsernameSortOrder:(NSArray *)sortedUsernames
+{
+    for (NSString * username in sortedUsernames) {
+        [favoriteUsersStateSetter removeFavoriteUser:username];
+        [favoriteUsersStateSetter addFavoriteUser:username];
+    }
+}
+
 @end
