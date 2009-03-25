@@ -8,13 +8,13 @@
 #import "GitHubService.h"
 
 @interface RepoDisplayMgr (Private)
-- (BOOL)loadCachedDataForUsername:(NSString *)username
-                         repoName:(NSString *)repoName;
+- (BOOL)loadCachedData;
 - (RepoInfo *)cachedRepoInfoForUsername:(NSString *)username
                                repoName:(NSString *)repoName;
 - (NSDictionary *)cachedCommitsForRepoInfo:(RepoInfo *)info;
 - (BOOL)isPrimaryUser:(NSString *)username;
 
+- (void)setUsername:(NSString *)username;
 - (void)setRepoInfo:(RepoInfo *)info;
 - (void)setRepoName:(NSString *)name;
 - (void)setCommits:(NSDictionary *)someCommits;
@@ -26,27 +26,29 @@
 
 - (void)dealloc
 {
+    [username release];
     [repoName release];
     [repoInfo release];
     [commits release];
     [logInStateReader release];
     [repoCacheReader release];
+    [navigationController release];
     [networkAwareViewController release];
     [repoViewController release];
     [gitHub release];
+    [commitSelector release];
     [super dealloc];
 }
 
 #pragma mark RepoSelector implementation
 
-- (void)user:(NSString *)username didSelectRepo:(NSString *)repo
+- (void)user:(NSString *)user didSelectRepo:(NSString *)repo
 {
+    [self setUsername:user];
     [self setRepoName:repo];
 
-    BOOL cachedDataAvailable =
-        [self loadCachedDataForUsername:username repoName:repo];
-
-    if (cachedDataAvailable)  // cached data is available
+    BOOL cachedDataAvailable = [self loadCachedData];
+    if (cachedDataAvailable)
         [repoViewController updateWithCommits:commits
                                       forRepo:repoName
                                          info:repoInfo];
@@ -66,13 +68,15 @@
 
 - (void)commits:(NSDictionary*)newCommits
  fetchedForRepo:(NSString *)updatedRepoName
-       username:(NSString *)username
+       username:(NSString *)user
 {
+    [self setUsername:user];
+    [self setRepoName:updatedRepoName];
+
     RepoInfo * info =
-        [self cachedRepoInfoForUsername:username repoName:updatedRepoName];
+        [self cachedRepoInfoForUsername:user repoName:updatedRepoName];
     [self setRepoInfo:info];
 
-    [self setRepoName:updatedRepoName];
     [self setCommits:newCommits];
 
     [repoViewController updateWithCommits:commits
@@ -84,24 +88,30 @@
 }
 
 - (void)failedToFetchInfoForRepo:(NSString *)repo
-                        username:(NSString *)username
+                        username:(NSString *)user
                            error:(NSError *)error
 {
     NSLog(@"Failed to retrieve info for repo: '%@' for user: '%@' error: '%@'.",
-        repo, username, error);
+        repo, user, error);
 
     //
     // TODO: Display the error to the user.
     //
 }
 
+#pragma mark RepoViewControllerDelegate implementation
+
+- (void)userDidSelectCommit:(NSString *)commitKey
+{
+    [commitSelector user:username didSelectCommit:commitKey forRepo:repoName];
+}
+
 #pragma mark Helper methods
 
-- (BOOL)loadCachedDataForUsername:(NSString *)username
-                         repoName:(NSString *)repo
+- (BOOL)loadCachedData
 {
     RepoInfo * cachedInfo =
-        [self cachedRepoInfoForUsername:username repoName:repo];
+        [self cachedRepoInfoForUsername:username repoName:repoName];
     [self setRepoInfo:cachedInfo];
 
     NSDictionary * cachedCommits = [self cachedCommitsForRepoInfo:cachedInfo];
@@ -110,12 +120,12 @@
     return cachedInfo && cachedCommits;
 }
 
-- (RepoInfo *)cachedRepoInfoForUsername:(NSString *)username
+- (RepoInfo *)cachedRepoInfoForUsername:(NSString *)user
                                repoName:(NSString *)repo
 {
-    return [self isPrimaryUser:username] ?
+    return [self isPrimaryUser:user] ?
         [repoCacheReader primaryUserRepoWithName:repo] :
-        [repoCacheReader repoWithUsername:username repoName:repo];
+        [repoCacheReader repoWithUsername:user repoName:repo];
 }
 
 - (NSDictionary *)cachedCommitsForRepoInfo:(RepoInfo *)info
@@ -130,12 +140,19 @@
     return cachedCommits.count > 0 ? cachedCommits : nil;
 }
 
-- (BOOL)isPrimaryUser:(NSString *)username
+- (BOOL)isPrimaryUser:(NSString *)user
 {
-    return [username isEqualToString:logInStateReader.login];
+    return [user isEqualToString:logInStateReader.login];
 }
 
 #pragma mark Accessors
+
+- (void)setUsername:(NSString *)user
+{
+    NSString * tmp = [user copy];
+    [username release];
+    username = tmp;
+}
 
 - (void)setRepoInfo:(RepoInfo *)info
 {

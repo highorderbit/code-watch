@@ -3,11 +3,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RepoViewControllerDelegate.h"
 
 @class RepoInfo;
 
 @interface RepoViewController : UITableViewController
 {
+    IBOutlet NSObject<RepoViewControllerDelegate> * delegate;
+
     IBOutlet UIView * headerView;
 
     IBOutlet UILabel * repoNameLabel;

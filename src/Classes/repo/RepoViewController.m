@@ -19,6 +19,7 @@
 
 - (void)dealloc
 {
+    [delegate release];
     [headerView release];
     [repoNameLabel release];
     [repoDescriptionLabel release];
@@ -111,21 +112,11 @@
     return cell;
 }
 
-- (NSIndexPath *)tableView:(UITableView *)tv
-  willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return nil;
-}
-
 - (void)          tableView:(UITableView *)tv
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    // AnotherViewController *anotherViewController =
-    //     [[AnotherViewController alloc]
-    //      initWithNibName:@"AnotherView" bundle:nil];
-    // [self.navigationController pushViewController:anotherViewController];
-    // [anotherViewController release];
+    NSString * commitKey = [repoInfo.commitKeys objectAtIndex:indexPath.row];
+    [delegate userDidSelectCommit:commitKey];
 }
 
 #pragma mark Resetting the displayed data

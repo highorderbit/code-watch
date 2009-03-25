@@ -8,11 +8,15 @@
 #import "LogInStateReader.h"
 #import "RepoCacheReader.h"
 #import "CommitCacheReader.h"
+#import "RepoViewControllerDelegate.h"
+#import "CommitSelector.h"
 
 @class RepoInfo, NetworkAwareViewController, RepoViewController, GitHubService;
 
-@interface RepoDisplayMgr : NSObject <RepoSelector, GitHubServiceDelegate>
+@interface RepoDisplayMgr :
+    NSObject <RepoSelector, GitHubServiceDelegate, RepoViewControllerDelegate>
 {
+    NSString * username;
     NSString * repoName;
     RepoInfo * repoInfo;
     NSDictionary * commits;
@@ -27,6 +31,8 @@
     IBOutlet RepoViewController * repoViewController;
 
     IBOutlet GitHubService * gitHub;
+
+    IBOutlet NSObject<CommitSelector> * commitSelector;
 }
 
 @property (nonatomic, copy, readonly) NSString * repoName;
