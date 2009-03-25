@@ -31,6 +31,7 @@
     [commits release];
     [logInStateReader release];
     [repoCacheReader release];
+    [navigationController release];
     [networkAwareViewController release];
     [repoViewController release];
     [gitHub release];

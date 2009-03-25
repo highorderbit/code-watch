@@ -27,6 +27,8 @@
 		0560A0630F69C83E0031A852 /* CodeWatchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05C0F69C83E0031A852 /* CodeWatchAppDelegate.m */; };
 		0560A0640F69C83E0031A852 /* UILogInMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A0610F69C83E0031A852 /* UILogInMgr.m */; };
 		0599363C0F6975A80005B934 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059936380F6975A80005B934 /* MainWindow.xib */; };
+		05AFEA2F0F79BD4F0008A91C /* CommitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05AFEA2D0F79BD4F0008A91C /* CommitView.xib */; };
+		05AFEA330F79BD9A0008A91C /* CommitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AFEA320F79BD9A0008A91C /* CommitViewController.m */; };
 		05B98FC70F705AD60039602B /* LogInHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B98FC60F705AD60039602B /* LogInHelpViewController.m */; };
 		05B98FCA0F705B010039602B /* LogInHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B98FC80F705B010039602B /* LogInHelpView.xib */; };
 		05B98FEE0F705CFE0039602B /* log-in-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 05B98FED0F705CFE0039602B /* log-in-help.html */; };
@@ -37,6 +39,7 @@
 		05B9908E0F7080940039602B /* RepoActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B9908D0F7080940039602B /* RepoActivityTableViewCell.m */; };
 		05B990A50F70886E0039602B /* RepoDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B990A40F70886E0039602B /* RepoDisplayMgr.m */; };
 		05BB60D00F6B23710005A635 /* GitHubApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BB60CF0F6B23710005A635 /* GitHubApi.m */; };
+		05DE59250F79C8F900189369 /* CommitDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DE59240F79C8F900189369 /* CommitDisplayMgr.m */; };
 		05F4CF2F0F6C5ECB00B107BB /* GitHubApiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -129,6 +132,9 @@
 		0560A0600F69C83E0031A852 /* UILogInMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILogInMgr.h; sourceTree = "<group>"; };
 		0560A0610F69C83E0031A852 /* UILogInMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILogInMgr.m; sourceTree = "<group>"; };
 		059936390F6975A80005B934 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		05AFEA2E0F79BD4F0008A91C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CommitView.xib; sourceTree = "<group>"; };
+		05AFEA310F79BD9A0008A91C /* CommitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitViewController.h; path = commit/CommitViewController.h; sourceTree = "<group>"; };
+		05AFEA320F79BD9A0008A91C /* CommitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitViewController.m; path = commit/CommitViewController.m; sourceTree = "<group>"; };
 		05B98F440F7053EF0039602B /* GitHubApiVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiVersion.h; path = github/GitHubApiVersion.h; sourceTree = "<group>"; };
 		05B98FC50F705AD60039602B /* LogInHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInHelpViewController.h; sourceTree = "<group>"; };
 		05B98FC60F705AD60039602B /* LogInHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInHelpViewController.m; sourceTree = "<group>"; };
@@ -148,6 +154,9 @@
 		05B990C10F7154640039602B /* UserViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewControllerDelegate.h; sourceTree = "<group>"; };
 		05BB60CE0F6B23710005A635 /* GitHubApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApi.h; path = github/GitHubApi.h; sourceTree = "<group>"; };
 		05BB60CF0F6B23710005A635 /* GitHubApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubApi.m; path = github/GitHubApi.m; sourceTree = "<group>"; };
+		05DE59220F79C7BE00189369 /* CommitSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitSelector.h; path = commit/CommitSelector.h; sourceTree = "<group>"; };
+		05DE59230F79C8F900189369 /* CommitDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitDisplayMgr.h; path = commit/CommitDisplayMgr.h; sourceTree = "<group>"; };
+		05DE59240F79C8F900189369 /* CommitDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitDisplayMgr.m; path = commit/CommitDisplayMgr.m; sourceTree = "<group>"; };
 		05F4CF2D0F6C5ECB00B107BB /* GitHubApiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiParser.h; path = github/GitHubApiParser.h; sourceTree = "<group>"; };
 		05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubApiParser.m; path = github/GitHubApiParser.m; sourceTree = "<group>"; };
 		05F4CF480F6C614A00B107BB /* GitHubApiParserImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiParserImpl.h; path = github/GitHubApiParserImpl.h; sourceTree = "<group>"; };
@@ -274,6 +283,7 @@
 				05B990840F707B6E0039602B /* RepoView.xib */,
 				05B990880F707DD20039602B /* RepoActivityTableViewCell.xib */,
 				91FD171D0F715018004549F9 /* NoDataView.xib */,
+				05AFEA2D0F79BD4F0008A91C /* CommitView.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -289,6 +299,11 @@
 				91FD19DF0F72C0EE004549F9 /* CommitCache.m */,
 				91FD1A180F72D895004549F9 /* CommitPersistenceStore.h */,
 				91FD1A190F72D895004549F9 /* CommitPersistenceStore.m */,
+				05AFEA310F79BD9A0008A91C /* CommitViewController.h */,
+				05AFEA320F79BD9A0008A91C /* CommitViewController.m */,
+				05DE59220F79C7BE00189369 /* CommitSelector.h */,
+				05DE59230F79C8F900189369 /* CommitDisplayMgr.h */,
+				05DE59240F79C8F900189369 /* CommitDisplayMgr.m */,
 			);
 			name = commit;
 			sourceTree = "<group>";
@@ -658,6 +673,7 @@
 				05B990860F707B6E0039602B /* RepoView.xib in Resources */,
 				05B9908A0F707DD20039602B /* RepoActivityTableViewCell.xib in Resources */,
 				91FD171F0F715018004549F9 /* NoDataView.xib in Resources */,
+				05AFEA2F0F79BD4F0008A91C /* CommitView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,6 +736,8 @@
 				91FD19EA0F72C4A5004549F9 /* RecentHistoryCache.m in Sources */,
 				91FD1A1A0F72D895004549F9 /* CommitPersistenceStore.m in Sources */,
 				91FD1A890F731586004549F9 /* UIColor+CodeWatchColors.m in Sources */,
+				05AFEA330F79BD9A0008A91C /* CommitViewController.m in Sources */,
+				05DE59250F79C8F900189369 /* CommitDisplayMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +766,14 @@
 				059936390F6975A80005B934 /* en */,
 			);
 			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		05AFEA2D0F79BD4F0008A91C /* CommitView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05AFEA2E0F79BD4F0008A91C /* en */,
+			);
+			name = CommitView.xib;
 			sourceTree = "<group>";
 		};
 		05B98FC80F705B010039602B /* LogInHelpView.xib */ = {
@@ -931,7 +957,7 @@
 					"-ljson",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6C0F1DE5-0A2C-4A4C-B318-11E733DEFF6A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = Release;
