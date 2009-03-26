@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05158A7D0F6AC293009A7995 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05158A7B0F6AC293009A7995 /* Localizable.strings */; };
 		051CDCDE0F6C0CEC0049D2BD /* GitHub.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDCDD0F6C0CEC0049D2BD /* GitHub.m */; };
 		051CDCE20F6C0D140049D2BD /* JsonGitHubApiParserImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDCE10F6C0D140049D2BD /* JsonGitHubApiParserImpl.m */; };
 		051CDD290F6C263A0049D2BD /* GitHubApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDD280F6C263A0049D2BD /* GitHubApiRequest.m */; };
@@ -42,6 +41,7 @@
 		05B9908A0F707DD20039602B /* RepoActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B990880F707DD20039602B /* RepoActivityTableViewCell.xib */; };
 		05B9908E0F7080940039602B /* RepoActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B9908D0F7080940039602B /* RepoActivityTableViewCell.m */; };
 		05B990A50F70886E0039602B /* RepoDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B990A40F70886E0039602B /* RepoDisplayMgr.m */; };
+		05BAED710F7BFEF200BD8BAD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05BAED6F0F7BFEF200BD8BAD /* Localizable.strings */; };
 		05BB60D00F6B23710005A635 /* GitHubApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BB60CF0F6B23710005A635 /* GitHubApi.m */; };
 		05DE59250F79C8F900189369 /* CommitDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DE59240F79C8F900189369 /* CommitDisplayMgr.m */; };
 		05F4CF2F0F6C5ECB00B107BB /* GitHubApiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */; };
@@ -103,7 +103,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		05158A7C0F6AC293009A7995 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		051CDCDC0F6C0CEC0049D2BD /* GitHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHub.h; path = github/GitHub.h; sourceTree = "<group>"; };
 		051CDCDD0F6C0CEC0049D2BD /* GitHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHub.m; path = github/GitHub.m; sourceTree = "<group>"; };
 		051CDCE00F6C0D140049D2BD /* JsonGitHubApiParserImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JsonGitHubApiParserImpl.h; path = github/JsonGitHubApiParserImpl.h; sourceTree = "<group>"; };
@@ -173,6 +172,7 @@
 		05B990A40F70886E0039602B /* RepoDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepoDisplayMgr.m; path = repo/RepoDisplayMgr.m; sourceTree = "<group>"; };
 		05B990A80F708B660039602B /* RepoSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoSelector.h; path = repo/RepoSelector.h; sourceTree = "<group>"; };
 		05B990C10F7154640039602B /* UserViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewControllerDelegate.h; sourceTree = "<group>"; };
+		05BAED700F7BFEF200BD8BAD /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05BB60CE0F6B23710005A635 /* GitHubApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApi.h; path = github/GitHubApi.h; sourceTree = "<group>"; };
 		05BB60CF0F6B23710005A635 /* GitHubApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubApi.m; path = github/GitHubApi.m; sourceTree = "<group>"; };
 		05DE59220F79C7BE00189369 /* CommitSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitSelector.h; path = commit/CommitSelector.h; sourceTree = "<group>"; };
@@ -538,7 +538,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107310486CEB800E47090 /* Info.plist */,
-				05158A7B0F6AC293009A7995 /* Localizable.strings */,
+				05BAED6F0F7BFEF200BD8BAD /* Localizable.strings */,
 				9152A1E90F6AFC240037A52F /* Images */,
 				05158A6E0F6AC251009A7995 /* NIBs */,
 				910D82890F69DFD50068CBF3 /* PLists */,
@@ -743,7 +743,6 @@
 				910D812B0F699C680068CBF3 /* SearchRepoView.xib in Resources */,
 				053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */,
 				910D828B0F69E0180068CBF3 /* LogInState.plist in Resources */,
-				05158A7D0F6AC293009A7995 /* Localizable.strings in Resources */,
 				9152A0F70F6A1F540037A52F /* Icon.png in Resources */,
 				9152A1860F6ACE4A0037A52F /* UserIcon.png in Resources */,
 				9152A1970F6ADAD20037A52F /* HomeIcon.png in Resources */,
@@ -761,6 +760,7 @@
 				91E25EE00F79D5F900E1594E /* AddUserView.xib in Resources */,
 				05B880610F7AF53D0030DF3A /* ChangesetView.xib in Resources */,
 				055DF4C40F7B0B9F003A8D94 /* DiffView.xib in Resources */,
+				05BAED710F7BFEF200BD8BAD /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,14 +840,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		05158A7B0F6AC293009A7995 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				05158A7C0F6AC293009A7995 /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
 		053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -910,6 +902,14 @@
 				05B990890F707DD20039602B /* en */,
 			);
 			name = RepoActivityTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		05BAED6F0F7BFEF200BD8BAD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05BAED700F7BFEF200BD8BAD /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		910D80CA0F697DB30068CBF3 /* UserView.xib */ = {
