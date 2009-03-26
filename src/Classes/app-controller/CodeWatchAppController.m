@@ -17,6 +17,7 @@
     (UINavigationController *)navigationController;
 - (NetworkAwareViewController *)createNetworkAwareControllerWithTarget:target;
 - (UserViewController *)createUserViewController;
+- (GitHubService *)createGitHubService;
 
 @end
 
@@ -24,22 +25,24 @@
 
 - (void)dealloc
 {
+    [configReader release];
     [logInMgr release];
     [logInState release];
     [logInPersistenceStore release];
     
     [userCachePersistenceStore release];
-    [userCacheReader release];
-    [userCacheSetter release];
+    [userCache release];
     
     [newsFeedPersistenceStore release];
     
     [repoCachePersistenceStore release];
+    [repoCache release];
+    
+    [commitCache release];
     
     [favoriteUsersPersistenceStore release];
     [favoriteUsersViewController release];
-    [favoriteUsersStateReader release];
-    [favoriteUsersStateSetter release];
+    [favoriteUsersState release];
     
     [super dealloc];
 }
@@ -54,8 +57,8 @@
     FavoriteUsersDisplayMgr * favoriteUsersDisplayMgr =
         [[FavoriteUsersDisplayMgr alloc]
         initWithViewController:favoriteUsersViewController
-        stateReader:favoriteUsersStateReader
-        stateSetter:favoriteUsersStateSetter
+        stateReader:favoriteUsersState
+        stateSetter:favoriteUsersState
         userDisplayMgr:userDisplayMgr];
 
     favoriteUsersViewController.delegate = favoriteUsersDisplayMgr;
@@ -92,17 +95,20 @@
     
     NetworkAwareViewController * networkAwareViewController =
         [self createNetworkAwareControllerWithTarget:userViewController];
-        
+    
+    GitHubService * gitHubService = [self createGitHubService];
+    
     UIUserDisplayMgr * userDisplayMgr = [[UIUserDisplayMgr alloc]
         initWithNavigationController:navigationController
         networkAwareViewController:networkAwareViewController
         userViewController:userViewController
-        userCacheReader:userCacheReader
+        userCacheReader:userCache
         repoSelector:nil
-        gitHubService:nil];
+        gitHubService:gitHubService];
         
     userViewController.delegate = userDisplayMgr;
     networkAwareViewController.delegate = userDisplayMgr;
+    gitHubService.delegate = userDisplayMgr;
     
     return userDisplayMgr;
 }
@@ -116,6 +122,13 @@
 - (UserViewController *)createUserViewController
 {
     return [[UserViewController alloc] initWithNibName:@"UserView" bundle:nil];
+}
+
+- (GitHubService *)createGitHubService
+{
+    return [[GitHubService alloc] initWithConfigReader:configReader
+        logInState:logInState userCache:userCache repoCache:repoCache
+        commitCache:commitCache];
 }
 
 @end

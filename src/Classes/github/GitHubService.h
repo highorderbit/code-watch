@@ -14,6 +14,10 @@
 #import "CommitCacheSetter.h"
 #import "CommitCacheReader.h"
 #import "ConfigReader.h"
+#import "LogInState.h"
+#import "UserCache.h"
+#import "RepoCache.h"
+#import "CommitCache.h"
 
 @class GitHub, GitHubServiceDelegate;
 
@@ -37,10 +41,16 @@
     GitHub * gitHub;
 }
 
+@property (nonatomic, retain) <GitHubServiceDelegate> delegate;
+
 #pragma mark Instantiation
 
 + (id)service;
 - (id)init;
+- (id)initWithConfigReader:(NSObject<ConfigReader> *)aConfigReader
+    logInState:(LogInState *)logInState
+    userCache:(UserCache*)userCache repoCache:(RepoCache *)repoCache
+    commitCache:(CommitCache *)commitCache;
 
 #pragma mark Logging in
 

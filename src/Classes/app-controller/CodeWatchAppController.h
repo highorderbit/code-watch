@@ -4,33 +4,37 @@
 
 #import <Foundation/Foundation.h>
 #import "LogInMgr.h"
-#import "LogInStateReader.h"
+#import "LogInState.h"
 #import "PersistenceStore.h"
 #import "FavoriteUsersViewController.h"
-#import "UserCacheReader.h"
-#import "UserCacheSetter.h"
-#import "FavoriteUsersStateReader.h"
-#import "FavoriteUsersStateSetter.h"
+#import "UserCache.h"
+#import "FavoriteUsersState.h"
+#import "ConfigReader.h"
+#import "RepoCache.h"
+#import "CommitCache.h"
 
 @interface CodeWatchAppController : NSObject
 {
+    IBOutlet NSObject<ConfigReader> * configReader;
+    
     IBOutlet NSObject<LogInMgr> * logInMgr;
-    IBOutlet NSObject<LogInStateReader> * logInState;
+    IBOutlet LogInState * logInState;
     IBOutlet NSObject<PersistenceStore> * logInPersistenceStore;
     
     IBOutlet NSObject<PersistenceStore> * userCachePersistenceStore;
-    IBOutlet NSObject<UserCacheReader> * userCacheReader;
-    IBOutlet NSObject<UserCacheSetter> * userCacheSetter;
+    IBOutlet UserCache * userCache;
     
     IBOutlet NSObject<PersistenceStore> * newsFeedPersistenceStore;
     
     IBOutlet NSObject<PersistenceStore> * repoCachePersistenceStore;
+    IBOutlet RepoCache * repoCache;
+    
+    IBOutlet CommitCache * commitCache;
     
     IBOutlet NSObject<PersistenceStore> * favoriteUsersPersistenceStore;
     IBOutlet UINavigationController * favoriteUsersNavController;
     IBOutlet FavoriteUsersViewController * favoriteUsersViewController;
-    IBOutlet NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
-    IBOutlet NSObject<FavoriteUsersStateSetter> * favoriteUsersStateSetter;
+    IBOutlet FavoriteUsersState * favoriteUsersState;
 }
 
 - (void) start;

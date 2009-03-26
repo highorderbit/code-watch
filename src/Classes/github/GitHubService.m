@@ -37,6 +37,8 @@
 
 @implementation GitHubService
 
+@synthesize delegate;
+
 - (void)dealloc
 {
     [configReader release];
@@ -66,6 +68,28 @@
 - (id)init
 {
     return (self = [super init]);
+}
+
+- (id)initWithConfigReader:(NSObject<ConfigReader> *)aConfigReader
+    logInState:(LogInState *)logInState
+    userCache:(UserCache*)userCache repoCache:(RepoCache *)repoCache
+    commitCache:(CommitCache *)commitCache
+{
+    if (self = [super init]) {
+        configReader = [aConfigReader retain];
+        logInStateReader = [logInState retain];
+        logInStateSetter = [logInState retain];
+        userCacheReader = [userCache retain];
+        userCacheSetter = [userCache retain];
+        repoCacheReader = [repoCache retain];
+        repoCacheSetter = [repoCache retain];
+        commitCacheReader = [commitCache retain];
+        commitCacheSetter = [commitCache retain];
+        
+        [self awakeFromNib];
+    }
+    
+    return self;
 }
 
 - (void)awakeFromNib
