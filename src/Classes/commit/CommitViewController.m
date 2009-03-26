@@ -16,8 +16,8 @@ enum
 static const NSUInteger NUM_DIFF_ROWS = 3;
 enum
 {
-    kRemovedRow,
     kAddedRow,
+    kRemovedRow,
     kModifiedRow
 } kDiffRows;
 
@@ -124,8 +124,7 @@ enum
                             @"");
                     singularFormatString =
                         NSLocalizedString(
-                            @"commit.removed.singular.formatstring",
-                            @"");
+                            @"commit.removed.singular.formatstring", @"");
                     changeset = [commitInfo.details objectForKey:@"removed"];
                     break;
                 case kModifiedRow:
@@ -189,19 +188,24 @@ enum
 {
     if (indexPath.section == kDiffSection) {
         NSArray * changeset = nil;
+        ChangesetType changesetType;
+
         switch (indexPath.row) {
             case kAddedRow:
                 changeset = [commitInfo.details objectForKey:@"added"];
+                changesetType = kChangesetTypeAdded;
                 break;
             case kRemovedRow:
                 changeset = [commitInfo.details objectForKey:@"removed"];
+                changesetType = kChangesetTypeRemoved;
                 break;
             case kModifiedRow:
                 changeset = [commitInfo.details objectForKey:@"modified"];
+                changesetType = kChangesetTypeModified;
                 break;
         }
 
-        [delegate userDidSelectChangeset:changeset];
+        [delegate userDidSelectChangeset:changeset ofType:changesetType];
     }
 }
 

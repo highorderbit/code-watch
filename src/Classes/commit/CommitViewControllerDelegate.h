@@ -4,8 +4,14 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    kChangesetTypeAdded,
+    kChangesetTypeRemoved,
+    kChangesetTypeModified
+} ChangesetType;
+
 @protocol CommitViewControllerDelegate
 
-- (void)userDidSelectChangeset:(NSArray *)changeset;
+- (void)userDidSelectChangeset:(NSArray *)changeset ofType:(ChangesetType)type;
 
 @end

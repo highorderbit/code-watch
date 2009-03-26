@@ -10,6 +10,7 @@
 #import "GitHubService.h"
 
 @interface CommitDisplayMgr (Private)
++ (NSString *)changesetTypeLabel:(ChangesetType)type;
 - (ChangesetViewController *)changesetViewController;
 - (DiffViewController *)diffViewController;
 @end
@@ -64,9 +65,12 @@
 
 #pragma mark CommitViewControllerDelegate implementation
 
-- (void)userDidSelectChangeset:(NSArray *)changeset
+- (void)userDidSelectChangeset:(NSArray *)changeset ofType:(ChangesetType)type
 {
+    NSString * label = [[self class] changesetTypeLabel:type];
+
     [[self changesetViewController] updateWithChangeset:changeset];
+    changesetViewController.navigationItem.title = label;
     [navigationController
         pushViewController:changesetViewController animated:YES];
 }
@@ -98,6 +102,22 @@
                              error:(NSError *)error
 {
     // TODO: Display an error
+}
+
+#pragma mark Helpers
+
++ (NSString *)changesetTypeLabel:(ChangesetType)type
+{
+    switch (type) {
+        case kChangesetTypeAdded:
+            return NSLocalizedString(@"commit.changeset.added.label", @"");
+        case kChangesetTypeRemoved:
+            return NSLocalizedString(@"commit.changeset.removed.label", @"");
+        case kChangesetTypeModified:
+            return NSLocalizedString(@"commit.changeset.modified.label", @"");
+    }
+
+    return nil;
 }
 
 #pragma mark Accessors

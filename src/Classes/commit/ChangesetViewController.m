@@ -64,7 +64,14 @@
     return cell;
 }
 
-- (void)          tableView:(UITableView *)tv
+- (NSIndexPath *)tableView:(UITableView *)tv
+  willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary * diff = [changeset objectAtIndex:indexPath.row];
+    return [diff objectForKey:@"diff"] ? indexPath : nil;
+}
+
+- (void)tableView:(UITableView *)tv
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [delegate userDidSelectDiff:[changeset objectAtIndex:indexPath.row]];
