@@ -18,7 +18,7 @@ enum
 {
     kRemovedRow,
     kAddedRow,
-    kChangedRow
+    kModifiedRow
 } kDiffRows;
 
 static const NSUInteger NUM_ACTION_ROWS = 2;
@@ -38,10 +38,12 @@ enum
 
 @implementation CommitViewController
 
-@synthesize commitInfo;
+@synthesize delegate, commitInfo;
 
 - (void)dealloc
 {
+    [delegate release];
+
     [headerView release];
 
     [avatarImageView release];
@@ -126,7 +128,7 @@ enum
                             @"");
                     changeset = [commitInfo.details objectForKey:@"removed"];
                     break;
-                case kChangedRow:
+                case kModifiedRow:
                     pluralFormatString =
                         NSLocalizedString(
                             @"commit.modified.plural.formatstring",
@@ -162,18 +164,45 @@ enum
 - (NSIndexPath *) tableView:(UITableView *)tv
    willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == kDiffSection) {
+        NSArray * changeset = nil;
+        switch (indexPath.row) {
+            case kAddedRow:
+                changeset = [commitInfo.details objectForKey:@"added"];
+                break;
+            case kRemovedRow:
+                changeset = [commitInfo.details objectForKey:@"removed"];
+                break;
+            case kModifiedRow:
+                changeset = [commitInfo.details objectForKey:@"modified"];
+                break;
+        }
+
+        return changeset.count == 0 ? nil : indexPath;
+    }
+
     return nil;
 }
 
 - (void)          tableView:(UITableView *)tv
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    // AnotherViewController *anotherViewController =
-    //     [[AnotherViewController alloc]
-    //      initWithNibName:@"AnotherView" bundle:nil];
-    // [self.navigationController pushViewController:anotherViewController];
-    // [anotherViewController release];
+    if (indexPath.section == kDiffSection) {
+        NSArray * changeset = nil;
+        switch (indexPath.row) {
+            case kAddedRow:
+                changeset = [commitInfo.details objectForKey:@"added"];
+                break;
+            case kRemovedRow:
+                changeset = [commitInfo.details objectForKey:@"removed"];
+                break;
+            case kModifiedRow:
+                changeset = [commitInfo.details objectForKey:@"modified"];
+                break;
+        }
+
+        [delegate userDidSelectChangeset:changeset];
+    }
 }
 
 #pragma mark UI helpers

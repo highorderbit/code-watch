@@ -23,12 +23,16 @@
 		053B7B3F0F700C3B0084B219 /* NSError+InstantiationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053B7B3E0F700C3B0084B219 /* NSError+InstantiationAdditions.m */; };
 		053B7B610F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053B7B600F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m */; };
 		054C06F70F6F0D5000999FEA /* GitHubService.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C06F60F6F0D5000999FEA /* GitHubService.m */; };
+		055DF4B30F7B08F1003A8D94 /* DiffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055DF4B20F7B08F1003A8D94 /* DiffViewController.m */; };
+		055DF4C40F7B0B9F003A8D94 /* DiffView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055DF4C20F7B0B9F003A8D94 /* DiffView.xib */; };
 		0560A0620F69C83E0031A852 /* CodeWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05A0F69C83E0031A852 /* CodeWatchAppController.m */; };
 		0560A0630F69C83E0031A852 /* CodeWatchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05C0F69C83E0031A852 /* CodeWatchAppDelegate.m */; };
 		0560A0640F69C83E0031A852 /* UILogInMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A0610F69C83E0031A852 /* UILogInMgr.m */; };
 		0599363C0F6975A80005B934 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059936380F6975A80005B934 /* MainWindow.xib */; };
 		05AFEA2F0F79BD4F0008A91C /* CommitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05AFEA2D0F79BD4F0008A91C /* CommitView.xib */; };
 		05AFEA330F79BD9A0008A91C /* CommitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AFEA320F79BD9A0008A91C /* CommitViewController.m */; };
+		05B8805E0F7AF5210030DF3A /* ChangesetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8805D0F7AF5210030DF3A /* ChangesetViewController.m */; };
+		05B880610F7AF53D0030DF3A /* ChangesetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B8805F0F7AF53D0030DF3A /* ChangesetView.xib */; };
 		05B98FC70F705AD60039602B /* LogInHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B98FC60F705AD60039602B /* LogInHelpViewController.m */; };
 		05B98FCA0F705B010039602B /* LogInHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B98FC80F705B010039602B /* LogInHelpView.xib */; };
 		05B98FEE0F705CFE0039602B /* log-in-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 05B98FED0F705CFE0039602B /* log-in-help.html */; };
@@ -132,6 +136,10 @@
 		054C06F50F6F0D5000999FEA /* GitHubService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubService.h; path = github/GitHubService.h; sourceTree = "<group>"; };
 		054C06F60F6F0D5000999FEA /* GitHubService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubService.m; path = github/GitHubService.m; sourceTree = "<group>"; };
 		054C06FE0F6F104200999FEA /* GitHubServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubServiceDelegate.h; path = github/GitHubServiceDelegate.h; sourceTree = "<group>"; };
+		055DF4A90F7B082A003A8D94 /* ChangesetViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChangesetViewControllerDelegate.h; path = commit/ChangesetViewControllerDelegate.h; sourceTree = "<group>"; };
+		055DF4B10F7B08F1003A8D94 /* DiffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiffViewController.h; path = commit/DiffViewController.h; sourceTree = "<group>"; };
+		055DF4B20F7B08F1003A8D94 /* DiffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiffViewController.m; path = commit/DiffViewController.m; sourceTree = "<group>"; };
+		055DF4C30F7B0B9F003A8D94 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DiffView.xib; sourceTree = "<group>"; };
 		0560A0590F69C83E0031A852 /* CodeWatchAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchAppController.h; sourceTree = "<group>"; };
 		0560A05A0F69C83E0031A852 /* CodeWatchAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeWatchAppController.m; sourceTree = "<group>"; };
 		0560A05B0F69C83E0031A852 /* CodeWatchAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeWatchAppDelegate.h; sourceTree = "<group>"; };
@@ -143,6 +151,10 @@
 		05AFEA2E0F79BD4F0008A91C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CommitView.xib; sourceTree = "<group>"; };
 		05AFEA310F79BD9A0008A91C /* CommitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitViewController.h; path = commit/CommitViewController.h; sourceTree = "<group>"; };
 		05AFEA320F79BD9A0008A91C /* CommitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitViewController.m; path = commit/CommitViewController.m; sourceTree = "<group>"; };
+		05B8805C0F7AF5210030DF3A /* ChangesetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChangesetViewController.h; path = commit/ChangesetViewController.h; sourceTree = "<group>"; };
+		05B8805D0F7AF5210030DF3A /* ChangesetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChangesetViewController.m; path = commit/ChangesetViewController.m; sourceTree = "<group>"; };
+		05B880600F7AF53D0030DF3A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ChangesetView.xib; sourceTree = "<group>"; };
+		05B880630F7AF56D0030DF3A /* CommitViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitViewControllerDelegate.h; path = commit/CommitViewControllerDelegate.h; sourceTree = "<group>"; };
 		05B98F440F7053EF0039602B /* GitHubApiVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiVersion.h; path = github/GitHubApiVersion.h; sourceTree = "<group>"; };
 		05B98FC50F705AD60039602B /* LogInHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInHelpViewController.h; sourceTree = "<group>"; };
 		05B98FC60F705AD60039602B /* LogInHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInHelpViewController.m; sourceTree = "<group>"; };
@@ -313,6 +325,8 @@
 				05B990880F707DD20039602B /* RepoActivityTableViewCell.xib */,
 				91FD171D0F715018004549F9 /* NoDataView.xib */,
 				05AFEA2D0F79BD4F0008A91C /* CommitView.xib */,
+				05B8805F0F7AF53D0030DF3A /* ChangesetView.xib */,
+				055DF4C20F7B0B9F003A8D94 /* DiffView.xib */,
 				91E25E520F79B3B100E1594E /* FavoriteUsersView.xib */,
 			);
 			name = NIBs;
@@ -331,9 +345,15 @@
 				91FD1A190F72D895004549F9 /* CommitPersistenceStore.m */,
 				05AFEA310F79BD9A0008A91C /* CommitViewController.h */,
 				05AFEA320F79BD9A0008A91C /* CommitViewController.m */,
+				05B880630F7AF56D0030DF3A /* CommitViewControllerDelegate.h */,
 				05DE59220F79C7BE00189369 /* CommitSelector.h */,
 				05DE59230F79C8F900189369 /* CommitDisplayMgr.h */,
 				05DE59240F79C8F900189369 /* CommitDisplayMgr.m */,
+				05B8805C0F7AF5210030DF3A /* ChangesetViewController.h */,
+				05B8805D0F7AF5210030DF3A /* ChangesetViewController.m */,
+				055DF4A90F7B082A003A8D94 /* ChangesetViewControllerDelegate.h */,
+				055DF4B10F7B08F1003A8D94 /* DiffViewController.h */,
+				055DF4B20F7B08F1003A8D94 /* DiffViewController.m */,
 			);
 			name = commit;
 			sourceTree = "<group>";
@@ -732,6 +752,8 @@
 				05AFEA2F0F79BD4F0008A91C /* CommitView.xib in Resources */,
 				91E25E540F79B3B100E1594E /* FavoriteUsersView.xib in Resources */,
 				91E25EE00F79D5F900E1594E /* AddUserView.xib in Resources */,
+				05B880610F7AF53D0030DF3A /* ChangesetView.xib in Resources */,
+				055DF4C40F7B0B9F003A8D94 /* DiffView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,6 +824,8 @@
 				91E25F030F79DD0E00E1594E /* UIAddUserMgr.m in Sources */,
 				9157D9D40F7A9E9900DF83FF /* FavoriteUsersState.m in Sources */,
 				9157DA150F7AA9AF00DF83FF /* FavoriteUsersPersistenceStore.m in Sources */,
+				05B8805E0F7AF5210030DF3A /* ChangesetViewController.m in Sources */,
+				055DF4B30F7B08F1003A8D94 /* DiffViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,6 +848,14 @@
 			name = NameValueTextEntryTableViewCell.xib;
 			sourceTree = "<group>";
 		};
+		055DF4C20F7B0B9F003A8D94 /* DiffView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				055DF4C30F7B0B9F003A8D94 /* en */,
+			);
+			name = DiffView.xib;
+			sourceTree = "<group>";
+		};
 		059936380F6975A80005B934 /* MainWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -838,6 +870,14 @@
 				05AFEA2E0F79BD4F0008A91C /* en */,
 			);
 			name = CommitView.xib;
+			sourceTree = "<group>";
+		};
+		05B8805F0F7AF53D0030DF3A /* ChangesetView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05B880600F7AF53D0030DF3A /* en */,
+			);
+			name = ChangesetView.xib;
 			sourceTree = "<group>";
 		};
 		05B98FC80F705B010039602B /* LogInHelpView.xib */ = {

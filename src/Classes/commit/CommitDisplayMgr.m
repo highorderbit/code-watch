@@ -5,7 +5,14 @@
 #import "CommitDisplayMgr.h"
 #import "NetworkAwareViewController.h"
 #import "CommitViewController.h"
+#import "ChangesetViewController.h"
+#import "DiffViewController.h"
 #import "GitHubService.h"
+
+@interface CommitDisplayMgr (Private)
+- (ChangesetViewController *)changesetViewController;
+- (DiffViewController *)diffViewController;
+@end
 
 @implementation CommitDisplayMgr
 
@@ -17,6 +24,12 @@
     [commitCacheReader release];
     [gitHub release];
     [super dealloc];
+}
+
+- (void)awakeFromNib
+{
+    // TODO: Remove when wired in the nib
+    commitViewController.delegate = self;
 }
 
 #pragma mark CommitSelector implementation
@@ -31,7 +44,6 @@
 
     // TODO: Consider moving changeset into its own dictionary.
     BOOL cached = [commitInfo.details objectForKey:@"added"] != nil;
-
 
     if (cached) {
         [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
@@ -48,6 +60,23 @@
 
     [navigationController
         pushViewController:networkAwareViewController animated:YES];
+}
+
+#pragma mark CommitViewControllerDelegate implementation
+
+- (void)userDidSelectChangeset:(NSArray *)changeset
+{
+    [[self changesetViewController] updateWithChangeset:changeset];
+    [navigationController
+        pushViewController:changesetViewController animated:YES];
+}
+
+#pragma mark ChangesetViewControllerDelegate implementation
+
+- (void)userDidSelectDiff:(NSDictionary *)diff
+{
+    [[self diffViewController] updateWithDiff:diff];
+    [navigationController pushViewController:diffViewController animated:YES];
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -69,6 +98,28 @@
                              error:(NSError *)error
 {
     // TODO: Display an error
+}
+
+#pragma mark Accessors
+
+- (ChangesetViewController *)changesetViewController
+{
+    if (!changesetViewController) {
+        changesetViewController = [[ChangesetViewController alloc]
+            initWithNibName:@"ChangesetView" bundle:nil];
+        changesetViewController.delegate = self;
+    }
+
+    return changesetViewController;
+}
+
+- (DiffViewController *)diffViewController
+{
+    if (!diffViewController)
+        diffViewController = [[DiffViewController alloc]
+            initWithNibName:@"DiffView" bundle:nil];
+
+    return diffViewController;
 }
 
 @end
