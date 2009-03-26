@@ -17,6 +17,8 @@
 
 @implementation RepoViewController
 
+@synthesize delegate;
+
 - (void)dealloc
 {
     [delegate release];

@@ -23,6 +23,8 @@
     NSDictionary * commits;
 }
 
+@property (nonatomic, retain) NSObject<RepoViewControllerDelegate> * delegate;
+
 - (void)updateWithCommits:(NSDictionary *)someCommits
                   forRepo:(NSString *)aRepoName
                      info:(RepoInfo *)someRepoInfo;

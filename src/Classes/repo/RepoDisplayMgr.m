@@ -40,6 +40,37 @@
     [super dealloc];
 }
 
+- (id)initWithLogInStateReader:
+    (NSObject<LogInStateReader> *) aLogInStateReader
+    repoCacheReader:
+    (NSObject<RepoCacheReader> *) aRepoCacheReader
+    commitCacheReader:
+    (NSObject<CommitCacheReader> *) aCommitCacheReader
+    navigationController:
+    (UINavigationController *) aNavigationController
+    networkAwareViewController:
+    (NetworkAwareViewController *) aNetworkAwareViewController
+    repoViewController:
+    (RepoViewController *) aRepoViewController
+    gitHubService:
+    (GitHubService *) aGitHubService
+    commitSelector:
+    (NSObject<CommitSelector> *) aCommitSelector
+{
+    if (self = [super init]) {
+        logInStateReader = [aLogInStateReader retain];
+        repoCacheReader = [aRepoCacheReader retain];
+        commitCacheReader = [aCommitCacheReader retain];
+        navigationController = [aNavigationController retain];
+        networkAwareViewController = [aNetworkAwareViewController retain];
+        repoViewController = [aRepoViewController retain];
+        gitHub = [aGitHubService retain];
+        commitSelector = [aCommitSelector retain];
+    }
+    
+    return self;
+}
+
 #pragma mark RepoSelector implementation
 
 - (void)user:(NSString *)user didSelectRepo:(NSString *)repo

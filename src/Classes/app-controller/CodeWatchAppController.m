@@ -7,17 +7,25 @@
 #import "NetworkAwareViewController.h"
 #import "UserViewController.h"
 #import "FavoriteUsersDisplayMgr.h"
+#import "RepoDisplayMgr.h"
+#import "RepoViewController.h"
 
 @interface CodeWatchAppController (Private)
 
 - (void)loadStateFromPersistenceStores;
 
+- (GitHubService *)createGitHubService;
+
 - (NSObject<UserDisplayMgr> *)
     createUserDisplayMgrWithNavigationContoller:
     (UINavigationController *)navigationController;
-- (NetworkAwareViewController *)createNetworkAwareControllerWithTarget:target;
+- (NSObject<RepoSelector> *)
+    createRepoSelectorWithNavigationController:
+    (UINavigationController *)navigationController;
+
 - (UserViewController *)createUserViewController;
-- (GitHubService *)createGitHubService;
+- (RepoViewController *)createRepoViewController;
+- (NetworkAwareViewController *)createNetworkAwareControllerWithTarget:target;
 
 @end
 
@@ -87,9 +95,20 @@
     [favoriteUsersPersistenceStore load];
 }
 
+#pragma mark Factory methods
+
+- (GitHubService *)createGitHubService
+{
+    return [[GitHubService alloc] initWithConfigReader:configReader
+        logInState:logInState userCache:userCache repoCache:repoCache
+        commitCache:commitCache];
+}
+
+#pragma mark Display manager factory methods
+
 - (NSObject<UserDisplayMgr> *)
     createUserDisplayMgrWithNavigationContoller:
-    (UINavigationController *)navigationController;
+    (UINavigationController *)navigationController
 {
     UserViewController * userViewController = [self createUserViewController];
     
@@ -98,13 +117,15 @@
     
     GitHubService * gitHubService = [self createGitHubService];
     
-    UIUserDisplayMgr * userDisplayMgr = [[UIUserDisplayMgr alloc]
+    NSObject<RepoSelector> * repoSelector =
+        [self createRepoSelectorWithNavigationController:navigationController];
+    
+    UIUserDisplayMgr * userDisplayMgr =
+        [[UIUserDisplayMgr alloc]
         initWithNavigationController:navigationController
         networkAwareViewController:networkAwareViewController
-        userViewController:userViewController
-        userCacheReader:userCache
-        repoSelector:nil
-        gitHubService:gitHubService];
+        userViewController:userViewController userCacheReader:userCache
+        repoSelector:repoSelector gitHubService:gitHubService];
         
     userViewController.delegate = userDisplayMgr;
     networkAwareViewController.delegate = userDisplayMgr;
@@ -113,22 +134,47 @@
     return userDisplayMgr;
 }
 
-- (NetworkAwareViewController *)createNetworkAwareControllerWithTarget:target
+- (NSObject<RepoSelector> *)
+    createRepoSelectorWithNavigationController:
+    (UINavigationController *)navigationController
 {
-    return [[NetworkAwareViewController alloc]
-        initWithTargetViewController:target];
+    RepoViewController * repoViewController = [self createRepoViewController];
+
+    NetworkAwareViewController * networkAwareViewController =
+        [self createNetworkAwareControllerWithTarget:repoViewController];
+
+    GitHubService * gitHubService = [self createGitHubService];
+    
+    RepoDisplayMgr * repoDisplayMgr = 
+        [[RepoDisplayMgr alloc] initWithLogInStateReader:logInState
+        repoCacheReader:repoCache commitCacheReader:commitCache
+        navigationController:navigationController
+        networkAwareViewController:networkAwareViewController
+        repoViewController:repoViewController gitHubService:gitHubService
+        commitSelector:nil];
+        
+    repoViewController.delegate = repoDisplayMgr;
+    gitHubService.delegate = repoDisplayMgr;
+        
+    return repoDisplayMgr;
 }
+
+#pragma mark View controller factory methods
 
 - (UserViewController *)createUserViewController
 {
     return [[UserViewController alloc] initWithNibName:@"UserView" bundle:nil];
 }
 
-- (GitHubService *)createGitHubService
+- (RepoViewController *)createRepoViewController
 {
-    return [[GitHubService alloc] initWithConfigReader:configReader
-        logInState:logInState userCache:userCache repoCache:repoCache
-        commitCache:commitCache];
+    return [[RepoViewController alloc] initWithNibName:@"RepoView" bundle:nil];
+}
+
+- (NetworkAwareViewController *)createNetworkAwareControllerWithTarget:target
+{
+    return [[NetworkAwareViewController alloc]
+        initWithTargetViewController:target];
 }
 
 @end

@@ -35,6 +35,23 @@
     IBOutlet NSObject<CommitSelector> * commitSelector;
 }
 
+- (id)initWithLogInStateReader:
+    (NSObject<LogInStateReader> *) logInStateReader
+    repoCacheReader:
+    (NSObject<RepoCacheReader> *) repoCacheReader
+    commitCacheReader:
+    (NSObject<CommitCacheReader> *) commitCacheReader
+    navigationController:
+    (UINavigationController *) navigationController
+    networkAwareViewController:
+    (NetworkAwareViewController *) networkAwareViewController
+    repoViewController:
+    (RepoViewController *) repoViewController
+    gitHubService:
+    (GitHubService *) gitHubService
+    commitSelector:
+    (NSObject<CommitSelector> *) commitSelector;
+
 @property (nonatomic, copy, readonly) NSString * repoName;
 @property (nonatomic, copy, readonly) RepoInfo * repoInfo;
 @property (nonatomic, copy, readonly) NSDictionary * commits;
