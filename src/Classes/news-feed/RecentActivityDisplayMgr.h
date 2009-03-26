@@ -4,8 +4,8 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol NewsFeedCacheReader
+@protocol RecentActivityDisplayMgr
 
-@property (copy, readonly) NSArray * rssItems;
+- (void)displayRecentHistoryForUser:(NSString *)username;
 
 @end

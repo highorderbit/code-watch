@@ -24,7 +24,8 @@
     
     if (logInState.login) {
         [networkAwareViewController
-        setNoConnectionText:NSLocalizedString(@"nodata.noconnection.text", @"")];
+        setNoConnectionText:
+        NSLocalizedString(@"nodata.noconnection.text", @"")];
         
         NSArray * rssItems = cacheReader.rssItems;
         [newsFeedTableViewController updateRssItems:rssItems];

@@ -7,12 +7,14 @@
 #import "UserViewControllerDelegate.h"
 #import "FavoriteUsersStateSetter.h"
 #import "FavoriteUsersStateReader.h"
+#import "RecentActivityDisplayMgr.h"
 
 @interface UserViewController : UITableViewController
 {
     IBOutlet NSObject<UserViewControllerDelegate> * delegate;
     IBOutlet NSObject<FavoriteUsersStateSetter> * favoriteUsersStateSetter;
     IBOutlet NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
+    IBOutlet NSObject<RecentActivityDisplayMgr> * recentActivityDisplayMgr;
 
     IBOutlet UIView * headerView;
     IBOutlet UIView * footerView;
@@ -36,6 +38,8 @@
     NSObject<FavoriteUsersStateSetter> * favoriteUsersStateSetter;
 @property (nonatomic, retain)
     NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
+@property (nonatomic, retain)
+    NSObject<RecentActivityDisplayMgr> * recentActivityDisplayMgr;
 
 - (void)setUsername:(NSString *)username;
 - (void)updateWithUserInfo:(UserInfo *)userInfo;

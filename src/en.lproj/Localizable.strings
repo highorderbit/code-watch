@@ -72,3 +72,6 @@ commit.modified.plural.formatstring = "Modified %d files";
 commit.changeset.added.label = "Added";
 commit.changeset.removed.label = "Removed";
 commit.changeset.modified.label = "Modified";
+
+/* RecentActivityView Strings */
+recentactivity.view.title = "Recent Activity";

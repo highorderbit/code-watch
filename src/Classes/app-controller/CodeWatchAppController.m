@@ -9,6 +9,7 @@
 #import "FavoriteUsersDisplayMgr.h"
 #import "RepoDisplayMgr.h"
 #import "RepoViewController.h"
+#import "UIRecentActivityDisplayMgr.h"
 
 @interface CodeWatchAppController (Private)
 
@@ -22,9 +23,13 @@
 - (NSObject<RepoSelector> *)
     createRepoSelectorWithNavigationController:
     (UINavigationController *)navigationController;
+- (NSObject<RecentActivityDisplayMgr> *)
+    createRecentActivityDisplayMgrWithNavigationController:
+    (UINavigationController *)navigationController;
 
 - (UserViewController *)createUserViewController;
 - (RepoViewController *)createRepoViewController;
+- (NewsFeedTableViewController *)createNewsFeedTableViewController;
 - (NetworkAwareViewController *)createNetworkAwareControllerWithTarget:target;
 
 @end
@@ -111,6 +116,9 @@
     (UINavigationController *)navigationController
 {
     UserViewController * userViewController = [self createUserViewController];
+    userViewController.recentActivityDisplayMgr =
+        [self createRecentActivityDisplayMgrWithNavigationController:
+        navigationController];
     
     NetworkAwareViewController * networkAwareViewController =
         [self createNetworkAwareControllerWithTarget:userViewController];
@@ -159,6 +167,28 @@
     return repoDisplayMgr;
 }
 
+- (NSObject<RecentActivityDisplayMgr> *)
+    createRecentActivityDisplayMgrWithNavigationController:
+    (UINavigationController *)navigationController
+{
+    NewsFeedTableViewController * newsFeedViewController =
+        [self createNewsFeedTableViewController];
+
+    NetworkAwareViewController * networkAwareViewController =
+        [self createNetworkAwareControllerWithTarget:newsFeedViewController];
+        
+    GitHubService * gitHubService = [self createGitHubService];
+        
+    UIRecentActivityDisplayMgr * recentActivityDisplayMgr =
+        [[UIRecentActivityDisplayMgr alloc]
+            initWithNavigationController:navigationController
+            networkAwareViewController:networkAwareViewController
+            newsFeedTableViewController:newsFeedViewController
+            gitHubService:gitHubService];
+    
+    return recentActivityDisplayMgr;
+}
+
 #pragma mark View controller factory methods
 
 - (UserViewController *)createUserViewController
@@ -174,6 +204,11 @@
 - (RepoViewController *)createRepoViewController
 {
     return [[RepoViewController alloc] initWithNibName:@"RepoView" bundle:nil];
+}
+
+- (NewsFeedTableViewController *)createNewsFeedTableViewController
+{
+    return [[NewsFeedTableViewController alloc] init];
 }
 
 - (NetworkAwareViewController *)createNetworkAwareControllerWithTarget:target

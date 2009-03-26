@@ -28,12 +28,14 @@ enum Section
 @synthesize delegate;
 @synthesize favoriteUsersStateSetter;
 @synthesize favoriteUsersStateReader;
+@synthesize recentActivityDisplayMgr;
 
 - (void) dealloc
 {
     [delegate release];
     [favoriteUsersStateSetter release];
     [favoriteUsersStateReader release];
+    [recentActivityDisplayMgr release];
     
     [headerView release];
     [footerView release];
@@ -181,10 +183,13 @@ enum Section
 - (void)tableView:(UITableView *)tv
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self effectiveSectionForSection:indexPath.section] == kRepoSection) {
+    NSInteger effectiveSection =
+        [self effectiveSectionForSection:indexPath.section];
+    if (effectiveSection == kRepoSection) {
         NSString * repo = [userInfo.repoKeys objectAtIndex:indexPath.row];
         [delegate userDidSelectRepo:repo];
-    }
+    } else if (effectiveSection == kRecentActivitySection)
+        [recentActivityDisplayMgr displayRecentHistoryForUser:username];
 }
 
 #pragma mark User data update methods
