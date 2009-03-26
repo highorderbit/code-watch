@@ -68,6 +68,26 @@
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
 {
+    NSLog(@"Failed to retrieve info for user: '%@' error: '%@'.", username,
+        error);
+
+    NSString * title =
+        NSLocalizedString(@"github.userupdate.failed.alert.title", @"");
+    NSString * cancelTitle =
+        NSLocalizedString(@"github.userupdate.failed.alert.ok", @"");
+    NSString * message = error.localizedDescription;
+
+    UIAlertView * alertView =
+        [[[UIAlertView alloc]
+          initWithTitle:title
+                message:message
+               delegate:self
+      cancelButtonTitle:cancelTitle
+      otherButtonTitles:nil]
+         autorelease];
+
+    [alertView show];
+
     [networkAwareViewController setUpdatingState:kDisconnected];
 }
 

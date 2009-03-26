@@ -101,7 +101,27 @@
                           username:(NSString *)username
                              error:(NSError *)error
 {
-    // TODO: Display an error
+    NSLog(@"Failed to retrieve info for commit: '%@' for user: '%@' repo: '%@' "
+        "error: '%@'.", commitKey, repo, username, error);
+
+    NSString * title =
+        NSLocalizedString(@"github.commitupdate.failed.alert.title", @"");
+    NSString * cancelTitle =
+        NSLocalizedString(@"github.commitupdate.failed.alert.ok", @"");
+    NSString * message = error.localizedDescription;
+
+    UIAlertView * alertView =
+        [[[UIAlertView alloc]
+          initWithTitle:title
+                message:message
+               delegate:self
+      cancelButtonTitle:cancelTitle
+      otherButtonTitles:nil]
+         autorelease];
+
+    [alertView show];
+
+    [networkAwareViewController setUpdatingState:kDisconnected];
 }
 
 #pragma mark Helpers

@@ -94,9 +94,24 @@
     NSLog(@"Failed to retrieve info for repo: '%@' for user: '%@' error: '%@'.",
         repo, user, error);
 
-    //
-    // TODO: Display the error to the user.
-    //
+    NSString * title =
+        NSLocalizedString(@"github.repoupdate.failed.alert.title", @"");
+    NSString * cancelTitle =
+        NSLocalizedString(@"github.repoupdate.failed.alert.ok", @"");
+    NSString * message = error.localizedDescription;
+
+    UIAlertView * alertView =
+        [[[UIAlertView alloc]
+          initWithTitle:title
+                message:message
+               delegate:self
+      cancelButtonTitle:cancelTitle
+      otherButtonTitles:nil]
+         autorelease];
+
+    [alertView show];
+
+    [networkAwareViewController setUpdatingState:kDisconnected];
 }
 
 #pragma mark RepoViewControllerDelegate implementation
