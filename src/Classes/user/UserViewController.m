@@ -26,18 +26,22 @@ enum Section
 @implementation UserViewController
 
 @synthesize delegate;
+@synthesize favoriteUsersStateSetter;
+@synthesize favoriteUsersStateReader;
 
 - (void) dealloc
 {
     [delegate release];
+    [favoriteUsersStateSetter release];
+    [favoriteUsersStateReader release];
     
     [headerView release];
     [footerView release];
     [avatarView release];
-    
     [usernameLabel release];
     [featuredDetail1Label release];
     [featuredDetail2Label release];
+    [addToFavoritesButton release];
 
     [username release];
     [userInfo release];
@@ -59,6 +63,9 @@ enum Section
         
     footerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.tableFooterView = footerView;
+    
+    [addToFavoritesButton setTitleColor:[UIColor grayColor]
+        forState:UIControlStateDisabled];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -77,6 +84,9 @@ enum Section
         NSString * email = [userInfo.details objectForKey:featuredDetail2Key];
         featuredDetail2Label.text = email ? email : @"";
     }
+    
+    addToFavoritesButton.enabled =
+        ![favoriteUsersStateReader.favoriteUsers containsObject:username];
 }
 
 #pragma mark Table view methods
@@ -280,6 +290,12 @@ enum Section
         [[ABPersonViewController alloc] init];
     [self presentModalViewController:personViewController animated:YES];
     [personViewController release];
+}
+
+- (IBAction)addFavorite:(id)sender
+{
+    [favoriteUsersStateSetter addFavoriteUser:username];
+    addToFavoritesButton.enabled = NO;
 }
 
 @end

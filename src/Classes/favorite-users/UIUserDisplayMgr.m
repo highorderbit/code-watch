@@ -15,7 +15,7 @@
     [userCacheReader release];
     [repoSelector release];
     [gitHubService release];
-    
+
     [username release];
     
     [super dealloc];

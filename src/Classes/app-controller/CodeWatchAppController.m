@@ -163,7 +163,12 @@
 
 - (UserViewController *)createUserViewController
 {
-    return [[UserViewController alloc] initWithNibName:@"UserView" bundle:nil];
+    UserViewController * userViewController =
+        [[UserViewController alloc] initWithNibName:@"UserView" bundle:nil];
+    userViewController.favoriteUsersStateReader = favoriteUsersState;
+    userViewController.favoriteUsersStateSetter = favoriteUsersState;
+    
+    return userViewController;
 }
 
 - (RepoViewController *)createRepoViewController
