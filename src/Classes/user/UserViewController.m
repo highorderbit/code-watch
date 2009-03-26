@@ -50,7 +50,7 @@ enum Section
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     [self setFeaturedDetail1Key:@"name"];
     [self setFeaturedDetail2Key:@"email"];
     
@@ -64,7 +64,7 @@ enum Section
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+        
     NSIndexPath * selectedRow = [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:selectedRow animated:NO];
     

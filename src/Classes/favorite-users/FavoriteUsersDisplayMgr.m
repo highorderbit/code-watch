@@ -4,27 +4,31 @@
 
 #import "FavoriteUsersDisplayMgr.h"
 
-@interface FavoriteUsersDisplayMgr (Private)
-
-@property (readonly) NetworkAwareViewController * networkAwareViewController;
-@property (readonly) UserDisplayMgr * userDisplayMgr;
-
-@end
-
 @implementation FavoriteUsersDisplayMgr
 
 - (void)dealloc
 {
     [viewController release];
-    [navigationController release];
-    [networkAwareViewController release];
     
     [favoriteUsersStateReader release];
     [favoriteUsersStateSetter release];
     
-    [userCacheReader release];
-    
     [super dealloc];
+}
+
+- (id)initWithViewController:(FavoriteUsersViewController *)aViewController
+    stateReader:(NSObject<FavoriteUsersStateReader> *)stateReader
+    stateSetter:(NSObject<FavoriteUsersStateSetter> *)stateSetter
+    userDisplayMgr:(NSObject<UserDisplayMgr> *)aUserDisplayMgr
+{
+    if (self = [super init]) {
+        viewController = [aViewController retain];
+        favoriteUsersStateReader = [stateReader retain];
+        favoriteUsersStateSetter = [stateSetter retain];
+        userDisplayMgr = [aUserDisplayMgr retain];
+    }
+    
+    return self;
 }
 
 #pragma mark FavoriteUsersViewControllerDelegate implementation
@@ -49,51 +53,8 @@
 }
 
 - (void)selectedUsername:(NSString *)username
-{
-    self.userDisplayMgr.username = username;
-    [navigationController pushViewController:self.networkAwareViewController
-        animated:YES];
-    // delegate to some user display manager
-    // [userDisplayMgr displayUserInfoForUser:username];
-    // concrete type is UIUserDisplayMgr
-    // This class shouldn't have to create the display manager
-    // Does this type have to be instantiated in the MainWindow.xib?
-    //   NO - Only some view controllers must be instantiated in the nib
-    // Instantiate this in the app controller with cache, viewController, etc.
-    //   arguments in the initializer
-}
-
-#pragma mark Accessor methods
-
-- (NetworkAwareViewController *)networkAwareViewController
-{
-    if (!networkAwareViewController) {
-        networkAwareViewController =
-            [[NetworkAwareViewController alloc]
-            initWithTargetViewController:nil];
-    }
-    
-    return networkAwareViewController;
-}
-
-- (UserDisplayMgr *)userDisplayMgr
-{
-    if (!userDisplayMgr) {
-        UserViewController * userViewController =
-           [[UserViewController alloc] initWithNibName:@"UserView" bundle:nil];
-
-        userDisplayMgr =
-            [[UserDisplayMgr alloc]
-            initWithNetworkAwareViewController:self.networkAwareViewController
-            userViewController:userViewController
-            userCacheReader:userCacheReader repoSelector:nil gitHubService:nil];
-        // UserDisplayMgrFactory createDisplayMgr
-            
-        userViewController.delegate = userDisplayMgr;
-        networkAwareViewController.delegate = userDisplayMgr;
-    }
-    
-    return userDisplayMgr;
+{    
+    [userDisplayMgr displayUserInfoForUsername:username];
 }
 
 @end

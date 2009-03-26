@@ -7,11 +7,14 @@
 
 @interface FavoriteUsersViewController : UITableViewController
 {
-    IBOutlet NSObject<FavoriteUsersViewControllerDelegate> * delegate;
+    NSObject<FavoriteUsersViewControllerDelegate> * delegate;
     NSMutableArray * sortedUsernames;
     
     UIBarButtonItem * rightButton;
 }
+
+@property (nonatomic, retain)
+    NSObject<FavoriteUsersViewControllerDelegate> * delegate;
 
 - (void)setUsernames:(NSArray *)usernames;
 
