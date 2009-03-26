@@ -102,17 +102,20 @@
     }
 }
 
-#pragma mark Fetching user info from GitHub
+#pragma mark Fetching user info
 
 - (void)fetchInfoForUsername:(NSString *)username
 {
     [[UIApplication sharedApplication] networkActivityIsStarting];
 
+    NSString * token = nil;
     if ([self isPrimaryUser:username])
-        [gitHub fetchInfoForUsername:username token:logInStateReader.token];
-    else
-        [gitHub fetchInfoForUsername:username];
+        token = logInStateReader.token;
+
+    [gitHub fetchInfoForUsername:username token:token];
 }
+
+#pragma mark Fetching repo info
 
 - (void)fetchInfoForRepo:(NSString *)repo username:(NSString *)username
 {
@@ -123,6 +126,22 @@
         token = logInStateReader.token;
 
     [gitHub fetchInfoForRepo:repo username:username token:token];
+}
+
+#pragma mark Fetching commit info
+
+- (void)fetchInfoForCommit:(NSString *)commitKey
+                      repo:(NSString *)repo
+                  username:(NSString *)username
+{
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
+    NSString * token = nil;
+    if ([self isPrimaryUser:username])
+        token = logInStateReader.token;
+
+    [gitHub
+        fetchInfoForCommit:commitKey repo:repo username:username token:token];
 }
 
 #pragma mark GitHubDelegate implementation
@@ -178,14 +197,28 @@
     repoInfo = [[[RepoInfo alloc] initWithDetails:repoInfo.details
                                        commitKeys:commitKeys] autorelease];
 
-    NSLog(@"Caching repo info for repo: '%@'.", repo);
     [self cacheRepoInfo:repoInfo forUsername:username repoName:repo];
-    NSLog(@"Caching commit info for repo: '%@'.", repo);
     [self cacheCommits:commitInfos forUsername:username repo:repo];
 
     SEL selector = @selector(commits:fetchedForRepo:username:);
     if ([delegate respondsToSelector:selector])
         [delegate commits:commitInfos fetchedForRepo:repo username:username];
+}
+
+- (void)commitDetails:(NSDictionary *)details
+    fetchedForCommit:(NSString *)commitKey repo:(NSString *)repo
+    username:(NSString *)username token:(NSString *)token
+{
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+
+    CommitInfo * commitInfo =
+        [[CommitInfo alloc] initWithDetails:[details objectForKey:@"commit"]];
+    [commitCacheSetter setCommit:commitInfo forKey:commitKey];
+
+    SEL selector = @selector(commitInfo:fetchedForCommit:repo:username:);
+    if ([delegate respondsToSelector:selector])
+        [delegate commitInfo:commitInfo fetchedForCommit:commitKey
+            repo:repo username:username];
 }
 
 - (void)failedToFetchInfoForRepo:(NSString *)repo
@@ -194,9 +227,20 @@
 {
     [[UIApplication sharedApplication] networkActivityDidFinish];
 
-    // TODO: Do something meaningful here
-    NSLog(@"Failed to fetch info for repo: user: '%@', repo: '%@', error: '%@'",
-        username, repo, error);
+    SEL selector = @selector(failedToFetchInfoForRepo:username:error:);
+    if ([delegate respondsToSelector:selector])
+        [delegate failedToFetchInfoForRepo:repo username:username error:error];
+}
+
+- (void)failedToFetchInfoForCommit:(NSString *)commit repo:(NSString *)repo
+    username:(NSString *)username token:(NSString *)token error:(NSError *)error
+{
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+
+    SEL selector = @selector(failedToFetchInfoForCommit:repo:username:error:);
+    if ([delegate respondsToSelector:selector])
+        [delegate failedToFetchInfoForCommit:commit repo:repo username:username
+            error:error];
 }
 
 #pragma mark Persisting received data

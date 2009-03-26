@@ -4,7 +4,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class UserInfo, RepoInfo;
+@class UserInfo, RepoInfo, CommitInfo;
 
 @protocol GitHubServiceDelegate <NSObject>
 
@@ -35,5 +35,18 @@
 - (void)failedToFetchInfoForRepo:(NSString *)repo
                         username:(NSString *)username
                            error:(NSError *)error;
+
+#pragma mark Fetching commit information
+
+@optional
+
+- (void)commitInfo:(CommitInfo *)commitInfo
+  fetchedForCommit:(NSString *)commitKey
+              repo:(NSString *)repo
+          username:(NSString *)username;
+- (void)failedToFetchInfoForCommit:(NSString *)commitKey
+                              repo:(NSString *)repo
+                          username:(NSString *)username
+                             error:(NSError *)error;
 
 @end

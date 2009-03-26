@@ -11,6 +11,11 @@
 #import "NSError+InstantiationAdditions.h"
 
 @interface GitHub (Private)
++ (GitHubApiRequest *)requestForUrl:(NSString *)urlString;
++ (GitHubApiRequest *)requestForUrl:(NSString *)urlString
+                           username:(NSString *)username
+                              token:(NSString *)token;
+
 - (NSString *)baseApiUrl;
 - (NSInvocation *)invocationForRequest:(GitHubApiRequest *)request;
 - (void)setInvocation:(NSInvocation *)invocation
@@ -63,11 +68,6 @@
 
 #pragma mark Working with repositories
 
-- (void)fetchInfoForUsername:(NSString *)username
-{
-    [self fetchInfoForUsername:username token:nil];
-}
-
 - (void)fetchInfoForUsername:(NSString *)username token:(NSString *)token
 {
     NSURL * url =
@@ -97,6 +97,8 @@
     [api sendRequest:req];
 }
 
+#pragma mark Fetch repo info
+
 - (void)fetchInfoForRepo:(NSString *)repo
                 username:(NSString *)username
                    token:(NSString *)token
@@ -122,6 +124,35 @@
     [inv setArgument:&username atIndex:4];
     [inv setArgument:&token atIndex:5];
     [inv setArgument:&repo atIndex:6];
+    [inv retainArguments];
+
+    [self setInvocation:inv forRequest:req];
+
+    [api sendRequest:req];
+}
+
+- (void)fetchInfoForCommit:(NSString *)commitKey
+                      repo:(NSString *)repo
+                  username:(NSString *)username
+                     token:(NSString *)token
+{
+    NSString * urlString = [NSString stringWithFormat:@"%@/%@/%@/commit/%@",
+        [self baseApiUrl], username, repo, commitKey];
+
+    GitHubApiRequest * req =
+        [[self class] requestForUrl:urlString username:username token:token];
+
+    SEL sel =
+        @selector(handleCommitResponse:toRequest:username:token:repo:commit:);
+    NSMethodSignature * sig = [self methodSignatureForSelector:sel];
+    NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
+
+    [inv setTarget:self];
+    [inv setSelector:sel];
+    [inv setArgument:&username atIndex:4];
+    [inv setArgument:&token atIndex:5];
+    [inv setArgument:&repo atIndex:6];
+    [inv setArgument:&commitKey atIndex:7];
     [inv retainArguments];
 
     [self setInvocation:inv forRequest:req];
@@ -191,13 +222,13 @@
                       repo:(NSString *)repo
 {
     if ([response isKindOfClass:[NSError class]]) {
-        SEL selector = @selector(failedToFetchInfoForRepo:username:error:);
-        if ([delegate respondsToSelector:selector]) {
+        //SEL selector = @selector(failedToFetchInfoForRepo:username:error:);
+        //if ([delegate respondsToSelector:selector]) {
             [delegate failedToFetchInfoForRepo:repo
                                       username:username
                                          error:response];
             return;
-        }
+        //}
     }
 
     NSDictionary * details = [parser parseResponse:response];
@@ -213,7 +244,59 @@
     }
 }
 
+- (void)handleCommitResponse:(id)response
+                   toRequest:(GitHubApiRequest *)request
+                    username:(NSString *)username
+                       token:(NSString *)token
+                        repo:(NSString *)repo
+                      commit:(NSString *)commitKey
+{
+    if ([response isKindOfClass:[NSError class]]) {
+        [delegate failedToFetchInfoForCommit:commitKey
+                                        repo:repo
+                                    username:username
+                                       token:token
+                                       error:response];
+        return;
+    }
+
+    NSDictionary * details = [parser parseResponse:response];
+    NSLog(@"Have commit details: '%@'", details);
+
+    if (details)
+        [delegate commitDetails:details fetchedForCommit:commitKey
+           repo:repo username:username token:token];
+    else {
+        NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
+        NSError * err = [NSError errorWithLocalizedDescription:desc];
+        [delegate failedToFetchInfoForCommit:commitKey repo:repo
+            username:username token:token error:err];
+    }
+}
+
 #pragma mark Functions to help with building API URLs
+
++ (GitHubApiRequest *)requestForUrl:(NSString *)urlString
+{
+    return [[self class] requestForUrl:urlString username:nil token:nil];
+}
+
++ (GitHubApiRequest *)requestForUrl:(NSString *)urlString
+                           username:(NSString *)username
+                              token:(NSString *)token
+{
+    NSURL * url = [NSURL URLWithString:urlString];
+
+    GitHubApiRequest * req;
+    if (token) {
+        NSDictionary * args = [NSDictionary dictionaryWithObjectsAndKeys:
+            username, @"login", token, @"token", nil];
+        req = [[GitHubApiRequest alloc] initWithBaseUrl:url arguments:args];
+    } else
+        req = [[GitHubApiRequest alloc] initWithBaseUrl:url];
+    
+    return req;
+}
 
 - (NSString *)baseApiUrl
 {

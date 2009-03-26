@@ -3,11 +3,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommitViewControllerDelegate.h"
 
 @class CommitInfo;
 
 @interface CommitViewController : UITableViewController
 {
+    IBOutlet NSObject<CommitViewControllerDelegate> * delegate;
+
     IBOutlet UIView * headerView;
 
     IBOutlet UIImageView * avatarImageView;
@@ -19,6 +22,9 @@
 }
 
 @property (nonatomic, copy, readonly) CommitInfo * commitInfo;
+
+// TODO: Remove when wired in the nib
+@property (nonatomic, retain) NSObject<CommitViewControllerDelegate> * delegate;
 
 #pragma mark Updating the view with new data
 

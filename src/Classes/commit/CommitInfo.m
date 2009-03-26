@@ -3,6 +3,7 @@
 //
 
 #import "CommitInfo.h"
+#import "NSObject+RunTimeAdditions.h"
 
 @implementation CommitInfo
 
@@ -14,6 +15,11 @@
         details = [someDetails copy];
 
     return self;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@: %@", [self className], details];
 }
 
 #pragma mark NSCopying implementation

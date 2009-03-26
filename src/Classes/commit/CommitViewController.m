@@ -4,6 +4,7 @@
 
 #import "CommitViewController.h"
 #import "CommitInfo.h"
+#import "UIColor+CodeWatchColors.h"
 
 static const NSUInteger NUM_SECTIONS = 2;
 enum
@@ -15,9 +16,9 @@ enum
 static const NSUInteger NUM_DIFF_ROWS = 3;
 enum
 {
-    kRemovedRow,
     kAddedRow,
-    kChangedRow
+    kRemovedRow,
+    kModifiedRow
 } kDiffRows;
 
 static const NSUInteger NUM_ACTION_ROWS = 2;
@@ -28,15 +29,21 @@ enum
 };
 
 @interface CommitViewController (Private)
+- (void)formatDiffCell:(UITableViewCell *)cell
+         withChangeset:(NSArray *)changes
+  singularFormatString:(NSString *)singularFormatString
+    pluralFormatString:(NSString *)pluralFormatString;
 - (void)setCommitInfo:(CommitInfo *)info;
 @end
 
 @implementation CommitViewController
 
-@synthesize commitInfo;
+@synthesize delegate, commitInfo;
 
 - (void)dealloc
 {
+    [delegate release];
+
     [headerView release];
 
     [avatarImageView release];
@@ -56,34 +63,6 @@ enum
     headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.tableHeaderView = headerView;
 }
-
-/*
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-*/
-
-/*
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-*/
-
-/*
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-*/
-
-/*
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-*/
 
 #pragma mark Table view methods
 
@@ -114,7 +93,7 @@ enum
 - (UITableViewCell *)tableView:(UITableView *)tv
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * CellIdentifier = @"Cell";
+    static NSString * CellIdentifier = @"CommitViewTableViewCell";
 
     UITableViewCell * cell =
         [tv dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -126,20 +105,45 @@ enum
              autorelease];
 
     switch (indexPath.section) {
-        case kDiffSection:
+        case kDiffSection: {
+            NSString * pluralFormatString, * singularFormatString;
+            NSArray * changeset;
             switch (indexPath.row) {
                 case kAddedRow:
-                    cell.text = @"Added";
+                    pluralFormatString =
+                        NSLocalizedString(@"commit.added.plural.formatstring",
+                            @"");
+                    singularFormatString =
+                        NSLocalizedString(@"commit.added.singular.formatstring",
+                            @"");
+                    changeset = [commitInfo.details objectForKey:@"added"];
                     break;
                 case kRemovedRow:
-                    cell.text = @"Removed";
+                    pluralFormatString =
+                        NSLocalizedString(@"commit.removed.plural.formatstring",
+                            @"");
+                    singularFormatString =
+                        NSLocalizedString(
+                            @"commit.removed.singular.formatstring", @"");
+                    changeset = [commitInfo.details objectForKey:@"removed"];
                     break;
-                case kChangedRow:
-                    cell.text = @"Modified";
+                case kModifiedRow:
+                    pluralFormatString =
+                        NSLocalizedString(
+                            @"commit.modified.plural.formatstring",
+                            @"");
+                    singularFormatString =
+                        NSLocalizedString(
+                            @"commit.modified.singular.formatstring",
+                            @"");
+                    changeset = [commitInfo.details objectForKey:@"modified"];
                     break;
             }
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            [self formatDiffCell:cell withChangeset:changeset
+                singularFormatString:singularFormatString
+                pluralFormatString:pluralFormatString];
             break;
+        }
 
         case kActionSection:
             switch (indexPath.row) {
@@ -155,70 +159,86 @@ enum
 
     return cell;
 }
+
 - (NSIndexPath *) tableView:(UITableView *)tv
    willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == kDiffSection) {
+        NSArray * changeset = nil;
+        switch (indexPath.row) {
+            case kAddedRow:
+                changeset = [commitInfo.details objectForKey:@"added"];
+                break;
+            case kRemovedRow:
+                changeset = [commitInfo.details objectForKey:@"removed"];
+                break;
+            case kModifiedRow:
+                changeset = [commitInfo.details objectForKey:@"modified"];
+                break;
+        }
+
+        return changeset.count == 0 ? nil : indexPath;
+    }
+
     return nil;
 }
 
 - (void)          tableView:(UITableView *)tv
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    // AnotherViewController *anotherViewController =
-    //     [[AnotherViewController alloc]
-    //      initWithNibName:@"AnotherView" bundle:nil];
-    // [self.navigationController pushViewController:anotherViewController];
-    // [anotherViewController release];
+    if (indexPath.section == kDiffSection) {
+        NSArray * changeset = nil;
+        ChangesetType changesetType;
+
+        switch (indexPath.row) {
+            case kAddedRow:
+                changeset = [commitInfo.details objectForKey:@"added"];
+                changesetType = kChangesetTypeAdded;
+                break;
+            case kRemovedRow:
+                changeset = [commitInfo.details objectForKey:@"removed"];
+                changesetType = kChangesetTypeRemoved;
+                break;
+            case kModifiedRow:
+                changeset = [commitInfo.details objectForKey:@"modified"];
+                changesetType = kChangesetTypeModified;
+                break;
+        }
+
+        [delegate userDidSelectChangeset:changeset ofType:changesetType];
+    }
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)        tableView:(UITableView *)tv
-    canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+#pragma mark UI helpers
 
-/*
-// Override to support editing the table view.
-- (void)     tableView:(UITableView *)tv
-    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-     forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)formatDiffCell:(UITableViewCell *)cell
+         withChangeset:(NSArray *)changes
+  singularFormatString:(NSString *)singularFormatString
+    pluralFormatString:(NSString *)pluralFormatString
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView
-         deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-               withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the
-        // array, and add a new row to the table view
-    }   
-}
-*/
+    NSString * text =
+        changes.count == 1 ?
+        [NSString stringWithFormat:singularFormatString, changes.count] :
+        [NSString stringWithFormat:pluralFormatString, changes.count];
 
-/*
-// Override to support rearranging the table view.
-- (void)     tableView:(UITableView *)tv
-    moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
-           toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+    UIColor * textColor = changes.count == 0 ?
+        [UIColor codeWatchGrayColor] : [UIColor blackColor];
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)        tableView:(UITableView *)tv
-    canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+    UITableViewCellAccessoryType accessoryType =
+        changes.count == 0 ?
+        UITableViewCellAccessoryNone :
+        UITableViewCellAccessoryDisclosureIndicator;
+
+    UITableViewCellSelectionStyle selectionStyle =
+        changes.count == 0 ?
+        UITableViewCellSelectionStyleNone :
+        UITableViewCellSelectionStyleBlue;
+
+    cell.text = text;
+    cell.textColor = textColor;
+    cell.accessoryType = accessoryType;
+    cell.selectionStyle = selectionStyle;
 }
-*/
 
 #pragma mark Updating the view with new data
 

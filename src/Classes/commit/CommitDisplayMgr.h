@@ -6,15 +6,25 @@
 #import "CommitSelector.h"
 #import "CommitCacheReader.h"
 #import "GitHubServiceDelegate.h"
+#import "CommitViewControllerDelegate.h"
+#import "ChangesetViewControllerDelegate.h"
 
-@class NetworkAwareViewController, CommitViewController, GitHubService;
+@class NetworkAwareViewController;
+@class CommitViewController, ChangesetViewController, DiffViewController;
+@class GitHubService;
 
-@interface CommitDisplayMgr : NSObject <CommitSelector, GitHubServiceDelegate>
+@interface CommitDisplayMgr :
+    NSObject
+    <CommitSelector, GitHubServiceDelegate,
+     CommitViewControllerDelegate, ChangesetViewControllerDelegate>
 {
     IBOutlet UINavigationController * navigationController;
 
     IBOutlet NetworkAwareViewController * networkAwareViewController;
     IBOutlet CommitViewController * commitViewController;
+
+    ChangesetViewController * changesetViewController;
+    DiffViewController * diffViewController;
 
     IBOutlet NSObject<CommitCacheReader> * commitCacheReader;
 

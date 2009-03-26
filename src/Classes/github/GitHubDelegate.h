@@ -22,4 +22,13 @@
 - (void)failedToFetchInfoForRepo:(NSString *)repo username:(NSString *)username
     error:(NSError *)error;
 
+#pragma mark Fetching commit information
+
+- (void)commitDetails:(NSDictionary *)details
+    fetchedForCommit:(NSString *)commitKey repo:(NSString *)repo
+    username:(NSString *)username token:(NSString *)token;
+- (void)failedToFetchInfoForCommit:(NSString *)commit repo:(NSString *)repo
+    username:(NSString *)username token:(NSString *)token
+    error:(NSError *)error;
+
 @end
