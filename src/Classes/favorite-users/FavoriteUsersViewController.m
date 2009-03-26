@@ -6,6 +6,8 @@
 
 @implementation FavoriteUsersViewController
 
+@synthesize delegate;
+
 - (void)dealloc
 {
     [delegate release];

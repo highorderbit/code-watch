@@ -2,14 +2,13 @@
 //  Copyright 2009 High Order Bit, Inc. All rights reserved.
 //
 
-#import "UserDisplayMgr.h"
+#import "UIUserDisplayMgr.h"
 
-@implementation UserDisplayMgr
-
-@synthesize username;
+@implementation UIUserDisplayMgr
 
 - (void)dealloc
 {
+    [navigationController release];
     [networkAwareViewController release];
     [userViewController release];
 
@@ -22,7 +21,9 @@
     [super dealloc];
 }
 
-- (id)initWithNetworkAwareViewController:
+- (id)initWithNavigationController:
+    (UINavigationController *)aNavigationController
+    networkAwareViewController:
     (NetworkAwareViewController *)aNetworkAwareViewController
     userViewController:
     (UserViewController *)aUserViewController
@@ -34,11 +35,16 @@
     (GitHubService *)aGitHubService
 {
     if (self = [super init]) {
+        navigationController = aNavigationController;
         networkAwareViewController = aNetworkAwareViewController;
         userViewController = aUserViewController;
         userCacheReader = aUserCacheReader;
         repoSelector = aRepoSelector;
         gitHubService = aGitHubService;
+        
+        [networkAwareViewController
+            setNoConnectionText:
+            NSLocalizedString(@"nodata.noconnection.text", @"")];
     }
     
     return self;
@@ -46,18 +52,7 @@
 
 - (void)viewWillAppear
 {
-    [networkAwareViewController
-        setNoConnectionText:
-        NSLocalizedString(@"nodata.noconnection.text", @"")];
-    
-    [gitHubService fetchInfoForUsername:username];
-
-    UserInfo * userInfo = [userCacheReader primaryUser];
-    [userViewController setUsername:username];
-    [userViewController updateWithUserInfo:userInfo];
-
-    [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
-    [networkAwareViewController setCachedDataAvailable:!!userInfo];
+    [self displayUserInfoForUsername:username];
 }
 
 #pragma mark UserViewControllerDelegate implementation
@@ -81,6 +76,29 @@
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
 {
     [networkAwareViewController setUpdatingState:kDisconnected];
+}
+
+#pragma mark UserDisplayMgr implementation
+
+- (void)displayUserInfoForUsername:(NSString *)aUsername
+{
+    aUsername = [aUsername copy];
+    [username release];
+    username = aUsername;
+    
+    [gitHubService fetchInfoForUsername:username];
+
+    UserInfo * userInfo = [userCacheReader userWithUsername:username];
+    [userViewController setUsername:username];
+    [userViewController updateWithUserInfo:userInfo];
+
+    [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
+    [networkAwareViewController setCachedDataAvailable:!!userInfo];
+    
+    [navigationController
+        pushViewController:networkAwareViewController animated:YES];
+    networkAwareViewController.navigationItem.title =
+        NSLocalizedString(@"user.view.title", @"");
 }
 
 @end

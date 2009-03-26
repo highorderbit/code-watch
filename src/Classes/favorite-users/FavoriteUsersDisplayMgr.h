@@ -9,24 +9,22 @@
 #import "FavoriteUsersStateSetter.h"
 #import "UserViewController.h"
 #import "NetworkAwareViewController.h"
-#import "UserDisplayMgr.h"
+#import "UIUserDisplayMgr.h"
 
 @interface FavoriteUsersDisplayMgr :
     NSObject <FavoriteUsersViewControllerDelegate>
 {
-    IBOutlet FavoriteUsersViewController * viewController;
-    IBOutlet UINavigationController * navigationController;
-    NetworkAwareViewController * networkAwareViewController;
+    FavoriteUsersViewController * viewController;
     
-    IBOutlet NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
-    IBOutlet NSObject<FavoriteUsersStateSetter> * favoriteUsersStateSetter;
+    NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
+    NSObject<FavoriteUsersStateSetter> * favoriteUsersStateSetter;
     
-    // TODO: remove this in favor of a factory that creates the
-    // networkAwareViewController, which will also allow the removal of the
-    // navigationController field
-    IBOutlet NSObject<UserCacheReader> * userCacheReader;
-    
-    UserDisplayMgr * userDisplayMgr;
+    NSObject<UserDisplayMgr> * userDisplayMgr;
 }
+
+- (id)initWithViewController:(FavoriteUsersViewController *)viewController
+    stateReader:(NSObject<FavoriteUsersStateReader> *)stateReader
+    stateSetter:(NSObject<FavoriteUsersStateSetter> *)stateSetter
+    userDisplayMgr:(NSObject<UserDisplayMgr> *)userDisplayMgr;
 
 @end
