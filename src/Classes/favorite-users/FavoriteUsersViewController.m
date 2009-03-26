@@ -79,6 +79,7 @@
 - (void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [delegate selectedUsername:[sortedUsernames objectAtIndex:indexPath.row]];
 }
 
 - (UITableViewCellAccessoryType)tableView:(UITableView *)tableView

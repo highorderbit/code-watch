@@ -24,6 +24,8 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
 
 @implementation NetworkAwareViewController
 
+@synthesize delegate;
+
 - (void)dealloc {
     [delegate release];
     
@@ -39,13 +41,26 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
     [super dealloc];
 }
 
-- (void) awakeFromNib
+- (void)awakeFromNib
 {
-    [self noDataViewController].view.backgroundColor =
-        [UIColor groupTableViewBackgroundColor];
+    [self initWithTargetViewController:targetViewController];
+}
+
+- (id)initWithTargetViewController:(UIViewController *) aTargetViewController
+{
+    if (self = [super init]) {
+        [self noDataViewController].view.backgroundColor =
+            [UIColor groupTableViewBackgroundColor];
         
-    [self setUpdatingText:NSLocalizedString(@"nodata.updating.text", @"")];
-    [self setLoadingText:NSLocalizedString(@"nodata.loading.text", @"")];
+        [self setUpdatingText:NSLocalizedString(@"nodata.updating.text", @"")];
+        [self setLoadingText:NSLocalizedString(@"nodata.loading.text", @"")];
+                
+        [aTargetViewController retain];
+        [targetViewController release];
+        targetViewController = aTargetViewController;
+    }
+    
+    return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated

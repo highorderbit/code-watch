@@ -1,12 +1,13 @@
 //
-//  Copyright 2009 High Order Bit, Inc.. All rights reserved.
+//  Copyright 2009 High Order Bit, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "UserInfo.h"
 #import "UserViewControllerDelegate.h"
 
-@interface UserViewController : UITableViewController {
+@interface UserViewController : UITableViewController
+{
     IBOutlet NSObject<UserViewControllerDelegate> * delegate;
 
     IBOutlet UIView * headerView;
@@ -25,6 +26,8 @@
     
     NSMutableDictionary * nonFeaturedDetails;
 }
+
+@property (nonatomic, retain) NSObject<UserViewControllerDelegate> * delegate;
 
 - (void)setUsername:(NSString *)username;
 - (void)updateWithUserInfo:(UserInfo *)userInfo;

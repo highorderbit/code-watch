@@ -30,6 +30,11 @@ enum UpdatingState
     UIView * updatingView;
 }
 
+@property (nonatomic, retain)
+    NSObject<NetworkAwareViewControllerDelegate> * delegate;
+
+- (id)initWithTargetViewController:(UIViewController *)targetViewController;
+
 - (void)setUpdatingState:(NSInteger)state;
 - (void)setCachedDataAvailable:(BOOL)available;
 
