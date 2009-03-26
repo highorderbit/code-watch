@@ -12,7 +12,7 @@
 #import "NetworkAwareViewControllerDelegate.h"
 #import "RepoSelector.h"
 
-@interface UserDisplayMgr :
+@interface PrimaryUserDisplayMgr :
     NSObject
     <NetworkAwareViewControllerDelegate, GitHubServiceDelegate,
     UserViewControllerDelegate>

@@ -25,6 +25,8 @@ enum Section
 
 @implementation UserViewController
 
+@synthesize delegate;
+
 - (void) dealloc
 {
     [delegate release];
@@ -45,7 +47,7 @@ enum Section
     [super dealloc];
 }
 
-- (void) viewDidLoad
+- (void)viewDidLoad
 {
     [super viewDidLoad];
 
@@ -59,7 +61,7 @@ enum Section
     self.tableView.tableFooterView = footerView;
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
