@@ -10,6 +10,8 @@
 #import "RepoDisplayMgr.h"
 #import "RepoViewController.h"
 #import "UIRecentActivityDisplayMgr.h"
+#import "CommitDisplayMgr.h"
+#import "CommitViewController.h"
 
 @interface CodeWatchAppController (Private)
 
@@ -26,9 +28,13 @@
 - (NSObject<RecentActivityDisplayMgr> *)
     createRecentActivityDisplayMgrWithNavigationController:
     (UINavigationController *)navigationController;
+- (NSObject<CommitSelector> *)
+    createCommitSelectorWithNavigationController:
+    (UINavigationController *)navigationController;
 
 - (UserViewController *)createUserViewController;
 - (RepoViewController *)createRepoViewController;
+- (CommitViewController *)createCommitViewController;
 - (NewsFeedTableViewController *)createNewsFeedTableViewController;
 - (NetworkAwareViewController *)createNetworkAwareControllerWithTarget:target;
 
@@ -153,18 +159,48 @@
 
     GitHubService * gitHubService = [self createGitHubService];
     
+    NSObject<CommitSelector> * commitSelector =
+        [self createCommitSelectorWithNavigationController:
+        navigationController];
+    
     RepoDisplayMgr * repoDisplayMgr = 
         [[RepoDisplayMgr alloc] initWithLogInStateReader:logInState
         repoCacheReader:repoCache commitCacheReader:commitCache
         navigationController:navigationController
         networkAwareViewController:networkAwareViewController
         repoViewController:repoViewController gitHubService:gitHubService
-        commitSelector:nil];
+        commitSelector:commitSelector];
         
     repoViewController.delegate = repoDisplayMgr;
     gitHubService.delegate = repoDisplayMgr;
         
     return repoDisplayMgr;
+}
+
+- (NSObject<CommitSelector> *)
+    createCommitSelectorWithNavigationController:
+    (UINavigationController *)navigationController
+{
+    CommitViewController * commitViewController =
+        [self createCommitViewController];
+        
+    NetworkAwareViewController * networkAwareViewController =
+        [self createNetworkAwareControllerWithTarget:commitViewController];
+    
+    GitHubService * gitHubService = [self createGitHubService];
+        
+    CommitDisplayMgr * commitDisplayMgr =
+        [[CommitDisplayMgr alloc]
+        initWithNavigationController:navigationController
+        networkAwareViewController:networkAwareViewController
+        commitViewController:commitViewController
+        commitCacheReader:commitCache
+        gitHubService:gitHubService];
+    
+    commitViewController.delegate = commitDisplayMgr;
+    gitHubService.delegate = commitDisplayMgr;
+    
+    return commitDisplayMgr;
 }
 
 - (NSObject<RecentActivityDisplayMgr> *)
@@ -181,10 +217,10 @@
         
     UIRecentActivityDisplayMgr * recentActivityDisplayMgr =
         [[UIRecentActivityDisplayMgr alloc]
-            initWithNavigationController:navigationController
-            networkAwareViewController:networkAwareViewController
-            newsFeedTableViewController:newsFeedViewController
-            gitHubService:gitHubService];
+        initWithNavigationController:navigationController
+        networkAwareViewController:networkAwareViewController
+        newsFeedTableViewController:newsFeedViewController
+        gitHubService:gitHubService];
     
     return recentActivityDisplayMgr;
 }
@@ -204,6 +240,12 @@
 - (RepoViewController *)createRepoViewController
 {
     return [[RepoViewController alloc] initWithNibName:@"RepoView" bundle:nil];
+}
+
+- (CommitViewController *)createCommitViewController
+{
+    return [[CommitViewController alloc]
+        initWithNibName:@"CommitView" bundle:nil];
 }
 
 - (NewsFeedTableViewController *)createNewsFeedTableViewController

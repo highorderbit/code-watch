@@ -31,4 +31,15 @@
     IBOutlet GitHubService * gitHub;
 }
 
+- (id)initWithNavigationController:
+    (UINavigationController *) navigationController
+    networkAwareViewController:
+    (NetworkAwareViewController *)networkAwareViewController
+    commitViewController:
+    (CommitViewController *)commitViewController
+    commitCacheReader:
+    (NSObject<CommitCacheReader> *) commitCacheReader
+    gitHubService:
+    (GitHubService *) gitHub;
+
 @end
