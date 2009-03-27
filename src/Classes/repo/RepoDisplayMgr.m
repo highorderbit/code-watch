@@ -86,13 +86,14 @@
 
     [gitHub fetchInfoForRepo:repo username:username];
 
-    [navigationController
-        pushViewController:networkAwareViewController animated:YES];
     networkAwareViewController.navigationItem.title =
         NSLocalizedString(@"repo.view.title", @"");
 
     [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
     [networkAwareViewController setCachedDataAvailable:cachedDataAvailable];    
+
+    [navigationController
+        pushViewController:networkAwareViewController animated:YES];
 }
 
 #pragma mark GitHubServiceDelegate implementation

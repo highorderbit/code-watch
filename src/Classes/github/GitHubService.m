@@ -16,6 +16,7 @@
     repoName:(NSString *)repoName;
 - (void)cacheCommits:(NSDictionary *)commits forUsername:(NSString *)username
     repo:(NSString *)repoName;
+- (void)cacheCommit:(CommitInfo *)commit forKey:(NSString *)commitKey;
 
 + (UserInfo *)extractUserInfo:(NSDictionary *)gitHubInfo;
 + (NSDictionary *)extractUserDetails:(NSDictionary *)gitHubInfo;
@@ -23,6 +24,7 @@
 + (NSDictionary *)extractRepoInfos:(NSDictionary *)gitHubInfo;
 + (NSArray *)extractCommitKeys:(NSDictionary *)gitHubInfo;
 + (NSDictionary *)extractCommitInfos:(NSDictionary *)gitHubInfo;
++ (NSDictionary *)extractChangesets:(NSDictionary *)gitHubInfo;
 
 - (RepoInfo *)repoInfoForUser:username repo:(NSString *)repo;
 - (BOOL)isPrimaryUser:(NSString *)username;
@@ -235,9 +237,13 @@
 {
     [[UIApplication sharedApplication] networkActivityDidFinish];
 
-    CommitInfo * commitInfo =
-        [[CommitInfo alloc] initWithDetails:[details objectForKey:@"commit"]];
-    [commitCacheSetter setCommit:commitInfo forKey:commitKey];
+    CommitInfo * commitInfo = [commitCacheReader commitWithKey:commitKey];
+    NSDictionary * changesets = [[self class] extractChangesets:details];
+
+    commitInfo = [[[CommitInfo alloc] initWithDetails:commitInfo.details
+       changesets:changesets] autorelease];
+
+    [self cacheCommit:commitInfo forKey:commitKey];
 
     SEL selector = @selector(commitInfo:fetchedForCommit:repo:username:);
     if ([delegate respondsToSelector:selector])
@@ -335,8 +341,17 @@
 
     for (NSString * commitKey in repoInfo.commitKeys) {
         CommitInfo * commit = [commits objectForKey:commitKey];
-        [commitCacheSetter setCommit:commit forKey:commitKey];
+        [self cacheCommit:commit forKey:commitKey];
     }
+}
+
+- (void)cacheCommit:(CommitInfo *)commit forKey:(NSString *)commitKey
+{
+    CommitInfo * cached = [commitCacheReader commitWithKey:commitKey];
+    if (!(cached.details && cached.changesets))
+        // only cache if we don't already have a complete existing copy
+        // since commits don't change
+        [commitCacheSetter setCommit:commit forKey:commitKey];
 }
 
 #pragma mark Parsing received data
@@ -424,6 +439,19 @@
     }
 
     return commitInfos;
+}
+
++ (NSDictionary *)extractChangesets:(NSDictionary *)gitHubInfo
+{
+    NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+
+    NSDictionary * details = [gitHubInfo objectForKey:@"commit"];
+
+    [dict setObject:[details objectForKey:@"added"] forKey:@"added"];
+    [dict setObject:[details objectForKey:@"removed"] forKey:@"removed"];
+    [dict setObject:[details objectForKey:@"modified"] forKey:@"modified"];
+
+    return dict;
 }
 
 #pragma mark Miscellaneous helpers

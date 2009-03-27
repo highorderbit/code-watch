@@ -280,6 +280,7 @@
 			<object class="IBUICustomObject" id="1064436881"/>
 			<object class="IBUICustomObject" id="48078022"/>
 			<object class="IBUICustomObject" id="1027588999"/>
+			<object class="IBUICustomObject" id="739973162"/>
 			<object class="IBUICustomObject" id="759204811"/>
 			<object class="IBUIViewController" id="345750594">
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -1308,6 +1309,30 @@
 					</object>
 					<int key="connectionID">415</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">commitCachePersistenceStore</string>
+						<reference key="source" ref="517652571"/>
+						<reference key="destination" ref="739973162"/>
+					</object>
+					<int key="connectionID">418</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">cacheReader</string>
+						<reference key="source" ref="739973162"/>
+						<reference key="destination" ref="1027588999"/>
+					</object>
+					<int key="connectionID">419</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">cacheSetter</string>
+						<reference key="source" ref="739973162"/>
+						<reference key="destination" ref="1027588999"/>
+					</object>
+					<int key="connectionID">420</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1741,6 +1766,11 @@
 						<reference key="object" ref="1069993124"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">417</int>
+						<reference key="object" ref="739973162"/>
+						<reference key="parent" ref="957960031"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1848,6 +1878,8 @@
 					<string>388.IBPluginDependency</string>
 					<string>393.CustomClassName</string>
 					<string>393.IBPluginDependency</string>
+					<string>417.CustomClassName</string>
+					<string>417.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1960,6 +1992,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>FavoriteUsersPersistenceStore</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>CommitPersistenceStore</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -1982,7 +2016,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">416</int>
+			<int key="maxID">420</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1995,6 +2029,7 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>commitCache</string>
+							<string>commitCachePersistenceStore</string>
 							<string>configReader</string>
 							<string>favoriteUsersNavController</string>
 							<string>favoriteUsersPersistenceStore</string>
@@ -2012,6 +2047,7 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>CommitCache</string>
+							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>UINavigationController</string>
 							<string>NSObject</string>
@@ -2088,6 +2124,27 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/commit/CommitDisplayMgr.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">CommitPersistenceStore</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cacheReader</string>
+							<string>cacheSetter</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSObject</string>
+							<string>NSObject</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/commit/CommitPersistenceStore.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
