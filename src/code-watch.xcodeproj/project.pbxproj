@@ -74,6 +74,7 @@
 		91B6205B0F6C54540077CDB9 /* UserDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */; };
 		91B6205E0F6C54830077CDB9 /* UserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */; };
 		91C248440F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C248430F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m */; };
+		91C248B70F7C8C1E007F8B05 /* ReposIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C248B60F7C8C1E007F8B05 /* ReposIcon.png */; };
 		91CC52350F6C9D98000AD3FB /* NetworkAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */; };
 		91CC52DC0F6DC6C4000AD3FB /* UserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52DB0F6DC6C4000AD3FB /* UserCache.m */; };
 		91CC535A0F6EC311000AD3FB /* PrimaryUserDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC53590F6EC311000AD3FB /* PrimaryUserDisplayMgr.m */; };
@@ -236,6 +237,7 @@
 		91C2483F0F7C3401007F8B05 /* RecentActivityDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentActivityDisplayMgr.h; sourceTree = "<group>"; };
 		91C248420F7C3456007F8B05 /* UIRecentActivityDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRecentActivityDisplayMgr.h; sourceTree = "<group>"; };
 		91C248430F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIRecentActivityDisplayMgr.m; sourceTree = "<group>"; };
+		91C248B60F7C8C1E007F8B05 /* ReposIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ReposIcon.png; sourceTree = "<group>"; };
 		91CC52330F6C9D98000AD3FB /* NetworkAwareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkAwareViewController.h; sourceTree = "<group>"; };
 		91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkAwareViewController.m; sourceTree = "<group>"; };
 		91CC52DA0F6DC6C4000AD3FB /* UserCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCache.h; sourceTree = "<group>"; };
@@ -635,6 +637,7 @@
 		9152A1E90F6AFC240037A52F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				91C248B60F7C8C1E007F8B05 /* ReposIcon.png */,
 				91129B2A0F6C7EBC00D32C90 /* DefaultAvatar.png */,
 				9152A1F30F6AFF8A0037A52F /* UsersIcon.png */,
 				9152A1960F6ADAD20037A52F /* HomeIcon.png */,
@@ -768,6 +771,7 @@
 				05B880610F7AF53D0030DF3A /* ChangesetView.xib in Resources */,
 				055DF4C40F7B0B9F003A8D94 /* DiffView.xib in Resources */,
 				05BAED710F7BFEF200BD8BAD /* Localizable.strings in Resources */,
+				91C248B70F7C8C1E007F8B05 /* ReposIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
