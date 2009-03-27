@@ -51,6 +51,7 @@
     [repoCachePersistenceStore release];
     [repoCache release];
     
+    [commitCachePersistenceStore release];
     [commitCache release];
     
     [favoriteUsersPersistenceStore release];
@@ -88,6 +89,7 @@
     [userCachePersistenceStore save];
     [newsFeedPersistenceStore save];
     [repoCachePersistenceStore save];
+    [commitCachePersistenceStore save];
     [favoriteUsersPersistenceStore save];
 }
 
@@ -97,6 +99,7 @@
     [userCachePersistenceStore load];
     [newsFeedPersistenceStore load];
     [repoCachePersistenceStore load];
+    [commitCachePersistenceStore load];
     [favoriteUsersPersistenceStore load];
 }
 

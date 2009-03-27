@@ -11,6 +11,7 @@
 + (CommitInfo *)commitInfoFromDictionary:(NSDictionary *)dict;
 
 + (NSString *)detailsKey;
++ (NSString *)changesetsKey;
 
 + (NSString *)plistName;
 
@@ -54,6 +55,9 @@
     if (commit) {
         dict = [NSMutableDictionary dictionary];
         [dict setObject:commit.details forKey:[[self class] detailsKey]];
+        if (commit.changesets)
+            [dict setObject:commit.changesets
+                forKey:[[self class] changesetsKey]];
     } else
         dict = nil;
     
@@ -66,7 +70,11 @@
     
     if (dict) {
         NSDictionary * details = [dict objectForKey:[[self class] detailsKey]];
-        commitInfo = [[[CommitInfo alloc] initWithDetails:details] autorelease];
+        NSDictionary * changesets =
+            [dict objectForKey:[[self class] changesetsKey]];
+        commitInfo =
+            [[[CommitInfo alloc] initWithDetails:details changesets:changesets]
+            autorelease];
     } else
         commitInfo = nil;
     
@@ -76,6 +84,11 @@
 + (NSString *)detailsKey
 {
     return @"details";
+}
+
++ (NSString *)changesetsKey
+{
+    return @"changesets";
 }
 
 + (NSString *)plistName

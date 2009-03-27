@@ -44,7 +44,7 @@
     CommitInfo * commitInfo = [commitCacheReader commitWithKey:commitKey];
 
     // TODO: Consider moving changeset into its own dictionary.
-    BOOL cached = [commitInfo.details objectForKey:@"added"] != nil;
+    BOOL cached = !!commitInfo.changesets;
 
     if (cached) {
         [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];

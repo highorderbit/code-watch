@@ -29,6 +29,7 @@
     IBOutlet NSObject<PersistenceStore> * repoCachePersistenceStore;
     IBOutlet RepoCache * repoCache;
     
+    IBOutlet NSObject<PersistenceStore> * commitCachePersistenceStore;
     IBOutlet CommitCache * commitCache;
     
     IBOutlet NSObject<PersistenceStore> * favoriteUsersPersistenceStore;

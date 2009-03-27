@@ -7,26 +7,43 @@
 
 @implementation CommitInfo
 
-@synthesize details;
+@synthesize details, changesets;
+
+- (void)dealloc
+{
+    [details release];
+    [changesets release];
+    [super dealloc];
+}
 
 - (id)initWithDetails:(NSDictionary *)someDetails
 {
-    if (self = [super init])
+    return [self initWithDetails:someDetails changesets:nil];
+}
+
+- (id)initWithDetails:(NSDictionary *)someDetails
+           changesets:(NSDictionary *)someChangesets
+{
+    if (self = [super init]) {
         details = [someDetails copy];
+        changesets = [someChangesets copy];
+    }
 
     return self;
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@: %@", [self className], details];
+    return [NSString stringWithFormat:@"%@: %@\n%@", [self className], details,
+        changesets];
 }
 
 #pragma mark NSCopying implementation
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    return [[[self class] allocWithZone:zone] initWithDetails:details];
+    return [[[self class] allocWithZone:zone]
+        initWithDetails:details changesets:changesets];
 }
 
 @end

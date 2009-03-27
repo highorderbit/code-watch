@@ -116,7 +116,7 @@ enum
                     singularFormatString =
                         NSLocalizedString(@"commit.added.singular.formatstring",
                             @"");
-                    changeset = [commitInfo.details objectForKey:@"added"];
+                    changeset = [commitInfo.changesets objectForKey:@"added"];
                     break;
                 case kRemovedRow:
                     pluralFormatString =
@@ -125,7 +125,7 @@ enum
                     singularFormatString =
                         NSLocalizedString(
                             @"commit.removed.singular.formatstring", @"");
-                    changeset = [commitInfo.details objectForKey:@"removed"];
+                    changeset = [commitInfo.changesets objectForKey:@"removed"];
                     break;
                 case kModifiedRow:
                     pluralFormatString =
@@ -136,7 +136,8 @@ enum
                         NSLocalizedString(
                             @"commit.modified.singular.formatstring",
                             @"");
-                    changeset = [commitInfo.details objectForKey:@"modified"];
+                    changeset =
+                        [commitInfo.changesets objectForKey:@"modified"];
                     break;
             }
             [self formatDiffCell:cell withChangeset:changeset
@@ -167,13 +168,13 @@ enum
         NSArray * changeset = nil;
         switch (indexPath.row) {
             case kAddedRow:
-                changeset = [commitInfo.details objectForKey:@"added"];
+                changeset = [commitInfo.changesets objectForKey:@"added"];
                 break;
             case kRemovedRow:
-                changeset = [commitInfo.details objectForKey:@"removed"];
+                changeset = [commitInfo.changesets objectForKey:@"removed"];
                 break;
             case kModifiedRow:
-                changeset = [commitInfo.details objectForKey:@"modified"];
+                changeset = [commitInfo.changesets objectForKey:@"modified"];
                 break;
         }
 
@@ -192,15 +193,15 @@ enum
 
         switch (indexPath.row) {
             case kAddedRow:
-                changeset = [commitInfo.details objectForKey:@"added"];
+                changeset = [commitInfo.changesets objectForKey:@"added"];
                 changesetType = kChangesetTypeAdded;
                 break;
             case kRemovedRow:
-                changeset = [commitInfo.details objectForKey:@"removed"];
+                changeset = [commitInfo.changesets objectForKey:@"removed"];
                 changesetType = kChangesetTypeRemoved;
                 break;
             case kModifiedRow:
-                changeset = [commitInfo.details objectForKey:@"modified"];
+                changeset = [commitInfo.changesets objectForKey:@"modified"];
                 changesetType = kChangesetTypeModified;
                 break;
         }
