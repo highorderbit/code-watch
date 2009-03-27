@@ -27,6 +27,29 @@
     [super dealloc];
 }
 
+- (id)initWithNavigationController:
+    (UINavigationController *)aNavigationController
+    networkAwareViewController:
+    (NetworkAwareViewController *)aNetworkAwareViewController
+    commitViewController:
+    (CommitViewController *)aCommitViewController
+    commitCacheReader:
+    (NSObject<CommitCacheReader> *)aCommitCacheReader
+    gitHubService:
+    (GitHubService *)aGitHubService
+{
+    if (self = [super init]) {
+        navigationController = [aNavigationController retain];
+        networkAwareViewController = [aNetworkAwareViewController retain];
+        commitViewController = [aCommitViewController retain];
+        commitCacheReader = [aCommitCacheReader retain];
+        gitHub = [aGitHubService retain];
+        [self awakeFromNib];
+    }
+    
+    return self;
+}
+
 - (void)awakeFromNib
 {
     // TODO: Remove when wired in the nib
