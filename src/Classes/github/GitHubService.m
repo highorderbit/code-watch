@@ -28,15 +28,15 @@
 + (NSDictionary *)extractCommitInfos:(NSDictionary *)gitHubInfo;
 + (NSDictionary *)extractChangesets:(NSDictionary *)gitHubInfo;
 
-- (RepoInfo *)repoInfoForUser:username repo:(NSString *)repo;
-- (BOOL)isPrimaryUser:(NSString *)username;
-
 - (BOOL)isAttemptingLogIn;
 - (BOOL)isAttemptingLogInForUsername:(NSString *)username;
 - (void)startingLogInAttemptForUsername:(NSString *)username;
 - (void)logInAttemptFinished;
-
 - (void)setUsernameForLogInAttempt:(NSString *)s;
+
+- (RepoInfo *)repoInfoForUser:username repo:(NSString *)repo;
+- (BOOL)isPrimaryUser:(NSString *)username;
+- (void)fetchAvatarForEmailAddress:(NSString *)emailAddress;
 
 @end
 
@@ -172,8 +172,6 @@
 - (void)userInfo:(NSDictionary *)info fetchedForUsername:(NSString *)username
     token:(NSString *)token
 {
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-
     UserInfo * ui = [[self class] extractUserInfo:info];
     NSDictionary * repos = [[self class] extractRepoInfos:info];
 
@@ -196,13 +194,13 @@
     // fetch user's Gravatar
     NSString * email = [ui.details objectForKey:@"email"];
     if (email)
-        [gravatar fetchAvatarForEmailAddress:email];
+        [self fetchAvatarForEmailAddress:email];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
 {
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-
     if ([self isAttemptingLogInForUsername:username]) {
         SEL selector = @selector(logInFailed:error:);
         if ([delegate respondsToSelector:selector])
@@ -212,13 +210,13 @@
         if ([delegate respondsToSelector:selector])
             [delegate failedToFetchInfoForUsername:username error:error];
     }
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 - (void)commits:(NSDictionary *)commits fetchedForRepo:(NSString *)repo
     username:(NSString *)username token:(NSString *)token
 {
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-
     RepoInfo * repoInfo = [self repoInfoForUser:username repo:repo];
     NSArray * commitKeys = [[self class] extractCommitKeys:commits];
     NSDictionary * commitInfos = [[self class] extractCommitInfos:commits];
@@ -231,14 +229,14 @@
     SEL selector = @selector(commits:fetchedForRepo:username:);
     if ([delegate respondsToSelector:selector])
         [delegate commits:commitInfos fetchedForRepo:repo username:username];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 - (void)commitDetails:(NSDictionary *)details
     fetchedForCommit:(NSString *)commitKey repo:(NSString *)repo
     username:(NSString *)username token:(NSString *)token
 {
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-
     CommitInfo * commitInfo = [commitCacheReader commitWithKey:commitKey];
     NSDictionary * changesets = [[self class] extractChangesets:details];
 
@@ -251,28 +249,30 @@
     if ([delegate respondsToSelector:selector])
         [delegate commitInfo:commitInfo fetchedForCommit:commitKey
             repo:repo username:username];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 - (void)failedToFetchInfoForRepo:(NSString *)repo
                         username:(NSString *)username
                            error:(NSError *)error
 {
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-
     SEL selector = @selector(failedToFetchInfoForRepo:username:error:);
     if ([delegate respondsToSelector:selector])
         [delegate failedToFetchInfoForRepo:repo username:username error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 - (void)failedToFetchInfoForCommit:(NSString *)commit repo:(NSString *)repo
     username:(NSString *)username token:(NSString *)token error:(NSError *)error
 {
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-
     SEL selector = @selector(failedToFetchInfoForCommit:repo:username:error:);
     if ([delegate respondsToSelector:selector])
         [delegate failedToFetchInfoForCommit:commit repo:repo username:username
             error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 #pragma mark GravatarDelegate implementation
@@ -283,6 +283,8 @@
     SEL selector = @selector(avatar:fetchedForEmailAddress:);
     if ([delegate respondsToSelector:selector])
         [delegate avatar:avatar fetchedForEmailAddress:emailAddress];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 - (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
@@ -291,6 +293,8 @@
     SEL selector = @selector(failedToFetchAvatarForEmailAddress:error:);
     if ([delegate respondsToSelector:selector])
         [delegate failedToFetchAvatarForEmailAddress:emailAddress error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 #pragma mark Persisting received data
@@ -474,20 +478,6 @@
     return dict;
 }
 
-#pragma mark Miscellaneous helpers
-
-- (RepoInfo *)repoInfoForUser:username repo:(NSString *)repo
-{
-    return [self isPrimaryUser:username] ?
-        [repoCacheReader primaryUserRepoWithName:repo] :
-        [repoCacheReader repoWithUsername:username repoName:repo];
-}
-
-- (BOOL)isPrimaryUser:(NSString *)username
-{
-    return [username isEqualToString:logInStateReader.login];
-}
-
 #pragma mark Tracking log in attempts
 
 - (BOOL)isAttemptingLogIn
@@ -510,6 +500,27 @@
 - (void)logInAttemptFinished
 {
     [self setUsernameForLogInAttempt:nil];
+}
+
+#pragma mark Miscellaneous helpers
+
+- (RepoInfo *)repoInfoForUser:username repo:(NSString *)repo
+{
+    return [self isPrimaryUser:username] ?
+        [repoCacheReader primaryUserRepoWithName:repo] :
+        [repoCacheReader repoWithUsername:username repoName:repo];
+}
+
+- (BOOL)isPrimaryUser:(NSString *)username
+{
+    return [username isEqualToString:logInStateReader.login];
+}
+
+- (void)fetchAvatarForEmailAddress:(NSString *)emailAddress
+{
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
+    [gravatar fetchAvatarForEmailAddress:emailAddress];
 }
 
 #pragma mark Accessors

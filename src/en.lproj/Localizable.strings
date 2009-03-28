@@ -17,6 +17,8 @@ github.commitupdate.failed.alert.ok = "Dismiss";
 
 /* Gravatar Strings */
 gravatar.parse.failed = "Failed to parse data from Gravatar.";
+gravatar.userupdate.failed.alert.title = "Failed to Retrieve Avatar";
+gravatar.userupdate.failed.alert.ok = "Dismiss";
 
 /* LogInView Strings */
 login.view.title = "Account Info";
