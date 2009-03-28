@@ -65,6 +65,12 @@
 		91129B2B0F6C7EBC00D32C90 /* DefaultAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 91129B2A0F6C7EBC00D32C90 /* DefaultAvatar.png */; };
 		9127DD040F6B1065009CDBD5 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9127DD030F6B1065009CDBD5 /* UserViewController.m */; };
 		9127DDC30F6C25C1009CDBD5 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9127DDC20F6C25C1009CDBD5 /* UserInfo.m */; };
+		913693D10F7E78D90054E512 /* FavoriteReposView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913693CF0F7E78D90054E512 /* FavoriteReposView.xib */; };
+		913693DE0F7E7BA00054E512 /* FavoriteReposViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913693DD0F7E7BA00054E512 /* FavoriteReposViewController.m */; };
+		913693EA0F7E871B0054E512 /* RepoKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 913693E90F7E871B0054E512 /* RepoKey.m */; };
+		913694040F7E8F470054E512 /* FavoriteReposDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 913694030F7E8F470054E512 /* FavoriteReposDisplayMgr.m */; };
+		9136945F0F7EA45F0054E512 /* FavoriteReposState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9136945E0F7EA45F0054E512 /* FavoriteReposState.m */; };
+		9136946B0F7EA5120054E512 /* FavoriteReposPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9136946A0F7EA5120054E512 /* FavoriteReposPersistenceStore.m */; };
 		9152A0F70F6A1F540037A52F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A0F60F6A1F540037A52F /* Icon.png */; };
 		9152A10F0F6AB24B0037A52F /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */; };
 		9152A1280F6AB7570037A52F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152A1270F6AB7570037A52F /* Security.framework */; };
@@ -230,6 +236,20 @@
 		9127DD030F6B1065009CDBD5 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		9127DDC10F6C25C1009CDBD5 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		9127DDC20F6C25C1009CDBD5 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		913693D00F7E78D90054E512 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FavoriteReposView.xib; sourceTree = "<group>"; };
+		913693DC0F7E7BA00054E512 /* FavoriteReposViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteReposViewController.h; path = "favorite-repos/FavoriteReposViewController.h"; sourceTree = "<group>"; };
+		913693DD0F7E7BA00054E512 /* FavoriteReposViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteReposViewController.m; path = "favorite-repos/FavoriteReposViewController.m"; sourceTree = "<group>"; };
+		913693E50F7E84B30054E512 /* FavoriteReposViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteReposViewControllerDelegate.h; path = "favorite-repos/FavoriteReposViewControllerDelegate.h"; sourceTree = "<group>"; };
+		913693E80F7E871B0054E512 /* RepoKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoKey.h; path = "favorite-repos/RepoKey.h"; sourceTree = "<group>"; };
+		913693E90F7E871B0054E512 /* RepoKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepoKey.m; path = "favorite-repos/RepoKey.m"; sourceTree = "<group>"; };
+		913694020F7E8F470054E512 /* FavoriteReposDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteReposDisplayMgr.h; path = "favorite-repos/FavoriteReposDisplayMgr.h"; sourceTree = "<group>"; };
+		913694030F7E8F470054E512 /* FavoriteReposDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteReposDisplayMgr.m; path = "favorite-repos/FavoriteReposDisplayMgr.m"; sourceTree = "<group>"; };
+		913694250F7E9A490054E512 /* FavoriteReposStateReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteReposStateReader.h; path = "favorite-repos/FavoriteReposStateReader.h"; sourceTree = "<group>"; };
+		913694280F7E9A660054E512 /* FavoriteReposStateSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteReposStateSetter.h; path = "favorite-repos/FavoriteReposStateSetter.h"; sourceTree = "<group>"; };
+		9136945D0F7EA45F0054E512 /* FavoriteReposState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteReposState.h; path = "favorite-repos/FavoriteReposState.h"; sourceTree = "<group>"; };
+		9136945E0F7EA45F0054E512 /* FavoriteReposState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteReposState.m; path = "favorite-repos/FavoriteReposState.m"; sourceTree = "<group>"; };
+		913694690F7EA5120054E512 /* FavoriteReposPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteReposPersistenceStore.h; path = "favorite-repos/FavoriteReposPersistenceStore.h"; sourceTree = "<group>"; };
+		9136946A0F7EA5120054E512 /* FavoriteReposPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteReposPersistenceStore.m; path = "favorite-repos/FavoriteReposPersistenceStore.m"; sourceTree = "<group>"; };
 		9152A0F60F6A1F540037A52F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9152A10D0F6AB24B0037A52F /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
@@ -355,6 +375,7 @@
 				05B8805F0F7AF53D0030DF3A /* ChangesetView.xib */,
 				055DF4C20F7B0B9F003A8D94 /* DiffView.xib */,
 				91E25E520F79B3B100E1594E /* FavoriteUsersView.xib */,
+				913693CF0F7E78D90054E512 /* FavoriteReposView.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -552,6 +573,7 @@
 				0560A05D0F69C83E0031A852 /* log-in */,
 				05951FDE0F7EC91800B86921 /* crypto */,
 				0534202C0F69DFEF000EECB1 /* shared */,
+				913693DF0F7E7BAF0054E512 /* favorite-repos */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -660,6 +682,26 @@
 				91F9715A0F6F24F5007B2AB1 /* UserPersistenceStore.m */,
 			);
 			path = user;
+			sourceTree = "<group>";
+		};
+		913693DF0F7E7BAF0054E512 /* favorite-repos */ = {
+			isa = PBXGroup;
+			children = (
+				9136945D0F7EA45F0054E512 /* FavoriteReposState.h */,
+				9136945E0F7EA45F0054E512 /* FavoriteReposState.m */,
+				913693DC0F7E7BA00054E512 /* FavoriteReposViewController.h */,
+				913693DD0F7E7BA00054E512 /* FavoriteReposViewController.m */,
+				913693E50F7E84B30054E512 /* FavoriteReposViewControllerDelegate.h */,
+				913693E80F7E871B0054E512 /* RepoKey.h */,
+				913693E90F7E871B0054E512 /* RepoKey.m */,
+				913694020F7E8F470054E512 /* FavoriteReposDisplayMgr.h */,
+				913694030F7E8F470054E512 /* FavoriteReposDisplayMgr.m */,
+				913694250F7E9A490054E512 /* FavoriteReposStateReader.h */,
+				913694280F7E9A660054E512 /* FavoriteReposStateSetter.h */,
+				913694690F7EA5120054E512 /* FavoriteReposPersistenceStore.h */,
+				9136946A0F7EA5120054E512 /* FavoriteReposPersistenceStore.m */,
+			);
+			name = "favorite-repos";
 			sourceTree = "<group>";
 		};
 		9152A10B0F6AB24B0037A52F /* vendor */ = {
@@ -817,6 +859,7 @@
 				055DF4C40F7B0B9F003A8D94 /* DiffView.xib in Resources */,
 				05BAED710F7BFEF200BD8BAD /* Localizable.strings in Resources */,
 				91C248B70F7C8C1E007F8B05 /* ReposIcon.png in Resources */,
+				913693D10F7E78D90054E512 /* FavoriteReposView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -896,6 +939,11 @@
 				05951F510F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.m in Sources */,
 				05951F9D0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.m in Sources */,
 				05951FF30F7EC9D100B86921 /* NSString+CryptoAdditions.m in Sources */,
+				913693DE0F7E7BA00054E512 /* FavoriteReposViewController.m in Sources */,
+				913693EA0F7E871B0054E512 /* RepoKey.m in Sources */,
+				913694040F7E8F470054E512 /* FavoriteReposDisplayMgr.m in Sources */,
+				9136945F0F7EA45F0054E512 /* FavoriteReposState.m in Sources */,
+				9136946B0F7EA5120054E512 /* FavoriteReposPersistenceStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -996,6 +1044,14 @@
 				910D812A0F699C680068CBF3 /* en */,
 			);
 			name = SearchRepoView.xib;
+			sourceTree = "<group>";
+		};
+		913693CF0F7E78D90054E512 /* FavoriteReposView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				913693D00F7E78D90054E512 /* en */,
+			);
+			name = FavoriteReposView.xib;
 			sourceTree = "<group>";
 		};
 		91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */ = {

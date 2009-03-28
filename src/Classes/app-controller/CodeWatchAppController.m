@@ -12,10 +12,14 @@
 #import "UIRecentActivityDisplayMgr.h"
 #import "CommitDisplayMgr.h"
 #import "CommitViewController.h"
+#import "FavoriteReposDisplayMgr.h"
 
 @interface CodeWatchAppController (Private)
 
 - (void)loadStateFromPersistenceStores;
+
+- (void)createAndInitFavoriteUsersDisplayMgr;
+- (void)createAndInitFavoriteReposDisplayMgr;
 
 - (GitHubService *)createGitHubService;
 
@@ -64,25 +68,20 @@
     [favoriteUsersViewController release];
     [favoriteUsersState release];
     
+    [favoriteReposPersistenceStore release];
+    [favoriteReposViewController release];
+    [favoriteReposState release];
+    
     [super dealloc];
 }
 
 - (void)start
 {
     [self loadStateFromPersistenceStores];
-    
-    NSObject<UserDisplayMgr> * userDisplayMgr =
-        [self
-        createUserDisplayMgrWithNavigationContoller:favoriteUsersNavController];
-    FavoriteUsersDisplayMgr * favoriteUsersDisplayMgr =
-        [[FavoriteUsersDisplayMgr alloc]
-        initWithViewController:favoriteUsersViewController
-        stateReader:favoriteUsersState
-        stateSetter:favoriteUsersState
-        userDisplayMgr:userDisplayMgr];
 
-    favoriteUsersViewController.delegate = favoriteUsersDisplayMgr;
-    
+    [self createAndInitFavoriteUsersDisplayMgr];
+    [self createAndInitFavoriteReposDisplayMgr];
+
     if ([logInState prompt])
         [logInMgr collectCredentials:self];
     else
@@ -97,6 +96,7 @@
     [repoCachePersistenceStore save];
     [commitCachePersistenceStore save];
     [favoriteUsersPersistenceStore save];
+    [favoriteReposPersistenceStore save];
 }
 
 - (void)loadStateFromPersistenceStores
@@ -107,6 +107,36 @@
     [repoCachePersistenceStore load];
     [commitCachePersistenceStore load];
     [favoriteUsersPersistenceStore load];
+    [favoriteReposPersistenceStore load];
+}
+
+#pragma mark Initialization methods
+
+- (void)createAndInitFavoriteUsersDisplayMgr
+{
+    NSObject<UserDisplayMgr> * userDisplayMgr =
+        [self
+        createUserDisplayMgrWithNavigationContoller:favoriteUsersNavController];
+
+    FavoriteUsersDisplayMgr * favoriteUsersDisplayMgr =
+        [[FavoriteUsersDisplayMgr alloc]
+        initWithViewController:favoriteUsersViewController
+        stateReader:favoriteUsersState
+        stateSetter:favoriteUsersState
+        userDisplayMgr:userDisplayMgr];
+
+    favoriteUsersViewController.delegate = favoriteUsersDisplayMgr;
+}
+
+- (void)createAndInitFavoriteReposDisplayMgr
+{
+    FavoriteReposDisplayMgr * favoriteReposDisplayMgr =
+        [[FavoriteReposDisplayMgr alloc]
+        initWithViewController:favoriteReposViewController
+        stateReader:favoriteReposState
+        stateSetter:favoriteReposState];
+    
+    favoriteReposViewController.delegate = favoriteReposDisplayMgr;
 }
 
 #pragma mark Factory methods
