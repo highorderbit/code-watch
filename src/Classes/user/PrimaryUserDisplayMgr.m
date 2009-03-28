@@ -91,4 +91,15 @@
     [networkAwareViewController setUpdatingState:kDisconnected];
 }
 
+- (void)avatar:(UIImage *)avatar
+    fetchedForEmailAddress:(NSString *)emailAddress
+{
+    [userViewController updateWithAvatar:avatar];
+}
+
+- (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
+                                     error:(NSError *)error
+{
+}
+
 @end

@@ -214,6 +214,11 @@ enum Section
     [self.tableView reloadData];
 }
 
+- (void)updateWithAvatar:(UIImage *)avatar
+{
+    avatarView.image = avatar;
+}
+
 - (void)setFeaturedDetail1Key:(NSString *)key
 {
     key = [key copy];

@@ -43,11 +43,10 @@
 
 - (void)setUsername:(NSString *)username;
 - (void)updateWithUserInfo:(UserInfo *)userInfo;
+- (void)updateWithAvatar:(UIImage *)avatar;
 
 - (void)setFeaturedDetail1Key:(NSString *)key;
 - (void)setFeaturedDetail2Key:(NSString *)key;
-
-- (void)setAvatarFilename:(NSString *)filename;
 
 - (IBAction)addContact:(id)sender;
 - (IBAction)addFavorite:(id)sender;

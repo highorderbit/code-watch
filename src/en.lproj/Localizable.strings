@@ -15,6 +15,9 @@ github.repoupdate.failed.alert.ok = "Dismiss";
 github.commitupdate.failed.alert.title = "Failed to Retrieve Commit";
 github.commitupdate.failed.alert.ok = "Dismiss";
 
+/* Gravatar Strings */
+gravatar.parse.failed = "Failed to parse data from Gravatar.";
+
 /* LogInView Strings */
 login.view.title = "Account Info";
 login.view.prompt = "Provide your GitHub username and token";

@@ -3,12 +3,14 @@
 //
 
 #import "GitHubService.h"
+
 #import "GitHub.h"
-#import "CommitInfo.h"
+#import "Gravatar.h"
 
 #import "UIApplication+NetworkActivityIndicatorAdditions.h"
 
 @interface GitHubService (Private)
+
 - (void)setPrimaryUser:(NSString *)username token:(NSString *)token;
 - (void)cacheUserInfo:(UserInfo *)info forUsername:(NSString *)username;
 - (void)cacheRepos:(NSDictionary *)repos forUsername:(NSString *)username;
@@ -35,6 +37,7 @@
 - (void)logInAttemptFinished;
 
 - (void)setUsernameForLogInAttempt:(NSString *)s;
+
 @end
 
 @implementation GitHubService
@@ -54,23 +57,12 @@
     [usernameForLogInAttempt release];
 
     [gitHub release];
+    [gravatar release];
 
     [super dealloc];
 }
 
-#pragma mark Instantiation
-
-+ (id)service
-{
-    return [[[[self class] alloc] init] autorelease];
-}
-
 #pragma mark Initialization
-
-- (id)init
-{
-    return (self = [super init]);
-}
 
 - (id)initWithConfigReader:(NSObject<ConfigReader> *)aConfigReader
     logInState:(LogInState *)logInState
@@ -96,8 +88,8 @@
 
 - (void)awakeFromNib
 {
-    NSString * url = [configReader valueForKey:@"GitHubApiBaseUrl"];
-    NSURL * gitHubApiBaseUrl = [NSURL URLWithString:url];
+    NSString * gitHubUrl = [configReader valueForKey:@"GitHubApiBaseUrl"];
+    NSURL * gitHubApiBaseUrl = [NSURL URLWithString:gitHubUrl];
 
     GitHubApiFormat apiFormat =
         [[configReader valueForKey:@"GitHubApiFormat"] intValue];
@@ -109,6 +101,11 @@
                                       format:apiFormat
                                      version:apiVersion
                                     delegate:self];
+
+    NSString * gravatarBaseUrl =
+        [configReader valueForKey:@"GravatarApiBaseUrl"];
+    gravatar = [[Gravatar alloc] initWithBaseUrlString:gravatarBaseUrl
+                                              delegate:self];
 }
 
 #pragma mark Logging in
@@ -195,6 +192,11 @@
     SEL selector = @selector(userInfo:repoInfos:fetchedForUsername:);
     if ([delegate respondsToSelector:selector])
         [delegate userInfo:ui repoInfos:repos fetchedForUsername:username];
+
+    // fetch user's Gravatar
+    NSString * email = [ui.details objectForKey:@"email"];
+    if (email)
+        [gravatar fetchAvatarForEmailAddress:email];
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
@@ -271,6 +273,24 @@
     if ([delegate respondsToSelector:selector])
         [delegate failedToFetchInfoForCommit:commit repo:repo username:username
             error:error];
+}
+
+#pragma mark GravatarDelegate implementation
+
+- (void)avatar:(UIImage *)avatar
+    fetchedForEmailAddress:(NSString *)emailAddress
+{
+    SEL selector = @selector(avatar:fetchedForEmailAddress:);
+    if ([delegate respondsToSelector:selector])
+        [delegate avatar:avatar fetchedForEmailAddress:emailAddress];
+}
+
+- (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
+    error:(NSError *)error
+{
+    SEL selector = @selector(failedToFetchAvatarForEmailAddress:error:);
+    if ([delegate respondsToSelector:selector])
+        [delegate failedToFetchAvatarForEmailAddress:emailAddress error:error];
 }
 
 #pragma mark Persisting received data
