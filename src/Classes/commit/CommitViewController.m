@@ -64,6 +64,13 @@ enum
     self.tableView.tableHeaderView = headerView;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    avatarImageView.image = [UIImage imageNamed:@"DefaultAvatar.png"];
+}
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tv
