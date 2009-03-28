@@ -146,6 +146,17 @@
     [networkAwareViewController setUpdatingState:kDisconnected];
 }
 
+- (void)avatar:(UIImage *)avatar fetchedForEmailAddress:(NSString *)emailAddress
+{
+    [repoViewController updateWithAvatar:avatar forEmailAddress:emailAddress];
+}
+
+- (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
+                                     error:(NSError *)error
+{
+    // TODO: implement error handling
+}
+
 #pragma mark RepoViewControllerDelegate implementation
 
 - (void)userDidSelectCommit:(NSString *)commitKey

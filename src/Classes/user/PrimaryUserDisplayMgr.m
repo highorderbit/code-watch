@@ -62,7 +62,6 @@
 {
     [userViewController updateWithUserInfo:info];
 
-    [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];
 }
 
@@ -75,6 +74,39 @@
         NSLocalizedString(@"github.userupdate.failed.alert.title", @"");
     NSString * cancelTitle =
         NSLocalizedString(@"github.userupdate.failed.alert.ok", @"");
+    NSString * message = error.localizedDescription;
+
+    UIAlertView * alertView =
+        [[[UIAlertView alloc]
+          initWithTitle:title
+                message:message
+               delegate:self
+      cancelButtonTitle:cancelTitle
+      otherButtonTitles:nil]
+         autorelease];
+
+    [alertView show];
+
+    [networkAwareViewController setUpdatingState:kDisconnected];
+}
+
+- (void)avatar:(UIImage *)avatar
+    fetchedForEmailAddress:(NSString *)emailAddress
+{
+    [userViewController updateWithAvatar:avatar];
+    [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
+}
+
+- (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
+                                     error:(NSError *)error
+{
+    NSLog(@"Failed to retrieve avatar for email address: '%@' error: '%@'.",
+        emailAddress, error);
+
+    NSString * title =
+        NSLocalizedString(@"gravatar.userupdate.failed.alert.title", @"");
+    NSString * cancelTitle =
+        NSLocalizedString(@"gravatar.userupdate.failed.alert.ok", @"");
     NSString * message = error.localizedDescription;
 
     UIAlertView * alertView =

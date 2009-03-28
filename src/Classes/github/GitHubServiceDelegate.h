@@ -26,6 +26,11 @@
 - (void)failedToFetchInfoForUsername:(NSString *)username
                                error:(NSError *)error;
 
+- (void)avatar:(UIImage *)avatar
+    fetchedForEmailAddress:(NSString *)emailAddress;
+- (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
+    error:(NSError *)error;
+
 #pragma mark Fetching repository information
 
 @optional

@@ -3,12 +3,14 @@
 //
 
 #import "GitHubService.h"
+
 #import "GitHub.h"
-#import "CommitInfo.h"
+#import "Gravatar.h"
 
 #import "UIApplication+NetworkActivityIndicatorAdditions.h"
 
 @interface GitHubService (Private)
+
 - (void)setPrimaryUser:(NSString *)username token:(NSString *)token;
 - (void)cacheUserInfo:(UserInfo *)info forUsername:(NSString *)username;
 - (void)cacheRepos:(NSDictionary *)repos forUsername:(NSString *)username;
@@ -26,15 +28,16 @@
 + (NSDictionary *)extractCommitInfos:(NSDictionary *)gitHubInfo;
 + (NSDictionary *)extractChangesets:(NSDictionary *)gitHubInfo;
 
-- (RepoInfo *)repoInfoForUser:username repo:(NSString *)repo;
-- (BOOL)isPrimaryUser:(NSString *)username;
-
 - (BOOL)isAttemptingLogIn;
 - (BOOL)isAttemptingLogInForUsername:(NSString *)username;
 - (void)startingLogInAttemptForUsername:(NSString *)username;
 - (void)logInAttemptFinished;
-
 - (void)setUsernameForLogInAttempt:(NSString *)s;
+
+- (RepoInfo *)repoInfoForUser:username repo:(NSString *)repo;
+- (BOOL)isPrimaryUser:(NSString *)username;
+- (void)fetchAvatarForEmailAddress:(NSString *)emailAddress;
+
 @end
 
 @implementation GitHubService
@@ -54,23 +57,12 @@
     [usernameForLogInAttempt release];
 
     [gitHub release];
+    [gravatar release];
 
     [super dealloc];
 }
 
-#pragma mark Instantiation
-
-+ (id)service
-{
-    return [[[[self class] alloc] init] autorelease];
-}
-
 #pragma mark Initialization
-
-- (id)init
-{
-    return (self = [super init]);
-}
 
 - (id)initWithConfigReader:(NSObject<ConfigReader> *)aConfigReader
     logInState:(LogInState *)logInState
@@ -96,8 +88,8 @@
 
 - (void)awakeFromNib
 {
-    NSString * url = [configReader valueForKey:@"GitHubApiBaseUrl"];
-    NSURL * gitHubApiBaseUrl = [NSURL URLWithString:url];
+    NSString * gitHubUrl = [configReader valueForKey:@"GitHubApiBaseUrl"];
+    NSURL * gitHubApiBaseUrl = [NSURL URLWithString:gitHubUrl];
 
     GitHubApiFormat apiFormat =
         [[configReader valueForKey:@"GitHubApiFormat"] intValue];
@@ -109,6 +101,11 @@
                                       format:apiFormat
                                      version:apiVersion
                                     delegate:self];
+
+    NSString * gravatarBaseUrl =
+        [configReader valueForKey:@"GravatarApiBaseUrl"];
+    gravatar = [[Gravatar alloc] initWithBaseUrlString:gravatarBaseUrl
+                                              delegate:self];
 }
 
 #pragma mark Logging in
@@ -175,8 +172,6 @@
 - (void)userInfo:(NSDictionary *)info fetchedForUsername:(NSString *)username
     token:(NSString *)token
 {
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-
     UserInfo * ui = [[self class] extractUserInfo:info];
     NSDictionary * repos = [[self class] extractRepoInfos:info];
 
@@ -195,12 +190,17 @@
     SEL selector = @selector(userInfo:repoInfos:fetchedForUsername:);
     if ([delegate respondsToSelector:selector])
         [delegate userInfo:ui repoInfos:repos fetchedForUsername:username];
+
+    // fetch user's Gravatar
+    NSString * email = [ui.details objectForKey:@"email"];
+    if (email)
+        [self fetchAvatarForEmailAddress:email];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
 {
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-
     if ([self isAttemptingLogInForUsername:username]) {
         SEL selector = @selector(logInFailed:error:);
         if ([delegate respondsToSelector:selector])
@@ -210,13 +210,13 @@
         if ([delegate respondsToSelector:selector])
             [delegate failedToFetchInfoForUsername:username error:error];
     }
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 - (void)commits:(NSDictionary *)commits fetchedForRepo:(NSString *)repo
     username:(NSString *)username token:(NSString *)token
 {
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-
     RepoInfo * repoInfo = [self repoInfoForUser:username repo:repo];
     NSArray * commitKeys = [[self class] extractCommitKeys:commits];
     NSDictionary * commitInfos = [[self class] extractCommitInfos:commits];
@@ -229,14 +229,27 @@
     SEL selector = @selector(commits:fetchedForRepo:username:);
     if ([delegate respondsToSelector:selector])
         [delegate commits:commitInfos fetchedForRepo:repo username:username];
+
+    NSMutableSet * avatarRequests =
+        [NSMutableSet setWithCapacity:commitKeys.count];
+    for (NSString * key in commitKeys) {
+        CommitInfo * commit = [commitInfos objectForKey:key];
+        NSString * email =
+            [[commit.details objectForKey:@"committer"] objectForKey:@"email"];
+
+        if (![avatarRequests containsObject:email]) {
+            [self fetchAvatarForEmailAddress:email];
+            [avatarRequests addObject:email];
+        }
+    }
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 - (void)commitDetails:(NSDictionary *)details
     fetchedForCommit:(NSString *)commitKey repo:(NSString *)repo
     username:(NSString *)username token:(NSString *)token
 {
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-
     CommitInfo * commitInfo = [commitCacheReader commitWithKey:commitKey];
     NSDictionary * changesets = [[self class] extractChangesets:details];
 
@@ -249,28 +262,52 @@
     if ([delegate respondsToSelector:selector])
         [delegate commitInfo:commitInfo fetchedForCommit:commitKey
             repo:repo username:username];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 - (void)failedToFetchInfoForRepo:(NSString *)repo
                         username:(NSString *)username
                            error:(NSError *)error
 {
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-
     SEL selector = @selector(failedToFetchInfoForRepo:username:error:);
     if ([delegate respondsToSelector:selector])
         [delegate failedToFetchInfoForRepo:repo username:username error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 - (void)failedToFetchInfoForCommit:(NSString *)commit repo:(NSString *)repo
     username:(NSString *)username token:(NSString *)token error:(NSError *)error
 {
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-
     SEL selector = @selector(failedToFetchInfoForCommit:repo:username:error:);
     if ([delegate respondsToSelector:selector])
         [delegate failedToFetchInfoForCommit:commit repo:repo username:username
             error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+#pragma mark GravatarDelegate implementation
+
+- (void)avatar:(UIImage *)avatar
+    fetchedForEmailAddress:(NSString *)emailAddress
+{
+    SEL selector = @selector(avatar:fetchedForEmailAddress:);
+    if ([delegate respondsToSelector:selector])
+        [delegate avatar:avatar fetchedForEmailAddress:emailAddress];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
+    error:(NSError *)error
+{
+    SEL selector = @selector(failedToFetchAvatarForEmailAddress:error:);
+    if ([delegate respondsToSelector:selector])
+        [delegate failedToFetchAvatarForEmailAddress:emailAddress error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 #pragma mark Persisting received data
@@ -454,20 +491,6 @@
     return dict;
 }
 
-#pragma mark Miscellaneous helpers
-
-- (RepoInfo *)repoInfoForUser:username repo:(NSString *)repo
-{
-    return [self isPrimaryUser:username] ?
-        [repoCacheReader primaryUserRepoWithName:repo] :
-        [repoCacheReader repoWithUsername:username repoName:repo];
-}
-
-- (BOOL)isPrimaryUser:(NSString *)username
-{
-    return [username isEqualToString:logInStateReader.login];
-}
-
 #pragma mark Tracking log in attempts
 
 - (BOOL)isAttemptingLogIn
@@ -490,6 +513,27 @@
 - (void)logInAttemptFinished
 {
     [self setUsernameForLogInAttempt:nil];
+}
+
+#pragma mark Miscellaneous helpers
+
+- (RepoInfo *)repoInfoForUser:username repo:(NSString *)repo
+{
+    return [self isPrimaryUser:username] ?
+        [repoCacheReader primaryUserRepoWithName:repo] :
+        [repoCacheReader repoWithUsername:username repoName:repo];
+}
+
+- (BOOL)isPrimaryUser:(NSString *)username
+{
+    return [username isEqualToString:logInStateReader.login];
+}
+
+- (void)fetchAvatarForEmailAddress:(NSString *)emailAddress
+{
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
+    [gravatar fetchAvatarForEmailAddress:emailAddress];
 }
 
 #pragma mark Accessors

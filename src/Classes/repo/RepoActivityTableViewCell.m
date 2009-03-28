@@ -20,6 +20,8 @@
     [messageLabel release];
     [committerLabel release];
     [dateLabel release];
+    [avatarImageView release];
+
     [super dealloc];
 }
 
@@ -47,6 +49,8 @@
         [self setNonselectedTextColors];
 }
 
+#pragma mark Updating cell content
+
 - (void)setMessage:(NSString *)message
 {
     messageLabel.text = message;
@@ -61,6 +65,13 @@
 {
     dateLabel.text = [date shortDescription];
 }
+
+- (void)setAvatar:(UIImage *)avatar
+{
+    avatarImageView.image = avatar;
+}
+
+#pragma mark Managing cell element colors
 
 - (void)setSelectedTextColors
 {

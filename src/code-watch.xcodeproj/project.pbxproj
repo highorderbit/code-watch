@@ -27,6 +27,11 @@
 		0560A0620F69C83E0031A852 /* CodeWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05A0F69C83E0031A852 /* CodeWatchAppController.m */; };
 		0560A0630F69C83E0031A852 /* CodeWatchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05C0F69C83E0031A852 /* CodeWatchAppDelegate.m */; };
 		0560A0640F69C83E0031A852 /* UILogInMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A0610F69C83E0031A852 /* UILogInMgr.m */; };
+		05951F2C0F7E91BD00B86921 /* Gravatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951F2B0F7E91BD00B86921 /* Gravatar.m */; };
+		05951F2F0F7E931100B86921 /* WebServiceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951F2E0F7E931100B86921 /* WebServiceApi.m */; };
+		05951F510F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951F500F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.m */; };
+		05951F9D0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951F9C0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.m */; };
+		05951FF30F7EC9D100B86921 /* NSString+CryptoAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951FF20F7EC9D100B86921 /* NSString+CryptoAdditions.m */; };
 		0599363C0F6975A80005B934 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059936380F6975A80005B934 /* MainWindow.xib */; };
 		05AFEA2F0F79BD4F0008A91C /* CommitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05AFEA2D0F79BD4F0008A91C /* CommitView.xib */; };
 		05AFEA330F79BD9A0008A91C /* CommitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AFEA320F79BD9A0008A91C /* CommitViewController.m */; };
@@ -158,6 +163,18 @@
 		0560A05E0F69C83E0031A852 /* LogInMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInMgr.h; sourceTree = "<group>"; };
 		0560A0600F69C83E0031A852 /* UILogInMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILogInMgr.h; sourceTree = "<group>"; };
 		0560A0610F69C83E0031A852 /* UILogInMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILogInMgr.m; sourceTree = "<group>"; };
+		05951F2A0F7E91BD00B86921 /* Gravatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gravatar.h; path = gravatar/Gravatar.h; sourceTree = "<group>"; };
+		05951F2B0F7E91BD00B86921 /* Gravatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gravatar.m; path = gravatar/Gravatar.m; sourceTree = "<group>"; };
+		05951F2D0F7E931100B86921 /* WebServiceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebServiceApi.h; path = gravatar/WebServiceApi.h; sourceTree = "<group>"; };
+		05951F2E0F7E931100B86921 /* WebServiceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebServiceApi.m; path = gravatar/WebServiceApi.m; sourceTree = "<group>"; };
+		05951F320F7E99A100B86921 /* WebServiceApiDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebServiceApiDelegate.h; path = gravatar/WebServiceApiDelegate.h; sourceTree = "<group>"; };
+		05951F4F0F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURLRequest+WebServiceApiAdditions.h"; path = "gravatar/NSURLRequest+WebServiceApiAdditions.h"; sourceTree = "<group>"; };
+		05951F500F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURLRequest+WebServiceApiAdditions.m"; path = "gravatar/NSURLRequest+WebServiceApiAdditions.m"; sourceTree = "<group>"; };
+		05951F9B0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+NonRetainedKeyAdditions.h"; path = "gravatar/NSDictionary+NonRetainedKeyAdditions.h"; sourceTree = "<group>"; };
+		05951F9C0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+NonRetainedKeyAdditions.m"; path = "gravatar/NSDictionary+NonRetainedKeyAdditions.m"; sourceTree = "<group>"; };
+		05951FF10F7EC9D100B86921 /* NSString+CryptoAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+CryptoAdditions.h"; path = "crypto/NSString+CryptoAdditions.h"; sourceTree = "<group>"; };
+		05951FF20F7EC9D100B86921 /* NSString+CryptoAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+CryptoAdditions.m"; path = "crypto/NSString+CryptoAdditions.m"; sourceTree = "<group>"; };
+		059520060F7ECBD900B86921 /* GravatarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GravatarDelegate.h; path = gravatar/GravatarDelegate.h; sourceTree = "<group>"; };
 		059936390F6975A80005B934 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		05AFEA2E0F79BD4F0008A91C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CommitView.xib; sourceTree = "<group>"; };
 		05AFEA310F79BD9A0008A91C /* CommitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitViewController.h; path = commit/CommitViewController.h; sourceTree = "<group>"; };
@@ -468,6 +485,32 @@
 			path = "log-in";
 			sourceTree = "<group>";
 		};
+		05951F1B0F7E914C00B86921 /* gravatar */ = {
+			isa = PBXGroup;
+			children = (
+				05951F2A0F7E91BD00B86921 /* Gravatar.h */,
+				05951F2B0F7E91BD00B86921 /* Gravatar.m */,
+				059520060F7ECBD900B86921 /* GravatarDelegate.h */,
+				05951F2D0F7E931100B86921 /* WebServiceApi.h */,
+				05951F2E0F7E931100B86921 /* WebServiceApi.m */,
+				05951F320F7E99A100B86921 /* WebServiceApiDelegate.h */,
+				05951F4F0F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.h */,
+				05951F500F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.m */,
+				05951F9B0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.h */,
+				05951F9C0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.m */,
+			);
+			name = gravatar;
+			sourceTree = "<group>";
+		};
+		05951FDE0F7EC91800B86921 /* crypto */ = {
+			isa = PBXGroup;
+			children = (
+				05951FF10F7EC9D100B86921 /* NSString+CryptoAdditions.h */,
+				05951FF20F7EC9D100B86921 /* NSString+CryptoAdditions.m */,
+			);
+			name = crypto;
+			sourceTree = "<group>";
+		};
 		05B98FE40F705CE40039602B /* Help Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,6 +573,7 @@
 				91E25E5B0F79B81300E1594E /* favorite-users */,
 				91F89B3B0F705EB300993921 /* news-feed */,
 				05BB60AA0F6B20F40005A635 /* github */,
+				05951F1B0F7E914C00B86921 /* gravatar */,
 				9127DD010F6B1065009CDBD5 /* user */,
 				05B990150F7062850039602B /* repo */,
 				0524D2CF0F719BAE006BA721 /* commit */,
@@ -538,6 +582,7 @@
 				910D827F0F69DDF00068CBF3 /* persistence */,
 				0560A0580F69C83E0031A852 /* app-controller */,
 				0560A05D0F69C83E0031A852 /* log-in */,
+				05951FDE0F7EC91800B86921 /* crypto */,
 				0534202C0F69DFEF000EECB1 /* shared */,
 				913693DF0F7E7BAF0054E512 /* favorite-repos */,
 			);
@@ -907,6 +952,11 @@
 				05B8805E0F7AF5210030DF3A /* ChangesetViewController.m in Sources */,
 				055DF4B30F7B08F1003A8D94 /* DiffViewController.m in Sources */,
 				91C248440F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m in Sources */,
+				05951F2C0F7E91BD00B86921 /* Gravatar.m in Sources */,
+				05951F2F0F7E931100B86921 /* WebServiceApi.m in Sources */,
+				05951F510F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.m in Sources */,
+				05951F9D0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.m in Sources */,
+				05951FF30F7EC9D100B86921 /* NSString+CryptoAdditions.m in Sources */,
 				913693DE0F7E7BA00054E512 /* FavoriteReposViewController.m in Sources */,
 				913693EA0F7E871B0054E512 /* RepoKey.m in Sources */,
 				913694040F7E8F470054E512 /* FavoriteReposDisplayMgr.m in Sources */,
@@ -1171,7 +1221,7 @@
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Douglas Kurth";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;

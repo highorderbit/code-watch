@@ -43,7 +43,7 @@
     NSURLRequest * req = request.urlRequest;
     NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:req
                                                              delegate:self
-                                                        startImmediately:YES];
+                                                     startImmediately:YES];
 
     [self trackConnection:conn forRequest:request];
 }

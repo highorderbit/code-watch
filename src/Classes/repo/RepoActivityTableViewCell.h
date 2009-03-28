@@ -10,10 +10,12 @@
     IBOutlet UILabel * messageLabel;
     IBOutlet UILabel * committerLabel;
     IBOutlet UILabel * dateLabel;
+    IBOutlet UIImageView * avatarImageView;
 }
 
 - (void)setMessage:(NSString *)message;
 - (void)setCommitter:(NSString *)committer;
 - (void)setDate:(NSDate *)date;
+- (void)setAvatar:(UIImage *)avatar;
 
 @end
