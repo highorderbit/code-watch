@@ -147,6 +147,35 @@
     [networkAwareViewController setUpdatingState:kDisconnected];
 }
 
+- (void)avatar:(UIImage *)avatar fetchedForEmailAddress:(NSString *)emailAddress
+{
+    [commitViewController updateWithAvatar:avatar];
+}
+
+- (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
+                                     error:(NSError *)error
+{
+    NSLog(@"Failed to retrieve avatar for email address: '%@' error: '%@'.",
+        emailAddress, error);
+
+    NSString * title =
+        NSLocalizedString(@"gravatar.repoupdate.failed.alert.title", @"");
+    NSString * cancelTitle =
+        NSLocalizedString(@"gravatar.repoupdate.failed.alert.ok", @"");
+    NSString * message = error.localizedDescription;
+
+    UIAlertView * alertView =
+        [[[UIAlertView alloc]
+          initWithTitle:title
+                message:message
+               delegate:self
+      cancelButtonTitle:cancelTitle
+      otherButtonTitles:nil]
+         autorelease];
+
+    [alertView show];
+}
+
 #pragma mark Helpers
 
 + (NSString *)changesetTypeLabel:(ChangesetType)type

@@ -263,6 +263,11 @@
         [delegate commitInfo:commitInfo fetchedForCommit:commitKey
             repo:repo username:username];
 
+    NSString * email =
+        [[commitInfo.details objectForKey:@"committer"] objectForKey:@"email"];
+    if (email)
+        [self fetchAvatarForEmailAddress:email];
+
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
