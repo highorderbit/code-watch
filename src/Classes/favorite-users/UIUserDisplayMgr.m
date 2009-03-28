@@ -52,7 +52,14 @@
 
 - (void)viewWillAppear
 {
-    [self displayUserInfoForUsername:username];
+    [gitHubService fetchInfoForUsername:username];
+
+    UserInfo * userInfo = [userCacheReader userWithUsername:username];
+    [userViewController setUsername:username];
+    [userViewController updateWithUserInfo:userInfo];
+
+    [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
+    [networkAwareViewController setCachedDataAvailable:!!userInfo];
 }
 
 #pragma mark UserViewControllerDelegate implementation
@@ -85,15 +92,6 @@
     aUsername = [aUsername copy];
     [username release];
     username = aUsername;
-    
-    [gitHubService fetchInfoForUsername:username];
-
-    UserInfo * userInfo = [userCacheReader userWithUsername:username];
-    [userViewController setUsername:username];
-    [userViewController updateWithUserInfo:userInfo];
-
-    [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
-    [networkAwareViewController setCachedDataAvailable:!!userInfo];
     
     [navigationController
         pushViewController:networkAwareViewController animated:YES];
