@@ -222,13 +222,10 @@
                       repo:(NSString *)repo
 {
     if ([response isKindOfClass:[NSError class]]) {
-        //SEL selector = @selector(failedToFetchInfoForRepo:username:error:);
-        //if ([delegate respondsToSelector:selector]) {
-            [delegate failedToFetchInfoForRepo:repo
-                                      username:username
-                                         error:response];
-            return;
-        //}
+        [delegate failedToFetchInfoForRepo:repo
+                                  username:username
+                                     error:response];
+        return;
     }
 
     NSDictionary * details = [parser parseResponse:response];
