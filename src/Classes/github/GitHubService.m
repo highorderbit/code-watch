@@ -230,6 +230,19 @@
     if ([delegate respondsToSelector:selector])
         [delegate commits:commitInfos fetchedForRepo:repo username:username];
 
+    NSMutableSet * avatarRequests =
+        [NSMutableSet setWithCapacity:commitKeys.count];
+    for (NSString * key in commitKeys) {
+        CommitInfo * commit = [commitInfos objectForKey:key];
+        NSString * email =
+            [[commit.details objectForKey:@"committer"] objectForKey:@"email"];
+
+        if (![avatarRequests containsObject:email]) {
+            [self fetchAvatarForEmailAddress:email];
+            [avatarRequests addObject:email];
+        }
+    }
+
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 

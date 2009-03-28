@@ -21,6 +21,7 @@
     NSString * repoName;
     RepoInfo * repoInfo;
     NSDictionary * commits;
+    NSMutableDictionary * avatars;
 }
 
 @property (nonatomic, retain) NSObject<RepoViewControllerDelegate> * delegate;
@@ -28,5 +29,8 @@
 - (void)updateWithCommits:(NSDictionary *)someCommits
                   forRepo:(NSString *)aRepoName
                      info:(RepoInfo *)someRepoInfo;
+
+- (void)updateWithAvatar:(UIImage *)avatar
+         forEmailAddress:(NSString *)emailAddress;
 
 @end

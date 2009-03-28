@@ -13,6 +13,7 @@
 - (void)setRepoName:(NSString *)name;
 - (void)setRepoInfo:(RepoInfo *)repo;
 - (void)setCommits:(NSDictionary *)someCommits;
+- (void)setAvatars:(NSMutableDictionary *)someAvatars;
 @end
 
 @implementation RepoViewController
@@ -22,19 +23,26 @@
 - (void)dealloc
 {
     [delegate release];
+
     [headerView release];
+
     [repoNameLabel release];
     [repoDescriptionLabel release];
     [repoInfoLabel release];
     [repoImageView release];
+
     [repoName release];
     [repoInfo release];
     [commits release];
+    [avatars release];
+
     [super dealloc];
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    [self setAvatars:[[NSMutableDictionary alloc] init]];
 
     self.tableView.tableHeaderView = headerView;
 }
@@ -103,12 +111,16 @@
     NSString * message = [info.details objectForKey:@"message"];
     NSString * committer =
         [[info.details objectForKey:@"committer"] objectForKey:@"name"];
+    NSString * email =
+        [[info.details objectForKey:@"committer"] objectForKey:@"email"];
     NSDate * date = [NSDate dateWithGitHubString:
         [info.details objectForKey:@"committed_date"]];
+    UIImage * avatar = [avatars objectForKey:email];
 
     [cell setMessage:message];
     [cell setCommitter:committer];
     [cell setDate:date];
+    [cell setAvatar:avatar];
 
     return cell;
 }
@@ -134,7 +146,15 @@
     [self.tableView reloadData];
 }
 
-#pragma mark Accessors
+- (void)updateWithAvatar:(UIImage *)avatar
+         forEmailAddress:(NSString *)emailAddress
+{
+    [avatars setObject:avatar forKey:emailAddress];
+
+    [self.tableView reloadData];
+}
+
+    #pragma mark Accessors
 
 - (void)setRepoName:(NSString *)name
 {
@@ -155,6 +175,13 @@
     NSDictionary * tmp = [someCommits copy];
     [commits release];
     commits = tmp;
+}
+
+- (void)setAvatars:(NSMutableDictionary *)someAvatars
+{
+    NSMutableDictionary * tmp = [someAvatars mutableCopy];
+    [avatars release];
+    avatars = tmp;
 }
 
 @end
