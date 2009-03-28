@@ -21,7 +21,7 @@
 
 - (NSArray *)favoriteRepoKeys
 {
-    return [favoriteRepoKeys copy];
+    return [[favoriteRepoKeys copy] autorelease];
 }
 
 #pragma mark FavoriteReposStateSetter implementation

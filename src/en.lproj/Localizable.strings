@@ -8,6 +8,8 @@ github.login.failed.alert.title = "Log In Failed";
 github.login.failed.alert.ok = "Dismiss";
 github.adduser.failed.alert.title = "User Addition Failed";
 github.adduser.failed.alert.ok = "Dismiss";
+github.addrepo.failed.alert.title = "Repo Addition Failed";
+github.addrepo.failed.alert.ok = "Dismiss";
 github.userupdate.failed.alert.title = "Failed to Retrieve User Data";
 github.userupdate.failed.alert.ok = "Dismiss";
 github.repoupdate.failed.alert.title = "Failed to Retrieve Commit";
@@ -65,6 +67,15 @@ adduser.view.prompt = "Provide a GitHub username";
 adduser.adduser.label = "Add";
 adduser.username.label = "username";
 adduser.help.label = "Help";
+
+/* AddRepoView Strings */
+addrepo.view.title = "New Repo";
+addrepo.view.prompt = "Provide a GitHub repo name and its owner";
+addrepo.addrepo.label = "Add";
+addrepo.username.label = "username";
+addrepo.repoName.label = "repo name";
+addrepo.help.label = "Help";
+addrepo.reponotfound.format.string = "'%@' was not found for user '%@'";
 
 /* CommitView Strings */
 commit.view.title = "Commit Info";
