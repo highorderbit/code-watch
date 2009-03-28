@@ -65,6 +65,7 @@
 		913693EA0F7E871B0054E512 /* RepoKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 913693E90F7E871B0054E512 /* RepoKey.m */; };
 		913694040F7E8F470054E512 /* FavoriteReposDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 913694030F7E8F470054E512 /* FavoriteReposDisplayMgr.m */; };
 		9136945F0F7EA45F0054E512 /* FavoriteReposState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9136945E0F7EA45F0054E512 /* FavoriteReposState.m */; };
+		9136946B0F7EA5120054E512 /* FavoriteReposPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9136946A0F7EA5120054E512 /* FavoriteReposPersistenceStore.m */; };
 		9152A0F70F6A1F540037A52F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A0F60F6A1F540037A52F /* Icon.png */; };
 		9152A10F0F6AB24B0037A52F /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */; };
 		9152A1280F6AB7570037A52F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152A1270F6AB7570037A52F /* Security.framework */; };
@@ -230,6 +231,8 @@
 		913694280F7E9A660054E512 /* FavoriteReposStateSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteReposStateSetter.h; path = "favorite-repos/FavoriteReposStateSetter.h"; sourceTree = "<group>"; };
 		9136945D0F7EA45F0054E512 /* FavoriteReposState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteReposState.h; path = "favorite-repos/FavoriteReposState.h"; sourceTree = "<group>"; };
 		9136945E0F7EA45F0054E512 /* FavoriteReposState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteReposState.m; path = "favorite-repos/FavoriteReposState.m"; sourceTree = "<group>"; };
+		913694690F7EA5120054E512 /* FavoriteReposPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteReposPersistenceStore.h; path = "favorite-repos/FavoriteReposPersistenceStore.h"; sourceTree = "<group>"; };
+		9136946A0F7EA5120054E512 /* FavoriteReposPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteReposPersistenceStore.m; path = "favorite-repos/FavoriteReposPersistenceStore.m"; sourceTree = "<group>"; };
 		9152A0F60F6A1F540037A52F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9152A10D0F6AB24B0037A52F /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
@@ -650,6 +653,8 @@
 				913694030F7E8F470054E512 /* FavoriteReposDisplayMgr.m */,
 				913694250F7E9A490054E512 /* FavoriteReposStateReader.h */,
 				913694280F7E9A660054E512 /* FavoriteReposStateSetter.h */,
+				913694690F7EA5120054E512 /* FavoriteReposPersistenceStore.h */,
+				9136946A0F7EA5120054E512 /* FavoriteReposPersistenceStore.m */,
 			);
 			name = "favorite-repos";
 			sourceTree = "<group>";
@@ -888,6 +893,7 @@
 				913693EA0F7E871B0054E512 /* RepoKey.m in Sources */,
 				913694040F7E8F470054E512 /* FavoriteReposDisplayMgr.m in Sources */,
 				9136945F0F7EA45F0054E512 /* FavoriteReposState.m in Sources */,
+				9136946B0F7EA5120054E512 /* FavoriteReposPersistenceStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

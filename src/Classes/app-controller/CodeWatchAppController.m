@@ -68,6 +68,7 @@
     [favoriteUsersViewController release];
     [favoriteUsersState release];
     
+    [favoriteReposPersistenceStore release];
     [favoriteReposViewController release];
     [favoriteReposState release];
     
@@ -95,6 +96,7 @@
     [repoCachePersistenceStore save];
     [commitCachePersistenceStore save];
     [favoriteUsersPersistenceStore save];
+    [favoriteReposPersistenceStore save];
 }
 
 - (void)loadStateFromPersistenceStores
@@ -105,6 +107,7 @@
     [repoCachePersistenceStore load];
     [commitCachePersistenceStore load];
     [favoriteUsersPersistenceStore load];
+    [favoriteReposPersistenceStore load];
 }
 
 #pragma mark Initialization methods

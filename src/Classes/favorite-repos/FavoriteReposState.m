@@ -15,17 +15,6 @@
 - (void)awakeFromNib
 {
     favoriteRepoKeys = [[NSMutableArray array] retain];
-    
-    // TEMPORARY
-    RepoKey * repoKey1 =
-        [[[RepoKey alloc]
-        initWithUsername:@"highorderbit" repoName:@"code-watch"] autorelease];
-    RepoKey * repoKey2 =
-        [[[RepoKey alloc]
-        initWithUsername:@"mrtrumbe" repoName:@"meliman"] autorelease];
-    [self addFavoriteRepoKey:repoKey1];
-    [self addFavoriteRepoKey:repoKey2];
-    // TEMPORARY
 }
 
 #pragma mark FavoriteReposStateReader implementation

@@ -176,7 +176,7 @@
 							<object class="IBUIViewController" id="895136485">
 								<object class="IBUINavigationItem" key="IBUINavigationItem" id="2944671">
 									<string key="IBUITitle">Favorite Repos</string>
-									<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="834157536">
+									<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="513336912">
 										<int key="IBUIStyle">1</int>
 										<int key="IBUISystemItemIdentifier">4</int>
 									</object>
@@ -268,7 +268,8 @@
 			<object class="IBUICustomObject" id="1069993124"/>
 			<object class="IBUICustomObject" id="1021056545"/>
 			<object class="IBUICustomObject" id="367099613"/>
-			<object class="IBUICustomObject" id="347178763"/>
+			<object class="IBUICustomObject" id="181758423"/>
+			<object class="IBUICustomObject" id="898401093"/>
 			<object class="IBUICustomObject" id="578646318"/>
 			<object class="IBUICustomObject" id="89581905"/>
 			<object class="IBUICustomObject" id="247858435"/>
@@ -1351,9 +1352,33 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">favoriteReposState</string>
 						<reference key="source" ref="517652571"/>
-						<reference key="destination" ref="347178763"/>
+						<reference key="destination" ref="181758423"/>
 					</object>
 					<int key="connectionID">425</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">stateReader</string>
+						<reference key="source" ref="898401093"/>
+						<reference key="destination" ref="181758423"/>
+					</object>
+					<int key="connectionID">427</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">stateSetter</string>
+						<reference key="source" ref="898401093"/>
+						<reference key="destination" ref="181758423"/>
+					</object>
+					<int key="connectionID">428</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">favoriteReposPersistenceStore</string>
+						<reference key="source" ref="517652571"/>
+						<reference key="destination" ref="898401093"/>
+					</object>
+					<int key="connectionID">429</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1503,7 +1528,7 @@
 						<reference key="object" ref="2944671"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="834157536"/>
+							<reference ref="513336912"/>
 						</object>
 						<reference key="parent" ref="895136485"/>
 					</object>
@@ -1796,12 +1821,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">421</int>
-						<reference key="object" ref="834157536"/>
+						<reference key="object" ref="513336912"/>
 						<reference key="parent" ref="2944671"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">424</int>
-						<reference key="object" ref="347178763"/>
+						<reference key="object" ref="181758423"/>
+						<reference key="parent" ref="957960031"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">426</int>
+						<reference key="object" ref="898401093"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
 				</object>
@@ -1917,6 +1947,8 @@
 					<string>421.IBPluginDependency</string>
 					<string>424.CustomClassName</string>
 					<string>424.IBPluginDependency</string>
+					<string>426.CustomClassName</string>
+					<string>426.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2035,6 +2067,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>FavoriteReposState</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>FavoriteReposPersistenceStore</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -2057,7 +2091,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">425</int>
+			<int key="maxID">429</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2072,6 +2106,7 @@
 							<string>commitCache</string>
 							<string>commitCachePersistenceStore</string>
 							<string>configReader</string>
+							<string>favoriteReposPersistenceStore</string>
 							<string>favoriteReposState</string>
 							<string>favoriteReposViewController</string>
 							<string>favoriteUsersNavController</string>
@@ -2090,6 +2125,7 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>CommitCache</string>
+							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>FavoriteReposState</string>
@@ -2222,11 +2258,32 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">FavoriteReposPersistenceStore</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>stateReader</string>
+							<string>stateSetter</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSObject</string>
+							<string>NSObject</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/favorite-repos/FavoriteReposPersistenceStore.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">FavoriteReposState</string>
 					<string key="superclassName">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/favorite-users/FavoriteReposState.h</string>
+						<string key="minorKey">Classes/favorite-repos/FavoriteReposState.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

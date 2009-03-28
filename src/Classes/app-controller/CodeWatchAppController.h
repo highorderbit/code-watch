@@ -38,7 +38,8 @@
     IBOutlet UINavigationController * favoriteUsersNavController;
     IBOutlet FavoriteUsersViewController * favoriteUsersViewController;
     IBOutlet FavoriteUsersState * favoriteUsersState;
-    
+
+    IBOutlet NSObject<PersistenceStore> * favoriteReposPersistenceStore;    
     IBOutlet FavoriteReposViewController * favoriteReposViewController;
     IBOutlet FavoriteReposState * favoriteReposState;
 }
