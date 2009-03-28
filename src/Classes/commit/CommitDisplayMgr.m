@@ -74,6 +74,10 @@
         [networkAwareViewController setCachedDataAvailable:YES];
 
         [commitViewController updateWithCommitInfo:commitInfo];
+
+        // HACK: force update even when data is cached so we can fetch the
+        // user avatar. Remove when avatars are cached correctly.
+        [gitHub fetchInfoForCommit:commitKey repo:repoName username:username];
     } else {
         [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
         [networkAwareViewController setCachedDataAvailable:NO];
