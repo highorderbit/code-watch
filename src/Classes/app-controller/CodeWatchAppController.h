@@ -13,6 +13,7 @@
 #import "RepoCache.h"
 #import "CommitCache.h"
 #import "FavoriteReposViewController.h"
+#import "FavoriteReposState.h"
 
 @interface CodeWatchAppController : NSObject
 {
@@ -39,6 +40,7 @@
     IBOutlet FavoriteUsersState * favoriteUsersState;
     
     IBOutlet FavoriteReposViewController * favoriteReposViewController;
+    IBOutlet FavoriteReposState * favoriteReposState;
 }
 
 - (void) start;

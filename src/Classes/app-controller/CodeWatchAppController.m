@@ -69,6 +69,7 @@
     [favoriteUsersState release];
     
     [favoriteReposViewController release];
+    [favoriteReposState release];
     
     [super dealloc];
 }
@@ -128,7 +129,9 @@
 {
     FavoriteReposDisplayMgr * favoriteReposDisplayMgr =
         [[FavoriteReposDisplayMgr alloc]
-        initWithViewController:favoriteReposViewController];
+        initWithViewController:favoriteReposViewController
+        stateReader:favoriteReposState
+        stateSetter:favoriteReposState];
     
     favoriteReposViewController.delegate = favoriteReposDisplayMgr;
 }

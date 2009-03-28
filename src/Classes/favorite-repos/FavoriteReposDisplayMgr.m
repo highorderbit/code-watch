@@ -6,10 +6,22 @@
 
 @implementation FavoriteReposDisplayMgr
 
+- (void)dealloc
+{
+    [viewController release];
+    [favoriteReposStateReader release];
+    [favoriteReposStateSetter release];
+    [super dealloc];
+}
+
 - (id)initWithViewController:(FavoriteReposViewController *)aViewController
+    stateReader:(NSObject<FavoriteReposStateReader> *)aFavoriteReposStateReader
+    stateSetter:(NSObject<FavoriteReposStateSetter> *)aFavoriteReposStateSetter
 {
     if (self = [super init]) {
         viewController = [aViewController retain];
+        favoriteReposStateReader = [aFavoriteReposStateReader retain];
+        favoriteReposStateSetter = [aFavoriteReposStateSetter retain];
     }
     
     return self;
@@ -19,20 +31,7 @@
 
 - (void)viewWillAppear
 {
-    // [viewController setRepoKeys:favoriteReposStateReader.favoriteRepos];
-    
-    // TEMPORARY
-    NSMutableArray * repoKeys = [NSMutableArray array];
-    RepoKey * repoKey1 =
-        [[[RepoKey alloc]
-        initWithUsername:@"highorderbit" repoName:@"code-watch"] autorelease];
-    RepoKey * repoKey2 =
-        [[[RepoKey alloc]
-        initWithUsername:@"mrtrumbe" repoName:@"meliman"] autorelease];
-    [repoKeys addObject:repoKey1];
-    [repoKeys addObject:repoKey2];
-    [viewController setRepoKeys:repoKeys];
-    // TEMPORARY
+    [viewController setRepoKeys:favoriteReposStateReader.favoriteRepoKeys];
 }
 
 - (void)removedRepoKey:(RepoKey *)repoKey;
