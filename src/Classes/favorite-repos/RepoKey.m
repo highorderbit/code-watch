@@ -31,4 +31,12 @@
     return [NSString stringWithFormat:@"%@ / %@", username, repoName];
 }
 
+- (BOOL)isEqual:(id)anObject
+{    
+    RepoKey * anObjectAsRepoKey = (RepoKey *)anObject;
+
+    return anObjectAsRepoKey && [username isEqual:anObjectAsRepoKey.username] &&
+        [repoName isEqual:anObjectAsRepoKey.repoName];
+}
+
 @end

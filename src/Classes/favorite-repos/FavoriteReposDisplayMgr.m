@@ -36,20 +36,20 @@
 
 - (void)removedRepoKey:(RepoKey *)repoKey;
 {
-//    [favoriteReposStateSetter removeFavoriteRepo:repoKey];
-//    [viewController setRepoKeys:favoriteUsersStateReader.favoriteRepos];
+    [favoriteReposStateSetter removeFavoriteRepoKey:repoKey];
+    [viewController setRepoKeys:favoriteReposStateReader.favoriteRepoKeys];
 }
 
 - (void)setRepoKeySortOrder:(NSArray *)sortedRepoKeys
 {
-    for (NSString * repoKey in sortedRepoKeys) {
-//        [favoriteReposStateSetter removeFavoriteUser:repoKey];
-//        [favoriteReposStateSetter addFavoriteUser:repoKey];
+    for (RepoKey * repoKey in sortedRepoKeys) {
+        [favoriteReposStateSetter removeFavoriteRepoKey:repoKey];
+        [favoriteReposStateSetter addFavoriteRepoKey:repoKey];
     }
 }
 
 - (void)selectedRepoKey:(RepoKey *)repoKey
-{    
+{
 //    [userDisplayMgr displayUserInfoForUsername:username];
 }
 
