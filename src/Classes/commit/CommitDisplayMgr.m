@@ -74,6 +74,10 @@
         [networkAwareViewController setCachedDataAvailable:YES];
 
         [commitViewController updateWithCommitInfo:commitInfo];
+
+        // HACK: force update even when data is cached so we can fetch the
+        // user avatar. Remove when avatars are cached correctly.
+        [gitHub fetchInfoForCommit:commitKey repo:repoName username:username];
     } else {
         [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
         [networkAwareViewController setCachedDataAvailable:NO];
@@ -145,6 +149,35 @@
     [alertView show];
 
     [networkAwareViewController setUpdatingState:kDisconnected];
+}
+
+- (void)avatar:(UIImage *)avatar fetchedForEmailAddress:(NSString *)emailAddress
+{
+    [commitViewController updateWithAvatar:avatar];
+}
+
+- (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
+                                     error:(NSError *)error
+{
+    NSLog(@"Failed to retrieve avatar for email address: '%@' error: '%@'.",
+        emailAddress, error);
+
+    NSString * title =
+        NSLocalizedString(@"gravatar.repoupdate.failed.alert.title", @"");
+    NSString * cancelTitle =
+        NSLocalizedString(@"gravatar.repoupdate.failed.alert.ok", @"");
+    NSString * message = error.localizedDescription;
+
+    UIAlertView * alertView =
+        [[[UIAlertView alloc]
+          initWithTitle:title
+                message:message
+               delegate:self
+      cancelButtonTitle:cancelTitle
+      otherButtonTitles:nil]
+         autorelease];
+
+    [alertView show];
 }
 
 #pragma mark Helpers

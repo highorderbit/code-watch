@@ -46,10 +46,10 @@ enum
 
     [headerView release];
 
-    [avatarImageView release];
     [nameLabel release];
     [emailLabel release];
     [messageLabel release];
+    [avatarImageView release];
 
     [commitInfo release];
 
@@ -62,6 +62,13 @@ enum
 
     headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.tableHeaderView = headerView;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    avatarImageView.image = [UIImage imageNamed:@"DefaultAvatar.png"];
 }
 
 #pragma mark Table view methods
@@ -275,6 +282,11 @@ enum
     self.tableView.tableHeaderView = headerView;
 
     [self.tableView reloadData];
+}
+
+- (void)updateWithAvatar:(UIImage *)avatar
+{
+    avatarImageView.image = avatar;
 }
 
 #pragma mark Accessors

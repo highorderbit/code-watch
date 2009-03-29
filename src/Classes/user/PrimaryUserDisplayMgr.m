@@ -119,8 +119,6 @@
          autorelease];
 
     [alertView show];
-
-    [networkAwareViewController setUpdatingState:kDisconnected];
 }
 
 @end

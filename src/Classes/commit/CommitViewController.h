@@ -13,10 +13,10 @@
 
     IBOutlet UIView * headerView;
 
-    IBOutlet UIImageView * avatarImageView;
     IBOutlet UILabel * nameLabel;
     IBOutlet UILabel * emailLabel;
     IBOutlet UILabel * messageLabel;
+    IBOutlet UIImageView * avatarImageView;
 
     CommitInfo * commitInfo;
 }
@@ -29,5 +29,6 @@
 #pragma mark Updating the view with new data
 
 - (void)updateWithCommitInfo:(CommitInfo *)info;
+- (void)updateWithAvatar:(UIImage *)avatar;
 
 @end
