@@ -13,6 +13,7 @@
 		051CDD2C0F6C29690049D2BD /* NSString+NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDD2B0F6C29690049D2BD /* NSString+NSDataAdditions.m */; };
 		051CDD3F0F6C33FE0049D2BD /* NSString+UrlAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDD3E0F6C33FE0049D2BD /* NSString+UrlAdditions.m */; };
 		051FBA900F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */; };
+		05226ADB0F80302000DA73A8 /* UILabel+DrawingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05226ADA0F80302000DA73A8 /* UILabel+DrawingAdditions.m */; };
 		0524D2D20F719BC3006BA721 /* CommitInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524D2D10F719BC3006BA721 /* CommitInfo.m */; };
 		0524D4380F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524D4370F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m */; };
 		053420330F69E987000EECB1 /* NameValueTextEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */; };
@@ -133,6 +134,8 @@
 		051FBA340F6ADED400DB8696 /* LogInViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewControllerDelegate.h; sourceTree = "<group>"; };
 		051FBA8E0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+RuntimeAdditions.h"; sourceTree = "<group>"; };
 		051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+RuntimeAdditions.m"; sourceTree = "<group>"; };
+		05226AD90F80302000DA73A8 /* UILabel+DrawingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+DrawingAdditions.h"; sourceTree = "<group>"; };
+		05226ADA0F80302000DA73A8 /* UILabel+DrawingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+DrawingAdditions.m"; sourceTree = "<group>"; };
 		0524D2D00F719BC3006BA721 /* CommitInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitInfo.h; path = commit/CommitInfo.h; sourceTree = "<group>"; };
 		0524D2D10F719BC3006BA721 /* CommitInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitInfo.m; path = commit/CommitInfo.m; sourceTree = "<group>"; };
 		0524D4360F71AFBF006BA721 /* NSDate+GitHubStringHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+GitHubStringHelpers.h"; sourceTree = "<group>"; };
@@ -449,6 +452,8 @@
 				91FD19E90F72C4A5004549F9 /* RecentHistoryCache.m */,
 				91FD1A870F731586004549F9 /* UIColor+CodeWatchColors.h */,
 				91FD1A880F731586004549F9 /* UIColor+CodeWatchColors.m */,
+				05226AD90F80302000DA73A8 /* UILabel+DrawingAdditions.h */,
+				05226ADA0F80302000DA73A8 /* UILabel+DrawingAdditions.m */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -964,6 +969,7 @@
 				9136946B0F7EA5120054E512 /* FavoriteReposPersistenceStore.m in Sources */,
 				913694900F7EC4140054E512 /* AddRepoViewController.m in Sources */,
 				913694A80F7ECF140054E512 /* UIAddRepoMgr.m in Sources */,
+				05226ADB0F80302000DA73A8 /* UILabel+DrawingAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
