@@ -71,6 +71,7 @@
     [favoriteReposPersistenceStore release];
     [favoriteReposViewController release];
     [favoriteReposState release];
+    [favoriteReposNavController release];
     
     [super dealloc];
 }
@@ -130,11 +131,15 @@
 
 - (void)createAndInitFavoriteReposDisplayMgr
 {
+    NSObject<RepoSelector> * repoSelector =
+        [self
+        createRepoSelectorWithNavigationController:favoriteReposNavController];
     FavoriteReposDisplayMgr * favoriteReposDisplayMgr =
         [[FavoriteReposDisplayMgr alloc]
         initWithViewController:favoriteReposViewController
         stateReader:favoriteReposState
-        stateSetter:favoriteReposState];
+        stateSetter:favoriteReposState
+        repoSelector:repoSelector];
     
     favoriteReposViewController.delegate = favoriteReposDisplayMgr;
 }

@@ -11,17 +11,20 @@
     [viewController release];
     [favoriteReposStateReader release];
     [favoriteReposStateSetter release];
+    [repoSelector release];
     [super dealloc];
 }
 
 - (id)initWithViewController:(FavoriteReposViewController *)aViewController
     stateReader:(NSObject<FavoriteReposStateReader> *)aFavoriteReposStateReader
     stateSetter:(NSObject<FavoriteReposStateSetter> *)aFavoriteReposStateSetter
+    repoSelector:(NSObject<RepoSelector> *)aRepoSelector
 {
     if (self = [super init]) {
         viewController = [aViewController retain];
         favoriteReposStateReader = [aFavoriteReposStateReader retain];
         favoriteReposStateSetter = [aFavoriteReposStateSetter retain];
+        repoSelector = [aRepoSelector retain];
     }
     
     return self;
@@ -50,7 +53,7 @@
 
 - (void)selectedRepoKey:(RepoKey *)repoKey
 {
-//    [userDisplayMgr displayUserInfoForUsername:username];
+    [repoSelector user:repoKey.username didSelectRepo:repoKey.repoName];
 }
 
 @end

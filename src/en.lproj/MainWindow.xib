@@ -1495,6 +1495,14 @@
 					</object>
 					<int key="connectionID">446</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">favoriteReposNavController</string>
+						<reference key="source" ref="517652571"/>
+						<reference key="destination" ref="801315089"/>
+					</object>
+					<int key="connectionID">447</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2225,7 +2233,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">446</int>
+			<int key="maxID">447</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2240,6 +2248,7 @@
 							<string>commitCache</string>
 							<string>commitCachePersistenceStore</string>
 							<string>configReader</string>
+							<string>favoriteReposNavController</string>
 							<string>favoriteReposPersistenceStore</string>
 							<string>favoriteReposState</string>
 							<string>favoriteReposViewController</string>
@@ -2261,6 +2270,7 @@
 							<string>CommitCache</string>
 							<string>NSObject</string>
 							<string>NSObject</string>
+							<string>UINavigationController</string>
 							<string>NSObject</string>
 							<string>FavoriteReposState</string>
 							<string>FavoriteReposViewController</string>
