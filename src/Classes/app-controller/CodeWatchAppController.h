@@ -42,6 +42,7 @@
     IBOutlet NSObject<PersistenceStore> * favoriteReposPersistenceStore;    
     IBOutlet FavoriteReposViewController * favoriteReposViewController;
     IBOutlet FavoriteReposState * favoriteReposState;
+    IBOutlet UINavigationController * favoriteReposNavController;
 }
 
 - (void) start;

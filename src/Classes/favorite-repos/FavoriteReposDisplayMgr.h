@@ -7,6 +7,7 @@
 #import "FavoriteReposViewController.h"
 #import "FavoriteReposStateReader.h"
 #import "FavoriteReposStateSetter.h"
+#import "RepoSelector.h"
 
 @interface FavoriteReposDisplayMgr :
     NSObject <FavoriteReposViewControllerDelegate>
@@ -15,10 +16,13 @@
     
     NSObject<FavoriteReposStateReader> * favoriteReposStateReader;
     NSObject<FavoriteReposStateSetter> * favoriteReposStateSetter;
+    
+    NSObject<RepoSelector> * repoSelector;
 }
 
 - (id)initWithViewController:(FavoriteReposViewController *)viewController
     stateReader:(NSObject<FavoriteReposStateReader> *)favoriteReposStateReader
-    stateSetter:(NSObject<FavoriteReposStateSetter> *)favoriteReposStateSetter;
+    stateSetter:(NSObject<FavoriteReposStateSetter> *)favoriteReposStateSetter
+    repoSelector:(NSObject<RepoSelector> *)repoSelector;
 
 @end
