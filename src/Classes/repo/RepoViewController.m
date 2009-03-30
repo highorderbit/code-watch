@@ -8,8 +8,10 @@
 #import "CommitInfo.h"
 
 #import "NSDate+GitHubStringHelpers.h"
+#import "UILabel+DrawingAdditions.h"
 
 @interface RepoViewController (Private)
+- (void)updateHeaderView;
 - (void)setRepoName:(NSString *)name;
 - (void)setRepoInfo:(RepoInfo *)repo;
 - (void)setCommits:(NSDictionary *)someCommits;
@@ -51,28 +53,7 @@
 {
     [super viewWillAppear:animated];
 
-    repoNameLabel.text = repoName;
-    repoDescriptionLabel.text = [repoInfo.details objectForKey:@"description"];
-
-    NSInteger nwatchers =
-        [[repoInfo.details objectForKey:@"watchers"] integerValue];
-    NSInteger nforks =
-        [[repoInfo.details objectForKey:@"forks"] integerValue];
-
-    NSString * watchersFormatString = nwatchers == 1 ?
-        NSLocalizedString(@"repo.watchers.label.formatstring.singular", @"") :
-        NSLocalizedString(@"repo.watchers.label.formatstring.plural", @"");
-    NSString * watchersLabel =
-        [NSString stringWithFormat:watchersFormatString, nwatchers];
-
-    NSString * forksFormatString = nforks == 1 ?
-        NSLocalizedString(@"repo.forks.label.formatstring.singular", @"") :
-        NSLocalizedString(@"repo.forks.label.formatstring.plural", @"");
-    NSString * forksLabel =
-        [NSString stringWithFormat:forksFormatString, nforks];
-
-    repoInfoLabel.text =
-        [NSString stringWithFormat:@"%@ / %@", watchersLabel, forksLabel];
+    [self updateHeaderView];
 }
 
 #pragma mark Table view methods
@@ -143,6 +124,7 @@
     [self setRepoInfo:someRepoInfo];
 
     self.navigationItem.title = repoName;
+    [self updateHeaderView];
     [self.tableView reloadData];
 }
 
@@ -152,6 +134,52 @@
     [avatars setObject:avatar forKey:emailAddress];
 
     [self.tableView reloadData];
+}
+
+#pragma mark Updating the views
+
+- (void)updateHeaderView
+{
+    repoNameLabel.text = repoName;
+
+    NSString * repoDesc = [repoInfo.details objectForKey:@"description"];
+    CGFloat height = [repoDescriptionLabel heightForString:repoDesc];
+
+    CGRect labelFrame = repoDescriptionLabel.frame;
+    labelFrame.size.height = height;
+    repoDescriptionLabel.frame = labelFrame;
+    repoDescriptionLabel.text = repoDesc;
+
+    CGRect headerViewFrame = headerView.frame;
+    NSLog(@"Current frame rect: (%f, %f), (%f, %f).", headerViewFrame.origin.x,
+        headerViewFrame.origin.y, headerViewFrame.size.width,
+        headerViewFrame.size.height);
+
+    headerViewFrame.size.height = 57.0 + height;
+    headerView.frame = headerViewFrame;
+
+    // force the header view to redraw
+    self.tableView.tableHeaderView = headerView;
+
+    NSInteger nwatchers =
+        [[repoInfo.details objectForKey:@"watchers"] integerValue];
+    NSInteger nforks =
+        [[repoInfo.details objectForKey:@"forks"] integerValue];
+
+    NSString * watchersFormatString = nwatchers == 1 ?
+        NSLocalizedString(@"repo.watchers.label.formatstring.singular", @"") :
+        NSLocalizedString(@"repo.watchers.label.formatstring.plural", @"");
+    NSString * watchersLabel =
+        [NSString stringWithFormat:watchersFormatString, nwatchers];
+
+    NSString * forksFormatString = nforks == 1 ?
+        NSLocalizedString(@"repo.forks.label.formatstring.singular", @"") :
+        NSLocalizedString(@"repo.forks.label.formatstring.plural", @"");
+    NSString * forksLabel =
+        [NSString stringWithFormat:forksFormatString, nforks];
+
+    repoInfoLabel.text =
+        [NSString stringWithFormat:@"%@ / %@", watchersLabel, forksLabel];
 }
 
     #pragma mark Accessors

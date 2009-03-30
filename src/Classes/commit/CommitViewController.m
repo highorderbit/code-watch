@@ -5,6 +5,7 @@
 #import "CommitViewController.h"
 #import "CommitInfo.h"
 #import "UIColor+CodeWatchColors.h"
+#import "UILabel+DrawingAdditions.h"
 
 static const NSUInteger NUM_SECTIONS = 2;
 enum
@@ -263,20 +264,16 @@ enum
     nameLabel.text = committerName;
     emailLabel.text = committerEmail;
 
-    CGSize maximumLabelSize = CGSizeMake(298.0, 9999.0);
-
-    UIFont * font = messageLabel.font;
-    CGSize size = [message sizeWithFont:font constrainedToSize:maximumLabelSize
-        lineBreakMode:UILineBreakModeWordWrap];
+    CGFloat height = [messageLabel heightForString:message];
 
     CGRect newFrame = messageLabel.frame;
-    newFrame.size = size;
+    newFrame.size.height = height;
 
     messageLabel.frame = newFrame;
     messageLabel.text = message;
 
     CGRect headerFrame = headerView.frame;
-    headerFrame.size.height = 85.0 + size.height;
+    headerFrame.size.height = 85.0 + height;
     headerView.frame = headerFrame;
 
     self.tableView.tableHeaderView = headerView;
