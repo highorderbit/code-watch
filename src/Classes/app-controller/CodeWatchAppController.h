@@ -14,6 +14,7 @@
 #import "CommitCache.h"
 #import "FavoriteReposViewController.h"
 #import "FavoriteReposState.h"
+#import "GitHubServiceFactory.h"
 
 @interface CodeWatchAppController : NSObject
 {
@@ -43,6 +44,8 @@
     IBOutlet FavoriteReposViewController * favoriteReposViewController;
     IBOutlet FavoriteReposState * favoriteReposState;
     IBOutlet UINavigationController * favoriteReposNavController;
+    
+    IBOutlet GitHubServiceFactory * gitHubServiceFactory;
 }
 
 - (void) start;

@@ -56,7 +56,7 @@
 		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
 		910D80CC0F697DB30068CBF3 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D80CA0F697DB30068CBF3 /* UserView.xib */; };
 		910D81160F6987EB0068CBF3 /* LogInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D81140F6987EB0068CBF3 /* LogInView.xib */; };
-		910D812B0F699C680068CBF3 /* SearchRepoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D81290F699C680068CBF3 /* SearchRepoView.xib */; };
+		910D812B0F699C680068CBF3 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D81290F699C680068CBF3 /* SearchView.xib */; };
 		910D82240F69CAC90068CBF3 /* LogInState.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D82230F69CAC90068CBF3 /* LogInState.m */; };
 		910D823E0F69D4F50068CBF3 /* LogInPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D823D0F69D4F50068CBF3 /* LogInPersistenceStore.m */; };
 		910D82830F69DDF00068CBF3 /* PListUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D82820F69DDF00068CBF3 /* PListUtils.m */; };
@@ -87,6 +87,10 @@
 		91AB1E290F733BB6005AC590 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AB1E280F733BB6005AC590 /* AddressBookUI.framework */; };
 		91B6205B0F6C54540077CDB9 /* UserDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */; };
 		91B6205E0F6C54830077CDB9 /* UserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */; };
+		91B889140F8002D400215C8B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B889130F8002D400215C8B /* SearchViewController.m */; };
+		91B889880F804E1800215C8B /* GitHubSearchInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B889870F804E1800215C8B /* GitHubSearchInitializer.m */; };
+		91B8898C0F80506200215C8B /* GitHubUserSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B8898B0F80506200215C8B /* GitHubUserSearchService.m */; };
+		91B889970F8061F400215C8B /* GitHubServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B889960F8061F400215C8B /* GitHubServiceFactory.m */; };
 		91C248440F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C248430F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m */; };
 		91C248B70F7C8C1E007F8B05 /* ReposIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C248B60F7C8C1E007F8B05 /* ReposIcon.png */; };
 		91CC52350F6C9D98000AD3FB /* NetworkAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */; };
@@ -220,7 +224,7 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		910D80CB0F697DB30068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UserView.xib; sourceTree = "<group>"; };
 		910D81150F6987EB0068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LogInView.xib; sourceTree = "<group>"; };
-		910D812A0F699C680068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SearchRepoView.xib; sourceTree = "<group>"; };
+		910D812A0F699C680068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SearchView.xib; sourceTree = "<group>"; };
 		910D82220F69CAC90068CBF3 /* LogInState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInState.h; sourceTree = "<group>"; };
 		910D82230F69CAC90068CBF3 /* LogInState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInState.m; sourceTree = "<group>"; };
 		910D823C0F69D4F50068CBF3 /* LogInPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInPersistenceStore.h; sourceTree = "<group>"; };
@@ -281,6 +285,16 @@
 		91B620590F6C54540077CDB9 /* UserDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailTableViewCell.h; sourceTree = "<group>"; };
 		91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailTableViewCell.m; sourceTree = "<group>"; };
 		91B6205D0F6C54830077CDB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UserDetailTableViewCell.xib; sourceTree = "<group>"; };
+		91B889120F8002D400215C8B /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = search/SearchViewController.h; sourceTree = "<group>"; };
+		91B889130F8002D400215C8B /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = search/SearchViewController.m; sourceTree = "<group>"; };
+		91B8896C0F8048C700215C8B /* SearchService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchService.h; path = search/SearchService.h; sourceTree = "<group>"; };
+		91B8896F0F8049AE00215C8B /* SearchServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchServiceDelegate.h; path = search/SearchServiceDelegate.h; sourceTree = "<group>"; };
+		91B889860F804E1800215C8B /* GitHubSearchInitializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubSearchInitializer.h; path = search/GitHubSearchInitializer.h; sourceTree = "<group>"; };
+		91B889870F804E1800215C8B /* GitHubSearchInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubSearchInitializer.m; path = search/GitHubSearchInitializer.m; sourceTree = "<group>"; };
+		91B8898A0F80506200215C8B /* GitHubUserSearchService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubUserSearchService.h; path = search/GitHubUserSearchService.h; sourceTree = "<group>"; };
+		91B8898B0F80506200215C8B /* GitHubUserSearchService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubUserSearchService.m; path = search/GitHubUserSearchService.m; sourceTree = "<group>"; };
+		91B889950F8061F400215C8B /* GitHubServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubServiceFactory.h; path = github/GitHubServiceFactory.h; sourceTree = "<group>"; };
+		91B889960F8061F400215C8B /* GitHubServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubServiceFactory.m; path = github/GitHubServiceFactory.m; sourceTree = "<group>"; };
 		91C2483F0F7C3401007F8B05 /* RecentActivityDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentActivityDisplayMgr.h; sourceTree = "<group>"; };
 		91C248420F7C3456007F8B05 /* UIRecentActivityDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRecentActivityDisplayMgr.h; sourceTree = "<group>"; };
 		91C248430F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIRecentActivityDisplayMgr.m; sourceTree = "<group>"; };
@@ -373,7 +387,7 @@
 				059936380F6975A80005B934 /* MainWindow.xib */,
 				910D80CA0F697DB30068CBF3 /* UserView.xib */,
 				910D81140F6987EB0068CBF3 /* LogInView.xib */,
-				910D81290F699C680068CBF3 /* SearchRepoView.xib */,
+				910D81290F699C680068CBF3 /* SearchView.xib */,
 				053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */,
 				91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */,
 				91F89B290F7057C500993921 /* NewsFeedTableViewCell.xib */,
@@ -563,6 +577,8 @@
 				051CDCE10F6C0D140049D2BD /* JsonGitHubApiParserImpl.m */,
 				05F4CF480F6C614A00B107BB /* GitHubApiParserImpl.h */,
 				05F4CFC30F6C65A300B107BB /* GitHubApiDelegate.h */,
+				91B889950F8061F400215C8B /* GitHubServiceFactory.h */,
+				91B889960F8061F400215C8B /* GitHubServiceFactory.m */,
 			);
 			name = github;
 			sourceTree = "<group>";
@@ -570,6 +586,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				91B889150F8002DB00215C8B /* search */,
 				91E25E5B0F79B81300E1594E /* favorite-users */,
 				91F89B3B0F705EB300993921 /* news-feed */,
 				05BB60AA0F6B20F40005A635 /* github */,
@@ -751,6 +768,21 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		91B889150F8002DB00215C8B /* search */ = {
+			isa = PBXGroup;
+			children = (
+				91B889120F8002D400215C8B /* SearchViewController.h */,
+				91B889130F8002D400215C8B /* SearchViewController.m */,
+				91B8896C0F8048C700215C8B /* SearchService.h */,
+				91B8896F0F8049AE00215C8B /* SearchServiceDelegate.h */,
+				91B889860F804E1800215C8B /* GitHubSearchInitializer.h */,
+				91B889870F804E1800215C8B /* GitHubSearchInitializer.m */,
+				91B8898A0F80506200215C8B /* GitHubUserSearchService.h */,
+				91B8898B0F80506200215C8B /* GitHubUserSearchService.m */,
+			);
+			name = search;
+			sourceTree = "<group>";
+		};
 		91E25E5B0F79B81300E1594E /* favorite-users */ = {
 			isa = PBXGroup;
 			children = (
@@ -854,7 +886,7 @@
 				0599363C0F6975A80005B934 /* MainWindow.xib in Resources */,
 				910D80CC0F697DB30068CBF3 /* UserView.xib in Resources */,
 				910D81160F6987EB0068CBF3 /* LogInView.xib in Resources */,
-				910D812B0F699C680068CBF3 /* SearchRepoView.xib in Resources */,
+				910D812B0F699C680068CBF3 /* SearchView.xib in Resources */,
 				053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */,
 				910D828B0F69E0180068CBF3 /* LogInState.plist in Resources */,
 				9152A0F70F6A1F540037A52F /* Icon.png in Resources */,
@@ -964,6 +996,10 @@
 				9136946B0F7EA5120054E512 /* FavoriteReposPersistenceStore.m in Sources */,
 				913694900F7EC4140054E512 /* AddRepoViewController.m in Sources */,
 				913694A80F7ECF140054E512 /* UIAddRepoMgr.m in Sources */,
+				91B889140F8002D400215C8B /* SearchViewController.m in Sources */,
+				91B889880F804E1800215C8B /* GitHubSearchInitializer.m in Sources */,
+				91B8898C0F80506200215C8B /* GitHubUserSearchService.m in Sources */,
+				91B889970F8061F400215C8B /* GitHubServiceFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1058,12 +1094,12 @@
 			name = LogInView.xib;
 			sourceTree = "<group>";
 		};
-		910D81290F699C680068CBF3 /* SearchRepoView.xib */ = {
+		910D81290F699C680068CBF3 /* SearchView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				910D812A0F699C680068CBF3 /* en */,
 			);
-			name = SearchRepoView.xib;
+			name = SearchView.xib;
 			sourceTree = "<group>";
 		};
 		913693CF0F7E78D90054E512 /* FavoriteReposView.xib */ = {

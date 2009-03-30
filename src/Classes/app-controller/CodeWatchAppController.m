@@ -21,8 +21,6 @@
 - (void)createAndInitFavoriteUsersDisplayMgr;
 - (void)createAndInitFavoriteReposDisplayMgr;
 
-- (GitHubService *)createGitHubService;
-
 - (NSObject<UserDisplayMgr> *)
     createUserDisplayMgrWithNavigationContoller:
     (UINavigationController *)navigationController;
@@ -72,6 +70,8 @@
     [favoriteReposViewController release];
     [favoriteReposState release];
     [favoriteReposNavController release];
+    
+    [gitHubServiceFactory release];
     
     [super dealloc];
 }
@@ -144,15 +144,6 @@
     favoriteReposViewController.delegate = favoriteReposDisplayMgr;
 }
 
-#pragma mark Factory methods
-
-- (GitHubService *)createGitHubService
-{
-    return [[GitHubService alloc] initWithConfigReader:configReader
-        logInState:logInState userCache:userCache repoCache:repoCache
-        commitCache:commitCache];
-}
-
 #pragma mark Display manager factory methods
 
 - (NSObject<UserDisplayMgr> *)
@@ -167,7 +158,7 @@
     NetworkAwareViewController * networkAwareViewController =
         [self createNetworkAwareControllerWithTarget:userViewController];
     
-    GitHubService * gitHubService = [self createGitHubService];
+    GitHubService * gitHubService = [gitHubServiceFactory createGitHubService];
     
     NSObject<RepoSelector> * repoSelector =
         [self createRepoSelectorWithNavigationController:navigationController];
@@ -195,7 +186,7 @@
     NetworkAwareViewController * networkAwareViewController =
         [self createNetworkAwareControllerWithTarget:repoViewController];
 
-    GitHubService * gitHubService = [self createGitHubService];
+    GitHubService * gitHubService = [gitHubServiceFactory createGitHubService];
     
     NSObject<CommitSelector> * commitSelector =
         [self createCommitSelectorWithNavigationController:
@@ -225,7 +216,7 @@
     NetworkAwareViewController * networkAwareViewController =
         [self createNetworkAwareControllerWithTarget:commitViewController];
     
-    GitHubService * gitHubService = [self createGitHubService];
+    GitHubService * gitHubService = [gitHubServiceFactory createGitHubService];
         
     CommitDisplayMgr * commitDisplayMgr =
         [[CommitDisplayMgr alloc]
@@ -251,7 +242,7 @@
     NetworkAwareViewController * networkAwareViewController =
         [self createNetworkAwareControllerWithTarget:newsFeedViewController];
         
-    GitHubService * gitHubService = [self createGitHubService];
+    GitHubService * gitHubService = [gitHubServiceFactory createGitHubService];
         
     UIRecentActivityDisplayMgr * recentActivityDisplayMgr =
         [[UIRecentActivityDisplayMgr alloc]
