@@ -7,14 +7,16 @@
 #import "GitHubService.h"
 
 @interface GitHubUserSearchService :
-    NSObject <SearchService, GitHubServiceDelegate>
+    NSObject <SearchService, GitHubServiceDelegate, NSCopying>
 {
     NSObject<SearchServiceDelegate> * delegate;
-    
     GitHubService * gitHubService;
+    NSString * nextRequest;
+    BOOL requestOutstanding;
 }
 
 @property (nonatomic, retain) NSObject<SearchServiceDelegate> * delegate;
+@property (nonatomic, copy) NSString * nextRequest;
 
 - (id)initWithGitHubService:(GitHubService *)gitHubService;
 

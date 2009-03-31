@@ -37,7 +37,7 @@
         autorelease];
     userService.delegate = searchViewController;
     gitHubService.delegate = userService;
-    [searchServices setObject:userService forKey:@"Users (exact matches)"];
+    [searchServices setObject:@"Users (exact matches)" forKey:userService];
     
     return searchServices;
 }
