@@ -4,10 +4,16 @@
 
 #import "SearchViewController.h"
 
+static const CGFloat IPHONE_WIDTH = 320;
+
 @interface SearchViewController (Private)
 
 - (void)refreshView;
 - (void)updateNonZeroSearchResults;
+
++ (CGRect)defaultFrame;
++ (CGRect)transitionFrame;
++ (CGRect)searchFrame;
 
 @end
 
@@ -49,11 +55,19 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = YES;
+    searchBar.hidden = NO;
+    tableView.frame = [[self class] defaultFrame];
+
+    NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
+    [tableView deselectRowAtIndexPath:selectedRow animated:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    searchBar.hidden = YES;
     self.navigationController.navigationBarHidden = NO;
+    tableView.frame = [[self class] transitionFrame];
+    [searchBar resignFirstResponder];
 }
 
 #pragma mark UITableViewDataSource implementation
@@ -147,6 +161,24 @@
     [searchBar resignFirstResponder];
 }
 
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationTransition:UIViewAnimationTransitionNone
+        forView:tableView cache:YES];
+
+    tableView.frame = [[self class] searchFrame];
+
+    [UIView commitAnimations];
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    tableView.frame = [[self class] defaultFrame];
+    [tableView reloadData];
+}
+
 #pragma mark SearchServiceDelegate implementation
 
 - (void)processSearchResults:(NSDictionary *)results
@@ -177,6 +209,23 @@
     }
     
     NSLog(@"Non-zero search results: %@", nonZeroSearchResults);
+}
+
+#pragma mark Table view frames
+
++ (CGRect)defaultFrame
+{
+    return CGRectMake(0, 44, IPHONE_WIDTH, 367);
+}
+
++ (CGRect)transitionFrame
+{
+    return CGRectMake(0, 0, IPHONE_WIDTH, 411);
+}
+
++ (CGRect)searchFrame
+{
+    return CGRectMake(0, 44, IPHONE_WIDTH, 201);
 }
 
 @end
