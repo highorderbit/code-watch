@@ -7,14 +7,13 @@
 #import "LogInState.h"
 #import "PersistenceStore.h"
 #import "FavoriteUsersViewController.h"
-#import "UserCache.h"
 #import "FavoriteUsersState.h"
 #import "ConfigReader.h"
-#import "RepoCache.h"
-#import "CommitCache.h"
 #import "FavoriteReposViewController.h"
 #import "FavoriteReposState.h"
 #import "GitHubServiceFactory.h"
+#import "UserDisplayMgrFactory.h"
+#import "RepoSelectorFactory.h"
 
 @interface CodeWatchAppController : NSObject
 {
@@ -25,15 +24,9 @@
     IBOutlet NSObject<PersistenceStore> * logInPersistenceStore;
     
     IBOutlet NSObject<PersistenceStore> * userCachePersistenceStore;
-    IBOutlet UserCache * userCache;
-    
     IBOutlet NSObject<PersistenceStore> * newsFeedPersistenceStore;
-    
     IBOutlet NSObject<PersistenceStore> * repoCachePersistenceStore;
-    IBOutlet RepoCache * repoCache;
-    
     IBOutlet NSObject<PersistenceStore> * commitCachePersistenceStore;
-    IBOutlet CommitCache * commitCache;
     
     IBOutlet NSObject<PersistenceStore> * favoriteUsersPersistenceStore;
     IBOutlet UINavigationController * favoriteUsersNavController;
@@ -46,6 +39,9 @@
     IBOutlet UINavigationController * favoriteReposNavController;
     
     IBOutlet GitHubServiceFactory * gitHubServiceFactory;
+
+    IBOutlet UserDisplayMgrFactory * userDisplayMgrFactory;
+    IBOutlet RepoSelectorFactory * repoSelectorFactory;
 }
 
 - (void) start;

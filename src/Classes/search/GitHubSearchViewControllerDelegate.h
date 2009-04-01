@@ -3,11 +3,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserDisplayMgr.h"
+#import "UserDisplayMgrFactory.h"
 #import "SearchViewControllerDelegate.h"
 
 @interface GitHubSearchViewControllerDelegate :
     NSObject <SearchViewControllerDelegate>
 {
+    IBOutlet UINavigationController * navigationController;
+    IBOutlet UserDisplayMgrFactory * userDisplayMgrFactory;
+    NSObject<UserDisplayMgr> * userDisplayMgr;
 }
+
+@property (readonly) NSObject<UserDisplayMgr> * userDisplayMgr;
 
 @end

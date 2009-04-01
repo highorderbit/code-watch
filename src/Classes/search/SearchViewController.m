@@ -13,10 +13,12 @@
 
 @implementation SearchViewController
 
+@synthesize delegate;
 @synthesize searchResults;
 
 - (void)dealloc
 {
+    [delegate release];
     [tableView release];
     [searchBar release];
     [searchService release];
@@ -103,6 +105,13 @@
 - (void)tableView:(UITableView *)aTableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSArray * nonZeroSearchResultKeys = [nonZeroSearchResults allKeys];
+    NSString * section =
+        [nonZeroSearchResultKeys objectAtIndex:indexPath.section];
+    NSArray * results = [nonZeroSearchResults objectForKey:section];
+    NSString * text = [results objectAtIndex:indexPath.row];
+    
+    [delegate processSelection:text fromSection:section];
 }
 
 - (UITableViewCellAccessoryType)tableView:(UITableView *)aTableView

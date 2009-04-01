@@ -105,7 +105,7 @@
 
 + (NSString *)userServiceKey
 {
-    return @"Users (exact matches)";
+    return @"User";
 }
 
 + (NSString *)repoServiceKey
