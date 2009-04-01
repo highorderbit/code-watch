@@ -6,7 +6,6 @@
 
 @interface GitHubSearchService (Private)
 
-+ (NSArray *)filterResults:(NSArray *)results byText:(NSString *)text;
 + (NSArray *)mergeResults:(NSDictionary *)results;
 
 + (NSString *)userServiceKey;
@@ -22,16 +21,22 @@
 {
     [searchResults release];
     [userService release];
+    [repoService release];
     [super dealloc];
 }
 
 - (id)initWithUserService:(GitHubUserSearchService *)aUserService
+    repoService:(GitHubRepoSearchService *)aRepoService
 {
     if (self = [super init]) {
         userService = [aUserService retain];
+        repoService = [aRepoService retain];
+        
         searchResults = [[NSMutableDictionary dictionary] retain];
         [searchResults setObject:[NSArray array]
             forKey:[[self class] userServiceKey]];
+        [searchResults setObject:[NSArray array]
+            forKey:[[self class] repoServiceKey]];
     }
 
     return self;
@@ -41,19 +46,8 @@
 
 - (void)searchForText:(NSString *)text
 {
-    NSArray * userResults =
-        [searchResults objectForKey:[[self class] userServiceKey]];
-    NSArray * filteredUserResults =
-        [[self class] filterResults:userResults byText:text];
-    [searchResults setObject:filteredUserResults
-        forKey:[[self class] userServiceKey]];
-
-    // TODO: filter repo search results
-
-    [delegate processSearchResults:searchResults withSearchText:text
-        fromSearchService:self];
-
     [userService searchForText:text];
+    [repoService searchForText:text];
 }
 
 #pragma mark SearchServiceDelegate implementation
@@ -75,19 +69,6 @@
 }
 
 #pragma mark Static helpers
-
-+ (NSArray *)filterResults:(NSArray *)results byText:(NSString *)text
-{
-    const NSRange notFoundRange = NSMakeRange(NSNotFound, 0);
-    
-    NSMutableArray * filteredResults = [NSMutableArray array];
-    
-    for (NSString * result in results)
-        if (!NSEqualRanges([result rangeOfString:text], notFoundRange))
-            [filteredResults addObject:result];
-    
-    return filteredResults;
-}
 
 + (NSArray *)mergeResults:(NSDictionary *)results
 {

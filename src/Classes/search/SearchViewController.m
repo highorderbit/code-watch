@@ -126,7 +126,7 @@ static const CGFloat IPHONE_WIDTH = 320;
     NSString * key =
         [nonZeroSearchResultKeys objectAtIndex:indexPath.section];
     NSArray * results = [nonZeroSearchResults objectForKey:key];
-    cell.text = [results objectAtIndex:indexPath.row];
+    cell.text = [[results objectAtIndex:indexPath.row] description];
 
     return cell;
 }
@@ -140,9 +140,9 @@ static const CGFloat IPHONE_WIDTH = 320;
     NSString * section =
         [nonZeroSearchResultKeys objectAtIndex:indexPath.section];
     NSArray * results = [nonZeroSearchResults objectForKey:section];
-    NSString * text = [results objectAtIndex:indexPath.row];
+    NSObject * selection = [results objectAtIndex:indexPath.row];
     
-    [delegate processSelection:text fromSection:section];
+    [delegate processSelection:selection fromSection:section];
 }
 
 - (UITableViewCellAccessoryType)tableView:(UITableView *)aTableView
@@ -227,8 +227,6 @@ static const CGFloat IPHONE_WIDTH = 320;
         else
             [nonZeroSearchResults setObject:results forKey:category];
     }
-    
-    NSLog(@"Non-zero search results: %@", nonZeroSearchResults);
 }
 
 #pragma mark Table view frames

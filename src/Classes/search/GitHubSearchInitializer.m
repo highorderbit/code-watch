@@ -9,6 +9,7 @@
 @interface GitHubSearchInitializer (Private)
 
 - (GitHubUserSearchService *)createUserService;
+- (GitHubRepoSearchService *)createRepoService;
 
 @end
 
@@ -23,10 +24,13 @@
 - (void)awakeFromNib
 {
     GitHubUserSearchService * userService = [self createUserService];
+    GitHubRepoSearchService * repoService = [self createRepoService];
         
     GitHubSearchService * gitHubSearchService =
-        [[GitHubSearchService alloc] initWithUserService:userService];
+        [[GitHubSearchService alloc] initWithUserService:userService
+        repoService:repoService];
     userService.delegate = gitHubSearchService;
+    repoService.delegate = gitHubSearchService;
     
     gitHubSearchService.delegate = searchViewController;
     
@@ -45,6 +49,20 @@
     gitHubService.delegate = userService;
     
     return userService;
+}
+
+- (GitHubRepoSearchService *)createRepoService
+{
+    GitHubService * gitHubService = [gitHubServiceFactory createGitHubService];
+
+    GitHubRepoSearchService * repoService =
+        [[[GitHubRepoSearchService alloc]
+        initWithGitHubService:gitHubService]
+        autorelease];
+
+    gitHubService.delegate = repoService;
+    
+    return repoService;
 }
 
 @end

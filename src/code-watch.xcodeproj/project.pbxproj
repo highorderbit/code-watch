@@ -86,6 +86,7 @@
 		918136810F7AFC81002B1153 /* UIUserDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 918136800F7AFC81002B1153 /* UIUserDisplayMgr.m */; };
 		91AB1E0E0F733272005AC590 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AB1E0D0F733272005AC590 /* AddressBook.framework */; };
 		91AB1E290F733BB6005AC590 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AB1E280F733BB6005AC590 /* AddressBookUI.framework */; };
+		91B010000F8407980073E81F /* GitHubRepoSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B00FFF0F8407980073E81F /* GitHubRepoSearchService.m */; };
 		91B6205B0F6C54540077CDB9 /* UserDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */; };
 		91B6205E0F6C54830077CDB9 /* UserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */; };
 		91B889140F8002D400215C8B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B889130F8002D400215C8B /* SearchViewController.m */; };
@@ -290,6 +291,8 @@
 		918136EC0F7BD473002B1153 /* UserDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserDisplayMgr.h; path = "favorite-users/UserDisplayMgr.h"; sourceTree = "<group>"; };
 		91AB1E0D0F733272005AC590 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = /System/Library/Frameworks/AddressBook.framework; sourceTree = "<absolute>"; };
 		91AB1E280F733BB6005AC590 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		91B00FFE0F8407980073E81F /* GitHubRepoSearchService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubRepoSearchService.h; path = search/GitHubRepoSearchService.h; sourceTree = "<group>"; };
+		91B00FFF0F8407980073E81F /* GitHubRepoSearchService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubRepoSearchService.m; path = search/GitHubRepoSearchService.m; sourceTree = "<group>"; };
 		91B620590F6C54540077CDB9 /* UserDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailTableViewCell.h; sourceTree = "<group>"; };
 		91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailTableViewCell.m; sourceTree = "<group>"; };
 		91B6205D0F6C54830077CDB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UserDetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -811,6 +814,8 @@
 				91B88AC40F82CA2A00215C8B /* GitHubSearchViewControllerDelegate.m */,
 				91B88ACA0F82CC7600215C8B /* GitHubSearchService.h */,
 				91B88ACB0F82CC7600215C8B /* GitHubSearchService.m */,
+				91B00FFE0F8407980073E81F /* GitHubRepoSearchService.h */,
+				91B00FFF0F8407980073E81F /* GitHubRepoSearchService.m */,
 			);
 			name = search;
 			sourceTree = "<group>";
@@ -1038,6 +1043,7 @@
 				91B88B780F82EFBF00215C8B /* UserDisplayMgrFactory.m in Sources */,
 				91B88B7E0F82F35400215C8B /* RepoSelectorFactory.m in Sources */,
 				91B88B810F82F48100215C8B /* CommitSelectorFactory.m in Sources */,
+				91B010000F8407980073E81F /* GitHubRepoSearchService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

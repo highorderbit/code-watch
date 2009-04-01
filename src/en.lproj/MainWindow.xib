@@ -8,6 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="106"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -51,6 +52,7 @@
 				<object class="IBUINavigationController" key="IBUISelectedViewController" id="212505514">
 					<object class="IBUITabBarItem" key="IBUITabBarItem" id="346955201">
 						<int key="IBUISystemItemIdentifier">8</int>
+						<reference key="IBUITabBar"/>
 					</object>
 					<reference key="IBUIParentViewController" ref="1034742383"/>
 					<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -66,6 +68,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="IBUIViewController" id="387677741">
 							<object class="IBUINavigationItem" key="IBUINavigationItem" id="353571812">
+								<reference key="IBUINavigationBar"/>
 								<string key="IBUITitle">Search</string>
 							</object>
 							<reference key="IBUIParentViewController" ref="212505514"/>
@@ -83,6 +86,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">HomeIcon.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -116,6 +120,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">UserIcon.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -145,6 +150,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">UsersIcon.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -179,6 +185,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">ReposIcon.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -1678,6 +1685,14 @@
 					</object>
 					<int key="connectionID">491</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">repoSelectorFactory</string>
+						<reference key="source" ref="214670374"/>
+						<reference key="destination" ref="277705063"/>
+					</object>
+					<int key="connectionID">492</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2457,7 +2472,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">491</int>
+			<int key="maxID">492</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2749,11 +2764,13 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>navigationController</string>
+							<string>repoSelectorFactory</string>
 							<string>userDisplayMgrFactory</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UINavigationController</string>
+							<string>RepoSelectorFactory</string>
 							<string>UserDisplayMgrFactory</string>
 						</object>
 					</object>

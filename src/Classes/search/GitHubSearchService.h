@@ -5,19 +5,21 @@
 #import <Foundation/Foundation.h>
 #import "SearchService.h"
 #import "GitHubUserSearchService.h"
+#import "GitHubRepoSearchService.h"
 
 @interface GitHubSearchService : NSObject <SearchService, SearchServiceDelegate>
 {
     NSObject<SearchServiceDelegate> * delegate;
     
     GitHubUserSearchService * userService;
-    // TODO: add repo search service
-
+    GitHubRepoSearchService * repoService;
+    
     NSMutableDictionary * searchResults;    
 }
 
 @property (nonatomic, retain) NSObject<SearchServiceDelegate> * delegate;
 
-- (id)initWithUserService:(GitHubUserSearchService *)userService;
+- (id)initWithUserService:(GitHubUserSearchService *)userService
+    repoService:(GitHubRepoSearchService *)repoService;
 
 @end

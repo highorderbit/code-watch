@@ -6,6 +6,6 @@
 
 @protocol SearchViewControllerDelegate
 
-- (void)processSelection:(NSString *)text fromSection:(NSString *)section;
+- (void)processSelection:(NSObject *)selection fromSection:(NSString *)section;
 
 @end
