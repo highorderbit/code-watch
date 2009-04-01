@@ -75,4 +75,8 @@
                       repo:(NSString *)repo
                   username:(NSString *)username;
 
+#pragma mark Searching GitHub
+
+- (void)searchRepos:(NSString *)searchString;
+
 @end

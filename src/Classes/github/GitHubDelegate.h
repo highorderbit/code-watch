@@ -31,4 +31,11 @@
     username:(NSString *)username token:(NSString *)token
     error:(NSError *)error;
 
+#pragma mark Search results
+
+- (void)searchResults:(NSDictionary *)results
+    foundForSearchString:(NSString *)searchString;
+- (void)failedToSearchForString:(NSString *)searchString
+    error:(NSError *)error;
+
 @end

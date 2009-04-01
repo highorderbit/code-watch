@@ -54,4 +54,8 @@
                   username:(NSString *)username
                      token:(NSString *)token;
 
+#pragma mark Searching GitHub
+
+- (void)search:(NSString *)searchString;
+
 @end

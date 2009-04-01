@@ -167,6 +167,15 @@
         fetchInfoForCommit:commitKey repo:repo username:username token:token];
 }
 
+#pragma mark Searching GitHub
+
+- (void)searchRepos:(NSString *)searchString
+{
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
+    [gitHub search:searchString];
+}
+
 #pragma mark GitHubDelegate implementation
 
 - (void)userInfo:(NSDictionary *)info fetchedForUsername:(NSString *)username
@@ -289,6 +298,27 @@
     if ([delegate respondsToSelector:selector])
         [delegate failedToFetchInfoForCommit:commit repo:repo username:username
             error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)searchResults:(NSDictionary *)results
+    foundForSearchString:(NSString *)searchString
+{
+    NSArray * repos = [results objectForKey:@"repositories"];
+
+    SEL selector = @selector(repos:foundForSearchString:);
+    if ([delegate respondsToSelector:selector])
+        [delegate repos:repos foundForSearchString:searchString];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)failedToSearchForString:(NSString *)searchString error:(NSError *)error
+{
+    SEL selector = @selector(failedToSearchReposForString:error:);
+    if ([delegate respondsToSelector:selector])
+        [delegate failedToSearchReposForString:searchString error:error];
 
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
