@@ -30,6 +30,7 @@ static const CGFloat IPHONE_WIDTH = 320;
     [searchService release];
     [searchResults release];
     [nonZeroSearchResults release];
+    [title release];
     [super dealloc];
 }
 
@@ -50,16 +51,25 @@ static const CGFloat IPHONE_WIDTH = 320;
 {
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    
+    self.navigationController.navigationBarHidden = YES;
+    
+    title = [self.navigationItem.title retain];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.navigationItem.title = @"";
+    NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
+    [tableView deselectRowAtIndexPath:selectedRow animated:NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
     self.navigationController.navigationBarHidden = YES;
     searchBar.hidden = NO;
     tableView.frame = [[self class] defaultFrame];
-
-    NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
-    [tableView deselectRowAtIndexPath:selectedRow animated:NO];
+    self.view.frame = [[self class] transitionFrame];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -68,6 +78,11 @@ static const CGFloat IPHONE_WIDTH = 320;
     self.navigationController.navigationBarHidden = NO;
     tableView.frame = [[self class] transitionFrame];
     [searchBar resignFirstResponder];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    self.navigationItem.title = title;
 }
 
 #pragma mark UITableViewDataSource implementation
@@ -119,6 +134,8 @@ static const CGFloat IPHONE_WIDTH = 320;
 - (void)tableView:(UITableView *)aTableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [searchBar resignFirstResponder];
+
     NSArray * nonZeroSearchResultKeys = [nonZeroSearchResults allKeys];
     NSString * section =
         [nonZeroSearchResultKeys objectAtIndex:indexPath.section];
@@ -182,11 +199,14 @@ static const CGFloat IPHONE_WIDTH = 320;
 #pragma mark SearchServiceDelegate implementation
 
 - (void)processSearchResults:(NSDictionary *)results
+    withSearchText:(NSString *)text
     fromSearchService:(NSObject<SearchService> *)searchService
 {
     NSLog(@"Received search results: %@", results);
-    self.searchResults = results;
-    [self refreshView];
+    if ([text isEqual:searchBar.text]) {
+        self.searchResults = results;
+        [self refreshView];
+    }
 }
 
 #pragma mark Helper methods

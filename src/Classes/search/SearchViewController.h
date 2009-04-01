@@ -18,6 +18,8 @@
     
     NSDictionary * searchResults;
     NSMutableDictionary * nonZeroSearchResults;
+    
+    NSString * title;
 }
 
 @property (nonatomic, retain) NSObject<SearchViewControllerDelegate> * delegate;

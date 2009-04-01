@@ -4,22 +4,14 @@
 
 #import "GitHubUserSearchService.h"
 
-@interface GitHubUserSearchService (Private)
-
-- (void)dequeueRequest;
-
-@end
-
 @implementation GitHubUserSearchService
 
 @synthesize delegate;
-@synthesize nextRequest;
 
 - (void)dealloc
 {
     [delegate release];
     [gitHubService release];
-    [nextRequest release];
     [super dealloc];
 }
 
@@ -33,11 +25,7 @@
 
 - (void)searchForText:(NSString *)text
 {
-    if (!requestOutstanding) {
-        requestOutstanding = YES;
-        [gitHubService fetchInfoForUsername:text];
-    } else
-        self.nextRequest = text;
+    [gitHubService fetchInfoForUsername:text];
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -45,30 +33,18 @@
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
     fetchedForUsername:(NSString *)username
 {
-    [self dequeueRequest];
     NSArray * usernameArray = [NSArray arrayWithObject:username];
     NSDictionary * usernameDict =
         [NSDictionary dictionaryWithObject:usernameArray forKey:@"username"];
-    [delegate processSearchResults:usernameDict fromSearchService:self];
+    [delegate processSearchResults:usernameDict withSearchText:username
+        fromSearchService:self];
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
 {
     // not found, so return an empty array
-    [self dequeueRequest];
     [delegate processSearchResults:[NSDictionary dictionary]
-        fromSearchService:self];
-}
-
-#pragma mark Helper methods
-
-- (void)dequeueRequest
-{
-    if (self.nextRequest) {
-        [gitHubService fetchInfoForUsername:self.nextRequest];
-        self.nextRequest = nil;
-    } else
-        requestOutstanding = NO;
+        withSearchText:username fromSearchService:self];
 }
 
 @end

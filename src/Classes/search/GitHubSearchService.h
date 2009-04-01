@@ -14,7 +14,6 @@
     // TODO: add repo search service
 
     NSMutableDictionary * searchResults;    
-    NSString * lastSearchedText;
 }
 
 @property (nonatomic, retain) NSObject<SearchServiceDelegate> * delegate;

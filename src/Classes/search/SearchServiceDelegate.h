@@ -8,6 +8,7 @@
 @protocol SearchServiceDelegate
 
 - (void)processSearchResults:(NSDictionary *)results
+    withSearchText:(NSString *)text
     fromSearchService:(NSObject<SearchService> *)searchService;
 
 @end

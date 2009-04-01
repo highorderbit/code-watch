@@ -22,7 +22,6 @@
 {
     [searchResults release];
     [userService release];
-    [lastSearchedText release];
     [super dealloc];
 }
 
@@ -42,9 +41,6 @@
 
 - (void)searchForText:(NSString *)text
 {
-    [lastSearchedText release];
-    lastSearchedText = [text copy];
-    
     NSArray * userResults =
         [searchResults objectForKey:[[self class] userServiceKey]];
     NSArray * filteredUserResults =
@@ -54,7 +50,8 @@
 
     // TODO: filter repo search results
 
-    [delegate processSearchResults:searchResults fromSearchService:self];
+    [delegate processSearchResults:searchResults withSearchText:text
+        fromSearchService:self];
 
     [userService searchForText:text];
 }
@@ -62,19 +59,19 @@
 #pragma mark SearchServiceDelegate implementation
 
 - (void)processSearchResults:(NSDictionary *)results
+    withSearchText:(NSString *)text
     fromSearchService:(NSObject<SearchService> *)searchService
 {
     NSArray * mergedResults = [[self class] mergeResults:results];
-    NSArray * filteredResults =
-        [[self class] filterResults:mergedResults byText:lastSearchedText];
     if (searchService == userService)
-        [searchResults setObject:filteredResults
+        [searchResults setObject:mergedResults
             forKey:[[self class] userServiceKey]];
     else // repo search service
-        [searchResults setObject:filteredResults
+        [searchResults setObject:mergedResults
             forKey:[[self class] repoServiceKey]];
 
-    [delegate processSearchResults:searchResults fromSearchService:self];
+    [delegate processSearchResults:searchResults withSearchText:text
+        fromSearchService:self];
 }
 
 #pragma mark Static helpers
