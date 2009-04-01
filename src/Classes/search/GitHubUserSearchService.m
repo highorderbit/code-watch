@@ -46,22 +46,18 @@
     fetchedForUsername:(NSString *)username
 {
     [self dequeueRequest];
-    [delegate processSearchResults:[NSArray arrayWithObject:username]
-        fromSearchService:self];
+    NSArray * usernameArray = [NSArray arrayWithObject:username];
+    NSDictionary * usernameDict =
+        [NSDictionary dictionaryWithObject:usernameArray forKey:@"username"];
+    [delegate processSearchResults:usernameDict fromSearchService:self];
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
 {
     // not found, so return an empty array
     [self dequeueRequest];
-    [delegate processSearchResults:[NSArray array] fromSearchService:self];
-}
-
-#pragma mark NSCopying implementation
-
-- (id)copyWithZone:(NSZone *)zone
-{
-    return [self retain];
+    [delegate processSearchResults:[NSDictionary dictionary]
+        fromSearchService:self];
 }
 
 #pragma mark Helper methods

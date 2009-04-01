@@ -48,6 +48,32 @@
 			<object class="IBUITabBarController" id="1034742383">
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+				<object class="IBUINavigationController" key="IBUISelectedViewController" id="212505514">
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="346955201">
+						<int key="IBUISystemItemIdentifier">8</int>
+					</object>
+					<reference key="IBUIParentViewController" ref="1034742383"/>
+					<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+					<object class="IBUINavigationBar" key="IBUINavigationBar" id="256842237">
+						<nil key="NSNextResponder"/>
+						<int key="NSvFlags">256</int>
+						<string key="NSFrameSize">{0, 0}</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIMultipleTouchEnabled">YES</bool>
+					</object>
+					<object class="NSMutableArray" key="IBUIViewControllers">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="IBUIViewController" id="387677741">
+							<object class="IBUINavigationItem" key="IBUINavigationItem" id="353571812">
+								<string key="IBUITitle">Search</string>
+							</object>
+							<reference key="IBUIParentViewController" ref="212505514"/>
+							<string key="IBUINibName">SearchView</string>
+							<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+						</object>
+					</object>
+				</object>
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUINavigationController" id="1055176006">
@@ -179,14 +205,7 @@
 							</object>
 						</object>
 					</object>
-					<object class="IBUIViewController" id="387677741">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="812217448">
-							<int key="IBUISystemItemIdentifier">8</int>
-						</object>
-						<reference key="IBUIParentViewController" ref="1034742383"/>
-						<string key="IBUINibName">SearchView</string>
-						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-					</object>
+					<reference ref="212505514"/>
 				</object>
 				<object class="IBUITabBar" key="IBUITabBar" id="795333663">
 					<nil key="NSNextResponder"/>
@@ -201,8 +220,12 @@
 			</object>
 			<object class="IBUICustomObject" id="664661524"/>
 			<object class="IBUICustomObject" id="517652571"/>
+			<object class="IBUICustomObject" id="166877055"/>
+			<object class="IBUICustomObject" id="277705063"/>
+			<object class="IBUICustomObject" id="591510631"/>
 			<object class="IBUICustomObject" id="1068984684"/>
 			<object class="IBUICustomObject" id="872895490"/>
+			<object class="IBUICustomObject" id="214670374"/>
 			<object class="IBUITableViewController" id="1047227548">
 				<object class="IBUITableView" key="IBUIView" id="469536978">
 					<nil key="NSNextResponder"/>
@@ -1249,35 +1272,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">commitCache</string>
-						<reference key="source" ref="517652571"/>
-						<reference key="destination" ref="1027588999"/>
-					</object>
-					<int key="connectionID">410</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">favoriteUsersState</string>
 						<reference key="source" ref="517652571"/>
 						<reference key="destination" ref="64959627"/>
 					</object>
 					<int key="connectionID">411</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">repoCache</string>
-						<reference key="source" ref="517652571"/>
-						<reference key="destination" ref="232313576"/>
-					</object>
-					<int key="connectionID">412</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">userCache</string>
-						<reference key="source" ref="517652571"/>
-						<reference key="destination" ref="354817096"/>
-					</object>
-					<int key="connectionID">413</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -1543,6 +1542,142 @@
 					</object>
 					<int key="connectionID">463</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">favoriteUsersState</string>
+						<reference key="source" ref="166877055"/>
+						<reference key="destination" ref="64959627"/>
+					</object>
+					<int key="connectionID">475</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gitHubServiceFactory</string>
+						<reference key="source" ref="166877055"/>
+						<reference key="destination" ref="1068984684"/>
+					</object>
+					<int key="connectionID">476</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">repoSelectorFactory</string>
+						<reference key="source" ref="166877055"/>
+						<reference key="destination" ref="277705063"/>
+					</object>
+					<int key="connectionID">477</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">userCache</string>
+						<reference key="source" ref="166877055"/>
+						<reference key="destination" ref="354817096"/>
+					</object>
+					<int key="connectionID">478</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">commitCache</string>
+						<reference key="source" ref="277705063"/>
+						<reference key="destination" ref="1027588999"/>
+					</object>
+					<int key="connectionID">479</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">commitSelectorFactory</string>
+						<reference key="source" ref="277705063"/>
+						<reference key="destination" ref="591510631"/>
+					</object>
+					<int key="connectionID">480</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gitHubServiceFactory</string>
+						<reference key="source" ref="277705063"/>
+						<reference key="destination" ref="1068984684"/>
+					</object>
+					<int key="connectionID">481</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">repoCache</string>
+						<reference key="source" ref="277705063"/>
+						<reference key="destination" ref="232313576"/>
+					</object>
+					<int key="connectionID">482</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">logInState</string>
+						<reference key="source" ref="277705063"/>
+						<reference key="destination" ref="578646318"/>
+					</object>
+					<int key="connectionID">483</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">commitCache</string>
+						<reference key="source" ref="591510631"/>
+						<reference key="destination" ref="1027588999"/>
+					</object>
+					<int key="connectionID">484</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gitHubServiceFactory</string>
+						<reference key="source" ref="591510631"/>
+						<reference key="destination" ref="1068984684"/>
+					</object>
+					<int key="connectionID">485</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gitHubServiceFactory</string>
+						<reference key="source" ref="517652571"/>
+						<reference key="destination" ref="1068984684"/>
+					</object>
+					<int key="connectionID">486</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">repoSelectorFactory</string>
+						<reference key="source" ref="517652571"/>
+						<reference key="destination" ref="277705063"/>
+					</object>
+					<int key="connectionID">487</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">userDisplayMgrFactory</string>
+						<reference key="source" ref="517652571"/>
+						<reference key="destination" ref="166877055"/>
+					</object>
+					<int key="connectionID">488</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">navigationController</string>
+						<reference key="source" ref="214670374"/>
+						<reference key="destination" ref="212505514"/>
+					</object>
+					<int key="connectionID">489</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">userDisplayMgrFactory</string>
+						<reference key="source" ref="214670374"/>
+						<reference key="destination" ref="166877055"/>
+					</object>
+					<int key="connectionID">490</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="387677741"/>
+						<reference key="destination" ref="214670374"/>
+					</object>
+					<int key="connectionID">491</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1584,7 +1719,7 @@
 							<reference ref="1055176006"/>
 							<reference ref="289767912"/>
 							<reference ref="801315089"/>
-							<reference ref="387677741"/>
+							<reference ref="212505514"/>
 						</object>
 						<reference key="parent" ref="957960031"/>
 					</object>
@@ -1971,20 +2106,6 @@
 						<string key="objectName">Add Repo GitHub Service</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">452</int>
-						<reference key="object" ref="387677741"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="812217448"/>
-						</object>
-						<reference key="parent" ref="1034742383"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">453</int>
-						<reference key="object" ref="812217448"/>
-						<reference key="parent" ref="387677741"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">454</int>
 						<reference key="object" ref="1068984684"/>
 						<reference key="parent" ref="957960031"/>
@@ -1992,6 +2113,61 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">461</int>
 						<reference key="object" ref="872895490"/>
+						<reference key="parent" ref="957960031"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">464</int>
+						<reference key="object" ref="212505514"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="256842237"/>
+							<reference ref="346955201"/>
+							<reference ref="387677741"/>
+						</object>
+						<reference key="parent" ref="1034742383"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">466</int>
+						<reference key="object" ref="256842237"/>
+						<reference key="parent" ref="212505514"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">468</int>
+						<reference key="object" ref="346955201"/>
+						<reference key="parent" ref="212505514"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">452</int>
+						<reference key="object" ref="387677741"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="353571812"/>
+						</object>
+						<reference key="parent" ref="212505514"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">469</int>
+						<reference key="object" ref="353571812"/>
+						<reference key="parent" ref="387677741"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">470</int>
+						<reference key="object" ref="214670374"/>
+						<reference key="parent" ref="957960031"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">472</int>
+						<reference key="object" ref="166877055"/>
+						<reference key="parent" ref="957960031"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">473</int>
+						<reference key="object" ref="277705063"/>
+						<reference key="parent" ref="957960031"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">474</int>
+						<reference key="object" ref="591510631"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
 				</object>
@@ -2114,6 +2290,16 @@
 					<string>454.IBPluginDependency</string>
 					<string>461.CustomClassName</string>
 					<string>461.IBPluginDependency</string>
+					<string>464.IBPluginDependency</string>
+					<string>466.IBPluginDependency</string>
+					<string>470.CustomClassName</string>
+					<string>470.IBPluginDependency</string>
+					<string>472.CustomClassName</string>
+					<string>472.IBPluginDependency</string>
+					<string>473.CustomClassName</string>
+					<string>473.IBPluginDependency</string>
+					<string>474.CustomClassName</string>
+					<string>474.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2239,6 +2425,16 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>GitHubSearchInitializer</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>GitHubSearchViewControllerDelegate</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>UserDisplayMgrFactory</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>RepoSelectorFactory</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>CommitSelectorFactory</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -2261,7 +2457,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">463</int>
+			<int key="maxID">491</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2273,7 +2469,6 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>commitCache</string>
 							<string>commitCachePersistenceStore</string>
 							<string>configReader</string>
 							<string>favoriteReposNavController</string>
@@ -2289,14 +2484,13 @@
 							<string>logInPersistenceStore</string>
 							<string>logInState</string>
 							<string>newsFeedPersistenceStore</string>
-							<string>repoCache</string>
 							<string>repoCachePersistenceStore</string>
-							<string>userCache</string>
+							<string>repoSelectorFactory</string>
 							<string>userCachePersistenceStore</string>
+							<string>userDisplayMgrFactory</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>CommitCache</string>
 							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>UINavigationController</string>
@@ -2312,10 +2506,10 @@
 							<string>NSObject</string>
 							<string>LogInState</string>
 							<string>NSObject</string>
-							<string>RepoCache</string>
 							<string>NSObject</string>
-							<string>UserCache</string>
+							<string>RepoSelectorFactory</string>
 							<string>NSObject</string>
+							<string>UserDisplayMgrFactory</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -2400,6 +2594,27 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/commit/CommitPersistenceStore.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">CommitSelectorFactory</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>commitCache</string>
+							<string>gitHubServiceFactory</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>CommitCache</string>
+							<string>GitHubServiceFactory</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/commit/CommitSelectorFactory.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -2524,6 +2739,27 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/search/GitHubSearchInitializer.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">GitHubSearchViewControllerDelegate</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>navigationController</string>
+							<string>userDisplayMgrFactory</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UINavigationController</string>
+							<string>UserDisplayMgrFactory</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/search/GitHubSearchViewControllerDelegate.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -2817,6 +3053,33 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">RepoSelectorFactory</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>commitCache</string>
+							<string>commitSelectorFactory</string>
+							<string>gitHubServiceFactory</string>
+							<string>logInState</string>
+							<string>repoCache</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>CommitCache</string>
+							<string>CommitSelectorFactory</string>
+							<string>GitHubServiceFactory</string>
+							<string>LogInState</string>
+							<string>RepoCache</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/repo/RepoSelectorFactory.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">RepoViewController</string>
 					<string key="superclassName">UITableViewController</string>
 					<object class="NSMutableDictionary" key="outlets">
@@ -2849,8 +3112,19 @@
 					<string key="className">SearchViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">tableView</string>
-						<string key="NS.object.0">UITableView</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>delegate</string>
+							<string>searchBar</string>
+							<string>tableView</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSObject</string>
+							<string>UISearchBar</string>
+							<string>UITableView</string>
+						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
@@ -2923,6 +3197,13 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">UILabel</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/shared/UILabel+DrawingAdditions.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">UILogInMgr</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="actions">
@@ -2965,6 +3246,31 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/user/UserCache.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UserDisplayMgrFactory</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>favoriteUsersState</string>
+							<string>gitHubServiceFactory</string>
+							<string>repoSelectorFactory</string>
+							<string>userCache</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>FavoriteUsersState</string>
+							<string>GitHubServiceFactory</string>
+							<string>RepoSelectorFactory</string>
+							<string>UserCache</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/user/UserDisplayMgrFactory.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

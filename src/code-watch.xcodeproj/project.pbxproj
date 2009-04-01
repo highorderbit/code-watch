@@ -92,6 +92,11 @@
 		91B889880F804E1800215C8B /* GitHubSearchInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B889870F804E1800215C8B /* GitHubSearchInitializer.m */; };
 		91B8898C0F80506200215C8B /* GitHubUserSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B8898B0F80506200215C8B /* GitHubUserSearchService.m */; };
 		91B889970F8061F400215C8B /* GitHubServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B889960F8061F400215C8B /* GitHubServiceFactory.m */; };
+		91B88AC50F82CA2A00215C8B /* GitHubSearchViewControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B88AC40F82CA2A00215C8B /* GitHubSearchViewControllerDelegate.m */; };
+		91B88ACC0F82CC7600215C8B /* GitHubSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B88ACB0F82CC7600215C8B /* GitHubSearchService.m */; };
+		91B88B780F82EFBF00215C8B /* UserDisplayMgrFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B88B770F82EFBF00215C8B /* UserDisplayMgrFactory.m */; };
+		91B88B7E0F82F35400215C8B /* RepoSelectorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B88B7D0F82F35400215C8B /* RepoSelectorFactory.m */; };
+		91B88B810F82F48100215C8B /* CommitSelectorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B88B800F82F48100215C8B /* CommitSelectorFactory.m */; };
 		91C248440F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C248430F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m */; };
 		91C248B70F7C8C1E007F8B05 /* ReposIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C248B60F7C8C1E007F8B05 /* ReposIcon.png */; };
 		91CC52350F6C9D98000AD3FB /* NetworkAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */; };
@@ -298,6 +303,17 @@
 		91B8898B0F80506200215C8B /* GitHubUserSearchService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubUserSearchService.m; path = search/GitHubUserSearchService.m; sourceTree = "<group>"; };
 		91B889950F8061F400215C8B /* GitHubServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubServiceFactory.h; path = github/GitHubServiceFactory.h; sourceTree = "<group>"; };
 		91B889960F8061F400215C8B /* GitHubServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubServiceFactory.m; path = github/GitHubServiceFactory.m; sourceTree = "<group>"; };
+		91B88ABF0F82C83D00215C8B /* SearchViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewControllerDelegate.h; path = search/SearchViewControllerDelegate.h; sourceTree = "<group>"; };
+		91B88AC30F82CA2A00215C8B /* GitHubSearchViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubSearchViewControllerDelegate.h; path = search/GitHubSearchViewControllerDelegate.h; sourceTree = "<group>"; };
+		91B88AC40F82CA2A00215C8B /* GitHubSearchViewControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubSearchViewControllerDelegate.m; path = search/GitHubSearchViewControllerDelegate.m; sourceTree = "<group>"; };
+		91B88ACA0F82CC7600215C8B /* GitHubSearchService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubSearchService.h; path = search/GitHubSearchService.h; sourceTree = "<group>"; };
+		91B88ACB0F82CC7600215C8B /* GitHubSearchService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubSearchService.m; path = search/GitHubSearchService.m; sourceTree = "<group>"; };
+		91B88B760F82EFBF00215C8B /* UserDisplayMgrFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDisplayMgrFactory.h; sourceTree = "<group>"; };
+		91B88B770F82EFBF00215C8B /* UserDisplayMgrFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDisplayMgrFactory.m; sourceTree = "<group>"; };
+		91B88B7C0F82F35400215C8B /* RepoSelectorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoSelectorFactory.h; path = repo/RepoSelectorFactory.h; sourceTree = "<group>"; };
+		91B88B7D0F82F35400215C8B /* RepoSelectorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepoSelectorFactory.m; path = repo/RepoSelectorFactory.m; sourceTree = "<group>"; };
+		91B88B7F0F82F48100215C8B /* CommitSelectorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitSelectorFactory.h; path = commit/CommitSelectorFactory.h; sourceTree = "<group>"; };
+		91B88B800F82F48100215C8B /* CommitSelectorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitSelectorFactory.m; path = commit/CommitSelectorFactory.m; sourceTree = "<group>"; };
 		91C2483F0F7C3401007F8B05 /* RecentActivityDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentActivityDisplayMgr.h; sourceTree = "<group>"; };
 		91C248420F7C3456007F8B05 /* UIRecentActivityDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRecentActivityDisplayMgr.h; sourceTree = "<group>"; };
 		91C248430F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIRecentActivityDisplayMgr.m; sourceTree = "<group>"; };
@@ -430,6 +446,8 @@
 				055DF4A90F7B082A003A8D94 /* ChangesetViewControllerDelegate.h */,
 				055DF4B10F7B08F1003A8D94 /* DiffViewController.h */,
 				055DF4B20F7B08F1003A8D94 /* DiffViewController.m */,
+				91B88B7F0F82F48100215C8B /* CommitSelectorFactory.h */,
+				91B88B800F82F48100215C8B /* CommitSelectorFactory.m */,
 			);
 			name = commit;
 			sourceTree = "<group>";
@@ -557,6 +575,8 @@
 				05B990A80F708B660039602B /* RepoSelector.h */,
 				91FD190A0F71DD91004549F9 /* RepoPersistenceStore.h */,
 				91FD190B0F71DD91004549F9 /* RepoPersistenceStore.m */,
+				91B88B7C0F82F35400215C8B /* RepoSelectorFactory.h */,
+				91B88B7D0F82F35400215C8B /* RepoSelectorFactory.m */,
 			);
 			name = repo;
 			sourceTree = "<group>";
@@ -713,6 +733,8 @@
 				91CC53590F6EC311000AD3FB /* PrimaryUserDisplayMgr.m */,
 				91F971590F6F24F5007B2AB1 /* UserPersistenceStore.h */,
 				91F9715A0F6F24F5007B2AB1 /* UserPersistenceStore.m */,
+				91B88B760F82EFBF00215C8B /* UserDisplayMgrFactory.h */,
+				91B88B770F82EFBF00215C8B /* UserDisplayMgrFactory.m */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -784,6 +806,11 @@
 				91B889870F804E1800215C8B /* GitHubSearchInitializer.m */,
 				91B8898A0F80506200215C8B /* GitHubUserSearchService.h */,
 				91B8898B0F80506200215C8B /* GitHubUserSearchService.m */,
+				91B88ABF0F82C83D00215C8B /* SearchViewControllerDelegate.h */,
+				91B88AC30F82CA2A00215C8B /* GitHubSearchViewControllerDelegate.h */,
+				91B88AC40F82CA2A00215C8B /* GitHubSearchViewControllerDelegate.m */,
+				91B88ACA0F82CC7600215C8B /* GitHubSearchService.h */,
+				91B88ACB0F82CC7600215C8B /* GitHubSearchService.m */,
 			);
 			name = search;
 			sourceTree = "<group>";
@@ -1006,6 +1033,11 @@
 				91B8898C0F80506200215C8B /* GitHubUserSearchService.m in Sources */,
 				91B889970F8061F400215C8B /* GitHubServiceFactory.m in Sources */,
 				05226ADB0F80302000DA73A8 /* UILabel+DrawingAdditions.m in Sources */,
+				91B88AC50F82CA2A00215C8B /* GitHubSearchViewControllerDelegate.m in Sources */,
+				91B88ACC0F82CC7600215C8B /* GitHubSearchService.m in Sources */,
+				91B88B780F82EFBF00215C8B /* UserDisplayMgrFactory.m in Sources */,
+				91B88B7E0F82F35400215C8B /* RepoSelectorFactory.m in Sources */,
+				91B88B810F82F48100215C8B /* CommitSelectorFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

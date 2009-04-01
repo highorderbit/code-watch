@@ -7,7 +7,7 @@
 #import "GitHubService.h"
 
 @interface GitHubUserSearchService :
-    NSObject <SearchService, GitHubServiceDelegate, NSCopying>
+    NSObject <SearchService, GitHubServiceDelegate>
 {
     NSObject<SearchServiceDelegate> * delegate;
     GitHubService * gitHubService;

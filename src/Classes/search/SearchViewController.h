@@ -4,20 +4,25 @@
 
 #import <Foundation/Foundation.h>
 #import "SearchServiceDelegate.h"
+#import "SearchViewControllerDelegate.h"
 
 @interface SearchViewController :
     UIViewController
-    <UITableViewDataSource, UISearchBarDelegate, SearchServiceDelegate>
+    <UITableViewDelegate, UISearchBarDelegate, SearchServiceDelegate>
 {
+    IBOutlet NSObject<SearchViewControllerDelegate> * delegate;
+    
     IBOutlet UITableView * tableView;
     IBOutlet UISearchBar * searchBar;
-    NSDictionary * searchServices;
+    NSObject<SearchService> * searchService;
     
-    NSMutableDictionary * searchResults;
+    NSDictionary * searchResults;
     NSMutableDictionary * nonZeroSearchResults;
-    NSString * lastSearchedText;
 }
 
-- (id)initWithSearchServices:(NSDictionary *)searchServices;
+@property (nonatomic, retain) NSObject<SearchViewControllerDelegate> * delegate;
+@property (nonatomic, retain) NSDictionary * searchResults;
+
+- (id)initWithSearchService:(NSObject<SearchService> *)aSearchService;
 
 @end
