@@ -9,30 +9,27 @@
 - (void)refreshView;
 - (void)updateNonZeroSearchResults;
 
-+ (NSArray *)filterResults:(NSArray *)results byText:(NSString *)text;
-
 @end
 
 @implementation SearchViewController
+
+@synthesize searchResults;
 
 - (void)dealloc
 {
     [tableView release];
     [searchBar release];
-    [searchServices release];
+    [searchService release];
     [searchResults release];
     [nonZeroSearchResults release];
-    [lastSearchedText release];
     [super dealloc];
 }
 
-- (id)initWithSearchServices:(NSDictionary *)someSearchServices
+- (id)initWithSearchService:(NSObject<SearchService> *)aSearchService
 {
     if (self = [super init]) {
-        searchServices = [someSearchServices retain];
-        searchResults = [[NSMutableDictionary dictionary] retain];
-        for (NSObject * service in [someSearchServices allKeys])
-            [searchResults setObject:[NSArray array] forKey:service];
+        searchService = [aSearchService retain];
+        self.searchResults = [[NSMutableDictionary dictionary] retain];
         nonZeroSearchResults = [[NSMutableDictionary dictionary] retain];
     }
 
@@ -67,8 +64,8 @@
     
     NSArray * nonZeroSearchResultKeys = [nonZeroSearchResults allKeys];
     if ([nonZeroSearchResultKeys count] > 0) {
-        NSObject * service = [nonZeroSearchResultKeys objectAtIndex:section];
-        numRows = [[nonZeroSearchResults objectForKey:service] count];
+        NSString * key = [nonZeroSearchResultKeys objectAtIndex:section];
+        numRows = [[nonZeroSearchResults objectForKey:key] count];
     } else
         numRows = 0;
     
@@ -89,9 +86,9 @@
             reuseIdentifier:CellIdentifier] autorelease];
             
     NSArray * nonZeroSearchResultKeys = [nonZeroSearchResults allKeys];
-    NSObject * service =
+    NSString * key =
         [nonZeroSearchResultKeys objectAtIndex:indexPath.section];
-    NSArray * results = [nonZeroSearchResults objectForKey:service];
+    NSArray * results = [nonZeroSearchResults objectForKey:key];
     cell.text = [results objectAtIndex:indexPath.row];
 
     return cell;
@@ -111,49 +108,37 @@
 - (NSString *)tableView:(UITableView *)aTableView
     titleForHeaderInSection:(NSInteger)section
 {
-    NSString * title;
-    
     NSArray * nonZeroSearchResultKeys = [nonZeroSearchResults allKeys];
-    if ([nonZeroSearchResultKeys count] > 0) {
-        NSObject * service = [nonZeroSearchResultKeys objectAtIndex:section];
-        title = [searchServices objectForKey:service];
-    } else
-        title = nil;
-    
-    return title;
+
+    return [nonZeroSearchResultKeys count] > 0 ?
+        [nonZeroSearchResultKeys objectAtIndex:section] : nil;
 }
 
 #pragma mark UISearchBarDelegate implementation
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    NSLog(@"Searching all services for '%@'...", searchText);
+    NSLog(@"Searching service for '%@'...", searchText);
+    [searchService searchForText:searchText];
+}
 
-    [lastSearchedText release];
-    lastSearchedText = [searchText copy];
-    for(NSObject<SearchService> * service in [searchServices allKeys]) {
-        // modify the existing search results
-        NSArray * filteredResults =
-            [[self class] filterResults:[searchResults objectForKey:service]
-            byText:searchText];
-        [searchResults setObject:filteredResults forKey:service];
-        [service searchForText:searchText];
-    }
-    
-    [self refreshView];
+- (void)searchBarCancelButtonClicked:(UISearchBar *)aSearchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar
+{
+    [searchBar resignFirstResponder];
 }
 
 #pragma mark SearchServiceDelegate implementation
 
-- (void)processSearchResults:(NSArray *)results
+- (void)processSearchResults:(NSDictionary *)results
     fromSearchService:(NSObject<SearchService> *)searchService
 {
     NSLog(@"Received search results: %@", results);
-    NSArray * filteredResults =
-        [[self class] filterResults:results byText:lastSearchedText];
-    NSLog(@"Received filtered search results: %@", filteredResults);
-    [searchResults setObject:filteredResults forKey:searchService];
-    
+    self.searchResults = results;
     [self refreshView];
 }
 
@@ -168,30 +153,15 @@
 
 - (void)updateNonZeroSearchResults
 {
-    for (NSObject * service in [searchResults allKeys]) {
-        NSArray * results = [searchResults objectForKey:service];
+    for (NSString * category in [self.searchResults allKeys]) {
+        NSArray * results = [self.searchResults objectForKey:category];
         if ([results count] == 0)
-            [nonZeroSearchResults removeObjectForKey:service];
+            [nonZeroSearchResults removeObjectForKey:category];
         else
-            [nonZeroSearchResults setObject:results forKey:service];
+            [nonZeroSearchResults setObject:results forKey:category];
     }
     
     NSLog(@"Non-zero search results: %@", nonZeroSearchResults);
-}
-
-#pragma mark Static helper methods
-
-+ (NSArray *)filterResults:(NSArray *)results byText:(NSString *)text
-{
-    const NSRange notFoundRange = NSMakeRange(NSNotFound, 0);
-    
-    NSMutableArray * filteredResults = [NSMutableArray array];
-    
-    for (NSString * result in results)
-        if (!NSEqualRanges([result rangeOfString:text], notFoundRange))
-            [filteredResults addObject:result];
-    
-    return filteredResults;
 }
 
 @end

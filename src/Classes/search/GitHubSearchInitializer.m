@@ -4,10 +4,11 @@
 
 #import "GitHubSearchInitializer.h"
 #import "GitHubUserSearchService.h"
+#import "GitHubSearchService.h"
 
 @interface GitHubSearchInitializer (Private)
 
-- (NSDictionary *)createSearchServices;
+- (GitHubUserSearchService *)createUserService;
 
 @end
 
@@ -21,25 +22,29 @@
 
 - (void)awakeFromNib
 {
-    NSDictionary * searchServices = [self createSearchServices];
-    [searchViewController initWithSearchServices:searchServices];
+    GitHubUserSearchService * userService = [self createUserService];
+        
+    GitHubSearchService * gitHubSearchService =
+        [[GitHubSearchService alloc] initWithUserService:userService];
+    userService.delegate = gitHubSearchService;
+    
+    gitHubSearchService.delegate = searchViewController;
+    
+    [searchViewController initWithSearchService:gitHubSearchService];
 }
 
-- (NSDictionary *)createSearchServices
+- (GitHubUserSearchService *)createUserService
 {
-    NSMutableDictionary * searchServices = [NSMutableDictionary dictionary];
-    
     GitHubService * gitHubService = [gitHubServiceFactory createGitHubService];
 
     GitHubUserSearchService * userService =
         [[[GitHubUserSearchService alloc]
         initWithGitHubService:gitHubService]
         autorelease];
-    userService.delegate = searchViewController;
+
     gitHubService.delegate = userService;
-    [searchServices setObject:@"Users (exact matches)" forKey:userService];
     
-    return searchServices;
+    return userService;
 }
 
 @end

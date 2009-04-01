@@ -7,7 +7,7 @@
 
 @protocol SearchServiceDelegate
 
-- (void)processSearchResults:(NSArray *)results
+- (void)processSearchResults:(NSDictionary *)results
     fromSearchService:(NSObject<SearchService> *)searchService;
 
 @end

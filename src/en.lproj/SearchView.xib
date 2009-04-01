@@ -65,6 +65,7 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="IBText"/>
 						<string key="IBPlaceholder">Search</string>
+						<bool key="IBShowsCancelButton">YES</bool>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 480}</string>

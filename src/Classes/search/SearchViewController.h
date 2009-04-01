@@ -11,13 +11,13 @@
 {
     IBOutlet UITableView * tableView;
     IBOutlet UISearchBar * searchBar;
-    NSDictionary * searchServices;
+    NSObject<SearchService> * searchService;
     
-    NSMutableDictionary * searchResults;
+    NSDictionary * searchResults;
     NSMutableDictionary * nonZeroSearchResults;
-    NSString * lastSearchedText;
 }
 
-- (id)initWithSearchServices:(NSDictionary *)searchServices;
+- (id)initWithSearchService:(NSObject<SearchService> *)aSearchService;
+@property (nonatomic, retain) NSDictionary * searchResults;
 
 @end
