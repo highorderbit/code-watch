@@ -160,6 +160,29 @@
     [api sendRequest:req];
 }
 
+#pragma mark Searching GitHub
+
+- (void)search:(NSString *)searchString
+{
+    NSString * urlString = [NSString stringWithFormat:@"%@/search/%@",
+        [self baseApiUrl], searchString];
+
+    GitHubApiRequest * req = [[self class] requestForUrl:urlString];
+
+    SEL sel = @selector(handleSearchResults:toRequest:searchString:);
+    NSMethodSignature * sig = [self methodSignatureForSelector:sel];
+    NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
+
+    [inv setTarget:self];
+    [inv setSelector:sel];
+    [inv setArgument:&searchString atIndex:4];
+    [inv retainArguments];
+
+    [self setInvocation:inv forRequest:req];
+
+    [api sendRequest:req];
+}
+
 #pragma mark GitHubApiDelegate functions
 
 - (void)request:(GitHubApiRequest *)request
@@ -268,6 +291,27 @@
         NSError * err = [NSError errorWithLocalizedDescription:desc];
         [delegate failedToFetchInfoForCommit:commitKey repo:repo
             username:username token:token error:err];
+    }
+}
+
+- (void)handleSearchResults:(id)response
+                  toRequest:(GitHubApiRequest *)request
+               searchString:(NSString *)searchString
+{
+    if ([response isKindOfClass:[NSError class]]) {
+        [delegate failedToSearchForString:searchString error:response];
+        return;
+    }
+
+    NSDictionary * results = [parser parseResponse:response];
+    NSLog(@"Search for '%@' returned results: '%@'.", searchString, results);
+
+    if (results)
+        [delegate searchResults:results foundForSearchString:searchString];
+    else {
+        NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
+        NSError * err = [NSError errorWithLocalizedDescription:desc];
+        [delegate failedToSearchForString:searchString error:err];
     }
 }
 

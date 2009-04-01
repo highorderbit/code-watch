@@ -151,10 +151,6 @@
     repoDescriptionLabel.text = repoDesc;
 
     CGRect headerViewFrame = headerView.frame;
-    NSLog(@"Current frame rect: (%f, %f), (%f, %f).", headerViewFrame.origin.x,
-        headerViewFrame.origin.y, headerViewFrame.size.width,
-        headerViewFrame.size.height);
-
     headerViewFrame.size.height = 57.0 + height;
     headerView.frame = headerViewFrame;
 

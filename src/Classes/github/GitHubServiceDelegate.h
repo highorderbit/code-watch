@@ -54,4 +54,10 @@
                           username:(NSString *)username
                              error:(NSError *)error;
 
+#pragma mark Searching repositories
+
+- (void)repos:(NSArray *)repos foundForSearchString:(NSString *)searchString;
+- (void)failedToSearchReposForString:(NSString *)searchString
+                               error:(NSError *)error;
+
 @end
