@@ -20,11 +20,12 @@
     GitHubNewsFeed * newsFeed;
 }
 
+@property (nonatomic, retain) id<GitHubNewsFeedServiceDelegate> delegate;
+
 #pragma mark Initialization
 
-- (id)initWithConfigReader:(NSObject<ConfigReader> *)aConfigReader
-          logInStateReader:(NSObject<LogInStateReader> *)aLogInStateReader
-                  delegate:(id<GitHubNewsFeedServiceDelegate>)aDelegate;
+- (id)initWithBaseUrl:(NSString *)baseUrl
+     logInStateReader:(NSObject<LogInStateReader> *)aLogInStateReader;
 
 #pragma mark Fetching news feeds
 

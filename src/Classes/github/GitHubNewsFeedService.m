@@ -15,6 +15,8 @@
 
 @implementation GitHubNewsFeedService
 
+@synthesize delegate;
+
 - (void)dealloc
 {
     [delegate release];
@@ -25,18 +27,14 @@
 
 #pragma mark Initialization
 
-- (id)initWithConfigReader:(NSObject<ConfigReader> *)aConfigReader
-          logInStateReader:(NSObject<LogInStateReader> *)aLogInStateReader
-                  delegate:(id<GitHubNewsFeedServiceDelegate>)aDelegate
+- (id)initWithBaseUrl:(NSString *)baseUrl
+     logInStateReader:(NSObject<LogInStateReader> *)aLogInStateReader
 {
     if (self = [super init]) {
-        NSString * rssBaseUrl =
-            [aConfigReader valueForKey:@"GitHubNewsFeedBaseUrl"];
-        newsFeed = [[GitHubNewsFeed alloc] initWithBaseUrl:rssBaseUrl
+        newsFeed = [[GitHubNewsFeed alloc] initWithBaseUrl:baseUrl
                                                   delegate:self];
 
         logInStateReader = [logInStateReader retain];
-        delegate = [aDelegate retain];
     }
 
     return self;

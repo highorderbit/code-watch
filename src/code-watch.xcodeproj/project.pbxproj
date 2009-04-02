@@ -25,6 +25,7 @@
 		054848A80F84229B00735643 /* GitHubNewsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 054848A70F84229B00735643 /* GitHubNewsFeed.m */; };
 		054848B00F84442F00735643 /* GitHubNewsFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 054848AF0F84442F00735643 /* GitHubNewsFeedParser.m */; };
 		054848C50F84493D00735643 /* GitHubNewsFeedService.m in Sources */ = {isa = PBXBuildFile; fileRef = 054848C40F84493D00735643 /* GitHubNewsFeedService.m */; };
+		0548492B0F84581600735643 /* GitHubNewsFeedServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0548492A0F84581600735643 /* GitHubNewsFeedServiceFactory.m */; };
 		054C06F70F6F0D5000999FEA /* GitHubService.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C06F60F6F0D5000999FEA /* GitHubService.m */; };
 		055DF4B30F7B08F1003A8D94 /* DiffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055DF4B20F7B08F1003A8D94 /* DiffViewController.m */; };
 		055DF4C40F7B0B9F003A8D94 /* DiffView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055DF4C20F7B0B9F003A8D94 /* DiffView.xib */; };
@@ -172,6 +173,8 @@
 		054848C30F84493D00735643 /* GitHubNewsFeedService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubNewsFeedService.h; path = github/GitHubNewsFeedService.h; sourceTree = "<group>"; };
 		054848C40F84493D00735643 /* GitHubNewsFeedService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubNewsFeedService.m; path = github/GitHubNewsFeedService.m; sourceTree = "<group>"; };
 		054848C60F84495200735643 /* GitHubNewsFeedServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubNewsFeedServiceDelegate.h; path = github/GitHubNewsFeedServiceDelegate.h; sourceTree = "<group>"; };
+		054849290F84581600735643 /* GitHubNewsFeedServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubNewsFeedServiceFactory.h; path = github/GitHubNewsFeedServiceFactory.h; sourceTree = "<group>"; };
+		0548492A0F84581600735643 /* GitHubNewsFeedServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubNewsFeedServiceFactory.m; path = github/GitHubNewsFeedServiceFactory.m; sourceTree = "<group>"; };
 		054C06560F6F07EB00999FEA /* GitHubApiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiFormat.h; path = github/GitHubApiFormat.h; sourceTree = "<group>"; };
 		054C06F50F6F0D5000999FEA /* GitHubService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubService.h; path = github/GitHubService.h; sourceTree = "<group>"; };
 		054C06F60F6F0D5000999FEA /* GitHubService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubService.m; path = github/GitHubService.m; sourceTree = "<group>"; };
@@ -626,6 +629,8 @@
 				054848C30F84493D00735643 /* GitHubNewsFeedService.h */,
 				054848C40F84493D00735643 /* GitHubNewsFeedService.m */,
 				054848C60F84495200735643 /* GitHubNewsFeedServiceDelegate.h */,
+				054849290F84581600735643 /* GitHubNewsFeedServiceFactory.h */,
+				0548492A0F84581600735643 /* GitHubNewsFeedServiceFactory.m */,
 			);
 			name = github;
 			sourceTree = "<group>";
@@ -1066,6 +1071,7 @@
 				054848A80F84229B00735643 /* GitHubNewsFeed.m in Sources */,
 				054848B00F84442F00735643 /* GitHubNewsFeedParser.m in Sources */,
 				054848C50F84493D00735643 /* GitHubNewsFeedService.m in Sources */,
+				0548492B0F84581600735643 /* GitHubNewsFeedServiceFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

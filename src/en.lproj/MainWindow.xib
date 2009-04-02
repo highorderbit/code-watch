@@ -231,6 +231,7 @@
 			<object class="IBUICustomObject" id="277705063"/>
 			<object class="IBUICustomObject" id="591510631"/>
 			<object class="IBUICustomObject" id="1068984684"/>
+			<object class="IBUICustomObject" id="186514062"/>
 			<object class="IBUICustomObject" id="872895490"/>
 			<object class="IBUICustomObject" id="214670374"/>
 			<object class="IBUITableViewController" id="1047227548">
@@ -1693,6 +1694,38 @@
 					</object>
 					<int key="connectionID">492</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">configReader</string>
+						<reference key="source" ref="186514062"/>
+						<reference key="destination" ref="174296820"/>
+					</object>
+					<int key="connectionID">494</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">logInStateReader</string>
+						<reference key="source" ref="186514062"/>
+						<reference key="destination" ref="578646318"/>
+					</object>
+					<int key="connectionID">495</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">newsFeedCache</string>
+						<reference key="source" ref="186514062"/>
+						<reference key="destination" ref="1051023249"/>
+					</object>
+					<int key="connectionID">496</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">newsFeedPersistenceStore</string>
+						<reference key="source" ref="186514062"/>
+						<reference key="destination" ref="534485768"/>
+					</object>
+					<int key="connectionID">497</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2185,6 +2218,11 @@
 						<reference key="object" ref="591510631"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">493</int>
+						<reference key="object" ref="186514062"/>
+						<reference key="parent" ref="957960031"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -2315,6 +2353,8 @@
 					<string>473.IBPluginDependency</string>
 					<string>474.CustomClassName</string>
 					<string>474.IBPluginDependency</string>
+					<string>493.CustomClassName</string>
+					<string>493.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2450,6 +2490,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>CommitSelectorFactory</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>GitHubNewsFeedServiceFactory</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -2472,7 +2514,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">492</int>
+			<int key="maxID">497</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2736,6 +2778,31 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">GitHubNewsFeedServiceFactory</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>configReader</string>
+							<string>logInStateReader</string>
+							<string>newsFeedCache</string>
+							<string>newsFeedPersistenceStore</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSObject</string>
+							<string>NSObject</string>
+							<string>NewsFeedCache</string>
+							<string>NewsFeedPersistenceStore</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/github/GitHubNewsFeedServiceFactory.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">GitHubSearchInitializer</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="outlets">
@@ -2926,6 +2993,7 @@
 							<string>cacheReader</string>
 							<string>logInState</string>
 							<string>networkAwareViewController</string>
+							<string>newsFeedServiceFactory</string>
 							<string>newsFeedTableViewController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -2933,6 +3001,7 @@
 							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>NetworkAwareViewController</string>
+							<string>GitHubNewsFeedServiceFactory</string>
 							<string>NewsFeedTableViewController</string>
 						</object>
 					</object>
@@ -3132,13 +3201,17 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>activityIndicator</string>
 							<string>delegate</string>
+							<string>loadingLabel</string>
 							<string>searchBar</string>
 							<string>tableView</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIActivityIndicatorView</string>
 							<string>NSObject</string>
+							<string>UILabel</string>
 							<string>UISearchBar</string>
 							<string>UITableView</string>
 						</object>
