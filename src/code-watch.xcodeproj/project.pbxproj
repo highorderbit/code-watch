@@ -22,6 +22,8 @@
 		053420790F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */; };
 		053B7B3F0F700C3B0084B219 /* NSError+InstantiationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053B7B3E0F700C3B0084B219 /* NSError+InstantiationAdditions.m */; };
 		053B7B610F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053B7B600F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m */; };
+		054848A80F84229B00735643 /* GitHubNewsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 054848A70F84229B00735643 /* GitHubNewsFeed.m */; };
+		054848B00F84442F00735643 /* GitHubNewsFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 054848AF0F84442F00735643 /* GitHubNewsFeedParser.m */; };
 		054C06F70F6F0D5000999FEA /* GitHubService.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C06F60F6F0D5000999FEA /* GitHubService.m */; };
 		055DF4B30F7B08F1003A8D94 /* DiffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055DF4B20F7B08F1003A8D94 /* DiffViewController.m */; };
 		055DF4C40F7B0B9F003A8D94 /* DiffView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055DF4C20F7B0B9F003A8D94 /* DiffView.xib */; };
@@ -161,6 +163,11 @@
 		053B7B3E0F700C3B0084B219 /* NSError+InstantiationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+InstantiationAdditions.m"; sourceTree = "<group>"; };
 		053B7B5F0F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+NetworkActivityIndicatorAdditions.h"; sourceTree = "<group>"; };
 		053B7B600F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+NetworkActivityIndicatorAdditions.m"; sourceTree = "<group>"; };
+		054848A60F84229B00735643 /* GitHubNewsFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubNewsFeed.h; path = github/GitHubNewsFeed.h; sourceTree = "<group>"; };
+		054848A70F84229B00735643 /* GitHubNewsFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubNewsFeed.m; path = github/GitHubNewsFeed.m; sourceTree = "<group>"; };
+		054848A90F8442EB00735643 /* GitHubNewsFeedDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubNewsFeedDelegate.h; path = github/GitHubNewsFeedDelegate.h; sourceTree = "<group>"; };
+		054848AE0F84442F00735643 /* GitHubNewsFeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubNewsFeedParser.h; path = github/GitHubNewsFeedParser.h; sourceTree = "<group>"; };
+		054848AF0F84442F00735643 /* GitHubNewsFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubNewsFeedParser.m; path = github/GitHubNewsFeedParser.m; sourceTree = "<group>"; };
 		054C06560F6F07EB00999FEA /* GitHubApiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiFormat.h; path = github/GitHubApiFormat.h; sourceTree = "<group>"; };
 		054C06F50F6F0D5000999FEA /* GitHubService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubService.h; path = github/GitHubService.h; sourceTree = "<group>"; };
 		054C06F60F6F0D5000999FEA /* GitHubService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubService.m; path = github/GitHubService.m; sourceTree = "<group>"; };
@@ -607,6 +614,11 @@
 				05F4CFC30F6C65A300B107BB /* GitHubApiDelegate.h */,
 				91B889950F8061F400215C8B /* GitHubServiceFactory.h */,
 				91B889960F8061F400215C8B /* GitHubServiceFactory.m */,
+				054848A60F84229B00735643 /* GitHubNewsFeed.h */,
+				054848A70F84229B00735643 /* GitHubNewsFeed.m */,
+				054848A90F8442EB00735643 /* GitHubNewsFeedDelegate.h */,
+				054848AE0F84442F00735643 /* GitHubNewsFeedParser.h */,
+				054848AF0F84442F00735643 /* GitHubNewsFeedParser.m */,
 			);
 			name = github;
 			sourceTree = "<group>";
@@ -1044,6 +1056,8 @@
 				91B88B7E0F82F35400215C8B /* RepoSelectorFactory.m in Sources */,
 				91B88B810F82F48100215C8B /* CommitSelectorFactory.m in Sources */,
 				91B010000F8407980073E81F /* GitHubRepoSearchService.m in Sources */,
+				054848A80F84229B00735643 /* GitHubNewsFeed.m in Sources */,
+				054848B00F84442F00735643 /* GitHubNewsFeedParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
