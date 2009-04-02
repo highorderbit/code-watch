@@ -63,6 +63,7 @@
 		05C9E7DE0F85277400F7C62E /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7D30F85277400F7C62E /* CXMLNode_PrivateExtensions.m */; };
 		05C9E7DF0F85277400F7C62E /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7D50F85277400F7C62E /* CXMLNode_XPathExtensions.m */; };
 		05C9E87C0F852D7D00F7C62E /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E87B0F852D7D00F7C62E /* RegexKitLite.m */; };
+		05C9E9870F85405100F7C62E /* NSString+RegexKitLiteHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E9860F85405100F7C62E /* NSString+RegexKitLiteHelpers.m */; };
 		05DE59250F79C8F900189369 /* CommitDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DE59240F79C8F900189369 /* CommitDisplayMgr.m */; };
 		05F4CF2F0F6C5ECB00B107BB /* GitHubApiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -261,6 +262,8 @@
 		05C9E7D60F85277400F7C62E /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
 		05C9E87A0F852D7D00F7C62E /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		05C9E87B0F852D7D00F7C62E /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		05C9E9850F85405100F7C62E /* NSString+RegexKitLiteHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RegexKitLiteHelpers.h"; sourceTree = "<group>"; };
+		05C9E9860F85405100F7C62E /* NSString+RegexKitLiteHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RegexKitLiteHelpers.m"; sourceTree = "<group>"; };
 		05DE59220F79C7BE00189369 /* CommitSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitSelector.h; path = commit/CommitSelector.h; sourceTree = "<group>"; };
 		05DE59230F79C8F900189369 /* CommitDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitDisplayMgr.h; path = commit/CommitDisplayMgr.h; sourceTree = "<group>"; };
 		05DE59240F79C8F900189369 /* CommitDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitDisplayMgr.m; path = commit/CommitDisplayMgr.m; sourceTree = "<group>"; };
@@ -517,6 +520,8 @@
 				051CDD2B0F6C29690049D2BD /* NSString+NSDataAdditions.m */,
 				051CDD3D0F6C33FE0049D2BD /* NSString+UrlAdditions.h */,
 				051CDD3E0F6C33FE0049D2BD /* NSString+UrlAdditions.m */,
+				05C9E9850F85405100F7C62E /* NSString+RegexKitLiteHelpers.h */,
+				05C9E9860F85405100F7C62E /* NSString+RegexKitLiteHelpers.m */,
 				053B7B3D0F700C3B0084B219 /* NSError+InstantiationAdditions.h */,
 				053B7B3E0F700C3B0084B219 /* NSError+InstantiationAdditions.m */,
 				91CC52330F6C9D98000AD3FB /* NetworkAwareViewController.h */,
@@ -1150,6 +1155,7 @@
 				05C9E7DE0F85277400F7C62E /* CXMLNode_PrivateExtensions.m in Sources */,
 				05C9E7DF0F85277400F7C62E /* CXMLNode_XPathExtensions.m in Sources */,
 				05C9E87C0F852D7D00F7C62E /* RegexKitLite.m in Sources */,
+				05C9E9870F85405100F7C62E /* NSString+RegexKitLiteHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
