@@ -37,7 +37,7 @@
         setNoConnectionText:
         NSLocalizedString(@"nodata.noconnection.text", @"")];
         
-        NSArray * rssItems = cacheReader.rssItems;
+        NSArray * rssItems = [cacheReader primaryUserNewsFeed];
         [newsFeedTableViewController updateRssItems:rssItems];
 
         [newsFeed fetchNewsFeedForUsername:logInState.login];

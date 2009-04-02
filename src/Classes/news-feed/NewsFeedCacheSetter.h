@@ -6,6 +6,7 @@
 
 @protocol NewsFeedCacheSetter
 
-- (void)setRssItems:(NSArray *)rssItems;
+- (void)setPrimaryUserNewsFeed:(NSArray *)newsFeed;
+- (void)setNewsFeed:(NSArray *)newsFeed forUsername:(NSString *)username;
 
 @end

@@ -9,6 +9,7 @@
 
 @interface GitHubNewsFeedService (Private)
 
+- (void)cacheNewsFeed:(NSArray *)feed forUsername:(NSString *)username;
 - (BOOL)isPrimaryUsername:(NSString *)username;
 
 @end
@@ -21,6 +22,7 @@
 {
     [delegate release];
     [logInStateReader release];
+    [newsFeedCacheSetter release];
     [newsFeed release];
     [super dealloc];
 }
@@ -29,12 +31,14 @@
 
 - (id)initWithBaseUrl:(NSString *)baseUrl
      logInStateReader:(NSObject<LogInStateReader> *)aLogInStateReader
+  newsFeedCacheSetter:(NSObject<NewsFeedCacheSetter> *)aNewsFeedCacheSetter
 {
     if (self = [super init]) {
         newsFeed = [[GitHubNewsFeed alloc] initWithBaseUrl:baseUrl
                                                   delegate:self];
 
         logInStateReader = [aLogInStateReader retain];
+        newsFeedCacheSetter = [aNewsFeedCacheSetter retain];
     }
 
     return self;
@@ -57,6 +61,8 @@
 
 - (void)newsFeed:(NSArray *)feed fetchedForUsername:(NSString *)username
 {
+    [self cacheNewsFeed:feed forUsername:username];
+
     [delegate newsFeed:feed fetchedForUsername:username];
 
     [[UIApplication sharedApplication] networkActivityDidFinish];
@@ -68,6 +74,16 @@
     [delegate failedToFetchNewsFeedForUsername:username error:error];
 
     [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+#pragma mark Caching data
+
+- (void)cacheNewsFeed:(NSArray *)feed forUsername:(NSString *)username
+{
+    if ([self isPrimaryUsername:username])
+        [newsFeedCacheSetter setPrimaryUserNewsFeed:feed];
+    else
+        [newsFeedCacheSetter setNewsFeed:feed forUsername:username];
 }
 
 #pragma mark Helper methods

@@ -6,6 +6,7 @@
 
 @protocol NewsFeedCacheReader
 
-@property (copy, readonly) NSArray * rssItems;
+- (NSArray *)primaryUserNewsFeed;
+- (NSArray *)newsFeedForUsername:(NSString *)username;
 
 @end

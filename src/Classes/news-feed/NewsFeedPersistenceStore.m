@@ -33,8 +33,6 @@
 
 - (void)load
 {
-    return; // TEMPORARY
-    
     NSArray * array =
         [PlistUtils getArrayFromPlist:[[self class] plistName]];
     
@@ -45,14 +43,14 @@
         [rssItems addObject:rssItem];
     }
     
-    [cacheSetter setRssItems:rssItems];
+    [cacheSetter setPrimaryUserNewsFeed:rssItems];
 }
 
 - (void)save
 {
     NSMutableArray * array = [NSMutableArray array];
-    
-    NSArray * rssItems = cacheReader.rssItems;
+
+    NSArray * rssItems = [cacheReader primaryUserNewsFeed];
     for (RssItem * rssItem in rssItems) {
         NSDictionary * rssItemDict =
             [[self class] dictionaryFromRssItem:rssItem];
