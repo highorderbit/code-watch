@@ -27,6 +27,8 @@ static const CGFloat IPHONE_WIDTH = 320;
     [delegate release];
     [tableView release];
     [searchBar release];
+    [activityIndicator release];
+    [loadingLabel release];
     [searchService release];
     [searchResults release];
     [nonZeroSearchResults release];
@@ -171,15 +173,26 @@ static const CGFloat IPHONE_WIDTH = 320;
 - (void)searchBarCancelButtonClicked:(UISearchBar *)aSearchBar
 {
     [searchBar resignFirstResponder];
+    self.searchResults = [NSDictionary dictionary];
+    [self refreshView];
+    canceled = YES;
+    searchBar.text = @"";
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar
 {
     [searchBar resignFirstResponder];
+    self.searchResults = [NSDictionary dictionary];
+    [self refreshView];
+    loadingLabel.hidden = NO;
+    [activityIndicator startAnimating];
+    [searchService searchForText:searchBar.text];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
+    canceled = NO;
+    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
     [UIView setAnimationTransition:UIViewAnimationTransitionNone
@@ -202,8 +215,10 @@ static const CGFloat IPHONE_WIDTH = 320;
     withSearchText:(NSString *)text
     fromSearchService:(NSObject<SearchService> *)searchService
 {
-    NSLog(@"Received search results: %@", results);
-    if ([text isEqual:searchBar.text]) {
+    NSLog(@"Received search '%@' results: %@", text, results);
+    if (!canceled && [text isEqual:searchBar.text]) {
+        loadingLabel.hidden = YES;
+        [activityIndicator stopAnimating];
         self.searchResults = results;
         [self refreshView];
     }
@@ -220,11 +235,10 @@ static const CGFloat IPHONE_WIDTH = 320;
 
 - (void)updateNonZeroSearchResults
 {
+    [nonZeroSearchResults removeAllObjects];
     for (NSString * category in [self.searchResults allKeys]) {
         NSArray * results = [self.searchResults objectForKey:category];
-        if ([results count] == 0)
-            [nonZeroSearchResults removeObjectForKey:category];
-        else
+        if ([results count] > 0)
             [nonZeroSearchResults setObject:results forKey:category];
     }
 }
