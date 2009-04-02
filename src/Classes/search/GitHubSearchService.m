@@ -17,11 +17,14 @@
 
 @synthesize delegate;
 
+@synthesize searchText;
+
 - (void)dealloc
 {
     [searchResults release];
     [userService release];
     [repoService release];
+    [searchText release];
     [super dealloc];
 }
 
@@ -46,6 +49,7 @@
 
 - (void)searchForText:(NSString *)text
 {
+    self.searchText = text;
     [userService searchForText:text];
     [repoService searchForText:text];
 }
@@ -56,16 +60,18 @@
     withSearchText:(NSString *)text
     fromSearchService:(NSObject<SearchService> *)searchService
 {
-    NSArray * mergedResults = [[self class] mergeResults:results];
-    if (searchService == userService)
-        [searchResults setObject:mergedResults
-            forKey:[[self class] userServiceKey]];
-    else // repo search service
-        [searchResults setObject:mergedResults
-            forKey:[[self class] repoServiceKey]];
+    if ([text isEqual:self.searchText]) {
+        NSArray * mergedResults = [[self class] mergeResults:results];
+        if (searchService == userService)
+            [searchResults setObject:mergedResults
+                forKey:[[self class] userServiceKey]];
+        else // repo search service
+            [searchResults setObject:mergedResults
+                forKey:[[self class] repoServiceKey]];
 
-    [delegate processSearchResults:searchResults withSearchText:text
-        fromSearchService:self];
+        [delegate processSearchResults:searchResults withSearchText:text
+            fromSearchService:self];
+    }
 }
 
 #pragma mark Static helpers

@@ -14,12 +14,15 @@
     
     IBOutlet UITableView * tableView;
     IBOutlet UISearchBar * searchBar;
+    IBOutlet UIActivityIndicatorView * activityIndicator;
+    IBOutlet UILabel * loadingLabel;
     NSObject<SearchService> * searchService;
     
     NSDictionary * searchResults;
     NSMutableDictionary * nonZeroSearchResults;
     
     NSString * title;
+    BOOL canceled;
 }
 
 @property (nonatomic, retain) NSObject<SearchViewControllerDelegate> * delegate;

@@ -14,10 +14,13 @@
     GitHubUserSearchService * userService;
     GitHubRepoSearchService * repoService;
     
-    NSMutableDictionary * searchResults;    
+    NSMutableDictionary * searchResults;
+    
+    NSString * searchText;
 }
 
 @property (nonatomic, retain) NSObject<SearchServiceDelegate> * delegate;
+@property (nonatomic, copy) NSString * searchText;
 
 - (id)initWithUserService:(GitHubUserSearchService *)userService
     repoService:(GitHubRepoSearchService *)repoService;
