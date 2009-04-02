@@ -21,7 +21,7 @@
     [super dealloc];
 }
 
-- (void)awakFromNib
+- (void)awakeFromNib
 {
     newsFeed = [[newsFeedServiceFactory createGitHubNewsFeedService] retain];
     newsFeed.delegate = self;

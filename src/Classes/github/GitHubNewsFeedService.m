@@ -34,7 +34,7 @@
         newsFeed = [[GitHubNewsFeed alloc] initWithBaseUrl:baseUrl
                                                   delegate:self];
 
-        logInStateReader = [logInStateReader retain];
+        logInStateReader = [aLogInStateReader retain];
     }
 
     return self;
