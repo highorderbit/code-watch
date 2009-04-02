@@ -53,6 +53,7 @@ static const CGFloat IPHONE_WIDTH = 320;
 {
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     
     self.navigationController.navigationBarHidden = YES;
     
@@ -216,7 +217,7 @@ static const CGFloat IPHONE_WIDTH = 320;
     fromSearchService:(NSObject<SearchService> *)searchService
 {
     NSLog(@"Received search '%@' results: %@", text, results);
-    if (!canceled && [text isEqual:searchBar.text]) {
+    if (!canceled && ![text caseInsensitiveCompare:searchBar.text]) {
         loadingLabel.hidden = YES;
         [activityIndicator stopAnimating];
         self.searchResults = results;

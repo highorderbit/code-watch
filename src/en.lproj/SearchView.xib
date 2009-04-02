@@ -56,7 +56,7 @@
 						<float key="IBUISectionHeaderHeight">2.200000e+01</float>
 						<float key="IBUISectionFooterHeight">2.200000e+01</float>
 					</object>
-					<object class="IBUILabel" id="575487932">
+					<object class="IBUILabel" id="651350147">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{20, 156}, {280, 65}}</string>
@@ -82,7 +82,7 @@
 						<int key="IBUITextAlignment">1</int>
 						<int key="IBUILineBreakMode">0</int>
 					</object>
-					<object class="IBUIActivityIndicatorView" id="305044149">
+					<object class="IBUIActivityIndicatorView" id="531727855">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{141, 111}, {37, 37}}</string>
@@ -171,7 +171,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">loadingLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="575487932"/>
+						<reference key="destination" ref="651350147"/>
 					</object>
 					<int key="connectionID">16</int>
 				</object>
@@ -179,7 +179,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">activityIndicator</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="305044149"/>
+						<reference key="destination" ref="531727855"/>
 					</object>
 					<int key="connectionID">17</int>
 				</object>
@@ -202,8 +202,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="365710800"/>
 							<reference ref="485476947"/>
-							<reference ref="575487932"/>
-							<reference ref="305044149"/>
+							<reference ref="651350147"/>
+							<reference ref="531727855"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -230,12 +230,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">14</int>
-						<reference key="object" ref="575487932"/>
+						<reference key="object" ref="651350147"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">15</int>
-						<reference key="object" ref="305044149"/>
+						<reference key="object" ref="531727855"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>

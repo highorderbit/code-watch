@@ -60,7 +60,7 @@
     withSearchText:(NSString *)text
     fromSearchService:(NSObject<SearchService> *)searchService
 {
-    if ([text isEqual:self.searchText]) {
+    if (![text caseInsensitiveCompare:self.searchText]) {
         NSArray * mergedResults = [[self class] mergeResults:results];
         if (searchService == userService)
             [searchResults setObject:mergedResults
