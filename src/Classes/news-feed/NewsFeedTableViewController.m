@@ -46,7 +46,8 @@
 
     NSString * head = [rssItem.summary stringByMatchingRegex:
         @"HEAD is <a href=\".*\">(.*)</a>"];
-    NSString * summary = [NSString stringWithFormat:@"HEAD is %@", head];
+    NSString * summary =
+        head ? [NSString stringWithFormat:@"HEAD is %@", head] : nil;
 
     [cell updateAuthor:rssItem.author pubDate:rssItem.pubDate
         subject:rssItem.subject summary:summary];
