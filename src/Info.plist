@@ -34,5 +34,7 @@
 	<string>1</string>
 	<key>GravatarApiBaseUrl</key>
 	<string>http://www.gravatar.com/avatar/</string>
+	<key>GitHubNewsFeedBaseUrl</key>
+	<string>https://github.com/</string>
 </dict>
 </plist>

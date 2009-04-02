@@ -8,14 +8,22 @@
 #import "NewsFeedTableViewController.h"
 #import "NewsFeedCacheReader.h"
 #import "LogInStateReader.h"
+#import "GitHubNewsFeedServiceDelegate.h"
 
-@interface NewsFeedDisplayMgr : NSObject <NetworkAwareViewControllerDelegate>
+@class GitHubNewsFeedService, GitHubNewsFeedServiceFactory;
+
+@interface NewsFeedDisplayMgr :
+    NSObject <NetworkAwareViewControllerDelegate, GitHubNewsFeedServiceDelegate>
 {
     IBOutlet NetworkAwareViewController * networkAwareViewController;
     IBOutlet NewsFeedTableViewController * newsFeedTableViewController;
     
     IBOutlet NSObject<NewsFeedCacheReader> * cacheReader;
     IBOutlet NSObject<LogInStateReader> * logInState;
+
+    IBOutlet GitHubNewsFeedServiceFactory * newsFeedServiceFactory;
+
+    GitHubNewsFeedService * newsFeed;
 }
 
 @end

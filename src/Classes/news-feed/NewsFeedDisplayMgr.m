@@ -3,6 +3,8 @@
 //
 
 #import "NewsFeedDisplayMgr.h"
+#import "GitHubNewsFeedService.h"
+#import "GitHubNewsFeedServiceFactory.h"
 
 @implementation NewsFeedDisplayMgr
 
@@ -13,8 +15,16 @@
     
     [cacheReader release];
     [logInState release];
+
+    [newsFeed release];
     
     [super dealloc];
+}
+
+- (void)awakeFromNib
+{
+    newsFeed = [[newsFeedServiceFactory createGitHubNewsFeedService] retain];
+    newsFeed.delegate = self;
 }
 
 - (void)viewWillAppear
@@ -29,6 +39,8 @@
         
         NSArray * rssItems = cacheReader.rssItems;
         [newsFeedTableViewController updateRssItems:rssItems];
+
+        [newsFeed fetchNewsFeedForUsername:logInState.login];
         
         [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
         [networkAwareViewController setCachedDataAvailable:!!rssItems];
@@ -42,6 +54,17 @@
         [networkAwareViewController setUpdatingState:kDisconnected];
         [networkAwareViewController setCachedDataAvailable:NO];
     }
+}
+
+#pragma mark GitHubNewsFeedDelegate implementation
+
+- (void)newsFeed:(NSArray *)newsFeed fetchedForUsername:(NSString *)username
+{
+}
+
+- (void)failedToFetchNewsFeedForUsername:(NSString *)username
+                                   error:(NSError *)error
+{
 }
 
 @end

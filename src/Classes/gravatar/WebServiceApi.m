@@ -52,7 +52,7 @@
 
 - (NSInteger)sendRequest:(NSURLRequest *)request
 {
-    NSLog(@"Sending request to: '%@'.", request);
+    NSLog(@"Sending request: '%@'.", request);
 
     NSURLConnection * conn = [[NSURLConnection alloc] initWithRequest:request
                                                              delegate:self
@@ -89,6 +89,9 @@
     NSURLRequest * request = [self requestForConnection:conn];
     NSMutableData * response = [self dataForConnection:conn];
 
+    NSLog(@"Received %d bytes in response to request: '%@'.", [response length],
+          request);
+
     [delegate request:request didCompleteWithResponse:response];
 
     [self cleanUpConnection:conn];
@@ -97,6 +100,8 @@
 - (void)connection:(NSURLConnection *)conn didFailWithError:(NSError *)error
 {
     NSURLRequest * request = [self requestForConnection:conn];
+
+    NSLog(@"Request '%@' failed with error: '%@'.", request, error);
 
     [delegate request:request didFailWithError:error];
 
