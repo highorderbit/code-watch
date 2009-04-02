@@ -30,8 +30,7 @@
 
 #pragma mark Fetching activity
 
-- (void)fetchActivityFeedForUsername:(NSString *)username;
-- (void)fetchActivityFeedForUsername:(NSString *)username
-                               token:(NSString *)token;
+- (void)fetchNewsFeedForUsername:(NSString *)username;
+- (void)fetchNewsFeedForUsername:(NSString *)username token:(NSString *)token;
 
 @end

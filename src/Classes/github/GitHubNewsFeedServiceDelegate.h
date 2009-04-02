@@ -4,7 +4,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol GitHubNewsFeedDelegate <NSObject>
+@protocol GitHubNewsFeedServiceDelegate <NSObject>
 
 - (void)newsFeed:(NSArray *)newsFeed fetchedForUsername:(NSString *)username;
 - (void)failedToFetchNewsFeedForUsername:(NSString *)username

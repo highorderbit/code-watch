@@ -51,7 +51,7 @@
 
 #pragma mark Fetching RSS activity
 
-- (void)fetchActivityFeedForUsername:(NSString *)username
+- (void)fetchNewsFeedForUsername:(NSString *)username
 {
     NSString * url =
         [NSString stringWithFormat:@"%@%@.atom", baseUrl, username];
@@ -59,8 +59,7 @@
     [self fetchActivityFeedAtUrl:url username:username];
 }
 
-- (void)fetchActivityFeedForUsername:(NSString *)username
-                               token:(NSString *)token
+- (void)fetchNewsFeedForUsername:(NSString *)username token:(NSString *)token
 {
     NSString * url =
         [NSString stringWithFormat:@"%@%@.private.atom?token=%@"];
@@ -107,9 +106,9 @@
             NSLocalizedString(@"github.rss.parse.failed", @"")];
 
     if (rssActivity)
-        [delegate activityFeed:rssActivity receivedForUsername:username];
+        [delegate newsFeed:rssActivity fetchedForUsername:username];
     else
-        [delegate failedToFetchActivityFeedForUsername:username error:error];
+        [delegate failedToFetchNewsFeedForUsername:username error:error];
 }
 
 #pragma mark Private helper methods
