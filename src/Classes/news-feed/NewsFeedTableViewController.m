@@ -71,6 +71,7 @@
     rssItems = someRssItems;
     
     // update view
+    [self.tableView reloadData];
 }
 
 @end
