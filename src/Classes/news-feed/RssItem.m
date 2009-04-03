@@ -42,4 +42,10 @@
     return self;
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@ on %@: %@:\n%@", author, pubDate,
+        subject, summary];
+}
+
 @end
