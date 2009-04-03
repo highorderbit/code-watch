@@ -145,6 +145,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		051388140F85959F00542963 /* NewsFeedTableViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedTableViewControllerDelegate.h; sourceTree = "<group>"; };
 		051CDCDC0F6C0CEC0049D2BD /* GitHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHub.h; path = github/GitHub.h; sourceTree = "<group>"; };
 		051CDCDD0F6C0CEC0049D2BD /* GitHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHub.m; path = github/GitHub.m; sourceTree = "<group>"; };
 		051CDCE00F6C0D140049D2BD /* JsonGitHubApiParserImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JsonGitHubApiParserImpl.h; path = github/JsonGitHubApiParserImpl.h; sourceTree = "<group>"; };
@@ -949,6 +950,7 @@
 			children = (
 				91F89B3C0F705EB300993921 /* NewsFeedTableViewCell.h */,
 				91F89B3D0F705EB300993921 /* NewsFeedTableViewCell.m */,
+				051388140F85959F00542963 /* NewsFeedTableViewControllerDelegate.h */,
 				91F89B3E0F705EB300993921 /* NewsFeedTableViewController.h */,
 				91F89B3F0F705EB300993921 /* NewsFeedTableViewController.m */,
 				91F89B4A0F7060F600993921 /* RssItem.h */,
