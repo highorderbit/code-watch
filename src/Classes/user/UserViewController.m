@@ -344,6 +344,9 @@ enum Section
         ABMultiValueAddValueAndLabel(blogs, blog, kABHomeLabel, NULL);
         ABRecordSetValue(person, kABPersonURLProperty, blogs, &error);
     }
+    
+    NSData * data = UIImagePNGRepresentation(avatarView.image);
+    ABPersonSetImageData(person, (CFDataRef)data, &error);
 
     [delegate userDidAddContact:person];
 }
