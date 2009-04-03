@@ -9,6 +9,7 @@
 #import "FavoriteReposStateReader.h"
 #import "FavoriteReposStateSetter.h"
 #import "AddRepoViewControllerDelegate.h"
+#import "WebViewController.h"
 
 @interface UIAddRepoMgr : NSObject <AddRepoMgr, AddRepoViewControllerDelegate>
 {
@@ -16,6 +17,7 @@
     
     UINavigationController * navigationController;
     AddRepoViewController * addRepoViewController;
+    WebViewController * helpViewController;
 
     IBOutlet GitHubService * gitHubService;
     IBOutlet NSObject<FavoriteReposStateSetter> * favoriteReposStateSetter;

@@ -4,12 +4,12 @@
 
 #import "UIAddRepoMgr.h"
 #import "RepoKey.h"
-#import "LogInHelpViewController.h"
+#import "WebViewController.h"
 
 @interface UIAddRepoMgr (Private)
 
 @property (readonly) AddRepoViewController * addRepoViewController;
-@property (readonly) LogInHelpViewController * logInHelpViewController;
+@property (readonly) WebViewController * helpViewController;
 @property (readonly) UINavigationController * navigationController;
 
 - (void)foundUsername:(NSString *)username repoName:(NSString *)repoName;
@@ -27,6 +27,7 @@
     
     [navigationController release];
     [addRepoViewController release];
+    [helpViewController release];
     
     [gitHubService release];
     [favoriteReposStateSetter release];
@@ -61,7 +62,11 @@
 }
 
 - (void)provideHelp
-{}
+{
+    if (!connecting)
+        [self.navigationController
+            pushViewController:self.helpViewController animated:YES];
+}
 
 #pragma mark GitHubServiceDelegate implementation
 
@@ -98,6 +103,18 @@
     }
 
     return addRepoViewController;
+}
+
+- (WebViewController *)helpViewController
+{
+    if (!helpViewController) {
+        helpViewController =
+            [[WebViewController alloc] initWithHtmlFilename:@"new-repo-help"];
+        helpViewController.title =
+            NSLocalizedString(@"addrepo.help.view.title", @"");
+    }
+
+    return helpViewController;
 }
 
 - (UINavigationController *)navigationController

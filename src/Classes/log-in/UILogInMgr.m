@@ -4,7 +4,7 @@
 
 #import "UILogInMgr.h"
 #import "LogInViewController.h"
-#import "LogInHelpViewController.h"
+#import "WebViewController.h"
 #import "UIApplication+NetworkActivityIndicatorAdditions.h"
 #import "GitHubService.h"
 #import "UserInfo.h"
@@ -19,7 +19,7 @@
 
 @synthesize navigationController;
 @synthesize logInViewController;
-@synthesize logInHelpViewController;
+@synthesize helpViewController;
 
 - (void)dealloc
 {
@@ -27,7 +27,7 @@
 
     [navigationController release];
     [logInViewController release];
-    [logInHelpViewController release];
+    [helpViewController release];
 
     [homeBarButtonItem release];
     [userBarButtonItem release];
@@ -90,7 +90,7 @@
 {
     if (!connecting)
         [self.navigationController
-            pushViewController:self.logInHelpViewController animated:YES];
+            pushViewController:self.helpViewController animated:YES];
 }
 
 #pragma mark GitHubDelegate implementation
@@ -140,14 +140,16 @@
     return logInViewController;
 }
 
-- (LogInHelpViewController *)logInHelpViewController
+- (WebViewController *)helpViewController
 {
-    if (!logInHelpViewController)
-        logInHelpViewController =
-            [[LogInHelpViewController alloc]
-             initWithNibName:@"LogInHelpView" bundle:nil];
+    if (!helpViewController) {
+        helpViewController =
+            [[WebViewController alloc] initWithHtmlFilename:@"log-in-help"];
+        helpViewController.title =
+            NSLocalizedString(@"loginhelp.view.title", @"");
+    }
 
-    return logInHelpViewController;
+    return helpViewController;
 }
 
 - (UINavigationController *)navigationController

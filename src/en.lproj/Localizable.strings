@@ -70,6 +70,7 @@ adduser.view.prompt = "Provide a GitHub username";
 adduser.adduser.label = "Add";
 adduser.username.label = "username";
 adduser.help.label = "Help";
+adduser.help.view.title = "Help";
 
 /* AddRepoView Strings */
 addrepo.view.title = "New Repo";
@@ -79,6 +80,7 @@ addrepo.username.label = "username";
 addrepo.repoName.label = "repo name";
 addrepo.help.label = "Help";
 addrepo.reponotfound.format.string = "'%@' was not found for user '%@'";
+addrepo.help.view.title = "Help";
 
 /* CommitView Strings */
 commit.view.title = "Commit Info";

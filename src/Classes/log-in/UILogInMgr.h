@@ -9,10 +9,10 @@
 #import "LogInStateReader.h"
 #import "UserCacheSetter.h"
 #import "GitHubServiceDelegate.h"
+#import "WebViewController.h"
 
 @class GitHubService;
 @class LogInViewController;
-@class LogInHelpViewController;
 
 @interface UILogInMgr :
     NSObject <LogInMgr, LogInViewControllerDelegate, GitHubServiceDelegate>
@@ -21,7 +21,7 @@
 
     UINavigationController * navigationController;
     LogInViewController * logInViewController;
-    LogInHelpViewController * logInHelpViewController;
+    WebViewController * helpViewController;
     
     IBOutlet UIBarButtonItem * homeBarButtonItem;
     IBOutlet UIBarButtonItem * userBarButtonItem;
@@ -38,7 +38,7 @@
 
 @property (nonatomic, retain) UINavigationController * navigationController;
 @property (nonatomic, retain) LogInViewController * logInViewController;
-@property (nonatomic, retain) LogInHelpViewController * logInHelpViewController;
+@property (nonatomic, retain) WebViewController * helpViewController;
 
 // Neede re-definition to work in interface builder
 - (IBAction)collectCredentials:(id)sender;

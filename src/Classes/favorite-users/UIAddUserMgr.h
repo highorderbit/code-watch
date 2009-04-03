@@ -6,10 +6,10 @@
 #import "AddUserMgr.h"
 #import "AddUserViewControllerDelegate.h"
 #import "AddUserViewController.h"
-#import "LogInHelpViewController.h"
 #import "GitHubService.h"
 #import "FavoriteUsersStateSetter.h"
 #import "FavoriteUsersStateReader.h"
+#import "WebViewController.h"
 
 @interface UIAddUserMgr :
     NSObject <AddUserMgr, AddUserViewControllerDelegate, GitHubServiceDelegate>
@@ -18,6 +18,7 @@
     
     UINavigationController * navigationController;
     AddUserViewController * addUserViewController;
+    WebViewController * helpViewController;
 
     IBOutlet GitHubService * gitHub;
     IBOutlet NSObject<FavoriteUsersStateSetter> * favoriteUsersStateSetter;

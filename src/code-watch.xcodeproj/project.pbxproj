@@ -42,8 +42,6 @@
 		05AFEA330F79BD9A0008A91C /* CommitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AFEA320F79BD9A0008A91C /* CommitViewController.m */; };
 		05B8805E0F7AF5210030DF3A /* ChangesetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8805D0F7AF5210030DF3A /* ChangesetViewController.m */; };
 		05B880610F7AF53D0030DF3A /* ChangesetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B8805F0F7AF53D0030DF3A /* ChangesetView.xib */; };
-		05B98FC70F705AD60039602B /* LogInHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B98FC60F705AD60039602B /* LogInHelpViewController.m */; };
-		05B98FCA0F705B010039602B /* LogInHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B98FC80F705B010039602B /* LogInHelpView.xib */; };
 		05B98FEE0F705CFE0039602B /* log-in-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 05B98FED0F705CFE0039602B /* log-in-help.html */; };
 		05B990180F7062B10039602B /* RepoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B990170F7062B10039602B /* RepoInfo.m */; };
 		05B990830F7079F20039602B /* RepoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B990820F7079F20039602B /* RepoViewController.m */; };
@@ -115,6 +113,9 @@
 		91B88B7E0F82F35400215C8B /* RepoSelectorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B88B7D0F82F35400215C8B /* RepoSelectorFactory.m */; };
 		91B88B810F82F48100215C8B /* CommitSelectorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B88B800F82F48100215C8B /* CommitSelectorFactory.m */; };
 		91BA43D40F85B43700E42100 /* ContactCachePersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BA43D30F85B43700E42100 /* ContactCachePersistenceStore.m */; };
+		91BA446D0F8681AF00E42100 /* new-user-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 91BA446B0F8681AF00E42100 /* new-user-help.html */; };
+		91BA44710F86835200E42100 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BA44700F86835200E42100 /* WebViewController.m */; };
+		91BA451C0F86989200E42100 /* new-repo-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 91BA451A0F86989200E42100 /* new-repo-help.html */; };
 		91C248440F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C248430F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m */; };
 		91C248B70F7C8C1E007F8B05 /* ReposIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C248B60F7C8C1E007F8B05 /* ReposIcon.png */; };
 		91CC52350F6C9D98000AD3FB /* NetworkAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */; };
@@ -224,9 +225,6 @@
 		05B880600F7AF53D0030DF3A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ChangesetView.xib; sourceTree = "<group>"; };
 		05B880630F7AF56D0030DF3A /* CommitViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitViewControllerDelegate.h; path = commit/CommitViewControllerDelegate.h; sourceTree = "<group>"; };
 		05B98F440F7053EF0039602B /* GitHubApiVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiVersion.h; path = github/GitHubApiVersion.h; sourceTree = "<group>"; };
-		05B98FC50F705AD60039602B /* LogInHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInHelpViewController.h; sourceTree = "<group>"; };
-		05B98FC60F705AD60039602B /* LogInHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInHelpViewController.m; sourceTree = "<group>"; };
-		05B98FC90F705B010039602B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LogInHelpView.xib; sourceTree = "<group>"; };
 		05B98FED0F705CFE0039602B /* log-in-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "log-in-help.html"; sourceTree = "<group>"; };
 		05B990160F7062B10039602B /* RepoInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoInfo.h; path = repo/RepoInfo.h; sourceTree = "<group>"; };
 		05B990170F7062B10039602B /* RepoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepoInfo.m; path = repo/RepoInfo.m; sourceTree = "<group>"; };
@@ -373,6 +371,10 @@
 		91B88B800F82F48100215C8B /* CommitSelectorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitSelectorFactory.m; path = commit/CommitSelectorFactory.m; sourceTree = "<group>"; };
 		91BA43D20F85B43700E42100 /* ContactCachePersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCachePersistenceStore.h; sourceTree = "<group>"; };
 		91BA43D30F85B43700E42100 /* ContactCachePersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCachePersistenceStore.m; sourceTree = "<group>"; };
+		91BA446C0F8681AF00E42100 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = en; path = "en.lproj/new-user-help.html"; sourceTree = "<group>"; };
+		91BA446F0F86835200E42100 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		91BA44700F86835200E42100 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		91BA451B0F86989200E42100 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = en; path = "en.lproj/new-repo-help.html"; sourceTree = "<group>"; };
 		91C2483F0F7C3401007F8B05 /* RecentActivityDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentActivityDisplayMgr.h; sourceTree = "<group>"; };
 		91C248420F7C3456007F8B05 /* UIRecentActivityDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRecentActivityDisplayMgr.h; sourceTree = "<group>"; };
 		91C248430F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIRecentActivityDisplayMgr.m; sourceTree = "<group>"; };
@@ -469,7 +471,6 @@
 				053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */,
 				91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */,
 				91F89B290F7057C500993921 /* NewsFeedTableViewCell.xib */,
-				05B98FC80F705B010039602B /* LogInHelpView.xib */,
 				05B990840F707B6E0039602B /* RepoView.xib */,
 				05B990880F707DD20039602B /* RepoActivityTableViewCell.xib */,
 				91FD171D0F715018004549F9 /* NoDataView.xib */,
@@ -577,8 +578,6 @@
 				910D823D0F69D4F50068CBF3 /* LogInPersistenceStore.m */,
 				910D830A0F6A01200068CBF3 /* LogInStateReader.h */,
 				910D830D0F6A012B0068CBF3 /* LogInStateSetter.h */,
-				05B98FC50F705AD60039602B /* LogInHelpViewController.h */,
-				05B98FC60F705AD60039602B /* LogInHelpViewController.m */,
 			);
 			path = "log-in";
 			sourceTree = "<group>";
@@ -613,6 +612,8 @@
 			isa = PBXGroup;
 			children = (
 				05B98FED0F705CFE0039602B /* log-in-help.html */,
+				91BA446B0F8681AF00E42100 /* new-user-help.html */,
+				91BA451A0F86989200E42100 /* new-repo-help.html */,
 			);
 			name = "Help Files";
 			sourceTree = "<group>";
@@ -717,6 +718,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				91BA446E0F86835200E42100 /* web */,
 				91B889150F8002DB00215C8B /* search */,
 				91E25E5B0F79B81300E1594E /* favorite-users */,
 				91F89B3B0F705EB300993921 /* news-feed */,
@@ -931,6 +933,15 @@
 			name = search;
 			sourceTree = "<group>";
 		};
+		91BA446E0F86835200E42100 /* web */ = {
+			isa = PBXGroup;
+			children = (
+				91BA446F0F86835200E42100 /* WebViewController.h */,
+				91BA44700F86835200E42100 /* WebViewController.m */,
+			);
+			path = web;
+			sourceTree = "<group>";
+		};
 		91E25E5B0F79B81300E1594E /* favorite-users */ = {
 			isa = PBXGroup;
 			children = (
@@ -1044,7 +1055,6 @@
 				91B6205E0F6C54830077CDB9 /* UserDetailTableViewCell.xib in Resources */,
 				91129B2B0F6C7EBC00D32C90 /* DefaultAvatar.png in Resources */,
 				91F89B2B0F7057C500993921 /* NewsFeedTableViewCell.xib in Resources */,
-				05B98FCA0F705B010039602B /* LogInHelpView.xib in Resources */,
 				05B98FEE0F705CFE0039602B /* log-in-help.html in Resources */,
 				05B990860F707B6E0039602B /* RepoView.xib in Resources */,
 				05B9908A0F707DD20039602B /* RepoActivityTableViewCell.xib in Resources */,
@@ -1058,6 +1068,8 @@
 				91C248B70F7C8C1E007F8B05 /* ReposIcon.png in Resources */,
 				913693D10F7E78D90054E512 /* FavoriteReposView.xib in Resources */,
 				913694A00F7ECCB80054E512 /* AddRepoView.xib in Resources */,
+				91BA446D0F8681AF00E42100 /* new-user-help.html in Resources */,
+				91BA451C0F86989200E42100 /* new-repo-help.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1103,7 +1115,6 @@
 				91F89B4C0F7060F600993921 /* RssItem.m in Sources */,
 				91F89BA40F7072D500993921 /* NSDate+IsToday.m in Sources */,
 				91F89BA50F7072D500993921 /* NSDate+StringHelpers.m in Sources */,
-				05B98FC70F705AD60039602B /* LogInHelpViewController.m in Sources */,
 				05B990180F7062B10039602B /* RepoInfo.m in Sources */,
 				05B990830F7079F20039602B /* RepoViewController.m in Sources */,
 				05B9908E0F7080940039602B /* RepoActivityTableViewCell.m in Sources */,
@@ -1172,6 +1183,7 @@
 				05C9E7DF0F85277400F7C62E /* CXMLNode_XPathExtensions.m in Sources */,
 				05C9E87C0F852D7D00F7C62E /* RegexKitLite.m in Sources */,
 				05C9E9870F85405100F7C62E /* NSString+RegexKitLiteHelpers.m in Sources */,
+				91BA44710F86835200E42100 /* WebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1216,14 +1228,6 @@
 				05B880600F7AF53D0030DF3A /* en */,
 			);
 			name = ChangesetView.xib;
-			sourceTree = "<group>";
-		};
-		05B98FC80F705B010039602B /* LogInHelpView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				05B98FC90F705B010039602B /* en */,
-			);
-			name = LogInHelpView.xib;
 			sourceTree = "<group>";
 		};
 		05B990840F707B6E0039602B /* RepoView.xib */ = {
@@ -1296,6 +1300,22 @@
 				91B6205D0F6C54830077CDB9 /* en */,
 			);
 			name = UserDetailTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		91BA446B0F8681AF00E42100 /* new-user-help.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91BA446C0F8681AF00E42100 /* en */,
+			);
+			name = "new-user-help.html";
+			sourceTree = "<group>";
+		};
+		91BA451A0F86989200E42100 /* new-repo-help.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91BA451B0F86989200E42100 /* en */,
+			);
+			name = "new-repo-help.html";
 			sourceTree = "<group>";
 		};
 		91E25E520F79B3B100E1594E /* FavoriteUsersView.xib */ = {

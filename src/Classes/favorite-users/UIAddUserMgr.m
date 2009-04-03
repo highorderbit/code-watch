@@ -3,11 +3,12 @@
 //
 
 #import "UIAddUserMgr.h"
+#import "WebViewController.h"
 
 @interface UIAddUserMgr (Private)
 
 @property (readonly) AddUserViewController * addUserViewController;
-@property (readonly) LogInHelpViewController * logInHelpViewController;
+@property (readonly) WebViewController * helpViewController;
 @property (readonly) UINavigationController * navigationController;
 
 @end
@@ -20,6 +21,7 @@
     
     [navigationController release];
     [addUserViewController release];
+    [helpViewController release];
     
     [gitHub release];
     [favoriteUsersStateSetter release];
@@ -51,7 +53,11 @@
 }
 
 - (void)provideHelp
-{}
+{
+    if (!connecting)
+        [self.navigationController
+            pushViewController:self.helpViewController animated:YES];
+}
 
 #pragma mark GitHubServiceDelegate implementation
 
@@ -100,6 +106,18 @@
     }
 
     return addUserViewController;
+}
+
+- (WebViewController *)helpViewController
+{
+    if (!helpViewController) {
+        helpViewController =
+            [[WebViewController alloc] initWithHtmlFilename:@"new-user-help"];
+        helpViewController.title =
+            NSLocalizedString(@"adduser.help.view.title", @"");
+    }
+
+    return helpViewController;
 }
 
 - (UINavigationController *)navigationController
