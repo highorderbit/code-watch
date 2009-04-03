@@ -16,6 +16,14 @@
     [super dealloc];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    NSIndexPath * selectedItem = [self.tableView indexPathForSelectedRow];
+    [self.tableView deselectRowAtIndexPath:selectedItem animated:animated];
+}
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

@@ -8,6 +8,7 @@
 #import "RssItem.h"
 #import "RepoSelectorFactory.h"
 #import "NSString+RegexKitLiteHelpers.h"
+#import "UIAlertView+CreationHelpers.h"
 
 @interface NewsFeedDisplayMgr (Private)
 
@@ -80,7 +81,23 @@
         NSString * repo =
             [rssItem.subject stringByMatchingRegex:
             @"started watching .+/(.+)$"];
-        [[self repoSelector] user:user didSelectRepo:repo];
+
+        if (user && repo)
+            [[self repoSelector] user:user didSelectRepo:repo];
+        else {
+            NSLog(@"Failed to parse RSS item: '%@'.", rssItem);
+            NSString * title =
+                NSLocalizedString(@"newsfeed.item.display.failed.title", @"");
+            NSString * message =
+                NSLocalizedString(@"newsfeed.item.parse.failed.message", @"");
+
+            UIAlertView * alertView =
+                [UIAlertView simpleAlertViewWithTitle:title
+                                         errorMessage:message];
+            [alertView show];
+
+            [newsFeedTableViewController viewWillAppear:NO];
+        }
     }
 }
 
@@ -102,18 +119,9 @@
 
     NSString * title =
         NSLocalizedString(@"github.newsfeedupdate.failed.alert.title", @"");
-    NSString * cancelTitle =
-        NSLocalizedString(@"github.newsfeedupdate..failed.alert.ok", @"");
-    NSString * message = error.localizedDescription;
-
     UIAlertView * alertView =
-        [[[UIAlertView alloc]
-          initWithTitle:title
-                message:message
-               delegate:self
-      cancelButtonTitle:cancelTitle
-      otherButtonTitles:nil]
-         autorelease];
+        [UIAlertView simpleAlertViewWithTitle:title
+                                 errorMessage:error.localizedDescription];
 
     [alertView show];
 
