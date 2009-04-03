@@ -14,7 +14,7 @@ enum Sections
 {
     kDetailsSection,
     kActionSection,
-    kRepoSection  // optional sections need to be at the end
+    kGitHubEntitiesSection  // optional sections need to be at the end
 };
 
 static NSUInteger NUM_DETAILS_ROWS = 1;
@@ -23,8 +23,8 @@ enum DetailsSectionRows
     kDetailsRow
 };
 
-static NSUInteger NUM_REPO_ROWS = 3;
-enum RepoSectionRows
+static NSUInteger NUM_GITHUB_ENTITIES_ROWS = 3;
+enum kGitHubEntitiesSection
 {
     kGoToAuthorRow,
     kGoToRepoOwnerRow,
@@ -103,8 +103,8 @@ enum ActionSectionRows
         case kDetailsSection:
             nrows = NUM_DETAILS_ROWS;
             break;
-        case kRepoSection:
-            nrows = NUM_REPO_ROWS;
+        case kGitHubEntitiesSection:
+            nrows = NUM_GITHUB_ENTITIES_ROWS;
             break;
         case kActionSection:
             nrows = NUM_ACTION_ROWS;
@@ -135,7 +135,7 @@ enum ActionSectionRows
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
 
-        case kRepoSection: {
+        case kGitHubEntitiesSection: {
             RepoKey * key = [rssItem repoKey];
             NSString * text = nil;
 
@@ -181,10 +181,21 @@ enum ActionSectionRows
         case kDetailsSection:
             [delegate userDidSelectDetails:rssItem];
             break;
-        case kRepoSection: {
+        case kGitHubEntitiesSection: {
             RepoKey * key = [rssItem repoKey];
-            [delegate userDidSelectRepo:key.repoName
-                            ownedByUser:key.username];
+
+            switch (indexPath.row) {
+                case kGoToAuthorRow:
+                    [delegate userDidSelectUsername:rssItem.author];
+                    break;
+                case kGoToRepoOwnerRow:
+                   [delegate userDidSelectUsername:key.username];
+                   break;
+                case kGoToRepoRow:
+                    [delegate userDidSelectRepo:key.repoName
+                                    ownedByUser:key.username];
+                    break;
+            }
             break;
         }
     }

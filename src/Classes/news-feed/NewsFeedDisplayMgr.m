@@ -9,6 +9,7 @@
 #import "RssItem+ParsingHelpers.h"
 #import "RepoKey.h"
 #import "RepoSelectorFactory.h"
+#import "UserDisplayMgrFactory.h"
 #import "NewsFeedItemViewController.h"
 #import "NewsFeedItemDetailsViewController.h"
 #import "NSString+RegexKitLiteHelpers.h"
@@ -16,6 +17,7 @@
 
 @interface NewsFeedDisplayMgr (Private)
 
+- (NSObject<UserDisplayMgr> *)userDisplayMgr;
 - (NSObject<RepoSelector> *)repoSelector;
 - (NewsFeedItemViewController *)newsFeedItemViewController;
 - (NewsFeedItemDetailsViewController *)newsFeedItemDetailsViewController;
@@ -26,6 +28,9 @@
 
 - (void)dealloc
 {
+    [userDisplayMgrFactory release];
+    [userDisplayMgr release];
+
     [repoSelectorFactory release];
     [repoSelector release];
 
@@ -125,6 +130,11 @@
     [[self repoSelector] user:username didSelectRepo:repoName];
 }
 
+- (void)userDidSelectUsername:(NSString *)username
+{
+    [[self userDisplayMgr] displayUserInfoForUsername:username];
+}
+
 #pragma mark GitHubNewsFeedDelegate implementation
 
 - (void)newsFeed:(NSArray *)newsItems fetchedForUsername:(NSString *)username
@@ -153,6 +163,16 @@
 }
 
 #pragma mark Accessors
+
+- (NSObject<UserDisplayMgr> *)userDisplayMgr
+{
+    if (!userDisplayMgr)
+        userDisplayMgr =
+            [userDisplayMgrFactory
+            createUserDisplayMgrWithNavigationContoller:navigationController];
+
+    return userDisplayMgr;
+}
 
 - (NSObject<RepoSelector> *)repoSelector
 {

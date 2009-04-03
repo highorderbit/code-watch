@@ -11,9 +11,10 @@
 #import "GitHubNewsFeedServiceDelegate.h"
 #import "NewsFeedTableViewControllerDelegate.h"
 #import "NewsFeedItemViewControllerDelegate.h"
+#import "UserDisplayMgr.h"
 #import "RepoSelector.h"
 
-@class RepoSelectorFactory;
+@class UserDisplayMgrFactory, RepoSelectorFactory;
 @class GitHubNewsFeedService, GitHubNewsFeedServiceFactory;
 @class NewsFeedItemViewController, NewsFeedItemDetailsViewController;
 
@@ -22,6 +23,9 @@
     <NetworkAwareViewControllerDelegate, GitHubNewsFeedServiceDelegate,
     NewsFeedTableViewControllerDelegate, NewsFeedItemViewControllerDelegate>
 {
+    IBOutlet UserDisplayMgrFactory * userDisplayMgrFactory;
+    NSObject<UserDisplayMgr> * userDisplayMgr;
+
     IBOutlet RepoSelectorFactory * repoSelectorFactory;
     NSObject<RepoSelector> * repoSelector;
 
