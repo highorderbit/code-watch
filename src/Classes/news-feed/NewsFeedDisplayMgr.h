@@ -44,4 +44,6 @@
     GitHubNewsFeedService * newsFeed;
 }
 
+- (void)updateNewsFeed;
+
 @end

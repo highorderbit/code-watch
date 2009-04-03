@@ -51,4 +51,6 @@
     contactCacheSetter:
     (NSObject<ContactCacheSetter> *)aContactCacheSetter;
     
+- (void)displayUserInfo;
+    
 @end

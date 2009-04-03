@@ -33,4 +33,6 @@
 
 @property (readonly) UIViewController * tabViewController;
 
+- (void)displayUserInfo;
+
 @end

@@ -53,9 +53,23 @@
 {
     newsFeed = [[newsFeedServiceFactory createGitHubNewsFeedService] retain];
     newsFeed.delegate = self;
+    
+    UIBarButtonItem * refreshButton =
+        [[[UIBarButtonItem alloc]
+        initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+        target:self
+        action:@selector(updateNewsFeed)] autorelease];
+
+    [networkAwareViewController.navigationItem
+        setRightBarButtonItem:refreshButton animated:NO];
 }
 
 - (void)viewWillAppear
+{
+    [self updateNewsFeed];
+}
+
+- (void)updateNewsFeed
 {
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];

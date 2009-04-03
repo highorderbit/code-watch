@@ -8,6 +8,8 @@
 #import "GitHubService.h"
 
 @interface RepoDisplayMgr (Private)
+
+- (void)addRefreshButton;
 - (BOOL)loadCachedData;
 - (RepoInfo *)cachedRepoInfoForUsername:(NSString *)username
                                repoName:(NSString *)repoName;
@@ -18,6 +20,7 @@
 - (void)setRepoInfo:(RepoInfo *)info;
 - (void)setRepoName:(NSString *)name;
 - (void)setCommits:(NSDictionary *)someCommits;
+
 @end
 
 @implementation RepoDisplayMgr
@@ -66,9 +69,33 @@
         repoViewController = [aRepoViewController retain];
         gitHub = [aGitHubService retain];
         commitSelector = [aCommitSelector retain];
+        
+        [self addRefreshButton];
     }
     
     return self;
+}
+
+- (void)awakeFromNib
+{
+    [self addRefreshButton];
+}
+
+- (void)addRefreshButton
+{
+    UIBarButtonItem * refreshButton =
+        [[[UIBarButtonItem alloc]
+        initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+        target:self
+        action:@selector(refreshRepoInfo)] autorelease];
+
+    [networkAwareViewController.navigationItem
+        setRightBarButtonItem:refreshButton animated:NO];
+}
+
+- (void)refreshRepoInfo
+{
+    [self user:username didSelectRepo:repoName];
 }
 
 #pragma mark RepoSelector implementation

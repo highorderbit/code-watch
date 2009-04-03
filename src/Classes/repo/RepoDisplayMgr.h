@@ -56,4 +56,6 @@
 @property (nonatomic, copy, readonly) RepoInfo * repoInfo;
 @property (nonatomic, copy, readonly) NSDictionary * commits;
 
+- (void)refreshRepoInfo;
+
 @end
