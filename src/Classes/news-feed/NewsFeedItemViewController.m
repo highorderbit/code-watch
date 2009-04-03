@@ -40,6 +40,8 @@ enum ActionSectionRows
 
 @interface NewsFeedItemViewController (Private)
 
+- (BOOL)haveGitHubUserInRssItem;
+- (BOOL)haveGitHubRepoInRssItem;
 - (void)updateDisplay;
 - (void)setRssItem:(RssItem *)item;
 
@@ -204,6 +206,11 @@ enum ActionSectionRows
 - (void)updateDisplay
 {
     authorLabel.text = rssItem.author;
+
+    if ([self haveGitHubUserInRssItem] && [self haveGitHubUserInRssItem])
+        descriptionLabel.text = [[rssItem repoKey] description];
+    else
+        descriptionLabel.text = nil;
 
     CGFloat height = [subjectLabel heightForString:rssItem.subject];
 
