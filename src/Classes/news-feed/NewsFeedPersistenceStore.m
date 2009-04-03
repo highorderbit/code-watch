@@ -16,6 +16,7 @@
 + (NSDate *)pubDateKey;
 + (NSString *)subjectKey;
 + (NSString *)summaryKey;
++ (NSString *)linkKey;
 
 + (NSString *)plistName;
 
@@ -73,9 +74,13 @@
         NSDate * pubDate = [dict objectForKey:[[self class] pubDateKey]];
         NSString * subject = [dict objectForKey:[[self class] subjectKey]];
         NSString * summary = [dict objectForKey:[[self class] summaryKey]];
+
+        NSString * linkString = [dict objectForKey:[[self class] linkKey]];
+        NSURL * link = linkString ? [NSURL URLWithString:linkString] : nil;
+
         rssItem =
             [[[RssItem alloc] initWithType:type author:author pubDate:pubDate
-            subject:subject summary:summary] autorelease];
+            subject:subject summary:summary link:link] autorelease];
     } else
         rssItem = nil;
 
@@ -93,6 +98,8 @@
         [dict setObject:rssItem.pubDate forKey:[[self class] pubDateKey]];
         [dict setObject:rssItem.subject forKey:[[self class] subjectKey]];
         [dict setObject:rssItem.summary forKey:[[self class] summaryKey]];
+        [dict setObject:[rssItem.link absoluteString]
+            forKey:[[self class] linkKey]];
     } else
         dict = nil;
     
@@ -122,6 +129,11 @@
 + (NSString *)summaryKey
 {
     return @"summary";
+}
+
++ (NSString *)linkKey
+{
+    return @"link";
 }
 
 + (NSString *)plistName

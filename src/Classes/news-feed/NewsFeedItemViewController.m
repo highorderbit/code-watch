@@ -40,6 +40,8 @@ enum ActionSectionRows
 
 @interface NewsFeedItemViewController (Private)
 
+- (void)openRssItemInSafari;
+
 - (BOOL)haveGitHubUserInRssItem;
 - (BOOL)haveGitHubRepoInRssItem;
 - (void)updateDisplay;
@@ -198,6 +200,13 @@ enum ActionSectionRows
             }
             break;
         }
+        case kActionSection:
+            switch (indexPath.row) {
+                case kOpenInSafariRow:
+                    [self openRssItemInSafari];
+                    break;
+            }
+            break;
     }
 }
 
@@ -234,6 +243,13 @@ enum ActionSectionRows
     self.tableView.tableHeaderView = headerView;
 
     [self.tableView reloadData];
+}
+
+#pragma mark User actions
+
+- (void)openRssItemInSafari
+{
+    [[UIApplication sharedApplication] openURL:rssItem.link];
 }
 
 #pragma mark Helper methods

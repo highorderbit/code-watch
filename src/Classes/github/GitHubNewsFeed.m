@@ -104,7 +104,7 @@
     NSArray * rssActivity = error ? nil : [parser parseXml:response];
     if (!rssActivity)
         error = [NSError errorWithLocalizedDescription:
-            NSLocalizedString(@"github.rss.parse.failed", @"")];
+            NSLocalizedString(@"github.parse.failed.desc", @"")];
 
     if (rssActivity)
         [delegate newsFeed:rssActivity fetchedForUsername:username];
