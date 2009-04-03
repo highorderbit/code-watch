@@ -8,6 +8,8 @@
 #import "RssItem.h"
 
 #import "RegexKitLite.h"
+#import "NSString+RegexKitLiteHelpers.h"
+
 #import "TouchXML.h"
 
 @interface GitHubNewsFeedParser (Private)
@@ -64,8 +66,13 @@
     // Dates are formatted as: 2009-04-02T09:16:24-07:00
     static NSString * DATE_FORMAT = @"yyyy-MM-dd'T'HH:mm:SSZZZ";
 
-    NSString * author, * pubDateString, * subject, * summary;
+    NSString * type, * author, * pubDateString, * subject, * summary;
     NSDate * pubDate;
+
+    type = [[[self class]
+        singleNodeAtXpath:@"./id" withinElement:entry error:error] stringValue];
+    type = [type stringByMatchingRegex:@":.*:(.*?Event)/"];
+    if (!type || *error) return nil;
 
     author = [[[self class]
         singleNodeAtXpath:@"./author/name" withinElement:entry error:error]
@@ -88,8 +95,8 @@
         stringValue];
     if (!summary || *error) return nil;
 
-    return [RssItem itemWithAuthor:author pubDate:pubDate subject:subject
-        summary:summary];
+    return [RssItem itemWithType:type author:author pubDate:pubDate
+        subject:subject summary:summary];
 }
 
 + (CXMLElement *)singleNodeAtXpath:(NSString *)xpath

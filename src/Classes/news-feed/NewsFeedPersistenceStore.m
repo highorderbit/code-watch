@@ -11,6 +11,7 @@
 + (RssItem *) rssItemFromDictionary:(NSDictionary *)dict;
 + (NSDictionary *) dictionaryFromRssItem:(RssItem *)rssItem;
 
++ (NSString *)typeKey;
 + (NSString *)authorKey;
 + (NSDate *)pubDateKey;
 + (NSString *)subjectKey;
@@ -67,12 +68,13 @@
     RssItem * rssItem;
     
     if (dict) {
+        NSString * type = [dict objectForKey:[[self class] typeKey]];
         NSString * author = [dict objectForKey:[[self class] authorKey]];
         NSDate * pubDate = [dict objectForKey:[[self class] pubDateKey]];
         NSString * subject = [dict objectForKey:[[self class] subjectKey]];
         NSString * summary = [dict objectForKey:[[self class] summaryKey]];
         rssItem =
-            [[[RssItem alloc] initWithAuthor:author pubDate:pubDate
+            [[[RssItem alloc] initWithType:type author:author pubDate:pubDate
             subject:subject summary:summary] autorelease];
     } else
         rssItem = nil;
@@ -86,6 +88,7 @@
     
     if (rssItem) {
         dict = [NSMutableDictionary dictionary];
+        [dict setObject:rssItem.type forKey:[[self class] typeKey]];
         [dict setObject:rssItem.author forKey:[[self class] authorKey]];
         [dict setObject:rssItem.pubDate forKey:[[self class] pubDateKey]];
         [dict setObject:rssItem.subject forKey:[[self class] subjectKey]];
@@ -94,6 +97,11 @@
         dict = nil;
     
     return dict;
+}
+
++ (NSString *)typeKey
+{
+    return @"type";
 }
 
 + (NSString *)authorKey
