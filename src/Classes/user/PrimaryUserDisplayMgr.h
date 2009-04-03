@@ -11,21 +11,26 @@
 #import "GitHubService.h"
 #import "NetworkAwareViewControllerDelegate.h"
 #import "RepoSelector.h"
+#import "ContactCacheSetter.h"
 
 @interface PrimaryUserDisplayMgr :
     NSObject
     <NetworkAwareViewControllerDelegate, GitHubServiceDelegate,
-    UserViewControllerDelegate>
+    UserViewControllerDelegate, ABNewPersonViewControllerDelegate>
 {
+    IBOutlet UINavigationController * navigationController;
     IBOutlet NetworkAwareViewController * networkAwareViewController;
     IBOutlet UserViewController * userViewController;
     
     IBOutlet NSObject<UserCacheReader> * userCache;
     IBOutlet NSObject<LogInStateReader> * logInState;
-
+    IBOutlet NSObject<ContactCacheSetter> * contactCacheSetter;
+    
     IBOutlet NSObject<RepoSelector> * repoSelector;
     
     IBOutlet GitHubService * gitHub;
 }
+
+@property (readonly) UIViewController * tabViewController;
 
 @end

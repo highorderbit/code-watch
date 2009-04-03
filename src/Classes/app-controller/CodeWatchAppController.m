@@ -36,7 +36,8 @@
     [newsFeedPersistenceStore release];
     [repoCachePersistenceStore release];
     [commitCachePersistenceStore release];
-
+    [contactCachePersistenceStore release];
+    
     [favoriteUsersPersistenceStore release];
     [favoriteUsersViewController release];
     [favoriteUsersNavController release];
@@ -75,6 +76,7 @@
     [newsFeedPersistenceStore save];
     [repoCachePersistenceStore save];
     [commitCachePersistenceStore save];
+    [contactCachePersistenceStore save];
     [favoriteUsersPersistenceStore save];
     [favoriteReposPersistenceStore save];
 }
@@ -86,6 +88,7 @@
     [newsFeedPersistenceStore load];
     [repoCachePersistenceStore load];
     [commitCachePersistenceStore load];
+    [contactCachePersistenceStore load];
     [favoriteUsersPersistenceStore load];
     [favoriteReposPersistenceStore load];
 }

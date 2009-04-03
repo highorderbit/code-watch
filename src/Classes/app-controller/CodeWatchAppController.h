@@ -27,6 +27,7 @@
     IBOutlet NSObject<PersistenceStore> * newsFeedPersistenceStore;
     IBOutlet NSObject<PersistenceStore> * repoCachePersistenceStore;
     IBOutlet NSObject<PersistenceStore> * commitCachePersistenceStore;
+    IBOutlet NSObject<PersistenceStore> * contactCachePersistenceStore;
     
     IBOutlet NSObject<PersistenceStore> * favoriteUsersPersistenceStore;
     IBOutlet UINavigationController * favoriteUsersNavController;

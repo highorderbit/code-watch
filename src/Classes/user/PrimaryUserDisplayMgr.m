@@ -8,12 +8,14 @@
 
 - (void)dealloc
 {
+    [navigationController release];
     [networkAwareViewController release];
     [userViewController release];
     
     [userCache release];
     [logInState release];
-
+    [contactCacheSetter release];
+    
     [repoSelector release];
     
     [gitHub release];
@@ -53,6 +55,25 @@
 - (void)userDidSelectRepo:(NSString *)repo
 {
     [repoSelector user:logInState.login didSelectRepo:repo];
+}
+
+- (void)userDidAddContact:(ABRecordRef)person
+{
+    ABNewPersonViewController * personViewController =
+        [[ABNewPersonViewController alloc] init];
+    personViewController.displayedPerson = person;
+    personViewController.addressBook = ABAddressBookCreate();
+    personViewController.newPersonViewDelegate = self;
+    
+    UINavigationController * addContactNavController =
+        [[UINavigationController alloc]
+        initWithRootViewController:personViewController];
+    
+    [self.tabViewController presentModalViewController:addContactNavController
+        animated:YES];
+
+    [addContactNavController release];
+    [personViewController release];
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -119,6 +140,30 @@
          autorelease];
 
     [alertView show];
+}
+
+#pragma mark ABNewPersonViewControllerDelegate implementation
+
+- (void)newPersonViewController:
+    (ABNewPersonViewController *)newPersonViewController
+    didCompleteWithNewPerson:
+    (ABRecordRef)person
+{
+    if (person) {
+        ABRecordID recordId = ABRecordGetRecordID(person);
+        NSLog(@"Created person with record id %@",
+            [NSNumber numberWithInt:recordId]);
+        [contactCacheSetter setRecordId:recordId forUser:logInState.login];
+    }
+    
+    [self.tabViewController dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark Property implementations
+
+- (UIViewController *)tabViewController
+{
+    return navigationController.parentViewController;
 }
 
 @end
