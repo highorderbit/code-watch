@@ -53,6 +53,12 @@
 {
     [super viewWillAppear:animated];
 
+    BOOL private = [[repoInfo.details objectForKey:@"private"] boolValue];
+    repoImageView.image =
+        private ?
+        [UIImage imageNamed:@"private-icon.png"] :
+        [UIImage imageNamed:@"public-icon.png"];
+
     [self updateHeaderView];
 }
 
