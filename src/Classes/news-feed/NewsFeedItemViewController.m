@@ -60,7 +60,6 @@ enum ActionSectionRows
     [authorLabel release];
     [subjectLabel release];
     [avatarImageView release];
-    [footerView release];
     [rssItem release];
     [super dealloc];
 }
@@ -71,9 +70,6 @@ enum ActionSectionRows
 
     headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.tableHeaderView = headerView;
-
-    footerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    self.tableView.tableFooterView = footerView;
 
     self.navigationItem.title =
         NSLocalizedString(@"newsfeeditem.view.title", @"");
