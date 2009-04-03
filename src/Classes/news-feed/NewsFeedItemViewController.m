@@ -8,6 +8,7 @@
 #import "RepoKey.h"
 #import "UILabel+DrawingAdditions.h"
 #import "RepoSelectorFactory.h"
+#import "UIAlertView+CreationHelpers.h"
 
 static NSUInteger NUM_SECTIONS = 3;
 enum Sections
@@ -39,6 +40,9 @@ enum ActionSectionRows
 };
 
 @interface NewsFeedItemViewController (Private)
+
+- (void)openRssItemInSafari;
+- (void)emailRssItem;
 
 - (BOOL)haveGitHubUserInRssItem;
 - (BOOL)haveGitHubRepoInRssItem;
@@ -198,6 +202,16 @@ enum ActionSectionRows
             }
             break;
         }
+        case kActionSection:
+            switch (indexPath.row) {
+                case kOpenInSafariRow:
+                    [self openRssItemInSafari];
+                    break;
+                case kEmailRow:
+                    [self emailRssItem];
+                    break;
+            }
+            break;
     }
 }
 
@@ -234,6 +248,21 @@ enum ActionSectionRows
     self.tableView.tableHeaderView = headerView;
 
     [self.tableView reloadData];
+}
+
+#pragma mark User actions
+
+- (void)openRssItemInSafari
+{
+    [[UIApplication sharedApplication] openURL:rssItem.link];
+}
+
+- (void)emailRssItem
+{
+    [[UIAlertView notImplementedAlertView] show];
+
+    [self.tableView deselectRowAtIndexPath:
+        [self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 #pragma mark Helper methods

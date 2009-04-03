@@ -7,6 +7,8 @@
 @interface UIAlertView (CreationHelpers)
 
 + (UIAlertView *)simpleAlertViewWithTitle:(NSString *)title
-                             errorMessage:(NSString *)message;
+                                  message:(NSString *)message;
+
++ (UIAlertView *)notImplementedAlertView;
 
 @end

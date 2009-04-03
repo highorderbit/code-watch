@@ -7,7 +7,7 @@
 @implementation UIAlertView (CreationHelpers)
 
 + (UIAlertView *)simpleAlertViewWithTitle:(NSString *)title
-                             errorMessage:(NSString *)message
+                                  message:(NSString *)message
 {
     NSString * cancelTitle = NSLocalizedString(@"alert.dismiss", @"");
 
@@ -21,6 +21,13 @@
          autorelease];
 
     return alertView;
+}
+
++ (UIAlertView *)notImplementedAlertView
+{
+    return [[self class]
+        simpleAlertViewWithTitle:@"Not Implemented"
+                         message:@"This feature has not yet been implemented."];
 }
 
 @end

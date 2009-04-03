@@ -67,7 +67,10 @@
     static NSString * DATE_FORMAT = @"yyyy-MM-dd'T'HH:mm:SSZZZ";
 
     NSString * type, * author, * pubDateString, * subject, * summary;
+    NSString * linkString;
+
     NSDate * pubDate;
+    NSURL * link;
 
     type = [[[self class]
         singleNodeAtXpath:@"./id" withinElement:entry error:error] stringValue];
@@ -95,8 +98,14 @@
         stringValue];
     if (!summary || *error) return nil;
 
+    linkString = [[[self class]
+        singleNodeAtXpath:@"./link/@href" withinElement:entry error:error]
+        stringValue];
+    if (!linkString || *error) return nil;
+    link = [NSURL URLWithString:linkString];
+
     return [RssItem itemWithType:type author:author pubDate:pubDate
-        subject:subject summary:summary];
+        subject:subject summary:summary link:link];
 }
 
 + (CXMLElement *)singleNodeAtXpath:(NSString *)xpath

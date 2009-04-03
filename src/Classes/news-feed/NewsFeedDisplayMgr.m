@@ -117,7 +117,7 @@
 
             UIAlertView * alertView =
                 [UIAlertView simpleAlertViewWithTitle:title
-                                         errorMessage:message];
+                                              message:message];
             [alertView show];
 
             [newsFeedTableViewController viewWillAppear:NO];
@@ -169,7 +169,7 @@
         NSLocalizedString(@"github.newsfeedupdate.failed.alert.title", @"");
     UIAlertView * alertView =
         [UIAlertView simpleAlertViewWithTitle:title
-                                 errorMessage:error.localizedDescription];
+                                      message:error.localizedDescription];
 
     [alertView show];
 
