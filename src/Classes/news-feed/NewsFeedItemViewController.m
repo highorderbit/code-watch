@@ -7,6 +7,7 @@
 #import "RssItem+ParsingHelpers.h"
 #import "RepoKey.h"
 #import "UILabel+DrawingAdditions.h"
+#import "RepoSelectorFactory.h"
 
 static NSUInteger NUM_SECTIONS = 2;
 enum Sections
@@ -36,11 +37,13 @@ enum RepoSectionRows
 
 @implementation NewsFeedItemViewController
 
-@synthesize delegate, rssItem;
+@synthesize delegate, repoSelectorFactory, rssItem;
 
 - (void)dealloc
 {
     [delegate release];
+    [repoSelectorFactory release];
+    [repoSelector release];
     [headerView release];
     [authorLabel release];
     [subjectLabel release];
@@ -139,6 +142,12 @@ enum RepoSectionRows
         case kDetailsSection:
             [delegate userDidSelectDetails:rssItem];
             break;
+        case kRepoSection: {
+            RepoKey * key = [rssItem repoKey];
+            [delegate userDidSelectRepo:key.repoName
+                            ownedByUser:key.username];
+            break;
+        }
     }
 }
 
@@ -179,6 +188,17 @@ enum RepoSectionRows
     RssItem * tmp = [item copy];
     [rssItem release];
     rssItem = tmp;
+}
+
+- (NSObject<RepoSelector> *)repoSelector
+{
+    if (!repoSelector)
+        repoSelector =
+            [repoSelectorFactory
+            createRepoSelectorWithNavigationController:
+            self.navigationController];
+
+    return repoSelector;
 }
 
 @end

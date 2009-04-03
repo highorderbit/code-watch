@@ -9,5 +9,6 @@
 @protocol NewsFeedItemViewControllerDelegate
 
 - (void)userDidSelectDetails:(RssItem *)rssItem;
+- (void)userDidSelectRepo:(NSString *)repoName ownedByUser:(NSString *)username;
 
 @end

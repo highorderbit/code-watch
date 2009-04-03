@@ -120,6 +120,11 @@
                   animated:YES];
 }
 
+- (void)userDidSelectRepo:(NSString *)repoName ownedByUser:(NSString *)username
+{
+    [[self repoSelector] user:username didSelectRepo:repoName];
+}
+
 #pragma mark GitHubNewsFeedDelegate implementation
 
 - (void)newsFeed:(NSArray *)newsItems fetchedForUsername:(NSString *)username
@@ -166,6 +171,7 @@
             [[NewsFeedItemViewController alloc]
             initWithNibName:@"NewsFeedItemView" bundle:nil];
         newsFeedItemViewController.delegate = self;
+        newsFeedItemViewController.repoSelectorFactory = repoSelectorFactory;
     }
 
     return newsFeedItemViewController;
