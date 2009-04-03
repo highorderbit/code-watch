@@ -6,6 +6,8 @@
 #import "GitHubNewsFeedService.h"
 #import "GitHubNewsFeedServiceFactory.h"
 #import "RssItem.h"
+#import "RssItem+ParsingHelpers.h"
+#import "RepoKey.h"
 #import "RepoSelectorFactory.h"
 #import "NewsFeedItemViewController.h"
 #import "NewsFeedItemDetailsViewController.h"
@@ -82,15 +84,11 @@
 - (void)userDidSelectRssItem:(RssItem *)rssItem
 {
     if ([rssItem.type isEqualToString:@"WatchEvent"]) {
-        NSString * user =
-            [rssItem.subject stringByMatchingRegex:
-            @"started watching (.+)/.*$"];
-        NSString * repo =
-            [rssItem.subject stringByMatchingRegex:
-            @"started watching .+/(.+)$"];
+        RepoKey * repoKey = [rssItem repoKey];
 
-        if (user && repo)
-            [[self repoSelector] user:user didSelectRepo:repo];
+        if (repoKey)
+            [[self repoSelector]
+                user:repoKey.username didSelectRepo:repoKey.repoName];
         else {
             NSLog(@"Failed to parse RSS item: '%@'.", rssItem);
             NSString * title =

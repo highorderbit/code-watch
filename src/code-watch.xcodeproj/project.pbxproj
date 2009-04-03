@@ -21,6 +21,7 @@
 		0532C9FE0F867F7F0047BE56 /* NewsFeedItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0532C9FC0F867F7F0047BE56 /* NewsFeedItemView.xib */; };
 		0532CA560F868B5B0047BE56 /* NewsFeedItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532CA550F868B5B0047BE56 /* NewsFeedItemDetailsViewController.m */; };
 		0532CA6F0F868C650047BE56 /* NewsFeedItemDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0532CA6D0F868C650047BE56 /* NewsFeedItemDetailsView.xib */; };
+		0532CB1C0F8696550047BE56 /* RssItem+ParsingHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532CB1B0F8696550047BE56 /* RssItem+ParsingHelpers.m */; };
 		053420330F69E987000EECB1 /* NameValueTextEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */; };
 		053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */; };
 		053420400F69EBC4000EECB1 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0534203F0F69EBC4000EECB1 /* LogInViewController.m */; };
@@ -182,6 +183,8 @@
 		0532CA540F868B5B0047BE56 /* NewsFeedItemDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedItemDetailsViewController.h; sourceTree = "<group>"; };
 		0532CA550F868B5B0047BE56 /* NewsFeedItemDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedItemDetailsViewController.m; sourceTree = "<group>"; };
 		0532CA6E0F868C650047BE56 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NewsFeedItemDetailsView.xib; sourceTree = "<group>"; };
+		0532CB1A0F8696550047BE56 /* RssItem+ParsingHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RssItem+ParsingHelpers.h"; sourceTree = "<group>"; };
+		0532CB1B0F8696550047BE56 /* RssItem+ParsingHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RssItem+ParsingHelpers.m"; sourceTree = "<group>"; };
 		053420310F69E987000EECB1 /* NameValueTextEntryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameValueTextEntryTableViewCell.h; sourceTree = "<group>"; };
 		053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueTextEntryTableViewCell.m; sourceTree = "<group>"; };
 		053420360F69EAE6000EECB1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NameValueTextEntryTableViewCell.xib; sourceTree = "<group>"; };
@@ -987,6 +990,8 @@
 				91F89B3F0F705EB300993921 /* NewsFeedTableViewController.m */,
 				91F89B4A0F7060F600993921 /* RssItem.h */,
 				91F89B4B0F7060F600993921 /* RssItem.m */,
+				0532CB1A0F8696550047BE56 /* RssItem+ParsingHelpers.h */,
+				0532CB1B0F8696550047BE56 /* RssItem+ParsingHelpers.m */,
 				91F89BF60F70836A00993921 /* NewsFeedDisplayMgr.h */,
 				91F89BF70F70836A00993921 /* NewsFeedDisplayMgr.m */,
 				91F89C0B0F708B0000993921 /* NewsFeedCache.h */,
@@ -1202,6 +1207,7 @@
 				0532C9D40F86717E0047BE56 /* UIAlertView+CreationHelpers.m in Sources */,
 				0532C9F30F867D390047BE56 /* NewsFeedItemViewController.m in Sources */,
 				0532CA560F868B5B0047BE56 /* NewsFeedItemDetailsViewController.m in Sources */,
+				0532CB1C0F8696550047BE56 /* RssItem+ParsingHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

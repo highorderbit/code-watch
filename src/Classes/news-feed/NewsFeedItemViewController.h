@@ -16,6 +16,8 @@
     IBOutlet UILabel * subjectLabel;
     IBOutlet UIImageView * avatarImageView;
 
+    IBOutlet UIView * footerView;
+
     RssItem * rssItem;
 }
 

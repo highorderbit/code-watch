@@ -16,6 +16,12 @@
     [super dealloc];
 }
 
++ (id)keyWithUsername:(NSString *)username repoName:(NSString *)repoName
+{
+    return [[[[self class] alloc] initWithUsername:username repoName:repoName]
+        autorelease];
+}
+
 - (id)initWithUsername:(NSString *)aUsername repoName:(NSString *)aRepoName
 {
     if (self = [super init]) {

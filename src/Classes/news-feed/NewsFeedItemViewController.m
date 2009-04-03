@@ -4,18 +4,27 @@
 
 #import "NewsFeedItemViewController.h"
 #import "RssItem.h"
+#import "RssItem+ParsingHelpers.h"
+#import "RepoKey.h"
 #import "UILabel+DrawingAdditions.h"
 
-static NSUInteger NUM_SECTIONS = 1;
+static NSUInteger NUM_SECTIONS = 2;
 enum Sections
 {
-    kDetailsSections
+    kDetailsSection,
+    kRepoSection
 };
 
 static NSUInteger NUM_DETAILS_ROWS = 1;
 enum DetailsSectionRows
 {
     kDetailsRow
+};
+
+static NSUInteger NUM_REPO_ROWS = 1;
+enum RepoSectionRows
+{
+    kGoToRepo
 };
 
 @interface NewsFeedItemViewController (Private)
@@ -36,6 +45,7 @@ enum DetailsSectionRows
     [authorLabel release];
     [subjectLabel release];
     [avatarImageView release];
+    [footerView release];
     [rssItem release];
     [super dealloc];
 }
@@ -46,6 +56,9 @@ enum DetailsSectionRows
 
     headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.tableHeaderView = headerView;
+
+    footerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.tableView.tableFooterView = footerView;
 
     self.navigationItem.title =
         NSLocalizedString(@"newsfeeditem.view.title", @"");
@@ -62,7 +75,11 @@ enum DetailsSectionRows
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tv
 {
-    return NUM_SECTIONS;
+    NSInteger nsections = NUM_SECTIONS;
+    if ([rssItem repoKey] == nil)
+        --nsections;
+
+    return nsections;
 }
 
 // Customize the number of rows in the table view.
@@ -72,8 +89,11 @@ enum DetailsSectionRows
     NSInteger nrows = 0;
 
     switch (section) {
-        case kDetailsSections:
+        case kDetailsSection:
             nrows = NUM_DETAILS_ROWS;
+            break;
+        case kRepoSection:
+            nrows = NUM_REPO_ROWS;
             break;
     }
 
@@ -95,8 +115,19 @@ enum DetailsSectionRows
               initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
              autorelease];
 
-    cell.text = NSLocalizedString(@"newsfeeditem.details.label", @"");
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    switch (indexPath.section) {
+        case kDetailsSection:
+            cell.text = NSLocalizedString(@"newsfeeditem.details.label", @"");
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            break;
+
+        case kRepoSection: {
+            RepoKey * key = [rssItem repoKey];
+            cell.text = [key description];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            break;
+        }
+    }
 
     return cell;
 }
@@ -104,7 +135,11 @@ enum DetailsSectionRows
 - (void)          tableView:(UITableView *)tv
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [delegate userDidSelectDetails:rssItem];
+    switch (indexPath.section) {
+        case kDetailsSection:
+            [delegate userDidSelectDetails:rssItem];
+            break;
+    }
 }
 
 #pragma mark Updating the display

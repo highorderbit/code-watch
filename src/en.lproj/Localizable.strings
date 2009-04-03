@@ -57,6 +57,7 @@ newsfeed.item.parse.failed.message = "Parsing of the RSS item failed.";
 /* NewsFeedItemView Strings */
 newsfeeditem.view.title = "Details";
 newsfeeditem.details.label = "Details";
+newsfeeditem.viewrepo.label = "Go to repo";
 
 /* NewsFeedItemDetailsView Strings */
 newsitemdetails.view.title = "Details";
