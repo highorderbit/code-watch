@@ -6,6 +6,7 @@
 
 @implementation RssItem
 
+@synthesize type;
 @synthesize author;
 @synthesize pubDate;
 @synthesize subject;
@@ -13,6 +14,7 @@
 
 - (void)dealloc
 {
+    [type release];
     [author release];
     [pubDate release];
     [subject release];
@@ -20,19 +22,23 @@
     [super dealloc];
 }
 
-+ (id)itemWithAuthor:(NSString *)anAuthor pubDate:(NSDate *)aPubDate
-    subject:(NSString *)aSubject summary:(NSString *)aSummary
++ (id)itemWithType:(NSString *)aType author:(NSString *)anAuthor
+    pubDate:(NSDate *)aPubDate subject:(NSString *)aSubject
+    summary:(NSString *)aSummary
 {
-    return [[[[self class] alloc] initWithAuthor:anAuthor
+    return [[[[self class] alloc] initWithType:aType
+                                        author:anAuthor
                                          pubDate:aPubDate
                                          subject:aSubject
                                          summary:aSummary] autorelease];
 }
 
-- (id)initWithAuthor:(NSString *)anAuthor pubDate:(NSDate *)aPubDate
-    subject:(NSString *)aSubject summary:(NSString *)aSummary
+- (id)initWithType:(NSString *)aType author:(NSString *)anAuthor
+       pubDate:(NSDate *)aPubDate subject:(NSString *)aSubject
+       summary:(NSString *)aSummary
 {
     if (self = [super init]) {
+        type = [aType copy];
         author = [anAuthor copy];
         pubDate = [aPubDate copy];
         subject = [aSubject copy];
@@ -40,6 +46,19 @@
     }
     
     return self;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@: %@ on %@: %@:\n%@", type, author,
+        pubDate, subject, summary];
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    return [[[self class] allocWithZone:zone]
+        initWithType:type author:author pubDate:pubDate subject:subject
+        summary:summary];
 }
 
 @end

@@ -10,6 +10,7 @@
     NSString * repoName;
 }
 
++ (id)keyWithUsername:(NSString *)username repoName:(NSString *)repoName;
 - (id)initWithUsername:(NSString *)username repoName:(NSString *)repoName;
 
 @property (copy, readonly) NSString * username;

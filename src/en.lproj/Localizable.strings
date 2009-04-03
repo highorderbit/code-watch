@@ -51,6 +51,16 @@ userdisplaymgr.login.text = "Please Log In to View Personal Info";
 
 /* NewsFeedDisplayMgr Strings */
 newsfeeddisplaymgr.login.text = "Please Log In to View News Feed";
+newsfeed.item.display.failed.title = "Unable to Display Item";
+newsfeed.item.parse.failed.message = "Parsing of the RSS item failed.";
+
+/* NewsFeedItemView Strings */
+newsfeeditem.view.title = "Details";
+newsfeeditem.details.label = "Details";
+newsfeeditem.viewrepo.label = "Go to repo";
+
+/* NewsFeedItemDetailsView Strings */
+newsitemdetails.view.title = "Details";
 
 /* LogInMgr Strings */
 loginmgr.login.text = "Log In";
@@ -96,3 +106,6 @@ commit.changeset.modified.label = "Modified";
 
 /* RecentActivityView Strings */
 recentactivity.view.title = "Recent Activity";
+
+/* UIAlertView Strings */
+alert.dismiss = "Dismiss";

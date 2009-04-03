@@ -5,13 +5,36 @@
 #import "NewsFeedDisplayMgr.h"
 #import "GitHubNewsFeedService.h"
 #import "GitHubNewsFeedServiceFactory.h"
+#import "RssItem.h"
+#import "RssItem+ParsingHelpers.h"
+#import "RepoKey.h"
+#import "RepoSelectorFactory.h"
+#import "NewsFeedItemViewController.h"
+#import "NewsFeedItemDetailsViewController.h"
+#import "NSString+RegexKitLiteHelpers.h"
+#import "UIAlertView+CreationHelpers.h"
+
+@interface NewsFeedDisplayMgr (Private)
+
+- (NSObject<RepoSelector> *)repoSelector;
+- (NewsFeedItemViewController *)newsFeedItemViewController;
+- (NewsFeedItemDetailsViewController *)newsFeedItemDetailsViewController;
+
+@end
 
 @implementation NewsFeedDisplayMgr
 
 - (void)dealloc
 {
+    [repoSelectorFactory release];
+    [repoSelector release];
+
+    [navigationController release];    
     [networkAwareViewController release];
     [newsFeedTableViewController release];
+
+    [newsFeedItemViewController release];
+    [newsFeedItemDetailsViewController release];
     
     [cacheReader release];
     [logInState release];
@@ -56,6 +79,47 @@
     }
 }
 
+#pragma mark NewsFeedTableViewControllerDelegate implementation
+
+- (void)userDidSelectRssItem:(RssItem *)rssItem
+{
+    if ([rssItem.type isEqualToString:@"WatchEvent"]) {
+        RepoKey * repoKey = [rssItem repoKey];
+
+        if (repoKey)
+            [[self repoSelector]
+                user:repoKey.username didSelectRepo:repoKey.repoName];
+        else {
+            NSLog(@"Failed to parse RSS item: '%@'.", rssItem);
+            NSString * title =
+                NSLocalizedString(@"newsfeed.item.display.failed.title", @"");
+            NSString * message =
+                NSLocalizedString(@"newsfeed.item.parse.failed.message", @"");
+
+            UIAlertView * alertView =
+                [UIAlertView simpleAlertViewWithTitle:title
+                                         errorMessage:message];
+            [alertView show];
+
+            [newsFeedTableViewController viewWillAppear:NO];
+        }
+    } else {
+        [[self newsFeedItemViewController] updateWithRssItem:rssItem];
+        [navigationController
+            pushViewController:[self newsFeedItemViewController] animated:YES];
+    }
+}
+
+#pragma mark NewsFeedItemViewControllerDelegate implementation
+
+- (void)userDidSelectDetails:(RssItem *)item
+{
+    [[self newsFeedItemDetailsViewController] updateWithDetails:item.summary];
+    [navigationController
+        pushViewController:[self newsFeedItemDetailsViewController]
+                  animated:YES];
+}
+
 #pragma mark GitHubNewsFeedDelegate implementation
 
 - (void)newsFeed:(NSArray *)newsItems fetchedForUsername:(NSString *)username
@@ -74,22 +138,47 @@
 
     NSString * title =
         NSLocalizedString(@"github.newsfeedupdate.failed.alert.title", @"");
-    NSString * cancelTitle =
-        NSLocalizedString(@"github.newsfeedupdate..failed.alert.ok", @"");
-    NSString * message = error.localizedDescription;
-
     UIAlertView * alertView =
-        [[[UIAlertView alloc]
-          initWithTitle:title
-                message:message
-               delegate:self
-      cancelButtonTitle:cancelTitle
-      otherButtonTitles:nil]
-         autorelease];
+        [UIAlertView simpleAlertViewWithTitle:title
+                                 errorMessage:error.localizedDescription];
 
     [alertView show];
 
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
+}
+
+#pragma mark Accessors
+
+- (NSObject<RepoSelector> *)repoSelector
+{
+    if (!repoSelector)
+        repoSelector =
+            [repoSelectorFactory
+            createRepoSelectorWithNavigationController:navigationController];
+
+    return repoSelector;
+}
+
+- (NewsFeedItemViewController *)newsFeedItemViewController
+{
+    if (!newsFeedItemViewController) {
+        newsFeedItemViewController =
+            [[NewsFeedItemViewController alloc]
+            initWithNibName:@"NewsFeedItemView" bundle:nil];
+        newsFeedItemViewController.delegate = self;
+    }
+
+    return newsFeedItemViewController;
+}
+
+- (NewsFeedItemDetailsViewController *)newsFeedItemDetailsViewController
+{
+    if (!newsFeedItemDetailsViewController)
+        newsFeedItemDetailsViewController =
+            [[NewsFeedItemDetailsViewController alloc]
+            initWithNibName:@"NewsFeedItemDetailsView" bundle:nil];
+
+    return newsFeedItemDetailsViewController;
 }
 
 @end
