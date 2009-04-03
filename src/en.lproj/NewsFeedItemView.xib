@@ -8,8 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="3"/>
-			<integer value="7"/>
+			<integer value="16"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -33,10 +32,9 @@
 				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
 			</object>
 			<object class="IBUITableView" id="811042428">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<string key="NSFrameSize">{320, 480}</string>
-				<reference key="NSSuperview"/>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClipsSubviews">YES</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -50,7 +48,7 @@
 				<float key="IBUISectionFooterHeight">1.000000e+01</float>
 			</object>
 			<object class="IBUIView" id="1031569082">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -113,7 +111,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 129}</string>
-				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -124,7 +121,7 @@
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 			</object>
 			<object class="IBUIView" id="659562868">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -143,10 +140,10 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUIHighlightedTitle">Add to Contacts</string>
-						<string key="IBUIDisabledTitle">Add to Contacts</string>
-						<string key="IBUISelectedTitle">Add to Contacts</string>
-						<string key="IBUINormalTitle">Add to Contacts</string>
+						<string key="IBUIHighlightedTitle">Bookmark User</string>
+						<string key="IBUIDisabledTitle">Bookmark User</string>
+						<string key="IBUISelectedTitle">Bookmark User</string>
+						<string key="IBUINormalTitle">Bookmark User</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="44345784">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -167,10 +164,10 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIFont" ref="578854246"/>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUIHighlightedTitle">Add to Favorites</string>
-						<string key="IBUIDisabledTitle">Add to Favorites</string>
-						<string key="IBUISelectedTitle">Add to Favorites</string>
-						<string key="IBUINormalTitle">Add to Favorites</string>
+						<string key="IBUIHighlightedTitle">Bookmark Repo</string>
+						<string key="IBUIDisabledTitle">Bookmark Repo</string>
+						<string key="IBUISelectedTitle">Bookmark Repo</string>
+						<string key="IBUINormalTitle">Bookmark Repo</string>
 						<reference key="IBUIHighlightedTitleColor" ref="44345784"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -179,6 +176,7 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 75}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -354,11 +352,11 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{331, 773}, {320, 75}}</string>
+					<string>{{292, 289}, {320, 75}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{313, 665}, {320, 480}}</string>
+					<string>{{313, 376}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{709, 177}, {320, 129}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
