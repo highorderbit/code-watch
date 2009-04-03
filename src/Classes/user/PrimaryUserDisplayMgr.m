@@ -23,7 +23,24 @@
     [super dealloc];
 }
 
+- (void)awakeFromNib
+{
+    UIBarButtonItem * refreshButton =
+        [[[UIBarButtonItem alloc]
+        initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+        target:self
+        action:@selector(displayUserInfo)] autorelease];
+
+    [networkAwareViewController.navigationItem
+        setRightBarButtonItem:refreshButton animated:NO];
+}
+
 - (void)viewWillAppear
+{
+    [self displayUserInfo];
+}
+
+- (void)displayUserInfo
 {
     if (logInState && logInState.login) {
         [networkAwareViewController

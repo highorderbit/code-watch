@@ -49,12 +49,26 @@
         [networkAwareViewController
             setNoConnectionText:
             NSLocalizedString(@"nodata.noconnection.text", @"")];
+            
+        UIBarButtonItem * refreshButton =
+            [[[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+            target:self
+            action:@selector(displayUserInfo)] autorelease];
+
+        [networkAwareViewController.navigationItem
+            setRightBarButtonItem:refreshButton animated:NO];
     }
     
     return self;
 }
 
 - (void)viewWillAppear
+{
+    [self displayUserInfo];
+}
+
+- (void)displayUserInfo
 {
     [gitHubService fetchInfoForUsername:username];
 
