@@ -23,10 +23,12 @@ enum DetailsSectionRows
     kDetailsRow
 };
 
-static NSUInteger NUM_REPO_ROWS = 1;
+static NSUInteger NUM_REPO_ROWS = 3;
 enum RepoSectionRows
 {
-    kGoToRepo
+    kGoToAuthorRow,
+    kGoToRepoOwnerRow,
+    kGoToRepoRow
 };
 
 static NSUInteger NUM_ACTION_ROWS = 2;
@@ -137,7 +139,20 @@ enum ActionSectionRows
 
         case kRepoSection: {
             RepoKey * key = [rssItem repoKey];
-            cell.text = [key description];
+            NSString * text = nil;
+
+            switch (indexPath.row) {
+                case kGoToAuthorRow:
+                    text = rssItem.author;
+                    break;
+                case kGoToRepoOwnerRow:
+                    text = key.username;
+                    break;
+                case kGoToRepoRow:
+                    text = key.repoName;
+                    break;
+            }
+            cell.text = text;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         }
@@ -205,6 +220,18 @@ enum ActionSectionRows
     self.tableView.tableHeaderView = headerView;
 
     [self.tableView reloadData];
+}
+
+#pragma mark Helper methods
+
+- (BOOL)haveGitHubUserInRssItem
+{
+    return !![rssItem repoKey];
+}
+
+- (BOOL)haveGitHubRepoInRssItem
+{
+    return !![rssItem repoKey];
 }
 
 #pragma mark Accessors
