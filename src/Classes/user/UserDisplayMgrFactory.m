@@ -54,7 +54,8 @@
         initWithNavigationController:navigationController
         networkAwareViewController:networkAwareViewController
         userViewController:userViewController userCacheReader:userCache
-        repoSelector:repoSelector gitHubService:gitHubService];
+        repoSelector:repoSelector gitHubService:gitHubService
+        contactCacheSetter:contactCache];
         
     userViewController.delegate = userDisplayMgr;
     networkAwareViewController.delegate = userDisplayMgr;
@@ -92,6 +93,7 @@
         [[UserViewController alloc] initWithNibName:@"UserView" bundle:nil];
     userViewController.favoriteUsersStateReader = favoriteUsersState;
     userViewController.favoriteUsersStateSetter = favoriteUsersState;
+    userViewController.contactCacheReader = contactCache;
     
     return userViewController;
 }

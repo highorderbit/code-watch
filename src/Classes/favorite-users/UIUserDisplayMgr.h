@@ -3,6 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AddressBookUI/ABNewPersonViewController.h>
 #import "NetworkAwareViewController.h"
 #import "UserViewController.h"
 #import "UserViewControllerDelegate.h"
@@ -12,11 +13,13 @@
 #import "NetworkAwareViewControllerDelegate.h"
 #import "RepoSelector.h"
 #import "UserDisplayMgr.h"
+#import "ContactCacheSetter.h"
 
 @interface UIUserDisplayMgr :
     NSObject
     <NetworkAwareViewControllerDelegate, GitHubServiceDelegate,
-    UserViewControllerDelegate, UserDisplayMgr>
+    UserViewControllerDelegate, UserDisplayMgr,
+    ABNewPersonViewControllerDelegate>
 {
     UINavigationController * navigationController;
     NetworkAwareViewController * networkAwareViewController;
@@ -26,8 +29,12 @@
     NSObject<RepoSelector> * repoSelector;
     GitHubService * gitHubService;
     
+    NSObject<ContactCacheSetter> * contactCacheSetter;
+    
     NSString * username;
 }
+
+@property (readonly) UIViewController * tabViewController;
 
 - (id)initWithNavigationController:
     (UINavigationController *)navigationController
@@ -40,6 +47,8 @@
     repoSelector:
     (NSObject<RepoSelector> *)aRepoSelector
     gitHubService:
-    (GitHubService *)aGitHubService;
+    (GitHubService *)aGitHubService
+    contactCacheSetter:
+    (NSObject<ContactCacheSetter> *)aContactCacheSetter;
     
 @end

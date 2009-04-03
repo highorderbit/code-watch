@@ -3,9 +3,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AddressBookUI/ABPersonViewController.h>
 
 @protocol UserViewControllerDelegate
 
 - (void)userDidSelectRepo:(NSString *)repo;
+- (void)userDidAddContact:(ABRecordRef)person;
 
 @end

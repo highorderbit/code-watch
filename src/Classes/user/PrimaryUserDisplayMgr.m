@@ -55,6 +55,9 @@
     [repoSelector user:logInState.login didSelectRepo:repo];
 }
 
+- (void)userDidAddContact:(ABRecordRef)person
+{}
+
 #pragma mark GitHubServiceDelegate implementation
 
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos

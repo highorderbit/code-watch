@@ -8,6 +8,7 @@
 #import "UserCache.h"
 #import "FavoriteUsersState.h"
 #import "UserDisplayMgr.h"
+#import "ContactCache.h"
 
 @interface UserDisplayMgrFactory : NSObject
 {
@@ -15,6 +16,7 @@
     IBOutlet RepoSelectorFactory * repoSelectorFactory;
     IBOutlet UserCache * userCache;
     IBOutlet FavoriteUsersState * favoriteUsersState;
+    IBOutlet ContactCache * contactCache;
 }
 
 - (NSObject<UserDisplayMgr> *)

@@ -29,6 +29,7 @@ enum Section
 @synthesize favoriteUsersStateSetter;
 @synthesize favoriteUsersStateReader;
 @synthesize recentActivityDisplayMgr;
+@synthesize contactCacheReader;
 
 - (void) dealloc
 {
@@ -36,6 +37,7 @@ enum Section
     [favoriteUsersStateSetter release];
     [favoriteUsersStateReader release];
     [recentActivityDisplayMgr release];
+    [contactCacheReader release];
     
     [headerView release];
     [footerView release];
@@ -44,6 +46,7 @@ enum Section
     [featuredDetail1Label release];
     [featuredDetail2Label release];
     [addToFavoritesButton release];
+    [addToContactsButton release];
 
     [username release];
     [userInfo release];
@@ -68,6 +71,9 @@ enum Section
     
     [addToFavoritesButton setTitleColor:[UIColor grayColor]
         forState:UIControlStateDisabled];
+        
+    [addToContactsButton setTitleColor:[UIColor grayColor]
+        forState:UIControlStateDisabled];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -89,6 +95,12 @@ enum Section
     
     addToFavoritesButton.enabled =
         ![favoriteUsersStateReader.favoriteUsers containsObject:username];
+
+    // allow adding to contacts iff not already added or not in the address book
+    ABRecordID recordId = [contactCacheReader recordIdForUser:username];
+    ABRecordRef person =
+        ABAddressBookGetPersonWithRecordID(ABAddressBookCreate(), recordId);
+    addToContactsButton.enabled = recordId == kABRecordInvalidID || !person;
 }
 
 #pragma mark Table view methods
@@ -294,12 +306,46 @@ enum Section
 
 - (IBAction)addContact:(id)sender
 {
-    NSLog(@"Adding contact");
-    // display modal ABPersonViewController
-    ABPersonViewController * personViewController =
-        [[ABPersonViewController alloc] init];
-    [self presentModalViewController:personViewController animated:YES];
-    [personViewController release];
+    NSLog(@"Displaying 'add contact' sheet...");
+    ABRecordRef person = ABPersonCreate();
+    CFErrorRef error = NULL;
+    
+    NSDictionary * details = userInfo.details;
+    
+    NSArray * nameComponents =
+        [[details objectForKey:@"name"] componentsSeparatedByString:@" "];
+    NSString * firstName =
+        nameComponents && [nameComponents count] > 1 ?
+        [nameComponents objectAtIndex:0] : nil;
+    NSString * lastName = nameComponents && [nameComponents count] > 1 ?
+        [nameComponents objectAtIndex:1] : nil;
+    NSString * companyName = [details objectForKey:@"company"];
+    NSString * emailAddress = [details objectForKey:@"email"];
+    NSString * blog = [details objectForKey:@"blog"];
+    
+    if (firstName)
+        ABRecordSetValue(person, kABPersonFirstNameProperty, firstName, &error);
+    if (lastName)
+         ABRecordSetValue(person, kABPersonLastNameProperty, lastName, &error);
+    if (companyName)
+         ABRecordSetValue(person, kABPersonOrganizationProperty, companyName,
+            &error);
+    if (emailAddress) {
+        ABMutableMultiValueRef emailAddresses =
+            ABMultiValueCreateMutable(kABMultiStringPropertyType);
+        ABMultiValueAddValueAndLabel(emailAddresses, emailAddress, kABHomeLabel,
+            NULL);
+        ABRecordSetValue(person, kABPersonEmailProperty, emailAddresses,
+            &error);
+    }
+    if (blog) {
+        ABMutableMultiValueRef blogs =
+            ABMultiValueCreateMutable(kABMultiStringPropertyType);
+        ABMultiValueAddValueAndLabel(blogs, blog, kABHomeLabel, NULL);
+        ABRecordSetValue(person, kABPersonURLProperty, blogs, &error);
+    }
+
+    [delegate userDidAddContact:person];
 }
 
 - (IBAction)addFavorite:(id)sender

@@ -8,6 +8,7 @@
 #import "FavoriteUsersStateSetter.h"
 #import "FavoriteUsersStateReader.h"
 #import "RecentActivityDisplayMgr.h"
+#import "ContactCacheReader.h"
 
 @interface UserViewController : UITableViewController
 {
@@ -15,6 +16,7 @@
     IBOutlet NSObject<FavoriteUsersStateSetter> * favoriteUsersStateSetter;
     IBOutlet NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
     IBOutlet NSObject<RecentActivityDisplayMgr> * recentActivityDisplayMgr;
+    IBOutlet NSObject<ContactCacheReader> * contactCacheReader;
 
     IBOutlet UIView * headerView;
     IBOutlet UIView * footerView;
@@ -23,6 +25,7 @@
     IBOutlet UILabel * featuredDetail1Label;
     IBOutlet UILabel * featuredDetail2Label;
     IBOutlet UIButton * addToFavoritesButton;
+    IBOutlet UIButton * addToContactsButton;
         
     NSString * username;
     UserInfo * userInfo;
@@ -40,6 +43,8 @@
     NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
 @property (nonatomic, retain)
     NSObject<RecentActivityDisplayMgr> * recentActivityDisplayMgr;
+@property (nonatomic, retain)
+    NSObject<ContactCacheReader> * contactCacheReader;
 
 - (void)setUsername:(NSString *)username;
 - (void)updateWithUserInfo:(UserInfo *)userInfo;
