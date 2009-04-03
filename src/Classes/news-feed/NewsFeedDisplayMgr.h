@@ -14,6 +14,7 @@
 
 @class RepoSelectorFactory;
 @class GitHubNewsFeedService, GitHubNewsFeedServiceFactory;
+@class NewsFeedItemViewController;
 
 @interface NewsFeedDisplayMgr :
     NSObject
@@ -26,6 +27,8 @@
     IBOutlet UINavigationController * navigationController;
     IBOutlet NetworkAwareViewController * networkAwareViewController;
     IBOutlet NewsFeedTableViewController * newsFeedTableViewController;
+
+    NewsFeedItemViewController * newsFeedItemViewController;
     
     IBOutlet NSObject<NewsFeedCacheReader> * cacheReader;
     IBOutlet NSObject<LogInStateReader> * logInState;

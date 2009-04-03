@@ -54,4 +54,11 @@
         pubDate, subject, summary];
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    return [[[self class] allocWithZone:zone]
+        initWithType:type author:author pubDate:pubDate subject:subject
+        summary:summary];
+}
+
 @end

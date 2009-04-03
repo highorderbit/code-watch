@@ -9,10 +9,12 @@
 #import "RepoSelectorFactory.h"
 #import "NSString+RegexKitLiteHelpers.h"
 #import "UIAlertView+CreationHelpers.h"
+#import "NewsFeedItemViewController.h"
 
 @interface NewsFeedDisplayMgr (Private)
 
 - (NSObject<RepoSelector> *)repoSelector;
+- (NewsFeedItemViewController *)newsFeedItemViewController;
 
 @end
 
@@ -26,6 +28,8 @@
     [navigationController release];    
     [networkAwareViewController release];
     [newsFeedTableViewController release];
+
+    [newsFeedItemViewController release];
     
     [cacheReader release];
     [logInState release];
@@ -98,6 +102,10 @@
 
             [newsFeedTableViewController viewWillAppear:NO];
         }
+    } else {
+        [[self newsFeedItemViewController] updateWithRssItem:rssItem];
+        [navigationController
+            pushViewController:[self newsFeedItemViewController] animated:YES];
     }
 }
 
@@ -132,13 +140,23 @@
 
 - (NSObject<RepoSelector> *)repoSelector
 {
-    if (!repoSelector) {
+    if (!repoSelector)
         repoSelector =
             [repoSelectorFactory
             createRepoSelectorWithNavigationController:navigationController];
-    }
 
     return repoSelector;
+}
+
+- (NewsFeedItemViewController *)newsFeedItemViewController
+{
+    if (!newsFeedItemViewController) {
+        newsFeedItemViewController =
+            [[NewsFeedItemViewController alloc]
+            initWithNibName:@"NewsFeedItemView" bundle:nil];
+    }
+
+    return newsFeedItemViewController;
 }
 
 @end
