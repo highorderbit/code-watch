@@ -20,7 +20,9 @@
 {
     NSString * baseUrl = [configReader valueForKey:@"GitHubNewsFeedBaseUrl"];
     return [[[GitHubNewsFeedService alloc]
-        initWithBaseUrl:baseUrl logInStateReader:logInStateReader] autorelease];
+        initWithBaseUrl:baseUrl
+       logInStateReader:logInStateReader
+    newsFeedCacheSetter:newsFeedCache] autorelease];
 }
 
 @end

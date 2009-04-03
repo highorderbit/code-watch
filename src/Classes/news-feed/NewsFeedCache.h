@@ -6,9 +6,12 @@
 #import "NewsFeedCacheReader.h"
 #import "NewsFeedCacheSetter.h"
 
+@class RecentHistoryCache;
+
 @interface NewsFeedCache : NSObject <NewsFeedCacheReader, NewsFeedCacheSetter>
 {
-    NSArray * rssItems;
+    RecentHistoryCache * primaryUserItems;
+    RecentHistoryCache * userItems;
 }
 
 @end

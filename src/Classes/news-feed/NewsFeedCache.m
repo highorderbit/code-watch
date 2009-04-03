@@ -3,55 +3,51 @@
 //
 
 #import "NewsFeedCache.h"
-#import "RssItem.h"
+#import "RecentHistoryCache.h"
+
+static NSString * PRIMARY_USER_NEWS_FEED_KEY = @"news-feed";
 
 @implementation NewsFeedCache
 
-@synthesize rssItems;
-
 - (void)dealloc
 {
-    [rssItems release];
+    [primaryUserItems release];
+    [userItems release];
     [super dealloc];
 }
 
-- (void)awakeFromNib
+- (id)init
 {
-    // TEMPORARY: set some rssItems
-    
-    NSMutableArray * tempRssItems = [NSMutableArray array];
-    
-    NSDate * now = [NSDate date];
-    
-    NSString * author1 = @"jad";
-    NSString * subject1 = @"jad pushed to master at highorderbit/code-watch";
-    NSString * summary1 = @"HEAD is a94a0aa279ed58a8286966659ae85bb74b4f8544   John A. Debay committed a94a0aa2:  Reading GitHub API version from Info.plist.   John A. Debay committed 752607c2:  Merge branch 'master' of git@github.com:highorderbit/code-watch   John A. Debay committed c43f458c:  Reading GitHub API format from Info.plist.";
-    
-    RssItem * update1 =
-        [[RssItem alloc] initWithAuthor:author1 pubDate:now subject:subject1
-        summary:summary1];
-    
-    NSString * author2 = @"mrtrumbe";
-    NSString * subject2 = @"mrtrumbe started watching euphoria/thrifty";
-    NSString * summary2 = @"thrifty's description: Thrifty is a Python-based parser generator for Apache Thrift sourc";
-    
-    RssItem * update2 =
-        [[RssItem alloc] initWithAuthor:author2 pubDate:now subject:subject2
-        summary:summary2];
-    
-    [tempRssItems addObject:update1];
-    [tempRssItems addObject:update2];
-    
-    [self setRssItems:tempRssItems];
-    
-    // TEMPORARY
+    if (self = [super init]) {
+        primaryUserItems = [[RecentHistoryCache alloc] init];
+        userItems = [[RecentHistoryCache alloc] init];
+    }
+
+    return self;
 }
 
-- (void)setRssItems:(NSArray *)someRssItems
+#pragma mark CommitCacheReader implementation
+
+- (NSArray *)primaryUserNewsFeed
 {
-    someRssItems = [someRssItems copy];
-    [rssItems release];
-    rssItems = someRssItems;
+    return [primaryUserItems objectForKey:PRIMARY_USER_NEWS_FEED_KEY];
+}
+
+- (NSArray *)newsFeedForUsername:(NSString *)username
+{
+    return [userItems objectForKey:username];
+}
+
+#pragma mark CommitCacheSetter implementation
+
+- (void)setPrimaryUserNewsFeed:(NSArray *)newsFeed
+{
+    [primaryUserItems setObject:newsFeed forKey:PRIMARY_USER_NEWS_FEED_KEY];
+}
+
+- (void)setNewsFeed:(NSArray *)newsFeed forUsername:(NSString *)username
+{
+    [userItems setObject:newsFeed forKey:username];
 }
 
 @end

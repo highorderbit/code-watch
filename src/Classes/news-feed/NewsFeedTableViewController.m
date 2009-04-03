@@ -5,6 +5,7 @@
 #import "NewsFeedTableViewController.h"
 #import "RssItem.h"
 #import "NewsFeedTableViewCell.h"
+#import "NSString+RegexKitLiteHelpers.h"
 
 @implementation NewsFeedTableViewController
 
@@ -43,8 +44,13 @@
     
     RssItem * rssItem = [rssItems objectAtIndex:indexPath.row];
 
+    NSString * head = [rssItem.summary stringByMatchingRegex:
+        @"HEAD is <a href=\".*\">(.*)</a>"];
+    NSString * summary =
+        head ? [NSString stringWithFormat:@"HEAD is %@", head] : nil;
+
     [cell updateAuthor:rssItem.author pubDate:rssItem.pubDate
-        subject:rssItem.subject summary:rssItem.summary];
+        subject:rssItem.subject summary:summary];
     
     return cell;
 }
@@ -71,6 +77,7 @@
     rssItems = someRssItems;
     
     // update view
+    [self.tableView reloadData];
 }
 
 @end

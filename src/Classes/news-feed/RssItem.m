@@ -20,13 +20,24 @@
     [super dealloc];
 }
 
++ (id)itemWithAuthor:(NSString *)anAuthor pubDate:(NSDate *)aPubDate
+    subject:(NSString *)aSubject summary:(NSString *)aSummary
+{
+    return [[[[self class] alloc] initWithAuthor:anAuthor
+                                         pubDate:aPubDate
+                                         subject:aSubject
+                                         summary:aSummary] autorelease];
+}
+
 - (id)initWithAuthor:(NSString *)anAuthor pubDate:(NSDate *)aPubDate
     subject:(NSString *)aSubject summary:(NSString *)aSummary
 {
-    author = [anAuthor copy];
-    pubDate = [aPubDate copy];
-    subject = [aSubject copy];
-    summary = [aSummary copy];
+    if (self = [super init]) {
+        author = [anAuthor copy];
+        pubDate = [aPubDate copy];
+        subject = [aSubject copy];
+        summary = [aSummary copy];
+    }
     
     return self;
 }

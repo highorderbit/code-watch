@@ -7,6 +7,7 @@
 #import "GitHubNewsFeedDelegate.h"
 
 #import "LogInStateReader.h"
+#import "NewsFeedCacheSetter.h"
 #import "ConfigReader.h"
 
 @class GitHubNewsFeed;
@@ -16,6 +17,7 @@
     id<GitHubNewsFeedServiceDelegate> delegate;
 
     NSObject<LogInStateReader> * logInStateReader;
+    NSObject<NewsFeedCacheSetter> * newsFeedCacheSetter;
 
     GitHubNewsFeed * newsFeed;
 }
@@ -25,7 +27,8 @@
 #pragma mark Initialization
 
 - (id)initWithBaseUrl:(NSString *)baseUrl
-     logInStateReader:(NSObject<LogInStateReader> *)aLogInStateReader;
+     logInStateReader:(NSObject<LogInStateReader> *)aLogInStateReader
+  newsFeedCacheSetter:(NSObject<NewsFeedCacheSetter> *)aNewsFeedCacheSetter;
 
 #pragma mark Fetching news feeds
 

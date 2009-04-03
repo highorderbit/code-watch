@@ -37,7 +37,7 @@
         setNoConnectionText:
         NSLocalizedString(@"nodata.noconnection.text", @"")];
         
-        NSArray * rssItems = cacheReader.rssItems;
+        NSArray * rssItems = [cacheReader primaryUserNewsFeed];
         [newsFeedTableViewController updateRssItems:rssItems];
 
         [newsFeed fetchNewsFeedForUsername:logInState.login];
@@ -58,13 +58,38 @@
 
 #pragma mark GitHubNewsFeedDelegate implementation
 
-- (void)newsFeed:(NSArray *)newsFeed fetchedForUsername:(NSString *)username
+- (void)newsFeed:(NSArray *)newsItems fetchedForUsername:(NSString *)username
 {
+    [newsFeedTableViewController updateRssItems:newsItems];
+
+    [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
+    [networkAwareViewController setCachedDataAvailable:YES];
 }
 
 - (void)failedToFetchNewsFeedForUsername:(NSString *)username
                                    error:(NSError *)error
 {
+    NSLog(@"Failed to retrieve news feed for username: '%@' error: '%@'.",
+        username, error);
+
+    NSString * title =
+        NSLocalizedString(@"github.newsfeedupdate.failed.alert.title", @"");
+    NSString * cancelTitle =
+        NSLocalizedString(@"github.newsfeedupdate..failed.alert.ok", @"");
+    NSString * message = error.localizedDescription;
+
+    UIAlertView * alertView =
+        [[[UIAlertView alloc]
+          initWithTitle:title
+                message:message
+               delegate:self
+      cancelButtonTitle:cancelTitle
+      otherButtonTitles:nil]
+         autorelease];
+
+    [alertView show];
+
+    [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
 }
 
 @end

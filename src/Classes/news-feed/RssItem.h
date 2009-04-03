@@ -15,7 +15,9 @@
 @property (readonly, copy) NSDate * pubDate;
 @property (readonly, copy) NSString * subject;
 @property (readonly, copy) NSString * summary;
-
+ 
++ (id)itemWithAuthor:(NSString *)anAuthor pubDate:(NSDate *)aPubDate
+    subject:(NSString *)aSubject summary:(NSString *)aSummary;
 - (id)initWithAuthor:(NSString *)anAuthor pubDate:(NSDate *)aPubDate
     subject:(NSString *)aSubject summary:(NSString *)aSummary;
 
