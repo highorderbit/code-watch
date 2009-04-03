@@ -7,14 +7,16 @@
 #import "GitHubNewsFeedServiceFactory.h"
 #import "RssItem.h"
 #import "RepoSelectorFactory.h"
+#import "NewsFeedItemViewController.h"
+#import "NewsFeedItemDetailsViewController.h"
 #import "NSString+RegexKitLiteHelpers.h"
 #import "UIAlertView+CreationHelpers.h"
-#import "NewsFeedItemViewController.h"
 
 @interface NewsFeedDisplayMgr (Private)
 
 - (NSObject<RepoSelector> *)repoSelector;
 - (NewsFeedItemViewController *)newsFeedItemViewController;
+- (NewsFeedItemDetailsViewController *)newsFeedItemDetailsViewController;
 
 @end
 
@@ -30,6 +32,7 @@
     [newsFeedTableViewController release];
 
     [newsFeedItemViewController release];
+    [newsFeedItemDetailsViewController release];
     
     [cacheReader release];
     [logInState release];
@@ -109,6 +112,16 @@
     }
 }
 
+#pragma mark NewsFeedItemViewControllerDelegate implementation
+
+- (void)userDidSelectDetails:(RssItem *)item
+{
+    [[self newsFeedItemDetailsViewController] updateWithDetails:item.summary];
+    [navigationController
+        pushViewController:[self newsFeedItemDetailsViewController]
+                  animated:YES];
+}
+
 #pragma mark GitHubNewsFeedDelegate implementation
 
 - (void)newsFeed:(NSArray *)newsItems fetchedForUsername:(NSString *)username
@@ -154,9 +167,20 @@
         newsFeedItemViewController =
             [[NewsFeedItemViewController alloc]
             initWithNibName:@"NewsFeedItemView" bundle:nil];
+        newsFeedItemViewController.delegate = self;
     }
 
     return newsFeedItemViewController;
+}
+
+- (NewsFeedItemDetailsViewController *)newsFeedItemDetailsViewController
+{
+    if (!newsFeedItemDetailsViewController)
+        newsFeedItemDetailsViewController =
+            [[NewsFeedItemDetailsViewController alloc]
+            initWithNibName:@"NewsFeedItemDetailsView" bundle:nil];
+
+    return newsFeedItemDetailsViewController;
 }
 
 @end

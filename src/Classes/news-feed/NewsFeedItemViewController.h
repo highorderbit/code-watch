@@ -3,11 +3,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewsFeedItemViewControllerDelegate.h"
 
 @class RssItem;
 
 @interface NewsFeedItemViewController : UITableViewController
 {
+    NSObject<NewsFeedItemViewControllerDelegate> * delegate;
+
     IBOutlet UIView * headerView;
     IBOutlet UILabel * authorLabel;
     IBOutlet UILabel * subjectLabel;
@@ -16,6 +19,8 @@
     RssItem * rssItem;
 }
 
+@property (nonatomic, retain) NSObject<NewsFeedItemViewControllerDelegate> *
+    delegate;
 @property (nonatomic, copy, readonly) RssItem * rssItem;
 
 #pragma mark Updating the display

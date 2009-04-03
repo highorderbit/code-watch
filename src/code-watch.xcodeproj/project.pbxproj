@@ -19,6 +19,8 @@
 		0532C9D40F86717E0047BE56 /* UIAlertView+CreationHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532C9D30F86717E0047BE56 /* UIAlertView+CreationHelpers.m */; };
 		0532C9F30F867D390047BE56 /* NewsFeedItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532C9F20F867D390047BE56 /* NewsFeedItemViewController.m */; };
 		0532C9FE0F867F7F0047BE56 /* NewsFeedItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0532C9FC0F867F7F0047BE56 /* NewsFeedItemView.xib */; };
+		0532CA560F868B5B0047BE56 /* NewsFeedItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532CA550F868B5B0047BE56 /* NewsFeedItemDetailsViewController.m */; };
+		0532CA6F0F868C650047BE56 /* NewsFeedItemDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0532CA6D0F868C650047BE56 /* NewsFeedItemDetailsView.xib */; };
 		053420330F69E987000EECB1 /* NameValueTextEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */; };
 		053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */; };
 		053420400F69EBC4000EECB1 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0534203F0F69EBC4000EECB1 /* LogInViewController.m */; };
@@ -176,6 +178,10 @@
 		0532C9F10F867D390047BE56 /* NewsFeedItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedItemViewController.h; sourceTree = "<group>"; };
 		0532C9F20F867D390047BE56 /* NewsFeedItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedItemViewController.m; sourceTree = "<group>"; };
 		0532C9FD0F867F7F0047BE56 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NewsFeedItemView.xib; sourceTree = "<group>"; };
+		0532CA4E0F86894A0047BE56 /* NewsFeedItemViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedItemViewControllerDelegate.h; sourceTree = "<group>"; };
+		0532CA540F868B5B0047BE56 /* NewsFeedItemDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedItemDetailsViewController.h; sourceTree = "<group>"; };
+		0532CA550F868B5B0047BE56 /* NewsFeedItemDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedItemDetailsViewController.m; sourceTree = "<group>"; };
+		0532CA6E0F868C650047BE56 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NewsFeedItemDetailsView.xib; sourceTree = "<group>"; };
 		053420310F69E987000EECB1 /* NameValueTextEntryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameValueTextEntryTableViewCell.h; sourceTree = "<group>"; };
 		053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueTextEntryTableViewCell.m; sourceTree = "<group>"; };
 		053420360F69EAE6000EECB1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NameValueTextEntryTableViewCell.xib; sourceTree = "<group>"; };
@@ -489,6 +495,7 @@
 				913693CF0F7E78D90054E512 /* FavoriteReposView.xib */,
 				9136949E0F7ECCB80054E512 /* AddRepoView.xib */,
 				0532C9FC0F867F7F0047BE56 /* NewsFeedItemView.xib */,
+				0532CA6D0F868C650047BE56 /* NewsFeedItemDetailsView.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -993,6 +1000,9 @@
 				91C248430F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m */,
 				0532C9F10F867D390047BE56 /* NewsFeedItemViewController.h */,
 				0532C9F20F867D390047BE56 /* NewsFeedItemViewController.m */,
+				0532CA4E0F86894A0047BE56 /* NewsFeedItemViewControllerDelegate.h */,
+				0532CA540F868B5B0047BE56 /* NewsFeedItemDetailsViewController.h */,
+				0532CA550F868B5B0047BE56 /* NewsFeedItemDetailsViewController.m */,
 			);
 			path = "news-feed";
 			sourceTree = "<group>";
@@ -1074,6 +1084,7 @@
 				913693D10F7E78D90054E512 /* FavoriteReposView.xib in Resources */,
 				913694A00F7ECCB80054E512 /* AddRepoView.xib in Resources */,
 				0532C9FE0F867F7F0047BE56 /* NewsFeedItemView.xib in Resources */,
+				0532CA6F0F868C650047BE56 /* NewsFeedItemDetailsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1190,6 +1201,7 @@
 				05C9E9870F85405100F7C62E /* NSString+RegexKitLiteHelpers.m in Sources */,
 				0532C9D40F86717E0047BE56 /* UIAlertView+CreationHelpers.m in Sources */,
 				0532C9F30F867D390047BE56 /* NewsFeedItemViewController.m in Sources */,
+				0532CA560F868B5B0047BE56 /* NewsFeedItemDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1202,6 +1214,14 @@
 				0532C9FD0F867F7F0047BE56 /* en */,
 			);
 			name = NewsFeedItemView.xib;
+			sourceTree = "<group>";
+		};
+		0532CA6D0F868C650047BE56 /* NewsFeedItemDetailsView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0532CA6E0F868C650047BE56 /* en */,
+			);
+			name = NewsFeedItemDetailsView.xib;
 			sourceTree = "<group>";
 		};
 		053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */ = {

@@ -27,10 +27,11 @@ enum DetailsSectionRows
 
 @implementation NewsFeedItemViewController
 
-@synthesize rssItem;
+@synthesize delegate, rssItem;
 
 - (void)dealloc
 {
+    [delegate release];
     [headerView release];
     [authorLabel release];
     [subjectLabel release];
@@ -45,6 +46,9 @@ enum DetailsSectionRows
 
     headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.tableHeaderView = headerView;
+
+    self.navigationItem.title =
+        NSLocalizedString(@"newsfeeditem.view.title", @"");
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -91,7 +95,8 @@ enum DetailsSectionRows
               initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
              autorelease];
 
-    cell.text = NSLocalizedString(@"rssinfo.details.label", @"");
+    cell.text = NSLocalizedString(@"newsfeeditem.details.label", @"");
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
 }
@@ -99,12 +104,7 @@ enum DetailsSectionRows
 - (void)          tableView:(UITableView *)tv
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    // AnotherViewController *anotherViewController =
-    //     [[AnotherViewController alloc]
-    //      initWithNibName:@"AnotherView" bundle:nil];
-    // [self.navigationController pushViewController:anotherViewController];
-    // [anotherViewController release];
+    [delegate userDidSelectDetails:rssItem];
 }
 
 #pragma mark Updating the display

@@ -10,16 +10,17 @@
 #import "LogInStateReader.h"
 #import "GitHubNewsFeedServiceDelegate.h"
 #import "NewsFeedTableViewControllerDelegate.h"
+#import "NewsFeedItemViewControllerDelegate.h"
 #import "RepoSelector.h"
 
 @class RepoSelectorFactory;
 @class GitHubNewsFeedService, GitHubNewsFeedServiceFactory;
-@class NewsFeedItemViewController;
+@class NewsFeedItemViewController, NewsFeedItemDetailsViewController;
 
 @interface NewsFeedDisplayMgr :
     NSObject
     <NetworkAwareViewControllerDelegate, GitHubNewsFeedServiceDelegate,
-    NewsFeedTableViewControllerDelegate>
+    NewsFeedTableViewControllerDelegate, NewsFeedItemViewControllerDelegate>
 {
     IBOutlet RepoSelectorFactory * repoSelectorFactory;
     NSObject<RepoSelector> * repoSelector;
@@ -29,6 +30,7 @@
     IBOutlet NewsFeedTableViewController * newsFeedTableViewController;
 
     NewsFeedItemViewController * newsFeedItemViewController;
+    NewsFeedItemDetailsViewController * newsFeedItemDetailsViewController;
     
     IBOutlet NSObject<NewsFeedCacheReader> * cacheReader;
     IBOutlet NSObject<LogInStateReader> * logInState;
