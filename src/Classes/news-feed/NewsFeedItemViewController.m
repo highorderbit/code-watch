@@ -9,11 +9,12 @@
 #import "UILabel+DrawingAdditions.h"
 #import "RepoSelectorFactory.h"
 
-static NSUInteger NUM_SECTIONS = 2;
+static NSUInteger NUM_SECTIONS = 3;
 enum Sections
 {
     kDetailsSection,
-    kRepoSection
+    kActionSection,
+    kRepoSection  // optional sections need to be at the end
 };
 
 static NSUInteger NUM_DETAILS_ROWS = 1;
@@ -26,6 +27,13 @@ static NSUInteger NUM_REPO_ROWS = 1;
 enum RepoSectionRows
 {
     kGoToRepo
+};
+
+static NSUInteger NUM_ACTION_ROWS = 2;
+enum ActionSectionRows
+{
+    kOpenInSafariRow,
+    kEmailRow
 };
 
 @interface NewsFeedItemViewController (Private)
@@ -98,6 +106,9 @@ enum RepoSectionRows
         case kRepoSection:
             nrows = NUM_REPO_ROWS;
             break;
+        case kActionSection:
+            nrows = NUM_ACTION_ROWS;
+            break;
     }
 
     return nrows;
@@ -129,6 +140,21 @@ enum RepoSectionRows
             cell.text = [key description];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
+        }
+
+        case kActionSection: {
+            NSString * text = nil;
+            switch (indexPath.row) {
+                case kOpenInSafariRow:
+                    text = NSLocalizedString(@"newsfeeditem.safari.label", @"");
+                    break;
+                case kEmailRow:
+                    text = NSLocalizedString(@"newsfeeditem.email.label", @"");
+                    break;
+            }
+
+            cell.text = text;
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }
 
