@@ -9,7 +9,9 @@
 
 @implementation NewsFeedTableViewController
 
-- (void)dealloc {
+- (void)dealloc
+{
+    [delegate release];
     [rssItems release];
     [super dealloc];
 }
@@ -61,11 +63,11 @@
     return 95;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	// AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
-	// [self.navigationController pushViewController:anotherViewController];
-	// [anotherViewController release];
+- (void)tableView:(UITableView *)tableView
+    didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RssItem * item = [rssItems objectAtIndex:indexPath.row];
+    [delegate userDidSelectRssItem:item];
 }
 
 #pragma mark Data updating methods

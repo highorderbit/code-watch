@@ -5,11 +5,24 @@
 #import "NewsFeedDisplayMgr.h"
 #import "GitHubNewsFeedService.h"
 #import "GitHubNewsFeedServiceFactory.h"
+#import "RssItem.h"
+#import "RepoSelectorFactory.h"
+#import "NSString+RegexKitLiteHelpers.h"
+
+@interface NewsFeedDisplayMgr (Private)
+
+- (NSObject<RepoSelector> *)repoSelector;
+
+@end
 
 @implementation NewsFeedDisplayMgr
 
 - (void)dealloc
 {
+    [repoSelectorFactory release];
+    [repoSelector release];
+
+    [navigationController release];    
     [networkAwareViewController release];
     [newsFeedTableViewController release];
     
@@ -56,6 +69,21 @@
     }
 }
 
+#pragma mark NewsFeedTableViewControllerDelegate implementation
+
+- (void)userDidSelectRssItem:(RssItem *)rssItem
+{
+    if ([rssItem.type isEqualToString:@"WatchEvent"]) {
+        NSString * user =
+            [rssItem.subject stringByMatchingRegex:
+            @"started watching (.+)/.*$"];
+        NSString * repo =
+            [rssItem.subject stringByMatchingRegex:
+            @"started watching .+/(.+)$"];
+        [[self repoSelector] user:user didSelectRepo:repo];
+    }
+}
+
 #pragma mark GitHubNewsFeedDelegate implementation
 
 - (void)newsFeed:(NSArray *)newsItems fetchedForUsername:(NSString *)username
@@ -90,6 +118,19 @@
     [alertView show];
 
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
+}
+
+#pragma mark Accessors
+
+- (NSObject<RepoSelector> *)repoSelector
+{
+    if (!repoSelector) {
+        repoSelector =
+            [repoSelectorFactory
+            createRepoSelectorWithNavigationController:navigationController];
+    }
+
+    return repoSelector;
 }
 
 @end

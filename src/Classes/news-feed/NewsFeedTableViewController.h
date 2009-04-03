@@ -3,8 +3,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewsFeedTableViewControllerDelegate.h"
 
-@interface NewsFeedTableViewController : UITableViewController {
+@interface NewsFeedTableViewController : UITableViewController
+{
+    IBOutlet NSObject<NewsFeedTableViewControllerDelegate> * delegate;
+
     NSArray * rssItems;
 }
 
