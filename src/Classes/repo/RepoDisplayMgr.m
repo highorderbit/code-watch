@@ -84,7 +84,8 @@
                                       forRepo:repoName
                                          info:repoInfo];
 
-    [gitHub fetchInfoForRepo:repo username:username];
+    // refresh user info so we can refresh repo metadata (description, etc.)
+    [gitHub fetchInfoForUsername:username];
 
     networkAwareViewController.navigationItem.title =
         NSLocalizedString(@"repo.view.title", @"");
@@ -97,6 +98,44 @@
 }
 
 #pragma mark GitHubServiceDelegate implementation
+
+- (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
+    fetchedForUsername:(NSString *)updatedUsername
+{
+    for (NSString * repo in repos.allKeys)
+        if ([repoName isEqualToString:repo]) {
+            [self setRepoInfo:[repos objectForKey:repo]];
+            // get the commit details
+            [gitHub fetchInfoForRepo:repo username:updatedUsername];
+
+            break;
+        }
+}
+
+- (void)failedToFetchInfoForUsername:(NSString *)user
+                               error:(NSError *)error
+{
+    NSLog(@"Failed to retrieve info for user: '%@' error: '%@'.", user, error);
+
+    NSString * title =
+        NSLocalizedString(@"github.repoupdate.failed.alert.title", @"");
+    NSString * cancelTitle =
+        NSLocalizedString(@"github.repoupdate.failed.alert.ok", @"");
+    NSString * message = error.localizedDescription;
+
+    UIAlertView * alertView =
+        [[[UIAlertView alloc]
+          initWithTitle:title
+                message:message
+               delegate:self
+      cancelButtonTitle:cancelTitle
+      otherButtonTitles:nil]
+         autorelease];
+
+    [alertView show];
+
+    [networkAwareViewController setUpdatingState:kDisconnected];
+}
 
 - (void)commits:(NSDictionary*)newCommits
  fetchedForRepo:(NSString *)updatedRepoName
