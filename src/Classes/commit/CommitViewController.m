@@ -6,6 +6,7 @@
 #import "CommitInfo.h"
 #import "UIColor+CodeWatchColors.h"
 #import "UILabel+DrawingAdditions.h"
+#import "UIAlertView+CreationHelpers.h"
 
 static const NSUInteger NUM_SECTIONS = 2;
 enum
@@ -189,10 +190,10 @@ enum
         return changeset.count == 0 ? nil : indexPath;
     }
 
-    return nil;
+    return indexPath;
 }
 
-- (void)          tableView:(UITableView *)tv
+- (void)tableView:(UITableView *)tv
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == kDiffSection) {
@@ -215,6 +216,10 @@ enum
         }
 
         [delegate userDidSelectChangeset:changeset ofType:changesetType];
+    } else {
+        [[UIAlertView notImplementedAlertView] show];
+        [self.tableView deselectRowAtIndexPath:
+            [self.tableView indexPathForSelectedRow] animated:YES];
     }
 }
 
