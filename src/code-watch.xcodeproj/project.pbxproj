@@ -1586,7 +1586,7 @@
 					"-licucore",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D1FD6397-A95F-4FD4-B595-59B26846147F";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = "Debug (John)";
@@ -1609,7 +1609,7 @@
 					"-licucore",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D1FD6397-A95F-4FD4-B595-59B26846147F";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = "Release (John)";
