@@ -449,14 +449,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">gitHub</string>
-						<reference key="source" ref="74451048"/>
-						<reference key="destination" ref="978630306"/>
-					</object>
-					<int key="connectionID">213</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="978630306"/>
 						<reference key="destination" ref="74451048"/>
@@ -1895,6 +1887,22 @@
 					</object>
 					<int key="connectionID">527</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gitHubService</string>
+						<reference key="source" ref="74451048"/>
+						<reference key="destination" ref="978630306"/>
+					</object>
+					<int key="connectionID">528</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gravatarServiceFactory</string>
+						<reference key="source" ref="74451048"/>
+						<reference key="destination" ref="596318502"/>
+					</object>
+					<int key="connectionID">529</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2730,7 +2738,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">527</int>
+			<int key="maxID">529</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3332,8 +3340,10 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>avatarCache</string>
 							<string>contactCacheSetter</string>
-							<string>gitHub</string>
+							<string>gitHubService</string>
+							<string>gravatarServiceFactory</string>
 							<string>logInState</string>
 							<string>navigationController</string>
 							<string>networkAwareViewController</string>
@@ -3344,7 +3354,9 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSObject</string>
+							<string>NSObject</string>
 							<string>GitHubService</string>
+							<string>GravatarServiceFactory</string>
 							<string>NSObject</string>
 							<string>UINavigationController</string>
 							<string>NetworkAwareViewController</string>

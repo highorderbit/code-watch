@@ -3,6 +3,15 @@
 //
 
 #import "PrimaryUserDisplayMgr.h"
+#import "GitHubService.h"
+#import "GravatarService.h"
+#import "GravatarServiceFactory.h"
+
+@interface PrimaryUserDisplayMgr (Private)
+
+- (UIImage *)cachedAvatarForUserInfo:(UserInfo *)info;
+
+@end
 
 @implementation PrimaryUserDisplayMgr
 
@@ -15,10 +24,14 @@
     [userCache release];
     [logInState release];
     [contactCacheSetter release];
+    [avatarCache release];
     
     [repoSelector release];
     
-    [gitHub release];
+    [gitHubService release];
+
+    [gravatarService release];
+    [gravatarServiceFactory release];
     
     [super dealloc];
 }
@@ -33,6 +46,9 @@
 
     [networkAwareViewController.navigationItem
         setRightBarButtonItem:refreshButton animated:NO];
+
+    gravatarService = [gravatarServiceFactory createGravatarService];
+    gravatarService.delegate = self;
 }
 
 - (void)viewWillAppear
@@ -47,9 +63,13 @@
             setNoConnectionText:
             NSLocalizedString(@"nodata.noconnection.text", @"")];
         
-        [gitHub fetchInfoForUsername:logInState.login];
+        [gitHubService fetchInfoForUsername:logInState.login];
 
         UserInfo * userInfo = [userCache primaryUser];
+        UIImage * avatar = [self cachedAvatarForUserInfo:userInfo];
+
+        if (avatar)
+            [userViewController updateWithAvatar:avatar];
         [userViewController setUsername:logInState.login];
         [userViewController updateWithUserInfo:userInfo];
     
@@ -98,9 +118,17 @@
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
     fetchedForUsername:(NSString *)username
 {
+    UIImage * avatar = [self cachedAvatarForUserInfo:info];
+
+    if (avatar)
+        [userViewController updateWithAvatar:avatar];
     [userViewController updateWithUserInfo:info];
 
     [networkAwareViewController setCachedDataAvailable:YES];
+
+    NSString * email = [info.details objectForKey:@"email"];
+    if (email)
+        [gravatarService fetchAvatarForEmailAddress:email];
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
@@ -174,6 +202,14 @@
     }
     
     [self.tabViewController dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark Working with avatars
+
+- (UIImage *)cachedAvatarForUserInfo:(UserInfo *)info
+{
+    NSString * email = [info.details objectForKey:@"email"];
+    return email ? [avatarCache avatarForEmailAddress:email] : nil;
 }
 
 #pragma mark Property implementations
