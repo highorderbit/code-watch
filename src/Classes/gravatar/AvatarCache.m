@@ -25,4 +25,13 @@
     return [cache objectForKey:emailAddress];
 }
 
+#pragma mark NSFastEnumeration implementation
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+                                  objects:(id *)stackbuf
+                                    count:(NSUInteger)len
+{
+    return [cache countByEnumeratingWithState:state objects:stackbuf count:len];
+}
+
 @end

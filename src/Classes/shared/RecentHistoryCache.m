@@ -72,4 +72,14 @@
     return [[recentlyViewed copy] autorelease];
 }
 
+#pragma mark NSFastEnumeration implementation
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
+                                  objects:(id *)stackbuf
+                                    count:(NSUInteger)len
+{
+    return [recentlyViewed
+        countByEnumeratingWithState:state objects:stackbuf count:len];
+}
+
 @end

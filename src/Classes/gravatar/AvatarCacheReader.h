@@ -4,7 +4,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol AvatarCacheReader <NSObject>
+@protocol AvatarCacheReader <NSObject, NSFastEnumeration>
 
 - (UIImage *)avatarForEmailAddress:(NSString *)emailAddress;
 

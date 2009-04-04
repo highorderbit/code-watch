@@ -4,7 +4,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RecentHistoryCache : NSObject
+@interface RecentHistoryCache : NSObject <NSFastEnumeration>
 {
     NSMutableDictionary * recentlyViewed;
     
