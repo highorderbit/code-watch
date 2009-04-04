@@ -27,4 +27,7 @@
 @property (nonatomic, retain)
     NSObject<FavoriteReposStateReader> * favoriteReposStateReader;
 
+- (void)promptForRepo;
+- (void)repoAccepted;
+
 @end

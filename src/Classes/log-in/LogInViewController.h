@@ -30,4 +30,7 @@
 @property (nonatomic, retain) IBOutlet UITextField * usernameTextField;
 @property (nonatomic, retain) IBOutlet UITextField * tokenTextField;
 
+- (void)promptForLogIn;
+- (void)logInAccepted;
+
 @end

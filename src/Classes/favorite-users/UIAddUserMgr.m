@@ -67,6 +67,7 @@
     [favoriteUsersStateSetter addFavoriteUser:username];
     [rootViewController dismissModalViewControllerAnimated:YES];
     connecting = NO;
+    [addUserViewController usernameAccepted];
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
@@ -89,7 +90,7 @@
     [alertView show];
  
     connecting = NO;
-    [self.addUserViewController viewWillAppear:NO];
+    [addUserViewController promptForUsername];
 }
 
 #pragma mark Accessors

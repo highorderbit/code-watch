@@ -34,6 +34,7 @@ enum HelpSection
 - (void)userDidSave;
 - (void)userDidCancel;
 - (BOOL)checkValidityUsername:(NSString *)text repoName:(NSString *)repoName;
+- (void)updateUIForCommunicating;
 
 @end
 
@@ -103,13 +104,13 @@ enum HelpSection
     
     self.usernameCell.nameLabel.text =
         NSLocalizedString(@"addrepo.username.label", @"");
-    self.usernameCell.textField.text = @"";
     
     self.repoNameCell.nameLabel.text =
         NSLocalizedString(@"addrepo.repoName.label", @"");
-    self.repoNameCell.textField.text = @"";
     
     [self.usernameCell.textField becomeFirstResponder];
+    
+    [self promptForRepo];
 }
 
 #pragma mark Table view methods
@@ -163,7 +164,7 @@ enum HelpSection
 }
 
 - (void)tableView:(UITableView *)tableView
-didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+    didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == kHelpSection && indexPath.row == kHelpRow)
         [delegate provideHelp];
@@ -229,12 +230,43 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSString * username = usernameTextField.text;
     NSString * repoName = repoNameTextField.text;
     
+    [self updateUIForCommunicating];
     [delegate userProvidedUsername:username repoName:repoName];
 }
 
 - (void)userDidCancel
 {
     [delegate userDidCancel];
+    self.usernameCell.textField.text = @"";
+    self.repoNameCell.textField.text = @"";
+}
+
+#pragma mark UI configuration
+
+- (void)promptForRepo
+{
+    NSString * username = usernameTextField.text;
+    NSString * repoName = repoNameTextField.text;
+    self.navigationItem.rightBarButtonItem.enabled =
+        [self checkValidityUsername:username repoName:repoName];
+    self.navigationItem.prompt = NSLocalizedString(@"addrepo.view.prompt", @"");
+    self.usernameCell.textField.enabled = YES;
+    self.repoNameCell.textField.enabled = YES;
+}
+
+- (void)updateUIForCommunicating
+{
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    self.navigationItem.prompt =
+        NSLocalizedString(@"addrepo.communicating.prompt", @"");
+    self.usernameCell.textField.enabled = NO;
+    self.repoNameCell.textField.enabled = NO;
+}
+
+- (void)repoAccepted
+{
+    self.usernameCell.textField.text = @"";
+    self.repoNameCell.textField.text = @"";
 }
 
 #pragma mark Accessors

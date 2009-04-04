@@ -31,6 +31,7 @@ enum HelpSection
 - (void)userDidSave;
 - (void)userDidCancel;
 - (BOOL)checkUsernameValid:(NSString *)text;
+- (void)updateUIForCommunicating;
 
 @end
 
@@ -95,9 +96,10 @@ enum HelpSection
     
     self.usernameCell.nameLabel.text =
         NSLocalizedString(@"adduser.username.label", @"");
-    self.usernameCell.textField.text = @"";
     
     [self.usernameCell.textField becomeFirstResponder];
+    
+    [self promptForUsername];
 }
 
 #pragma mark Table view methods
@@ -148,7 +150,7 @@ enum HelpSection
 }
 
 - (void)tableView:(UITableView *)tableView
-didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+    didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == kHelpSection && indexPath.row == kHelpRow)
         [delegate provideHelp];
@@ -172,7 +174,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     return YES;
 }
 
-- (BOOL) textFieldShouldReturn:(UITextField *)textField
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if ([self checkUsernameValid:textField.text])
         [self userDidSave];
@@ -193,14 +195,39 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)userDidSave
 {
     self.helpCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [self updateUIForCommunicating];
+            
     NSString * username = usernameTextField.text;
-    
     [delegate userProvidedUsername:username];
 }
 
 - (void)userDidCancel
 {
     [delegate userDidCancel];
+    self.usernameCell.textField.text = @"";
+}
+
+#pragma mark UI configuration
+
+- (void)promptForUsername
+{
+    self.navigationItem.rightBarButtonItem.enabled =
+        [self checkUsernameValid:usernameTextField.text];
+    self.navigationItem.prompt = NSLocalizedString(@"adduser.view.prompt", @"");
+    self.usernameCell.textField.enabled = YES;
+}
+
+- (void)updateUIForCommunicating
+{
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    self.navigationItem.prompt =
+        NSLocalizedString(@"adduser.communicating.prompt", @"");
+    self.usernameCell.textField.enabled = NO;
+}
+
+- (void)usernameAccepted
+{
+    self.usernameCell.textField.text = @"";
 }
 
 #pragma mark Accessors
@@ -240,4 +267,3 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 @end
-

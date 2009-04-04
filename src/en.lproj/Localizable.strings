@@ -32,6 +32,7 @@ login.login.label = "Log In";
 login.username.label = "username";
 login.token.label = "api token";
 login.help.label = "Help";
+login.communicating.prompt = "Logging in...";
 
 /* LogInHelpView Strings */
 loginhelp.view.title = "Help";
@@ -82,6 +83,7 @@ adduser.adduser.label = "Add";
 adduser.username.label = "username";
 adduser.help.label = "Help";
 adduser.help.view.title = "Help";
+adduser.communicating.prompt = "Adding user...";
 
 /* AddRepoView Strings */
 addrepo.view.title = "New Repo";
@@ -92,6 +94,7 @@ addrepo.repoName.label = "repo name";
 addrepo.help.label = "Help";
 addrepo.reponotfound.format.string = "'%@' was not found for user '%@'";
 addrepo.help.view.title = "Help";
+addrepo.communicating.prompt = "Adding repo...";
 
 /* CommitView Strings */
 commit.view.title = "Commit Info";

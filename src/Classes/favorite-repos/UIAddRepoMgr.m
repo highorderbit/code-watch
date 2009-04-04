@@ -73,9 +73,10 @@
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
     fetchedForUsername:(NSString *)username
 {
-    if ([repos objectForKey:self.repoName])
+    if ([repos objectForKey:self.repoName]) {
         [self foundUsername:username repoName:self.repoName];
-    else {
+        [addRepoViewController repoAccepted];
+    } else {
         NSString * formatString =
             NSLocalizedString(@"addrepo.reponotfound.format.string", @"");
         NSString * message =
@@ -153,7 +154,7 @@
     [alertView show];
  
     connecting = NO;
-    [self.addRepoViewController viewWillAppear:NO];
+    [self.addRepoViewController promptForRepo];
 }
 
 @end

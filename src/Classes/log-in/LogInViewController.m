@@ -26,8 +26,12 @@ enum HelpSection
 };
 
 @interface LogInViewController (Private)
+
 - (void)userDidSave;
 - (void)userDidCancel;
+- (BOOL)checkUsernameValid:(NSString *)text;
+- (void)updateUIForCommunicating;
+
 @end
 
 @implementation LogInViewController
@@ -101,6 +105,8 @@ enum HelpSection
         NSLocalizedString(@"login.token.label", @"");
 
     [self.usernameCell.textField becomeFirstResponder];
+    
+    [self promptForLogIn];
 }
 
 - (void)didReceiveMemoryWarning
@@ -226,12 +232,40 @@ enum HelpSection
     NSString * token =
         tokenTextField.text.length > 0 ? tokenTextField.text : nil;
 
+    [self updateUIForCommunicating];
     [delegate userProvidedUsername:username token:token];
 }
 
 - (void)userDidCancel
 {
     [delegate userDidCancel];
+    self.usernameCell.textField.text = @"";
+    self.tokenCell.textField.text = @"";
+}
+
+- (void)promptForLogIn
+{
+    NSString * username = usernameTextField.text;
+    self.navigationItem.rightBarButtonItem.enabled =
+        [self checkUsernameValid:username];
+    self.navigationItem.prompt = NSLocalizedString(@"login.view.prompt", @"");
+    self.usernameCell.textField.enabled = YES;
+    self.tokenCell.textField.enabled = YES;
+}
+
+- (void)updateUIForCommunicating
+{
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    self.navigationItem.prompt =
+        NSLocalizedString(@"login.communicating.prompt", @"");
+    self.usernameCell.textField.enabled = NO;
+    self.tokenCell.textField.enabled = NO;
+}
+
+- (void)logInAccepted
+{
+    self.usernameCell.textField.text = @"";
+    self.tokenCell.textField.text = @"";
 }
 
 #pragma mark Accessors
@@ -268,6 +302,13 @@ enum HelpSection
     }
 
     return helpCell;
+}
+
+#pragma mark Helper methods
+
+- (BOOL)checkUsernameValid:(NSString *)text
+{
+    return text.length > 0;
 }
 
 @end

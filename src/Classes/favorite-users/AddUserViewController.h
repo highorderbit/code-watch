@@ -25,4 +25,7 @@
 @property (nonatomic, retain)
     NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
     
+- (void)promptForUsername;
+- (void)usernameAccepted;
+    
 @end

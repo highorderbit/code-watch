@@ -101,6 +101,7 @@
     
     connecting = NO;
     [self setButtonText];
+    [logInViewController logInAccepted];
 }
 
 - (void)logInFailed:(NSString *)username error:(NSError *)error
@@ -123,7 +124,7 @@
     [alertView show];
  
     connecting = NO;
-    [self.logInViewController viewWillAppear:NO];
+    [logInViewController promptForLogIn];
 }
 
 #pragma mark Accessors
