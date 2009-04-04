@@ -25,7 +25,6 @@
 - (id)initWithGravatarBaseUrlString:(NSString *)baseUrl
                   avatarCacheSetter:(id<AvatarCacheSetter>)anAvatarCacheSetter;
 
-
 #pragma mark Fetching avatars
 
 - (void)fetchAvatarForEmailAddress:(NSString *)emailAddress;

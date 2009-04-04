@@ -9,9 +9,11 @@
     IBOutlet UILabel * pubDateLabel;
     IBOutlet UILabel * subjectLabel;
     IBOutlet UILabel * summaryLabel;
+    IBOutlet UIImageView * avatarImageView;
 }
 
 - (void)updateAuthor:(NSString *)author pubDate:(NSDate *)pubDate
-    subject:(NSString *)subject summary:(NSString *)summary;
+    subject:(NSString *)subject summary:(NSString *)summary
+    avatar:(UIImage *)avatar;
 
 @end

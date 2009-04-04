@@ -10,8 +10,10 @@
     IBOutlet NSObject<NewsFeedTableViewControllerDelegate> * delegate;
 
     NSArray * rssItems;
+    NSDictionary * avatars;
 }
 
 - (void)updateRssItems:(NSArray *)someRssItems;
+- (void)updateAvatars:(NSDictionary *)someAvatars;
 
 @end
