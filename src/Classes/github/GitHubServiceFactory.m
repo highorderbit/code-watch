@@ -3,6 +3,11 @@
 //
 
 #import "GitHubServiceFactory.h"
+#import "LogInState.h"
+#import "UserCache.h"
+#import "RepoCache.h"
+#import "CommitCache.h"
+#import "GitHubService.h"
 
 @implementation GitHubServiceFactory
 

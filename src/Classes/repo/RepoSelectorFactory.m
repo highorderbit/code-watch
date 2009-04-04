@@ -6,6 +6,7 @@
 #import "RepoViewController.h"
 #import "NetworkAwareViewController.h"
 #import "RepoDisplayMgr.h"
+#import "GitHubService.h"
 
 @implementation RepoSelectorFactory
 

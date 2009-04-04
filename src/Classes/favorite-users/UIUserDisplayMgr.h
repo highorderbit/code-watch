@@ -8,17 +8,21 @@
 #import "UserViewController.h"
 #import "UserViewControllerDelegate.h"
 #import "UserCacheReader.h"
+#import "AvatarCacheReader.h"
 #import "LogInStateReader.h"
-#import "GitHubService.h"
 #import "NetworkAwareViewControllerDelegate.h"
 #import "RepoSelector.h"
 #import "UserDisplayMgr.h"
 #import "ContactCacheSetter.h"
+#import "GitHubServiceDelegate.h"
+#import "GravatarServiceDelegate.h"
+
+@class GitHubService, GravatarService;
 
 @interface UIUserDisplayMgr :
     NSObject
     <NetworkAwareViewControllerDelegate, GitHubServiceDelegate,
-    UserViewControllerDelegate, UserDisplayMgr,
+    GravatarServiceDelegate, UserViewControllerDelegate, UserDisplayMgr,
     ABNewPersonViewControllerDelegate>
 {
     UINavigationController * navigationController;
@@ -27,7 +31,11 @@
     
     NSObject<UserCacheReader> * userCacheReader;
     NSObject<RepoSelector> * repoSelector;
+
+    NSObject<AvatarCacheReader> * avatarCacheReader;
+
     GitHubService * gitHubService;
+    GravatarService * gravatarService;
     
     NSObject<ContactCacheSetter> * contactCacheSetter;
     
@@ -44,10 +52,14 @@
     (UserViewController *)aUserViewController
     userCacheReader:
     (NSObject<UserCacheReader> *)aUserCacheReader
+    avatarCacheReader:
+    (NSObject<AvatarCacheReader> *)anAvatarCacheReader
     repoSelector:
     (NSObject<RepoSelector> *)aRepoSelector
     gitHubService:
     (GitHubService *)aGitHubService
+    gravatarService:
+    (GravatarService *)aGravatarService
     contactCacheSetter:
     (NSObject<ContactCacheSetter> *)aContactCacheSetter;
     

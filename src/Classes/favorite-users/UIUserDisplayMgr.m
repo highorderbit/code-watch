@@ -4,6 +4,9 @@
 
 #import "UIUserDisplayMgr.h"
 
+#import "GitHubService.h"
+#import "GravatarService.h"
+
 @implementation UIUserDisplayMgr
 
 - (void)dealloc
@@ -13,8 +16,11 @@
     [userViewController release];
 
     [userCacheReader release];
+    [avatarCacheReader release];
     [repoSelector release];
+    [avatarCacheReader release];
     [gitHubService release];
+    [gravatarService release];
     [contactCacheSetter release];
 
     [username release];
@@ -30,10 +36,14 @@
     (UserViewController *)aUserViewController
     userCacheReader:
     (NSObject<UserCacheReader> *)aUserCacheReader
+    avatarCacheReader:
+    (NSObject<AvatarCacheReader> *)anAvatarCacheReader
     repoSelector:
     (NSObject<RepoSelector> *)aRepoSelector
     gitHubService:
     (GitHubService *)aGitHubService
+    gravatarService:
+    (GravatarService *)aGravatarService
     contactCacheSetter:
     (NSObject<ContactCacheSetter> *)aContactCacheSetter
 {
@@ -42,8 +52,10 @@
         networkAwareViewController = aNetworkAwareViewController;
         userViewController = aUserViewController;
         userCacheReader = aUserCacheReader;
+        avatarCacheReader = anAvatarCacheReader;
         repoSelector = aRepoSelector;
         gitHubService = aGitHubService;
+        gravatarService = aGravatarService;
         contactCacheSetter = aContactCacheSetter;
         
         [networkAwareViewController
@@ -73,6 +85,12 @@
     [gitHubService fetchInfoForUsername:username];
 
     UserInfo * userInfo = [userCacheReader userWithUsername:username];
+    NSString * email = [userInfo.details objectForKey:@"email"];
+    if (email) {
+        UIImage * avatar = [avatarCacheReader avatarForEmailAddress:email];
+        [userViewController updateWithAvatar:avatar];
+    }
+
     [userViewController setUsername:username];
     [userViewController updateWithUserInfo:userInfo];
 
@@ -113,11 +131,30 @@
 {
     [userViewController updateWithUserInfo:info];
 
-    [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
+    NSString * email = [info.details objectForKey:@"email"];
+    if (email)
+        [gravatarService fetchAvatarForEmailAddress:email];
+    else
+        [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
+
     [networkAwareViewController setCachedDataAvailable:YES];
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
+{
+    [networkAwareViewController setUpdatingState:kDisconnected];
+}
+
+#pragma mark GravatarServiceDelegate implementation
+
+- (void)avatar:(UIImage *)avatar fetchedForEmailAddress:(NSString *)emailAddress
+{
+    [userViewController updateWithAvatar:avatar];
+    [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
+}
+
+- (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
+    error:(NSError *)error
 {
     [networkAwareViewController setUpdatingState:kDisconnected];
 }
