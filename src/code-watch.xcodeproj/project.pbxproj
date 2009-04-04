@@ -16,6 +16,8 @@
 		05226ADB0F80302000DA73A8 /* UILabel+DrawingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05226ADA0F80302000DA73A8 /* UILabel+DrawingAdditions.m */; };
 		0524D2D20F719BC3006BA721 /* CommitInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524D2D10F719BC3006BA721 /* CommitInfo.m */; };
 		0524D4380F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524D4370F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m */; };
+		052D3DA70F87C693005EBD25 /* GravatarService.m in Sources */ = {isa = PBXBuildFile; fileRef = 052D3DA60F87C693005EBD25 /* GravatarService.m */; };
+		052D3DAC0F87CC94005EBD25 /* GravatarServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 052D3DAB0F87CC94005EBD25 /* GravatarServiceFactory.m */; };
 		0532C9D40F86717E0047BE56 /* UIAlertView+CreationHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532C9D30F86717E0047BE56 /* UIAlertView+CreationHelpers.m */; };
 		0532C9F30F867D390047BE56 /* NewsFeedItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532C9F20F867D390047BE56 /* NewsFeedItemViewController.m */; };
 		0532C9FE0F867F7F0047BE56 /* NewsFeedItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0532C9FC0F867F7F0047BE56 /* NewsFeedItemView.xib */; };
@@ -177,6 +179,11 @@
 		0524D2D10F719BC3006BA721 /* CommitInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitInfo.m; path = commit/CommitInfo.m; sourceTree = "<group>"; };
 		0524D4360F71AFBF006BA721 /* NSDate+GitHubStringHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+GitHubStringHelpers.h"; sourceTree = "<group>"; };
 		0524D4370F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+GitHubStringHelpers.m"; sourceTree = "<group>"; };
+		052D3DA50F87C693005EBD25 /* GravatarService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GravatarService.h; path = gravatar/GravatarService.h; sourceTree = "<group>"; };
+		052D3DA60F87C693005EBD25 /* GravatarService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GravatarService.m; path = gravatar/GravatarService.m; sourceTree = "<group>"; };
+		052D3DA80F87C6A6005EBD25 /* GravatarServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GravatarServiceDelegate.h; path = gravatar/GravatarServiceDelegate.h; sourceTree = "<group>"; };
+		052D3DAA0F87CC94005EBD25 /* GravatarServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GravatarServiceFactory.h; path = gravatar/GravatarServiceFactory.h; sourceTree = "<group>"; };
+		052D3DAB0F87CC94005EBD25 /* GravatarServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GravatarServiceFactory.m; path = gravatar/GravatarServiceFactory.m; sourceTree = "<group>"; };
 		0532C9D20F86717E0047BE56 /* UIAlertView+CreationHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+CreationHelpers.h"; sourceTree = "<group>"; };
 		0532C9D30F86717E0047BE56 /* UIAlertView+CreationHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+CreationHelpers.m"; sourceTree = "<group>"; };
 		0532C9F10F867D390047BE56 /* NewsFeedItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedItemViewController.h; sourceTree = "<group>"; };
@@ -611,6 +618,11 @@
 		05951F1B0F7E914C00B86921 /* gravatar */ = {
 			isa = PBXGroup;
 			children = (
+				052D3DA50F87C693005EBD25 /* GravatarService.h */,
+				052D3DA60F87C693005EBD25 /* GravatarService.m */,
+				052D3DA80F87C6A6005EBD25 /* GravatarServiceDelegate.h */,
+				052D3DAA0F87CC94005EBD25 /* GravatarServiceFactory.h */,
+				052D3DAB0F87CC94005EBD25 /* GravatarServiceFactory.m */,
 				05951F2A0F7E91BD00B86921 /* Gravatar.h */,
 				05951F2B0F7E91BD00B86921 /* Gravatar.m */,
 				059520060F7ECBD900B86921 /* GravatarDelegate.h */,
@@ -1228,6 +1240,8 @@
 				0532C9F30F867D390047BE56 /* NewsFeedItemViewController.m in Sources */,
 				0532CA560F868B5B0047BE56 /* NewsFeedItemDetailsViewController.m in Sources */,
 				0532CB1C0F8696550047BE56 /* RssItem+ParsingHelpers.m in Sources */,
+				052D3DA70F87C693005EBD25 /* GravatarService.m in Sources */,
+				052D3DAC0F87CC94005EBD25 /* GravatarServiceFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
