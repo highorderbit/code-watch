@@ -5,11 +5,12 @@
 #import <Foundation/Foundation.h>
 #import "ConfigReader.h"
 
-@class GravatarService;
+@class AvatarCache, GravatarService;
 
 @interface GravatarServiceFactory : NSObject
 {
     IBOutlet NSObject<ConfigReader> * configReader;
+    IBOutlet AvatarCache * avatarCache;
 }
 
 - (GravatarService *)createGravatarService;

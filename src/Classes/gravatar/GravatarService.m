@@ -12,6 +12,7 @@
 - (void)dealloc
 {
     [delegate release];
+    [avatarCacheSetter release];
     [gravatar release];
     [super dealloc];
 }
@@ -19,10 +20,13 @@
 #pragma mark Initialization
 
 - (id)initWithGravatarBaseUrlString:(NSString *)baseUrl
+                  avatarCacheSetter:(id<AvatarCacheSetter>)anAvatarCacheSetter
 {
-    if (self = [super init])
+    if (self = [super init]) {
         gravatar = [[Gravatar alloc] initWithBaseUrlString:baseUrl
                                                   delegate:self];
+        avatarCacheSetter = [anAvatarCacheSetter retain];
+    }
 
     return self;
 }
@@ -39,6 +43,7 @@
 - (void)avatar:(UIImage *)avatar
     fetchedForEmailAddress:(NSString *)emailAddress
 {
+    [avatarCacheSetter setAvatar:avatar forEmailAddress:emailAddress];
     [delegate avatar:avatar fetchedForEmailAddress:emailAddress];
 }
 

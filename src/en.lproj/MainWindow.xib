@@ -229,7 +229,6 @@
 			<object class="IBUICustomObject" id="78563136"/>
 			<object class="IBUICustomObject" id="277705063"/>
 			<object class="IBUICustomObject" id="591510631"/>
-			<object class="IBUICustomObject" id="596318502"/>
 			<object class="IBUICustomObject" id="1068984684"/>
 			<object class="IBUICustomObject" id="186514062"/>
 			<object class="IBUICustomObject" id="872895490"/>
@@ -306,6 +305,8 @@
 				<string key="IBUINibName">CommitView</string>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 			</object>
+			<object class="IBUICustomObject" id="596318502"/>
+			<object class="IBUICustomObject" id="936600278"/>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -1854,6 +1855,22 @@
 					</object>
 					<int key="connectionID">521</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">avatarCache</string>
+						<reference key="source" ref="166877055"/>
+						<reference key="destination" ref="936600278"/>
+					</object>
+					<int key="connectionID">523</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">avatarCache</string>
+						<reference key="source" ref="596318502"/>
+						<reference key="destination" ref="936600278"/>
+					</object>
+					<int key="connectionID">524</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2375,6 +2392,11 @@
 						<reference key="object" ref="596318502"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">522</int>
+						<reference key="object" ref="936600278"/>
+						<reference key="parent" ref="957960031"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -2514,6 +2536,8 @@
 					<string>512.IBPluginDependency</string>
 					<string>519.CustomClassName</string>
 					<string>519.IBPluginDependency</string>
+					<string>522.CustomClassName</string>
+					<string>522.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2658,6 +2682,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>GravatarServiceFactory</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>AvatarCache</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -2680,11 +2706,19 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">521</int>
+			<int key="maxID">524</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">AvatarCache</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/gravatar/AvatarCache.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">CodeWatchAppController</string>
 					<string key="superclassName">NSObject</string>
@@ -3111,8 +3145,17 @@
 					<string key="className">GravatarServiceFactory</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">configReader</string>
-						<string key="NS.object.0">NSObject</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>avatarCache</string>
+							<string>configReader</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>AvatarCache</string>
+							<string>NSObject</string>
+						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
@@ -3568,6 +3611,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>avatarCache</string>
 							<string>contactCache</string>
 							<string>favoriteUsersState</string>
 							<string>gitHubServiceFactory</string>
@@ -3577,6 +3621,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>AvatarCache</string>
 							<string>ContactCache</string>
 							<string>FavoriteUsersState</string>
 							<string>GitHubServiceFactory</string>

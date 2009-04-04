@@ -29,6 +29,7 @@
     [gravatarServiceFactory release];
     [repoSelectorFactory release];
     [userCache release];
+    [avatarCache release];
     [favoriteUsersState release];
     [super dealloc];
 }
@@ -60,8 +61,9 @@
         initWithNavigationController:navigationController
         networkAwareViewController:networkAwareViewController
         userViewController:userViewController userCacheReader:userCache
-        repoSelector:repoSelector gitHubService:gitHubService
-        gravatarService:gravatarService contactCacheSetter:contactCache];
+        avatarCacheReader:avatarCache repoSelector:repoSelector
+        gitHubService:gitHubService gravatarService:gravatarService
+        contactCacheSetter:contactCache];
         
     userViewController.delegate = userDisplayMgr;
     networkAwareViewController.delegate = userDisplayMgr;

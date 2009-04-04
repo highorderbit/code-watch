@@ -5,12 +5,15 @@
 #import <Foundation/Foundation.h>
 #import "GravatarDelegate.h"
 #import "GravatarServiceDelegate.h"
+#import "AvatarCacheSetter.h"
 
 @class Gravatar;
 
 @interface GravatarService : NSObject <GravatarDelegate>
 {
     id<GravatarServiceDelegate> delegate;
+
+    id<AvatarCacheSetter> avatarCacheSetter;
 
     Gravatar * gravatar;
 }
@@ -19,7 +22,9 @@
 
 #pragma mark Initialization
 
-- (id)initWithGravatarBaseUrlString:(NSString *)baseUrl;
+- (id)initWithGravatarBaseUrlString:(NSString *)baseUrl
+                  avatarCacheSetter:(id<AvatarCacheSetter>)anAvatarCacheSetter;
+
 
 #pragma mark Fetching avatars
 

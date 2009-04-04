@@ -7,6 +7,7 @@
 #import "GravatarServiceFactory.h"
 #import "RepoSelectorFactory.h"
 #import "UserCache.h"
+#import "AvatarCache.h"
 #import "FavoriteUsersState.h"
 #import "UserDisplayMgr.h"
 #import "ContactCache.h"
@@ -17,6 +18,7 @@
     IBOutlet GravatarServiceFactory * gravatarServiceFactory;
     IBOutlet RepoSelectorFactory * repoSelectorFactory;
     IBOutlet UserCache * userCache;
+    IBOutlet AvatarCache * avatarCache;
     IBOutlet FavoriteUsersState * favoriteUsersState;
     IBOutlet ContactCache * contactCache;
 }

@@ -18,6 +18,8 @@
 		0524D4380F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524D4370F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m */; };
 		052D3DA70F87C693005EBD25 /* GravatarService.m in Sources */ = {isa = PBXBuildFile; fileRef = 052D3DA60F87C693005EBD25 /* GravatarService.m */; };
 		052D3DAC0F87CC94005EBD25 /* GravatarServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 052D3DAB0F87CC94005EBD25 /* GravatarServiceFactory.m */; };
+		052D3E010F87D91B005EBD25 /* AvatarCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 052D3E000F87D91B005EBD25 /* AvatarCache.m */; };
+		052D3E040F87D92C005EBD25 /* AvatarPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 052D3E030F87D92C005EBD25 /* AvatarPersistenceStore.m */; };
 		0532C9D40F86717E0047BE56 /* UIAlertView+CreationHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532C9D30F86717E0047BE56 /* UIAlertView+CreationHelpers.m */; };
 		0532C9F30F867D390047BE56 /* NewsFeedItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532C9F20F867D390047BE56 /* NewsFeedItemViewController.m */; };
 		0532C9FE0F867F7F0047BE56 /* NewsFeedItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0532C9FC0F867F7F0047BE56 /* NewsFeedItemView.xib */; };
@@ -184,6 +186,12 @@
 		052D3DA80F87C6A6005EBD25 /* GravatarServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GravatarServiceDelegate.h; path = gravatar/GravatarServiceDelegate.h; sourceTree = "<group>"; };
 		052D3DAA0F87CC94005EBD25 /* GravatarServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GravatarServiceFactory.h; path = gravatar/GravatarServiceFactory.h; sourceTree = "<group>"; };
 		052D3DAB0F87CC94005EBD25 /* GravatarServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GravatarServiceFactory.m; path = gravatar/GravatarServiceFactory.m; sourceTree = "<group>"; };
+		052D3DFF0F87D91B005EBD25 /* AvatarCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvatarCache.h; path = gravatar/AvatarCache.h; sourceTree = "<group>"; };
+		052D3E000F87D91B005EBD25 /* AvatarCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvatarCache.m; path = gravatar/AvatarCache.m; sourceTree = "<group>"; };
+		052D3E020F87D92C005EBD25 /* AvatarPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvatarPersistenceStore.h; path = gravatar/AvatarPersistenceStore.h; sourceTree = "<group>"; };
+		052D3E030F87D92C005EBD25 /* AvatarPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvatarPersistenceStore.m; path = gravatar/AvatarPersistenceStore.m; sourceTree = "<group>"; };
+		052D3E050F87D944005EBD25 /* AvatarCacheReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvatarCacheReader.h; path = gravatar/AvatarCacheReader.h; sourceTree = "<group>"; };
+		052D3E060F87D953005EBD25 /* AvatarCacheSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AvatarCacheSetter.h; path = gravatar/AvatarCacheSetter.h; sourceTree = "<group>"; };
 		0532C9D20F86717E0047BE56 /* UIAlertView+CreationHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+CreationHelpers.h"; sourceTree = "<group>"; };
 		0532C9D30F86717E0047BE56 /* UIAlertView+CreationHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+CreationHelpers.m"; sourceTree = "<group>"; };
 		0532C9F10F867D390047BE56 /* NewsFeedItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedItemViewController.h; sourceTree = "<group>"; };
@@ -623,6 +631,12 @@
 				052D3DA80F87C6A6005EBD25 /* GravatarServiceDelegate.h */,
 				052D3DAA0F87CC94005EBD25 /* GravatarServiceFactory.h */,
 				052D3DAB0F87CC94005EBD25 /* GravatarServiceFactory.m */,
+				052D3E050F87D944005EBD25 /* AvatarCacheReader.h */,
+				052D3E060F87D953005EBD25 /* AvatarCacheSetter.h */,
+				052D3DFF0F87D91B005EBD25 /* AvatarCache.h */,
+				052D3E000F87D91B005EBD25 /* AvatarCache.m */,
+				052D3E020F87D92C005EBD25 /* AvatarPersistenceStore.h */,
+				052D3E030F87D92C005EBD25 /* AvatarPersistenceStore.m */,
 				05951F2A0F7E91BD00B86921 /* Gravatar.h */,
 				05951F2B0F7E91BD00B86921 /* Gravatar.m */,
 				059520060F7ECBD900B86921 /* GravatarDelegate.h */,
@@ -1242,6 +1256,8 @@
 				0532CB1C0F8696550047BE56 /* RssItem+ParsingHelpers.m in Sources */,
 				052D3DA70F87C693005EBD25 /* GravatarService.m in Sources */,
 				052D3DAC0F87CC94005EBD25 /* GravatarServiceFactory.m in Sources */,
+				052D3E010F87D91B005EBD25 /* AvatarCache.m in Sources */,
+				052D3E040F87D92C005EBD25 /* AvatarPersistenceStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

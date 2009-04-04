@@ -8,6 +8,7 @@
 #import "UserViewController.h"
 #import "UserViewControllerDelegate.h"
 #import "UserCacheReader.h"
+#import "AvatarCacheReader.h"
 #import "LogInStateReader.h"
 #import "NetworkAwareViewControllerDelegate.h"
 #import "RepoSelector.h"
@@ -31,6 +32,8 @@
     NSObject<UserCacheReader> * userCacheReader;
     NSObject<RepoSelector> * repoSelector;
 
+    NSObject<AvatarCacheReader> * avatarCacheReader;
+
     GitHubService * gitHubService;
     GravatarService * gravatarService;
     
@@ -49,6 +52,8 @@
     (UserViewController *)aUserViewController
     userCacheReader:
     (NSObject<UserCacheReader> *)aUserCacheReader
+    avatarCacheReader:
+    (NSObject<AvatarCacheReader> *)anAvatarCacheReader
     repoSelector:
     (NSObject<RepoSelector> *)aRepoSelector
     gitHubService:
