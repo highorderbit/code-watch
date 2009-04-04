@@ -46,6 +46,8 @@
         NSData * data = [[self class] dataFromImage:avatar];
         if (data)
             [dict setObject:data forKey:email];
+        else
+            NSLog(@"Failed to cache avatar for: '%@'", email);
     }
 
     [PlistUtils saveDictionary:dict toPlist:[[self class] plistName]];
