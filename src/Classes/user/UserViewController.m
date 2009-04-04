@@ -5,6 +5,7 @@
 #import "UserViewController.h"
 #import "NSObject+RuntimeAdditions.h"
 #import "UserDetailTableViewCell.h"
+#import "UIAlertView+CreationHelpers.h"
 #import <AddressBookUI/ABPersonViewController.h>
 
 enum Section
@@ -200,8 +201,12 @@ enum Section
     if (effectiveSection == kRepoSection) {
         NSString * repo = [userInfo.repoKeys objectAtIndex:indexPath.row];
         [delegate userDidSelectRepo:repo];
-    } else if (effectiveSection == kRecentActivitySection)
-        [recentActivityDisplayMgr displayRecentHistoryForUser:username];
+    } else if (effectiveSection == kRecentActivitySection) {
+        //[recentActivityDisplayMgr displayRecentHistoryForUser:username];
+        [[UIAlertView notImplementedAlertView] show];
+        [self.tableView deselectRowAtIndexPath:
+            [self.tableView indexPathForSelectedRow] animated:YES];
+    }
 }
 
 #pragma mark User data update methods
