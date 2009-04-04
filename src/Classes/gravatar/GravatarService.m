@@ -4,6 +4,7 @@
 
 #import "GravatarService.h"
 #import "Gravatar.h"
+#import "UIApplication+NetworkActivityIndicatorAdditions.h"
 
 @implementation GravatarService
 
@@ -35,6 +36,8 @@
 
 - (void)fetchAvatarForEmailAddress:(NSString *)emailAddress
 {
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
     [gravatar fetchAvatarForEmailAddress:emailAddress];
 }
 
@@ -45,12 +48,16 @@
 {
     [avatarCacheSetter setAvatar:avatar forEmailAddress:emailAddress];
     [delegate avatar:avatar fetchedForEmailAddress:emailAddress];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 - (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
     error:(NSError *)error
 {
     [delegate failedToFetchAvatarForEmailAddress:emailAddress error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
 @end
