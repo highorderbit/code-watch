@@ -14,11 +14,13 @@
 
 @implementation NewsFeedTableViewCell
 
-- (void)dealloc {
+- (void)dealloc
+{
     [authorLabel release];
     [pubDateLabel release];
     [subjectLabel release];
     [summaryLabel release];
+    [avatarImageView release];
     [super dealloc];
 }
 
@@ -42,11 +44,14 @@
 
 - (void)updateAuthor:(NSString *)author pubDate:(NSDate *)pubDate
     subject:(NSString *)subject summary:(NSString *)summary
+    avatar:(UIImage *)avatar
 {
     authorLabel.text = author;
     pubDateLabel.text = [pubDate shortDescription];
     subjectLabel.text = subject;
     summaryLabel.text = summary;
+    avatarImageView.image =
+        avatar ? avatar : [UIImage imageNamed:@"DefaultAvatar.png"];
 }
 
 - (void)setNonSelectedTextColors

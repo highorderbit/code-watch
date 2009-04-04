@@ -8,7 +8,10 @@
 #import "NewsFeedTableViewController.h"
 #import "NewsFeedCacheReader.h"
 #import "LogInStateReader.h"
+#import "UserCacheReader.h"
+#import "AvatarCacheReader.h"
 #import "GitHubNewsFeedServiceDelegate.h"
+#import "GravatarServiceDelegate.h"
 #import "NewsFeedTableViewControllerDelegate.h"
 #import "NewsFeedItemViewControllerDelegate.h"
 #import "UserDisplayMgr.h"
@@ -16,11 +19,13 @@
 
 @class UserDisplayMgrFactory, RepoSelectorFactory;
 @class GitHubNewsFeedService, GitHubNewsFeedServiceFactory;
+@class GravatarService, GravatarServiceFactory;
 @class NewsFeedItemViewController, NewsFeedItemDetailsViewController;
 
 @interface NewsFeedDisplayMgr :
     NSObject
-    <NetworkAwareViewControllerDelegate, GitHubNewsFeedServiceDelegate,
+    <NetworkAwareViewControllerDelegate,
+    GitHubNewsFeedServiceDelegate, GravatarServiceDelegate,
     NewsFeedTableViewControllerDelegate, NewsFeedItemViewControllerDelegate>
 {
     IBOutlet UserDisplayMgrFactory * userDisplayMgrFactory;
@@ -36,12 +41,20 @@
     NewsFeedItemViewController * newsFeedItemViewController;
     NewsFeedItemDetailsViewController * newsFeedItemDetailsViewController;
     
-    IBOutlet NSObject<NewsFeedCacheReader> * cacheReader;
+    IBOutlet NSObject<NewsFeedCacheReader> * newsFeedCacheReader;
     IBOutlet NSObject<LogInStateReader> * logInState;
+    IBOutlet NSObject<UserCacheReader> * userCacheReader;
+    IBOutlet NSObject<AvatarCacheReader> * avatarCacheReader;
 
     IBOutlet GitHubNewsFeedServiceFactory * newsFeedServiceFactory;
 
     GitHubNewsFeedService * newsFeed;
+
+    IBOutlet GravatarServiceFactory * gravatarServiceFactory;
+    GravatarService * gravatarService;
+
+    // mapping of email address -> usernames
+    NSMutableDictionary * usernames;
 }
 
 - (void)updateNewsFeed;

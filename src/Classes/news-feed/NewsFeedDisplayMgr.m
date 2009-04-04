@@ -5,6 +5,8 @@
 #import "NewsFeedDisplayMgr.h"
 #import "GitHubNewsFeedService.h"
 #import "GitHubNewsFeedServiceFactory.h"
+#import "GravatarService.h"
+#import "GravatarServiceFactory.h"
 #import "RssItem.h"
 #import "RssItem+ParsingHelpers.h"
 #import "RepoKey.h"
@@ -16,6 +18,15 @@
 #import "UIAlertView+CreationHelpers.h"
 
 @interface NewsFeedDisplayMgr (Private)
+
+- (NSDictionary *)cachedAvatarsFromRssItems:(NSArray *)rssItems;
+
+- (NSSet *)userEmailAddressesFromRssItems:(NSArray *)rssItems;
+
+- (UserInfo *)cachedUserInfoForUsername:(NSString *)username;
+- (NSString *)usernameForEmailAddress:(NSString *)emailAddress;
+
+- (BOOL)isPrimaryUser:(NSString *)username;
 
 - (NSObject<UserDisplayMgr> *)userDisplayMgr;
 - (NSObject<RepoSelector> *)repoSelector;
@@ -41,10 +52,17 @@
     [newsFeedItemViewController release];
     [newsFeedItemDetailsViewController release];
     
-    [cacheReader release];
+    [newsFeedCacheReader release];
     [logInState release];
+    [userCacheReader release];
+    [avatarCacheReader release];
 
     [newsFeed release];
+
+    [gravatarServiceFactory release];
+    [gravatarService release];
+
+    [usernames release];
     
     [super dealloc];
 }
@@ -53,6 +71,11 @@
 {
     newsFeed = [[newsFeedServiceFactory createGitHubNewsFeedService] retain];
     newsFeed.delegate = self;
+
+    gravatarService = [[gravatarServiceFactory createGravatarService] retain];
+    gravatarService.delegate = self;
+
+    usernames = [[NSMutableDictionary alloc] init];
     
     UIBarButtonItem * refreshButton =
         [[[UIBarButtonItem alloc]
@@ -79,8 +102,10 @@
         setNoConnectionText:
         NSLocalizedString(@"nodata.noconnection.text", @"")];
         
-        NSArray * rssItems = [cacheReader primaryUserNewsFeed];
+        NSArray * rssItems = [newsFeedCacheReader primaryUserNewsFeed];
+        NSDictionary * avatars = [self cachedAvatarsFromRssItems:rssItems];
         [newsFeedTableViewController updateRssItems:rssItems];
+        [newsFeedTableViewController updateAvatars:avatars];
 
         [newsFeed fetchNewsFeedForUsername:logInState.login];
         
@@ -153,8 +178,18 @@
 
 - (void)newsFeed:(NSArray *)newsItems fetchedForUsername:(NSString *)username
 {
-    [newsFeedTableViewController updateRssItems:newsItems];
+    // display any available cached avatars
+    NSDictionary * avatars = [self cachedAvatarsFromRssItems:newsItems];
 
+    [newsFeedTableViewController updateRssItems:newsItems];
+    [newsFeedTableViewController updateAvatars:avatars];
+
+    // fetch fresh avatars
+    NSSet * emailAddresses = [self userEmailAddressesFromRssItems:newsItems];
+    for (NSString * emailAddress in emailAddresses)
+        [gravatarService fetchAvatarForEmailAddress:emailAddress];
+
+    // update the network aware view controller
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];
 }
@@ -174,6 +209,95 @@
     [alertView show];
 
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
+}
+
+#pragma mark GravatarServiceDelegate implementation
+
+- (void)avatar:(UIImage *)avatar fetchedForEmailAddress:(NSString *)emailAddress
+{
+    NSLog(@"Avatar received: '%@' => %@", emailAddress, avatar);
+
+    NSString * username = [self usernameForEmailAddress:emailAddress];
+
+    [newsFeedTableViewController updateAvatar:avatar forUsername:username];
+}
+
+- (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
+                                     error:(NSError *)error
+{
+    NSLog(@"Failed to retrieve avatar for email address: '%@' error: '%@'.",
+        emailAddress, error);
+
+    NSString * title =
+        NSLocalizedString(@"github.newsfeedupdate.failed.alert.title", @"");
+    UIAlertView * alertView =
+        [UIAlertView simpleAlertViewWithTitle:title
+                                      message:error.localizedDescription];
+
+    [alertView show];
+}
+
+#pragma mark Working with avatars
+
+- (NSDictionary *)cachedAvatarsFromRssItems:(NSArray *)rssItems
+{
+    NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+
+    for (RssItem * item in rssItems) {
+        if ([dict objectForKey:item.author] == nil) {
+            UserInfo * ui = [self cachedUserInfoForUsername:item.author];
+
+            NSString * email = [ui.details objectForKey:@"email"];
+            if (email) {
+                [usernames setObject:item.author forKey:email];
+
+                UIImage * avatar =
+                    [avatarCacheReader avatarForEmailAddress:email];
+                if (avatar)
+                    [dict setObject:avatar forKey:item.author];
+            }
+        }
+    }
+
+    return dict;
+}
+
+- (NSSet *)userEmailAddressesFromRssItems:(NSArray *)rssItems
+{
+    NSMutableSet * emails = [NSMutableSet setWithCapacity:rssItems.count];
+
+    for (RssItem * item in rssItems) {
+        UserInfo * ui = [self cachedUserInfoForUsername:item.author];
+
+        NSString * email = [ui.details objectForKey:@"email"];
+        if (email) {
+            [emails addObject:email];
+            [usernames setObject:item.author forKey:email];
+        }
+    }
+
+    return emails;
+}
+
+#pragma mark Working with users
+
+- (UserInfo *)cachedUserInfoForUsername:(NSString *)username
+{
+    return [self isPrimaryUser:username] ?
+        userCacheReader.primaryUser :
+        [userCacheReader userWithUsername:username];
+}
+
+- (NSString *)usernameForEmailAddress:(NSString *)emailAddress
+{
+    return [usernames objectForKey:emailAddress];
+}
+
+#pragma mark General helpers
+
+- (BOOL)isPrimaryUser:(NSString *)username
+{
+    return [logInState.login isEqualToString:username];
 }
 
 #pragma mark Accessors

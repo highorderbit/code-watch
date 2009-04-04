@@ -37,6 +37,7 @@
     [repoCachePersistenceStore release];
     [commitCachePersistenceStore release];
     [contactCachePersistenceStore release];
+    [avatarCachePersistenceStore release];
     
     [favoriteUsersPersistenceStore release];
     [favoriteUsersViewController release];
@@ -77,6 +78,7 @@
     [repoCachePersistenceStore save];
     [commitCachePersistenceStore save];
     [contactCachePersistenceStore save];
+    [avatarCachePersistenceStore save];
     [favoriteUsersPersistenceStore save];
     [favoriteReposPersistenceStore save];
 }
@@ -89,6 +91,7 @@
     [repoCachePersistenceStore load];
     [commitCachePersistenceStore load];
     [contactCachePersistenceStore load];
+    [avatarCachePersistenceStore load];
     [favoriteUsersPersistenceStore load];
     [favoriteReposPersistenceStore load];
 }

@@ -7,12 +7,20 @@
 #import "NewsFeedTableViewCell.h"
 #import "NSString+RegexKitLiteHelpers.h"
 
+@interface NewsFeedTableViewController (Private)
+
+- (void)setRssItems:(NSArray *)someRssItems;
+- (void)setAvatars:(NSDictionary *)someAvatars;
+
+@end
+
 @implementation NewsFeedTableViewController
 
 - (void)dealloc
 {
     [delegate release];
     [rssItems release];
+    [avatars release];
     [super dealloc];
 }
 
@@ -58,9 +66,10 @@
         @"HEAD is <a href=\".*\">(.*)</a>"];
     NSString * summary =
         head ? [NSString stringWithFormat:@"HEAD is %@", head] : nil;
+    UIImage * avatar = [avatars objectForKey:rssItem.author];
 
     [cell updateAuthor:rssItem.author pubDate:rssItem.pubDate
-        subject:rssItem.subject summary:summary];
+        subject:rssItem.subject summary:summary avatar:avatar];
     
     return cell;
 }
@@ -82,12 +91,41 @@
 
 - (void)updateRssItems:(NSArray *)someRssItems
 {
-    someRssItems = [someRssItems copy];
-    [rssItems release];
-    rssItems = someRssItems;
-    
+    [self setRssItems:someRssItems];
+
     // update view
     [self.tableView reloadData];
+}
+
+- (void)updateAvatars:(NSDictionary *)someAvatars
+{
+    [self setAvatars:someAvatars];
+
+    // update view
+    [self.tableView reloadData];
+}
+
+- (void)updateAvatar:(UIImage *)avatar forUsername:(NSString *)username
+{
+    [avatars setObject:avatar forKey:username];
+
+    [self.tableView reloadData];
+}
+
+#pragma mark Accessors
+
+- (void)setRssItems:(NSArray *)someRssItems
+{
+    NSArray * tmp = [someRssItems copy];
+    [rssItems release];
+    rssItems = tmp;
+}
+
+- (void)setAvatars:(NSDictionary *)someAvatars
+{
+    NSMutableDictionary * tmp = [someAvatars mutableCopy];
+    [avatars release];
+    avatars = tmp;
 }
 
 @end

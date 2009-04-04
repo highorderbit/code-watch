@@ -5,7 +5,6 @@
 #import "GitHubService.h"
 
 #import "GitHub.h"
-#import "Gravatar.h"
 
 #import "UIApplication+NetworkActivityIndicatorAdditions.h"
 
@@ -36,7 +35,6 @@
 
 - (RepoInfo *)repoInfoForUser:username repo:(NSString *)repo;
 - (BOOL)isPrimaryUser:(NSString *)username;
-- (void)fetchAvatarForEmailAddress:(NSString *)emailAddress;
 
 @end
 
@@ -57,7 +55,6 @@
     [usernameForLogInAttempt release];
 
     [gitHub release];
-    [gravatar release];
 
     [super dealloc];
 }
@@ -101,11 +98,6 @@
                                       format:apiFormat
                                      version:apiVersion
                                     delegate:self];
-
-    NSString * gravatarBaseUrl =
-        [configReader valueForKey:@"GravatarApiBaseUrl"];
-    gravatar = [[Gravatar alloc] initWithBaseUrlString:gravatarBaseUrl
-                                              delegate:self];
 }
 
 #pragma mark Logging in
@@ -200,11 +192,6 @@
     if ([delegate respondsToSelector:selector])
         [delegate userInfo:ui repoInfos:repos fetchedForUsername:username];
 
-    // fetch user's Gravatar
-    NSString * email = [ui.details objectForKey:@"email"];
-    if (email)
-        [self fetchAvatarForEmailAddress:email];
-
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
@@ -239,19 +226,6 @@
     if ([delegate respondsToSelector:selector])
         [delegate commits:commitInfos fetchedForRepo:repo username:username];
 
-    NSMutableSet * avatarRequests =
-        [NSMutableSet setWithCapacity:commitKeys.count];
-    for (NSString * key in commitKeys) {
-        CommitInfo * commit = [commitInfos objectForKey:key];
-        NSString * email =
-            [[commit.details objectForKey:@"committer"] objectForKey:@"email"];
-
-        if (![avatarRequests containsObject:email]) {
-            [self fetchAvatarForEmailAddress:email];
-            [avatarRequests addObject:email];
-        }
-    }
-
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
@@ -271,11 +245,6 @@
     if ([delegate respondsToSelector:selector])
         [delegate commitInfo:commitInfo fetchedForCommit:commitKey
             repo:repo username:username];
-
-    NSString * email =
-        [[commitInfo.details objectForKey:@"committer"] objectForKey:@"email"];
-    if (email)
-        [self fetchAvatarForEmailAddress:email];
 
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
@@ -319,28 +288,6 @@
     SEL selector = @selector(failedToSearchReposForString:error:);
     if ([delegate respondsToSelector:selector])
         [delegate failedToSearchReposForString:searchString error:error];
-
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-}
-
-#pragma mark GravatarDelegate implementation
-
-- (void)avatar:(UIImage *)avatar
-    fetchedForEmailAddress:(NSString *)emailAddress
-{
-    SEL selector = @selector(avatar:fetchedForEmailAddress:);
-    if ([delegate respondsToSelector:selector])
-        [delegate avatar:avatar fetchedForEmailAddress:emailAddress];
-
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-}
-
-- (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
-    error:(NSError *)error
-{
-    SEL selector = @selector(failedToFetchAvatarForEmailAddress:error:);
-    if ([delegate respondsToSelector:selector])
-        [delegate failedToFetchAvatarForEmailAddress:emailAddress error:error];
 
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
@@ -562,13 +509,6 @@
 - (BOOL)isPrimaryUser:(NSString *)username
 {
     return [username isEqualToString:logInStateReader.login];
-}
-
-- (void)fetchAvatarForEmailAddress:(NSString *)emailAddress
-{
-    [[UIApplication sharedApplication] networkActivityIsStarting];
-
-    [gravatar fetchAvatarForEmailAddress:emailAddress];
 }
 
 #pragma mark Accessors
