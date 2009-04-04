@@ -13,10 +13,12 @@
 - (void)dealloc
 {
     [gitHubServiceFactory release];
+    [gravatarServiceFactory release];
     [commitSelectorFactory release];
     [logInState release];
     [repoCache release];
     [commitCache release];
+    [avatarCache release];
     [favoriteReposState release];
     [super dealloc];
 }
@@ -43,9 +45,11 @@
     RepoDisplayMgr * repoDisplayMgr = 
         [[RepoDisplayMgr alloc] initWithLogInStateReader:logInState
         repoCacheReader:repoCache commitCacheReader:commitCache
+        avatarCacheReader:avatarCache
         navigationController:navigationController
         networkAwareViewController:networkAwareViewController
         repoViewController:repoViewController gitHubService:gitHubService
+        gravatarServiceFactory:gravatarServiceFactory
         commitSelector:commitSelector];
         
     repoViewController.delegate = repoDisplayMgr;

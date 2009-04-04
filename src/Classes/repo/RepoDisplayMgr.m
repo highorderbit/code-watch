@@ -6,6 +6,8 @@
 #import "NetworkAwareViewController.h"
 #import "RepoViewController.h"
 #import "GitHubService.h"
+#import "GravatarService.h"
+#import "GravatarServiceFactory.h"
 
 @interface RepoDisplayMgr (Private)
 
@@ -19,26 +21,30 @@
 - (void)setUsername:(NSString *)username;
 - (void)setRepoInfo:(RepoInfo *)info;
 - (void)setRepoName:(NSString *)name;
+- (void)setAvatar:(UIImage *)avatar;
 - (void)setCommits:(NSDictionary *)someCommits;
 
 @end
 
 @implementation RepoDisplayMgr
 
-@synthesize repoName, repoInfo, commits;
+@synthesize username, repoName, repoInfo, avatar, commits;
 
 - (void)dealloc
 {
     [username release];
     [repoName release];
     [repoInfo release];
+    [avatar release];
     [commits release];
     [logInStateReader release];
     [repoCacheReader release];
     [navigationController release];
     [networkAwareViewController release];
     [repoViewController release];
-    [gitHub release];
+    [gitHubService release];
+    [gravatarService release];
+    [gravatarServiceFactory release];
     [commitSelector release];
     [super dealloc];
 }
@@ -49,6 +55,8 @@
     (NSObject<RepoCacheReader> *) aRepoCacheReader
     commitCacheReader:
     (NSObject<CommitCacheReader> *) aCommitCacheReader
+    avatarCacheReader:
+    (NSObject<AvatarCacheReader> *)anAvatarCacheReader
     navigationController:
     (UINavigationController *) aNavigationController
     networkAwareViewController:
@@ -57,6 +65,8 @@
     (RepoViewController *) aRepoViewController
     gitHubService:
     (GitHubService *) aGitHubService
+    gravatarServiceFactory:
+    (GravatarServiceFactory *)aGravatarServiceFactory
     commitSelector:
     (NSObject<CommitSelector> *) aCommitSelector
 {
@@ -64,11 +74,15 @@
         logInStateReader = [aLogInStateReader retain];
         repoCacheReader = [aRepoCacheReader retain];
         commitCacheReader = [aCommitCacheReader retain];
+        avatarCacheReader = [anAvatarCacheReader retain];
         navigationController = [aNavigationController retain];
         networkAwareViewController = [aNetworkAwareViewController retain];
         repoViewController = [aRepoViewController retain];
-        gitHub = [aGitHubService retain];
+        gitHubService = [aGitHubService retain];
         commitSelector = [aCommitSelector retain];
+
+        gravatarServiceFactory = [aGravatarServiceFactory retain];
+        gravatarService = [gravatarServiceFactory createGravatarService];
         
         [self addRefreshButton];
     }
@@ -112,7 +126,7 @@
                                          info:repoInfo];
 
     // refresh user info so we can refresh repo metadata (description, etc.)
-    [gitHub fetchInfoForUsername:username];
+    [gitHubService fetchInfoForUsername:username];
 
     networkAwareViewController.navigationItem.title =
         NSLocalizedString(@"repo.view.title", @"");
@@ -133,7 +147,7 @@
         if ([repoName isEqualToString:repo]) {
             [self setRepoInfo:[repos objectForKey:repo]];
             // get the commit details
-            [gitHub fetchInfoForRepo:repo username:updatedUsername];
+            [gitHubService fetchInfoForRepo:repo username:updatedUsername];
 
             break;
         }
@@ -212,8 +226,10 @@
     [networkAwareViewController setUpdatingState:kDisconnected];
 }
 
-- (void)avatar:(UIImage *)avatar fetchedForEmailAddress:(NSString *)emailAddress
+- (void)avatar:(UIImage *)anAvatar
+    fetchedForEmailAddress:(NSString *)emailAddress
 {
+    [self setAvatar:avatar];
     [repoViewController updateWithAvatar:avatar forEmailAddress:emailAddress];
 }
 
@@ -308,6 +324,13 @@
     NSString * tmp = [name copy];
     [repoName release];
     repoName = tmp;
+}
+
+- (void)setAvatar:(UIImage *)anAvatar
+{
+    UIImage * tmp = [anAvatar retain];
+    [avatar release];
+    avatar = tmp;
 }
 
 - (void)setCommits:(NSDictionary *)someCommits
