@@ -4,6 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GitHubServiceFactory.h"
+#import "GravatarServiceFactory.h"
 #import "RepoSelectorFactory.h"
 #import "UserCache.h"
 #import "FavoriteUsersState.h"
@@ -13,6 +14,7 @@
 @interface UserDisplayMgrFactory : NSObject
 {
     IBOutlet GitHubServiceFactory * gitHubServiceFactory;
+    IBOutlet GravatarServiceFactory * gravatarServiceFactory;
     IBOutlet RepoSelectorFactory * repoSelectorFactory;
     IBOutlet UserCache * userCache;
     IBOutlet FavoriteUsersState * favoriteUsersState;

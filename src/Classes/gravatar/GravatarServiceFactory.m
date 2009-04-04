@@ -13,7 +13,7 @@
     [super dealloc];
 }
 
-- (GravatarService *)create
+- (GravatarService *)createGravatarService
 {
     NSString * baseUrl = [configReader valueForKey:@"GravatarApiBaseUrl"];
     return [[GravatarService alloc] initWithGravatarBaseUrlString:baseUrl];

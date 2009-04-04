@@ -3,7 +3,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GitHubService.h"
+#import "ConfigReader.h"
+
+@class LogInState, UserCache, RepoCache, CommitCache, GitHubService;
 
 @interface GitHubServiceFactory : NSObject
 {

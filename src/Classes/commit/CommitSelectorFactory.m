@@ -6,6 +6,7 @@
 #import "CommitViewController.h"
 #import "NetworkAwareViewController.h"
 #import "CommitDisplayMgr.h"
+#import "GitHubService.h"
 
 @implementation CommitSelectorFactory
 

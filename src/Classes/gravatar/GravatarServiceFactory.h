@@ -12,6 +12,6 @@
     IBOutlet NSObject<ConfigReader> * configReader;
 }
 
-- (GravatarService *)create;
+- (GravatarService *)createGravatarService;
 
 @end

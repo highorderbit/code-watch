@@ -9,6 +9,8 @@
 #import "UIUserDisplayMgr.h"
 #import "NewsFeedTableViewController.h"
 #import "UIRecentActivityDisplayMgr.h"
+#import "GitHubService.h"
+#import "GravatarService.h"
 
 @interface UserDisplayMgrFactory (Private)
 
@@ -24,6 +26,7 @@
 - (void)dealloc
 {
     [gitHubServiceFactory release];
+    [gravatarServiceFactory release];
     [repoSelectorFactory release];
     [userCache release];
     [favoriteUsersState release];
@@ -44,6 +47,9 @@
         initWithTargetViewController:userViewController];
     
     GitHubService * gitHubService = [gitHubServiceFactory createGitHubService];
+
+    GravatarService * gravatarService =
+        [gravatarServiceFactory createGravatarService];
     
     NSObject<RepoSelector> * repoSelector =
         [repoSelectorFactory
@@ -55,11 +61,12 @@
         networkAwareViewController:networkAwareViewController
         userViewController:userViewController userCacheReader:userCache
         repoSelector:repoSelector gitHubService:gitHubService
-        contactCacheSetter:contactCache];
+        gravatarService:gravatarService contactCacheSetter:contactCache];
         
     userViewController.delegate = userDisplayMgr;
     networkAwareViewController.delegate = userDisplayMgr;
     gitHubService.delegate = userDisplayMgr;
+    gravatarService.delegate = userDisplayMgr;
     
     return userDisplayMgr;
 }
