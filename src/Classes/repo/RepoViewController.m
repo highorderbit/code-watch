@@ -27,11 +27,13 @@
     [delegate release];
 
     [headerView release];
+    [footerView release];
 
     [repoNameLabel release];
     [repoDescriptionLabel release];
     [repoInfoLabel release];
     [repoImageView release];
+    [addToFavoritesButton release];
 
     [repoName release];
     [repoInfo release];
@@ -40,6 +42,7 @@
 
     [super dealloc];
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,6 +50,10 @@
     [self setAvatars:[[NSMutableDictionary alloc] init]];
 
     self.tableView.tableHeaderView = headerView;
+    self.tableView.tableFooterView = footerView;
+    
+    [addToFavoritesButton setTitleColor:[UIColor grayColor]
+        forState:UIControlStateDisabled];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -157,7 +164,7 @@
     repoDescriptionLabel.text = repoDesc;
 
     CGRect headerViewFrame = headerView.frame;
-    headerViewFrame.size.height = 57.0 + height;
+    headerViewFrame.size.height = 357.0 + height;
     headerView.frame = headerViewFrame;
 
     // force the header view to redraw
@@ -184,7 +191,16 @@
         [NSString stringWithFormat:@"%@ / %@", watchersLabel, forksLabel];
 }
 
-    #pragma mark Accessors
+#pragma mark Add to favorites
+
+- (IBAction)addToFavorites:(id)sender
+{
+    NSLog(@"Adding repo '%@' to favorites...", repoName);
+//    [favoriteRepoStateSetter addFavoriteUser:username];
+    addToFavoritesButton.enabled = NO;
+}
+
+#pragma mark Accessors
 
 - (void)setRepoName:(NSString *)name
 {

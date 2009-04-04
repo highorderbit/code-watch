@@ -12,11 +12,13 @@
     IBOutlet NSObject<RepoViewControllerDelegate> * delegate;
 
     IBOutlet UIView * headerView;
+    IBOutlet UIView * footerView;
 
     IBOutlet UILabel * repoNameLabel;
     IBOutlet UILabel * repoDescriptionLabel;
     IBOutlet UILabel * repoInfoLabel;
     IBOutlet UIImageView * repoImageView;
+    IBOutlet UIButton * addToFavoritesButton;
 
     NSString * repoName;
     RepoInfo * repoInfo;
@@ -32,5 +34,7 @@
 
 - (void)updateWithAvatar:(UIImage *)avatar
          forEmailAddress:(NSString *)emailAddress;
+         
+- (IBAction)addToFavorites:(id)sender;
 
 @end
