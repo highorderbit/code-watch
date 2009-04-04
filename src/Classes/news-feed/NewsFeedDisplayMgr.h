@@ -52,6 +52,9 @@
 
     IBOutlet GravatarServiceFactory * gravatarServiceFactory;
     GravatarService * gravatarService;
+
+    // mapping of email address -> usernames
+    NSMutableDictionary * usernames;
 }
 
 - (void)updateNewsFeed;

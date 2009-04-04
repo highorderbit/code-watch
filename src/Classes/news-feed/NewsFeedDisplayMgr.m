@@ -20,7 +20,11 @@
 @interface NewsFeedDisplayMgr (Private)
 
 - (NSDictionary *)cachedAvatarsFromRssItems:(NSArray *)rssItems;
+
+- (NSSet *)userEmailAddressesFromRssItems:(NSArray *)rssItems;
+
 - (UserInfo *)cachedUserInfoForUsername:(NSString *)username;
+- (NSString *)usernameForEmailAddress:(NSString *)emailAddress;
 
 - (BOOL)isPrimaryUser:(NSString *)username;
 
@@ -57,6 +61,8 @@
 
     [gravatarServiceFactory release];
     [gravatarService release];
+
+    [usernames release];
     
     [super dealloc];
 }
@@ -68,6 +74,8 @@
 
     gravatarService = [[gravatarServiceFactory createGravatarService] retain];
     gravatarService.delegate = self;
+
+    usernames = [[NSMutableDictionary alloc] init];
     
     UIBarButtonItem * refreshButton =
         [[[UIBarButtonItem alloc]
@@ -170,11 +178,18 @@
 
 - (void)newsFeed:(NSArray *)newsItems fetchedForUsername:(NSString *)username
 {
+    // display any available cached avatars
     NSDictionary * avatars = [self cachedAvatarsFromRssItems:newsItems];
 
     [newsFeedTableViewController updateRssItems:newsItems];
     [newsFeedTableViewController updateAvatars:avatars];
 
+    // fetch fresh avatars
+    NSSet * emailAddresses = [self userEmailAddressesFromRssItems:newsItems];
+    for (NSString * emailAddress in emailAddresses)
+        [gravatarService fetchAvatarForEmailAddress:emailAddress];
+
+    // update the network aware view controller
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];
 }
@@ -201,6 +216,10 @@
 - (void)avatar:(UIImage *)avatar fetchedForEmailAddress:(NSString *)emailAddress
 {
     NSLog(@"Avatar received: '%@' => %@", emailAddress, avatar);
+
+    NSString * username = [self usernameForEmailAddress:emailAddress];
+
+    [newsFeedTableViewController updateAvatar:avatar forUsername:username];
 }
 
 - (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
@@ -230,6 +249,8 @@
 
             NSString * email = [ui.details objectForKey:@"email"];
             if (email) {
+                [usernames setObject:item.author forKey:email];
+
                 UIImage * avatar =
                     [avatarCacheReader avatarForEmailAddress:email];
                 if (avatar)
@@ -249,8 +270,10 @@
         UserInfo * ui = [self cachedUserInfoForUsername:item.author];
 
         NSString * email = [ui.details objectForKey:@"email"];
-        if (email)
+        if (email) {
             [emails addObject:email];
+            [usernames setObject:item.author forKey:email];
+        }
     }
 
     return emails;
@@ -263,6 +286,11 @@
     return [self isPrimaryUser:username] ?
         userCacheReader.primaryUser :
         [userCacheReader userWithUsername:username];
+}
+
+- (NSString *)usernameForEmailAddress:(NSString *)emailAddress
+{
+    return [usernames objectForKey:emailAddress];
 }
 
 #pragma mark General helpers

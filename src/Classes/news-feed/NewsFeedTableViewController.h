@@ -10,10 +10,11 @@
     IBOutlet NSObject<NewsFeedTableViewControllerDelegate> * delegate;
 
     NSArray * rssItems;
-    NSDictionary * avatars;
+    NSMutableDictionary * avatars;
 }
 
 - (void)updateRssItems:(NSArray *)someRssItems;
 - (void)updateAvatars:(NSDictionary *)someAvatars;
+- (void)updateAvatar:(UIImage *)avatar forUsername:(NSString *)username;
 
 @end

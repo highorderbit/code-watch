@@ -105,6 +105,13 @@
     [self.tableView reloadData];
 }
 
+- (void)updateAvatar:(UIImage *)avatar forUsername:(NSString *)username
+{
+    [avatars setObject:avatar forKey:username];
+
+    [self.tableView reloadData];
+}
+
 #pragma mark Accessors
 
 - (void)setRssItems:(NSArray *)someRssItems
@@ -116,7 +123,7 @@
 
 - (void)setAvatars:(NSDictionary *)someAvatars
 {
-    NSDictionary * tmp = [someAvatars copy];
+    NSMutableDictionary * tmp = [someAvatars mutableCopy];
     [avatars release];
     avatars = tmp;
 }
