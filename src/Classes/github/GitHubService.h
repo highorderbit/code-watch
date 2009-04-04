@@ -5,7 +5,6 @@
 #import <Foundation/Foundation.h>
 #import "GitHubServiceDelegate.h"
 #import "GitHubDelegate.h"
-#import "GravatarDelegate.h"
 #import "LogInStateReader.h"
 #import "LogInStateSetter.h"
 #import "UserCacheSetter.h"
@@ -20,9 +19,9 @@
 #import "RepoCache.h"
 #import "CommitCache.h"
 
-@class GitHub, Gravatar;
+@class GitHub;
 
-@interface GitHubService : NSObject <GitHubDelegate, GravatarDelegate>
+@interface GitHubService : NSObject <GitHubDelegate>
 {
     IBOutlet id<GitHubServiceDelegate> delegate;
 
@@ -40,7 +39,6 @@
     NSString * usernameForLogInAttempt;
 
     GitHub * gitHub;
-    Gravatar * gravatar;
 }
 
 @property (nonatomic, retain) <GitHubServiceDelegate> delegate;
