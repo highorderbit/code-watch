@@ -6,7 +6,6 @@
 #import "RepoActivityTableViewCell.h"
 #import "RepoInfo.h"
 #import "CommitInfo.h"
-
 #import "NSDate+GitHubStringHelpers.h"
 #import "UILabel+DrawingAdditions.h"
 
@@ -21,10 +20,14 @@
 @implementation RepoViewController
 
 @synthesize delegate;
+@synthesize favoriteReposStateSetter;
+@synthesize favoriteReposStateReader;
 
 - (void)dealloc
 {
     [delegate release];
+    [favoriteReposStateSetter release];
+    [favoriteReposStateReader release];
 
     [headerView release];
     [footerView release];
@@ -67,6 +70,10 @@
         [UIImage imageNamed:@"public-icon.png"];
 
     [self updateHeaderView];
+    
+    addToFavoritesButton.enabled =
+        ![favoriteReposStateReader.favoriteRepoKeys
+        containsObject:self.repoKey];
 }
 
 #pragma mark Table view methods
@@ -196,11 +203,19 @@
 - (IBAction)addToFavorites:(id)sender
 {
     NSLog(@"Adding repo '%@' to favorites...", repoName);
-//    [favoriteRepoStateSetter addFavoriteUser:username];
+    [favoriteReposStateSetter addFavoriteRepoKey:self.repoKey];
     addToFavoritesButton.enabled = NO;
 }
 
 #pragma mark Accessors
+
+- (RepoKey *)repoKey
+{
+    NSString * owner = [repoInfo.details objectForKey:@"owner"];
+
+    return [[[RepoKey alloc]
+        initWithUsername:owner repoName:repoName] autorelease];
+}
 
 - (void)setRepoName:(NSString *)name
 {
