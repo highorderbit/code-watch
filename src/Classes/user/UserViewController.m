@@ -358,6 +358,7 @@ enum Section
 
 - (IBAction)addFavorite:(id)sender
 {
+    NSLog(@"Adding user '%@' to favorites...", username);
     [favoriteUsersStateSetter addFavoriteUser:username];
     addToFavoritesButton.enabled = NO;
 }

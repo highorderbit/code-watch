@@ -17,6 +17,7 @@
     [logInState release];
     [repoCache release];
     [commitCache release];
+    [favoriteReposState release];
     [super dealloc];
 }
 
@@ -26,6 +27,8 @@
 {
     RepoViewController * repoViewController =
         [[RepoViewController alloc] initWithNibName:@"RepoView" bundle:nil];
+    repoViewController.favoriteReposStateReader = favoriteReposState;
+    repoViewController.favoriteReposStateSetter = favoriteReposState;
 
     NetworkAwareViewController * networkAwareViewController =
         [[NetworkAwareViewController alloc]

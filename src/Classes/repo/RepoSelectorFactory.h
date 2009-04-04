@@ -9,6 +9,7 @@
 #import "RepoCache.h"
 #import "CommitCache.h"
 #import "RepoSelector.h"
+#import "FavoriteReposState.h"
 
 @interface RepoSelectorFactory : NSObject
 {
@@ -17,6 +18,7 @@
     IBOutlet LogInState * logInState;
     IBOutlet RepoCache * repoCache;
     IBOutlet CommitCache * commitCache;
+    IBOutlet FavoriteReposState * favoriteReposState;
 }
 
 - (NSObject<RepoSelector> *)
