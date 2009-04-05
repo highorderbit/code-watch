@@ -1984,6 +1984,14 @@
 					</object>
 					<int key="connectionID">542</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gitHubServiceFactory</string>
+						<reference key="source" ref="348022222"/>
+						<reference key="destination" ref="1068984684"/>
+					</object>
+					<int key="connectionID">543</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2828,7 +2836,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">542</int>
+			<int key="maxID">543</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3388,6 +3396,7 @@
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>avatarCacheReader</string>
+							<string>gitHubServiceFactory</string>
 							<string>gravatarServiceFactory</string>
 							<string>logInState</string>
 							<string>navigationController</string>
@@ -3402,6 +3411,7 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSObject</string>
+							<string>GitHubServiceFactory</string>
 							<string>GravatarServiceFactory</string>
 							<string>NSObject</string>
 							<string>UINavigationController</string>

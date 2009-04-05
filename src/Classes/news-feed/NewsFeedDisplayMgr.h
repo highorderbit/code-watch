@@ -11,6 +11,7 @@
 #import "UserCacheReader.h"
 #import "AvatarCacheReader.h"
 #import "GitHubNewsFeedServiceDelegate.h"
+#import "GitHubServiceDelegate.h"
 #import "GravatarServiceDelegate.h"
 #import "NewsFeedTableViewControllerDelegate.h"
 #import "NewsFeedItemViewControllerDelegate.h"
@@ -19,14 +20,16 @@
 
 @class UserDisplayMgrFactory, RepoSelectorFactory;
 @class GitHubNewsFeedService, GitHubNewsFeedServiceFactory;
+@class GitHubService, GitHubServiceFactory;
 @class GravatarService, GravatarServiceFactory;
 @class NewsFeedItemViewController, NewsFeedItemDetailsViewController;
 
 @interface NewsFeedDisplayMgr :
     NSObject
     <NetworkAwareViewControllerDelegate,
-    GitHubNewsFeedServiceDelegate, GravatarServiceDelegate,
-    NewsFeedTableViewControllerDelegate, NewsFeedItemViewControllerDelegate>
+    GitHubNewsFeedServiceDelegate, GitHubServiceDelegate,
+    GravatarServiceDelegate, NewsFeedTableViewControllerDelegate,
+    NewsFeedItemViewControllerDelegate>
 {
     IBOutlet UserDisplayMgrFactory * userDisplayMgrFactory;
     NSObject<UserDisplayMgr> * userDisplayMgr;
@@ -49,6 +52,9 @@
     IBOutlet GitHubNewsFeedServiceFactory * newsFeedServiceFactory;
 
     GitHubNewsFeedService * newsFeed;
+
+    IBOutlet GitHubServiceFactory * gitHubServiceFactory;
+    GitHubService * gitHubService;
 
     IBOutlet GravatarServiceFactory * gravatarServiceFactory;
     GravatarService * gravatarService;

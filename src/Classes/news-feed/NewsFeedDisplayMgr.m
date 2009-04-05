@@ -5,6 +5,8 @@
 #import "NewsFeedDisplayMgr.h"
 #import "GitHubNewsFeedService.h"
 #import "GitHubNewsFeedServiceFactory.h"
+#import "GitHubService.h"
+#import "GitHubServiceFactory.h"
 #import "GravatarService.h"
 #import "GravatarServiceFactory.h"
 #import "RssItem.h"
@@ -24,7 +26,12 @@
 - (NSSet *)userEmailAddressesFromRssItems:(NSArray *)rssItems;
 
 - (UserInfo *)cachedUserInfoForUsername:(NSString *)username;
+
 - (NSString *)usernameForEmailAddress:(NSString *)emailAddress;
+- (void)username:(NSString *)username
+    mapsToEmailAddress:(NSString *)emailAddress;
+
+- (void)fetchUserInfoForUnknownUsersInRssItems:(NSArray *)rssItems;
 
 - (BOOL)isPrimaryUser:(NSString *)username;
 
@@ -59,6 +66,9 @@
 
     [newsFeed release];
 
+    [gitHubServiceFactory release];
+    [gitHubService release];
+
     [gravatarServiceFactory release];
     [gravatarService release];
 
@@ -71,6 +81,9 @@
 {
     newsFeed = [[newsFeedServiceFactory createGitHubNewsFeedService] retain];
     newsFeed.delegate = self;
+
+    gitHubService = [[gitHubServiceFactory createGitHubService] retain];
+    gitHubService.delegate = self;
 
     gravatarService = [[gravatarServiceFactory createGravatarService] retain];
     gravatarService.delegate = self;
@@ -108,6 +121,7 @@
         [newsFeedTableViewController updateAvatars:avatars];
 
         [newsFeed fetchNewsFeedForUsername:logInState.login];
+        [self fetchUserInfoForUnknownUsersInRssItems:rssItems];
         
         [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
         [networkAwareViewController setCachedDataAvailable:!!rssItems];
@@ -189,6 +203,8 @@
     for (NSString * emailAddress in emailAddresses)
         [gravatarService fetchAvatarForEmailAddress:emailAddress];
 
+    [self fetchUserInfoForUnknownUsersInRssItems:newsItems];
+
     // update the network aware view controller
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];
@@ -237,6 +253,30 @@
     [alertView show];
 }
 
+#pragma mark GitHubServiceDelegate implementation
+
+- (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
+    fetchedForUsername:(NSString *)username
+{
+    NSString * email = [info.details objectForKey:@"email"];
+    if (email) {
+        // fetch avatar for new user
+        [gravatarService fetchAvatarForEmailAddress:email];
+
+        // remember this association
+        [self username:username mapsToEmailAddress:email];
+    }
+}
+
+- (void)failedToFetchInfoForUsername:(NSString *)username
+                               error:(NSError *)error
+{
+    // log the error, but otherwise ignore it; there's not much we can do
+
+    NSLog(@"Failed to fetch info for user: '%@' error: '%@'.", username,
+        error);
+}
+
 #pragma mark Working with avatars
 
 - (NSDictionary *)cachedAvatarsFromRssItems:(NSArray *)rssItems
@@ -249,7 +289,7 @@
 
             NSString * email = [ui.details objectForKey:@"email"];
             if (email) {
-                [usernames setObject:item.author forKey:email];
+                [self username:item.author mapsToEmailAddress:email];
 
                 UIImage * avatar =
                     [avatarCacheReader avatarForEmailAddress:email];
@@ -272,7 +312,7 @@
         NSString * email = [ui.details objectForKey:@"email"];
         if (email) {
             [emails addObject:email];
-            [usernames setObject:item.author forKey:email];
+            [self username:item.author mapsToEmailAddress:email];
         }
     }
 
@@ -291,6 +331,25 @@
 - (NSString *)usernameForEmailAddress:(NSString *)emailAddress
 {
     return [usernames objectForKey:emailAddress];
+}
+
+- (void)username:(NSString *)username mapsToEmailAddress:(NSString *)email
+{
+    [usernames setObject:username forKey:email];
+}
+
+- (void)fetchUserInfoForUnknownUsersInRssItems:(NSArray *)rssItems
+{
+    NSMutableSet * users = [NSMutableSet setWithCapacity:rssItems.count];
+
+    for (RssItem * item in rssItems)
+        if ([self cachedUserInfoForUsername:item.author] == nil)
+            [users addObject:item.author];
+
+    for (NSString * user in users) {
+        NSLog(@"Fetching info for username: '%@'.", user);
+        [gitHubService fetchInfoForUsername:user];
+    }
 }
 
 #pragma mark General helpers
