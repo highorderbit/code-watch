@@ -12,6 +12,11 @@
 @interface RepoDisplayMgr (Private)
 
 - (void)addRefreshButton;
+
+- (NSSet *)uniqueEmailsForCommits:(NSDictionary *)commits;
+- (NSDictionary *)cachedAvatarsForEmailAddresses:(NSSet *)emailAddresses;
+- (void)fetchAvatarsForEmailAddresses:(NSSet *)emailAddresses;
+
 - (BOOL)loadCachedData;
 - (RepoInfo *)cachedRepoInfoForUsername:(NSString *)username
                                repoName:(NSString *)repoName;
@@ -21,24 +26,25 @@
 - (void)setUsername:(NSString *)username;
 - (void)setRepoInfo:(RepoInfo *)info;
 - (void)setRepoName:(NSString *)name;
-- (void)setAvatar:(UIImage *)avatar;
+//- (void)setAvatar:(UIImage *)avatar;
 - (void)setCommits:(NSDictionary *)someCommits;
 
 @end
 
 @implementation RepoDisplayMgr
 
-@synthesize username, repoName, repoInfo, avatar, commits;
+@synthesize username, repoName, repoInfo, /*avatar,*/ commits;
 
 - (void)dealloc
 {
     [username release];
     [repoName release];
     [repoInfo release];
-    [avatar release];
+    //[avatar release];
     [commits release];
     [logInStateReader release];
     [repoCacheReader release];
+    [avatarCacheReader release];
     [navigationController release];
     [networkAwareViewController release];
     [repoViewController release];
@@ -83,6 +89,7 @@
 
         gravatarServiceFactory = [aGravatarServiceFactory retain];
         gravatarService = [gravatarServiceFactory createGravatarService];
+        gravatarService.delegate = self;
         
         [self addRefreshButton];
     }
@@ -120,10 +127,18 @@
     [self setRepoName:repo];
 
     BOOL cachedDataAvailable = [self loadCachedData];
-    if (cachedDataAvailable)
+    if (cachedDataAvailable) {
         [repoViewController updateWithCommits:commits
                                       forRepo:repoName
                                          info:repoInfo];
+
+        NSSet * emails = [self uniqueEmailsForCommits:commits];
+        NSDictionary * avatars = [self cachedAvatarsForEmailAddresses:emails];
+        for (NSString * email in avatars) {
+            UIImage * avatar = [avatars objectForKey:email];
+            [repoViewController updateWithAvatar:avatar forEmailAddress:email];
+        }
+    }
 
     // refresh user info so we can refresh repo metadata (description, etc.)
     [gitHubService fetchInfoForUsername:username];
@@ -191,6 +206,17 @@
 
     [self setCommits:newCommits];
 
+    // update display with cached avatars
+    NSSet * emails = [self uniqueEmailsForCommits:commits];
+    NSDictionary * cachedAvatars = [self cachedAvatarsForEmailAddresses:emails];
+    for (NSString * email in cachedAvatars) {
+        UIImage * avatar = [cachedAvatars objectForKey:email];
+        [repoViewController updateWithAvatar:avatar forEmailAddress:email];
+    }
+
+    // refresh avatars
+    [self fetchAvatarsForEmailAddresses:emails];
+
     [repoViewController updateWithCommits:commits
                                   forRepo:repoName
                                      info:repoInfo];
@@ -226,10 +252,10 @@
     [networkAwareViewController setUpdatingState:kDisconnected];
 }
 
-- (void)avatar:(UIImage *)anAvatar
+- (void)avatar:(UIImage *)avatar
     fetchedForEmailAddress:(NSString *)emailAddress
 {
-    [self setAvatar:avatar];
+    //[self setAvatar:avatar];
     [repoViewController updateWithAvatar:avatar forEmailAddress:emailAddress];
 }
 
@@ -265,6 +291,41 @@
 }
 
 #pragma mark Helper methods
+
+- (NSSet *)uniqueEmailsForCommits:(NSDictionary *)someCommits
+{
+    NSMutableSet * emails = [NSMutableSet setWithCapacity:someCommits.count];
+
+    for (NSString * key in someCommits) {
+        CommitInfo * commit = [someCommits objectForKey:key];
+        NSString * email =
+            [[commit.details objectForKey:@"committer"] objectForKey:@"email"];
+        if (email)
+            [emails addObject:email];
+    }
+
+    return emails;
+}
+
+- (NSDictionary *)cachedAvatarsForEmailAddresses:(NSSet *)emailAddresses
+{
+    NSMutableDictionary * avatars =
+        [NSMutableDictionary dictionaryWithCapacity:emailAddresses.count];
+
+    for (NSString * emailAddress in emailAddresses) {
+        UIImage * avatar = [avatarCacheReader avatarForEmailAddress:emailAddress];
+        if (avatar)
+            [avatars setObject:avatar forKey:emailAddress];
+    }
+
+    return avatars;
+}
+
+- (void)fetchAvatarsForEmailAddresses:(NSSet *)emailAddresses
+{
+    for (NSString * emailAddress in emailAddresses)
+        [gravatarService fetchAvatarForEmailAddress:emailAddress];
+}
 
 - (BOOL)loadCachedData
 {
@@ -326,12 +387,14 @@
     repoName = tmp;
 }
 
+/*
 - (void)setAvatar:(UIImage *)anAvatar
 {
     UIImage * tmp = [anAvatar retain];
     [avatar release];
     avatar = tmp;
 }
+*/
 
 - (void)setCommits:(NSDictionary *)someCommits
 {

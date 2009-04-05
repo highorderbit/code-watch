@@ -6,6 +6,7 @@
 #import "RepoSelector.h"
 #import "GitHubServiceDelegate.h"
 #import "GravatarServiceDelegate.h"
+#import "GravatarServiceDelegate.h"
 #import "LogInStateReader.h"
 #import "RepoCacheReader.h"
 #import "CommitCacheReader.h"
@@ -17,12 +18,13 @@
 @class GitHubService, GravatarService, GravatarServiceFactory;
 
 @interface RepoDisplayMgr :
-    NSObject <RepoSelector, GitHubServiceDelegate, RepoViewControllerDelegate>
+    NSObject <RepoSelector, GitHubServiceDelegate, GravatarServiceDelegate,
+    RepoViewControllerDelegate>
 {
     NSString * username;
     NSString * repoName;
     RepoInfo * repoInfo;
-    UIImage * avatar;
+    //UIImage * avatar;
     NSDictionary * commits;
 
     IBOutlet NSObject<LogInStateReader> * logInStateReader;
@@ -67,7 +69,7 @@
 @property (nonatomic, copy, readonly) NSString * username;
 @property (nonatomic, copy, readonly) NSString * repoName;
 @property (nonatomic, copy, readonly) RepoInfo * repoInfo;
-@property (nonatomic, retain, readonly) UIImage * avatar;
+//@property (nonatomic, retain, readonly) UIImage * avatar;
 @property (nonatomic, copy, readonly) NSDictionary * commits;
 
 - (void)refreshRepoInfo;
