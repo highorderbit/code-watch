@@ -8,11 +8,17 @@
 #import "ChangesetViewController.h"
 #import "DiffViewController.h"
 #import "GitHubService.h"
+#import "GravatarService.h"
+#import "GravatarServiceFactory.h"
 
 @interface CommitDisplayMgr (Private)
+
 + (NSString *)changesetTypeLabel:(ChangesetType)type;
+
+- (CommitViewController *)commitViewController;
 - (ChangesetViewController *)changesetViewController;
 - (DiffViewController *)diffViewController;
+
 @end
 
 @implementation CommitDisplayMgr
@@ -23,7 +29,10 @@
     [networkAwareViewController release];
     [commitViewController release];
     [commitCacheReader release];
-    [gitHub release];
+    [avatarCacheReader release];
+    [gitHubService release];
+    [gravatarService release];
+    [gravatarServiceFactory release];
     [super dealloc];
 }
 
@@ -35,16 +44,25 @@
     (CommitViewController *)aCommitViewController
     commitCacheReader:
     (NSObject<CommitCacheReader> *)aCommitCacheReader
+    avatarCacheReader:
+    (NSObject<AvatarCacheReader> *)anAvatarCacheReader
     gitHubService:
     (GitHubService *)aGitHubService
+    gravatarServiceFactory:
+    (GravatarServiceFactory *)aGravatarServiceFactory
 {
     if (self = [super init]) {
         navigationController = [aNavigationController retain];
         networkAwareViewController = [aNetworkAwareViewController retain];
         commitViewController = [aCommitViewController retain];
         commitCacheReader = [aCommitCacheReader retain];
-        gitHub = [aGitHubService retain];
-        [self awakeFromNib];
+        avatarCacheReader = [anAvatarCacheReader retain];
+        gitHubService = [aGitHubService retain];
+
+        gravatarServiceFactory = [aGravatarServiceFactory retain];
+        gravatarService =
+            [[gravatarServiceFactory createGravatarService] retain];
+        gravatarService.delegate = self;
     }
     
     return self;
@@ -52,8 +70,7 @@
 
 - (void)awakeFromNib
 {
-    // TODO: Remove when wired in the nib
-    commitViewController.delegate = self;
+    NSLog(@"Awaking form nib.");
 }
 
 #pragma mark CommitSelector implementation
@@ -66,24 +83,28 @@
 
     CommitInfo * commitInfo = [commitCacheReader commitWithKey:commitKey];
 
-    // TODO: Consider moving changeset into its own dictionary.
+    NSString * email = 
+        [[commitInfo.details objectForKey:@"committer"] objectForKey:@"email"];
+    UIImage * avatar = [avatarCacheReader avatarForEmailAddress:email];
+    if (avatar)
+        [[self commitViewController] updateWithAvatar:avatar];
+    else
+        [gravatarService fetchAvatarForEmailAddress:email];
+
     BOOL cached = !!commitInfo.changesets;
 
     if (cached) {
         [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
         [networkAwareViewController setCachedDataAvailable:YES];
 
-        [commitViewController updateWithCommitInfo:commitInfo];
-
-        // HACK: force update even when data is cached so we can fetch the
-        // user avatar. Remove when avatars are cached correctly.
-        [gitHub fetchInfoForCommit:commitKey repo:repoName username:username];
+        [[self commitViewController] updateWithCommitInfo:commitInfo];
     } else {
         [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
         [networkAwareViewController setCachedDataAvailable:NO];
 
         // commits don't change, so only update if needed
-        [gitHub fetchInfoForCommit:commitKey repo:repoName username:username];
+        [gitHubService
+            fetchInfoForCommit:commitKey repo:repoName username:username];
     }
 
     [navigationController
@@ -117,7 +138,7 @@
               repo:(NSString *)repo
           username:(NSString *)username
 {
-    [commitViewController updateWithCommitInfo:commitInfo];
+    [[self commitViewController] updateWithCommitInfo:commitInfo];
 
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];
@@ -153,7 +174,7 @@
 
 - (void)avatar:(UIImage *)avatar fetchedForEmailAddress:(NSString *)emailAddress
 {
-    [commitViewController updateWithAvatar:avatar];
+    [[self commitViewController] updateWithAvatar:avatar];
 }
 
 - (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
@@ -197,6 +218,17 @@
 }
 
 #pragma mark Accessors
+
+- (CommitViewController *)commitViewController
+{
+    if (!commitViewController) {
+        commitViewController = [[CommitViewController alloc]
+            initWithNibName:@"CommitView" bundle:nil];
+        commitViewController.delegate = self;
+    }
+
+    return commitViewController;
+}
 
 - (ChangesetViewController *)changesetViewController
 {

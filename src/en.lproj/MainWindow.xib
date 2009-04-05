@@ -301,10 +301,6 @@
 			<object class="IBUIViewController" id="345750594">
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 			</object>
-			<object class="IBUIViewController" id="403401674">
-				<string key="IBUINibName">CommitView</string>
-				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-			</object>
 			<object class="IBUICustomObject" id="596318502"/>
 			<object class="IBUICustomObject" id="936600278"/>
 			<object class="IBUICustomObject" id="1013716002"/>
@@ -1026,22 +1022,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">gitHub</string>
-						<reference key="source" ref="48078022"/>
-						<reference key="destination" ref="759204811"/>
-					</object>
-					<int key="connectionID">361</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">targetViewController</string>
-						<reference key="source" ref="345750594"/>
-						<reference key="destination" ref="403401674"/>
-					</object>
-					<int key="connectionID">362</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">commitSelector</string>
 						<reference key="source" ref="948085587"/>
 						<reference key="destination" ref="48078022"/>
@@ -1063,14 +1043,6 @@
 						<reference key="destination" ref="953169716"/>
 					</object>
 					<int key="connectionID">365</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">commitViewController</string>
-						<reference key="source" ref="48078022"/>
-						<reference key="destination" ref="403401674"/>
-					</object>
-					<int key="connectionID">367</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -2000,6 +1972,46 @@
 					</object>
 					<int key="connectionID">544</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gitHubService</string>
+						<reference key="source" ref="48078022"/>
+						<reference key="destination" ref="759204811"/>
+					</object>
+					<int key="connectionID">545</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gravatarServiceFactory</string>
+						<reference key="source" ref="48078022"/>
+						<reference key="destination" ref="596318502"/>
+					</object>
+					<int key="connectionID">546</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">avatarCacheReader</string>
+						<reference key="source" ref="48078022"/>
+						<reference key="destination" ref="936600278"/>
+					</object>
+					<int key="connectionID">547</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">avatarCache</string>
+						<reference key="source" ref="591510631"/>
+						<reference key="destination" ref="936600278"/>
+					</object>
+					<int key="connectionID">548</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gravatarServiceFactory</string>
+						<reference key="source" ref="591510631"/>
+						<reference key="destination" ref="596318502"/>
+					</object>
+					<int key="connectionID">549</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2364,11 +2376,6 @@
 						<reference key="parent" ref="957960031"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">348</int>
-						<reference key="object" ref="403401674"/>
-						<reference key="parent" ref="957960031"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">349</int>
 						<reference key="object" ref="759204811"/>
 						<reference key="parent" ref="957960031"/>
@@ -2618,9 +2625,6 @@
 					<string>343.IBPluginDependency</string>
 					<string>347.CustomClassName</string>
 					<string>347.IBPluginDependency</string>
-					<string>348.CustomClassName</string>
-					<string>348.IBEditorWindowLastContentRect</string>
-					<string>348.IBPluginDependency</string>
 					<string>349.CustomClassName</string>
 					<string>349.IBPluginDependency</string>
 					<string>350.CustomClassName</string>
@@ -2766,9 +2770,6 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>CommitDisplayMgr</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>CommitViewController</string>
-					<string>{{309, 370}, {320, 480}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>GitHubService</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>NetworkAwareViewController</string>
@@ -2844,7 +2845,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">544</int>
+			<int key="maxID">549</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2975,17 +2976,21 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>avatarCacheReader</string>
 							<string>commitCacheReader</string>
 							<string>commitViewController</string>
-							<string>gitHub</string>
+							<string>gitHubService</string>
+							<string>gravatarServiceFactory</string>
 							<string>navigationController</string>
 							<string>networkAwareViewController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSObject</string>
+							<string>NSObject</string>
 							<string>CommitViewController</string>
 							<string>GitHubService</string>
+							<string>GravatarServiceFactory</string>
 							<string>UINavigationController</string>
 							<string>NetworkAwareViewController</string>
 						</object>
@@ -3023,13 +3028,17 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>avatarCache</string>
 							<string>commitCache</string>
 							<string>gitHubServiceFactory</string>
+							<string>gravatarServiceFactory</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>AvatarCache</string>
 							<string>CommitCache</string>
 							<string>GitHubServiceFactory</string>
+							<string>GravatarServiceFactory</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

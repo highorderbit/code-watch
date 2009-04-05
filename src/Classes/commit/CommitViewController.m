@@ -7,6 +7,7 @@
 #import "UIColor+CodeWatchColors.h"
 #import "UILabel+DrawingAdditions.h"
 #import "UIAlertView+CreationHelpers.h"
+#import "UIImage+AvatarHelpers.h"
 
 static const NSUInteger NUM_SECTIONS = 2;
 enum
@@ -31,16 +32,22 @@ enum
 };
 
 @interface CommitViewController (Private)
+
+- (void)updateDisplay;
+
 - (void)formatDiffCell:(UITableViewCell *)cell
          withChangeset:(NSArray *)changes
   singularFormatString:(NSString *)singularFormatString
     pluralFormatString:(NSString *)pluralFormatString;
+
 - (void)setCommitInfo:(CommitInfo *)info;
+- (void)setAvatar:(UIImage *)anAvatar;
+
 @end
 
 @implementation CommitViewController
 
-@synthesize delegate, commitInfo;
+@synthesize delegate, commitInfo, avatar;
 
 - (void)dealloc
 {
@@ -54,6 +61,7 @@ enum
     [avatarImageView release];
 
     [commitInfo release];
+    [avatar release];
 
     [super dealloc];
 }
@@ -70,7 +78,7 @@ enum
 {
     [super viewWillAppear:animated];
 
-    avatarImageView.image = [UIImage imageNamed:@"DefaultAvatar.png"];
+    [self updateDisplay];
 }
 
 #pragma mark Table view methods
@@ -260,11 +268,26 @@ enum
 {
     [self setCommitInfo:info];
 
+    [self updateDisplay];
+
+}
+
+- (void)updateWithAvatar:(UIImage *)anAvatar
+{
+    [self setAvatar:anAvatar];
+
+    [self updateDisplay];
+}
+
+- (void)updateDisplay
+{
+    avatarImageView.image = avatar ? avatar : [UIImage imageUnavailableImage];
+
     NSString * committerName =
-        [[info.details objectForKey:@"committer"] objectForKey:@"name"];
+        [[commitInfo.details objectForKey:@"committer"] objectForKey:@"name"];
     NSString * committerEmail =
-        [[info.details objectForKey:@"committer"] objectForKey:@"email"];
-    NSString * message = [info.details objectForKey:@"message"];
+        [[commitInfo.details objectForKey:@"committer"] objectForKey:@"email"];
+    NSString * message = [commitInfo.details objectForKey:@"message"];
 
     nameLabel.text = committerName;
     emailLabel.text = committerEmail;
@@ -286,11 +309,6 @@ enum
     [self.tableView reloadData];
 }
 
-- (void)updateWithAvatar:(UIImage *)avatar
-{
-    avatarImageView.image = avatar;
-}
-
 #pragma mark Accessors
 
 - (void)setCommitInfo:(CommitInfo *)info
@@ -298,6 +316,13 @@ enum
     CommitInfo * tmp = [info copy];
     [commitInfo release];
     commitInfo = tmp;
+}
+
+- (void)setAvatar:(UIImage *)anAvatar
+{
+    UIImage * tmp = [anAvatar retain];
+    [avatar release];
+    avatar = tmp;
 }
 
 @end

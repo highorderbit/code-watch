@@ -26,21 +26,19 @@
 - (void)setUsername:(NSString *)username;
 - (void)setRepoInfo:(RepoInfo *)info;
 - (void)setRepoName:(NSString *)name;
-//- (void)setAvatar:(UIImage *)avatar;
 - (void)setCommits:(NSDictionary *)someCommits;
 
 @end
 
 @implementation RepoDisplayMgr
 
-@synthesize username, repoName, repoInfo, /*avatar,*/ commits;
+@synthesize username, repoName, repoInfo, commits;
 
 - (void)dealloc
 {
     [username release];
     [repoName release];
     [repoInfo release];
-    //[avatar release];
     [commits release];
     [logInStateReader release];
     [repoCacheReader release];
@@ -90,7 +88,7 @@
         gravatarServiceFactory = [aGravatarServiceFactory retain];
         gravatarService = [gravatarServiceFactory createGravatarService];
         gravatarService.delegate = self;
-        
+
         [self addRefreshButton];
     }
     
@@ -255,7 +253,6 @@
 - (void)avatar:(UIImage *)avatar
     fetchedForEmailAddress:(NSString *)emailAddress
 {
-    //[self setAvatar:avatar];
     [repoViewController updateWithAvatar:avatar forEmailAddress:emailAddress];
 }
 
@@ -386,15 +383,6 @@
     [repoName release];
     repoName = tmp;
 }
-
-/*
-- (void)setAvatar:(UIImage *)anAvatar
-{
-    UIImage * tmp = [anAvatar retain];
-    [avatar release];
-    avatar = tmp;
-}
-*/
 
 - (void)setCommits:(NSDictionary *)someCommits
 {

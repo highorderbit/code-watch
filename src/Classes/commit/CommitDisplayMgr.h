@@ -5,41 +5,52 @@
 #import <Foundation/Foundation.h>
 #import "CommitSelector.h"
 #import "CommitCacheReader.h"
+#import "AvatarCacheReader.h"
 #import "GitHubServiceDelegate.h"
+#import "GravatarServiceDelegate.h"
 #import "CommitViewControllerDelegate.h"
 #import "ChangesetViewControllerDelegate.h"
 
 @class NetworkAwareViewController;
 @class CommitViewController, ChangesetViewController, DiffViewController;
-@class GitHubService;
+@class GitHubService, GitHubServiceFactory;
+@class GravatarService, GravatarServiceFactory;
 
 @interface CommitDisplayMgr :
     NSObject
-    <CommitSelector, GitHubServiceDelegate,
+    <CommitSelector, GitHubServiceDelegate, GravatarServiceDelegate,
      CommitViewControllerDelegate, ChangesetViewControllerDelegate>
 {
     IBOutlet UINavigationController * navigationController;
 
     IBOutlet NetworkAwareViewController * networkAwareViewController;
-    IBOutlet CommitViewController * commitViewController;
+    CommitViewController * commitViewController;
 
     ChangesetViewController * changesetViewController;
     DiffViewController * diffViewController;
 
     IBOutlet NSObject<CommitCacheReader> * commitCacheReader;
+    IBOutlet NSObject<AvatarCacheReader> * avatarCacheReader;
 
-    IBOutlet GitHubService * gitHub;
+    IBOutlet GitHubService * gitHubService;
+
+    IBOutlet GravatarServiceFactory * gravatarServiceFactory;
+    GravatarService * gravatarService;
 }
 
 - (id)initWithNavigationController:
-    (UINavigationController *) navigationController
+    (UINavigationController *)aNavigationController
     networkAwareViewController:
-    (NetworkAwareViewController *)networkAwareViewController
+    (NetworkAwareViewController *)aNetworkAwareViewController
     commitViewController:
-    (CommitViewController *)commitViewController
+    (CommitViewController *)aCommitViewController
     commitCacheReader:
-    (NSObject<CommitCacheReader> *) commitCacheReader
+    (NSObject<CommitCacheReader> *)aCommitCacheReader
+    avatarCacheReader:
+    (NSObject<AvatarCacheReader> *)anAvatarCacheReader
     gitHubService:
-    (GitHubService *) gitHub;
+    (GitHubService *)aGitHubService
+    gravatarServiceFactory:
+    (GravatarServiceFactory *)aGravatarServiceFactory;
 
 @end

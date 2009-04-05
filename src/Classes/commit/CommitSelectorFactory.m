@@ -6,14 +6,21 @@
 #import "CommitViewController.h"
 #import "NetworkAwareViewController.h"
 #import "CommitDisplayMgr.h"
+#import "CommitCache.h"
+#import "AvatarCache.h"
 #import "GitHubService.h"
+#import "GitHubServiceFactory.h"
+#import "GravatarService.h"
+#import "GravatarServiceFactory.h"
 
 @implementation CommitSelectorFactory
 
 - (void)dealloc
 {
     [gitHubServiceFactory release];
+    [gravatarServiceFactory release];
     [commitCache release];
+    [avatarCache release];
     [super dealloc];
 }
 
@@ -37,7 +44,9 @@
         networkAwareViewController:networkAwareViewController
         commitViewController:commitViewController
         commitCacheReader:commitCache
-        gitHubService:gitHubService];
+        avatarCacheReader:avatarCache
+        gitHubService:gitHubService
+        gravatarServiceFactory:gravatarServiceFactory];
     
     commitViewController.delegate = commitDisplayMgr;
     gitHubService.delegate = commitDisplayMgr;

@@ -3,14 +3,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CommitCache.h"
 #import "CommitSelector.h"
-#import "GitHubServiceFactory.h"
+
+@class CommitCache, AvatarCache;
+@class GitHubServiceFactory, GravatarServiceFactory;
 
 @interface CommitSelectorFactory : NSObject
 {
     IBOutlet GitHubServiceFactory * gitHubServiceFactory;
+    IBOutlet GravatarServiceFactory * gravatarServiceFactory;
+
     IBOutlet CommitCache * commitCache;
+    IBOutlet AvatarCache * avatarCache;
 }
 
 - (NSObject<CommitSelector> *)

@@ -24,7 +24,6 @@
     NSString * username;
     NSString * repoName;
     RepoInfo * repoInfo;
-    //UIImage * avatar;
     NSDictionary * commits;
 
     IBOutlet NSObject<LogInStateReader> * logInStateReader;
