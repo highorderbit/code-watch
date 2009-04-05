@@ -5,6 +5,7 @@
 #import "NewsFeedTableViewCell.h"
 #import "NSDate+StringHelpers.h"
 #import "UIColor+CodeWatchColors.h"
+#import "UIImage+AvatarHelpers.h"
 
 @interface NewsFeedTableViewCell (Private)
 
@@ -50,8 +51,7 @@
     pubDateLabel.text = [pubDate shortDescription];
     subjectLabel.text = subject;
     summaryLabel.text = summary;
-    avatarImageView.image =
-        avatar ? avatar : [UIImage imageNamed:@"DefaultAvatar.png"];
+    avatarImageView.image = avatar ? avatar : [UIImage imageUnavailableImage];
 }
 
 - (void)setNonSelectedTextColors
