@@ -22,6 +22,7 @@
     IBOutlet UIImageView * avatarImageView;
 
     RssItem * rssItem;
+    UIImage * avatar;
 }
 
 @property (nonatomic, retain) NSObject<NewsFeedItemViewControllerDelegate> *
@@ -32,5 +33,6 @@
 #pragma mark Updating the display
 
 - (void)updateWithRssItem:(RssItem *)item;
+- (void)updateWithAvatar:(UIImage *)anAvatar;
 
 @end

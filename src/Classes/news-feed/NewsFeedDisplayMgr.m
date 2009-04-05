@@ -21,7 +21,8 @@
 
 @interface NewsFeedDisplayMgr (Private)
 
-- (NSDictionary *)cachedAvatarsFromRssItems:(NSArray *)rssItems;
+- (UIImage *)cachedAvatarForUsername:(NSString *)username;
+- (NSDictionary *)cachedAvatarsForRssItems:(NSArray *)rssItems;
 
 - (NSSet *)userEmailAddressesFromRssItems:(NSArray *)rssItems;
 
@@ -39,6 +40,7 @@
 - (NSObject<RepoSelector> *)repoSelector;
 - (NewsFeedItemViewController *)newsFeedItemViewController;
 - (NewsFeedItemDetailsViewController *)newsFeedItemDetailsViewController;
+- (void)setSelectedRssItem:(RssItem *)rssItem;
 
 @end
 
@@ -73,6 +75,8 @@
     [gravatarService release];
 
     [usernames release];
+
+    [selectedRssItem release];
     
     [super dealloc];
 }
@@ -102,6 +106,7 @@
 
 - (void)viewWillAppear
 {
+    [self setSelectedRssItem:nil];
     [self updateNewsFeed];
 }
 
@@ -116,7 +121,7 @@
         NSLocalizedString(@"nodata.noconnection.text", @"")];
         
         NSArray * rssItems = [newsFeedCacheReader primaryUserNewsFeed];
-        NSDictionary * avatars = [self cachedAvatarsFromRssItems:rssItems];
+        NSDictionary * avatars = [self cachedAvatarsForRssItems:rssItems];
         [newsFeedTableViewController updateRssItems:rssItems];
         [newsFeedTableViewController updateAvatars:avatars];
 
@@ -141,6 +146,8 @@
 
 - (void)userDidSelectRssItem:(RssItem *)rssItem
 {
+    [self setSelectedRssItem:rssItem];
+
     if ([rssItem.type isEqualToString:@"WatchEvent"]) {
         RepoKey * repoKey = [rssItem repoKey];
 
@@ -163,8 +170,12 @@
         }
     } else {
         [[self newsFeedItemViewController] updateWithRssItem:rssItem];
+        UIImage * avatar = [self cachedAvatarForUsername:rssItem.author];
+        [[self newsFeedItemViewController] updateWithAvatar:avatar];
+
         [navigationController
-            pushViewController:[self newsFeedItemViewController] animated:YES];
+            pushViewController:[self newsFeedItemViewController]
+            animated:YES];
     }
 }
 
@@ -193,7 +204,7 @@
 - (void)newsFeed:(NSArray *)newsItems fetchedForUsername:(NSString *)username
 {
     // display any available cached avatars
-    NSDictionary * avatars = [self cachedAvatarsFromRssItems:newsItems];
+    NSDictionary * avatars = [self cachedAvatarsForRssItems:newsItems];
 
     [newsFeedTableViewController updateRssItems:newsItems];
     [newsFeedTableViewController updateAvatars:avatars];
@@ -236,6 +247,8 @@
     NSString * username = [self usernameForEmailAddress:emailAddress];
 
     [newsFeedTableViewController updateAvatar:avatar forUsername:username];
+    if ([selectedRssItem.author isEqualToString:username])
+        [[self newsFeedItemViewController] updateWithAvatar:avatar];
 }
 
 - (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
@@ -279,23 +292,28 @@
 
 #pragma mark Working with avatars
 
-- (NSDictionary *)cachedAvatarsFromRssItems:(NSArray *)rssItems
+- (UIImage *)cachedAvatarForUsername:(NSString *)username
+{
+    UserInfo * ui = [self cachedUserInfoForUsername:username];
+    NSString * email = [ui.details objectForKey:@"email"];
+
+    if (email) {
+        [self username:username mapsToEmailAddress:email];
+        return [avatarCacheReader avatarForEmailAddress:email];
+    }
+
+    return nil;
+}
+
+- (NSDictionary *)cachedAvatarsForRssItems:(NSArray *)rssItems
 {
     NSMutableDictionary * dict = [NSMutableDictionary dictionary];
 
     for (RssItem * item in rssItems) {
         if ([dict objectForKey:item.author] == nil) {
-            UserInfo * ui = [self cachedUserInfoForUsername:item.author];
-
-            NSString * email = [ui.details objectForKey:@"email"];
-            if (email) {
-                [self username:item.author mapsToEmailAddress:email];
-
-                UIImage * avatar =
-                    [avatarCacheReader avatarForEmailAddress:email];
-                if (avatar)
-                    [dict setObject:avatar forKey:item.author];
-            }
+            UIImage * avatar = [self cachedAvatarForUsername:item.author];
+            if (avatar)
+                [dict setObject:avatar forKey:item.author];
         }
     }
 
@@ -402,6 +420,13 @@
             initWithNibName:@"NewsFeedItemDetailsView" bundle:nil];
 
     return newsFeedItemDetailsViewController;
+}
+
+- (void)setSelectedRssItem:(RssItem *)rssItem
+{
+    RssItem * tmp = [rssItem copy];
+    [selectedRssItem release];
+    selectedRssItem = tmp;
 }
 
 @end

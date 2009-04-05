@@ -42,6 +42,7 @@
 		0560A0620F69C83E0031A852 /* CodeWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05A0F69C83E0031A852 /* CodeWatchAppController.m */; };
 		0560A0630F69C83E0031A852 /* CodeWatchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05C0F69C83E0031A852 /* CodeWatchAppDelegate.m */; };
 		0560A0640F69C83E0031A852 /* UILogInMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A0610F69C83E0031A852 /* UILogInMgr.m */; };
+		0565D5310F884D35002C950E /* UIImage+AvatarHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0565D5300F884D35002C950E /* UIImage+AvatarHelpers.m */; };
 		05951F2C0F7E91BD00B86921 /* Gravatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951F2B0F7E91BD00B86921 /* Gravatar.m */; };
 		05951F2F0F7E931100B86921 /* WebServiceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951F2E0F7E931100B86921 /* WebServiceApi.m */; };
 		05951F510F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951F500F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.m */; };
@@ -239,6 +240,8 @@
 		0560A05E0F69C83E0031A852 /* LogInMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInMgr.h; sourceTree = "<group>"; };
 		0560A0600F69C83E0031A852 /* UILogInMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILogInMgr.h; sourceTree = "<group>"; };
 		0560A0610F69C83E0031A852 /* UILogInMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILogInMgr.m; sourceTree = "<group>"; };
+		0565D52F0F884D35002C950E /* UIImage+AvatarHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+AvatarHelpers.h"; sourceTree = "<group>"; };
+		0565D5300F884D35002C950E /* UIImage+AvatarHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AvatarHelpers.m"; sourceTree = "<group>"; };
 		05951F2A0F7E91BD00B86921 /* Gravatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gravatar.h; path = gravatar/Gravatar.h; sourceTree = "<group>"; };
 		05951F2B0F7E91BD00B86921 /* Gravatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gravatar.m; path = gravatar/Gravatar.m; sourceTree = "<group>"; };
 		05951F2D0F7E931100B86921 /* WebServiceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebServiceApi.h; path = gravatar/WebServiceApi.h; sourceTree = "<group>"; };
@@ -589,6 +592,8 @@
 				05226ADA0F80302000DA73A8 /* UILabel+DrawingAdditions.m */,
 				0532C9D20F86717E0047BE56 /* UIAlertView+CreationHelpers.h */,
 				0532C9D30F86717E0047BE56 /* UIAlertView+CreationHelpers.m */,
+				0565D52F0F884D35002C950E /* UIImage+AvatarHelpers.h */,
+				0565D5300F884D35002C950E /* UIImage+AvatarHelpers.m */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -1258,6 +1263,7 @@
 				052D3DAC0F87CC94005EBD25 /* GravatarServiceFactory.m in Sources */,
 				052D3E010F87D91B005EBD25 /* AvatarCache.m in Sources */,
 				052D3E040F87D92C005EBD25 /* AvatarPersistenceStore.m in Sources */,
+				0565D5310F884D35002C950E /* UIImage+AvatarHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

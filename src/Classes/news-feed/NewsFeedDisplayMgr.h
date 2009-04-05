@@ -23,6 +23,7 @@
 @class GitHubService, GitHubServiceFactory;
 @class GravatarService, GravatarServiceFactory;
 @class NewsFeedItemViewController, NewsFeedItemDetailsViewController;
+@class RssItem;
 
 @interface NewsFeedDisplayMgr :
     NSObject
@@ -61,6 +62,8 @@
 
     // mapping of email address -> usernames
     NSMutableDictionary * usernames;
+
+    RssItem * selectedRssItem;
 }
 
 - (void)updateNewsFeed;

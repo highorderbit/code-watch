@@ -9,6 +9,7 @@
 #import "UILabel+DrawingAdditions.h"
 #import "RepoSelectorFactory.h"
 #import "UIAlertView+CreationHelpers.h"
+#import "UIImage+AvatarHelpers.h"
 
 static NSUInteger NUM_SECTIONS = 3;
 enum Sections
@@ -48,6 +49,7 @@ enum ActionSectionRows
 - (BOOL)haveGitHubRepoInRssItem;
 - (void)updateDisplay;
 - (void)setRssItem:(RssItem *)item;
+- (void)setAvatar:(UIImage *)anAvatar;
 
 @end
 
@@ -65,6 +67,7 @@ enum ActionSectionRows
     [subjectLabel release];
     [avatarImageView release];
     [rssItem release];
+    [avatar release];
     [super dealloc];
 }
 
@@ -224,8 +227,17 @@ enum ActionSectionRows
     [self updateDisplay];
 }
 
+- (void)updateWithAvatar:(UIImage *)anAvatar
+{
+    [self setAvatar:anAvatar];
+
+    [self updateDisplay];
+}
+
 - (void)updateDisplay
 {
+    avatarImageView.image = avatar ? avatar : [UIImage imageUnavailableImage];
+
     authorLabel.text = rssItem.author;
 
     if ([self haveGitHubUserInRssItem] && [self haveGitHubUserInRssItem])
@@ -284,6 +296,13 @@ enum ActionSectionRows
     RssItem * tmp = [item copy];
     [rssItem release];
     rssItem = tmp;
+}
+
+- (void)setAvatar:(UIImage *)anAvatar
+{
+    UIImage * tmp = [anAvatar retain];
+    [avatar release];
+    avatar = tmp;
 }
 
 - (NSObject<RepoSelector> *)repoSelector
