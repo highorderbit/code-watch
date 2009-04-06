@@ -22,12 +22,13 @@
     IBOutlet GitHubService * gitHubService;
     IBOutlet NSObject<FavoriteReposStateSetter> * favoriteReposStateSetter;
     IBOutlet NSObject<FavoriteReposStateReader> * favoriteReposStateReader;
-        
-    BOOL connecting;
+
     NSString * repoName;
+    NSString * expectedUsername;
 }
 
 @property (nonatomic, copy) NSString * repoName;
+@property (nonatomic, copy) NSString * expectedUsername;
 
 // Interface Builder requires re-definition
 - (IBAction)addRepo:(id)sender;

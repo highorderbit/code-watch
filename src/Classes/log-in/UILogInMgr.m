@@ -20,6 +20,7 @@
 @synthesize navigationController;
 @synthesize logInViewController;
 @synthesize helpViewController;
+@synthesize expectedUsername;
 
 - (void)dealloc
 {
@@ -39,15 +40,15 @@
 
     [gitHub release];
     
+    [expectedUsername release];
+    
     [super dealloc];
 }
 
 - (id)init
 {
-    if (self = [super init]) {
+    if (self = [super init])
         [self setButtonText];
-        connecting = NO;
-    }
 
     return self;
 }
@@ -73,7 +74,7 @@
     NSLog(@"Attempting login with username: '%@', token: '%@'.", username,
         token);
 
-    connecting = YES;
+    self.expectedUsername = username;
 
     if (token)
         [gitHub logIn:username token:token];
@@ -83,12 +84,13 @@
 
 - (void)userDidCancel
 {
+    self.expectedUsername = nil;
     [rootViewController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)provideHelp
 {
-    if (!connecting)
+    if (!expectedUsername)
         [self.navigationController
             pushViewController:self.helpViewController animated:YES];
 }
@@ -97,34 +99,38 @@
 
 - (void)logInSucceeded:(NSString *)username
 {
-    [rootViewController dismissModalViewControllerAnimated:YES];
+    if ([self.expectedUsername isEqual:username]) {
+        [rootViewController dismissModalViewControllerAnimated:YES];
     
-    connecting = NO;
-    [self setButtonText];
-    [logInViewController logInAccepted];
+        self.expectedUsername = nil;
+        [self setButtonText];
+        [logInViewController logInAccepted];
+    }
 }
 
 - (void)logInFailed:(NSString *)username error:(NSError *)error
 {
-    NSString * title =
-        NSLocalizedString(@"github.login.failed.alert.title", @"");
-    NSString * cancelTitle =
-        NSLocalizedString(@"github.login.failed.alert.ok", @"");
-    NSString * message = error.localizedDescription;
+    if ([self.expectedUsername isEqual:username]) {
+        NSString * title =
+            NSLocalizedString(@"github.login.failed.alert.title", @"");
+        NSString * cancelTitle =
+            NSLocalizedString(@"github.login.failed.alert.ok", @"");
+        NSString * message = error.localizedDescription;
 
-    UIAlertView * alertView =
-        [[[UIAlertView alloc]
-          initWithTitle:title
-                message:message
-               delegate:self
-      cancelButtonTitle:cancelTitle
-      otherButtonTitles:nil]
-         autorelease];
+        UIAlertView * alertView =
+            [[[UIAlertView alloc]
+              initWithTitle:title
+                    message:message
+                   delegate:self
+          cancelButtonTitle:cancelTitle
+          otherButtonTitles:nil]
+             autorelease];
 
-    [alertView show];
+        [alertView show];
  
-    connecting = NO;
-    [logInViewController promptForLogIn];
+        self.expectedUsername = nil;
+        [logInViewController promptForLogIn];
+    }
 }
 
 #pragma mark Accessors

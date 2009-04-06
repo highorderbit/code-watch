@@ -20,6 +20,7 @@
 @implementation UIAddRepoMgr
 
 @synthesize repoName;
+@synthesize expectedUsername;
 
 - (void)dealloc
 {
@@ -34,6 +35,7 @@
     [favoriteReposStateReader release];
     
     [repoName release];
+    [expectedUsername release];
     
     [super dealloc];
 }
@@ -52,18 +54,19 @@
 {
     NSLog(@"Attempting add repo: %@ / %@.", username, aRepoName);
     self.repoName = aRepoName;
-    connecting = YES;
+    self.expectedUsername = username;
     [gitHubService fetchInfoForUsername:username];
 }
 
 - (void)userDidCancel
 {
+    self.expectedUsername = nil;
     [rootViewController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)provideHelp
 {
-    if (!connecting)
+    if (!self.expectedUsername)
         [self.navigationController
             pushViewController:self.helpViewController animated:YES];
 }
@@ -73,21 +76,24 @@
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
     fetchedForUsername:(NSString *)username
 {
-    if ([repos objectForKey:self.repoName]) {
-        [self foundUsername:username repoName:self.repoName];
-        [addRepoViewController repoAccepted];
-    } else {
-        NSString * formatString =
-            NSLocalizedString(@"addrepo.reponotfound.format.string", @"");
-        NSString * message =
-            [NSString stringWithFormat:formatString, self.repoName, username];
-        [self presentErrorAlert:message];
+    if ([self.expectedUsername isEqual:username]) {
+        if ([repos objectForKey:self.repoName]) {
+            [self foundUsername:username repoName:self.repoName];
+            [addRepoViewController repoAccepted];
+        } else {
+            NSString * formatString =
+                NSLocalizedString(@"addrepo.reponotfound.format.string", @"");
+            NSString * message =
+                [NSString stringWithFormat:formatString, self.repoName, username];
+            [self presentErrorAlert:message];
+        }
     }
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
 {
-    [self presentErrorAlert:error.localizedDescription];
+    if ([self.expectedUsername isEqual:username])
+        [self presentErrorAlert:error.localizedDescription];
 }
 
 #pragma mark Accessors
@@ -135,7 +141,7 @@
         [[RepoKey alloc] initWithUsername:username repoName:aRepoName];
     [favoriteReposStateSetter addFavoriteRepoKey:repoKey];
     [rootViewController dismissModalViewControllerAnimated:YES];
-    connecting = NO;
+    self.expectedUsername = nil;
 }
 
 - (void)presentErrorAlert:(NSString *)message
@@ -153,7 +159,7 @@
 
     [alertView show];
  
-    connecting = NO;
+    self.expectedUsername = nil;
     [self.addRepoViewController promptForRepo];
 }
 

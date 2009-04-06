@@ -33,12 +33,13 @@
 
     IBOutlet GitHubService * gitHub;
 
-    BOOL connecting;
+    NSString * expectedUsername;
 }
 
 @property (nonatomic, retain) UINavigationController * navigationController;
 @property (nonatomic, retain) LogInViewController * logInViewController;
 @property (nonatomic, retain) WebViewController * helpViewController;
+@property (nonatomic, copy) NSString * expectedUsername;
 
 // Neede re-definition to work in interface builder
 - (IBAction)collectCredentials:(id)sender;

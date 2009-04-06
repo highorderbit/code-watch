@@ -24,8 +24,10 @@
     IBOutlet NSObject<FavoriteUsersStateSetter> * favoriteUsersStateSetter;
     IBOutlet NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
         
-    BOOL connecting;
+    NSString * expectedUsername;
 }
+
+@property (nonatomic, copy) NSString * expectedUsername;
 
 // Interface Builder requires re-definition
 - (IBAction)addUser:(id)sender;

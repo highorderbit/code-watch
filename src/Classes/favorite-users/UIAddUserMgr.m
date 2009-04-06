@@ -15,6 +15,8 @@
 
 @implementation UIAddUserMgr
 
+@synthesize expectedUsername;
+
 - (void)dealloc
 {
     [rootViewController release];
@@ -26,6 +28,8 @@
     [gitHub release];
     [favoriteUsersStateSetter release];
     [favoriteUsersStateReader release];
+    
+    [expectedUsername release];
     
     [super dealloc];
 }
@@ -43,18 +47,19 @@
 - (void)userProvidedUsername:(NSString *)username
 {
     NSLog(@"Attempting add user with username: '%@'.", username);
-    connecting = YES;
+    self.expectedUsername = username;
     [gitHub fetchInfoForUsername:username];
 }
 
 - (void)userDidCancel
 {
+    self.expectedUsername = nil;
     [rootViewController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)provideHelp
 {
-    if (!connecting)
+    if (!self.expectedUsername)
         [self.navigationController
             pushViewController:self.helpViewController animated:YES];
 }
@@ -64,33 +69,37 @@
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
     fetchedForUsername:(NSString *)username
 {
-    [favoriteUsersStateSetter addFavoriteUser:username];
-    [rootViewController dismissModalViewControllerAnimated:YES];
-    connecting = NO;
-    [addUserViewController usernameAccepted];
+    if ([self.expectedUsername isEqual:username]) {
+        [favoriteUsersStateSetter addFavoriteUser:username];
+        [rootViewController dismissModalViewControllerAnimated:YES];
+        self.expectedUsername = nil;
+        [addUserViewController usernameAccepted];
+    }
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
 {
-    NSString * title =
-        NSLocalizedString(@"github.adduser.failed.alert.title", @"");
-    NSString * cancelTitle =
-        NSLocalizedString(@"github.adduser.failed.alert.ok", @"");
-    NSString * message = error.localizedDescription;
+    if ([self.expectedUsername isEqual:username]) {
+        NSString * title =
+            NSLocalizedString(@"github.adduser.failed.alert.title", @"");
+        NSString * cancelTitle =
+            NSLocalizedString(@"github.adduser.failed.alert.ok", @"");
+        NSString * message = error.localizedDescription;
 
-    UIAlertView * alertView =
-        [[[UIAlertView alloc]
-          initWithTitle:title
-                message:message
-               delegate:self
-      cancelButtonTitle:cancelTitle
-      otherButtonTitles:nil]
-         autorelease];
+        UIAlertView * alertView =
+            [[[UIAlertView alloc]
+              initWithTitle:title
+                    message:message
+                   delegate:self
+          cancelButtonTitle:cancelTitle
+          otherButtonTitles:nil]
+             autorelease];
 
-    [alertView show];
+        [alertView show];
  
-    connecting = NO;
-    [addUserViewController promptForUsername];
+        self.expectedUsername = nil;
+        [addUserViewController promptForUsername];
+    }
 }
 
 #pragma mark Accessors
