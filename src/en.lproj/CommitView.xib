@@ -55,7 +55,7 @@
 					<object class="IBUILabel" id="657909452">
 						<reference key="NSNextResponder" ref="359447417"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{79, 28}, {230, 21}}</string>
+						<string key="NSFrame">{{79, 20}, {230, 21}}</string>
 						<reference key="NSSuperview" ref="359447417"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -91,7 +91,7 @@
 					<object class="IBUILabel" id="965433249">
 						<reference key="NSNextResponder" ref="359447417"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{79, 41}, {230, 34}}</string>
+						<string key="NSFrame">{{79, 33}, {230, 34}}</string>
 						<reference key="NSSuperview" ref="359447417"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -103,6 +103,25 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<reference key="IBUITextColor" ref="298958341"/>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+						<float key="IBUIMinimumFontSize">1.000000e+01</float>
+					</object>
+					<object class="IBUILabel" id="821697483">
+						<reference key="NSNextResponder" ref="359447417"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{79, 53}, {230, 34}}</string>
+						<reference key="NSSuperview" ref="359447417"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="IBUIText">3/31/09 10:52 PM</string>
+						<reference key="IBUIFont" ref="652708902"/>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC4xMTc2NDcwNyAwLjE1Njg2Mjc1IDAuMjIzNTI5NDMAA</bytes>
+						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -205,6 +224,14 @@
 					</object>
 					<int key="connectionID">20</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">timestampLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="821697483"/>
+					</object>
+					<int key="connectionID">22</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -240,8 +267,9 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="783930648"/>
 							<reference ref="657909452"/>
-							<reference ref="965433249"/>
 							<reference ref="242631610"/>
+							<reference ref="821697483"/>
+							<reference ref="965433249"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -265,6 +293,11 @@
 						<reference key="object" ref="242631610"/>
 						<reference key="parent" ref="359447417"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">21</int>
+						<reference key="object" ref="821697483"/>
+						<reference key="parent" ref="359447417"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -278,6 +311,8 @@
 					<string>13.IBEditorWindowLastContentRect</string>
 					<string>13.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
+					<string>21.IBEditorWindowLastContentRect</string>
+					<string>21.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>8.IBEditorWindowLastContentRect</string>
 					<string>8.IBPluginDependency</string>
@@ -291,8 +326,10 @@
 					<string>{{312, 742}, {220, 34}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{312, 742}, {220, 34}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{729, 152}, {320, 129}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{941, 526}, {320, 129}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -316,7 +353,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">20</int>
+			<int key="maxID">22</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -334,6 +371,7 @@
 							<string>headerView</string>
 							<string>messageLabel</string>
 							<string>nameLabel</string>
+							<string>timestampLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -341,6 +379,7 @@
 							<string>NSObject</string>
 							<string>UILabel</string>
 							<string>UIView</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 						</object>

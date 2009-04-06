@@ -7,7 +7,7 @@
 
 @implementation NSDate (StringHelpers)
 
-- (NSString *) shortDescription
+- (NSString *)shortDescription
 {
     NSDateFormatter * formatter = [[[NSDateFormatter alloc] init] autorelease];
     
@@ -21,7 +21,17 @@
     return [formatter stringFromDate:self];
 }
 
-+ (NSDate *) dateFromString:(NSString *)string format:(NSString *)formatString
+- (NSString *)shortDateAndTimeDescription
+{
+    NSDateFormatter * formatter = [[[NSDateFormatter alloc] init] autorelease];
+
+    [formatter setDateStyle:NSDateFormatterShortStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+
+    return [formatter stringFromDate:self];
+}
+
++ (NSDate *)dateFromString:(NSString *)string format:(NSString *)formatString
 {
     NSDateFormatter * formatter = [[[NSDateFormatter alloc] init] autorelease];
     formatter.dateFormat = formatString;

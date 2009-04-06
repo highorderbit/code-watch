@@ -8,6 +8,8 @@
 #import "UILabel+DrawingAdditions.h"
 #import "UIAlertView+CreationHelpers.h"
 #import "UIImage+AvatarHelpers.h"
+#import "NSDate+StringHelpers.h"
+#import "NSDate+GitHubStringHelpers.h"
 
 static const NSUInteger NUM_SECTIONS = 2;
 enum
@@ -27,7 +29,7 @@ enum
 static const NSUInteger NUM_ACTION_ROWS = 2;
 enum
 {
-    kSafariRow,
+    kOpenInSafariRow,
     kEmailRow
 };
 
@@ -35,11 +37,15 @@ enum
 
 - (void)updateDisplay;
 
+- (void)openCommitInSafari;
+- (void)emailCommit;
+
 - (void)formatDiffCell:(UITableViewCell *)cell
          withChangeset:(NSArray *)changes
   singularFormatString:(NSString *)singularFormatString
     pluralFormatString:(NSString *)pluralFormatString;
 
+- (void)setRepoName:(NSString *)repo;
 - (void)setCommitInfo:(CommitInfo *)info;
 - (void)setAvatar:(UIImage *)anAvatar;
 
@@ -47,7 +53,7 @@ enum
 
 @implementation CommitViewController
 
-@synthesize delegate, commitInfo, avatar;
+@synthesize delegate, repoName, commitInfo, avatar;
 
 - (void)dealloc
 {
@@ -57,9 +63,11 @@ enum
 
     [nameLabel release];
     [emailLabel release];
+    [timestampLabel release];
     [messageLabel release];
     [avatarImageView release];
 
+    [repoName release];
     [commitInfo release];
     [avatar release];
 
@@ -165,11 +173,11 @@ enum
 
         case kActionSection:
             switch (indexPath.row) {
-                case kSafariRow:
-                    cell.text = @"Open in Safari";
+                case kOpenInSafariRow:
+                    cell.text = NSLocalizedString(@"commit.safari.label", @"");
                     break;
                 case kEmailRow:
-                    cell.text = @"Email";
+                    cell.text = NSLocalizedString(@"commit.email.label", @"");
                     break;
             }
             break;
@@ -224,11 +232,79 @@ enum
         }
 
         [delegate userDidSelectChangeset:changeset ofType:changesetType];
-    } else {
-        [[UIAlertView notImplementedAlertView] show];
-        [self.tableView deselectRowAtIndexPath:
-            [self.tableView indexPathForSelectedRow] animated:YES];
+    } else if (indexPath.section == kActionSection) {
+        switch (indexPath.row) {
+            case kOpenInSafariRow:
+                [self openCommitInSafari];
+                break;
+            case kEmailRow:
+                [self emailCommit];
+                break;
+        }
     }
+}
+
+#pragma mark Commit actions
+
+- (void)openCommitInSafari
+{
+    NSURL * url =
+        [NSURL URLWithString:[commitInfo.details objectForKey:@"url"]];
+    [[UIApplication sharedApplication] openURL:url];
+}
+
+- (void)emailCommit
+{
+    NSString * committer = 
+        [[commitInfo.details objectForKey:@"committer"] objectForKey:@"name"];
+    NSString * committerEmail = 
+        [[commitInfo.details objectForKey:@"committer"] objectForKey:@"email"];
+    NSString * message = [commitInfo.details objectForKey:@"message"];
+    NSString * commitLink = [commitInfo.details objectForKey:@"url"];
+
+    NSArray * added = [commitInfo.changesets objectForKey:@"added"];
+    NSArray * removed = [commitInfo.changesets objectForKey:@"removed"];
+    NSArray * modifeddiffs = [commitInfo.changesets objectForKey:@"modified"];
+    NSMutableArray * modified = [NSMutableArray array];
+    for (NSDictionary * d in modifeddiffs)
+        [modified addObject:[d objectForKey:@"filename"]];
+
+    NSMutableArray * files = [NSMutableArray array];
+    [files addObjectsFromArray:added];
+    [files addObjectsFromArray:removed];
+    [files addObjectsFromArray:modified];
+
+    NSMutableString * filelist = [NSMutableString string];
+    for (NSString * filename in files)
+        [filelist appendFormat:@"%@\n", filename];
+
+    NSString * subject = [NSString stringWithFormat:
+        NSLocalizedString(@"commit.email.subject.formatstring", @""), repoName,
+        committer, message];
+
+    NSMutableString * body = [NSMutableString string];
+
+    [body appendFormat:@"%@: %@\n",
+        NSLocalizedString(@"commit.email.repository", @""), repoName];
+    [body appendFormat:@"%@: %@ (%@)\n",
+        NSLocalizedString(@"commit.email.committer", @""), committer,
+        committerEmail];
+    [body appendFormat:@"\n%@:\n%@\n",
+        NSLocalizedString(@"commit.email.commitmessage", @""), message];
+    [body appendFormat:@"\n%@:\n%@\n",
+        NSLocalizedString(@"commit.email.changeset", @""),
+        filelist.length == 0 ? @"None\n" : filelist];
+    [body appendFormat:@"%@:\n%@",
+        NSLocalizedString(@"commit.email.link", @""), commitLink];
+
+    NSString * urlString =
+        [[NSString stringWithFormat:NSLocalizedString(@"commit.email.url", @""),
+         subject, body]
+         stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL * url = [[NSURL alloc] initWithString:urlString];
+    [[UIApplication sharedApplication] openURL:url];
+    [url release];
 }
 
 #pragma mark UI helpers
@@ -265,7 +341,9 @@ enum
 #pragma mark Updating the view with new data
 
 - (void)updateWithCommitInfo:(CommitInfo *)info
+                     forRepo:(NSString *)repo
 {
+    [self setRepoName:repo];
     [self setCommitInfo:info];
 
     [self updateDisplay];
@@ -289,8 +367,14 @@ enum
         [[commitInfo.details objectForKey:@"committer"] objectForKey:@"email"];
     NSString * message = [commitInfo.details objectForKey:@"message"];
 
+    NSString * timestampstring =
+        [commitInfo.details objectForKey:@"committed_date"];
+    NSDate * timestamp = timestampstring ?
+        [NSDate dateWithGitHubString:timestampstring] : nil;
+
     nameLabel.text = committerName;
     emailLabel.text = committerEmail;
+    timestampLabel.text = [timestamp shortDateAndTimeDescription];
 
     CGFloat height = [messageLabel heightForString:message];
 
@@ -310,6 +394,13 @@ enum
 }
 
 #pragma mark Accessors
+
+- (void)setRepoName:(NSString *)repo
+{
+    NSString * tmp = [repo copy];
+    [repoName release];
+    repoName = tmp;
+}
 
 - (void)setCommitInfo:(CommitInfo *)info
 {

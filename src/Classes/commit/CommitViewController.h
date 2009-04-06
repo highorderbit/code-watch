@@ -15,13 +15,16 @@
 
     IBOutlet UILabel * nameLabel;
     IBOutlet UILabel * emailLabel;
+    IBOutlet UILabel * timestampLabel;
     IBOutlet UILabel * messageLabel;
     IBOutlet UIImageView * avatarImageView;
 
+    NSString * repoName;
     CommitInfo * commitInfo;
     UIImage * avatar;
 }
 
+@property (nonatomic, copy, readonly) NSString * repoName;
 @property (nonatomic, copy, readonly) CommitInfo * commitInfo;
 @property (nonatomic, retain, readonly) UIImage * avatar;
 
@@ -30,7 +33,7 @@
 
 #pragma mark Updating the view with new data
 
-- (void)updateWithCommitInfo:(CommitInfo *)info;
+- (void)updateWithCommitInfo:(CommitInfo *)info forRepo:(NSString *)repo;
 - (void)updateWithAvatar:(UIImage *)avatar;
 
 @end

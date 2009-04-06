@@ -198,6 +198,8 @@
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
 {
     if ([self isAttemptingLogInForUsername:username]) {
+        [self logInAttemptFinished];
+
         SEL selector = @selector(logInFailed:error:);
         if ([delegate respondsToSelector:selector])
             [delegate logInFailed:username error:error];
