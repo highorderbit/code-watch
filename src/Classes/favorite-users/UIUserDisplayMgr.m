@@ -230,30 +230,43 @@
     (ABRecordRef)person
 {
     if (person) {
-        // update person with new properties
         CFErrorRef error = NULL;
-
+        
+        /* TOTAL HACK:
+        *  I'm sure there's a better way, but I gave up trying to figure out
+        *  what it is...  Unexpectedly, reading and then writing an ABRecordRef
+        *  to the database will lose all properties but first and last name.
+        *  This would seem to imply that the properties aren't set, but they can
+        *  be read with an ABRecordCopyValue call.  If the properties are reset,
+        *  they will be properly saved to the address book.  The following
+        *  for-loop forces all properties to be set.  It seems that the
+        *  consecutive constants 0 - 39 are valid property keys...
+        */
+        for (int i = 0; i < 39; i++)
+            ABRecordSetValue(person, i, ABRecordCopyValue(person, i), &error);
+        
+        // update person with new properties
         [[self class] mergeStringProperty:kABPersonFirstNameProperty
             fromContact:contactToAdd toContact:person];
-
+    
         [[self class] mergeStringProperty:kABPersonLastNameProperty
             fromContact:contactToAdd toContact:person];
-
+    
         [[self class] mergeStringProperty:kABPersonOrganizationProperty
             fromContact:contactToAdd toContact:person];
-
+    
         [[self class] mergeMultiValueProperty:kABPersonEmailProperty
             fromContact:contactToAdd toContact:person];
         
         [[self class] mergeMultiValueProperty:kABPersonURLProperty
             fromContact:contactToAdd toContact:person];
-
+     
         // write person to adress book
         ABAddressBookRef addressBook = ABAddressBookCreate();
         ABAddressBookRemoveRecord(addressBook, person, &error);
         ABAddressBookAddRecord(addressBook, person, &error);
         ABAddressBookSave(addressBook, &error);
-
+    
         ABRecordID recordId = ABRecordGetRecordID(person);
         [contactCacheSetter setRecordId:recordId forUser:username];
     }
@@ -341,10 +354,11 @@
         
     ABMutableMultiValueRef value =
         ABMultiValueCreateMutableCopy(ABRecordCopyValue(toContact, property));
-    NSArray * newValues =
-        (NSArray *)
-        ABMultiValueCopyArrayOfAllValues(
-        ABRecordCopyValue(fromContact, property));
+    
+    ABRecordRef recordRef = ABRecordCopyValue(fromContact, property);
+    NSArray * newValues = recordRef ?
+        (NSArray *)ABMultiValueCopyArrayOfAllValues(recordRef) :
+        [NSArray array];
     for (NSString * newValue in newValues)
         ABMultiValueAddValueAndLabel(value, newValue, kABHomeLabel, NULL);
     ABRecordSetValue(toContact, property, value, &error);
