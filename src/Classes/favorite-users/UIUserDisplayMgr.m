@@ -48,15 +48,15 @@
     (NSObject<ContactCacheSetter> *)aContactCacheSetter
 {
     if (self = [super init]) {
-        navigationController = aNavigationController;
-        networkAwareViewController = aNetworkAwareViewController;
-        userViewController = aUserViewController;
-        userCacheReader = aUserCacheReader;
-        avatarCacheReader = anAvatarCacheReader;
-        repoSelector = aRepoSelector;
-        gitHubService = aGitHubService;
-        gravatarService = aGravatarService;
-        contactCacheSetter = aContactCacheSetter;
+        navigationController = [aNavigationController retain];
+        networkAwareViewController = [aNetworkAwareViewController retain];
+        userViewController = [aUserViewController retain];
+        userCacheReader = [aUserCacheReader retain];
+        avatarCacheReader = [anAvatarCacheReader retain];
+        repoSelector = [aRepoSelector retain];
+        gitHubService = [aGitHubService retain];
+        gravatarService = [aGravatarService retain];
+        contactCacheSetter = [aContactCacheSetter retain];
         
         [networkAwareViewController
             setNoConnectionText:

@@ -86,7 +86,8 @@
         commitSelector = [aCommitSelector retain];
 
         gravatarServiceFactory = [aGravatarServiceFactory retain];
-        gravatarService = [gravatarServiceFactory createGravatarService];
+        gravatarService =
+            [[gravatarServiceFactory createGravatarService] retain];
         gravatarService.delegate = self;
 
         [self addRefreshButton];
