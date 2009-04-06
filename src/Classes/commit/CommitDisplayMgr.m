@@ -92,7 +92,8 @@
         [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
         [networkAwareViewController setCachedDataAvailable:YES];
 
-        [[self commitViewController] updateWithCommitInfo:commitInfo];
+        [[self commitViewController] updateWithCommitInfo:commitInfo
+                                                  forRepo:repoName];
     } else {
         [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
         [networkAwareViewController setCachedDataAvailable:NO];
@@ -133,7 +134,7 @@
               repo:(NSString *)repo
           username:(NSString *)username
 {
-    [[self commitViewController] updateWithCommitInfo:commitInfo];
+    [[self commitViewController] updateWithCommitInfo:commitInfo forRepo:repo];
 
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];

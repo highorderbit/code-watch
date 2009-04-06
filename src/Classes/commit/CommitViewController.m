@@ -45,6 +45,7 @@ enum
   singularFormatString:(NSString *)singularFormatString
     pluralFormatString:(NSString *)pluralFormatString;
 
+- (void)setRepoName:(NSString *)repo;
 - (void)setCommitInfo:(CommitInfo *)info;
 - (void)setAvatar:(UIImage *)anAvatar;
 
@@ -52,7 +53,7 @@ enum
 
 @implementation CommitViewController
 
-@synthesize delegate, commitInfo, avatar;
+@synthesize delegate, repoName, commitInfo, avatar;
 
 - (void)dealloc
 {
@@ -66,6 +67,7 @@ enum
     [messageLabel release];
     [avatarImageView release];
 
+    [repoName release];
     [commitInfo release];
     [avatar release];
 
@@ -253,9 +255,56 @@ enum
 
 - (void)emailCommit
 {
-    [[UIAlertView notImplementedAlertView] show];
-    [self.tableView deselectRowAtIndexPath:
-        [self.tableView indexPathForSelectedRow] animated:YES];
+    NSString * committer = 
+        [[commitInfo.details objectForKey:@"committer"] objectForKey:@"name"];
+    NSString * committerEmail = 
+        [[commitInfo.details objectForKey:@"committer"] objectForKey:@"email"];
+    NSString * message = [commitInfo.details objectForKey:@"message"];
+    NSString * commitLink = [commitInfo.details objectForKey:@"url"];
+
+    NSArray * added = [commitInfo.changesets objectForKey:@"added"];
+    NSArray * removed = [commitInfo.changesets objectForKey:@"removed"];
+    NSArray * modifeddiffs = [commitInfo.changesets objectForKey:@"modified"];
+    NSMutableArray * modified = [NSMutableArray array];
+    for (NSDictionary * d in modifeddiffs)
+        [modified addObject:[d objectForKey:@"filename"]];
+
+    NSMutableArray * files = [NSMutableArray array];
+    [files addObjectsFromArray:added];
+    [files addObjectsFromArray:removed];
+    [files addObjectsFromArray:modified];
+
+    NSMutableString * filelist = [NSMutableString string];
+    for (NSString * filename in files)
+        [filelist appendFormat:@"%@\n", filename];
+
+    NSString * subject = [NSString stringWithFormat:
+        NSLocalizedString(@"commit.email.subject.formatstring", @""), repoName,
+        committer, message];
+
+    NSMutableString * body = [NSMutableString string];
+
+    [body appendFormat:@"%@: %@\n",
+        NSLocalizedString(@"commit.email.repository", @""), repoName];
+    [body appendFormat:@"%@: %@ (%@)\n",
+        NSLocalizedString(@"commit.email.committer", @""), committer,
+        committerEmail];
+    [body appendFormat:@"\n%@:\n%@\n",
+        NSLocalizedString(@"commit.email.commitmessage", @""), message];
+    [body appendFormat:@"\n%@:\n%@\n",
+        NSLocalizedString(@"commit.email.changeset", @""),
+        filelist.length == 0 ? @"None\n" : filelist];
+    [body appendFormat:@"%@:\n%@",
+        NSLocalizedString(@"commit.email.link", @""), commitLink];
+
+    NSString * urlString =
+        [[NSString stringWithFormat:NSLocalizedString(@"commit.email.url", @""),
+         subject, body]
+         stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL * url = [[NSURL alloc] initWithString:urlString];
+    [[UIApplication sharedApplication] openURL:url];
+    [url release];
 }
 
 #pragma mark UI helpers
@@ -292,7 +341,9 @@ enum
 #pragma mark Updating the view with new data
 
 - (void)updateWithCommitInfo:(CommitInfo *)info
+                     forRepo:(NSString *)repo
 {
+    [self setRepoName:repo];
     [self setCommitInfo:info];
 
     [self updateDisplay];
@@ -343,6 +394,13 @@ enum
 }
 
 #pragma mark Accessors
+
+- (void)setRepoName:(NSString *)repo
+{
+    NSString * tmp = [repo copy];
+    [repoName release];
+    repoName = tmp;
+}
 
 - (void)setCommitInfo:(CommitInfo *)info
 {
