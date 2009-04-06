@@ -279,6 +279,11 @@
         [[self class] mergeMultiValueProperty:kABPersonURLProperty
             fromContact:contactToAdd toContact:person];
      
+        if (!ABPersonHasImageData(person)) {
+            CFDataRef newImage = ABPersonCopyImageData(contactToAdd);
+            ABPersonSetImageData(person, newImage, &error);
+        }
+
         // write person to adress book
         ABAddressBookRef addressBook = ABAddressBookCreate();
         ABAddressBookRemoveRecord(addressBook, person, &error);
