@@ -5,7 +5,7 @@
 #import "NSDate+GitHubStringHelpers.h"
 #import "NSDate+StringHelpers.h"
 
-@implementation NSDate (GitHubStringParsing)
+@implementation NSDate (GitHubStringHelpers)
 
 + (NSDate *)dateWithGitHubString:(NSString *)s
 {
