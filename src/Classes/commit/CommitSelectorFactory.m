@@ -29,24 +29,24 @@
     (UINavigationController *)navigationController
 {
     CommitViewController * commitViewController =
-        [[CommitViewController alloc]
-        initWithNibName:@"CommitView" bundle:nil];
+        [[[CommitViewController alloc]
+        initWithNibName:@"CommitView" bundle:nil] autorelease];
         
     NetworkAwareViewController * networkAwareViewController =
-        [[NetworkAwareViewController alloc]
-        initWithTargetViewController:commitViewController];
+        [[[NetworkAwareViewController alloc]
+        initWithTargetViewController:commitViewController] autorelease];
     
     GitHubService * gitHubService = [gitHubServiceFactory createGitHubService];
         
     CommitDisplayMgr * commitDisplayMgr =
-        [[CommitDisplayMgr alloc]
+        [[[CommitDisplayMgr alloc]
         initWithNavigationController:navigationController
         networkAwareViewController:networkAwareViewController
         commitViewController:commitViewController
         commitCacheReader:commitCache
         avatarCacheReader:avatarCache
         gitHubService:gitHubService
-        gravatarServiceFactory:gravatarServiceFactory];
+        gravatarServiceFactory:gravatarServiceFactory] autorelease];
     
     commitViewController.delegate = commitDisplayMgr;
     gitHubService.delegate = commitDisplayMgr;

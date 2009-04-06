@@ -28,13 +28,14 @@
     (UINavigationController *)navigationController
 {
     RepoViewController * repoViewController =
-        [[RepoViewController alloc] initWithNibName:@"RepoView" bundle:nil];
+        [[[RepoViewController alloc] initWithNibName:@"RepoView" bundle:nil]
+        autorelease];
     repoViewController.favoriteReposStateReader = favoriteReposState;
     repoViewController.favoriteReposStateSetter = favoriteReposState;
 
     NetworkAwareViewController * networkAwareViewController =
-        [[NetworkAwareViewController alloc]
-        initWithTargetViewController:repoViewController];
+        [[[NetworkAwareViewController alloc]
+        initWithTargetViewController:repoViewController] autorelease];
         
     GitHubService * gitHubService = [gitHubServiceFactory createGitHubService];
     
@@ -43,14 +44,14 @@
         createCommitSelectorWithNavigationController:navigationController];
     
     RepoDisplayMgr * repoDisplayMgr = 
-        [[RepoDisplayMgr alloc] initWithLogInStateReader:logInState
+        [[[RepoDisplayMgr alloc] initWithLogInStateReader:logInState
         repoCacheReader:repoCache commitCacheReader:commitCache
         avatarCacheReader:avatarCache
         navigationController:navigationController
         networkAwareViewController:networkAwareViewController
         repoViewController:repoViewController gitHubService:gitHubService
         gravatarServiceFactory:gravatarServiceFactory
-        commitSelector:commitSelector];
+        commitSelector:commitSelector] autorelease];
         
     repoViewController.delegate = repoDisplayMgr;
     gitHubService.delegate = repoDisplayMgr;

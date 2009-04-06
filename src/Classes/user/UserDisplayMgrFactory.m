@@ -44,8 +44,8 @@
         navigationController];
     
     NetworkAwareViewController * networkAwareViewController =
-        [[NetworkAwareViewController alloc]
-        initWithTargetViewController:userViewController];
+        [[[NetworkAwareViewController alloc]
+        initWithTargetViewController:userViewController] autorelease];
     
     GitHubService * gitHubService = [gitHubServiceFactory createGitHubService];
 
@@ -57,13 +57,13 @@
         createRepoSelectorWithNavigationController:navigationController];
     
     UIUserDisplayMgr * userDisplayMgr =
-        [[UIUserDisplayMgr alloc]
+        [[[UIUserDisplayMgr alloc]
         initWithNavigationController:navigationController
         networkAwareViewController:networkAwareViewController
         userViewController:userViewController userCacheReader:userCache
         avatarCacheReader:avatarCache repoSelector:repoSelector
         gitHubService:gitHubService gravatarService:gravatarService
-        contactCacheSetter:contactCache];
+        contactCacheSetter:contactCache] autorelease];
         
     userViewController.delegate = userDisplayMgr;
     networkAwareViewController.delegate = userDisplayMgr;
@@ -78,20 +78,20 @@
     (UINavigationController *)navigationController
 {
     NewsFeedTableViewController * newsFeedViewController =
-        [[NewsFeedTableViewController alloc] init];
+        [[[NewsFeedTableViewController alloc] init] autorelease];
 
     NetworkAwareViewController * networkAwareViewController =
-        [[NetworkAwareViewController alloc]
-        initWithTargetViewController:newsFeedViewController];
+        [[[NetworkAwareViewController alloc]
+        initWithTargetViewController:newsFeedViewController] autorelease];
         
     GitHubService * gitHubService = [gitHubServiceFactory createGitHubService];
         
     UIRecentActivityDisplayMgr * recentActivityDisplayMgr =
-        [[UIRecentActivityDisplayMgr alloc]
+        [[[UIRecentActivityDisplayMgr alloc]
         initWithNavigationController:navigationController
         networkAwareViewController:networkAwareViewController
         newsFeedTableViewController:newsFeedViewController
-        gitHubService:gitHubService];
+        gitHubService:gitHubService] autorelease];
     
     return recentActivityDisplayMgr;
 }
@@ -99,7 +99,8 @@
 - (UserViewController *)createUserViewController
 {
     UserViewController * userViewController =
-        [[UserViewController alloc] initWithNibName:@"UserView" bundle:nil];
+        [[[UserViewController alloc] initWithNibName:@"UserView" bundle:nil]
+        autorelease];
     userViewController.favoriteUsersStateReader = favoriteUsersState;
     userViewController.favoriteUsersStateSetter = favoriteUsersState;
     userViewController.contactCacheReader = contactCache;

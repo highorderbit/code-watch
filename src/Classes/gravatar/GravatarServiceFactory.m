@@ -18,8 +18,10 @@
 - (GravatarService *)createGravatarService
 {
     NSString * baseUrl = [configReader valueForKey:@"GravatarApiBaseUrl"];
-    return [[GravatarService alloc] initWithGravatarBaseUrlString:baseUrl
-                                                avatarCacheSetter:avatarCache];
+    return
+        [[[GravatarService alloc]
+            initWithGravatarBaseUrlString:baseUrl
+            avatarCacheSetter:avatarCache] autorelease];
 }
 
 @end

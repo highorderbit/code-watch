@@ -23,9 +23,9 @@
 
 - (GitHubService *)createGitHubService
 {
-    return [[GitHubService alloc] initWithConfigReader:configReader
+    return [[[GitHubService alloc] initWithConfigReader:configReader
         logInState:logInState userCache:userCache repoCache:repoCache
-        commitCache:commitCache];
+        commitCache:commitCache] autorelease];
 }
 
 @end
