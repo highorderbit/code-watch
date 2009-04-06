@@ -29,13 +29,16 @@ enum
 static const NSUInteger NUM_ACTION_ROWS = 2;
 enum
 {
-    kSafariRow,
+    kOpenInSafariRow,
     kEmailRow
 };
 
 @interface CommitViewController (Private)
 
 - (void)updateDisplay;
+
+- (void)openCommitInSafari;
+- (void)emailCommit;
 
 - (void)formatDiffCell:(UITableViewCell *)cell
          withChangeset:(NSArray *)changes
@@ -168,7 +171,7 @@ enum
 
         case kActionSection:
             switch (indexPath.row) {
-                case kSafariRow:
+                case kOpenInSafariRow:
                     cell.text = @"Open in Safari";
                     break;
                 case kEmailRow:
@@ -227,11 +230,32 @@ enum
         }
 
         [delegate userDidSelectChangeset:changeset ofType:changesetType];
-    } else {
-        [[UIAlertView notImplementedAlertView] show];
-        [self.tableView deselectRowAtIndexPath:
-            [self.tableView indexPathForSelectedRow] animated:YES];
+    } else if (indexPath.section == kActionSection) {
+        switch (indexPath.row) {
+            case kOpenInSafariRow:
+                [self openCommitInSafari];
+                break;
+            case kEmailRow:
+                [self emailCommit];
+                break;
+        }
     }
+}
+
+#pragma mark Commit actions
+
+- (void)openCommitInSafari
+{
+    NSURL * url =
+        [NSURL URLWithString:[commitInfo.details objectForKey:@"url"]];
+    [[UIApplication sharedApplication] openURL:url];
+}
+
+- (void)emailCommit
+{
+    [[UIAlertView notImplementedAlertView] show];
+    [self.tableView deselectRowAtIndexPath:
+        [self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 #pragma mark UI helpers
