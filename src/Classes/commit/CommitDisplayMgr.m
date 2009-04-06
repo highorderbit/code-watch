@@ -68,11 +68,6 @@
     return self;
 }
 
-- (void)awakeFromNib
-{
-    NSLog(@"Awaking form nib.");
-}
-
 #pragma mark CommitSelector implementation
 
 - (void)user:(NSString *)username didSelectCommit:(NSString *)commitKey
