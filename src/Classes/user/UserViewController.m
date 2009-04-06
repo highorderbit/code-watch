@@ -328,13 +328,11 @@ enum Section
     NSString * emailAddress = [details objectForKey:@"email"];
     NSString * blog = [details objectForKey:@"blog"];
     
-    if (firstName)
-        ABRecordSetValue(person, kABPersonFirstNameProperty, firstName, &error);
-    if (lastName)
-         ABRecordSetValue(person, kABPersonLastNameProperty, lastName, &error);
-    if (companyName)
-         ABRecordSetValue(person, kABPersonOrganizationProperty, companyName,
-            &error);
+    ABRecordSetValue(person, kABPersonFirstNameProperty, firstName, &error);
+    ABRecordSetValue(person, kABPersonLastNameProperty, lastName, &error);
+    ABRecordSetValue(person, kABPersonOrganizationProperty, companyName,
+        &error);
+
     if (emailAddress) {
         ABMutableMultiValueRef emailAddresses =
             ABMultiValueCreateMutable(kABMultiStringPropertyType);

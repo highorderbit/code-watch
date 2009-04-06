@@ -3,6 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AddressBookUI/ABPeoplePickerNavigationController.h>
 #import "NetworkAwareViewController.h"
 #import "UserViewController.h"
 #import "UserViewControllerDelegate.h"
@@ -21,7 +22,8 @@
     NSObject
     <NetworkAwareViewControllerDelegate, GitHubServiceDelegate,
     GravatarServiceDelegate, UserViewControllerDelegate,
-    ABNewPersonViewControllerDelegate>
+    ABNewPersonViewControllerDelegate, UIActionSheetDelegate,
+    ABPeoplePickerNavigationControllerDelegate>
 {
     IBOutlet UINavigationController * navigationController;
     IBOutlet NetworkAwareViewController * networkAwareViewController;
@@ -38,9 +40,12 @@
 
     GravatarService * gravatarService;
     IBOutlet GravatarServiceFactory * gravatarServiceFactory;
+    
+    ABRecordRef contactToAdd;
 }
 
 @property (readonly) UIViewController * tabViewController;
+@property (nonatomic) ABRecordRef contactToAdd;
 
 - (void)displayUserInfo;
 

@@ -3,11 +3,25 @@
 //
 
 #import "UIUserDisplayMgr.h"
-
 #import "GitHubService.h"
 #import "GravatarService.h"
 
+@interface UIUserDisplayMgr (Private)
+
+- (void)createNewContact;
+- (void)addToExistingContact;
++ (void)mergeStringProperty:(NSInteger)property
+    fromContact:(ABRecordRef)fromContact
+    toContact:(ABRecordRef)toContact;
++ (void)mergeMultiValueProperty:(NSInteger)property
+    fromContact:(ABRecordRef)fromContact
+    toContact:(ABRecordRef)toContact;
+
+@end
+
 @implementation UIUserDisplayMgr
+
+@synthesize contactToAdd;
 
 - (void)dealloc
 {
@@ -107,21 +121,17 @@
 
 - (void)userDidAddContact:(ABRecordRef)person
 {
-    ABNewPersonViewController * personViewController =
-        [[ABNewPersonViewController alloc] init];
-    personViewController.displayedPerson = person;
-    personViewController.addressBook = ABAddressBookCreate();
-    personViewController.newPersonViewDelegate = self;
+    self.contactToAdd = person;
     
-    UINavigationController * addContactNavController =
-        [[UINavigationController alloc]
-        initWithRootViewController:personViewController];
-    
-    [self.tabViewController presentModalViewController:addContactNavController
-        animated:YES];
+    UIActionSheet * actionSheet =
+        [[[UIActionSheet alloc]
+        initWithTitle:nil delegate:self
+        cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
+        otherButtonTitles:@"Create New Contact", @"Add to Existing Contact",
+        nil]
+        autorelease];
 
-    [addContactNavController release];
-    [personViewController release];
+    [actionSheet showInView:self.tabViewController.view];
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -190,11 +200,154 @@
     [self.tabViewController dismissModalViewControllerAnimated:YES];
 }
 
+#pragma mark UIActionSheetDelegate implementation
+
+- (void)actionSheet:(UIActionSheet *)actionSheet
+    clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            [self createNewContact];
+            break;
+        case 1:
+            [self addToExistingContact];
+            break;
+    }
+}
+
 #pragma mark Property implementations
 
 - (UIViewController *)tabViewController
 {
     return navigationController.parentViewController;
+}
+
+#pragma mark ABPeoplePickerNavigationController implementation
+
+- (BOOL)peoplePickerNavigationController:
+    (ABPeoplePickerNavigationController *)peoplePicker
+    shouldContinueAfterSelectingPerson:
+    (ABRecordRef)person
+{
+    if (person) {
+        // update person with new properties
+        CFErrorRef error = NULL;
+
+        [[self class] mergeStringProperty:kABPersonFirstNameProperty
+            fromContact:contactToAdd toContact:person];
+
+        [[self class] mergeStringProperty:kABPersonLastNameProperty
+            fromContact:contactToAdd toContact:person];
+
+        [[self class] mergeStringProperty:kABPersonOrganizationProperty
+            fromContact:contactToAdd toContact:person];
+
+        [[self class] mergeMultiValueProperty:kABPersonEmailProperty
+            fromContact:contactToAdd toContact:person];
+        
+        [[self class] mergeMultiValueProperty:kABPersonURLProperty
+            fromContact:contactToAdd toContact:person];
+
+        // write person to adress book
+        ABAddressBookRef addressBook = ABAddressBookCreate();
+        ABAddressBookRemoveRecord(addressBook, person, &error);
+        ABAddressBookAddRecord(addressBook, person, &error);
+        ABAddressBookSave(addressBook, &error);
+
+        ABRecordID recordId = ABRecordGetRecordID(person);
+        [contactCacheSetter setRecordId:recordId forUser:username];
+    }
+    
+    [self.tabViewController dismissModalViewControllerAnimated:YES];
+    
+    return NO;
+}
+
+- (BOOL)peoplePickerNavigationController:
+    (ABPeoplePickerNavigationController *)peoplePicker
+    shouldContinueAfterSelectingPerson:
+    (ABRecordRef)person
+    property:
+    (ABPropertyID)property
+    identifier:
+    (ABMultiValueIdentifier)identifier
+{
+    return NO;
+}
+
+- (void)peoplePickerNavigationControllerDidCancel:
+    (ABPeoplePickerNavigationController *)peoplePicker
+{
+    [self.tabViewController dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark Contact management methods
+
+- (void)createNewContact
+{
+    NSLog(@"Creating a new contact...");
+    
+    ABNewPersonViewController * personViewController =
+        [[ABNewPersonViewController alloc] init];
+    personViewController.displayedPerson = contactToAdd;
+    personViewController.addressBook = ABAddressBookCreate();
+    personViewController.newPersonViewDelegate = self;
+    
+    UINavigationController * addContactNavController =
+        [[UINavigationController alloc]
+        initWithRootViewController:personViewController];
+    
+    [self.tabViewController presentModalViewController:addContactNavController
+        animated:YES];
+    
+    [addContactNavController release];
+    [personViewController release];
+}
+
+- (void)addToExistingContact
+{
+    NSLog(@"Adding to existing contacts...");
+    
+    ABPeoplePickerNavigationController * peoplePickerController =
+        [[ABPeoplePickerNavigationController alloc] init];
+    peoplePickerController.peoplePickerDelegate = self;
+    
+    [self.tabViewController presentModalViewController:peoplePickerController
+        animated:YES];
+    
+    [peoplePickerController release];
+}
+
++ (void)mergeStringProperty:(NSInteger)property
+    fromContact:(ABRecordRef)fromContact
+    toContact:(ABRecordRef)toContact
+{
+    CFErrorRef error = NULL;
+            
+    NSString * value =
+        (NSString *)ABRecordCopyValue(toContact, property);
+    if (!value) {
+        NSString * newValue =
+            (NSString *)ABRecordCopyValue(fromContact, property);
+        ABRecordSetValue(toContact, property, newValue, &error);
+    }
+}
+
++ (void)mergeMultiValueProperty:(NSInteger)property
+    fromContact:(ABRecordRef)fromContact
+    toContact:(ABRecordRef)toContact
+{
+    CFErrorRef error = NULL;
+        
+    ABMutableMultiValueRef value =
+        ABMultiValueCreateMutableCopy(ABRecordCopyValue(toContact, property));
+    NSArray * newValues =
+        (NSArray *)
+        ABMultiValueCopyArrayOfAllValues(
+        ABRecordCopyValue(fromContact, property));
+    for (NSString * newValue in newValues)
+        ABMultiValueAddValueAndLabel(value, newValue, kABHomeLabel, NULL);
+    ABRecordSetValue(toContact, property, value, &error);
 }
 
 @end
