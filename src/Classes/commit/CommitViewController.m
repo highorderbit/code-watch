@@ -172,10 +172,10 @@ enum
         case kActionSection:
             switch (indexPath.row) {
                 case kOpenInSafariRow:
-                    cell.text = @"Open in Safari";
+                    cell.text = NSLocalizedString(@"commit.safari.label", @"");
                     break;
                 case kEmailRow:
-                    cell.text = @"Email";
+                    cell.text = NSLocalizedString(@"commit.email.label", @"");
                     break;
             }
             break;
