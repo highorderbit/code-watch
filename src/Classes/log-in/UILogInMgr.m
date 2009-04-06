@@ -177,7 +177,13 @@
             NSLocalizedString(@"loginmgr.logout.text", @"");
         userBarButtonItem.title =
             NSLocalizedString(@"loginmgr.logout.text", @"");
-        userTabBarItem.title = logInStateReader.login;
+        static const NSInteger MAX_USER_TAB_NAME_LENGTH = 12;
+        userTabBarItem.title =
+            [logInStateReader.login length] > MAX_USER_TAB_NAME_LENGTH ?
+            [NSString stringWithFormat:@"%@...",
+            [logInStateReader.login
+            substringToIndex:MAX_USER_TAB_NAME_LENGTH - 3]] :
+            logInStateReader.login;
     } else {
         homeBarButtonItem.title =
             NSLocalizedString(@"loginmgr.login.text", @"");
