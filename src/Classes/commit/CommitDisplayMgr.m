@@ -15,6 +15,7 @@
 
 + (NSString *)changesetTypeLabel:(ChangesetType)type;
 
+- (NetworkAwareViewController *)networkAwareViewController;
 - (CommitViewController *)commitViewController;
 - (ChangesetViewController *)changesetViewController;
 - (DiffViewController *)diffViewController;
@@ -63,6 +64,8 @@
         gravatarService =
             [[gravatarServiceFactory createGravatarService] retain];
         gravatarService.delegate = self;
+
+        NSLog(@"Initialized: %@.", self);
     }
     
     return self;
@@ -73,7 +76,7 @@
 - (void)user:(NSString *)username didSelectCommit:(NSString *)commitKey
     forRepo:(NSString *)repoName
 {
-    networkAwareViewController.navigationItem.title =
+    [self networkAwareViewController].navigationItem.title =
         NSLocalizedString(@"commit.view.title", @"");
 
     CommitInfo * commitInfo = [commitCacheReader commitWithKey:commitKey];
@@ -89,14 +92,16 @@
     BOOL cached = !!commitInfo.changesets;
 
     if (cached) {
-        [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
-        [networkAwareViewController setCachedDataAvailable:YES];
+        [[self networkAwareViewController]
+            setUpdatingState:kConnectedAndNotUpdating];
+        [[self networkAwareViewController] setCachedDataAvailable:YES];
 
         [[self commitViewController] updateWithCommitInfo:commitInfo
                                                   forRepo:repoName];
     } else {
-        [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
-        [networkAwareViewController setCachedDataAvailable:NO];
+        [[self networkAwareViewController]
+            setUpdatingState:kConnectedAndUpdating];
+        [[self networkAwareViewController] setCachedDataAvailable:NO];
 
         // commits don't change, so only update if needed
         [gitHubService
@@ -104,7 +109,7 @@
     }
 
     [navigationController
-        pushViewController:networkAwareViewController animated:YES];
+        pushViewController:[self networkAwareViewController] animated:YES];
 }
 
 #pragma mark CommitViewControllerDelegate implementation
@@ -136,8 +141,8 @@
 {
     [[self commitViewController] updateWithCommitInfo:commitInfo forRepo:repo];
 
-    [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
-    [networkAwareViewController setCachedDataAvailable:YES];
+    [[self networkAwareViewController] setUpdatingState:kConnectedAndNotUpdating];
+    [[self networkAwareViewController] setCachedDataAvailable:YES];
 }
 
 - (void)failedToFetchInfoForCommit:(NSString *)commitKey
@@ -165,7 +170,7 @@
 
     [alertView show];
 
-    [networkAwareViewController setUpdatingState:kDisconnected];
+    [[self networkAwareViewController] setUpdatingState:kDisconnected];
 }
 
 - (void)avatar:(UIImage *)avatar fetchedForEmailAddress:(NSString *)emailAddress
@@ -214,6 +219,15 @@
 }
 
 #pragma mark Accessors
+
+- (NetworkAwareViewController *)networkAwareViewController
+{
+    if (!networkAwareViewController)
+        networkAwareViewController = [[NetworkAwareViewController alloc]
+            initWithTargetViewController:[self commitViewController]];
+
+    return networkAwareViewController;
+}
 
 - (CommitViewController *)commitViewController
 {

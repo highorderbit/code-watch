@@ -23,7 +23,7 @@
 {
     IBOutlet UINavigationController * navigationController;
 
-    IBOutlet NetworkAwareViewController * networkAwareViewController;
+    NetworkAwareViewController * networkAwareViewController;
     CommitViewController * commitViewController;
 
     ChangesetViewController * changesetViewController;
