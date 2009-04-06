@@ -15,6 +15,7 @@
 
     IBOutlet UILabel * nameLabel;
     IBOutlet UILabel * emailLabel;
+    IBOutlet UILabel * timestampLabel;
     IBOutlet UILabel * messageLabel;
     IBOutlet UIImageView * avatarImageView;
 

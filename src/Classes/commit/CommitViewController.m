@@ -8,6 +8,8 @@
 #import "UILabel+DrawingAdditions.h"
 #import "UIAlertView+CreationHelpers.h"
 #import "UIImage+AvatarHelpers.h"
+#import "NSDate+StringHelpers.h"
+#import "NSDate+GitHubStringHelpers.h"
 
 static const NSUInteger NUM_SECTIONS = 2;
 enum
@@ -57,6 +59,7 @@ enum
 
     [nameLabel release];
     [emailLabel release];
+    [timestampLabel release];
     [messageLabel release];
     [avatarImageView release];
 
@@ -289,8 +292,14 @@ enum
         [[commitInfo.details objectForKey:@"committer"] objectForKey:@"email"];
     NSString * message = [commitInfo.details objectForKey:@"message"];
 
+    NSString * timestampstring =
+        [commitInfo.details objectForKey:@"committed_date"];
+    NSDate * timestamp = timestampstring ?
+        [NSDate dateWithGitHubString:timestampstring] : nil;
+
     nameLabel.text = committerName;
     emailLabel.text = committerEmail;
+    timestampLabel.text = [timestamp shortDateAndTimeDescription];
 
     CGFloat height = [messageLabel heightForString:message];
 

@@ -6,8 +6,9 @@
 
 @interface NSDate (StringHelpers)
 
-- (NSString *) shortDescription;
+- (NSString *)shortDescription;
+- (NSString *)shortDateAndTimeDescription;
 
-+ (NSDate *) dateFromString:(NSString *)string format:(NSString *)formatString;
++ (NSDate *)dateFromString:(NSString *)string format:(NSString *)formatString;
 
 @end
