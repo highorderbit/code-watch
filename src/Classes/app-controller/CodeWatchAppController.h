@@ -14,6 +14,8 @@
 #import "GitHubServiceFactory.h"
 #import "UserDisplayMgrFactory.h"
 #import "RepoSelectorFactory.h"
+#import "UIState.h"
+#import "UIStatePersistenceStore.h"
 
 @interface CodeWatchAppController : NSObject
 {
@@ -44,6 +46,10 @@
 
     IBOutlet UserDisplayMgrFactory * userDisplayMgrFactory;
     IBOutlet RepoSelectorFactory * repoSelectorFactory;
+    
+    IBOutlet UIState * uiState;
+    IBOutlet UITabBarController * tabBarController;
+    IBOutlet UIStatePersistenceStore * uiStatePersistenceStore;
 }
 
 - (void) start;

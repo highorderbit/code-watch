@@ -136,6 +136,8 @@
 		91CC535A0F6EC311000AD3FB /* PrimaryUserDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC53590F6EC311000AD3FB /* PrimaryUserDisplayMgr.m */; };
 		91D8BC390F8AD6A70041EC91 /* ContactMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8BC380F8AD6A70041EC91 /* ContactMgr.m */; };
 		91D8BD530F8BA5700041EC91 /* HOTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8BD520F8BA5700041EC91 /* HOTableViewCell.m */; };
+		91D8BDBB0F8BB02F0041EC91 /* UIState.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8BDBA0F8BB02F0041EC91 /* UIState.m */; };
+		91D8BDD00F8BB3810041EC91 /* UIStatePersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8BDCF0F8BB3810041EC91 /* UIStatePersistenceStore.m */; };
 		91E25E540F79B3B100E1594E /* FavoriteUsersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E25E520F79B3B100E1594E /* FavoriteUsersView.xib */; };
 		91E25E5A0F79B7C400E1594E /* FavoriteUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */; };
 		91E25E700F79B96900E1594E /* FavoriteUsersDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */; };
@@ -433,6 +435,10 @@
 		91D8BC380F8AD6A70041EC91 /* ContactMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactMgr.m; sourceTree = "<group>"; };
 		91D8BD510F8BA5700041EC91 /* HOTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOTableViewCell.h; sourceTree = "<group>"; };
 		91D8BD520F8BA5700041EC91 /* HOTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOTableViewCell.m; sourceTree = "<group>"; };
+		91D8BDB90F8BB02F0041EC91 /* UIState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIState.h; sourceTree = "<group>"; };
+		91D8BDBA0F8BB02F0041EC91 /* UIState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIState.m; sourceTree = "<group>"; };
+		91D8BDCE0F8BB3810041EC91 /* UIStatePersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIStatePersistenceStore.h; sourceTree = "<group>"; };
+		91D8BDCF0F8BB3810041EC91 /* UIStatePersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIStatePersistenceStore.m; sourceTree = "<group>"; };
 		91E25E530F79B3B100E1594E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FavoriteUsersView.xib; sourceTree = "<group>"; };
 		91E25E580F79B7C400E1594E /* FavoriteUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersViewController.h; path = "favorite-users/FavoriteUsersViewController.h"; sourceTree = "<group>"; };
 		91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteUsersViewController.m; path = "favorite-users/FavoriteUsersViewController.m"; sourceTree = "<group>"; };
@@ -613,6 +619,10 @@
 				0560A05A0F69C83E0031A852 /* CodeWatchAppController.m */,
 				0560A05B0F69C83E0031A852 /* CodeWatchAppDelegate.h */,
 				0560A05C0F69C83E0031A852 /* CodeWatchAppDelegate.m */,
+				91D8BDB90F8BB02F0041EC91 /* UIState.h */,
+				91D8BDBA0F8BB02F0041EC91 /* UIState.m */,
+				91D8BDCE0F8BB3810041EC91 /* UIStatePersistenceStore.h */,
+				91D8BDCF0F8BB3810041EC91 /* UIStatePersistenceStore.m */,
 			);
 			path = "app-controller";
 			sourceTree = "<group>";
@@ -1276,6 +1286,8 @@
 				0565D5310F884D35002C950E /* UIImage+AvatarHelpers.m in Sources */,
 				91D8BC390F8AD6A70041EC91 /* ContactMgr.m in Sources */,
 				91D8BD530F8BA5700041EC91 /* HOTableViewCell.m in Sources */,
+				91D8BDBB0F8BB02F0041EC91 /* UIState.m in Sources */,
+				91D8BDD00F8BB3810041EC91 /* UIStatePersistenceStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
