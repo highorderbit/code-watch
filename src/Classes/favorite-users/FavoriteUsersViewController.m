@@ -3,6 +3,7 @@
 //
 
 #import "FavoriteUsersViewController.h"
+#import "HOTableViewCell.h"
 
 @implementation FavoriteUsersViewController
 
@@ -28,8 +29,13 @@
 {
     [super viewWillAppear:animated];
     [delegate viewWillAppear];
-    [self.tableView reloadData];
     [self setEditing:NO animated:NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
 }
 
 #pragma mark Table view methods
@@ -55,7 +61,7 @@
         
     if (cell == nil)
         cell =
-            [[[UITableViewCell alloc] initWithFrame:CGRectZero
+            [[[HOTableViewCell alloc] initWithFrame:CGRectZero
             reuseIdentifier:CellIdentifier] autorelease];
     
     cell.text = [sortedUsernames objectAtIndex:indexPath.row];

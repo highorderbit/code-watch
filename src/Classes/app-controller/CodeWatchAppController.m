@@ -58,6 +58,10 @@
     [userDisplayMgrFactory release];
     [repoSelectorFactory release];
     
+    [uiState release];
+    [tabBarController release];
+    [uiStatePersistenceStore release];
+    
     [super dealloc];
 }
 
@@ -69,6 +73,8 @@
     [self createAndInitFavoriteUsersDisplayMgr];
     [self createAndInitFavoriteReposDisplayMgr];
 
+    tabBarController.selectedIndex = uiState.selectedTab;
+
     if ([logInState prompt])
         [logInMgr collectCredentials:self];
     else
@@ -77,6 +83,8 @@
 
 - (void)persistState
 {
+    uiState.selectedTab = tabBarController.selectedIndex;
+    
     [logInPersistenceStore save];
     [userCachePersistenceStore save];
     [newsFeedPersistenceStore save];
@@ -86,6 +94,7 @@
     [avatarCachePersistenceStore save];
     [favoriteUsersPersistenceStore save];
     [favoriteReposPersistenceStore save];
+    [uiStatePersistenceStore save];
 }
 
 - (void)loadStateFromPersistenceStores
@@ -99,6 +108,7 @@
     [avatarCachePersistenceStore load];
     [favoriteUsersPersistenceStore load];
     [favoriteReposPersistenceStore load];
+    [uiStatePersistenceStore load];
 }
 
 #pragma mark Initialization methods

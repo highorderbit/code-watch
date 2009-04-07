@@ -1,5 +1,5 @@
 //
-//  Copyright 2009 High Order Bit, Inc.. All rights reserved.
+//  Copyright 2009 High Order Bit, Inc. All rights reserved.
 //
 
 #import "UserViewController.h"
@@ -27,6 +27,7 @@ enum Section
 @implementation UserViewController
 
 @synthesize delegate;
+@synthesize contactMgr;
 @synthesize favoriteUsersStateSetter;
 @synthesize favoriteUsersStateReader;
 @synthesize recentActivityDisplayMgr;
@@ -35,6 +36,7 @@ enum Section
 - (void) dealloc
 {
     [delegate release];
+    [contactMgr release];
     [favoriteUsersStateSetter release];
     [favoriteUsersStateReader release];
     [recentActivityDisplayMgr release];
@@ -319,11 +321,12 @@ enum Section
     
     NSArray * nameComponents =
         [[details objectForKey:@"name"] componentsSeparatedByString:@" "];
+    NSUInteger nameCompsCount = nameComponents ? [nameComponents count] : 0;
     NSString * firstName =
-        nameComponents && [nameComponents count] > 1 ?
-        [nameComponents objectAtIndex:0] : nil;
-    NSString * lastName = nameComponents && [nameComponents count] > 1 ?
-        [nameComponents objectAtIndex:1] : nil;
+        nameCompsCount > 0 ? [nameComponents objectAtIndex:0] : nil;
+    NSString * lastName =
+        nameCompsCount > 1 ?
+        [nameComponents objectAtIndex:nameCompsCount - 1] : nil;
     NSString * companyName = [details objectForKey:@"company"];
     NSString * emailAddress = [details objectForKey:@"email"];
     NSString * blog = [details objectForKey:@"blog"];
@@ -351,7 +354,7 @@ enum Section
     NSData * data = UIImagePNGRepresentation(avatarView.image);
     ABPersonSetImageData(person, (CFDataRef)data, &error);
 
-    [delegate userDidAddContact:person];
+    [contactMgr userDidAddContact:person forUser:username];
 }
 
 - (IBAction)addFavorite:(id)sender

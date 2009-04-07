@@ -9,10 +9,12 @@
 #import "FavoriteUsersStateReader.h"
 #import "RecentActivityDisplayMgr.h"
 #import "ContactCacheReader.h"
+#import "ContactMgr.h"
 
 @interface UserViewController : UITableViewController
 {
     IBOutlet NSObject<UserViewControllerDelegate> * delegate;
+    IBOutlet ContactMgr * contactMgr;
     IBOutlet NSObject<FavoriteUsersStateSetter> * favoriteUsersStateSetter;
     IBOutlet NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
     IBOutlet NSObject<RecentActivityDisplayMgr> * recentActivityDisplayMgr;
@@ -37,6 +39,7 @@
 }
 
 @property (nonatomic, retain) NSObject<UserViewControllerDelegate> * delegate;
+@property (nonatomic, retain) ContactMgr * contactMgr;
 @property (nonatomic, retain)
     NSObject<FavoriteUsersStateSetter> * favoriteUsersStateSetter;
 @property (nonatomic, retain)

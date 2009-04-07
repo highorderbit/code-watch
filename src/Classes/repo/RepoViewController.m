@@ -198,6 +198,11 @@
         [NSString stringWithFormat:@"%@ / %@", watchersLabel, forksLabel];
 }
 
+- (void)scrollToTop
+{
+    [self.tableView scrollRectToVisible:self.tableView.frame animated:NO];
+}
+
 #pragma mark Add to favorites
 
 - (IBAction)addToFavorites:(id)sender
