@@ -3,6 +3,7 @@
 //
 
 #import "FavoriteReposViewController.h"
+#import "HOTableViewCell.h"
 
 @implementation FavoriteReposViewController
 
@@ -60,7 +61,7 @@
         
     if (cell == nil)
         cell =
-            [[[UITableViewCell alloc] initWithFrame:CGRectZero
+            [[[HOTableViewCell alloc] initWithFrame:CGRectZero
             reuseIdentifier:CellIdentifier] autorelease];
     
     cell.text = [[sortedRepoKeys objectAtIndex:indexPath.row] description];

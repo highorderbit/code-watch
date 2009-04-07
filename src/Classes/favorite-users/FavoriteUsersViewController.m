@@ -3,6 +3,7 @@
 //
 
 #import "FavoriteUsersViewController.h"
+#import "HOTableViewCell.h"
 
 @implementation FavoriteUsersViewController
 
@@ -60,7 +61,7 @@
         
     if (cell == nil)
         cell =
-            [[[UITableViewCell alloc] initWithFrame:CGRectZero
+            [[[HOTableViewCell alloc] initWithFrame:CGRectZero
             reuseIdentifier:CellIdentifier] autorelease];
     
     cell.text = [sortedUsernames objectAtIndex:indexPath.row];
