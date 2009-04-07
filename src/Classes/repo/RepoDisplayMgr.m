@@ -150,6 +150,7 @@
 
     [navigationController
         pushViewController:networkAwareViewController animated:YES];
+    [repoViewController scrollToTop];
 }
 
 #pragma mark GitHubServiceDelegate implementation

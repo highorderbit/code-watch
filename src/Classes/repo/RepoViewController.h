@@ -47,4 +47,6 @@
          
 - (IBAction)addToFavorites:(id)sender;
 
+- (void)scrollToTop;
+
 @end
