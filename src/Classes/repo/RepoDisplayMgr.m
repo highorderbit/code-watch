@@ -115,16 +115,6 @@
 
 - (void)refreshRepoInfo
 {
-    [self user:username didSelectRepo:repoName];
-}
-
-#pragma mark RepoSelector implementation
-
-- (void)user:(NSString *)user didSelectRepo:(NSString *)repo
-{
-    [self setUsername:user];
-    [self setRepoName:repo];
-
     BOOL cachedDataAvailable = [self loadCachedData];
     if (cachedDataAvailable) {
         [repoViewController updateWithCommits:commits
@@ -150,6 +140,17 @@
 
     [navigationController
         pushViewController:networkAwareViewController animated:YES];
+}
+
+#pragma mark RepoSelector implementation
+
+- (void)user:(NSString *)user didSelectRepo:(NSString *)repo
+{
+    [self setUsername:user];
+    [self setRepoName:repo];
+    
+    [self refreshRepoInfo];
+
     [repoViewController scrollToTop];
 }
 

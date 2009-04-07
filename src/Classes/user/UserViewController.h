@@ -59,4 +59,6 @@
 - (IBAction)addContact:(id)sender;
 - (IBAction)addFavorite:(id)sender;
 
+- (void)scrollToTop;
+
 @end

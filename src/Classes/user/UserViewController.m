@@ -364,4 +364,9 @@ enum Section
     addToFavoritesButton.enabled = NO;
 }
 
+- (void)scrollToTop
+{
+    [self.tableView scrollRectToVisible:self.tableView.frame animated:NO];
+}
+
 @end

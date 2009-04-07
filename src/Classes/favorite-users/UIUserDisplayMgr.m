@@ -148,6 +148,7 @@
         NSLocalizedString(@"user.view.title", @"");
         
     [self displayUserInfo];
+    [userViewController scrollToTop];
 }
 
 @end
