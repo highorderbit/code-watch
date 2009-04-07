@@ -11,6 +11,8 @@
 + (RssItem *) rssItemFromDictionary:(NSDictionary *)dict;
 + (NSDictionary *) dictionaryFromRssItem:(RssItem *)rssItem;
 
++ (NSString *)primaryUserKey;
++ (NSString *)everyoneElseKey;
 + (NSString *)typeKey;
 + (NSString *)authorKey;
 + (NSDate *)pubDateKey;
@@ -35,31 +37,70 @@
 
 - (void)load
 {
-    NSArray * array =
-        [PlistUtils getArrayFromPlist:[[self class] plistName]];
-    
-    NSMutableArray * rssItems = [NSMutableArray array];
-    for (NSDictionary * dict in array) {
-        RssItem * rssItem =
-            [[self class] rssItemFromDictionary:dict];
-        [rssItems addObject:rssItem];
+    NSDictionary * data =
+        [PlistUtils getDictionaryFromPlist:[[self class] plistName]];
+    if (!data)
+        return;
+
+    NSArray * rawPrimaryUserItems =
+        [data objectForKey:[[self class] primaryUserKey]];
+    NSMutableArray * primaryUserItems =
+        [NSMutableArray arrayWithCapacity:rawPrimaryUserItems.count];
+    for (NSDictionary * d in rawPrimaryUserItems) {
+        RssItem * item = [[self class] rssItemFromDictionary:d];
+        [primaryUserItems addObject:item];
     }
-    
-    [cacheSetter setPrimaryUserNewsFeed:rssItems];
+    [cacheSetter setPrimaryUserNewsFeed:primaryUserItems];
+
+    NSDictionary * everythingElse =
+        [data objectForKey:[[self class] everyoneElseKey]];
+
+    for (NSString * user in everythingElse) {
+        NSArray * rawFeed = [everythingElse objectForKey:user];
+        NSMutableArray * newsFeed =
+            [NSMutableArray arrayWithCapacity:rawFeed.count];
+
+        for (NSDictionary * d in rawFeed) {
+            RssItem * item = [[self class] rssItemFromDictionary:d];
+            [newsFeed addObject:item];
+        }
+
+        [cacheSetter setNewsFeed:newsFeed forUsername:user];
+    }
 }
 
 - (void)save
 {
-    NSMutableArray * array = [NSMutableArray array];
+    NSMutableDictionary * dict = [NSMutableDictionary dictionary];
 
-    NSArray * rssItems = [cacheReader primaryUserNewsFeed];
-    for (RssItem * rssItem in rssItems) {
+    NSMutableArray * rssItemsAsDicts = [NSMutableArray array];
+
+    NSArray * primaryUserRssItems = [cacheReader primaryUserNewsFeed];
+    for (RssItem * rssItem in primaryUserRssItems) {
         NSDictionary * rssItemDict =
             [[self class] dictionaryFromRssItem:rssItem];
-        [array addObject:rssItemDict];
+        [rssItemsAsDicts addObject:rssItemDict];
     }
+    [dict setObject:rssItemsAsDicts forKey:[[self class] primaryUserKey]];
 
-    [PlistUtils saveArray:array toPlist:[[self class] plistName]];
+    NSDictionary * everyoneElse = [cacheReader allNewsFeeds];
+    NSMutableDictionary * everyoneElseConverted =
+        [NSMutableDictionary dictionaryWithCapacity:everyoneElse.count];
+    for (NSString * user in everyoneElse) {
+        NSArray * rssItems = [everyoneElse objectForKey:user];
+        NSMutableArray * convertedItems =
+            [NSMutableArray arrayWithCapacity:rssItems.count];
+        for (RssItem * item in rssItems) {
+            NSDictionary * rssItemDict =
+                [[self class] dictionaryFromRssItem:item];
+            [convertedItems addObject:rssItemDict];
+        }
+        [everyoneElseConverted setObject:convertedItems forKey:user];
+    }
+    [dict setObject:everyoneElseConverted
+             forKey:[[self class] everyoneElseKey]];
+
+    [PlistUtils saveDictionary:dict toPlist:[[self class] plistName]];
 }
 
 #pragma mark Static elper methods
@@ -89,8 +130,8 @@
 
 + (NSDictionary *)dictionaryFromRssItem:(RssItem *)rssItem
 {
-    NSMutableDictionary * dict;
-    
+    NSMutableDictionary * dict = nil;
+
     if (rssItem) {
         dict = [NSMutableDictionary dictionary];
         [dict setObject:rssItem.type forKey:[[self class] typeKey]];
@@ -100,10 +141,19 @@
         [dict setObject:rssItem.summary forKey:[[self class] summaryKey]];
         [dict setObject:[rssItem.link absoluteString]
             forKey:[[self class] linkKey]];
-    } else
-        dict = nil;
-    
+    }
+
     return dict;
+}
+
++ (NSString *)primaryUserKey
+{
+    return @"primaryUser";
+}
+
++ (NSString *)everyoneElseKey
+{
+    return @"everyoneElse";
 }
 
 + (NSString *)typeKey

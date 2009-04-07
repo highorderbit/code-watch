@@ -38,6 +38,11 @@ static NSString * PRIMARY_USER_NEWS_FEED_KEY = @"news-feed";
     return [userItems objectForKey:username];
 }
 
+- (NSDictionary *)allNewsFeeds
+{
+    return [userItems allRecentlyViewed];
+}
+
 #pragma mark CommitCacheSetter implementation
 
 - (void)setPrimaryUserNewsFeed:(NSArray *)newsFeed

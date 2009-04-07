@@ -8,5 +8,6 @@
 
 - (NSArray *)primaryUserNewsFeed;
 - (NSArray *)newsFeedForUsername:(NSString *)username;
+- (NSDictionary *)allNewsFeeds;
 
 @end
