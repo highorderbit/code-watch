@@ -28,8 +28,13 @@
 {
     [super viewWillAppear:animated];
     [delegate viewWillAppear];
-    [self.tableView reloadData];
     [self setEditing:NO animated:NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
 }
 
 #pragma mark Table view methods
