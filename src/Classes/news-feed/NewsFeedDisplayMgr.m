@@ -177,6 +177,16 @@
     }
 }
 
+- (void)updateNewsFeedForUsername:(NSString *)user
+{
+    self.username = user;
+
+    [navigationController
+        pushViewController:[self networkAwareViewController] animated:YES];
+    [self updateNewsFeed];
+}
+
+
 #pragma mark NewsFeedViewControllerDelegate implementation
 
 - (void)userDidSelectRssItem:(RssItem *)rssItem

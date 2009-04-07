@@ -62,7 +62,7 @@
 
     NetworkAwareViewController * navc =
         [[[NetworkAwareViewController alloc]
-        initWithTargetViewController:newsFeedViewController] autorelease];
+        initWithTargetViewController:nfvc] autorelease];
 
     return [self createNewsFeedDisplayMgr:nc
                networkAwareViewController:navc

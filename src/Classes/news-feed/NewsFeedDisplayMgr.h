@@ -57,7 +57,6 @@
 }
 
 @property (nonatomic, copy) NSString * username;
-//@property (nonatomic, copy) UserInfo * userInfo;
 
 #pragma mark Initialization
 
@@ -77,5 +76,6 @@
 #pragma mark Display the news feed
 
 - (void)updateNewsFeed;
+- (void)updateNewsFeedForUsername:(NSString *)user;
 
 @end

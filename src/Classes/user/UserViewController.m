@@ -203,12 +203,8 @@ enum Section
     if (effectiveSection == kRepoSection) {
         NSString * repo = [userInfo.repoKeys objectAtIndex:indexPath.row];
         [delegate userDidSelectRepo:repo];
-    } else if (effectiveSection == kRecentActivitySection) {
-        //[recentActivityDisplayMgr displayRecentHistoryForUser:username];
-        [[UIAlertView notImplementedAlertView] show];
-        [self.tableView deselectRowAtIndexPath:
-            [self.tableView indexPathForSelectedRow] animated:YES];
-    }
+    } else if (effectiveSection == kRecentActivitySection)
+        [delegate userDidSelectRecentActivity];
 }
 
 #pragma mark User data update methods

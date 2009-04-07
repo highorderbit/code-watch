@@ -17,6 +17,7 @@
 #import "GitHubServiceDelegate.h"
 #import "GravatarServiceDelegate.h"
 
+@class NewsFeedDisplayMgrFactory, NewsFeedDisplayMgr;
 @class GitHubService, GravatarService;
 
 @interface UIUserDisplayMgr :
@@ -37,6 +38,9 @@
     GravatarService * gravatarService;
     
     NSObject<ContactCacheSetter> * contactCacheSetter;
+
+    NewsFeedDisplayMgrFactory * newsFeedDisplayMgrFactory;
+    NewsFeedDisplayMgr * newsFeedDisplayMgr;
     
     NSString * username;
 }
@@ -58,7 +62,9 @@
     gravatarService:
     (GravatarService *)aGravatarService
     contactCacheSetter:
-    (NSObject<ContactCacheSetter> *)aContactCacheSetter;
+    (NSObject<ContactCacheSetter> *)aContactCacheSetter
+    newsFeedDisplayMgrFactory:
+    (NewsFeedDisplayMgrFactory *)aNewsFeedDisplayMgrFactory;
     
 - (void)displayUserInfo;
     

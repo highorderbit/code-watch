@@ -64,8 +64,6 @@
         gravatarService =
             [[gravatarServiceFactory createGravatarService] retain];
         gravatarService.delegate = self;
-
-        NSLog(@"Initialized: %@.", self);
     }
     
     return self;

@@ -9,4 +9,6 @@
 
 - (void)userDidSelectRepo:(NSString *)repo;
 
+- (void)userDidSelectRecentActivity;
+
 @end

@@ -31,6 +31,7 @@
     [userCache release];
     [avatarCache release];
     [favoriteUsersState release];
+    [newsFeedDisplayMgrFactory release];
     [super dealloc];
 }
 
@@ -55,7 +56,7 @@
     NSObject<RepoSelector> * repoSelector =
         [repoSelectorFactory
         createRepoSelectorWithNavigationController:navigationController];
-    
+
     UIUserDisplayMgr * userDisplayMgr =
         [[[UIUserDisplayMgr alloc]
         initWithNavigationController:navigationController
@@ -63,7 +64,8 @@
         userViewController:userViewController userCacheReader:userCache
         avatarCacheReader:avatarCache repoSelector:repoSelector
         gitHubService:gitHubService gravatarService:gravatarService
-        contactCacheSetter:contactCache] autorelease];
+        contactCacheSetter:contactCache
+        newsFeedDisplayMgrFactory:newsFeedDisplayMgrFactory] autorelease];
         
     userViewController.delegate = userDisplayMgr;
     gitHubService.delegate = userDisplayMgr;

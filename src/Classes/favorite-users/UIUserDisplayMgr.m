@@ -5,6 +5,14 @@
 #import "UIUserDisplayMgr.h"
 #import "GitHubService.h"
 #import "GravatarService.h"
+#import "NewsFeedDisplayMgr.h"
+#import "NewsFeedDisplayMgrFactory.h"
+
+@interface UIUserDisplayMgr (Private)
+
+- (NewsFeedDisplayMgr *)newsFeedDisplayMgr;
+
+@end
 
 @implementation UIUserDisplayMgr
 
@@ -21,6 +29,8 @@
     [gitHubService release];
     [gravatarService release];
     [contactCacheSetter release];
+    [newsFeedDisplayMgrFactory release];
+    [newsFeedDisplayMgr release];
 
     [username release];
     
@@ -45,6 +55,8 @@
     (GravatarService *)aGravatarService
     contactCacheSetter:
     (NSObject<ContactCacheSetter> *)aContactCacheSetter
+    newsFeedDisplayMgrFactory:
+    (NewsFeedDisplayMgrFactory *)aNewsFeedDisplayMgrFactory;
 {
     if (self = [super init]) {
         navigationController = [aNavigationController retain];
@@ -56,6 +68,7 @@
         gitHubService = [aGitHubService retain];
         gravatarService = [aGravatarService retain];
         contactCacheSetter = [aContactCacheSetter retain];
+        newsFeedDisplayMgrFactory = [aNewsFeedDisplayMgrFactory retain];
         
         [networkAwareViewController
             setNoConnectionText:
@@ -97,6 +110,11 @@
 - (void)userDidSelectRepo:(NSString *)repo
 {
     [repoSelector user:username didSelectRepo:repo];
+}
+
+- (void)userDidSelectRecentActivity
+{
+    [[self newsFeedDisplayMgr] updateNewsFeedForUsername:username];
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -149,6 +167,18 @@
         
     [self displayUserInfo];
     [userViewController scrollToTop];
+}
+
+#pragma mark Accessors
+
+- (NewsFeedDisplayMgr *)newsFeedDisplayMgr
+{
+    if (!newsFeedDisplayMgr)
+        newsFeedDisplayMgr =
+            [newsFeedDisplayMgrFactory
+            createNewsFeedDisplayMgr:navigationController];
+
+    return newsFeedDisplayMgr;
 }
 
 @end

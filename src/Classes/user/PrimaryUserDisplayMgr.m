@@ -94,6 +94,10 @@
     [repoSelector user:logInState.login didSelectRepo:repo];
 }
 
+- (void)userDidSelectRecentActivity
+{
+}
+
 #pragma mark GitHubServiceDelegate implementation
 
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos

@@ -12,6 +12,7 @@
 #import "UserDisplayMgr.h"
 #import "ContactCache.h"
 #import "ContactMgr.h"
+#import "NewsFeedDisplayMgrFactory.h"
 
 @interface UserDisplayMgrFactory : NSObject
 {
@@ -23,6 +24,7 @@
     IBOutlet FavoriteUsersState * favoriteUsersState;
     IBOutlet ContactCache * contactCache;
     IBOutlet ContactMgr * contactMgr;
+    IBOutlet NewsFeedDisplayMgrFactory * newsFeedDisplayMgrFactory;
 }
 
 - (NSObject<UserDisplayMgr> *)
