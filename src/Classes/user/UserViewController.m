@@ -321,11 +321,12 @@ enum Section
     
     NSArray * nameComponents =
         [[details objectForKey:@"name"] componentsSeparatedByString:@" "];
+    NSUInteger nameCompsCount = nameComponents ? [nameComponents count] : 0;
     NSString * firstName =
-        nameComponents && [nameComponents count] > 1 ?
-        [nameComponents objectAtIndex:0] : nil;
-    NSString * lastName = nameComponents && [nameComponents count] > 1 ?
-        [nameComponents objectAtIndex:1] : nil;
+        nameCompsCount > 0 ? [nameComponents objectAtIndex:0] : nil;
+    NSString * lastName =
+        nameCompsCount > 1 ?
+        [nameComponents objectAtIndex:nameCompsCount - 1] : nil;
     NSString * companyName = [details objectForKey:@"company"];
     NSString * emailAddress = [details objectForKey:@"email"];
     NSString * blog = [details objectForKey:@"blog"];
