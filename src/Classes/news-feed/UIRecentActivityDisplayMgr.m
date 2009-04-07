@@ -10,15 +10,15 @@
     (UINavigationController *) aNavigationController
     networkAwareViewController:
     (NetworkAwareViewController *) aNetworkAwareViewController
-    newsFeedTableViewController:
-    (NewsFeedTableViewController *) aNewsFeedTableViewController
+    newsFeedViewController:
+    (NewsFeedViewController *) aNewsFeedViewController
     gitHubService:
     (GitHubService *) aGitHubService;
 {
     if (self = [super init]) {
         navigationController = [aNavigationController retain];
         networkAwareViewController = [aNetworkAwareViewController retain];
-        newsFeedTableViewController = [aNewsFeedTableViewController retain];
+        newsFeedViewController = [aNewsFeedViewController retain];
         gitHubService = [aGitHubService retain];
     }
     

@@ -5,14 +5,14 @@
 #import <Foundation/Foundation.h>
 #import "RecentActivityDisplayMgr.h"
 #import "NetworkAwareViewController.h"
-#import "NewsFeedTableViewController.h"
+#import "newsFeedViewController.h"
 #import "GitHubService.h"
 
 @interface UIRecentActivityDisplayMgr : NSObject <RecentActivityDisplayMgr>
 {
     UINavigationController * navigationController;
     NetworkAwareViewController * networkAwareViewController;
-    NewsFeedTableViewController * newsFeedTableViewController;
+    NewsFeedViewController * newsFeedViewController;
     
     GitHubService * gitHubService;
     
@@ -23,8 +23,8 @@
     (UINavigationController *) navigationController
     networkAwareViewController:
     (NetworkAwareViewController *) networkAwareViewController
-    newsFeedTableViewController:
-    (NewsFeedTableViewController *) newsFeedTableViewController
+    newsFeedViewController:
+    (NewsFeedViewController *) newsFeedViewController
     gitHubService:
     (GitHubService *) gitHubService;
 

@@ -2,19 +2,21 @@
 //  Copyright 2009 High Order Bit, Inc.. All rights reserved.
 //
 
-#import "NewsFeedTableViewController.h"
+#import "NewsFeedViewController.h"
 #import "RssItem.h"
 #import "NewsFeedTableViewCell.h"
 #import "NSString+RegexKitLiteHelpers.h"
 
-@interface NewsFeedTableViewController (Private)
+@interface NewsFeedViewController (Private)
 
 - (void)setRssItems:(NSArray *)someRssItems;
 - (void)setAvatars:(NSDictionary *)someAvatars;
 
 @end
 
-@implementation NewsFeedTableViewController
+@implementation NewsFeedViewController
+
+@synthesize delegate;
 
 - (void)dealloc
 {

@@ -5,7 +5,6 @@
 #import <Foundation/Foundation.h>
 #import "NetworkAwareViewControllerDelegate.h"
 #import "NetworkAwareViewController.h"
-#import "NewsFeedTableViewController.h"
 #import "NewsFeedCacheReader.h"
 #import "LogInStateReader.h"
 #import "UserCacheReader.h"
@@ -13,58 +12,79 @@
 #import "GitHubNewsFeedServiceDelegate.h"
 #import "GitHubServiceDelegate.h"
 #import "GravatarServiceDelegate.h"
-#import "NewsFeedTableViewControllerDelegate.h"
+#import "NewsFeedViewControllerDelegate.h"
 #import "NewsFeedItemViewControllerDelegate.h"
 #import "UserDisplayMgr.h"
 #import "RepoSelector.h"
 
-@class UserDisplayMgrFactory, RepoSelectorFactory;
-@class GitHubNewsFeedService, GitHubNewsFeedServiceFactory;
-@class GitHubService, GitHubServiceFactory;
-@class GravatarService, GravatarServiceFactory;
+//@class UserDisplayMgrFactory, RepoSelectorFactory;
+@class NetworkAwareViewController, NewsFeedViewController;
 @class NewsFeedItemViewController, NewsFeedItemDetailsViewController;
-@class RssItem;
+@class GitHubNewsFeedService, GitHubService, GravatarService;
+@class UserInfo, RssItem;
 
 @interface NewsFeedDisplayMgr :
     NSObject
     <NetworkAwareViewControllerDelegate,
     GitHubNewsFeedServiceDelegate, GitHubServiceDelegate,
-    GravatarServiceDelegate, NewsFeedTableViewControllerDelegate,
+    GravatarServiceDelegate, NewsFeedViewControllerDelegate,
     NewsFeedItemViewControllerDelegate>
 {
-    IBOutlet UserDisplayMgrFactory * userDisplayMgrFactory;
+    //IBOutlet UserDisplayMgrFactory * userDisplayMgrFactory;
     NSObject<UserDisplayMgr> * userDisplayMgr;
 
-    IBOutlet RepoSelectorFactory * repoSelectorFactory;
+    //IBOutlet RepoSelectorFactory * repoSelectorFactory;
     NSObject<RepoSelector> * repoSelector;
 
-    IBOutlet UINavigationController * navigationController;
-    IBOutlet NetworkAwareViewController * networkAwareViewController;
-    IBOutlet NewsFeedTableViewController * newsFeedTableViewController;
+    /*IBOutlet*/ UINavigationController * navigationController;
 
+    /*IBOutlet*/ NetworkAwareViewController * networkAwareViewController;
+    NewsFeedViewController * newsFeedViewController;
     NewsFeedItemViewController * newsFeedItemViewController;
     NewsFeedItemDetailsViewController * newsFeedItemDetailsViewController;
     
-    IBOutlet NSObject<NewsFeedCacheReader> * newsFeedCacheReader;
-    IBOutlet NSObject<LogInStateReader> * logInState;
-    IBOutlet NSObject<UserCacheReader> * userCacheReader;
-    IBOutlet NSObject<AvatarCacheReader> * avatarCacheReader;
+    /*IBOutlet*/ NSObject<LogInStateReader> * logInStateReader;
+    /*IBOutlet*/ NSObject<NewsFeedCacheReader> * newsFeedCacheReader;
+    /*IBOutlet*/ NSObject<UserCacheReader> * userCacheReader;
+    /*IBOutlet*/ NSObject<AvatarCacheReader> * avatarCacheReader;
 
-    IBOutlet GitHubNewsFeedServiceFactory * newsFeedServiceFactory;
+    //IBOutlet GitHubNewsFeedServiceFactory * newsFeedServiceFactory;
+    GitHubNewsFeedService * newsFeedService;
 
-    GitHubNewsFeedService * newsFeed;
-
-    IBOutlet GitHubServiceFactory * gitHubServiceFactory;
+    //IBOutlet GitHubServiceFactory * gitHubServiceFactory;
     GitHubService * gitHubService;
 
-    IBOutlet GravatarServiceFactory * gravatarServiceFactory;
+    //IBOutlet GravatarServiceFactory * gravatarServiceFactory;
     GravatarService * gravatarService;
+
+    NSString * username;
+    //UserInfo * userInfo;
 
     // mapping of email address -> usernames
     NSMutableDictionary * usernames;
 
     RssItem * selectedRssItem;
 }
+
+@property (nonatomic, copy) NSString * username;
+//@property (nonatomic, copy) UserInfo * userInfo;
+
+#pragma mark Initialization
+
+- (id)initWithNavigationController:(UINavigationController *)nc
+        networkAwareViewController:(NetworkAwareViewController *)navc
+            newsFeedViewController:(NewsFeedViewController *)nfvc
+                    userDisplayMgr:(NSObject<UserDisplayMgr> *)aUserDisplayMgr
+                      repoSelector:(NSObject<RepoSelector> *)aRepoSelector
+                  logInStateReader:(NSObject<LogInStateReader> *)lisReader
+               newsFeedCacheReader:(NSObject<NewsFeedCacheReader> *)nfCache
+                   userCacheReader:(NSObject<UserCacheReader> *)uCache
+                 avatarCacheReader:(NSObject<AvatarCacheReader> *)avCache
+                   newsFeedService:(GitHubNewsFeedService *)aNewsFeedService
+                     gitHubService:(GitHubService *)aGitHubService
+                   gravatarService:(GravatarService *)aGravatarService;
+
+#pragma mark Display the news feed
 
 - (void)updateNewsFeed;
 

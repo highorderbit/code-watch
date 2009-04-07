@@ -3,15 +3,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NewsFeedTableViewControllerDelegate.h"
+#import "NewsFeedViewControllerDelegate.h"
 
-@interface NewsFeedTableViewController : UITableViewController
+@interface NewsFeedViewController : UITableViewController
 {
-    IBOutlet NSObject<NewsFeedTableViewControllerDelegate> * delegate;
+    IBOutlet id<NewsFeedViewControllerDelegate> delegate;
 
     NSArray * rssItems;
     NSMutableDictionary * avatars;
 }
+
+@property (nonatomic, retain) id<NewsFeedViewControllerDelegate> delegate;
 
 - (void)updateRssItems:(NSArray *)someRssItems;
 - (void)updateAvatars:(NSDictionary *)someAvatars;

@@ -18,6 +18,7 @@
 
 - (void)loadStateFromPersistenceStores;
 
+- (void)createAndInitNewsFeedDisplayMgr;
 - (void)createAndInitFavoriteUsersDisplayMgr;
 - (void)createAndInitFavoriteReposDisplayMgr;
 
@@ -38,6 +39,9 @@
     [commitCachePersistenceStore release];
     [contactCachePersistenceStore release];
     [avatarCachePersistenceStore release];
+
+    [newsFeedDisplayMgr release];
+    [newsFeedDisplayMgrFactory release];
     
     [favoriteUsersPersistenceStore release];
     [favoriteUsersViewController release];
@@ -61,6 +65,7 @@
 {
     [self loadStateFromPersistenceStores];
 
+    [self createAndInitNewsFeedDisplayMgr];
     [self createAndInitFavoriteUsersDisplayMgr];
     [self createAndInitFavoriteReposDisplayMgr];
 
@@ -97,6 +102,13 @@
 }
 
 #pragma mark Initialization methods
+
+- (void)createAndInitNewsFeedDisplayMgr
+{
+    newsFeedDisplayMgr =
+        [[newsFeedDisplayMgrFactory
+        createPrimaryUserNewsFeedDisplayMgr] retain];
+}
 
 - (void)createAndInitFavoriteUsersDisplayMgr
 {
