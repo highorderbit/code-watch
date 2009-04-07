@@ -28,6 +28,8 @@
 
 - (UserInfo *)cachedUserInfoForUsername:(NSString *)username;
 
+- (NSArray *)cachedNewsFeedForUsername:(NSString *)user;
+
 - (NSString *)usernameForEmailAddress:(NSString *)emailAddress;
 - (void)username:(NSString *)username
     mapsToEmailAddress:(NSString *)emailAddress;
@@ -154,7 +156,7 @@
         setNoConnectionText:
         NSLocalizedString(@"nodata.noconnection.text", @"")];
         
-        NSArray * rssItems = [newsFeedCacheReader primaryUserNewsFeed];
+        NSArray * rssItems = [self cachedNewsFeedForUsername:username];
         NSDictionary * avatars = [self cachedAvatarsForRssItems:rssItems];
         [[self newsFeedViewController] updateRssItems:rssItems];
         [[self newsFeedViewController] updateAvatars:avatars];
@@ -181,9 +183,11 @@
 {
     self.username = user;
 
+    [self updateNewsFeed];
+
+    [self networkAwareViewController].navigationItem.title = user;
     [navigationController
         pushViewController:[self networkAwareViewController] animated:YES];
-    [self updateNewsFeed];
 }
 
 
@@ -413,6 +417,15 @@
         NSLog(@"Fetching info for username: '%@'.", user);
         [gitHubService fetchInfoForUsername:user];
     }
+}
+
+#pragma mark Working with cached RSS items
+
+- (NSArray *)cachedNewsFeedForUsername:(NSString *)user
+{
+    return [self isPrimaryUser:user] ?
+        [newsFeedCacheReader primaryUserNewsFeed] :
+        [newsFeedCacheReader newsFeedForUsername:user];
 }
 
 #pragma mark General helpers
