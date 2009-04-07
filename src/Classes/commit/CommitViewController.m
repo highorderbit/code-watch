@@ -338,6 +338,11 @@ enum
     cell.selectionStyle = selectionStyle;
 }
 
+- (void)scrollToTop
+{
+    [self.tableView scrollRectToVisible:self.tableView.frame animated:NO];
+}
+
 #pragma mark Updating the view with new data
 
 - (void)updateWithCommitInfo:(CommitInfo *)info

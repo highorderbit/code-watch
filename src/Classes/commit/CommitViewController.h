@@ -31,6 +31,8 @@
 // TODO: Remove when wired in the nib
 @property (nonatomic, retain) NSObject<CommitViewControllerDelegate> * delegate;
 
+- (void)scrollToTop;
+
 #pragma mark Updating the view with new data
 
 - (void)updateWithCommitInfo:(CommitInfo *)info forRepo:(NSString *)repo;
