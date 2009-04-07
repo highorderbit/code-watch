@@ -17,7 +17,6 @@
 #import "UserDisplayMgr.h"
 #import "RepoSelector.h"
 
-//@class UserDisplayMgrFactory, RepoSelectorFactory;
 @class NetworkAwareViewController, NewsFeedViewController;
 @class NewsFeedItemViewController, NewsFeedItemDetailsViewController;
 @class GitHubNewsFeedService, GitHubService, GravatarService;
@@ -30,35 +29,26 @@
     GravatarServiceDelegate, NewsFeedViewControllerDelegate,
     NewsFeedItemViewControllerDelegate>
 {
-    //IBOutlet UserDisplayMgrFactory * userDisplayMgrFactory;
     NSObject<UserDisplayMgr> * userDisplayMgr;
-
-    //IBOutlet RepoSelectorFactory * repoSelectorFactory;
     NSObject<RepoSelector> * repoSelector;
 
-    /*IBOutlet*/ UINavigationController * navigationController;
+    UINavigationController * navigationController;
 
-    /*IBOutlet*/ NetworkAwareViewController * networkAwareViewController;
+    NetworkAwareViewController * networkAwareViewController;
     NewsFeedViewController * newsFeedViewController;
     NewsFeedItemViewController * newsFeedItemViewController;
     NewsFeedItemDetailsViewController * newsFeedItemDetailsViewController;
-    
-    /*IBOutlet*/ NSObject<LogInStateReader> * logInStateReader;
-    /*IBOutlet*/ NSObject<NewsFeedCacheReader> * newsFeedCacheReader;
-    /*IBOutlet*/ NSObject<UserCacheReader> * userCacheReader;
-    /*IBOutlet*/ NSObject<AvatarCacheReader> * avatarCacheReader;
 
-    //IBOutlet GitHubNewsFeedServiceFactory * newsFeedServiceFactory;
+    NSObject<LogInStateReader> * logInStateReader;
+    NSObject<NewsFeedCacheReader> * newsFeedCacheReader;
+    NSObject<UserCacheReader> * userCacheReader;
+    NSObject<AvatarCacheReader> * avatarCacheReader;
+
     GitHubNewsFeedService * newsFeedService;
-
-    //IBOutlet GitHubServiceFactory * gitHubServiceFactory;
     GitHubService * gitHubService;
-
-    //IBOutlet GravatarServiceFactory * gravatarServiceFactory;
     GravatarService * gravatarService;
 
     NSString * username;
-    //UserInfo * userInfo;
 
     // mapping of email address -> usernames
     NSMutableDictionary * usernames;

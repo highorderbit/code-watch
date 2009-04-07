@@ -13,8 +13,6 @@
 #import "RssItem.h"
 #import "RssItem+ParsingHelpers.h"
 #import "RepoKey.h"
-#import "RepoSelectorFactory.h"
-#import "UserDisplayMgrFactory.h"
 #import "NewsFeedViewController.h"
 #import "NewsFeedItemViewController.h"
 #import "NewsFeedItemDetailsViewController.h"
@@ -38,8 +36,6 @@
 
 - (BOOL)isPrimaryUser:(NSString *)username;
 
-- (NSObject<UserDisplayMgr> *)userDisplayMgr;
-- (NSObject<RepoSelector> *)repoSelector;
 - (NetworkAwareViewController *)networkAwareViewController;
 - (NewsFeedViewController *)newsFeedViewController;
 - (NewsFeedItemViewController *)newsFeedItemViewController;
@@ -50,19 +46,16 @@
 
 @implementation NewsFeedDisplayMgr
 
-@synthesize username/*, userInfo*/;
+@synthesize username;
 
 - (void)dealloc
 {
-    //[userDisplayMgrFactory release];
     [userDisplayMgr release];
-
-    //[repoSelectorFactory release];
     [repoSelector release];
 
     [navigationController release];    
-    [networkAwareViewController release];
 
+    [networkAwareViewController release];
     [newsFeedViewController release];
     [newsFeedItemViewController release];
     [newsFeedItemDetailsViewController release];
@@ -73,14 +66,10 @@
     [avatarCacheReader release];
 
     [newsFeedService release];
-
-    //[gitHubServiceFactory release];
     [gitHubService release];
-    //[gravatarServiceFactory release];
     [gravatarService release];
 
     [username release];
-    //[userInfo release];
 
     [usernames release];
 
@@ -131,35 +120,20 @@
         gravatarService.delegate = self;
 
         usernames = [[NSMutableDictionary alloc] init];
+
+
+        UIBarButtonItem * refreshButton =
+            [[[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+            target:self
+            action:@selector(updateNewsFeed)] autorelease];
+
+        [[self networkAwareViewController].navigationItem
+            setRightBarButtonItem:refreshButton animated:NO];
     }
 
     return self;
 }
-
-/*
-- (void)awakeFromNib
-{
-    newsFeed = [[newsFeedServiceFactory createGitHubNewsFeedService] retain];
-    newsFeed.delegate = self;
-
-    gitHubService = [[gitHubServiceFactory createGitHubService] retain];
-    gitHubService.delegate = self;
-
-    gravatarService = [[gravatarServiceFactory createGravatarService] retain];
-    gravatarService.delegate = self;
-
-    usernames = [[NSMutableDictionary alloc] init];
-    
-    UIBarButtonItem * refreshButton =
-        [[[UIBarButtonItem alloc]
-        initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-        target:self
-        action:@selector(updateNewsFeed)] autorelease];
-
-    [networkAwareViewController.navigationItem
-        setRightBarButtonItem:refreshButton animated:NO];
-}
-*/
 
 - (void)viewWillAppear
 {
@@ -213,8 +187,7 @@
         RepoKey * repoKey = [rssItem repoKey];
 
         if (repoKey)
-            [[self repoSelector]
-                user:repoKey.username didSelectRepo:repoKey.repoName];
+            [repoSelector user:repoKey.username didSelectRepo:repoKey.repoName];
         else {
             NSLog(@"Failed to parse RSS item: '%@'.", rssItem);
             NSString * title =
@@ -252,12 +225,12 @@
 
 - (void)userDidSelectRepo:(NSString *)repo ownedByUser:(NSString *)user
 {
-    [[self repoSelector] user:user didSelectRepo:repo];
+    [repoSelector user:user didSelectRepo:repo];
 }
 
 - (void)userDidSelectUsername:(NSString *)user
 {
-    [[self userDisplayMgr] displayUserInfoForUsername:user];
+    [userDisplayMgr displayUserInfoForUsername:user];
 }
 
 #pragma mark GitHubNewsFeedDelegate implementation
@@ -440,30 +413,6 @@
 }
 
 #pragma mark Accessors
-
-- (NSObject<UserDisplayMgr> *)userDisplayMgr
-{
-    /*
-    if (!userDisplayMgr)
-        userDisplayMgr =
-            [userDisplayMgrFactory
-            createUserDisplayMgrWithNavigationContoller:navigationController];
-     */
-
-    return userDisplayMgr;
-}
-
-- (NSObject<RepoSelector> *)repoSelector
-{
-    /*
-    if (!repoSelector)
-        repoSelector =
-            [repoSelectorFactory
-            createRepoSelectorWithNavigationController:navigationController];
-     */
-
-    return repoSelector;
-}
 
 - (NetworkAwareViewController *)networkAwareViewController
 {
