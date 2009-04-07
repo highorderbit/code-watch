@@ -6,10 +6,13 @@
 #import "GitHubService.h"
 #import "GravatarService.h"
 #import "GravatarServiceFactory.h"
+#import "NewsFeedDisplayMgr.h"
+#import "NewsFeedDisplayMgrFactory.h"
 
 @interface PrimaryUserDisplayMgr (Private)
 
 - (UIImage *)cachedAvatarForUserInfo:(UserInfo *)info;
+- (NewsFeedDisplayMgr *)newsFeedDisplayMgr;
 
 @end
 
@@ -96,6 +99,7 @@
 
 - (void)userDidSelectRecentActivity
 {
+    [[self newsFeedDisplayMgr] updateNewsFeedForPrimaryUser];
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -178,6 +182,18 @@
 {
     NSString * email = [info.details objectForKey:@"email"];
     return email ? [avatarCache avatarForEmailAddress:email] : nil;
+}
+
+#pragma mark Accessors
+
+- (NewsFeedDisplayMgr *)newsFeedDisplayMgr
+{
+    if (!newsFeedDisplayMgr)
+        newsFeedDisplayMgr =
+            [newsFeedDisplayMgrFactory
+            createNewsFeedDisplayMgr:navigationController];
+
+    return newsFeedDisplayMgr;
 }
 
 @end

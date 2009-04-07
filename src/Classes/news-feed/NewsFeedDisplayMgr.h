@@ -76,6 +76,7 @@
 #pragma mark Display the news feed
 
 - (void)updateNewsFeed;
+- (void)updateNewsFeedForPrimaryUser;
 - (void)updateNewsFeedForUsername:(NSString *)user;
 
 @end

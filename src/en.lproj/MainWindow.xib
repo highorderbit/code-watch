@@ -2068,6 +2068,14 @@
 					</object>
 					<int key="connectionID">576</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">newsFeedDisplayMgrFactory</string>
+						<reference key="source" ref="74451048"/>
+						<reference key="destination" ref="348022222"/>
+					</object>
+					<int key="connectionID">577</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2917,7 +2925,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">576</int>
+			<int key="maxID">577</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3561,6 +3569,7 @@
 							<string>logInState</string>
 							<string>navigationController</string>
 							<string>networkAwareViewController</string>
+							<string>newsFeedDisplayMgrFactory</string>
 							<string>repoSelector</string>
 							<string>userCache</string>
 							<string>userViewController</string>
@@ -3574,6 +3583,7 @@
 							<string>NSObject</string>
 							<string>UINavigationController</string>
 							<string>NetworkAwareViewController</string>
+							<string>NewsFeedDisplayMgrFactory</string>
 							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>UserViewController</string>

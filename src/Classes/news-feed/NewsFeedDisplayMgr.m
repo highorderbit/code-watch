@@ -179,6 +179,11 @@
     }
 }
 
+- (void)updateNewsFeedForPrimaryUser
+{
+    [self updateNewsFeedForUsername:logInStateReader.login];
+}
+
 - (void)updateNewsFeedForUsername:(NSString *)user
 {
     self.username = user;
@@ -188,9 +193,9 @@
     [self networkAwareViewController].navigationItem.title =
         NSLocalizedString(@"newsfeeddisplaymgr.view.title", @"");
     [navigationController
-        pushViewController:[self networkAwareViewController] animated:YES];
+         pushViewController:[self networkAwareViewController] animated:YES];
+    
 }
-
 
 #pragma mark NewsFeedViewControllerDelegate implementation
 
