@@ -185,7 +185,8 @@
 
     [self updateNewsFeed];
 
-    [self networkAwareViewController].navigationItem.title = user;
+    [self networkAwareViewController].navigationItem.title =
+        NSLocalizedString(@"newsfeeddisplaymgr.view.title", @"");
     [navigationController
         pushViewController:[self networkAwareViewController] animated:YES];
 }

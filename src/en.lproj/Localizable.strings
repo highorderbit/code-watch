@@ -52,6 +52,7 @@ userdisplaymgr.login.text = "Please Log In to View Personal Info";
 
 /* NewsFeedDisplayMgr Strings */
 newsfeeddisplaymgr.login.text = "Please Log In to View News Feed";
+newsfeeddisplaymgr.view.title = "Recent Activity";
 newsfeed.item.display.failed.title = "Unable to Display Item";
 newsfeed.item.parse.failed.message = "Parsing of the RSS item failed.";
 
