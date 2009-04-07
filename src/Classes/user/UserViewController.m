@@ -1,5 +1,5 @@
 //
-//  Copyright 2009 High Order Bit, Inc.. All rights reserved.
+//  Copyright 2009 High Order Bit, Inc. All rights reserved.
 //
 
 #import "UserViewController.h"
@@ -27,6 +27,7 @@ enum Section
 @implementation UserViewController
 
 @synthesize delegate;
+@synthesize contactMgr;
 @synthesize favoriteUsersStateSetter;
 @synthesize favoriteUsersStateReader;
 @synthesize recentActivityDisplayMgr;
@@ -35,6 +36,7 @@ enum Section
 - (void) dealloc
 {
     [delegate release];
+    [contactMgr release];
     [favoriteUsersStateSetter release];
     [favoriteUsersStateReader release];
     [recentActivityDisplayMgr release];
@@ -351,7 +353,7 @@ enum Section
     NSData * data = UIImagePNGRepresentation(avatarView.image);
     ABPersonSetImageData(person, (CFDataRef)data, &error);
 
-    [delegate userDidAddContact:person];
+    [contactMgr userDidAddContact:person forUser:username];
 }
 
 - (IBAction)addFavorite:(id)sender

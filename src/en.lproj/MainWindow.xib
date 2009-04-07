@@ -225,6 +225,7 @@
 			<object class="IBUICustomObject" id="664661524"/>
 			<object class="IBUICustomObject" id="517652571"/>
 			<object class="IBUICustomObject" id="166877055"/>
+			<object class="IBUICustomObject" id="494532008"/>
 			<object class="IBUICustomObject" id="753528190"/>
 			<object class="IBUICustomObject" id="78563136"/>
 			<object class="IBUICustomObject" id="277705063"/>
@@ -2001,6 +2002,38 @@
 					</object>
 					<int key="connectionID">549</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">contactMgr</string>
+						<reference key="source" ref="166877055"/>
+						<reference key="destination" ref="494532008"/>
+					</object>
+					<int key="connectionID">551</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">tabViewController</string>
+						<reference key="source" ref="494532008"/>
+						<reference key="destination" ref="1034742383"/>
+					</object>
+					<int key="connectionID">552</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">contactCacheSetter</string>
+						<reference key="source" ref="494532008"/>
+						<reference key="destination" ref="753528190"/>
+					</object>
+					<int key="connectionID">553</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">contactMgr</string>
+						<reference key="source" ref="881094522"/>
+						<reference key="destination" ref="494532008"/>
+					</object>
+					<int key="connectionID">554</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2522,6 +2555,11 @@
 						<reference key="object" ref="1013716002"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">550</int>
+						<reference key="object" ref="494532008"/>
+						<reference key="parent" ref="957960031"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -2659,6 +2697,8 @@
 					<string>522.IBPluginDependency</string>
 					<string>530.CustomClassName</string>
 					<string>530.IBPluginDependency</string>
+					<string>550.CustomClassName</string>
+					<string>550.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2801,6 +2841,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>AvatarPersistenceStore</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>ContactMgr</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -2823,7 +2865,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">549</int>
+			<int key="maxID">554</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2959,7 +3001,6 @@
 							<string>gitHubService</string>
 							<string>gravatarServiceFactory</string>
 							<string>navigationController</string>
-							<string>networkAwareViewController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2968,7 +3009,6 @@
 							<string>GitHubService</string>
 							<string>GravatarServiceFactory</string>
 							<string>UINavigationController</string>
-							<string>NetworkAwareViewController</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -3049,6 +3089,27 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/user/ContactCachePersistenceStore.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ContactMgr</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>contactCacheSetter</string>
+							<string>tabViewController</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSObject</string>
+							<string>UIViewController</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/user/ContactMgr.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -3764,6 +3825,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>avatarCache</string>
 							<string>contactCache</string>
+							<string>contactMgr</string>
 							<string>favoriteUsersState</string>
 							<string>gitHubServiceFactory</string>
 							<string>gravatarServiceFactory</string>
@@ -3774,6 +3836,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>AvatarCache</string>
 							<string>ContactCache</string>
+							<string>ContactMgr</string>
 							<string>FavoriteUsersState</string>
 							<string>GitHubServiceFactory</string>
 							<string>GravatarServiceFactory</string>
@@ -3831,6 +3894,7 @@
 							<string>addToFavoritesButton</string>
 							<string>avatarView</string>
 							<string>contactCacheReader</string>
+							<string>contactMgr</string>
 							<string>delegate</string>
 							<string>favoriteUsersStateReader</string>
 							<string>favoriteUsersStateSetter</string>
@@ -3847,6 +3911,7 @@
 							<string>UIButton</string>
 							<string>UIImageView</string>
 							<string>NSObject</string>
+							<string>ContactMgr</string>
 							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>NSObject</string>

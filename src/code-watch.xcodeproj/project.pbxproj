@@ -134,6 +134,7 @@
 		91CC52350F6C9D98000AD3FB /* NetworkAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */; };
 		91CC52DC0F6DC6C4000AD3FB /* UserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52DB0F6DC6C4000AD3FB /* UserCache.m */; };
 		91CC535A0F6EC311000AD3FB /* PrimaryUserDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC53590F6EC311000AD3FB /* PrimaryUserDisplayMgr.m */; };
+		91D8BC390F8AD6A70041EC91 /* ContactMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8BC380F8AD6A70041EC91 /* ContactMgr.m */; };
 		91E25E540F79B3B100E1594E /* FavoriteUsersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E25E520F79B3B100E1594E /* FavoriteUsersView.xib */; };
 		91E25E5A0F79B7C400E1594E /* FavoriteUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */; };
 		91E25E700F79B96900E1594E /* FavoriteUsersDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */; };
@@ -427,6 +428,8 @@
 		91CC52E00F6DC729000AD3FB /* UserCacheReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCacheReader.h; sourceTree = "<group>"; };
 		91CC53580F6EC311000AD3FB /* PrimaryUserDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimaryUserDisplayMgr.h; sourceTree = "<group>"; };
 		91CC53590F6EC311000AD3FB /* PrimaryUserDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimaryUserDisplayMgr.m; sourceTree = "<group>"; };
+		91D8BC370F8AD6A70041EC91 /* ContactMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactMgr.h; sourceTree = "<group>"; };
+		91D8BC380F8AD6A70041EC91 /* ContactMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactMgr.m; sourceTree = "<group>"; };
 		91E25E530F79B3B100E1594E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FavoriteUsersView.xib; sourceTree = "<group>"; };
 		91E25E580F79B7C400E1594E /* FavoriteUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersViewController.h; path = "favorite-users/FavoriteUsersViewController.h"; sourceTree = "<group>"; };
 		91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteUsersViewController.m; path = "favorite-users/FavoriteUsersViewController.m"; sourceTree = "<group>"; };
@@ -906,6 +909,8 @@
 				91B0125A0F8589B30073E81F /* ContactCacheSetter.h */,
 				91BA43D20F85B43700E42100 /* ContactCachePersistenceStore.h */,
 				91BA43D30F85B43700E42100 /* ContactCachePersistenceStore.m */,
+				91D8BC370F8AD6A70041EC91 /* ContactMgr.h */,
+				91D8BC380F8AD6A70041EC91 /* ContactMgr.m */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -1264,6 +1269,7 @@
 				052D3E010F87D91B005EBD25 /* AvatarCache.m in Sources */,
 				052D3E040F87D92C005EBD25 /* AvatarPersistenceStore.m in Sources */,
 				0565D5310F884D35002C950E /* UIImage+AvatarHelpers.m in Sources */,
+				91D8BC390F8AD6A70041EC91 /* ContactMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

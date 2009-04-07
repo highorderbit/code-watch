@@ -8,6 +8,5 @@
 @protocol UserViewControllerDelegate
 
 - (void)userDidSelectRepo:(NSString *)repo;
-- (void)userDidAddContact:(ABRecordRef)person;
 
 @end

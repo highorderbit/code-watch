@@ -4,7 +4,6 @@
 
 #import <Foundation/Foundation.h>
 #import <AddressBookUI/ABNewPersonViewController.h>
-#import <AddressBookUI/ABPeoplePickerNavigationController.h>
 #import "NetworkAwareViewController.h"
 #import "UserViewController.h"
 #import "UserViewControllerDelegate.h"
@@ -23,9 +22,7 @@
 @interface UIUserDisplayMgr :
     NSObject
     <NetworkAwareViewControllerDelegate, GitHubServiceDelegate,
-    GravatarServiceDelegate, UserViewControllerDelegate, UserDisplayMgr,
-    ABNewPersonViewControllerDelegate, UIActionSheetDelegate,
-    ABPeoplePickerNavigationControllerDelegate>
+    GravatarServiceDelegate, UserViewControllerDelegate, UserDisplayMgr>
 {
     UINavigationController * navigationController;
     NetworkAwareViewController * networkAwareViewController;
@@ -42,12 +39,7 @@
     NSObject<ContactCacheSetter> * contactCacheSetter;
     
     NSString * username;
-    
-    ABRecordRef contactToAdd;
 }
-
-@property (readonly) UIViewController * tabViewController;
-@property (nonatomic) ABRecordRef contactToAdd;
 
 - (id)initWithNavigationController:
     (UINavigationController *)navigationController

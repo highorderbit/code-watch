@@ -104,6 +104,7 @@
     userViewController.favoriteUsersStateReader = favoriteUsersState;
     userViewController.favoriteUsersStateSetter = favoriteUsersState;
     userViewController.contactCacheReader = contactCache;
+    userViewController.contactMgr = contactMgr;
     
     return userViewController;
 }
