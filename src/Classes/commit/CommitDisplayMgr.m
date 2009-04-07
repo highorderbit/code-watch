@@ -110,6 +110,7 @@
 
     [navigationController
         pushViewController:[self networkAwareViewController] animated:YES];
+    [commitViewController scrollToTop];
 }
 
 #pragma mark CommitViewControllerDelegate implementation
