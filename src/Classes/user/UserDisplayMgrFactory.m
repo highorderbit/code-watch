@@ -7,7 +7,7 @@
 #import "UserViewController.h"
 #import "NetworkAwareViewController.h"
 #import "UIUserDisplayMgr.h"
-#import "NewsFeedTableViewController.h"
+#import "NewsFeedViewController.h"
 #import "UIRecentActivityDisplayMgr.h"
 #import "GitHubService.h"
 #import "GravatarService.h"
@@ -76,8 +76,8 @@
     createRecentActivityDisplayMgrWithNavigationController:
     (UINavigationController *)navigationController
 {
-    NewsFeedTableViewController * newsFeedViewController =
-        [[[NewsFeedTableViewController alloc] init] autorelease];
+    NewsFeedViewController * newsFeedViewController =
+        [[[NewsFeedViewController alloc] init] autorelease];
 
     NetworkAwareViewController * networkAwareViewController =
         [[[NetworkAwareViewController alloc]
@@ -89,7 +89,7 @@
         [[[UIRecentActivityDisplayMgr alloc]
         initWithNavigationController:navigationController
         networkAwareViewController:networkAwareViewController
-        newsFeedTableViewController:newsFeedViewController
+        newsFeedViewController:newsFeedViewController
         gitHubService:gitHubService] autorelease];
     
     return recentActivityDisplayMgr;

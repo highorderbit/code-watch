@@ -3,6 +3,7 @@
 //
 
 #import "NewsFeedDisplayMgr.h"
+#import "NetworkAwareViewController.h"
 #import "GitHubNewsFeedService.h"
 #import "GitHubNewsFeedServiceFactory.h"
 #import "GitHubService.h"
@@ -14,6 +15,7 @@
 #import "RepoKey.h"
 #import "RepoSelectorFactory.h"
 #import "UserDisplayMgrFactory.h"
+#import "NewsFeedViewController.h"
 #import "NewsFeedItemViewController.h"
 #import "NewsFeedItemDetailsViewController.h"
 #import "NSString+RegexKitLiteHelpers.h"
@@ -38,6 +40,8 @@
 
 - (NSObject<UserDisplayMgr> *)userDisplayMgr;
 - (NSObject<RepoSelector> *)repoSelector;
+- (NetworkAwareViewController *)networkAwareViewController;
+- (NewsFeedViewController *)newsFeedViewController;
 - (NewsFeedItemViewController *)newsFeedItemViewController;
 - (NewsFeedItemDetailsViewController *)newsFeedItemDetailsViewController;
 - (void)setSelectedRssItem:(RssItem *)rssItem;
@@ -46,33 +50,37 @@
 
 @implementation NewsFeedDisplayMgr
 
+@synthesize username/*, userInfo*/;
+
 - (void)dealloc
 {
-    [userDisplayMgrFactory release];
+    //[userDisplayMgrFactory release];
     [userDisplayMgr release];
 
-    [repoSelectorFactory release];
+    //[repoSelectorFactory release];
     [repoSelector release];
 
     [navigationController release];    
     [networkAwareViewController release];
-    [newsFeedTableViewController release];
 
+    [newsFeedViewController release];
     [newsFeedItemViewController release];
     [newsFeedItemDetailsViewController release];
-    
+
     [newsFeedCacheReader release];
-    [logInState release];
+    [logInStateReader release];
     [userCacheReader release];
     [avatarCacheReader release];
 
-    [newsFeed release];
+    [newsFeedService release];
 
-    [gitHubServiceFactory release];
+    //[gitHubServiceFactory release];
     [gitHubService release];
-
-    [gravatarServiceFactory release];
+    //[gravatarServiceFactory release];
     [gravatarService release];
+
+    [username release];
+    //[userInfo release];
 
     [usernames release];
 
@@ -81,6 +89,54 @@
     [super dealloc];
 }
 
+#pragma mark Initialization
+
+- (id)initWithNavigationController:(UINavigationController *)nc
+        networkAwareViewController:(NetworkAwareViewController *)navc
+            newsFeedViewController:(NewsFeedViewController *)nfvc
+                    userDisplayMgr:(NSObject<UserDisplayMgr> *)aUserDisplayMgr
+                      repoSelector:(NSObject<RepoSelector> *)aRepoSelector
+                  logInStateReader:(NSObject<LogInStateReader> *)lisReader
+               newsFeedCacheReader:(NSObject<NewsFeedCacheReader> *)nfCache
+                   userCacheReader:(NSObject<UserCacheReader> *)uCache
+                 avatarCacheReader:(NSObject<AvatarCacheReader> *)avCache
+                   newsFeedService:(GitHubNewsFeedService *)aNewsFeedService
+                     gitHubService:(GitHubService *)aGitHubService
+                   gravatarService:(GravatarService *)aGravatarService
+{
+    if (self = [super init]) {
+        navigationController = [nc retain];
+
+        networkAwareViewController = [navc retain];
+        networkAwareViewController.delegate = self;
+
+        newsFeedViewController = [nfvc retain];
+        newsFeedViewController.delegate = self;
+
+        userDisplayMgr = [aUserDisplayMgr retain];
+        repoSelector = [aRepoSelector retain];
+
+        logInStateReader = [lisReader retain];
+        newsFeedCacheReader = [nfCache retain];
+        userCacheReader = [uCache retain];
+        avatarCacheReader = [avCache retain];
+
+        newsFeedService = [aNewsFeedService retain];
+        newsFeedService.delegate = self;
+
+        gitHubService = [aGitHubService retain];
+        gitHubService.delegate = self;
+
+        gravatarService = [aGravatarService retain];
+        gravatarService.delegate = self;
+
+        usernames = [[NSMutableDictionary alloc] init];
+    }
+
+    return self;
+}
+
+/*
 - (void)awakeFromNib
 {
     newsFeed = [[newsFeedServiceFactory createGitHubNewsFeedService] retain];
@@ -103,6 +159,7 @@
     [networkAwareViewController.navigationItem
         setRightBarButtonItem:refreshButton animated:NO];
 }
+*/
 
 - (void)viewWillAppear
 {
@@ -110,39 +167,43 @@
     [self updateNewsFeed];
 }
 
+#pragma mark Display the news feed
+
 - (void)updateNewsFeed
 {
-    [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
-    [networkAwareViewController setCachedDataAvailable:YES];
-    
-    if (logInState.login) {
-        [networkAwareViewController
+    [[self networkAwareViewController]
+        setUpdatingState:kConnectedAndNotUpdating];
+    [[self networkAwareViewController] setCachedDataAvailable:YES];
+
+    if (username) {
+        [[self networkAwareViewController]
         setNoConnectionText:
         NSLocalizedString(@"nodata.noconnection.text", @"")];
         
         NSArray * rssItems = [newsFeedCacheReader primaryUserNewsFeed];
         NSDictionary * avatars = [self cachedAvatarsForRssItems:rssItems];
-        [newsFeedTableViewController updateRssItems:rssItems];
-        [newsFeedTableViewController updateAvatars:avatars];
+        [[self newsFeedViewController] updateRssItems:rssItems];
+        [[self newsFeedViewController] updateAvatars:avatars];
 
-        [newsFeed fetchNewsFeedForUsername:logInState.login];
+        [newsFeedService fetchNewsFeedForUsername:username];
         [self fetchUserInfoForUnknownUsersInRssItems:rssItems];
         
-        [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
-        [networkAwareViewController setCachedDataAvailable:!!rssItems];
+        [[self networkAwareViewController]
+            setUpdatingState:kConnectedAndUpdating];
+        [[self networkAwareViewController] setCachedDataAvailable:!!rssItems];
     } else {
         // This is a bit of a hack, but a relatively simple solution:
         // Configure the network-aware controller to 'disconnected' and set the
         // disconnected text accordingly
-        [networkAwareViewController
+        [[self networkAwareViewController]
             setNoConnectionText:
             NSLocalizedString(@"newsfeeddisplaymgr.login.text", @"")];
-        [networkAwareViewController setUpdatingState:kDisconnected];
-        [networkAwareViewController setCachedDataAvailable:NO];
+        [[self networkAwareViewController] setUpdatingState:kDisconnected];
+        [[self networkAwareViewController] setCachedDataAvailable:NO];
     }
 }
 
-#pragma mark NewsFeedTableViewControllerDelegate implementation
+#pragma mark NewsFeedViewControllerDelegate implementation
 
 - (void)userDidSelectRssItem:(RssItem *)rssItem
 {
@@ -166,7 +227,7 @@
                                               message:message];
             [alertView show];
 
-            [newsFeedTableViewController viewWillAppear:NO];
+            [[self newsFeedViewController] viewWillAppear:NO];
         }
     } else {
         [[self newsFeedItemViewController] updateWithRssItem:rssItem];
@@ -189,14 +250,14 @@
                   animated:YES];
 }
 
-- (void)userDidSelectRepo:(NSString *)repoName ownedByUser:(NSString *)username
+- (void)userDidSelectRepo:(NSString *)repo ownedByUser:(NSString *)user
 {
-    [[self repoSelector] user:username didSelectRepo:repoName];
+    [[self repoSelector] user:user didSelectRepo:repo];
 }
 
-- (void)userDidSelectUsername:(NSString *)username
+- (void)userDidSelectUsername:(NSString *)user
 {
-    [[self userDisplayMgr] displayUserInfoForUsername:username];
+    [[self userDisplayMgr] displayUserInfoForUsername:user];
 }
 
 #pragma mark GitHubNewsFeedDelegate implementation
@@ -206,8 +267,8 @@
     // display any available cached avatars
     NSDictionary * avatars = [self cachedAvatarsForRssItems:newsItems];
 
-    [newsFeedTableViewController updateRssItems:newsItems];
-    [newsFeedTableViewController updateAvatars:avatars];
+    [[self newsFeedViewController] updateRssItems:newsItems];
+    [[self newsFeedViewController] updateAvatars:avatars];
 
     // fetch fresh avatars
     NSSet * emailAddresses = [self userEmailAddressesFromRssItems:newsItems];
@@ -217,15 +278,16 @@
     [self fetchUserInfoForUnknownUsersInRssItems:newsItems];
 
     // update the network aware view controller
-    [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
-    [networkAwareViewController setCachedDataAvailable:YES];
+    [[self networkAwareViewController]
+        setUpdatingState:kConnectedAndNotUpdating];
+    [[self networkAwareViewController] setCachedDataAvailable:YES];
 }
 
-- (void)failedToFetchNewsFeedForUsername:(NSString *)username
+- (void)failedToFetchNewsFeedForUsername:(NSString *)user
                                    error:(NSError *)error
 {
     NSLog(@"Failed to retrieve news feed for username: '%@' error: '%@'.",
-        username, error);
+        user, error);
 
     NSString * title =
         NSLocalizedString(@"github.newsfeedupdate.failed.alert.title", @"");
@@ -235,7 +297,8 @@
 
     [alertView show];
 
-    [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
+    [[self networkAwareViewController]
+        setUpdatingState:kConnectedAndNotUpdating];
 }
 
 #pragma mark GravatarServiceDelegate implementation
@@ -244,10 +307,10 @@
 {
     NSLog(@"Avatar received: '%@' => %@", emailAddress, avatar);
 
-    NSString * username = [self usernameForEmailAddress:emailAddress];
+    NSString * user = [self usernameForEmailAddress:emailAddress];
 
-    [newsFeedTableViewController updateAvatar:avatar forUsername:username];
-    if ([selectedRssItem.author isEqualToString:username])
+    [[self newsFeedViewController] updateAvatar:avatar forUsername:user];
+    if ([selectedRssItem.author isEqualToString:user])
         [[self newsFeedItemViewController] updateWithAvatar:avatar];
 }
 
@@ -269,7 +332,7 @@
 #pragma mark GitHubServiceDelegate implementation
 
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
-    fetchedForUsername:(NSString *)username
+    fetchedForUsername:(NSString *)user
 {
     NSString * email = [info.details objectForKey:@"email"];
     if (email) {
@@ -277,28 +340,27 @@
         [gravatarService fetchAvatarForEmailAddress:email];
 
         // remember this association
-        [self username:username mapsToEmailAddress:email];
+        [self username:user mapsToEmailAddress:email];
     }
 }
 
-- (void)failedToFetchInfoForUsername:(NSString *)username
+- (void)failedToFetchInfoForUsername:(NSString *)user
                                error:(NSError *)error
 {
     // log the error, but otherwise ignore it; there's not much we can do
 
-    NSLog(@"Failed to fetch info for user: '%@' error: '%@'.", username,
-        error);
+    NSLog(@"Failed to fetch info for user: '%@' error: '%@'.", user, error);
 }
 
 #pragma mark Working with avatars
 
-- (UIImage *)cachedAvatarForUsername:(NSString *)username
+- (UIImage *)cachedAvatarForUsername:(NSString *)user
 {
-    UserInfo * ui = [self cachedUserInfoForUsername:username];
+    UserInfo * ui = [self cachedUserInfoForUsername:user];
     NSString * email = [ui.details objectForKey:@"email"];
 
     if (email) {
-        [self username:username mapsToEmailAddress:email];
+        [self username:user mapsToEmailAddress:email];
         return [avatarCacheReader avatarForEmailAddress:email];
     }
 
@@ -339,11 +401,11 @@
 
 #pragma mark Working with users
 
-- (UserInfo *)cachedUserInfoForUsername:(NSString *)username
+- (UserInfo *)cachedUserInfoForUsername:(NSString *)user
 {
-    return [self isPrimaryUser:username] ?
+    return [self isPrimaryUser:user] ?
         userCacheReader.primaryUser :
-        [userCacheReader userWithUsername:username];
+        [userCacheReader userWithUsername:user];
 }
 
 - (NSString *)usernameForEmailAddress:(NSString *)emailAddress
@@ -351,9 +413,9 @@
     return [usernames objectForKey:emailAddress];
 }
 
-- (void)username:(NSString *)username mapsToEmailAddress:(NSString *)email
+- (void)username:(NSString *)user mapsToEmailAddress:(NSString *)email
 {
-    [usernames setObject:username forKey:email];
+    [usernames setObject:user forKey:email];
 }
 
 - (void)fetchUserInfoForUnknownUsersInRssItems:(NSArray *)rssItems
@@ -372,31 +434,59 @@
 
 #pragma mark General helpers
 
-- (BOOL)isPrimaryUser:(NSString *)username
+- (BOOL)isPrimaryUser:(NSString *)user
 {
-    return [logInState.login isEqualToString:username];
+    return [logInStateReader.login isEqualToString:user];
 }
 
 #pragma mark Accessors
 
 - (NSObject<UserDisplayMgr> *)userDisplayMgr
 {
+    /*
     if (!userDisplayMgr)
         userDisplayMgr =
             [userDisplayMgrFactory
             createUserDisplayMgrWithNavigationContoller:navigationController];
+     */
 
     return userDisplayMgr;
 }
 
 - (NSObject<RepoSelector> *)repoSelector
 {
+    /*
     if (!repoSelector)
         repoSelector =
             [repoSelectorFactory
             createRepoSelectorWithNavigationController:navigationController];
+     */
 
     return repoSelector;
+}
+
+- (NetworkAwareViewController *)networkAwareViewController
+{
+    if (!networkAwareViewController) {
+        networkAwareViewController =
+            [[NetworkAwareViewController alloc]
+            initWithTargetViewController:[self newsFeedViewController]];
+        networkAwareViewController.delegate = self;
+    }
+
+    return networkAwareViewController;
+}
+
+- (NewsFeedViewController *)newsFeedViewController
+{
+    if (!newsFeedViewController) {
+        newsFeedViewController =
+            [[NewsFeedViewController alloc]
+            initWithNibName:@"NewsFeedView" bundle:nil];
+        newsFeedViewController.delegate = self;
+    }
+
+    return newsFeedViewController;
 }
 
 - (NewsFeedItemViewController *)newsFeedItemViewController
@@ -406,7 +496,7 @@
             [[NewsFeedItemViewController alloc]
             initWithNibName:@"NewsFeedItemView" bundle:nil];
         newsFeedItemViewController.delegate = self;
-        newsFeedItemViewController.repoSelectorFactory = repoSelectorFactory;
+        newsFeedItemViewController.repoSelector = repoSelector;
     }
 
     return newsFeedItemViewController;

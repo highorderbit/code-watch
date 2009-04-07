@@ -6,7 +6,7 @@
 
 @class RssItem;
 
-@protocol NewsFeedTableViewControllerDelegate
+@protocol NewsFeedViewControllerDelegate <NSObject>
 
 - (void)userDidSelectRssItem:(RssItem *)item;
 

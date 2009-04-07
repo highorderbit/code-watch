@@ -37,6 +37,9 @@
 		054848C50F84493D00735643 /* GitHubNewsFeedService.m in Sources */ = {isa = PBXBuildFile; fileRef = 054848C40F84493D00735643 /* GitHubNewsFeedService.m */; };
 		0548492B0F84581600735643 /* GitHubNewsFeedServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0548492A0F84581600735643 /* GitHubNewsFeedServiceFactory.m */; };
 		054C06F70F6F0D5000999FEA /* GitHubService.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C06F60F6F0D5000999FEA /* GitHubService.m */; };
+		054FF5D70F8AC07E0096C011 /* PrimaryUserNewsFeedDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 054FF5D60F8AC07E0096C011 /* PrimaryUserNewsFeedDisplayMgr.m */; };
+		054FF5DA0F8AC0900096C011 /* NewsFeedDisplayMgrFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 054FF5D90F8AC0900096C011 /* NewsFeedDisplayMgrFactory.m */; };
+		054FF5E00F8ACAF80096C011 /* NewsFeedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 054FF5DE0F8ACAF80096C011 /* NewsFeedView.xib */; };
 		055DF4B30F7B08F1003A8D94 /* DiffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055DF4B20F7B08F1003A8D94 /* DiffViewController.m */; };
 		055DF4C40F7B0B9F003A8D94 /* DiffView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055DF4C20F7B0B9F003A8D94 /* DiffView.xib */; };
 		0560A0620F69C83E0031A852 /* CodeWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05A0F69C83E0031A852 /* CodeWatchAppController.m */; };
@@ -146,7 +149,7 @@
 		91E25F030F79DD0E00E1594E /* UIAddUserMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25F020F79DD0E00E1594E /* UIAddUserMgr.m */; };
 		91F89B2B0F7057C500993921 /* NewsFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F89B290F7057C500993921 /* NewsFeedTableViewCell.xib */; };
 		91F89B400F705EB300993921 /* NewsFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B3D0F705EB300993921 /* NewsFeedTableViewCell.m */; };
-		91F89B410F705EB300993921 /* NewsFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B3F0F705EB300993921 /* NewsFeedTableViewController.m */; };
+		91F89B410F705EB300993921 /* NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B3F0F705EB300993921 /* NewsFeedViewController.m */; };
 		91F89B4C0F7060F600993921 /* RssItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B4B0F7060F600993921 /* RssItem.m */; };
 		91F89BA40F7072D500993921 /* NSDate+IsToday.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89BA10F7072D500993921 /* NSDate+IsToday.m */; };
 		91F89BA50F7072D500993921 /* NSDate+StringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89BA30F7072D500993921 /* NSDate+StringHelpers.m */; };
@@ -165,7 +168,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		051388140F85959F00542963 /* NewsFeedTableViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedTableViewControllerDelegate.h; sourceTree = "<group>"; };
+		051388140F85959F00542963 /* NewsFeedViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedViewControllerDelegate.h; sourceTree = "<group>"; };
 		051CDCDC0F6C0CEC0049D2BD /* GitHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHub.h; path = github/GitHub.h; sourceTree = "<group>"; };
 		051CDCDD0F6C0CEC0049D2BD /* GitHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHub.m; path = github/GitHub.m; sourceTree = "<group>"; };
 		051CDCE00F6C0D140049D2BD /* JsonGitHubApiParserImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JsonGitHubApiParserImpl.h; path = github/JsonGitHubApiParserImpl.h; sourceTree = "<group>"; };
@@ -233,6 +236,11 @@
 		054C06F50F6F0D5000999FEA /* GitHubService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubService.h; path = github/GitHubService.h; sourceTree = "<group>"; };
 		054C06F60F6F0D5000999FEA /* GitHubService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubService.m; path = github/GitHubService.m; sourceTree = "<group>"; };
 		054C06FE0F6F104200999FEA /* GitHubServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubServiceDelegate.h; path = github/GitHubServiceDelegate.h; sourceTree = "<group>"; };
+		054FF5D50F8AC07E0096C011 /* PrimaryUserNewsFeedDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimaryUserNewsFeedDisplayMgr.h; sourceTree = "<group>"; };
+		054FF5D60F8AC07E0096C011 /* PrimaryUserNewsFeedDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimaryUserNewsFeedDisplayMgr.m; sourceTree = "<group>"; };
+		054FF5D80F8AC0900096C011 /* NewsFeedDisplayMgrFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedDisplayMgrFactory.h; sourceTree = "<group>"; };
+		054FF5D90F8AC0900096C011 /* NewsFeedDisplayMgrFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedDisplayMgrFactory.m; sourceTree = "<group>"; };
+		054FF5DF0F8ACAF80096C011 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NewsFeedView.xib; sourceTree = "<group>"; };
 		055DF4A90F7B082A003A8D94 /* ChangesetViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChangesetViewControllerDelegate.h; path = commit/ChangesetViewControllerDelegate.h; sourceTree = "<group>"; };
 		055DF4B10F7B08F1003A8D94 /* DiffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiffViewController.h; path = commit/DiffViewController.h; sourceTree = "<group>"; };
 		055DF4B20F7B08F1003A8D94 /* DiffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiffViewController.m; path = commit/DiffViewController.m; sourceTree = "<group>"; };
@@ -455,8 +463,8 @@
 		91F89B2A0F7057C500993921 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NewsFeedTableViewCell.xib; sourceTree = "<group>"; };
 		91F89B3C0F705EB300993921 /* NewsFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedTableViewCell.h; sourceTree = "<group>"; };
 		91F89B3D0F705EB300993921 /* NewsFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedTableViewCell.m; sourceTree = "<group>"; };
-		91F89B3E0F705EB300993921 /* NewsFeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedTableViewController.h; sourceTree = "<group>"; };
-		91F89B3F0F705EB300993921 /* NewsFeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedTableViewController.m; sourceTree = "<group>"; };
+		91F89B3E0F705EB300993921 /* NewsFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedViewController.h; sourceTree = "<group>"; };
+		91F89B3F0F705EB300993921 /* NewsFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedViewController.m; sourceTree = "<group>"; };
 		91F89B4A0F7060F600993921 /* RssItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RssItem.h; sourceTree = "<group>"; };
 		91F89B4B0F7060F600993921 /* RssItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RssItem.m; sourceTree = "<group>"; };
 		91F89BA00F7072D500993921 /* NSDate+IsToday.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+IsToday.h"; sourceTree = "<group>"; };
@@ -532,6 +540,7 @@
 				91E25E520F79B3B100E1594E /* FavoriteUsersView.xib */,
 				913693CF0F7E78D90054E512 /* FavoriteReposView.xib */,
 				9136949E0F7ECCB80054E512 /* AddRepoView.xib */,
+				054FF5DE0F8ACAF80096C011 /* NewsFeedView.xib */,
 				0532C9FC0F867F7F0047BE56 /* NewsFeedItemView.xib */,
 				0532CA6D0F868C650047BE56 /* NewsFeedItemDetailsView.xib */,
 			);
@@ -1053,9 +1062,9 @@
 			children = (
 				91F89B3C0F705EB300993921 /* NewsFeedTableViewCell.h */,
 				91F89B3D0F705EB300993921 /* NewsFeedTableViewCell.m */,
-				051388140F85959F00542963 /* NewsFeedTableViewControllerDelegate.h */,
-				91F89B3E0F705EB300993921 /* NewsFeedTableViewController.h */,
-				91F89B3F0F705EB300993921 /* NewsFeedTableViewController.m */,
+				051388140F85959F00542963 /* NewsFeedViewControllerDelegate.h */,
+				91F89B3E0F705EB300993921 /* NewsFeedViewController.h */,
+				91F89B3F0F705EB300993921 /* NewsFeedViewController.m */,
 				91F89B4A0F7060F600993921 /* RssItem.h */,
 				91F89B4B0F7060F600993921 /* RssItem.m */,
 				0532CB1A0F8696550047BE56 /* RssItem+ParsingHelpers.h */,
@@ -1076,6 +1085,10 @@
 				0532CA4E0F86894A0047BE56 /* NewsFeedItemViewControllerDelegate.h */,
 				0532CA540F868B5B0047BE56 /* NewsFeedItemDetailsViewController.h */,
 				0532CA550F868B5B0047BE56 /* NewsFeedItemDetailsViewController.m */,
+				054FF5D50F8AC07E0096C011 /* PrimaryUserNewsFeedDisplayMgr.h */,
+				054FF5D60F8AC07E0096C011 /* PrimaryUserNewsFeedDisplayMgr.m */,
+				054FF5D80F8AC0900096C011 /* NewsFeedDisplayMgrFactory.h */,
+				054FF5D90F8AC0900096C011 /* NewsFeedDisplayMgrFactory.m */,
 			);
 			path = "news-feed";
 			sourceTree = "<group>";
@@ -1161,6 +1174,7 @@
 				0532CA6F0F868C650047BE56 /* NewsFeedItemDetailsView.xib in Resources */,
 				913EE0510F86B4EC00A3967B /* private-icon.png in Resources */,
 				913EE0520F86B4EC00A3967B /* public-icon.png in Resources */,
+				054FF5E00F8ACAF80096C011 /* NewsFeedView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1202,7 +1216,7 @@
 				053B7B3F0F700C3B0084B219 /* NSError+InstantiationAdditions.m in Sources */,
 				053B7B610F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m in Sources */,
 				91F89B400F705EB300993921 /* NewsFeedTableViewCell.m in Sources */,
-				91F89B410F705EB300993921 /* NewsFeedTableViewController.m in Sources */,
+				91F89B410F705EB300993921 /* NewsFeedViewController.m in Sources */,
 				91F89B4C0F7060F600993921 /* RssItem.m in Sources */,
 				91F89BA40F7072D500993921 /* NSDate+IsToday.m in Sources */,
 				91F89BA50F7072D500993921 /* NSDate+StringHelpers.m in Sources */,
@@ -1284,6 +1298,8 @@
 				052D3E010F87D91B005EBD25 /* AvatarCache.m in Sources */,
 				052D3E040F87D92C005EBD25 /* AvatarPersistenceStore.m in Sources */,
 				0565D5310F884D35002C950E /* UIImage+AvatarHelpers.m in Sources */,
+				054FF5D70F8AC07E0096C011 /* PrimaryUserNewsFeedDisplayMgr.m in Sources */,
+				054FF5DA0F8AC0900096C011 /* NewsFeedDisplayMgrFactory.m in Sources */,
 				91D8BC390F8AD6A70041EC91 /* ContactMgr.m in Sources */,
 				91D8BD530F8BA5700041EC91 /* HOTableViewCell.m in Sources */,
 				91D8BDBB0F8BB02F0041EC91 /* UIState.m in Sources */,
@@ -1316,6 +1332,14 @@
 				053420360F69EAE6000EECB1 /* en */,
 			);
 			name = NameValueTextEntryTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		054FF5DE0F8ACAF80096C011 /* NewsFeedView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				054FF5DF0F8ACAF80096C011 /* en */,
+			);
+			name = NewsFeedView.xib;
 			sourceTree = "<group>";
 		};
 		055DF4C20F7B0B9F003A8D94 /* DiffView.xib */ = {

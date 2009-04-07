@@ -7,7 +7,6 @@
 #import "RssItem+ParsingHelpers.h"
 #import "RepoKey.h"
 #import "UILabel+DrawingAdditions.h"
-#import "RepoSelectorFactory.h"
 #import "UIAlertView+CreationHelpers.h"
 #import "UIImage+AvatarHelpers.h"
 
@@ -55,12 +54,11 @@ enum ActionSectionRows
 
 @implementation NewsFeedItemViewController
 
-@synthesize delegate, repoSelectorFactory, rssItem;
+@synthesize delegate, repoSelector, rssItem;
 
 - (void)dealloc
 {
     [delegate release];
-    [repoSelectorFactory release];
     [repoSelector release];
     [headerView release];
     [authorLabel release];
@@ -303,17 +301,6 @@ enum ActionSectionRows
     UIImage * tmp = [anAvatar retain];
     [avatar release];
     avatar = tmp;
-}
-
-- (NSObject<RepoSelector> *)repoSelector
-{
-    if (!repoSelector)
-        repoSelector =
-            [repoSelectorFactory
-            createRepoSelectorWithNavigationController:
-            self.navigationController];
-
-    return repoSelector;
 }
 
 @end

@@ -6,13 +6,12 @@
 #import "NewsFeedItemViewControllerDelegate.h"
 #import "RepoSelector.h"
 
-@class RssItem, RepoSelectorFactory;
+@class RssItem;
 
 @interface NewsFeedItemViewController : UITableViewController
 {
     NSObject<NewsFeedItemViewControllerDelegate> * delegate;
 
-    RepoSelectorFactory * repoSelectorFactory;
     NSObject<RepoSelector> * repoSelector;
 
     IBOutlet UIView * headerView;
@@ -27,7 +26,7 @@
 
 @property (nonatomic, retain) NSObject<NewsFeedItemViewControllerDelegate> *
     delegate;
-@property (nonatomic, retain) RepoSelectorFactory * repoSelectorFactory;
+@property (nonatomic, retain) NSObject<RepoSelector> * repoSelector;
 @property (nonatomic, copy, readonly) RssItem * rssItem;
 
 #pragma mark Updating the display

@@ -6,6 +6,8 @@
 #import "LogInMgr.h"
 #import "LogInState.h"
 #import "PersistenceStore.h"
+#import "NewsFeedDisplayMgrFactory.h"
+#import "NewsFeedDisplayMgr.h"
 #import "FavoriteUsersViewController.h"
 #import "FavoriteUsersState.h"
 #import "ConfigReader.h"
@@ -32,6 +34,9 @@
     IBOutlet NSObject<PersistenceStore> * contactCachePersistenceStore;
     IBOutlet NSObject<PersistenceStore> * avatarCachePersistenceStore;
     
+    IBOutlet NewsFeedDisplayMgrFactory * newsFeedDisplayMgrFactory;
+    NewsFeedDisplayMgr * newsFeedDisplayMgr;
+
     IBOutlet NSObject<PersistenceStore> * favoriteUsersPersistenceStore;
     IBOutlet UINavigationController * favoriteUsersNavController;
     IBOutlet FavoriteUsersViewController * favoriteUsersViewController;
