@@ -74,11 +74,6 @@
     return self;
 }
 
-- (void)viewWillAppear
-{
-    [self displayUserInfo];
-}
-
 - (void)displayUserInfo
 {
     [gitHubService fetchInfoForUsername:username];
@@ -151,6 +146,8 @@
         pushViewController:networkAwareViewController animated:YES];
     networkAwareViewController.navigationItem.title =
         NSLocalizedString(@"user.view.title", @"");
+        
+    [self displayUserInfo];
 }
 
 @end

@@ -21,8 +21,8 @@
 
 @interface UIUserDisplayMgr :
     NSObject
-    <NetworkAwareViewControllerDelegate, GitHubServiceDelegate,
-    GravatarServiceDelegate, UserViewControllerDelegate, UserDisplayMgr>
+    <GitHubServiceDelegate, GravatarServiceDelegate,
+    UserViewControllerDelegate, UserDisplayMgr>
 {
     UINavigationController * navigationController;
     NetworkAwareViewController * networkAwareViewController;

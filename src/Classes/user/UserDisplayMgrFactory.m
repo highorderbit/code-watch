@@ -66,7 +66,6 @@
         contactCacheSetter:contactCache] autorelease];
         
     userViewController.delegate = userDisplayMgr;
-    networkAwareViewController.delegate = userDisplayMgr;
     gitHubService.delegate = userDisplayMgr;
     gravatarService.delegate = userDisplayMgr;
     
