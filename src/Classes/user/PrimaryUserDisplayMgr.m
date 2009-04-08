@@ -56,7 +56,7 @@
 
 - (void)viewWillAppear
 {
-    //[self displayUserInfo];
+    [self displayUserInfo];
 }
 
 - (void)displayUserInfo
