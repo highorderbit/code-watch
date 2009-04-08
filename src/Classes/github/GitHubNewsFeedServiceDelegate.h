@@ -8,6 +8,11 @@
 
 - (void)newsFeed:(NSArray *)newsFeed fetchedForUsername:(NSString *)username;
 - (void)failedToFetchNewsFeedForUsername:(NSString *)username
-                                   error:(NSError *)error;
+    error:(NSError *)error;
+
+- (void)activityFeed:(NSArray *)activityFeed
+    fetchedForUsername:(NSString *)username;
+- (void)failedToFetchActivityFeedForUsername:(NSString *)username
+                                       error:(NSError *)error;
 
 @end

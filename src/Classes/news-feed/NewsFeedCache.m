@@ -5,7 +5,7 @@
 #import "NewsFeedCache.h"
 #import "RecentHistoryCache.h"
 
-static NSString * PRIMARY_USER_NEWS_FEED_KEY = @"news-feed";
+static NSString * PRIMARY_USER_NEWS_FEED_KEY = @"code-watch-news-feed";
 
 @implementation NewsFeedCache
 

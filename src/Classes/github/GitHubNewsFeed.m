@@ -11,8 +11,12 @@
 
 @interface GitHubNewsFeed (Private)
 
+- (void)fetchNewsFeedAtUrl:(NSString *)urlString username:(NSString *)username;
 - (void)fetchActivityFeedAtUrl:(NSString *)urlString
                       username:(NSString *)username;
+
+- (NSInvocation *)invocationForSelector:(SEL)selector
+                               username:(NSString *)username;
 
 @property (nonatomic, retain) id<GitHubNewsFeedDelegate> delegate;
 @property (nonatomic, copy) NSString * baseUrl;
@@ -57,7 +61,7 @@
         [NSString stringWithFormat:@"%@%@.private.atom?token=%@",
         baseUrl, username, token];
 
-    [self fetchActivityFeedAtUrl:url username:username];
+    [self fetchNewsFeedAtUrl:url username:username];
 }
 
 - (void)fetchActivityFeedForUsername:(NSString *)username
@@ -72,10 +76,8 @@
                                token:(NSString *)token
 {
     NSString * url =
-        token ?
         [NSString stringWithFormat:@"%@%@.private.actor.atom?token=%@",
-            baseUrl, username, token] :
-        [NSString stringWithFormat:@"%@%@.atom", baseUrl, username];
+        baseUrl, username, token];
 
     [self fetchActivityFeedAtUrl:url username:username];
 }
@@ -107,9 +109,9 @@
 
 #pragma mark Processing responses
 
-- (void)handleFeedResponse:(id)response
-                 toRequest:(NSURLRequest *)request
-                  username:(NSString *)username
+- (void)handleNewsFeedResponse:(id)response
+                     toRequest:(NSURLRequest *)request
+                      username:(NSString *)username
 {
     NSError * error = [response isKindOfClass:[NSError class]] ? response : nil;
 
@@ -124,7 +126,39 @@
         [delegate failedToFetchNewsFeedForUsername:username error:error];
 }
 
+- (void)handleActivityFeedResponse:(id)response
+                         toRequest:(NSURLRequest *)request
+                          username:(NSString *)username
+{
+    NSError * error = [response isKindOfClass:[NSError class]] ? response : nil;
+
+    NSArray * rssActivity = error ? nil : [parser parseXml:response];
+    if (!rssActivity)
+        error = [NSError errorWithLocalizedDescription:
+            NSLocalizedString(@"github.parse.failed.desc", @"")];
+
+    if (rssActivity)
+        [delegate activityFeed:rssActivity fetchedForUsername:username];
+    else
+        [delegate failedToFetchActivityFeedForUsername:username error:error];
+}
+
 #pragma mark Private helper methods
+
+- (void)fetchNewsFeedAtUrl:(NSString *)urlString
+                  username:(NSString *)username
+{
+    NSURL * url = [NSURL URLWithString:urlString];
+    NSURLRequest * req = [NSURLRequest requestWithURL:url];
+
+    SEL selector = @selector(handleNewsFeedResponse:toRequest:username:);
+    NSInvocation * inv = [self invocationForSelector:selector
+                                            username:username];
+
+    [invocations setObject:inv forNonRetainedKey:req];
+
+    [api sendRequest:req];
+}
 
 - (void)fetchActivityFeedAtUrl:(NSString *)urlString
                       username:(NSString *)username
@@ -132,18 +166,27 @@
     NSURL * url = [NSURL URLWithString:urlString];
     NSURLRequest * req = [NSURLRequest requestWithURL:url];
 
-    SEL sel = @selector(handleFeedResponse:toRequest:username:);
-    NSMethodSignature * sig = [self methodSignatureForSelector:sel];
-
-    NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
-    [inv setTarget:self];
-    [inv setSelector:sel];
-    [inv setArgument:&username atIndex:4];
-    [inv retainArguments];
+    SEL selector = @selector(handleActivityFeedResponse:toRequest:username:);
+    NSInvocation * inv = [self invocationForSelector:selector
+                                            username:username];
 
     [invocations setObject:inv forNonRetainedKey:req];
 
     [api sendRequest:req];
+}
+
+- (NSInvocation *)invocationForSelector:(SEL)selector
+                               username:(NSString *)username
+{
+    NSMethodSignature * sig = [self methodSignatureForSelector:selector];
+
+    NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
+    [inv setTarget:self];
+    [inv setSelector:selector];
+    [inv setArgument:&username atIndex:4];
+    [inv retainArguments];
+
+    return inv;
 }
 
 @end

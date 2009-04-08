@@ -21,7 +21,7 @@
 
 @interface NewsFeedDisplayMgr (Private)
 
-- (void)updateDisplay;
+- (void)updateDisplay:(NSArray *)cachedRssItems;
 
 - (UIImage *)cachedAvatarForUsername:(NSString *)username;
 - (NSDictionary *)cachedAvatarsForRssItems:(NSArray *)rssItems;
@@ -30,7 +30,7 @@
 
 - (UserInfo *)cachedUserInfoForUsername:(NSString *)username;
 
-- (NSArray *)cachedNewsFeedForUsername:(NSString *)user;
+//- (NSArray *)cachedNewsFeedForUsername:(NSString *)user;
 
 - (NSString *)usernameForEmailAddress:(NSString *)emailAddress;
 - (void)username:(NSString *)username
@@ -159,7 +159,8 @@
         [[self networkAwareViewController]
             setUpdatingState:kConnectedAndUpdating];    
 
-        [self updateDisplay];
+        NSArray * cachedRssItems = [newsFeedCacheReader primaryUserNewsFeed];
+        [self updateDisplay:cachedRssItems];
     } else {
         // This is a bit of a hack, but a relatively simple solution:
         // Configure the network-aware controller to 'disconnected' and set the
@@ -186,7 +187,9 @@
     [[self networkAwareViewController]
      setUpdatingState:kConnectedAndUpdating];    
 
-    [self updateDisplay];
+    NSArray * cachedRssItems =
+        [newsFeedCacheReader activityFeedForUsername:user];
+    [self updateDisplay:cachedRssItems];
 
     [self networkAwareViewController].navigationItem.title =
         NSLocalizedString(@"newsfeeddisplaymgr.view.title", @"");
@@ -194,22 +197,23 @@
          pushViewController:[self networkAwareViewController] animated:YES];
 }
 
-- (void)updateDisplay
+- (void)updateDisplay:(NSArray *)cachedRssItems
 {
     [[self networkAwareViewController]
         setNoConnectionText:
         NSLocalizedString(@"nodata.noconnection.text", @"")];
 
-    NSArray * rssItems = [self cachedNewsFeedForUsername:username];
-    if (rssItems) {
-        NSDictionary * avatars = [self cachedAvatarsForRssItems:rssItems];
-        [[self newsFeedViewController] updateRssItems:rssItems];
+    //NSArray * rssItems = [self cachedNewsFeedForUsername:username];
+    if (cachedRssItems && cachedRssItems.count > 0) {
+        NSDictionary * avatars = [self cachedAvatarsForRssItems:cachedRssItems];
+        [[self newsFeedViewController] updateRssItems:cachedRssItems];
         [[self newsFeedViewController] updateAvatars:avatars];
 
-        [self fetchUserInfoForUnknownUsersInRssItems:rssItems];
-    }
+        [self fetchUserInfoForUnknownUsersInRssItems:cachedRssItems];
 
-    [[self networkAwareViewController] setCachedDataAvailable:!!rssItems];
+        [[self networkAwareViewController] setCachedDataAvailable:YES];
+    } else
+        [[self networkAwareViewController] setCachedDataAvailable:NO];
 }
 
 #pragma mark NewsFeedViewControllerDelegate implementation
@@ -272,7 +276,20 @@
 
 #pragma mark GitHubNewsFeedDelegate implementation
 
-- (void)newsFeed:(NSArray *)newsItems fetchedForUsername:(NSString *)username
+- (void)newsFeed:(NSArray *)newsItems
+    fetchedForUsername:(NSString *)user
+{
+    [self activityFeed:newsItems fetchedForUsername:user];
+}
+
+- (void)failedToFetchNewsFeedForUsername:(NSString *)user
+                                   error:(NSError *)error
+{
+    [self failedToFetchActivityFeedForUsername:user error:error];
+}
+
+- (void)activityFeed:(NSArray *)newsItems
+    fetchedForUsername:(NSString *)username
 {
     // display any available cached avatars
     NSDictionary * avatars = [self cachedAvatarsForRssItems:newsItems];
@@ -293,8 +310,8 @@
     [[self networkAwareViewController] setCachedDataAvailable:YES];
 }
 
-- (void)failedToFetchNewsFeedForUsername:(NSString *)user
-                                   error:(NSError *)error
+- (void)failedToFetchActivityFeedForUsername:(NSString *)user
+                                       error:(NSError *)error
 {
     NSLog(@"Failed to retrieve news feed for username: '%@' error: '%@'.",
         user, error);

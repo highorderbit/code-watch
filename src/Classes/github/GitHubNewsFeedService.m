@@ -9,7 +9,9 @@
 
 @interface GitHubNewsFeedService (Private)
 
-- (void)cacheNewsFeed:(NSArray *)feed forUsername:(NSString *)username;
+- (void)cachePrimaryUserNewsFeed:(NSArray *)feed;
+- (void)cacheActivityFeed:(NSArray *)feed forUsername:(NSString *)username;
+
 - (BOOL)isPrimaryUsername:(NSString *)username;
 
 @end
@@ -69,7 +71,7 @@
 
 - (void)newsFeed:(NSArray *)feed fetchedForUsername:(NSString *)username
 {
-    [self cacheNewsFeed:feed forUsername:username];
+    [self cachePrimaryUserNewsFeed:feed];
 
     [delegate newsFeed:feed fetchedForUsername:username];
 
@@ -77,21 +79,40 @@
 }
 
 - (void)failedToFetchNewsFeedForUsername:(NSString *)username
-                                   error:(NSError *)error
+    error:(NSError *)error
 {
     [delegate failedToFetchNewsFeedForUsername:username error:error];
 
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
+- (void)activityFeed:(NSArray *)feed fetchedForUsername:(NSString *)username
+{
+    [self cacheActivityFeed:feed forUsername:username];
+
+    [delegate activityFeed:feed fetchedForUsername:username];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)failedToFetchActivityFeedForUsername:(NSString *)username
+                                       error:(NSError *)error
+{
+    [delegate failedToFetchActivityFeedForUsername:username error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
 #pragma mark Caching data
 
-- (void)cacheNewsFeed:(NSArray *)feed forUsername:(NSString *)username
+- (void)cacheActivityFeed:(NSArray *)feed forUsername:(NSString *)username
 {
-    if ([self isPrimaryUsername:username])
-        [newsFeedCacheSetter setPrimaryUserNewsFeed:feed];
-    else
-        [newsFeedCacheSetter setActivityFeed:feed forUsername:username];
+    [newsFeedCacheSetter setActivityFeed:feed forUsername:username];
+}
+
+- (void)cachePrimaryUserNewsFeed:(NSArray *)feed
+{
+    [newsFeedCacheSetter setPrimaryUserNewsFeed:feed];
 }
 
 #pragma mark Helper methods
