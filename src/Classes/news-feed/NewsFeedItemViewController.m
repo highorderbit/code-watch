@@ -9,6 +9,7 @@
 #import "UILabel+DrawingAdditions.h"
 #import "UIAlertView+CreationHelpers.h"
 #import "UIImage+AvatarHelpers.h"
+#import "NSDate+StringHelpers.h"
 
 static NSUInteger NUM_SECTIONS = 3;
 enum Sections
@@ -59,13 +60,19 @@ enum ActionSectionRows
 - (void)dealloc
 {
     [delegate release];
+
     [repoSelector release];
+
     [headerView release];
     [authorLabel release];
+    [descriptionLabel release];
+    [timestampLabel release];
     [subjectLabel release];
     [avatarImageView release];
+
     [rssItem release];
     [avatar release];
+
     [super dealloc];
 }
 
@@ -242,6 +249,8 @@ enum ActionSectionRows
         descriptionLabel.text = [[rssItem repoKey] description];
     else
         descriptionLabel.text = nil;
+
+    timestampLabel.text = [rssItem.pubDate shortDateAndTimeDescription];
 
     CGFloat height = [subjectLabel heightForString:rssItem.subject];
 

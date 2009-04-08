@@ -129,6 +129,25 @@
 						<float key="IBUIMinimumFontSize">1.000000e+01</float>
 						<int key="IBUINumberOfLines">0</int>
 					</object>
+					<object class="IBUILabel" id="409899216">
+						<reference key="NSNextResponder" ref="1031569082"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{89, 60}, {211, 20}}</string>
+						<reference key="NSSuperview" ref="1031569082"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="IBUIText">3/31/09 10:52 PM</string>
+						<reference key="IBUIFont" ref="495641907"/>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC4xMjE1Njg2NCAwLjE1Njg2Mjc1IDAuMjIzNTI5NDMAA</bytes>
+						</object>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+						<float key="IBUIMinimumFontSize">1.000000e+01</float>
+					</object>
 				</object>
 				<string key="NSFrameSize">{320, 129}</string>
 				<reference key="NSSuperview"/>
@@ -209,6 +228,14 @@
 					</object>
 					<int key="connectionID">21</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">timestampLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="409899216"/>
+					</object>
+					<int key="connectionID">23</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -246,6 +273,7 @@
 							<reference ref="282234032"/>
 							<reference ref="89135398"/>
 							<reference ref="530025529"/>
+							<reference ref="409899216"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -269,6 +297,11 @@
 						<reference key="object" ref="530025529"/>
 						<reference key="parent" ref="1031569082"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">22</int>
+						<reference key="object" ref="409899216"/>
+						<reference key="parent" ref="1031569082"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -280,6 +313,8 @@
 					<string>10.IBPluginDependency</string>
 					<string>11.IBPluginDependency</string>
 					<string>20.IBPluginDependency</string>
+					<string>22.IBEditorWindowLastContentRect</string>
+					<string>22.IBPluginDependency</string>
 					<string>3.IBEditorWindowLastContentRect</string>
 					<string>3.IBPluginDependency</string>
 					<string>7.IBEditorWindowLastContentRect</string>
@@ -293,9 +328,11 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{312, 742}, {220, 34}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{313, 376}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{588, 281}, {320, 129}}</string>
+					<string>{{536, 884}, {320, 129}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
@@ -320,7 +357,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">21</int>
+			<int key="maxID">23</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -344,6 +381,7 @@
 							<string>descriptionLabel</string>
 							<string>headerView</string>
 							<string>subjectLabel</string>
+							<string>timestampLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -351,6 +389,7 @@
 							<string>UIImageView</string>
 							<string>UILabel</string>
 							<string>UIView</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 						</object>
 					</object>
