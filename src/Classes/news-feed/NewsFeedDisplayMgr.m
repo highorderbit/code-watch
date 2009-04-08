@@ -21,6 +21,8 @@
 
 @interface NewsFeedDisplayMgr (Private)
 
+- (void)updateDisplay;
+
 - (UIImage *)cachedAvatarForUsername:(NSString *)username;
 - (NSDictionary *)cachedAvatarsForRssItems:(NSArray *)rssItems;
 
@@ -43,6 +45,9 @@
 - (NewsFeedItemViewController *)newsFeedItemViewController;
 - (NewsFeedItemDetailsViewController *)newsFeedItemDetailsViewController;
 - (void)setSelectedRssItem:(RssItem *)rssItem;
+
+- (void)setRefreshSelector:(SEL)selector;
+- (void)setRefreshObject:(NSObject *)obj;
 
 @end
 
@@ -76,6 +81,8 @@
     [usernames release];
 
     [selectedRssItem release];
+
+    [refreshObject release];
     
     [super dealloc];
 }
@@ -132,6 +139,9 @@
 
         [[self networkAwareViewController].navigationItem
             setRightBarButtonItem:refreshButton animated:NO];
+
+        [self setRefreshSelector:@selector(updateNewsFeed)];
+        [self setRefreshObject:nil];
     }
 
     return self;
@@ -140,33 +150,29 @@
 - (void)viewWillAppear
 {
     [self setSelectedRssItem:nil];
-    [self updateNewsFeed];
+
+    if (refreshSelector == @selector(updateNewsFeed))
+        [self updateNewsFeed];
 }
 
 #pragma mark Display the news feed
 
 - (void)updateNewsFeed
 {
-    [[self networkAwareViewController]
-        setUpdatingState:kConnectedAndNotUpdating];
-    [[self networkAwareViewController] setCachedDataAvailable:YES];
+    [self setRefreshSelector:@selector(updateNewsFeed)];
+    [self setRefreshObject:nil];
 
     if (username) {
         [[self networkAwareViewController]
-        setNoConnectionText:
-        NSLocalizedString(@"nodata.noconnection.text", @"")];
-        
-        NSArray * rssItems = [self cachedNewsFeedForUsername:username];
-        NSDictionary * avatars = [self cachedAvatarsForRssItems:rssItems];
-        [[self newsFeedViewController] updateRssItems:rssItems];
-        [[self newsFeedViewController] updateAvatars:avatars];
+            setNoConnectionText:
+            NSLocalizedString(@"nodata.noconnection.text", @"")];
 
-        [newsFeedService fetchNewsFeedForUsername:username];
-        [self fetchUserInfoForUnknownUsersInRssItems:rssItems];
-        
+        [newsFeedService fetchNewsFeedForPrimaryUser];
+
+        [self updateDisplay];
+
         [[self networkAwareViewController]
             setUpdatingState:kConnectedAndUpdating];
-        [[self networkAwareViewController] setCachedDataAvailable:!!rssItems];
     } else {
         // This is a bit of a hack, but a relatively simple solution:
         // Configure the network-aware controller to 'disconnected' and set the
@@ -179,22 +185,47 @@
     }
 }
 
-- (void)updateNewsFeedForPrimaryUser
+- (void)updateActivityFeedForPrimaryUser
 {
-    [self updateNewsFeedForUsername:logInStateReader.login];
+    [self updateActivityFeedForUsername:logInStateReader.login];
 }
 
-- (void)updateNewsFeedForUsername:(NSString *)user
+- (void)updateActivityFeedForUsername:(NSString *)user
 {
+    [self setRefreshSelector:@selector(updateActivityFeedForUsername:)];
+    [self setRefreshObject:user];
+
     self.username = user;
 
-    [self updateNewsFeed];
+    [newsFeedService fetchActivityFeedForUsername:user];
+
+    [self updateDisplay];
+
+    [[self networkAwareViewController]
+        setUpdatingState:kConnectedAndUpdating];
 
     [self networkAwareViewController].navigationItem.title =
         NSLocalizedString(@"newsfeeddisplaymgr.view.title", @"");
     [navigationController
          pushViewController:[self networkAwareViewController] animated:YES];
-    
+}
+
+- (void)updateDisplay
+{
+    [[self networkAwareViewController]
+        setNoConnectionText:
+        NSLocalizedString(@"nodata.noconnection.text", @"")];
+
+    NSArray * rssItems = [self cachedNewsFeedForUsername:username];
+    if (rssItems) {
+        NSDictionary * avatars = [self cachedAvatarsForRssItems:rssItems];
+        [[self newsFeedViewController] updateRssItems:rssItems];
+        [[self newsFeedViewController] updateAvatars:avatars];
+
+        [self fetchUserInfoForUnknownUsersInRssItems:rssItems];
+    }
+
+    [[self networkAwareViewController] setCachedDataAvailable:!!rssItems];
 }
 
 #pragma mark NewsFeedViewControllerDelegate implementation
@@ -495,6 +526,20 @@
     RssItem * tmp = [rssItem copy];
     [selectedRssItem release];
     selectedRssItem = tmp;
+}
+
+#pragma mark HACK
+
+- (void)setRefreshSelector:(SEL)selector
+{
+    refreshSelector = selector;
+}
+
+- (void)setRefreshObject:(NSObject *)obj
+{
+    NSObject * tmp = [obj retain];
+    [refreshObject release];
+    refreshObject = tmp;
 }
 
 @end

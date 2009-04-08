@@ -114,7 +114,7 @@
 
 - (void)userDidSelectRecentActivity
 {
-    [[self newsFeedDisplayMgr] updateNewsFeedForUsername:username];
+    [[self newsFeedDisplayMgr] updateActivityFeedForUsername:username];
 }
 
 #pragma mark GitHubServiceDelegate implementation

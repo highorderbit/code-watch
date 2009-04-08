@@ -32,6 +32,7 @@
 
 #pragma mark Fetching news feeds
 
-- (void)fetchNewsFeedForUsername:(NSString *)username;
+- (void)fetchNewsFeedForPrimaryUser;
+- (void)fetchActivityFeedForUsername:(NSString *)username;
 
 @end

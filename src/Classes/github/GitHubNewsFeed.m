@@ -51,7 +51,16 @@
 
 #pragma mark Fetching RSS activity
 
-- (void)fetchNewsFeedForUsername:(NSString *)username
+- (void)fetchNewsFeedForPrimaryUser:(NSString *)username token:(NSString *)token
+{
+    NSString * url =
+        [NSString stringWithFormat:@"%@%@.private.atom?token=%@",
+        baseUrl, username, token];
+
+    [self fetchActivityFeedAtUrl:url username:username];
+}
+
+- (void)fetchActivityFeedForUsername:(NSString *)username
 {
     NSString * url =
         [NSString stringWithFormat:@"%@%@.atom", baseUrl, username];
@@ -59,11 +68,12 @@
     [self fetchActivityFeedAtUrl:url username:username];
 }
 
-- (void)fetchNewsFeedForUsername:(NSString *)username token:(NSString *)token
+- (void)fetchActivityFeedForUsername:(NSString *)username
+                               token:(NSString *)token
 {
     NSString * url =
         token ?
-        [NSString stringWithFormat:@"%@%@.private.atom?token=%@",
+        [NSString stringWithFormat:@"%@%@.private.actor.atom?token=%@",
             baseUrl, username, token] :
         [NSString stringWithFormat:@"%@%@.atom", baseUrl, username];
 

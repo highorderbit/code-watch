@@ -54,6 +54,15 @@
     NSMutableDictionary * usernames;
 
     RssItem * selectedRssItem;
+
+    // HACK: Used to decide with which feed the view updates itself when
+    // called from 'viewWillAppear'. It could be from the network aware
+    // view controller that sits in the tab bar, or from one of the nested
+    // feeds. When we pop back to the view, or when it's displayed for the
+    // first time in the case of the tab bar view, we call this selector to
+    // refresh the displayed data.
+    SEL refreshSelector;
+    NSObject * refreshObject;
 }
 
 @property (nonatomic, copy) NSString * username;
@@ -76,7 +85,7 @@
 #pragma mark Display the news feed
 
 - (void)updateNewsFeed;
-- (void)updateNewsFeedForPrimaryUser;
-- (void)updateNewsFeedForUsername:(NSString *)user;
+- (void)updateActivityFeedForPrimaryUser;
+- (void)updateActivityFeedForUsername:(NSString *)user;
 
 @end

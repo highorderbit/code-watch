@@ -46,15 +46,23 @@
 
 #pragma mark Fetching news feeds
 
-- (void)fetchNewsFeedForUsername:(NSString *)username
+- (void)fetchNewsFeedForPrimaryUser
+{
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
+    [newsFeed fetchNewsFeedForPrimaryUser:logInStateReader.login
+                                    token:logInStateReader.token];
+}
+
+- (void)fetchActivityFeedForUsername:(NSString *)username
 {
     [[UIApplication sharedApplication] networkActivityIsStarting];
 
     if ([self isPrimaryUsername:username])
-        [newsFeed
-            fetchNewsFeedForUsername:username token:logInStateReader.token];
+        [newsFeed fetchActivityFeedForUsername:username
+                                         token:logInStateReader.token];
     else
-        [newsFeed fetchNewsFeedForUsername:username];
+        [newsFeed fetchActivityFeedForUsername:username];
 }
 
 #pragma mark GitHubNewsFeedDelegate implementation
