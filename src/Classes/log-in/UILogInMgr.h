@@ -15,7 +15,9 @@
 @class LogInViewController;
 
 @interface UILogInMgr :
-    NSObject <LogInMgr, LogInViewControllerDelegate, GitHubServiceDelegate>
+    NSObject
+    <LogInMgr, LogInViewControllerDelegate, GitHubServiceDelegate,
+    UIActionSheetDelegate>
 {
     IBOutlet UIViewController * rootViewController;
 

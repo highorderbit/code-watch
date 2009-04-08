@@ -11,6 +11,7 @@
 
 @interface UILogInMgr (Private)
 
+- (void)presentView;
 - (void)updateUI;
 
 @end
@@ -65,15 +66,15 @@
 - (IBAction)collectCredentials:(id)sender
 {
     if (logInStateReader.login) { // if logged in, log out
-        BOOL prompt = logInStateReader.prompt;
-        [logInStateSetter setLogin:nil token:nil prompt:prompt];
-        [userCacheSetter setPrimaryUser:nil];
-    }
+        UIActionSheet * actionSheet =
+            [[[UIActionSheet alloc]
+            initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel"
+            destructiveButtonTitle:@"Log Out" otherButtonTitles:nil]
+            autorelease];
 
-    [rootViewController presentModalViewController:self.navigationController
-        animated:YES];
-
-    [self updateUI];
+        [actionSheet showInView:rootViewController.view];
+    } else
+        [self presentView];
 }
 
 #pragma mark LogInViewControllerDelegate implementation
@@ -207,6 +208,28 @@
             
         [homeNavigationItem setRightBarButtonItem:nil animated:NO];
         [userNavigationItem setRightBarButtonItem:nil animated:NO];
+    }
+}
+
+- (void)presentView
+{
+    [rootViewController presentModalViewController:self.navigationController
+        animated:YES];
+
+    [self updateUI];
+}
+
+#pragma mark UIActionSheetDelegate implementation
+
+- (void)actionSheet:(UIActionSheet *)actionSheet
+    clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        BOOL prompt = logInStateReader.prompt;
+        [logInStateSetter setLogin:nil token:nil prompt:prompt];
+        [userCacheSetter setPrimaryUser:nil];
+        
+        [self presentView];
     }
 }
 
