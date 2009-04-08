@@ -6,6 +6,7 @@
 #import "NSObject+RuntimeAdditions.h"
 #import "UserDetailTableViewCell.h"
 #import "UIAlertView+CreationHelpers.h"
+#import "UIImage+AvatarHelpers.h"
 #import <AddressBookUI/ABPersonViewController.h>
 
 enum Section
@@ -159,7 +160,6 @@ enum Section
             NSString * value = [nonFeaturedDetails objectForKey:key];
             [detailCell setKeyText:key];
             [detailCell setValueText:value];
-            detailCell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
         case kRecentActivitySection:
             cell.text = NSLocalizedString(@"user.recent.activity.label", @"");
@@ -232,7 +232,7 @@ enum Section
 
 - (void)updateWithAvatar:(UIImage *)avatar
 {
-    avatarView.image = avatar;
+    avatarView.image = avatar ? avatar : [UIImage imageUnavailableImage];
 }
 
 - (void)setFeaturedDetail1Key:(NSString *)key

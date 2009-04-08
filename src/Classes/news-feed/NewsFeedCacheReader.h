@@ -7,7 +7,7 @@
 @protocol NewsFeedCacheReader
 
 - (NSArray *)primaryUserNewsFeed;
-- (NSArray *)newsFeedForUsername:(NSString *)username;
-- (NSDictionary *)allNewsFeeds;
+- (NSArray *)activityFeedForUsername:(NSString *)username;
+- (NSDictionary *)allActivityFeeds;
 
 @end

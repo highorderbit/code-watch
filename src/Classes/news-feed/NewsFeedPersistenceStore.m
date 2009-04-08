@@ -57,15 +57,15 @@
 
     for (NSString * user in everythingElse) {
         NSArray * rawFeed = [everythingElse objectForKey:user];
-        NSMutableArray * newsFeed =
+        NSMutableArray * activityFeed =
             [NSMutableArray arrayWithCapacity:rawFeed.count];
 
         for (NSDictionary * d in rawFeed) {
             RssItem * item = [[self class] rssItemFromDictionary:d];
-            [newsFeed addObject:item];
+            [activityFeed addObject:item];
         }
 
-        [cacheSetter setNewsFeed:newsFeed forUsername:user];
+        [cacheSetter setActivityFeed:activityFeed forUsername:user];
     }
 }
 
@@ -83,7 +83,7 @@
     }
     [dict setObject:rssItemsAsDicts forKey:[[self class] primaryUserKey]];
 
-    NSDictionary * everyoneElse = [cacheReader allNewsFeeds];
+    NSDictionary * everyoneElse = [cacheReader allActivityFeeds];
     NSMutableDictionary * everyoneElseConverted =
         [NSMutableDictionary dictionaryWithCapacity:everyoneElse.count];
     for (NSString * user in everyoneElse) {

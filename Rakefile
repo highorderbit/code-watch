@@ -30,7 +30,7 @@ end
 
 desc 'Build the default target using the default configuration'
 task :build do |t|
-  puts %x{ #{xcodebuild} }
+  puts %x{ #{xcodebuild} | grep -v "note: This view overlaps one of its siblings." }
 end
 
 desc 'List available targets'

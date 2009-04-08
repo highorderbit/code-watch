@@ -17,6 +17,7 @@
     IBOutlet UIView * headerView;
     IBOutlet UILabel * authorLabel;
     IBOutlet UILabel * descriptionLabel;
+    IBOutlet UILabel * timestampLabel;
     IBOutlet UILabel * subjectLabel;
     IBOutlet UIImageView * avatarImageView;
 

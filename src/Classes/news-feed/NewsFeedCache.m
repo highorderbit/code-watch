@@ -5,7 +5,7 @@
 #import "NewsFeedCache.h"
 #import "RecentHistoryCache.h"
 
-static NSString * PRIMARY_USER_NEWS_FEED_KEY = @"news-feed";
+static NSString * PRIMARY_USER_NEWS_FEED_KEY = @"code-watch-news-feed";
 
 @implementation NewsFeedCache
 
@@ -19,7 +19,7 @@ static NSString * PRIMARY_USER_NEWS_FEED_KEY = @"news-feed";
 - (id)init
 {
     if (self = [super init]) {
-        primaryUserItems = [[RecentHistoryCache alloc] init];
+        primaryUserItems = [[RecentHistoryCache alloc] initWithCacheLimit:100];
         userItems = [[RecentHistoryCache alloc] init];
     }
 
@@ -33,12 +33,12 @@ static NSString * PRIMARY_USER_NEWS_FEED_KEY = @"news-feed";
     return [primaryUserItems objectForKey:PRIMARY_USER_NEWS_FEED_KEY];
 }
 
-- (NSArray *)newsFeedForUsername:(NSString *)username
+- (NSArray *)activityFeedForUsername:(NSString *)username
 {
     return [userItems objectForKey:username];
 }
 
-- (NSDictionary *)allNewsFeeds
+- (NSDictionary *)allActivityFeeds
 {
     return [userItems allRecentlyViewed];
 }
@@ -50,9 +50,9 @@ static NSString * PRIMARY_USER_NEWS_FEED_KEY = @"news-feed";
     [primaryUserItems setObject:newsFeed forKey:PRIMARY_USER_NEWS_FEED_KEY];
 }
 
-- (void)setNewsFeed:(NSArray *)newsFeed forUsername:(NSString *)username
+- (void)setActivityFeed:(NSArray *)activityFeed forUsername:(NSString *)username
 {
-    [userItems setObject:newsFeed forKey:username];
+    [userItems setObject:activityFeed forKey:username];
 }
 
 @end
