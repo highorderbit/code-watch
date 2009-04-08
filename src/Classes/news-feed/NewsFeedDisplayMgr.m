@@ -125,7 +125,6 @@
 
         usernames = [[NSMutableDictionary alloc] init];
 
-
         UIBarButtonItem * refreshButton =
             [[[UIBarButtonItem alloc]
             initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
@@ -149,6 +148,8 @@
 - (void)updateNewsFeed
 {
     if (logInStateReader.login) {
+        self.username = logInStateReader.login;
+
         [[self networkAwareViewController]
             setNoConnectionText:
             NSLocalizedString(@"nodata.noconnection.text", @"")];
@@ -157,7 +158,6 @@
 
         [[self networkAwareViewController]
             setUpdatingState:kConnectedAndUpdating];    
-
 
         [self updateDisplay];
     } else {
