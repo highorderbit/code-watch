@@ -159,6 +159,7 @@ enum Section
             NSString * value = [nonFeaturedDetails objectForKey:key];
             [detailCell setKeyText:key];
             [detailCell setValueText:value];
+            detailCell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
         case kRecentActivitySection:
             cell.text = NSLocalizedString(@"user.recent.activity.label", @"");
