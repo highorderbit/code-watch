@@ -56,15 +56,15 @@
 					<object class="IBUILabel" id="832957258">
 						<reference key="NSNextResponder" ref="337108910"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{93, 14}, {207, 28}}</string>
+						<string key="NSFrame">{{89, 13}, {211, 26}}</string>
 						<reference key="NSSuperview" ref="337108910"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">jdoe</string>
+						<string key="IBUIText">Jdoe</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">2.200000e+01</double>
+							<double key="NSSize">2.100000e+01</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<object class="NSColor" key="IBUITextColor">
@@ -79,7 +79,7 @@
 					<object class="IBUILabel" id="779319643">
 						<reference key="NSNextResponder" ref="337108910"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{93, 39}, {207, 21}}</string>
+						<string key="NSFrame">{{89, 39}, {211, 20}}</string>
 						<reference key="NSSuperview" ref="337108910"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -114,7 +114,7 @@
 					<object class="IBUILabel" id="677625155">
 						<reference key="NSNextResponder" ref="337108910"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{93, 58}, {207, 21}}</string>
+						<string key="NSFrame">{{89, 59}, {211, 20}}</string>
 						<reference key="NSSuperview" ref="337108910"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -414,7 +414,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{362, 491}, {320, 247}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{328, 639}, {320, 85}}</string>
+					<string>{{343, 536}, {320, 85}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -443,6 +443,27 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">ContactMgr</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>contactCacheSetter</string>
+							<string>tabViewController</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSObject</string>
+							<string>UIViewController</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/user/ContactMgr.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -481,6 +502,7 @@
 							<string>addToFavoritesButton</string>
 							<string>avatarView</string>
 							<string>contactCacheReader</string>
+							<string>contactMgr</string>
 							<string>delegate</string>
 							<string>favoriteUsersStateReader</string>
 							<string>favoriteUsersStateSetter</string>
@@ -497,6 +519,7 @@
 							<string>UIButton</string>
 							<string>UIImageView</string>
 							<string>NSObject</string>
+							<string>ContactMgr</string>
 							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>NSObject</string>
