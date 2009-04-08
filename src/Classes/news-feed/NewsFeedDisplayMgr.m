@@ -245,6 +245,8 @@
             pushViewController:[self newsFeedItemViewController]
             animated:YES];
     }
+    
+    [newsFeedItemViewController scrollToTop];
 }
 
 #pragma mark NewsFeedItemViewControllerDelegate implementation

@@ -16,7 +16,7 @@
 
 - (id)init
 {
-    return [self initWithCacheLimit:1000];
+    return [self initWithCacheLimit:50];
 }
 
 - (id)initWithCacheLimit:(NSInteger)aCacheLimit
@@ -35,7 +35,7 @@
 {
     [recentlyViewed setObject:anObject forKey:aKey];
     
-    [history insertObject:anObject atIndex:0];
+    [history insertObject:aKey atIndex:0];
     
     NSNumber * numAppearances = [historyAppearances objectForKey:aKey];
     if (numAppearances) {
@@ -47,7 +47,7 @@
             forKey:aKey];
 
     if ([history count] > cacheLimit) {
-        NSString * oldestKey = [history objectAtIndex:cacheLimit];
+        id oldestKey = [[history objectAtIndex:cacheLimit] retain];
         [history removeObjectAtIndex:cacheLimit];
         NSInteger oldestNumAppearances =
             [[historyAppearances objectForKey:oldestKey] integerValue] - 1;
@@ -59,6 +59,8 @@
             [historyAppearances
                 setObject:[NSNumber numberWithInteger:oldestNumAppearances]
                 forKey:oldestKey];
+
+        [oldestKey release];
     }
 }
 

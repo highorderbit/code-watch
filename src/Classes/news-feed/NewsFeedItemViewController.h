@@ -33,5 +33,6 @@
 
 - (void)updateWithRssItem:(RssItem *)item;
 - (void)updateWithAvatar:(UIImage *)anAvatar;
+- (void)scrollToTop;
 
 @end
