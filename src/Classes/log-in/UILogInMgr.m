@@ -11,7 +11,7 @@
 
 @interface UILogInMgr (Private)
 
-- (void)setButtonText;
+- (void)updateUI;
 
 @end
 
@@ -21,6 +21,8 @@
 @synthesize logInViewController;
 @synthesize helpViewController;
 @synthesize expectedUsername;
+@synthesize homeRefreshButton;
+@synthesize userRefreshButton;
 
 - (void)dealloc
 {
@@ -33,6 +35,10 @@
     [homeBarButtonItem release];
     [userBarButtonItem release];
     [userTabBarItem release];
+    [homeNavigationItem release];
+    [userNavigationItem release];
+    [homeRefreshButton release];
+    [userRefreshButton release];
     
     [logInStateSetter release];
     [logInStateReader release];
@@ -47,8 +53,11 @@
 
 - (id)init
 {
-    if (self = [super init])
-        [self setButtonText];
+    if (self = [super init]) {
+        self.homeRefreshButton = homeNavigationItem.rightBarButtonItem;
+        self.userRefreshButton = userNavigationItem.rightBarButtonItem;
+        [self updateUI];
+    }
 
     return self;
 }
@@ -64,7 +73,7 @@
     [rootViewController presentModalViewController:self.navigationController
         animated:YES];
 
-    [self setButtonText];
+    [self updateUI];
 }
 
 #pragma mark LogInViewControllerDelegate implementation
@@ -103,7 +112,7 @@
         [rootViewController dismissModalViewControllerAnimated:YES];
     
         self.expectedUsername = nil;
-        [self setButtonText];
+        [self updateUI];
         [logInViewController logInAccepted];
     }
 }
@@ -170,7 +179,7 @@
 
 #pragma mark Helper methods
 
-- (void)setButtonText
+- (void)updateUI
 {
     if (logInStateReader.login) {
         homeBarButtonItem.title =
@@ -184,6 +193,10 @@
             [logInStateReader.login
             substringToIndex:MAX_USER_TAB_NAME_LENGTH - 3]] :
             logInStateReader.login;
+        [homeNavigationItem setRightBarButtonItem:self.homeRefreshButton
+            animated:NO];
+        [userNavigationItem setRightBarButtonItem:self.userRefreshButton
+            animated:NO];
     } else {
         homeBarButtonItem.title =
             NSLocalizedString(@"loginmgr.login.text", @"");
@@ -191,6 +204,9 @@
             NSLocalizedString(@"loginmgr.login.text", @"");
         userTabBarItem.title =
             NSLocalizedString(@"loginmgr.user.text", @"");
+            
+        [homeNavigationItem setRightBarButtonItem:nil animated:NO];
+        [userNavigationItem setRightBarButtonItem:nil animated:NO];
     }
 }
 

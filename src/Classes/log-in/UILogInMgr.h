@@ -26,7 +26,11 @@
     IBOutlet UIBarButtonItem * homeBarButtonItem;
     IBOutlet UIBarButtonItem * userBarButtonItem;
     IBOutlet UITabBarItem * userTabBarItem;
-
+    IBOutlet UINavigationItem * homeNavigationItem;
+    IBOutlet UINavigationItem * userNavigationItem;
+    UIBarButtonItem * homeRefreshButton;
+    UIBarButtonItem * userRefreshButton;
+    
     IBOutlet NSObject<LogInStateSetter> * logInStateSetter;
     IBOutlet NSObject<LogInStateReader> * logInStateReader;
     IBOutlet NSObject<UserCacheSetter> * userCacheSetter;
@@ -40,6 +44,8 @@
 @property (nonatomic, retain) LogInViewController * logInViewController;
 @property (nonatomic, retain) WebViewController * helpViewController;
 @property (nonatomic, copy) NSString * expectedUsername;
+@property (nonatomic, retain) UIBarButtonItem * homeRefreshButton;
+@property (nonatomic, retain) UIBarButtonItem * userRefreshButton;
 
 // Neede re-definition to work in interface builder
 - (IBAction)collectCredentials:(id)sender;
