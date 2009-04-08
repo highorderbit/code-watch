@@ -390,7 +390,7 @@ enum
     messageLabel.text = message;
 
     CGRect headerFrame = headerView.frame;
-    headerFrame.size.height = 85.0 + height;
+    headerFrame.size.height = 89.0 + height;
     headerView.frame = headerFrame;
 
     self.tableView.tableHeaderView = headerView;
