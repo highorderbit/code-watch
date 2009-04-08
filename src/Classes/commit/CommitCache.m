@@ -14,7 +14,9 @@
 
 - (void)awakeFromNib
 {
-    recentHistoryCache = [[RecentHistoryCache alloc] init];
+    // We receive 30 commits per repo; 30 x 4 = 120 lets us keep around 4 repos
+    // in memory. Adjust upwards further if necessary.
+    recentHistoryCache = [[RecentHistoryCache alloc] initWithCacheLimit:120];
 }
 
 #pragma mark CommitCacheReader implementation
