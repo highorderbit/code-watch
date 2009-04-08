@@ -46,9 +46,6 @@
 - (NewsFeedItemDetailsViewController *)newsFeedItemDetailsViewController;
 - (void)setSelectedRssItem:(RssItem *)rssItem;
 
-- (void)setRefreshSelector:(SEL)selector;
-- (void)setRefreshObject:(NSObject *)obj;
-
 @end
 
 @implementation NewsFeedDisplayMgr
@@ -81,8 +78,6 @@
     [usernames release];
 
     [selectedRssItem release];
-
-    [refreshObject release];
     
     [super dealloc];
 }
@@ -139,9 +134,6 @@
 
         [[self networkAwareViewController].navigationItem
             setRightBarButtonItem:refreshButton animated:NO];
-
-        [self setRefreshSelector:@selector(updateNewsFeed)];
-        [self setRefreshObject:nil];
     }
 
     return self;
@@ -150,18 +142,12 @@
 - (void)viewWillAppear
 {
     [self setSelectedRssItem:nil];
-
-    if (refreshSelector == @selector(updateNewsFeed))
-        [self updateNewsFeed];
 }
 
 #pragma mark Display the news feed
 
 - (void)updateNewsFeed
 {
-    [self setRefreshSelector:@selector(updateNewsFeed)];
-    [self setRefreshObject:nil];
-
     if (username) {
         [[self networkAwareViewController]
             setNoConnectionText:
@@ -192,9 +178,6 @@
 
 - (void)updateActivityFeedForUsername:(NSString *)user
 {
-    [self setRefreshSelector:@selector(updateActivityFeedForUsername:)];
-    [self setRefreshObject:user];
-
     self.username = user;
 
     [newsFeedService fetchActivityFeedForUsername:user];
@@ -526,20 +509,6 @@
     RssItem * tmp = [rssItem copy];
     [selectedRssItem release];
     selectedRssItem = tmp;
-}
-
-#pragma mark HACK
-
-- (void)setRefreshSelector:(SEL)selector
-{
-    refreshSelector = selector;
-}
-
-- (void)setRefreshObject:(NSObject *)obj
-{
-    NSObject * tmp = [obj retain];
-    [refreshObject release];
-    refreshObject = tmp;
 }
 
 @end

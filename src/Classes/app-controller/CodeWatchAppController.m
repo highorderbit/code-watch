@@ -151,4 +151,18 @@
     favoriteReposViewController.delegate = favoriteReposDisplayMgr;
 }
 
+#pragma mark UITabBarDelegate implementation
+
+- (void)tabBarController:(UITabBarController *)tbc
+    didSelectViewController:(UIViewController *)viewController
+{
+    for (NSInteger i = 0; i < tbc.viewControllers.count; ++i) {
+        UIViewController * controller =
+            [tbc.viewControllers objectAtIndex:i];
+
+        if (controller == viewController && i == 0)
+            [newsFeedDisplayMgr updateNewsFeed];
+    }
+}
+
 @end

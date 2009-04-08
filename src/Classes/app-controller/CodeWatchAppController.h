@@ -19,7 +19,7 @@
 #import "UIState.h"
 #import "UIStatePersistenceStore.h"
 
-@interface CodeWatchAppController : NSObject
+@interface CodeWatchAppController : NSObject <UITabBarDelegate>
 {
     IBOutlet NSObject<ConfigReader> * configReader;
     

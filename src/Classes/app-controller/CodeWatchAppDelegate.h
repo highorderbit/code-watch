@@ -6,7 +6,7 @@
 #import "CodeWatchAppController.h"
 
 @interface CodeWatchAppDelegate :
-    NSObject <UIApplicationDelegate, UITabBarControllerDelegate>
+    NSObject <UIApplicationDelegate>
 {
     UIWindow * window;
     UITabBarController * tabBarController;
