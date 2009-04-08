@@ -3,6 +3,7 @@
 //
 
 #import "NewsFeedDisplayMgrFactory.h"
+#import "PrimaryUserNewsFeedDisplayMgr.h"
 #import "NewsFeedDisplayMgr.h"
 #import "UserDisplayMgrFactory.h"
 #import "RepoSelectorFactory.h"
@@ -44,14 +45,38 @@
 
 - (id)createPrimaryUserNewsFeedDisplayMgr
 {
-    NewsFeedDisplayMgr * mgr =
-        [self createNewsFeedDisplayMgr:navigationController
-               networkAwareViewController:networkAwareViewController
-                   newsFeedViewController:newsFeedViewController];
+    NSObject<UserDisplayMgr> * userDisplayMgr =
+        [userDisplayMgrFactory
+        createUserDisplayMgrWithNavigationContoller:navigationController];
+
+    NSObject<RepoSelector> * repoSelector =
+        [repoSelectorFactory
+        createRepoSelectorWithNavigationController:navigationController];
+
+    GitHubNewsFeedService * newsFeedService =
+        [gitHubNewsFeedServiceFactory createGitHubNewsFeedService];
+    GitHubService * gitHubService = [gitHubServiceFactory createGitHubService];
+    GravatarService * gravatarService =
+        [gravatarServiceFactory createGravatarService];
+
+    PrimaryUserNewsFeedDisplayMgr * mgr =
+        [[PrimaryUserNewsFeedDisplayMgr alloc]
+        initWithNavigationController:navigationController
+          networkAwareViewController:networkAwareViewController
+              newsFeedViewController:newsFeedViewController
+                      userDisplayMgr:userDisplayMgr
+                        repoSelector:repoSelector
+                    logInStateReader:logInStateReader
+                 newsFeedCacheReader:newsFeedCacheReader
+                     userCacheReader:userCacheReader
+                   avatarCacheReader:avatarCacheReader
+                     newsFeedService:newsFeedService
+                       gitHubService:gitHubService
+                     gravatarService:gravatarService];
 
     mgr.username = logInStateReader.login;
 
-    return mgr;
+    return [mgr autorelease];
 }
 
 - (id)createNewsFeedDisplayMgr:(UINavigationController *)nc

@@ -148,17 +148,18 @@
 
 - (void)updateNewsFeed
 {
-    if (username) {
+    if (logInStateReader.login) {
         [[self networkAwareViewController]
             setNoConnectionText:
             NSLocalizedString(@"nodata.noconnection.text", @"")];
 
         [newsFeedService fetchNewsFeedForPrimaryUser];
 
-        [self updateDisplay];
-
         [[self networkAwareViewController]
-            setUpdatingState:kConnectedAndUpdating];
+            setUpdatingState:kConnectedAndUpdating];    
+
+
+        [self updateDisplay];
     } else {
         // This is a bit of a hack, but a relatively simple solution:
         // Configure the network-aware controller to 'disconnected' and set the
@@ -182,10 +183,10 @@
 
     [newsFeedService fetchActivityFeedForUsername:user];
 
-    [self updateDisplay];
-
     [[self networkAwareViewController]
-        setUpdatingState:kConnectedAndUpdating];
+     setUpdatingState:kConnectedAndUpdating];    
+
+    [self updateDisplay];
 
     [self networkAwareViewController].navigationItem.title =
         NSLocalizedString(@"newsfeeddisplaymgr.view.title", @"");
