@@ -28,6 +28,8 @@
 - (void)setRepoName:(NSString *)name;
 - (void)setCommits:(NSDictionary *)someCommits;
 
+- (GravatarService *)gravatarService;
+
 @end
 
 @implementation RepoDisplayMgr
@@ -86,9 +88,6 @@
         commitSelector = [aCommitSelector retain];
 
         gravatarServiceFactory = [aGravatarServiceFactory retain];
-        gravatarService =
-            [[gravatarServiceFactory createGravatarService] retain];
-        gravatarService.delegate = self;
 
         [self addRefreshButton];
     }
@@ -313,7 +312,8 @@
         [NSMutableDictionary dictionaryWithCapacity:emailAddresses.count];
 
     for (NSString * emailAddress in emailAddresses) {
-        UIImage * avatar = [avatarCacheReader avatarForEmailAddress:emailAddress];
+        UIImage * avatar =
+            [avatarCacheReader avatarForEmailAddress:emailAddress];
         if (avatar)
             [avatars setObject:avatar forKey:emailAddress];
     }
@@ -324,7 +324,7 @@
 - (void)fetchAvatarsForEmailAddresses:(NSSet *)emailAddresses
 {
     for (NSString * emailAddress in emailAddresses)
-        [gravatarService fetchAvatarForEmailAddress:emailAddress];
+        [[self gravatarService] fetchAvatarForEmailAddress:emailAddress];
 }
 
 - (BOOL)loadCachedData
@@ -396,6 +396,17 @@
     NSDictionary * tmp = [someCommits copy];
     [commits release];
     commits = tmp;
+}
+
+- (GravatarService *)gravatarService
+{
+    if (!gravatarService) {
+        gravatarService =
+            [[gravatarServiceFactory createGravatarService] retain];
+        gravatarService.delegate = self;
+    }
+
+    return gravatarService;
 }
 
 @end

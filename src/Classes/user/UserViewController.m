@@ -4,6 +4,7 @@
 
 #import "UserViewController.h"
 #import "NSObject+RuntimeAdditions.h"
+#import "HOTableViewCell.h"
 #import "UserDetailTableViewCell.h"
 #import "UIAlertView+CreationHelpers.h"
 #import "UIImage+AvatarHelpers.h"
@@ -293,7 +294,7 @@ enum Section
             cell = [nib objectAtIndex:0];
             break;
         default:
-            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero
+            cell = [[[HOTableViewCell alloc] initWithFrame:CGRectZero
                 reuseIdentifier:@"UITableViewCell"]
                 autorelease];
             break;
