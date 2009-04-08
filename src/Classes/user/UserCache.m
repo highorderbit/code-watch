@@ -4,8 +4,6 @@
 
 #import "UserCache.h"
 
-static const NSInteger RECENTLY_VIEWED_HISTORY_MAX = 100;
-
 @implementation UserCache
 
 @synthesize primaryUser;
