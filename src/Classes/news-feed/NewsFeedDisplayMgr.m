@@ -448,7 +448,7 @@
 {
     return [self isPrimaryUser:user] ?
         [newsFeedCacheReader primaryUserNewsFeed] :
-        [newsFeedCacheReader newsFeedForUsername:user];
+        [newsFeedCacheReader activityFeedForUsername:user];
 }
 
 #pragma mark General helpers

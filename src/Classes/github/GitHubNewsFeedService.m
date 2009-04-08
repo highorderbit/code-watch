@@ -91,7 +91,7 @@
     if ([self isPrimaryUsername:username])
         [newsFeedCacheSetter setPrimaryUserNewsFeed:feed];
     else
-        [newsFeedCacheSetter setNewsFeed:feed forUsername:username];
+        [newsFeedCacheSetter setActivityFeed:feed forUsername:username];
 }
 
 #pragma mark Helper methods
