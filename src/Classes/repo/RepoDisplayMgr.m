@@ -354,9 +354,13 @@
         CommitInfo * commitInfo = [commitCacheReader commitWithKey:commitKey];
         if (commitInfo)
             [cachedCommits setObject:commitInfo forKey:commitKey];
+        else {  // we need either all cached commits or no commits
+            cachedCommits = nil;
+            break;
+        }
     }
 
-    return cachedCommits.count > 0 ? cachedCommits : nil;
+    return cachedCommits.count == 0 ? nil : cachedCommits;
 }
 
 - (BOOL)isPrimaryUser:(NSString *)user

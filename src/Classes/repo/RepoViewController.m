@@ -114,8 +114,8 @@
         [[info.details objectForKey:@"committer"] objectForKey:@"name"];
     NSString * email =
         [[info.details objectForKey:@"committer"] objectForKey:@"email"];
-    NSDate * date = [NSDate dateWithGitHubString:
-        [info.details objectForKey:@"committed_date"]];
+    NSString * dateString = [info.details objectForKey:@"committed_date"];
+    NSDate * date = [NSDate dateWithGitHubString:dateString];
     UIImage * avatar = [avatars objectForKey:email];
 
     [cell setMessage:message];

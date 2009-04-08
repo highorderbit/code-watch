@@ -34,8 +34,8 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@: %@\n%@", [self className], details,
-        changesets];
+    return [NSString stringWithFormat:@"%@: details: %@\nchangesets: %@\n",
+        [self className], details, changesets];
 }
 
 #pragma mark NSCopying implementation
