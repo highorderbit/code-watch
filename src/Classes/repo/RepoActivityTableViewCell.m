@@ -5,6 +5,7 @@
 #import "RepoActivityTableViewCell.h"
 #import "NSDate+StringHelpers.h"
 #import "UIColor+CodeWatchColors.h"
+#import "UIImage+AvatarHelpers.h"
 
 @interface RepoActivityTableViewCell (Private)
 
@@ -68,7 +69,7 @@
 
 - (void)setAvatar:(UIImage *)avatar
 {
-    avatarImageView.image = avatar;
+    avatarImageView.image = avatar ? avatar : [UIImage imageUnavailableImage];
 }
 
 #pragma mark Managing cell element colors

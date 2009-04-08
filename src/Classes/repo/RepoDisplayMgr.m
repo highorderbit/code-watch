@@ -313,7 +313,8 @@
         [NSMutableDictionary dictionaryWithCapacity:emailAddresses.count];
 
     for (NSString * emailAddress in emailAddresses) {
-        UIImage * avatar = [avatarCacheReader avatarForEmailAddress:emailAddress];
+        UIImage * avatar =
+            [avatarCacheReader avatarForEmailAddress:emailAddress];
         if (avatar)
             [avatars setObject:avatar forKey:emailAddress];
     }
