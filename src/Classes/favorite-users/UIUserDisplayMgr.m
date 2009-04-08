@@ -100,7 +100,7 @@
 
     [userViewController setUsername:username];
     [userViewController updateWithUserInfo:userInfo];
-
+    
     [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
     [networkAwareViewController setCachedDataAvailable:!!userInfo];
 }
@@ -159,13 +159,14 @@
     aUsername = [aUsername copy];
     [username release];
     username = aUsername;
-    
+
+    [self displayUserInfo];
+        
     [navigationController
         pushViewController:networkAwareViewController animated:YES];
     networkAwareViewController.navigationItem.title =
         NSLocalizedString(@"user.view.title", @"");
         
-    [self displayUserInfo];
     [userViewController scrollToTop];
 }
 
