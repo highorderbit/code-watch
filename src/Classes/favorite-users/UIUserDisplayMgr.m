@@ -96,7 +96,8 @@
     if (email) {
         UIImage * avatar = [avatarCacheReader avatarForEmailAddress:email];
         [userViewController updateWithAvatar:avatar];
-    }
+    } else
+        [userViewController updateWithAvatar:nil];
 
     [userViewController setUsername:username];
     [userViewController updateWithUserInfo:userInfo];
