@@ -14,6 +14,13 @@
 @implementation HOTableViewCell
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
+    return [self initWithFrame:frame reuseIdentifier:reuseIdentifier
+        tableViewStyle:UITableViewStylePlain];
+}
+
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier
+    tableViewStyle:(UITableViewStyle)tableViewStyle
+{
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {        
         label = [[UILabel alloc] initWithFrame:[[self class]readonlyFrame]];
         [label setAutoresizingMask:UIViewAutoresizingFlexibleRightMargin];
@@ -21,7 +28,8 @@
         label.textAlignment = UITextAlignmentLeft;
         label.backgroundColor = [UIColor clearColor];
         label.textColor = self.textColor;
-        label.font = [UIFont boldSystemFontOfSize:20.0];
+        NSInteger fontSize = tableViewStyle == UITableViewStylePlain ? 20 : 17;
+        label.font = [UIFont boldSystemFontOfSize:fontSize];
         label.numberOfLines = 1;
         label.highlightedTextColor = [UIColor whiteColor];
         [self.contentView addSubview:label];
@@ -49,14 +57,29 @@
     return label.text;
 }
 
+- (void)setText:(NSString *)text
+{
+    label.text = text;
+}
+
 - (void)setTextColor:(UIColor *)textColor
 {
     label.textColor = textColor;
 }
 
-- (void)setText:(NSString *)text
+- (UIColor *)textColor
 {
-    label.text = text;
+    return label.textColor;
+}
+
+- (void)setFont:(UIFont *)font
+{
+    label.font = font;
+}
+
+- (UIFont *)font
+{
+    return label.font;
 }
 
 #pragma mark Label frames

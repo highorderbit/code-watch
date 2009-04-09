@@ -9,4 +9,7 @@
     UILabel * label;
 }
 
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier
+    tableViewStyle:(UITableViewStyle)tableViewStyle;
+
 @end
