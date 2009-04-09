@@ -140,7 +140,8 @@
 {
     [[self commitViewController] updateWithCommitInfo:commitInfo forRepo:repo];
 
-    [[self networkAwareViewController] setUpdatingState:kConnectedAndNotUpdating];
+    [[self networkAwareViewController]
+        setUpdatingState:kConnectedAndNotUpdating];
     [[self networkAwareViewController] setCachedDataAvailable:YES];
 }
 

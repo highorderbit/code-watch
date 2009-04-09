@@ -10,6 +10,7 @@
 #import "UIAlertView+CreationHelpers.h"
 #import "UIImage+AvatarHelpers.h"
 #import "NSDate+StringHelpers.h"
+#import "HOTableViewCell.h"
 
 static NSUInteger NUM_SECTIONS = 3;
 enum Sections
@@ -139,9 +140,10 @@ enum ActionSectionRows
 
     if (cell == nil)
         cell =
-            [[[UITableViewCell alloc]
-              initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
-             autorelease];
+            [[[HOTableViewCell alloc]
+            initWithFrame:CGRectZero reuseIdentifier:CellIdentifier
+            tableViewStyle:UITableViewStyleGrouped]
+            autorelease];
 
     switch ([self effectiveSectionForSection:indexPath.section]) {
         case kDetailsSection:

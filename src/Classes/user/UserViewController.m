@@ -292,7 +292,8 @@ enum Section
             break;
         default:
             cell = [[[HOTableViewCell alloc] initWithFrame:CGRectZero
-                reuseIdentifier:@"UITableViewCell"]
+                reuseIdentifier:@"UITableViewCell"
+                tableViewStyle:UITableViewStyleGrouped]
                 autorelease];
             break;
     }

@@ -127,8 +127,9 @@ enum
     if (cell == nil)
         cell =
             [[[HOTableViewCell alloc]
-              initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
-             autorelease];
+            initWithFrame:CGRectZero reuseIdentifier:CellIdentifier
+            tableViewStyle:UITableViewStyleGrouped]
+            autorelease];
 
     switch (indexPath.section) {
         case kDiffSection: {
