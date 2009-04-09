@@ -11,6 +11,7 @@
 #import "AvatarCacheReader.h"
 #import "LogInStateReader.h"
 #import "NetworkAwareViewControllerDelegate.h"
+#import "NewsFeedDisplayMgrDelegate.h"
 #import "RepoSelector.h"
 #import "UserDisplayMgr.h"
 #import "ContactCacheSetter.h"
@@ -23,7 +24,7 @@
 @interface UIUserDisplayMgr :
     NSObject
     <GitHubServiceDelegate, GravatarServiceDelegate,
-    UserViewControllerDelegate, UserDisplayMgr>
+    UserViewControllerDelegate, UserDisplayMgr, NewsFeedDisplayMgrDelegate>
 {
     UINavigationController * navigationController;
     NetworkAwareViewController * networkAwareViewController;

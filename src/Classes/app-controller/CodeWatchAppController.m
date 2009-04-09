@@ -118,6 +118,7 @@
     newsFeedDisplayMgr =
         [[newsFeedDisplayMgrFactory
         createPrimaryUserNewsFeedDisplayMgr] retain];
+    newsFeedDisplayMgr.delegate = self;
 }
 
 - (void)createAndInitFavoriteUsersDisplayMgr
@@ -163,6 +164,13 @@
         if (controller == viewController && i == 0)
             [newsFeedDisplayMgr updateNewsFeed];
     }
+}
+
+#pragma mark NewsFeedDisplayMgrDelegate implementation
+
+- (void)userDidRequestRefresh
+{
+    [newsFeedDisplayMgr updateNewsFeed];
 }
 
 @end

@@ -174,6 +174,15 @@
          autorelease];
 
     [alertView show];
+
+    [networkAwareViewController setUpdatingState:kDisconnected];
+}
+
+#pragma mark NewsFeedDisplayMgrDelegate
+
+- (void)userDidRequestRefresh
+{
+    [[self newsFeedDisplayMgr] updateActivityFeedForPrimaryUser];
 }
 
 #pragma mark Working with avatars
@@ -188,10 +197,12 @@
 
 - (NewsFeedDisplayMgr *)newsFeedDisplayMgr
 {
-    if (!newsFeedDisplayMgr)
+    if (!newsFeedDisplayMgr) {
         newsFeedDisplayMgr =
             [newsFeedDisplayMgrFactory
             createNewsFeedDisplayMgr:navigationController];
+        newsFeedDisplayMgr.delegate = self;
+    }
 
     return newsFeedDisplayMgr;
 }

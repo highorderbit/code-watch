@@ -50,7 +50,7 @@
 
 @implementation NewsFeedDisplayMgr
 
-@synthesize username;
+@synthesize delegate, username;
 
 - (void)dealloc
 {
@@ -72,6 +72,8 @@
     [newsFeedService release];
     [gitHubService release];
     [gravatarService release];
+
+    [delegate release];
 
     [username release];
 
@@ -129,7 +131,7 @@
             [[[UIBarButtonItem alloc]
             initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
             target:self
-            action:@selector(updateNewsFeed)] autorelease];
+            action:@selector(requestRefreshDisplay)] autorelease];
 
         [[self networkAwareViewController].navigationItem
             setRightBarButtonItem:refreshButton animated:NO];
@@ -141,6 +143,11 @@
 - (void)viewWillAppear
 {
     [self setSelectedRssItem:nil];
+}
+
+- (void)requestRefreshDisplay
+{
+    [delegate userDidRequestRefresh];
 }
 
 #pragma mark Display the news feed
@@ -324,8 +331,7 @@
 
     [alertView show];
 
-    [[self networkAwareViewController]
-        setUpdatingState:kConnectedAndNotUpdating];
+    [[self networkAwareViewController] setUpdatingState:kDisconnected];
 }
 
 #pragma mark GravatarServiceDelegate implementation

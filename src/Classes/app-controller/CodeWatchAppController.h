@@ -8,6 +8,7 @@
 #import "PersistenceStore.h"
 #import "NewsFeedDisplayMgrFactory.h"
 #import "NewsFeedDisplayMgr.h"
+#import "NewsFeedDisplayMgrDelegate.h"
 #import "FavoriteUsersViewController.h"
 #import "FavoriteUsersState.h"
 #import "ConfigReader.h"
@@ -19,7 +20,8 @@
 #import "UIState.h"
 #import "UIStatePersistenceStore.h"
 
-@interface CodeWatchAppController : NSObject <UITabBarDelegate>
+@interface CodeWatchAppController :
+    NSObject <UITabBarDelegate, NewsFeedDisplayMgrDelegate>
 {
     IBOutlet NSObject<ConfigReader> * configReader;
     

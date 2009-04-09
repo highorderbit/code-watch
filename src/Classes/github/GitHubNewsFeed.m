@@ -68,18 +68,17 @@
 
 - (void)fetchActivityFeedForUsername:(NSString *)username
 {
-    NSString * url =
-        [NSString stringWithFormat:@"%@%@.atom", baseUrl, username];
-
-    [self fetchActivityFeedAtUrl:url username:username];
+    [self fetchActivityFeedForUsername:username token:nil];
 }
 
 - (void)fetchActivityFeedForUsername:(NSString *)username
                                token:(NSString *)token
 {
     NSString * url =
+        token ?
         [NSString stringWithFormat:@"%@%@.private.actor.atom?token=%@",
-        baseUrl, username, token];
+        baseUrl, username, token] :
+        [NSString stringWithFormat:@"%@%@.atom", baseUrl, username];
 
     [self fetchActivityFeedAtUrl:url username:username];
 }
