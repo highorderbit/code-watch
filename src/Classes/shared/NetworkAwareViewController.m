@@ -55,6 +55,9 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
         
         [self setUpdatingText:NSLocalizedString(@"nodata.updating.text", @"")];
         [self setLoadingText:NSLocalizedString(@"nodata.loading.text", @"")];
+        NSString * tempNoConnectionText =
+            NSLocalizedString(@"nodata.noconnection.text", @"");
+        [self setNoConnectionText:tempNoConnectionText];
                 
         [aTargetViewController retain];
         [targetViewController release];
