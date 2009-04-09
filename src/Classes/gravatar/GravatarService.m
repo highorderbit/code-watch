@@ -15,17 +15,20 @@
     [delegate release];
     [avatarCacheSetter release];
     [gravatar release];
+    [defaultAvatarUrl release];
     [super dealloc];
 }
 
 #pragma mark Initialization
 
 - (id)initWithGravatarBaseUrlString:(NSString *)baseUrl
+                   defaultAvatarUrl:(NSString *)aDefaultAvatarUrl
                   avatarCacheSetter:(id<AvatarCacheSetter>)anAvatarCacheSetter
 {
     if (self = [super init]) {
-        gravatar = [[Gravatar alloc] initWithBaseUrlString:baseUrl
-                                                  delegate:self];
+        gravatar = [[Gravatar alloc]
+            initWithBaseUrlString:baseUrl delegate:self];
+        defaultAvatarUrl = [aDefaultAvatarUrl copy];
         avatarCacheSetter = [anAvatarCacheSetter retain];
     }
 
@@ -38,7 +41,8 @@
 {
     [[UIApplication sharedApplication] networkActivityIsStarting];
 
-    [gravatar fetchAvatarForEmailAddress:emailAddress];
+    [gravatar fetchAvatarForEmailAddress:emailAddress
+                        defaultAvatarUrl:defaultAvatarUrl];
 }
 
 #pragma mark GravatarDelegate implementation

@@ -31,5 +31,7 @@
 #pragma mark Fetching avatars
 
 - (void)fetchAvatarForEmailAddress:(NSString *)emailAddress;
+- (void)fetchAvatarForEmailAddress:(NSString *)emailAddress
+                  defaultAvatarUrl:(NSString *)defaultAvatarUrl;
 
 @end

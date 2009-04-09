@@ -16,6 +16,8 @@
     id<AvatarCacheSetter> avatarCacheSetter;
 
     Gravatar * gravatar;
+
+    NSString * defaultAvatarUrl;
 }
 
 @property (nonatomic, retain) id<GravatarServiceDelegate> delegate;
@@ -23,6 +25,7 @@
 #pragma mark Initialization
 
 - (id)initWithGravatarBaseUrlString:(NSString *)baseUrl
+                   defaultAvatarUrl:(NSString *)aDefaultAvatarUrl
                   avatarCacheSetter:(id<AvatarCacheSetter>)anAvatarCacheSetter;
 
 #pragma mark Fetching avatars

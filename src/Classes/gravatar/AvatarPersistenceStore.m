@@ -57,7 +57,7 @@
 
 + (NSData *)dataFromImage:(UIImage *)image
 {
-    return UIImageJPEGRepresentation(image, 1.0);
+    return UIImagePNGRepresentation(image);
 }
 
 + (UIImage *)imageFromData:(NSData *)data
