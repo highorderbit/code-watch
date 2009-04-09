@@ -23,6 +23,8 @@ github.newsfeedupdate..failed.alert.ok = "Dismiss";
 gravatar.parse.failed = "Failed to parse data from Gravatar.";
 gravatar.userupdate.failed.alert.title = "Failed to Retrieve Avatar";
 gravatar.userupdate.failed.alert.ok = "Dismiss";
+gravatar.repoupdate.failed.alert.title = "Failed to Retrieve Avatar";
+gravatar.repoupdate.failed.alert.ok = "Dismiss";
 
 /* LogInView Strings */
 login.view.title = "Account Info";

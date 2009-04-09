@@ -34,9 +34,11 @@
 	<string>1</string>
 	<key>GitHubApiVersion</key>
 	<string>1</string>
-	<key>GravatarApiBaseUrl</key>
-	<string>http://www.gravatar.com/avatar/</string>
 	<key>GitHubNewsFeedBaseUrl</key>
 	<string>https://github.com/</string>
+	<key>GravatarApiBaseUrl</key>
+	<string>http://www.gravatar.com/avatar/</string>
+	<key>GravatarDefaultAvatarUrl</key>
+	<string>http://www.gravatar.com/avatar/eb61696bdb25e6179eb8db5959e63b13</string>
 </dict>
 </plist>

@@ -7,6 +7,7 @@
 #import "NSString+CryptoAdditions.h"
 #import "NSDictionary+NonRetainedKeyAdditions.h"
 #import "NSError+InstantiationAdditions.h"
+#import "NSString+UrlAdditions.h"
 
 @implementation Gravatar
 
@@ -34,8 +35,8 @@
                    delegate:(id<GravatarDelegate>)aDelegate
 {
     if (self = [super init]) {
-        delegate = [aDelegate retain];
         baseUrl = [baseUrlString copy];
+        delegate = [aDelegate retain];
         api = [[WebServiceApi alloc] initWithDelegate:self];
         invocations = [[NSMutableDictionary alloc] init];
     }
@@ -47,10 +48,20 @@
 
 - (void)fetchAvatarForEmailAddress:(NSString *)emailAddress
 {
+    [self fetchAvatarForEmailAddress:emailAddress defaultAvatarUrl:nil];
+}
+
+- (void)fetchAvatarForEmailAddress:(NSString *)emailAddress
+                  defaultAvatarUrl:(NSString *)defaultAvatarUrl
+{
     NSString * hashedEmailAddress = [emailAddress md5Hash];
 
     NSString * urlString =
+        defaultAvatarUrl ?
+        [NSString stringWithFormat:@"%@%@.jpg?d=%@", baseUrl,
+        hashedEmailAddress, [defaultAvatarUrl urlEncodedString]] :
         [NSString stringWithFormat:@"%@%@.jpg", baseUrl, hashedEmailAddress];
+
     NSURL * url = [NSURL URLWithString:urlString];
     NSURLRequest * req = [NSURLRequest requestWithURL:url];
 
