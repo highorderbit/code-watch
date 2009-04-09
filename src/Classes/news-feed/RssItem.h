@@ -16,8 +16,8 @@
 @property (readonly, copy) NSString * type;
 @property (readonly, copy) NSString * author;
 @property (readonly, copy) NSDate * pubDate;
-@property (readonly, copy) NSString * subject;
 @property (readonly, copy) NSString * summary;
+@property (readonly, copy) NSString * subject;
 @property (readonly, copy) NSURL * link;
  
 + (id)itemWithType:(NSString *)aType author:(NSString *)anAuthor

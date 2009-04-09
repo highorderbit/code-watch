@@ -9,16 +9,25 @@
 
 - (NSString *)shortDescription
 {
-    NSDateFormatter * formatter = [[[NSDateFormatter alloc] init] autorelease];
+    NSString * description;
     
-    if ([self isToday])
-        [formatter setTimeStyle:NSDateFormatterShortStyle];
-    else if ([self isLessThanWeekAgo])
-        formatter.dateFormat = @"EEEE";
-    else
-        [formatter setDateStyle:NSDateFormatterShortStyle];
+    if ([self isYesterday])
+        description = @"Yesterday";
+    else {
+        NSDateFormatter * formatter =
+            [[[NSDateFormatter alloc] init] autorelease];
 
-    return [formatter stringFromDate:self];
+        if ([self isToday])
+            [formatter setTimeStyle:NSDateFormatterShortStyle];
+        else if ([self isLessThanWeekAgo])
+            formatter.dateFormat = @"EEEE";
+        else
+            [formatter setDateStyle:NSDateFormatterShortStyle];
+
+        description = [formatter stringFromDate:self];
+    }
+
+    return description;
 }
 
 - (NSString *)shortDateAndTimeDescription

@@ -283,10 +283,23 @@ enum ActionSectionRows
 
 - (void)emailRssItem
 {
-    [[UIAlertView notImplementedAlertView] show];
+    NSString * subject = rssItem.subject;
+    NSString * link = [rssItem.link description];
 
-    [self.tableView deselectRowAtIndexPath:
-        [self.tableView indexPathForSelectedRow] animated:YES];
+    NSMutableString * body = [NSMutableString string];
+    [body appendString:subject];
+    [body appendFormat:@"\n\n%@:\n%@",
+        NSLocalizedString(@"newsfeeditem.email.link", @""), link];
+
+    NSString * urlString =
+        [[NSString
+        stringWithFormat:NSLocalizedString(@"newsfeeditem.email.url", @""),
+        subject, body]
+        stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    NSURL * url = [[NSURL alloc] initWithString:urlString];
+    [[UIApplication sharedApplication] openURL:url];
+    [url release];
 }
 
 #pragma mark Helper methods
