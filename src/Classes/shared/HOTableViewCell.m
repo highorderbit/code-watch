@@ -20,7 +20,7 @@
         label.tag = 1;
         label.textAlignment = UITextAlignmentLeft;
         label.backgroundColor = [UIColor clearColor];
-        label.textColor = [UIColor blackColor];
+        label.textColor = self.textColor;
         label.font = [UIFont boldSystemFontOfSize:20.0];
         label.numberOfLines = 1;
         label.highlightedTextColor = [UIColor whiteColor];
@@ -47,6 +47,11 @@
 - (NSString *)text
 {
     return label.text;
+}
+
+- (void)setTextColor:(UIColor *)textColor
+{
+    label.textColor = textColor;
 }
 
 - (void)setText:(NSString *)text

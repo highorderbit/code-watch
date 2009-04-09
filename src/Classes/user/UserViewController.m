@@ -84,9 +84,6 @@ enum Section
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-        
-    NSIndexPath * selectedRow = [self.tableView indexPathForSelectedRow];
-    [self.tableView deselectRowAtIndexPath:selectedRow animated:NO];
     
     if (userInfo && userInfo.details) {
         usernameLabel.text = username;

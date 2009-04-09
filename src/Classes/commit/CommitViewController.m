@@ -10,6 +10,7 @@
 #import "UIImage+AvatarHelpers.h"
 #import "NSDate+StringHelpers.h"
 #import "NSDate+GitHubStringHelpers.h"
+#import "HOTableViewCell.h"
 
 static const NSUInteger NUM_SECTIONS = 2;
 enum
@@ -125,7 +126,7 @@ enum
 
     if (cell == nil)
         cell =
-            [[[UITableViewCell alloc]
+            [[[HOTableViewCell alloc]
               initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
              autorelease];
 
