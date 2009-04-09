@@ -58,8 +58,10 @@
 - (void)fetchNewsFeedForPrimaryUser:(NSString *)username token:(NSString *)token
 {
     NSString * url =
+        token ?
         [NSString stringWithFormat:@"%@%@.private.atom?token=%@",
-        baseUrl, username, token];
+        baseUrl, username, token] :
+        [NSString stringWithFormat:@"%@%@.atom", baseUrl, username];
 
     [self fetchNewsFeedAtUrl:url username:username];
 }
