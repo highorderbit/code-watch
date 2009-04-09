@@ -324,8 +324,7 @@
 
     [alertView show];
 
-    [[self networkAwareViewController]
-        setUpdatingState:kConnectedAndNotUpdating];
+    [[self networkAwareViewController] setUpdatingState:kDisconnected];
 }
 
 #pragma mark GravatarServiceDelegate implementation

@@ -174,6 +174,8 @@
          autorelease];
 
     [alertView show];
+
+    [networkAwareViewController setUpdatingState:kDisconnected];
 }
 
 #pragma mark Working with avatars
