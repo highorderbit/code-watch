@@ -1,5 +1,5 @@
 //
-//  Copyright 2009 High Order Bit, Inc.. All rights reserved.
+//  Copyright 2009 High Order Bit, Inc. All rights reserved.
 //
 
 #import "UserDetailTableViewCell.h"
@@ -20,6 +20,11 @@
 - (void)setValueText:(NSString *)text
 {
     valueLabel.text = text;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    // Disallow cell selection
 }
 
 @end
