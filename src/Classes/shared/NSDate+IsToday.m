@@ -26,6 +26,26 @@
         [nowComps year] == [selfComps year];
 }
 
+- (BOOL) isYesterday
+{
+    NSCalendar * currentCalendar = [NSCalendar currentCalendar];
+    
+    unsigned unitFlags =
+        NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    
+    NSDateComponents * selfComps =
+        [currentCalendar components:unitFlags fromDate:self];
+    
+    NSDate * now = [NSDate date];
+
+    NSDateComponents * nowComps =
+        [currentCalendar components:unitFlags fromDate:now];
+    
+    return [nowComps day] - 1 == [selfComps day] &&
+        [nowComps month] == [selfComps month] &&
+        [nowComps year] == [selfComps year];
+}
+
 - (BOOL) isLessThanWeekAgo
 {
     NSCalendar * currentCalendar = [NSCalendar currentCalendar];

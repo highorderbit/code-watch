@@ -7,6 +7,7 @@
 @interface NSDate (IsToday)
 
 - (BOOL) isToday;
+- (BOOL) isYesterday;
 - (BOOL) isLessThanWeekAgo;
 
 @end
