@@ -58,9 +58,9 @@
 
     NSString * urlString =
         defaultAvatarUrl ?
-        [NSString stringWithFormat:@"%@%@.jpg?d=%@", baseUrl,
+        [NSString stringWithFormat:@"%@%@.png?d=%@", baseUrl,
         hashedEmailAddress, [defaultAvatarUrl urlEncodedString]] :
-        [NSString stringWithFormat:@"%@%@.jpg", baseUrl, hashedEmailAddress];
+        [NSString stringWithFormat:@"%@%@.png", baseUrl, hashedEmailAddress];
 
     NSURL * url = [NSURL URLWithString:urlString];
     NSURLRequest * req = [NSURLRequest requestWithURL:url];

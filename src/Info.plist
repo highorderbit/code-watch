@@ -39,6 +39,6 @@
 	<key>GravatarApiBaseUrl</key>
 	<string>http://www.gravatar.com/avatar/</string>
 	<key>GravatarDefaultAvatarUrl</key>
-	<string>http://www.gravatar.com/avatar/eb61696bdb25e6179eb8db5959e63b13</string>
+	<string>http://www.gravatar.com/avatar/eb61696bdb25e6179eb8db5959e63b13.png</string>
 </dict>
 </plist>
