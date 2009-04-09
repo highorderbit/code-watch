@@ -21,7 +21,7 @@
         label.textAlignment = UITextAlignmentLeft;
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor blackColor];
-        label.font = [UIFont boldSystemFontOfSize:17.0];
+        label.font = [UIFont boldSystemFontOfSize:20.0];
         label.numberOfLines = 1;
         label.highlightedTextColor = [UIColor whiteColor];
         [self.contentView addSubview:label];
