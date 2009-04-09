@@ -9,6 +9,7 @@
 - (NoDataViewController *)noDataViewController;
 - (void)updateView;
 - (UIView *)updatingView;
+- (void)ensureUpdatingViewAddedAsSubview;
 
 + (CGRect)shownUpdatingViewFrame;
 + (CGRect)hiddenUpdatingViewFrame;
@@ -71,12 +72,6 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
     [delegate viewWillAppear];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.view.superview addSubview:[self updatingView]];
-}
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -136,8 +131,15 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
     return noDataViewController;
 }
 
+- (void)ensureUpdatingViewAddedAsSubview
+{
+    if (![[self updatingView] superview])
+        [targetViewController.view.superview addSubview:[self updatingView]];
+}
+
 - (void)updateView
 {
+    [self ensureUpdatingViewAddedAsSubview];
     if (cachedDataAvailable) {
         self.view = targetViewController.view;
         [targetViewController viewWillAppear:YES];

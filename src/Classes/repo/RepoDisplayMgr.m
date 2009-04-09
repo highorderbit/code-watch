@@ -136,9 +136,6 @@
 
     [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
     [networkAwareViewController setCachedDataAvailable:cachedDataAvailable];    
-
-    [navigationController
-        pushViewController:networkAwareViewController animated:YES];
 }
 
 #pragma mark RepoSelector implementation
@@ -149,6 +146,9 @@
     [self setRepoName:repo];
     
     [self refreshRepoInfo];
+    
+    [navigationController
+        pushViewController:networkAwareViewController animated:YES];
 
     [repoViewController scrollToTop];
 }
