@@ -3,6 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NewsFeedDisplayMgrDelegate.h"
 #import "NetworkAwareViewControllerDelegate.h"
 #import "NetworkAwareViewController.h"
 #import "NewsFeedCacheReader.h"
@@ -29,6 +30,8 @@
     GravatarServiceDelegate, NewsFeedViewControllerDelegate,
     NewsFeedItemViewControllerDelegate>
 {
+    NSObject<NewsFeedDisplayMgrDelegate> * delegate;
+
     NSObject<UserDisplayMgr> * userDisplayMgr;
     NSObject<RepoSelector> * repoSelector;
 
@@ -56,6 +59,7 @@
     RssItem * selectedRssItem;
 }
 
+@property (nonatomic, retain) NSObject<NewsFeedDisplayMgrDelegate> * delegate;
 @property (nonatomic, copy) NSString * username;
 
 #pragma mark Initialization

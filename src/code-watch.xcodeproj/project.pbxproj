@@ -168,6 +168,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05063ECA0F8E920A000ADDA4 /* NewsFeedDisplayMgrDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedDisplayMgrDelegate.h; sourceTree = "<group>"; };
 		051388140F85959F00542963 /* NewsFeedViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedViewControllerDelegate.h; sourceTree = "<group>"; };
 		051CDCDC0F6C0CEC0049D2BD /* GitHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHub.h; path = github/GitHub.h; sourceTree = "<group>"; };
 		051CDCDD0F6C0CEC0049D2BD /* GitHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHub.m; path = github/GitHub.m; sourceTree = "<group>"; };
@@ -1071,6 +1072,7 @@
 				0532CB1B0F8696550047BE56 /* RssItem+ParsingHelpers.m */,
 				91F89BF60F70836A00993921 /* NewsFeedDisplayMgr.h */,
 				91F89BF70F70836A00993921 /* NewsFeedDisplayMgr.m */,
+				05063ECA0F8E920A000ADDA4 /* NewsFeedDisplayMgrDelegate.h */,
 				91F89C0B0F708B0000993921 /* NewsFeedCache.h */,
 				91F89C0C0F708B0000993921 /* NewsFeedCache.m */,
 				91F89C0E0F708B3C00993921 /* NewsFeedCacheReader.h */,

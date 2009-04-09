@@ -171,14 +171,23 @@
     [userViewController scrollToTop];
 }
 
+#pragma mark NewsFeedDisplayMgrDelegate
+
+- (void)userDidRequestRefresh
+{
+    [[self newsFeedDisplayMgr] updateActivityFeedForUsername:username];
+}
+
 #pragma mark Accessors
 
 - (NewsFeedDisplayMgr *)newsFeedDisplayMgr
 {
-    if (!newsFeedDisplayMgr)
+    if (!newsFeedDisplayMgr) {
         newsFeedDisplayMgr =
             [newsFeedDisplayMgrFactory
             createNewsFeedDisplayMgr:navigationController];
+        newsFeedDisplayMgr.delegate = self;
+    }
 
     return newsFeedDisplayMgr;
 }
