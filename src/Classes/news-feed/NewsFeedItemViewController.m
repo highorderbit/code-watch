@@ -15,8 +15,8 @@ static NSUInteger NUM_SECTIONS = 3;
 enum Sections
 {
     kDetailsSection,
-    kActionSection,
-    kGitHubEntitiesSection  // optional sections need to be at the end
+    kGitHubEntitiesSection,  // optional sections need to be at the end
+    kActionSection
 };
 
 static NSUInteger NUM_DETAILS_ROWS = 1;
@@ -47,6 +47,8 @@ enum ActionSectionRows
 
 - (BOOL)haveGitHubUserInRssItem;
 - (BOOL)haveGitHubRepoInRssItem;
+- (BOOL)haveGitHubEntitiesSection;
+- (NSInteger)effectiveSectionForSection:(NSInteger)section;
 - (void)updateDisplay;
 - (void)setRssItem:(RssItem *)item;
 - (void)setAvatar:(UIImage *)anAvatar;
@@ -99,7 +101,7 @@ enum ActionSectionRows
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tv
 {
     NSInteger nsections = NUM_SECTIONS;
-    if ([rssItem repoKey] == nil)
+    if (![self haveGitHubEntitiesSection])
         --nsections;
 
     return nsections;
@@ -111,7 +113,7 @@ enum ActionSectionRows
 {
     NSInteger nrows = 0;
 
-    switch (section) {
+    switch ([self effectiveSectionForSection:section]) {
         case kDetailsSection:
             nrows = NUM_DETAILS_ROWS;
             break;
@@ -141,7 +143,7 @@ enum ActionSectionRows
               initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
              autorelease];
 
-    switch (indexPath.section) {
+    switch ([self effectiveSectionForSection:indexPath.section]) {
         case kDetailsSection:
             cell.text = NSLocalizedString(@"newsfeeditem.details.label", @"");
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -189,7 +191,13 @@ enum ActionSectionRows
 - (void)          tableView:(UITableView *)tv
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.section) {
+    NSInteger section = indexPath.section;
+
+    if (section == kDetailsSection) {
+        // do stuff
+    } else if (YES) { }
+
+    switch ([self effectiveSectionForSection:indexPath.section]) {
         case kDetailsSection:
             [delegate userDidSelectDetails:rssItem];
             break;
@@ -312,6 +320,18 @@ enum ActionSectionRows
 - (BOOL)haveGitHubRepoInRssItem
 {
     return !![rssItem repoKey];
+}
+
+- (BOOL)haveGitHubEntitiesSection
+{
+    return !![rssItem repoKey];
+}
+
+- (NSInteger)effectiveSectionForSection:(NSInteger)section
+{
+    return section == kDetailsSection ?
+        section :
+        section + ([self haveGitHubEntitiesSection] ? 0 : 1);
 }
 
 #pragma mark Accessors
