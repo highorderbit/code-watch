@@ -19,7 +19,6 @@ github.commitupdate.failed.alert.ok = "Dismiss";
 github.newsfeedupdate.failed.alert.title = "Failed to Retrieve Activity";
 github.newsfeedupdate..failed.alert.ok = "Dismiss";
 
-
 /* Gravatar Strings */
 gravatar.parse.failed = "Failed to parse data from Gravatar.";
 gravatar.userupdate.failed.alert.title = "Failed to Retrieve Avatar";
@@ -55,12 +54,14 @@ newsfeeddisplaymgr.login.text = "Please Log In to View News Feed";
 newsfeeddisplaymgr.view.title = "Recent Activity";
 newsfeed.item.display.failed.title = "Unable to Display Item";
 newsfeed.item.parse.failed.message = "Parsing of the RSS item failed.";
+newsfeeditem.email.link = "More info";
+newsfeeditem.email.url = "mailto:?subject=%@&body=%@";
 
 /* NewsFeedItemView Strings */
 newsfeeditem.view.title = "Details";
 newsfeeditem.details.label = "Details";
 newsfeeditem.safari.label = "Open in Safari";
-newsfeeditem.email.label = "Email Report";
+newsfeeditem.email.label = "Send Email";
 
 /* NewsFeedItemDetailsView Strings */
 newsitemdetails.view.title = "Details";
