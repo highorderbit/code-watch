@@ -9,7 +9,6 @@
 - (NoDataViewController *)noDataViewController;
 - (void)updateView;
 - (UIView *)updatingView;
-- (void)ensureUpdatingViewAddedAsSubview;
 
 + (CGRect)shownUpdatingViewFrame;
 + (CGRect)hiddenUpdatingViewFrame;
@@ -71,8 +70,13 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
 {
     [super viewWillAppear:animated];
     [targetViewController viewWillAppear:animated];
-    
     [delegate viewWillAppear];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [targetViewController.view.superview addSubview:[self updatingView]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -91,8 +95,12 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
 
 - (void)setCachedDataAvailable:(BOOL)available
 {
+    BOOL transitioningToAvailable =
+        !cachedDataAvailable && available && ![[self updatingView] superview];
     cachedDataAvailable = available;
     [self updateView];
+    if (transitioningToAvailable)
+        [targetViewController.view.superview addSubview:[self updatingView]];
 }
 
 - (void)setUpdatingText:(NSString *)text
@@ -134,15 +142,8 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
     return noDataViewController;
 }
 
-- (void)ensureUpdatingViewAddedAsSubview
-{
-    if (![[self updatingView] superview])
-        [targetViewController.view.superview addSubview:[self updatingView]];
-}
-
 - (void)updateView
 {
-    [self ensureUpdatingViewAddedAsSubview];
     if (cachedDataAvailable) {
         self.view = targetViewController.view;
         [targetViewController viewWillAppear:YES];
