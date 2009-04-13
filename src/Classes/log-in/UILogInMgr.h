@@ -30,6 +30,8 @@
     IBOutlet UITabBarItem * userTabBarItem;
     IBOutlet UINavigationItem * homeNavigationItem;
     IBOutlet UINavigationItem * userNavigationItem;
+    IBOutlet UINavigationController * homeNavigationController;
+    IBOutlet UINavigationController * userNavigationController;
     UIBarButtonItem * homeRefreshButton;
     UIBarButtonItem * userRefreshButton;
     

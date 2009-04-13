@@ -40,6 +40,8 @@
     [userNavigationItem release];
     [homeRefreshButton release];
     [userRefreshButton release];
+    [homeNavigationController release];
+    [userNavigationController release];
     
     [logInStateSetter release];
     [logInStateReader release];
@@ -224,11 +226,14 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet
     clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
+    if (buttonIndex == 0) { // Log out
         BOOL prompt = logInStateReader.prompt;
         [logInStateSetter setLogin:nil token:nil prompt:prompt];
         [userCacheSetter setPrimaryUser:nil];
-        
+
+        [homeNavigationController popToRootViewControllerAnimated:NO];
+        [userNavigationController popToRootViewControllerAnimated:NO];
+
         [self presentView];
     }
 }

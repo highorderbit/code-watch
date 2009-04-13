@@ -2100,6 +2100,22 @@
 					</object>
 					<int key="connectionID">580</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">homeNavigationController</string>
+						<reference key="source" ref="89581905"/>
+						<reference key="destination" ref="1055176006"/>
+					</object>
+					<int key="connectionID">581</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">userNavigationController</string>
+						<reference key="source" ref="89581905"/>
+						<reference key="destination" ref="953169716"/>
+					</object>
+					<int key="connectionID">582</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2949,7 +2965,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">580</int>
+			<int key="maxID">582</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3878,30 +3894,30 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>gitHub</string>
 							<string>homeBarButtonItem</string>
+							<string>homeNavigationController</string>
 							<string>homeNavigationItem</string>
-							<string>homeRefreshButton</string>
 							<string>logInStateReader</string>
 							<string>logInStateSetter</string>
 							<string>rootViewController</string>
 							<string>userBarButtonItem</string>
 							<string>userCacheSetter</string>
+							<string>userNavigationController</string>
 							<string>userNavigationItem</string>
-							<string>userRefreshButton</string>
 							<string>userTabBarItem</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>GitHubService</string>
 							<string>UIBarButtonItem</string>
+							<string>UINavigationController</string>
 							<string>UINavigationItem</string>
-							<string>UIBarButtonItem</string>
 							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>UIViewController</string>
 							<string>UIBarButtonItem</string>
 							<string>NSObject</string>
+							<string>UINavigationController</string>
 							<string>UINavigationItem</string>
-							<string>UIBarButtonItem</string>
 							<string>UITabBarItem</string>
 						</object>
 					</object>
