@@ -76,6 +76,15 @@
         containsObject:self.repoKey];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // this is a hack to fix an occasional bug exhibited on the device where the
+    // selected cell isn't deselected
+    [self.tableView reloadData];
+}
+
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tv

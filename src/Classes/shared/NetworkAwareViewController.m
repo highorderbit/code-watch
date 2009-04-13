@@ -144,11 +144,19 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
 
 - (void)updateView
 {
+    // set view
     if (cachedDataAvailable) {
         self.view = targetViewController.view;
         [targetViewController viewWillAppear:YES];
     } else {
         self.view = [[self noDataViewController] view];
+        
+        // this seems to get overwritten on the device occasionally, so force
+        // it here
+        [self noDataViewController].view.backgroundColor =
+            [UIColor groupTableViewBackgroundColor];
+
+        // set no data text
         NSString * labelText =
             updatingState == kDisconnected ? noConnectionText : loadingText;
         [[self noDataViewController] setLabelText:labelText];
@@ -158,6 +166,7 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
     [UIView setAnimationTransition:UIViewAnimationTransitionNone
         forView:self.updatingView cache:NO];
 
+    // position updating view
     if (cachedDataAvailable && updatingState == kConnectedAndUpdating)
         self.updatingView.frame = [[self class] shownUpdatingViewFrame];
     else
@@ -165,6 +174,7 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
 
     [UIView commitAnimations];
     
+    // set no data activity indicator animation state
     if (updatingState == kDisconnected)
         [[self noDataViewController] stopAnimatingActivityIndicator];
     else
