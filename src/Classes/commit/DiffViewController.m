@@ -44,7 +44,8 @@
 
     NSString * html =
         [NSString stringWithFormat:
-            @"<html><head></head><body><pre>%@</pre></body></html>",
+        @"<html><head><style media=\"screen\" type=\"text/css\">"
+        "body {font-size:18pt}</style></head><body><pre>%@</pre></body></html>",
         [diff objectForKey:@"diff"]];
 
     [webView loadHTMLString:html baseURL:nil];

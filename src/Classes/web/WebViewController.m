@@ -3,6 +3,7 @@
 //
 
 #import "WebViewController.h"
+#import "NSString+WebViewAdditions.h"
 
 @implementation WebViewController
 
@@ -16,8 +17,10 @@
         NSString * htmlFilePath =
             [[NSBundle mainBundle] pathForResource:htmlFilename ofType:@"html"];
         if (htmlFilePath) {
-            NSString * html = [NSString stringWithContentsOfFile:htmlFilePath];
-    
+            NSString * html =
+                [[NSString stringWithContentsOfFile:htmlFilePath]
+                wrapHTMLForWebViewDisplay];
+            
             // Loading the bundle path as the baseURL of the web view will
             // enable us to embed CSS or image files into the HTML later if
             // desired without any additional code.
