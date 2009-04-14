@@ -3,6 +3,7 @@
 //
 
 #import "UserDetailTableViewCell.h"
+#import "UIColor+CodeWatchColors.h"
 
 @implementation UserDetailTableViewCell
 
@@ -24,7 +25,14 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    // Disallow cell selection
+    [super setSelected:selected animated:animated];
+    
+    if (self.selectionStyle != UITableViewCellSelectionStyleNone) {
+        keyLabel.textColor =
+            selected ? [UIColor whiteColor] : [UIColor codeWatchLabelColor];
+        valueLabel.textColor =
+            selected ? [UIColor whiteColor] : [UIColor blackColor];
+    }
 }
 
 @end

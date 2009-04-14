@@ -23,6 +23,10 @@ enum Section
 - (NSInteger)effectiveSectionForSection:(NSInteger)section;
 - (UITableViewCell *)createCellForSection:(NSInteger)section;
 - (NSString *)reuseIdentifierForSection:(NSInteger)section;
++ (NSString *)blogKey;
++ (NSString *)companyKey;
++ (NSString *)emailKey;
++ (NSString *)nameKey;
 
 @end
 
@@ -116,7 +120,7 @@ enum Section
 
 #pragma mark Table view methods
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView*)tv
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tv
 {
     NSInteger numSections = 1;
     
@@ -128,7 +132,7 @@ enum Section
     return numSections;
 }
 
-- (NSInteger) tableView:(UITableView*)tv
+- (NSInteger)tableView:(UITableView*)tv
     numberOfRowsInSection:(NSInteger)section
 {
     NSInteger numRows = 0;
@@ -148,7 +152,7 @@ enum Section
     return numRows;
 }
 
-- (UITableViewCell*) tableView:(UITableView*)tv
+- (UITableViewCell*)tableView:(UITableView*)tv
     cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     NSString * reuseIdentifier =
@@ -167,6 +171,10 @@ enum Section
             NSString * value = [nonFeaturedDetails objectForKey:key];
             [detailCell setKeyText:key];
             [detailCell setValueText:value];
+            detailCell.selectionStyle =
+                [key isEqual:[[self class] blogKey]] ?
+                UITableViewCellSelectionStyleBlue :
+                UITableViewCellSelectionStyleNone;
             break;
         case kRecentActivitySection:
             cell.text = NSLocalizedString(@"user.recent.activity.label", @"");
@@ -179,7 +187,7 @@ enum Section
     return cell;
 }
 
-- (NSString*) tableView:(UITableView *)tv
+- (NSString*)tableView:(UITableView *)tv
     titleForHeaderInSection:(NSInteger)section
 {
     return [self effectiveSectionForSection:section] == kRepoSection &&
@@ -200,7 +208,13 @@ enum Section
     willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = [self effectiveSectionForSection:indexPath.section];
-    return section == kUserDetailsSection ? nil : indexPath;
+    NSString * detailKey =
+        [[nonFeaturedDetails allKeys] objectAtIndex:indexPath.row];
+
+    return section == kUserDetailsSection &&
+        ![detailKey isEqual:[[self class] blogKey]] ?
+        nil :
+        indexPath;
 }
 
 - (void)tableView:(UITableView *)tv
@@ -208,11 +222,25 @@ enum Section
 {
     NSInteger effectiveSection =
         [self effectiveSectionForSection:indexPath.section];
-    if (effectiveSection == kRepoSection) {
-        NSString * repo = [userInfo.repoKeys objectAtIndex:indexPath.row];
-        [delegate userDidSelectRepo:repo];
-    } else if (effectiveSection == kRecentActivitySection)
-        [delegate userDidSelectRecentActivity];
+    NSString * repo = [userInfo.repoKeys objectAtIndex:indexPath.row];
+    NSString * detailKey =
+        [[nonFeaturedDetails allKeys] objectAtIndex:indexPath.row];
+    NSString * detailValue = [nonFeaturedDetails objectForKey:detailKey];
+    switch (effectiveSection) {
+        case kRepoSection:
+            [delegate userDidSelectRepo:repo];
+            break;
+        case kRecentActivitySection:
+            [delegate userDidSelectRecentActivity];
+            break;
+        case kUserDetailsSection:
+            if ([detailKey isEqual:[[self class] blogKey]]) {
+                NSLog(@"Opening blog in Safari: %@", detailValue);
+                NSURL * url = [NSURL URLWithString:detailValue];
+                [[UIApplication sharedApplication] openURL:url];
+            }
+            break;
+    }
 }
 
 #pragma mark User data update methods
@@ -332,9 +360,9 @@ enum Section
     NSString * lastName =
         nameCompsCount > 1 ?
         [nameComponents objectAtIndex:nameCompsCount - 1] : nil;
-    NSString * companyName = [details objectForKey:@"company"];
-    NSString * emailAddress = [details objectForKey:@"email"];
-    NSString * blog = [details objectForKey:@"blog"];
+    NSString * companyName = [details objectForKey:[[self class] companyKey]];
+    NSString * emailAddress = [details objectForKey:[[self class] emailKey]];
+    NSString * blog = [details objectForKey:[[self class] blogKey]];
     
     ABRecordSetValue(person, kABPersonFirstNameProperty, firstName, &error);
     ABRecordSetValue(person, kABPersonLastNameProperty, lastName, &error);
@@ -372,6 +400,28 @@ enum Section
 - (void)scrollToTop
 {
     [self.tableView scrollRectToVisible:self.tableView.frame animated:NO];
+}
+
+#pragma mark User detail keys
+
++ (NSString *)blogKey
+{
+    return @"blog";
+}
+
++ (NSString *)companyKey
+{
+    return @"company";
+}
+
++ (NSString *)emailKey
+{
+    return @"email";
+}
+
++ (NSString *)nameKey
+{
+    return @"name";
 }
 
 @end

@@ -16,4 +16,9 @@
     return [UIColor colorWithRed:.5 green:.5 blue:.5 alpha:1];
 }
 
++ (UIColor *)codeWatchLabelColor
+{
+    return [UIColor colorWithRed:.318 green:.4 blue:.569 alpha:1];
+}
+
 @end

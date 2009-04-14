@@ -8,5 +8,6 @@
 
 + (UIColor *)codeWatchBlueColor;
 + (UIColor *)codeWatchGrayColor;
++ (UIColor *)codeWatchLabelColor;
 
 @end
