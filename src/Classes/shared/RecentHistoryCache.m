@@ -74,6 +74,13 @@
     return [[recentlyViewed copy] autorelease];
 }
 
+- (void)clear
+{
+    [recentlyViewed removeAllObjects];
+    [history removeAllObjects];
+    [historyAppearances removeAllObjects];
+}
+
 #pragma mark NSFastEnumeration implementation
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state

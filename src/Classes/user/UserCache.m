@@ -46,4 +46,9 @@
     [recentHistoryCache setObject:user forKey:username];
 }
 
+- (void)clear
+{
+    [recentHistoryCache clear];
+}
+
 @end

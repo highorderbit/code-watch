@@ -10,5 +10,6 @@
 - (void)setPrimaryUser:(UserInfo *)user;
 - (void)addRecentlyViewedUser:(UserInfo *)user
     withUsername:(NSString *)username;
+- (void)clear;
 
 @end

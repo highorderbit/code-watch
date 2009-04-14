@@ -8,5 +8,6 @@
 @protocol CommitCacheSetter
 
 - (void)setCommit:(CommitInfo *)commitInfo forKey:(NSString *)key;
+- (void)clear;
 
 @end

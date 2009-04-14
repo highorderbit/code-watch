@@ -11,5 +11,6 @@
 
 - (void)addRecentlyViewedRepo:(RepoInfo *)repo withRepoName:(NSString *)repoName
     username:(NSString *)username;
+- (void)clear;
 
 @end

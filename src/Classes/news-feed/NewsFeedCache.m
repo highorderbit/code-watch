@@ -55,4 +55,10 @@ static NSString * PRIMARY_USER_NEWS_FEED_KEY = @"code-watch-news-feed";
     [userItems setObject:activityFeed forKey:username];
 }
 
+- (void)clear
+{
+    [primaryUserItems clear];
+    [userItems clear];
+}
+
 @end

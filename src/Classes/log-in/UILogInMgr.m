@@ -40,12 +40,19 @@
     [userNavigationItem release];
     [homeRefreshButton release];
     [userRefreshButton release];
+    
     [homeNavigationController release];
     [userNavigationController release];
+    [favoriteUsersNavigationController release];
+    [favoriteReposNavigationController release];
+    [searchNavigationController release];
     
     [logInStateSetter release];
     [logInStateReader release];
     [userCacheSetter release];
+    [repoCacheSetter release];
+    [commitCacheSetter release];
+    [newsFeedCacheSetter release];
 
     [gitHub release];
     
@@ -230,9 +237,17 @@
         BOOL prompt = logInStateReader.prompt;
         [logInStateSetter setLogin:nil token:nil prompt:prompt];
         [userCacheSetter setPrimaryUser:nil];
+        [userCacheSetter clear];
+        [repoCacheSetter clear];
+        [commitCacheSetter clear];
+        [newsFeedCacheSetter clear];
 
+        // pop all nav controllers' stacks to top
         [homeNavigationController popToRootViewControllerAnimated:NO];
         [userNavigationController popToRootViewControllerAnimated:NO];
+        [favoriteUsersNavigationController popToRootViewControllerAnimated:NO];
+        [favoriteReposNavigationController popToRootViewControllerAnimated:NO];
+        [searchNavigationController popToRootViewControllerAnimated:NO];
 
         [self presentView];
     }

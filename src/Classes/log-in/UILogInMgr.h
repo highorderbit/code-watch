@@ -10,6 +10,9 @@
 #import "UserCacheSetter.h"
 #import "GitHubServiceDelegate.h"
 #import "WebViewController.h"
+#import "RepoCacheSetter.h"
+#import "CommitCacheSetter.h"
+#import "NewsFeedCacheSetter.h"
 
 @class GitHubService;
 @class LogInViewController;
@@ -30,14 +33,22 @@
     IBOutlet UITabBarItem * userTabBarItem;
     IBOutlet UINavigationItem * homeNavigationItem;
     IBOutlet UINavigationItem * userNavigationItem;
+    
     IBOutlet UINavigationController * homeNavigationController;
     IBOutlet UINavigationController * userNavigationController;
+    IBOutlet UINavigationController * favoriteUsersNavigationController;
+    IBOutlet UINavigationController * favoriteReposNavigationController;
+    IBOutlet UINavigationController * searchNavigationController;
+    
     UIBarButtonItem * homeRefreshButton;
     UIBarButtonItem * userRefreshButton;
     
     IBOutlet NSObject<LogInStateSetter> * logInStateSetter;
     IBOutlet NSObject<LogInStateReader> * logInStateReader;
     IBOutlet NSObject<UserCacheSetter> * userCacheSetter;
+    IBOutlet NSObject<RepoCacheSetter> * repoCacheSetter;
+    IBOutlet NSObject<CommitCacheSetter> * commitCacheSetter;
+    IBOutlet NSObject<NewsFeedCacheSetter> * newsFeedCacheSetter;
 
     IBOutlet GitHubService * gitHub;
 

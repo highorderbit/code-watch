@@ -70,4 +70,10 @@
     [usersRepos setObject:repo forKey:repoName];
 }
 
+- (void)clear
+{
+    [recentlyViewedRepos removeAllObjects];
+    [primaryUserRepos removeAllObjects];
+}
+
 @end

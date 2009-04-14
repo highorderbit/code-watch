@@ -38,4 +38,9 @@
     [recentHistoryCache setObject:commit forKey:key];
 }
 
+- (void)clear
+{
+    [recentHistoryCache clear];
+}
+
 @end

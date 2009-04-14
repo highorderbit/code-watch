@@ -654,14 +654,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">userCacheSetter</string>
-						<reference key="source" ref="89581905"/>
-						<reference key="destination" ref="354817096"/>
-					</object>
-					<int key="connectionID">299</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">logInStateSetter</string>
 						<reference key="source" ref="89581905"/>
 						<reference key="destination" ref="578646318"/>
@@ -2116,6 +2108,62 @@
 					</object>
 					<int key="connectionID">582</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">favoriteUsersNavigationController</string>
+						<reference key="source" ref="89581905"/>
+						<reference key="destination" ref="289767912"/>
+					</object>
+					<int key="connectionID">583</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">favoriteReposNavigationController</string>
+						<reference key="source" ref="89581905"/>
+						<reference key="destination" ref="801315089"/>
+					</object>
+					<int key="connectionID">584</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">searchNavigationController</string>
+						<reference key="source" ref="89581905"/>
+						<reference key="destination" ref="212505514"/>
+					</object>
+					<int key="connectionID">585</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">repoCacheSetter</string>
+						<reference key="source" ref="89581905"/>
+						<reference key="destination" ref="232313576"/>
+					</object>
+					<int key="connectionID">586</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">commitCacheSetter</string>
+						<reference key="source" ref="89581905"/>
+						<reference key="destination" ref="1027588999"/>
+					</object>
+					<int key="connectionID">587</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">userCacheSetter</string>
+						<reference key="source" ref="89581905"/>
+						<reference key="destination" ref="354817096"/>
+					</object>
+					<int key="connectionID">588</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">newsFeedCacheSetter</string>
+						<reference key="source" ref="89581905"/>
+						<reference key="destination" ref="1051023249"/>
+					</object>
+					<int key="connectionID">589</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2965,7 +3013,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">582</int>
+			<int key="maxID">589</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3892,13 +3940,19 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>commitCacheSetter</string>
+							<string>favoriteReposNavigationController</string>
+							<string>favoriteUsersNavigationController</string>
 							<string>gitHub</string>
 							<string>homeBarButtonItem</string>
 							<string>homeNavigationController</string>
 							<string>homeNavigationItem</string>
 							<string>logInStateReader</string>
 							<string>logInStateSetter</string>
+							<string>newsFeedCacheSetter</string>
+							<string>repoCacheSetter</string>
 							<string>rootViewController</string>
+							<string>searchNavigationController</string>
 							<string>userBarButtonItem</string>
 							<string>userCacheSetter</string>
 							<string>userNavigationController</string>
@@ -3907,13 +3961,19 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSObject</string>
+							<string>UINavigationController</string>
+							<string>UINavigationController</string>
 							<string>GitHubService</string>
 							<string>UIBarButtonItem</string>
 							<string>UINavigationController</string>
 							<string>UINavigationItem</string>
 							<string>NSObject</string>
 							<string>NSObject</string>
+							<string>NSObject</string>
+							<string>NSObject</string>
 							<string>UIViewController</string>
+							<string>UINavigationController</string>
 							<string>UIBarButtonItem</string>
 							<string>NSObject</string>
 							<string>UINavigationController</string>
