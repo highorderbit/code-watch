@@ -36,6 +36,9 @@
 
     IBOutlet GravatarServiceFactory * gravatarServiceFactory;
     GravatarService * gravatarService;
+    
+    BOOL gitHubFailure;
+    BOOL avatarFailure;
 }
 
 - (id)initWithNavigationController:

@@ -44,6 +44,9 @@
     NewsFeedDisplayMgr * newsFeedDisplayMgr;
     
     NSString * username;
+    
+    BOOL gitHubFailure;
+    BOOL avatarFailure;
 }
 
 - (id)initWithNavigationController:

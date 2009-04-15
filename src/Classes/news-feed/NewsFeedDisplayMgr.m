@@ -154,6 +154,9 @@
 
 - (void)updateNewsFeed
 {
+    gitHubFailure = NO;
+    avatarFailure = NO;
+    
     if (logInStateReader.login) {
         self.username = logInStateReader.login;
 
@@ -320,18 +323,21 @@
 - (void)failedToFetchActivityFeedForUsername:(NSString *)user
                                        error:(NSError *)error
 {
-    NSLog(@"Failed to retrieve news feed for username: '%@' error: '%@'.",
-        user, error);
+    if (!gitHubFailure) {
+        gitHubFailure = YES;
+        NSLog(@"Failed to retrieve news feed for username: '%@' error: '%@'.",
+            user, error);
 
-    NSString * title =
-        NSLocalizedString(@"github.newsfeedupdate.failed.alert.title", @"");
-    UIAlertView * alertView =
-        [UIAlertView simpleAlertViewWithTitle:title
-                                      message:error.localizedDescription];
+        NSString * title =
+            NSLocalizedString(@"github.newsfeedupdate.failed.alert.title", @"");
+        UIAlertView * alertView =
+            [UIAlertView simpleAlertViewWithTitle:title
+                                          message:error.localizedDescription];
 
-    [alertView show];
+        [alertView show];
 
-    [[self networkAwareViewController] setUpdatingState:kDisconnected];
+        [[self networkAwareViewController] setUpdatingState:kDisconnected];
+    }
 }
 
 #pragma mark GravatarServiceDelegate implementation
@@ -350,16 +356,19 @@
 - (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
                                      error:(NSError *)error
 {
-    NSLog(@"Failed to retrieve avatar for email address: '%@' error: '%@'.",
-        emailAddress, error);
+    if (!avatarFailure) {
+        avatarFailure = YES;
+        NSLog(@"Failed to retrieve avatar for email address: '%@' error: '%@'.",
+            emailAddress, error);
 
-    NSString * title =
-        NSLocalizedString(@"github.newsfeedupdate.failed.alert.title", @"");
-    UIAlertView * alertView =
-        [UIAlertView simpleAlertViewWithTitle:title
-                                      message:error.localizedDescription];
+        NSString * title =
+            NSLocalizedString(@"github.newsfeedupdate.failed.alert.title", @"");
+        UIAlertView * alertView =
+            [UIAlertView simpleAlertViewWithTitle:title
+                                          message:error.localizedDescription];
 
-    [alertView show];
+        [alertView show];
+    }
 }
 
 #pragma mark GitHubServiceDelegate implementation

@@ -58,8 +58,30 @@
 
 - (void)updateWithDetails:(NSString *)htmlDetails
 {
-    htmlDetails = [NSString stringWithFormat:
-        @"<html><head></head><body>%@</body></html>", htmlDetails];
+    NSString * formatString =
+            @"<html>"
+            "<head>"
+            "    <style media=\"screen\" type=\"text/css\">"
+            "    body {"
+            "        width: 90%%;"
+            "        padding: 30px;"
+            "        font-family: \"Helvetica\";"
+            "        font-size: 28pt;"
+            "    }"
+            "    h3 {"
+            "        margin-bottom: -40px;"
+            "    }"
+            "    p.example {"
+            "        color: #2a385b;"
+            "    }"
+            "    </style>"
+            "</head>"
+            "<body>"
+            "    %@"
+            "</body>"
+            "</html>";
+
+    htmlDetails = [NSString stringWithFormat:formatString, htmlDetails];
 
     NSLog(@"Updating with HTML:\n%@", htmlDetails);
 

@@ -43,6 +43,9 @@
 
     GravatarService * gravatarService;
     IBOutlet GravatarServiceFactory * gravatarServiceFactory;
+    
+    BOOL gitHubFailure;
+    BOOL avatarFailure;
 }
 
 - (void)displayUserInfo;
