@@ -20,7 +20,6 @@
     [authorLabel release];
     [pubDateLabel release];
     [subjectLabel release];
-    [summaryLabel release];
     [avatarImageView release];
     [super dealloc];
 }
@@ -38,19 +37,16 @@
         authorLabel.textColor = self.selectedTextColor;
         pubDateLabel.textColor = self.selectedTextColor;
         subjectLabel.textColor = self.selectedTextColor;
-        summaryLabel.textColor = self.selectedTextColor;
     } else
         [self setNonSelectedTextColors];
 }
 
 - (void)updateAuthor:(NSString *)author pubDate:(NSDate *)pubDate
-    subject:(NSString *)subject summary:(NSString *)summary
-    avatar:(UIImage *)avatar
+    subject:(NSString *)subject avatar:(UIImage *)avatar
 {
     authorLabel.text = author;
     pubDateLabel.text = [pubDate shortDescription];
     subjectLabel.text = subject;
-    summaryLabel.text = summary;
     avatarImageView.image = avatar ? avatar : [UIImage imageUnavailableImage];
 }
 
@@ -59,7 +55,6 @@
     authorLabel.textColor = [UIColor blackColor];
     pubDateLabel.textColor = [UIColor codeWatchBlueColor];
     subjectLabel.textColor = [UIColor blackColor];
-    summaryLabel.textColor = [UIColor codeWatchGrayColor];
 }
     
 @end

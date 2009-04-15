@@ -98,25 +98,6 @@
 								<float key="IBUIMinimumFontSize">1.000000e+01</float>
 								<int key="IBUINumberOfLines">2</int>
 							</object>
-							<object class="IBUILabel" id="197716277">
-								<reference key="NSNextResponder" ref="340586627"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{9, 70}, {288, 20}}</string>
-								<reference key="NSSuperview" ref="340586627"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="IBUIText">Summary summary summary summary</string>
-								<reference key="IBUIFont" ref="672540651"/>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC40OTQ4OTc5NiAwLjQ5NDg5Nzk2IDAuNDk0ODk3OTYAA</bytes>
-								</object>
-								<nil key="IBUIHighlightedColor"/>
-								<int key="IBUIBaselineAdjustment">1</int>
-								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-								<float key="IBUIMinimumFontSize">1.000000e+01</float>
-							</object>
 							<object class="IBUIImageView" id="440017233">
 								<reference key="NSNextResponder" ref="340586627"/>
 								<int key="NSvFlags">292</int>
@@ -131,7 +112,7 @@
 								</object>
 							</object>
 						</object>
-						<string key="NSFrameSize">{297, 95}</string>
+						<string key="NSFrameSize">{297, 76}</string>
 						<reference key="NSSuperview" ref="732014660"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -143,7 +124,7 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 95}</string>
+				<string key="NSFrameSize">{320, 76}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -191,14 +172,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">summaryLabel</string>
-						<reference key="source" ref="732014660"/>
-						<reference key="destination" ref="197716277"/>
-					</object>
-					<int key="connectionID">11</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">avatarImageView</string>
 						<reference key="source" ref="732014660"/>
 						<reference key="destination" ref="440017233"/>
@@ -234,7 +207,6 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="440017233"/>
-							<reference ref="197716277"/>
 							<reference ref="504732756"/>
 							<reference ref="173250757"/>
 							<reference ref="301205153"/>
@@ -257,11 +229,6 @@
 						<reference key="parent" ref="732014660"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">6</int>
-						<reference key="object" ref="197716277"/>
-						<reference key="parent" ref="732014660"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">7</int>
 						<reference key="object" ref="440017233"/>
 						<reference key="parent" ref="732014660"/>
@@ -279,15 +246,13 @@
 					<string>3.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
-					<string>6.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIResponder</string>
 					<string>NewsFeedTableViewCell</string>
-					<string>{{340, 730}, {320, 95}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{340, 749}, {320, 76}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

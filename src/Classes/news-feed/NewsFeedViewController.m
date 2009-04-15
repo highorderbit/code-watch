@@ -6,6 +6,7 @@
 #import "RssItem.h"
 #import "NewsFeedTableViewCell.h"
 #import "NSString+RegexKitLiteHelpers.h"
+#import "RegexKitLite.h"
 
 @interface NewsFeedViewController (Private)
 
@@ -63,15 +64,10 @@
     }
     
     RssItem * rssItem = [rssItems objectAtIndex:indexPath.row];
-
-    NSString * head = [rssItem.summary stringByMatchingRegex:
-        @"HEAD is <a href=\".*\">(.*)</a>"];
-    NSString * summary =
-        head ? [NSString stringWithFormat:@"HEAD is %@", head] : nil;
     UIImage * avatar = [avatars objectForKey:rssItem.author];
 
     [cell updateAuthor:rssItem.author pubDate:rssItem.pubDate
-        subject:rssItem.subject summary:summary avatar:avatar];
+        subject:rssItem.subject avatar:avatar];
     
     return cell;
 }
@@ -79,7 +75,7 @@
 - (CGFloat)tableView:(UITableView *)tv
     heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 95;
+    return 76.0;
 }
 
 - (void)tableView:(UITableView *)tableView
