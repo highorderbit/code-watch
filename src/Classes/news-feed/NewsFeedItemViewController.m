@@ -50,6 +50,7 @@ enum ActionSectionRows
 - (BOOL)haveGitHubRepoInRssItem;
 - (BOOL)haveGitHubEntitiesSection;
 - (NSInteger)effectiveSectionForSection:(NSInteger)section;
+- (NSInteger)effectiveRowForIndexPath:(NSIndexPath *)indexPath;
 - (void)updateDisplay;
 - (void)setRssItem:(RssItem *)item;
 - (void)setAvatar:(UIImage *)anAvatar;
@@ -129,6 +130,8 @@ enum ActionSectionRows
             break;
         case kGitHubEntitiesSection:
             nrows = NUM_GITHUB_ENTITIES_ROWS;
+            if ([[rssItem repoKey].username isEqualToString:rssItem.author])
+                nrows--;
             break;
         case kActionSection:
             nrows = NUM_ACTION_ROWS;
@@ -164,7 +167,8 @@ enum ActionSectionRows
             RepoKey * key = [rssItem repoKey];
             NSString * text = nil;
 
-            switch (indexPath.row) {
+            NSInteger row = [self effectiveRowForIndexPath:indexPath];
+            switch (row) {
                 case kGoToAuthorRow:
                     text = rssItem.author;
                     break;
@@ -215,7 +219,8 @@ enum ActionSectionRows
         case kGitHubEntitiesSection: {
             RepoKey * key = [rssItem repoKey];
 
-            switch (indexPath.row) {
+            NSInteger row = [self effectiveRowForIndexPath:indexPath];
+            switch (row) {
                 case kGoToAuthorRow:
                     [delegate userDidSelectUsername:rssItem.author];
                     break;
@@ -343,6 +348,20 @@ enum ActionSectionRows
     return section == kDetailsSection ?
         section :
         section + ([self haveGitHubEntitiesSection] ? 0 : 1);
+}
+
+- (NSInteger)effectiveRowForIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger section = [self effectiveSectionForSection:indexPath.section];
+    if (section == kGitHubEntitiesSection) {
+        NSString * repoUser = [rssItem repoKey].username;
+        NSString * rssUser = rssItem.author;
+
+        if (indexPath.row != kGoToAuthorRow && [repoUser isEqual:rssUser])
+            return indexPath.row + 1;
+    }
+
+    return indexPath.row;
 }
 
 #pragma mark Accessors
