@@ -200,13 +200,14 @@
     username = aUsername;
 
     [self displayUserInfo];
-        
-    [navigationController
-        pushViewController:networkAwareViewController animated:YES];
+
     networkAwareViewController.navigationItem.title =
         NSLocalizedString(@"user.view.title", @"");
-        
+
     [userViewController scrollToTop];
+
+    [navigationController
+        pushViewController:networkAwareViewController animated:YES];
 }
 
 #pragma mark NewsFeedDisplayMgrDelegate
