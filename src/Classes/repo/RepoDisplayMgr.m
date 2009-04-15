@@ -8,6 +8,7 @@
 #import "GitHubService.h"
 #import "GravatarService.h"
 #import "GravatarServiceFactory.h"
+#import "UIAlertView+CreationHelpers.h"
 
 @interface RepoDisplayMgr (Private)
 
@@ -134,6 +135,9 @@
     networkAwareViewController.navigationItem.title =
         NSLocalizedString(@"repo.view.title", @"");
 
+    [networkAwareViewController
+        setNoConnectionText:
+        NSLocalizedString(@"nodata.noconnection.text", @"")];
     [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
     [networkAwareViewController setCachedDataAvailable:cachedDataAvailable];    
 }
@@ -146,11 +150,11 @@
     [self setRepoName:repo];
     
     [self refreshRepoInfo];
-    
-    [navigationController
-        pushViewController:networkAwareViewController animated:YES];
 
     [repoViewController scrollToTop];
+
+    [navigationController
+        pushViewController:networkAwareViewController animated:YES];
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -158,14 +162,41 @@
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
     fetchedForUsername:(NSString *)updatedUsername
 {
+    //
+    // HACK: Because GitHub sometimes gives us incorrect user/repo
+    // ownership data (e.g. jad/code-watch rather than
+    // highorderbit/code-watch), we track whether or not the repo we're
+    // looking for has been found in the retrieved list. If not, display an
+    // error and update the display as approprate.
+    //
+    BOOL found = NO;
+
     for (NSString * repo in repos.allKeys)
         if ([repoName isEqualToString:repo]) {
             [self setRepoInfo:[repos objectForKey:repo]];
             // get the commit details
             [gitHubService fetchInfoForRepo:repo username:updatedUsername];
+            found = YES;
 
             break;
         }
+
+    if (!found) {
+        NSString * title =
+            NSLocalizedString(@"github.repoupdate.failed.alert.title", @"");
+        NSString * message =
+            [NSString stringWithFormat:
+            NSLocalizedString(@"github.repoupdate.failed.message.formatstring",
+            @""),
+            updatedUsername, repoName];
+
+        [[UIAlertView simpleAlertViewWithTitle:title message:message] show];
+
+        [networkAwareViewController setNoConnectionText:
+            NSLocalizedString(@"github.repoupdate.failed.noconnection.text",
+            @"")];
+        [networkAwareViewController setUpdatingState:kDisconnected];
+    }
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)user
@@ -190,6 +221,9 @@
 
     [alertView show];
 
+    [networkAwareViewController
+        setNoConnectionText:
+        NSLocalizedString(@"nodata.noconnection.text", @"")];
     [networkAwareViewController setUpdatingState:kDisconnected];
 }
 
@@ -249,6 +283,9 @@
 
     [alertView show];
 
+    [networkAwareViewController
+        setNoConnectionText:
+        NSLocalizedString(@"nodata.noconnection.text", @"")];
     [networkAwareViewController setUpdatingState:kDisconnected];
 }
 

@@ -206,12 +206,6 @@ enum ActionSectionRows
 - (void)          tableView:(UITableView *)tv
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger section = indexPath.section;
-
-    if (section == kDetailsSection) {
-        // do stuff
-    } else if (YES) { }
-
     switch ([self effectiveSectionForSection:indexPath.section]) {
         case kDetailsSection:
             [delegate userDidSelectDetails:rssItem];
