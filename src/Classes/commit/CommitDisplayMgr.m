@@ -74,6 +74,9 @@
 - (void)user:(NSString *)username didSelectCommit:(NSString *)commitKey
     forRepo:(NSString *)repoName
 {
+    gitHubFailure = NO;
+    avatarFailure = NO;
+
     [self networkAwareViewController].navigationItem.title =
         NSLocalizedString(@"commit.view.title", @"");
 
@@ -150,27 +153,31 @@
                           username:(NSString *)username
                              error:(NSError *)error
 {
-    NSLog(@"Failed to retrieve info for commit: '%@' for user: '%@' repo: '%@' "
-        "error: '%@'.", commitKey, repo, username, error);
+    if (!gitHubFailure) {
+        gitHubFailure = YES;
+        
+        NSLog(@"Failed to retrieve info for commit: '%@' for user: '%@' repo: '%@' "
+            "error: '%@'.", commitKey, repo, username, error);
 
-    NSString * title =
-        NSLocalizedString(@"github.commitupdate.failed.alert.title", @"");
-    NSString * cancelTitle =
-        NSLocalizedString(@"github.commitupdate.failed.alert.ok", @"");
-    NSString * message = error.localizedDescription;
+        NSString * title =
+            NSLocalizedString(@"github.commitupdate.failed.alert.title", @"");
+        NSString * cancelTitle =
+            NSLocalizedString(@"github.commitupdate.failed.alert.ok", @"");
+        NSString * message = error.localizedDescription;
 
-    UIAlertView * alertView =
-        [[[UIAlertView alloc]
-          initWithTitle:title
-                message:message
-               delegate:self
-      cancelButtonTitle:cancelTitle
-      otherButtonTitles:nil]
-         autorelease];
+        UIAlertView * alertView =
+            [[[UIAlertView alloc]
+              initWithTitle:title
+                    message:message
+                   delegate:self
+          cancelButtonTitle:cancelTitle
+          otherButtonTitles:nil]
+             autorelease];
 
-    [alertView show];
+        [alertView show];
 
-    [[self networkAwareViewController] setUpdatingState:kDisconnected];
+        [[self networkAwareViewController] setUpdatingState:kDisconnected];
+    }
 }
 
 - (void)avatar:(UIImage *)avatar fetchedForEmailAddress:(NSString *)emailAddress
@@ -181,25 +188,29 @@
 - (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
                                      error:(NSError *)error
 {
-    NSLog(@"Failed to retrieve avatar for email address: '%@' error: '%@'.",
-        emailAddress, error);
+    if (!avatarFailure) {
+        avatarFailure = YES;
+        
+        NSLog(@"Failed to retrieve avatar for email address: '%@' error: '%@'.",
+            emailAddress, error);
 
-    NSString * title =
-        NSLocalizedString(@"gravatar.repoupdate.failed.alert.title", @"");
-    NSString * cancelTitle =
-        NSLocalizedString(@"gravatar.repoupdate.failed.alert.ok", @"");
-    NSString * message = error.localizedDescription;
+        NSString * title =
+            NSLocalizedString(@"gravatar.repoupdate.failed.alert.title", @"");
+        NSString * cancelTitle =
+            NSLocalizedString(@"gravatar.repoupdate.failed.alert.ok", @"");
+        NSString * message = error.localizedDescription;
 
-    UIAlertView * alertView =
-        [[[UIAlertView alloc]
-          initWithTitle:title
-                message:message
-               delegate:self
-      cancelButtonTitle:cancelTitle
-      otherButtonTitles:nil]
-         autorelease];
+        UIAlertView * alertView =
+            [[[UIAlertView alloc]
+              initWithTitle:title
+                    message:message
+                   delegate:self
+          cancelButtonTitle:cancelTitle
+          otherButtonTitles:nil]
+             autorelease];
 
-    [alertView show];
+        [alertView show];
+    }
 }
 
 #pragma mark Helpers

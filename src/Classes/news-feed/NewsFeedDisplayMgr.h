@@ -57,6 +57,9 @@
     NSMutableDictionary * usernames;
 
     RssItem * selectedRssItem;
+    
+    BOOL gitHubFailure;
+    BOOL avatarFailure;
 }
 
 @property (nonatomic, retain) NSObject<NewsFeedDisplayMgrDelegate> * delegate;

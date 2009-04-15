@@ -42,6 +42,9 @@
     IBOutlet GravatarServiceFactory * gravatarServiceFactory;
 
     IBOutlet NSObject<CommitSelector> * commitSelector;
+    
+    BOOL gitHubFailure;
+    BOOL avatarFailure;
 }
 
 - (id)initWithLogInStateReader:

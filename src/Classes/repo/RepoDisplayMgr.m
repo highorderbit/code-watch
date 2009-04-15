@@ -114,6 +114,9 @@
 
 - (void)refreshRepoInfo
 {
+    gitHubFailure = NO;
+    avatarFailure = NO;
+    
     BOOL cachedDataAvailable = [self loadCachedData];
     if (cachedDataAvailable) {
         [repoViewController updateWithCommits:commits
@@ -171,26 +174,31 @@
 - (void)failedToFetchInfoForUsername:(NSString *)user
                                error:(NSError *)error
 {
-    NSLog(@"Failed to retrieve info for user: '%@' error: '%@'.", user, error);
+    if (!gitHubFailure) {
+        gitHubFailure = YES;
+        
+        NSLog(@"Failed to retrieve info for user: '%@' error: '%@'.", user,
+            error);
 
-    NSString * title =
-        NSLocalizedString(@"github.repoupdate.failed.alert.title", @"");
-    NSString * cancelTitle =
-        NSLocalizedString(@"github.repoupdate.failed.alert.ok", @"");
-    NSString * message = error.localizedDescription;
+        NSString * title =
+            NSLocalizedString(@"github.repoupdate.failed.alert.title", @"");
+        NSString * cancelTitle =
+            NSLocalizedString(@"github.repoupdate.failed.alert.ok", @"");
+        NSString * message = error.localizedDescription;
 
-    UIAlertView * alertView =
-        [[[UIAlertView alloc]
-          initWithTitle:title
-                message:message
-               delegate:self
-      cancelButtonTitle:cancelTitle
-      otherButtonTitles:nil]
-         autorelease];
+        UIAlertView * alertView =
+            [[[UIAlertView alloc]
+              initWithTitle:title
+                    message:message
+                   delegate:self
+          cancelButtonTitle:cancelTitle
+          otherButtonTitles:nil]
+             autorelease];
 
-    [alertView show];
+        [alertView show];
 
-    [networkAwareViewController setUpdatingState:kDisconnected];
+        [networkAwareViewController setUpdatingState:kDisconnected];
+    }
 }
 
 - (void)commits:(NSDictionary*)newCommits
@@ -229,27 +237,34 @@
                         username:(NSString *)user
                            error:(NSError *)error
 {
-    NSLog(@"Failed to retrieve info for repo: '%@' for user: '%@' error: '%@'.",
-        repo, user, error);
+    if (!gitHubFailure) {
+        gitHubFailure = YES;
 
-    NSString * title =
-        NSLocalizedString(@"github.repoupdate.failed.alert.title", @"");
-    NSString * cancelTitle =
-        NSLocalizedString(@"github.repoupdate.failed.alert.ok", @"");
-    NSString * message = error.localizedDescription;
+        NSLog(@"Failed to retrieve info for repo: '%@' for user: '%@' "
+            "error: '%@'.",
+            repo,
+            user,
+            error);
 
-    UIAlertView * alertView =
-        [[[UIAlertView alloc]
-          initWithTitle:title
-                message:message
-               delegate:self
-      cancelButtonTitle:cancelTitle
-      otherButtonTitles:nil]
-         autorelease];
+        NSString * title =
+            NSLocalizedString(@"github.repoupdate.failed.alert.title", @"");
+        NSString * cancelTitle =
+            NSLocalizedString(@"github.repoupdate.failed.alert.ok", @"");
+        NSString * message = error.localizedDescription;
 
-    [alertView show];
+        UIAlertView * alertView =
+            [[[UIAlertView alloc]
+              initWithTitle:title
+                    message:message
+                   delegate:self
+          cancelButtonTitle:cancelTitle
+          otherButtonTitles:nil]
+             autorelease];
 
-    [networkAwareViewController setUpdatingState:kDisconnected];
+        [alertView show];
+
+        [networkAwareViewController setUpdatingState:kDisconnected];
+    }
 }
 
 - (void)avatar:(UIImage *)avatar
@@ -261,25 +276,29 @@
 - (void)failedToFetchAvatarForEmailAddress:(NSString *)emailAddress
                                      error:(NSError *)error
 {
-    NSLog(@"Failed to retrieve avatar for email address: '%@' error: '%@'.",
-        emailAddress, error);
+    if (!avatarFailure) {
+        avatarFailure = YES;
+        
+        NSLog(@"Failed to retrieve avatar for email address: '%@' error: '%@'.",
+            emailAddress, error);
 
-    NSString * title =
-        NSLocalizedString(@"gravatar.repoupdate.failed.alert.title", @"");
-    NSString * cancelTitle =
-        NSLocalizedString(@"gravatar.repoupdate.failed.alert.ok", @"");
-    NSString * message = error.localizedDescription;
+        NSString * title =
+            NSLocalizedString(@"gravatar.repoupdate.failed.alert.title", @"");
+        NSString * cancelTitle =
+            NSLocalizedString(@"gravatar.repoupdate.failed.alert.ok", @"");
+        NSString * message = error.localizedDescription;
 
-    UIAlertView * alertView =
-        [[[UIAlertView alloc]
-          initWithTitle:title
-                message:message
-               delegate:self
-      cancelButtonTitle:cancelTitle
-      otherButtonTitles:nil]
-         autorelease];
+        UIAlertView * alertView =
+            [[[UIAlertView alloc]
+              initWithTitle:title
+                    message:message
+                   delegate:self
+          cancelButtonTitle:cancelTitle
+          otherButtonTitles:nil]
+             autorelease];
 
-    [alertView show];
+        [alertView show];
+    }
 }
 
 #pragma mark RepoViewControllerDelegate implementation
