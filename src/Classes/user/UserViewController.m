@@ -107,6 +107,11 @@ enum Section
     ABRecordRef person =
         ABAddressBookGetPersonWithRecordID(ABAddressBookCreate(), recordId);
     addToContactsButton.enabled = recordId == kABRecordInvalidID || !person;
+    
+    // fixes a bug where the scroll indicator region is incorrectly set after
+    // the logout action sheet is shown
+    self.tableView.contentInset = UIEdgeInsetsZero;
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
 }
 
 - (void)viewDidAppear:(BOOL)animated
