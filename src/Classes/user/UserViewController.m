@@ -222,24 +222,27 @@ enum Section
 {
     NSInteger effectiveSection =
         [self effectiveSectionForSection:indexPath.section];
-    NSString * repo = [userInfo.repoKeys objectAtIndex:indexPath.row];
-    NSString * detailKey =
-        [[nonFeaturedDetails allKeys] objectAtIndex:indexPath.row];
-    NSString * detailValue = [nonFeaturedDetails objectForKey:detailKey];
     switch (effectiveSection) {
         case kRepoSection:
-            [delegate userDidSelectRepo:repo];
+            [delegate userDidSelectRepo:
+                [userInfo.repoKeys objectAtIndex:indexPath.row]];
             break;
         case kRecentActivitySection:
             [delegate userDidSelectRecentActivity];
             break;
-        case kUserDetailsSection:
+        case kUserDetailsSection: {
+            NSString * detailKey =
+                [[nonFeaturedDetails allKeys] objectAtIndex:indexPath.row];
+            NSString * detailValue =
+                [nonFeaturedDetails objectForKey:detailKey];
+
             if ([detailKey isEqual:[[self class] blogKey]]) {
                 NSLog(@"Opening blog in Safari: %@", detailValue);
                 NSURL * url = [NSURL URLWithString:detailValue];
                 [[UIApplication sharedApplication] openURL:url];
             }
             break;
+        }
     }
 }
 
