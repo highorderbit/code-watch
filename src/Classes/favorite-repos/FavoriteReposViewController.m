@@ -22,12 +22,16 @@
 - (void)viewDidLoad
 {
     rightButton = [self.navigationItem.rightBarButtonItem retain];
-    [self.navigationItem setLeftBarButtonItem:self.editButtonItem animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    UIBarButtonItem * leftBarButtonItem =
+        [sortedRepoKeys count] > 0 ? self.editButtonItem : nil;
+    [self.navigationItem setLeftBarButtonItem:leftBarButtonItem animated:NO];
+    
     [delegate viewWillAppear];
     [self setEditing:NO animated:NO];
 }
@@ -102,8 +106,14 @@
     
     if (editing)
         [self.navigationItem setRightBarButtonItem:nil animated:NO];
-    else
+    else {
         [self.navigationItem setRightBarButtonItem:rightButton animated:NO];
+        
+        UIBarButtonItem * leftBarButtonItem =
+            [sortedRepoKeys count] > 0 ? self.editButtonItem : nil;
+        [self.navigationItem setLeftBarButtonItem:leftBarButtonItem
+            animated:NO];
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tv
