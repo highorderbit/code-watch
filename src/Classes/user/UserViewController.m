@@ -23,6 +23,7 @@ enum Section
 - (NSInteger)effectiveSectionForSection:(NSInteger)section;
 - (UITableViewCell *)createCellForSection:(NSInteger)section;
 - (NSString *)reuseIdentifierForSection:(NSInteger)section;
+- (void)setAvatar:(UIImage *)anAvatar;
 + (NSString *)blogKey;
 + (NSString *)companyKey;
 + (NSString *)emailKey;
@@ -61,6 +62,8 @@ enum Section
     [userInfo release];
     
     [nonFeaturedDetails release];
+
+    [avatar release];
     
     [super dealloc];
 }
@@ -107,6 +110,8 @@ enum Section
     ABRecordRef person =
         ABAddressBookGetPersonWithRecordID(ABAddressBookCreate(), recordId);
     addToContactsButton.enabled = recordId == kABRecordInvalidID || !person;
+
+    avatarView.image = avatar;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -272,9 +277,11 @@ enum Section
     [self.tableView reloadData];
 }
 
-- (void)updateWithAvatar:(UIImage *)avatar
+- (void)updateWithAvatar:(UIImage *)anAvatar
 {
-    avatarView.image = avatar ? avatar : [UIImage imageUnavailableImage];
+    [self setAvatar:anAvatar ? anAvatar : [UIImage imageUnavailableImage]];
+
+    avatarView.image = avatar;
 }
 
 - (void)setFeaturedDetail1Key:(NSString *)key
@@ -293,11 +300,6 @@ enum Section
     featuredDetail2Key = key;
     
     [self updateNonFeaturedDetails];
-}
-
-- (void)setAvatarFilename:(NSString *)filename
-{
-    avatarView.image = [UIImage imageNamed:filename];
 }
 
 #pragma mark Helper methods
@@ -407,6 +409,13 @@ enum Section
 - (void)scrollToTop
 {
     [self.tableView scrollRectToVisible:self.tableView.frame animated:NO];
+}
+
+- (void)setAvatar:(UIImage *)anAvatar
+{
+    UIImage * tmp = [anAvatar retain];
+    [avatar release];
+    avatar = tmp;
 }
 
 #pragma mark User detail keys
