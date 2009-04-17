@@ -45,7 +45,6 @@
 - (void)viewWillAppear
 {
     [super viewWillAppear];
-    [self updateNewsFeed];
 }
 
 - (void)updateNewsFeed
