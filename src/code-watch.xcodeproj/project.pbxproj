@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		051CDCDE0F6C0CEC0049D2BD /* GitHub.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDCDD0F6C0CEC0049D2BD /* GitHub.m */; };
 		051CDCE20F6C0D140049D2BD /* JsonGitHubApiParserImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDCE10F6C0D140049D2BD /* JsonGitHubApiParserImpl.m */; };
-		051CDD290F6C263A0049D2BD /* GitHubApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDD280F6C263A0049D2BD /* GitHubApiRequest.m */; };
 		051CDD2C0F6C29690049D2BD /* NSString+NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDD2B0F6C29690049D2BD /* NSString+NSDataAdditions.m */; };
 		051CDD3F0F6C33FE0049D2BD /* NSString+UrlAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDD3E0F6C33FE0049D2BD /* NSString+UrlAdditions.m */; };
 		051FBA900F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */; };
@@ -30,6 +29,8 @@
 		053420370F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */; };
 		053420400F69EBC4000EECB1 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0534203F0F69EBC4000EECB1 /* LogInViewController.m */; };
 		053420790F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */; };
+		05378FE00F98F88200CE4C19 /* WebServiceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 05378FDE0F98F88200CE4C19 /* WebServiceApi.m */; };
+		05378FE40F98FCB000CE4C19 /* NSURLRequest+WebServiceApiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05378FE30F98FCB000CE4C19 /* NSURLRequest+WebServiceApiAdditions.m */; };
 		053B7B3F0F700C3B0084B219 /* NSError+InstantiationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053B7B3E0F700C3B0084B219 /* NSError+InstantiationAdditions.m */; };
 		053B7B610F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053B7B600F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m */; };
 		054848A80F84229B00735643 /* GitHubNewsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 054848A70F84229B00735643 /* GitHubNewsFeed.m */; };
@@ -47,8 +48,6 @@
 		0560A0640F69C83E0031A852 /* UILogInMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A0610F69C83E0031A852 /* UILogInMgr.m */; };
 		0565D5310F884D35002C950E /* UIImage+AvatarHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0565D5300F884D35002C950E /* UIImage+AvatarHelpers.m */; };
 		05951F2C0F7E91BD00B86921 /* Gravatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951F2B0F7E91BD00B86921 /* Gravatar.m */; };
-		05951F2F0F7E931100B86921 /* WebServiceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951F2E0F7E931100B86921 /* WebServiceApi.m */; };
-		05951F510F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951F500F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.m */; };
 		05951F9D0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951F9C0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.m */; };
 		05951FF30F7EC9D100B86921 /* NSString+CryptoAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951FF20F7EC9D100B86921 /* NSString+CryptoAdditions.m */; };
 		0599363C0F6975A80005B934 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059936380F6975A80005B934 /* MainWindow.xib */; };
@@ -63,7 +62,6 @@
 		05B9908E0F7080940039602B /* RepoActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B9908D0F7080940039602B /* RepoActivityTableViewCell.m */; };
 		05B990A50F70886E0039602B /* RepoDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B990A40F70886E0039602B /* RepoDisplayMgr.m */; };
 		05BAED710F7BFEF200BD8BAD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05BAED6F0F7BFEF200BD8BAD /* Localizable.strings */; };
-		05BB60D00F6B23710005A635 /* GitHubApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 05BB60CF0F6B23710005A635 /* GitHubApi.m */; };
 		05C9E7D70F85277400F7C62E /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7C50F85277400F7C62E /* CXMLDocument.m */; };
 		05C9E7D80F85277400F7C62E /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7C70F85277400F7C62E /* CXMLDocument_CreationExtensions.m */; };
 		05C9E7D90F85277400F7C62E /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7C90F85277400F7C62E /* CXMLDocument_PrivateExtensions.m */; };
@@ -177,8 +175,6 @@
 		051CDCE00F6C0D140049D2BD /* JsonGitHubApiParserImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JsonGitHubApiParserImpl.h; path = github/JsonGitHubApiParserImpl.h; sourceTree = "<group>"; };
 		051CDCE10F6C0D140049D2BD /* JsonGitHubApiParserImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JsonGitHubApiParserImpl.m; path = github/JsonGitHubApiParserImpl.m; sourceTree = "<group>"; };
 		051CDCE40F6C0EAF0049D2BD /* GitHubDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubDelegate.h; path = github/GitHubDelegate.h; sourceTree = "<group>"; };
-		051CDD270F6C263A0049D2BD /* GitHubApiRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiRequest.h; path = github/GitHubApiRequest.h; sourceTree = "<group>"; };
-		051CDD280F6C263A0049D2BD /* GitHubApiRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubApiRequest.m; path = github/GitHubApiRequest.m; sourceTree = "<group>"; };
 		051CDD2A0F6C29690049D2BD /* NSString+NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSDataAdditions.h"; sourceTree = "<group>"; };
 		051CDD2B0F6C29690049D2BD /* NSString+NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSDataAdditions.m"; sourceTree = "<group>"; };
 		051CDD3D0F6C33FE0049D2BD /* NSString+UrlAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UrlAdditions.h"; sourceTree = "<group>"; };
@@ -221,6 +217,11 @@
 		0534203F0F69EBC4000EECB1 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		053420770F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+CodeWatchAdditions.h"; sourceTree = "<group>"; };
 		053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+CodeWatchAdditions.m"; sourceTree = "<group>"; };
+		05378FDD0F98F88200CE4C19 /* WebServiceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebServiceApi.h; path = "web-service/WebServiceApi.h"; sourceTree = "<group>"; };
+		05378FDE0F98F88200CE4C19 /* WebServiceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebServiceApi.m; path = "web-service/WebServiceApi.m"; sourceTree = "<group>"; };
+		05378FDF0F98F88200CE4C19 /* WebServiceApiDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebServiceApiDelegate.h; path = "web-service/WebServiceApiDelegate.h"; sourceTree = "<group>"; };
+		05378FE20F98FCB000CE4C19 /* NSURLRequest+WebServiceApiAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURLRequest+WebServiceApiAdditions.h"; path = "web-service/NSURLRequest+WebServiceApiAdditions.h"; sourceTree = "<group>"; };
+		05378FE30F98FCB000CE4C19 /* NSURLRequest+WebServiceApiAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURLRequest+WebServiceApiAdditions.m"; path = "web-service/NSURLRequest+WebServiceApiAdditions.m"; sourceTree = "<group>"; };
 		053B7B3D0F700C3B0084B219 /* NSError+InstantiationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+InstantiationAdditions.h"; sourceTree = "<group>"; };
 		053B7B3E0F700C3B0084B219 /* NSError+InstantiationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+InstantiationAdditions.m"; sourceTree = "<group>"; };
 		053B7B5F0F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+NetworkActivityIndicatorAdditions.h"; sourceTree = "<group>"; };
@@ -259,11 +260,6 @@
 		0565D5300F884D35002C950E /* UIImage+AvatarHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+AvatarHelpers.m"; sourceTree = "<group>"; };
 		05951F2A0F7E91BD00B86921 /* Gravatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gravatar.h; path = gravatar/Gravatar.h; sourceTree = "<group>"; };
 		05951F2B0F7E91BD00B86921 /* Gravatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gravatar.m; path = gravatar/Gravatar.m; sourceTree = "<group>"; };
-		05951F2D0F7E931100B86921 /* WebServiceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebServiceApi.h; path = gravatar/WebServiceApi.h; sourceTree = "<group>"; };
-		05951F2E0F7E931100B86921 /* WebServiceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebServiceApi.m; path = gravatar/WebServiceApi.m; sourceTree = "<group>"; };
-		05951F320F7E99A100B86921 /* WebServiceApiDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebServiceApiDelegate.h; path = gravatar/WebServiceApiDelegate.h; sourceTree = "<group>"; };
-		05951F4F0F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURLRequest+WebServiceApiAdditions.h"; path = "gravatar/NSURLRequest+WebServiceApiAdditions.h"; sourceTree = "<group>"; };
-		05951F500F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURLRequest+WebServiceApiAdditions.m"; path = "gravatar/NSURLRequest+WebServiceApiAdditions.m"; sourceTree = "<group>"; };
 		05951F9B0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+NonRetainedKeyAdditions.h"; path = "gravatar/NSDictionary+NonRetainedKeyAdditions.h"; sourceTree = "<group>"; };
 		05951F9C0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+NonRetainedKeyAdditions.m"; path = "gravatar/NSDictionary+NonRetainedKeyAdditions.m"; sourceTree = "<group>"; };
 		05951FF10F7EC9D100B86921 /* NSString+CryptoAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+CryptoAdditions.h"; path = "crypto/NSString+CryptoAdditions.h"; sourceTree = "<group>"; };
@@ -291,8 +287,6 @@
 		05B990A80F708B660039602B /* RepoSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoSelector.h; path = repo/RepoSelector.h; sourceTree = "<group>"; };
 		05B990C10F7154640039602B /* UserViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewControllerDelegate.h; sourceTree = "<group>"; };
 		05BAED700F7BFEF200BD8BAD /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		05BB60CE0F6B23710005A635 /* GitHubApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApi.h; path = github/GitHubApi.h; sourceTree = "<group>"; };
-		05BB60CF0F6B23710005A635 /* GitHubApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubApi.m; path = github/GitHubApi.m; sourceTree = "<group>"; };
 		05C9E7C40F85277400F7C62E /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
 		05C9E7C50F85277400F7C62E /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
 		05C9E7C60F85277400F7C62E /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
@@ -629,6 +623,18 @@
 			path = shared;
 			sourceTree = "<group>";
 		};
+		05378FD00F98F85800CE4C19 /* web-service */ = {
+			isa = PBXGroup;
+			children = (
+				05378FDD0F98F88200CE4C19 /* WebServiceApi.h */,
+				05378FDE0F98F88200CE4C19 /* WebServiceApi.m */,
+				05378FDF0F98F88200CE4C19 /* WebServiceApiDelegate.h */,
+				05378FE20F98FCB000CE4C19 /* NSURLRequest+WebServiceApiAdditions.h */,
+				05378FE30F98FCB000CE4C19 /* NSURLRequest+WebServiceApiAdditions.m */,
+			);
+			name = "web-service";
+			sourceTree = "<group>";
+		};
 		0560A0580F69C83E0031A852 /* app-controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -680,11 +686,6 @@
 				05951F2A0F7E91BD00B86921 /* Gravatar.h */,
 				05951F2B0F7E91BD00B86921 /* Gravatar.m */,
 				059520060F7ECBD900B86921 /* GravatarDelegate.h */,
-				05951F2D0F7E931100B86921 /* WebServiceApi.h */,
-				05951F2E0F7E931100B86921 /* WebServiceApi.m */,
-				05951F320F7E99A100B86921 /* WebServiceApiDelegate.h */,
-				05951F4F0F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.h */,
-				05951F500F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.m */,
 				05951F9B0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.h */,
 				05951F9C0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.m */,
 			);
@@ -734,10 +735,6 @@
 				051CDCDC0F6C0CEC0049D2BD /* GitHub.h */,
 				051CDCDD0F6C0CEC0049D2BD /* GitHub.m */,
 				051CDCE40F6C0EAF0049D2BD /* GitHubDelegate.h */,
-				05BB60CE0F6B23710005A635 /* GitHubApi.h */,
-				05BB60CF0F6B23710005A635 /* GitHubApi.m */,
-				051CDD270F6C263A0049D2BD /* GitHubApiRequest.h */,
-				051CDD280F6C263A0049D2BD /* GitHubApiRequest.m */,
 				054C06560F6F07EB00999FEA /* GitHubApiFormat.h */,
 				05B98F440F7053EF0039602B /* GitHubApiVersion.h */,
 				05F4CF2D0F6C5ECB00B107BB /* GitHubApiParser.h */,
@@ -803,6 +800,7 @@
 				91BA446E0F86835200E42100 /* web */,
 				91B889150F8002DB00215C8B /* search */,
 				91E25E5B0F79B81300E1594E /* favorite-users */,
+				05378FD00F98F85800CE4C19 /* web-service */,
 				91F89B3B0F705EB300993921 /* news-feed */,
 				05BB60AA0F6B20F40005A635 /* github */,
 				05951F1B0F7E914C00B86921 /* gravatar */,
@@ -1212,10 +1210,8 @@
 				9127DD040F6B1065009CDBD5 /* UserViewController.m in Sources */,
 				9127DDC30F6C25C1009CDBD5 /* UserInfo.m in Sources */,
 				051FBA900F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m in Sources */,
-				05BB60D00F6B23710005A635 /* GitHubApi.m in Sources */,
 				051CDCDE0F6C0CEC0049D2BD /* GitHub.m in Sources */,
 				051CDCE20F6C0D140049D2BD /* JsonGitHubApiParserImpl.m in Sources */,
-				051CDD290F6C263A0049D2BD /* GitHubApiRequest.m in Sources */,
 				051CDD2C0F6C29690049D2BD /* NSString+NSDataAdditions.m in Sources */,
 				051CDD3F0F6C33FE0049D2BD /* NSString+UrlAdditions.m in Sources */,
 				05F4CF2F0F6C5ECB00B107BB /* GitHubApiParser.m in Sources */,
@@ -1261,8 +1257,6 @@
 				055DF4B30F7B08F1003A8D94 /* DiffViewController.m in Sources */,
 				91C248440F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m in Sources */,
 				05951F2C0F7E91BD00B86921 /* Gravatar.m in Sources */,
-				05951F2F0F7E931100B86921 /* WebServiceApi.m in Sources */,
-				05951F510F7E9B7D00B86921 /* NSURLRequest+WebServiceApiAdditions.m in Sources */,
 				05951F9D0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.m in Sources */,
 				05951FF30F7EC9D100B86921 /* NSString+CryptoAdditions.m in Sources */,
 				913693DE0F7E7BA00054E512 /* FavoriteReposViewController.m in Sources */,
@@ -1317,6 +1311,8 @@
 				91D8BDBB0F8BB02F0041EC91 /* UIState.m in Sources */,
 				91D8BDD00F8BB3810041EC91 /* UIStatePersistenceStore.m in Sources */,
 				91806BC60F95333B00F08005 /* NSString+WebViewAdditions.m in Sources */,
+				05378FE00F98F88200CE4C19 /* WebServiceApi.m in Sources */,
+				05378FE40F98FCB000CE4C19 /* NSURLRequest+WebServiceApiAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
