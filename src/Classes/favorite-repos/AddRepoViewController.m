@@ -192,7 +192,8 @@ enum HelpSection
     }
     
     self.navigationItem.rightBarButtonItem.enabled =
-        [self checkValidityUsername:username repoName:repoName];
+        [self checkValidityUsername:[username lowercaseString]
+        repoName:[repoName lowercaseString]];
     
     return YES;
 }
@@ -205,8 +206,8 @@ enum HelpSection
         [repoNameTextField becomeFirstResponder];
     else {
         BOOL validInput =
-            [self checkValidityUsername:usernameTextField.text
-            repoName:repoNameTextField.text];
+            [self checkValidityUsername:[usernameTextField.text lowercaseString]
+            repoName:[repoNameTextField.text lowercaseString]];
         
         if (validInput)
             [self userDidSave];
@@ -227,8 +228,8 @@ enum HelpSection
 - (void)userDidSave
 {
     self.helpCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSString * username = usernameTextField.text;
-    NSString * repoName = repoNameTextField.text;
+    NSString * username = [usernameTextField.text lowercaseString];
+    NSString * repoName = [repoNameTextField.text lowercaseString];
     
     [self updateUIForCommunicating];
     [delegate userProvidedUsername:username repoName:repoName];
