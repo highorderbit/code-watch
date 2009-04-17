@@ -60,6 +60,8 @@
     
     BOOL gitHubFailure;
     BOOL avatarFailure;
+
+    BOOL waitingForNewsFeedRefresh;
 }
 
 @property (nonatomic, retain) NSObject<NewsFeedDisplayMgrDelegate> * delegate;

@@ -135,6 +135,8 @@
 
         [[self networkAwareViewController].navigationItem
             setRightBarButtonItem:refreshButton animated:NO];
+
+        waitingForNewsFeedRefresh = NO;
     }
 
     return self;
@@ -147,6 +149,7 @@
 
 - (void)requestRefreshDisplay
 {
+    waitingForNewsFeedRefresh = NO;
     [delegate userDidRequestRefresh];
 }
 
@@ -164,10 +167,13 @@
             setNoConnectionText:
             NSLocalizedString(@"nodata.noconnection.text", @"")];
 
-        [newsFeedService fetchNewsFeedForPrimaryUser];
+        if (!waitingForNewsFeedRefresh) {
+            [newsFeedService fetchNewsFeedForPrimaryUser];
+            waitingForNewsFeedRefresh = YES;
 
-        [[self networkAwareViewController]
-            setUpdatingState:kConnectedAndUpdating];    
+            [[self networkAwareViewController]
+                setUpdatingState:kConnectedAndUpdating];    
+        }
 
         NSArray * cachedRssItems = [newsFeedCacheReader primaryUserNewsFeed];
         [self updateDisplay:cachedRssItems];
@@ -192,10 +198,13 @@
 {
     self.username = user;
 
-    [newsFeedService fetchActivityFeedForUsername:user];
+    if (!waitingForNewsFeedRefresh) {
+        [newsFeedService fetchActivityFeedForUsername:user];
+        waitingForNewsFeedRefresh = YES;
 
-    [[self networkAwareViewController]
-     setUpdatingState:kConnectedAndUpdating];    
+        [[self networkAwareViewController]
+            setUpdatingState:kConnectedAndUpdating];
+    }
 
     NSArray * cachedRssItems =
         [newsFeedCacheReader activityFeedForUsername:user];
@@ -213,7 +222,6 @@
         setNoConnectionText:
         NSLocalizedString(@"nodata.noconnection.text", @"")];
 
-    //NSArray * rssItems = [self cachedNewsFeedForUsername:username];
     if (cachedRssItems && cachedRssItems.count > 0) {
         NSDictionary * avatars = [self cachedAvatarsForRssItems:cachedRssItems];
         [[self newsFeedViewController] updateRssItems:cachedRssItems];
@@ -318,6 +326,8 @@
     [[self networkAwareViewController]
         setUpdatingState:kConnectedAndNotUpdating];
     [[self networkAwareViewController] setCachedDataAvailable:YES];
+
+    waitingForNewsFeedRefresh = NO;
 }
 
 - (void)failedToFetchActivityFeedForUsername:(NSString *)user
@@ -338,6 +348,8 @@
 
         [[self networkAwareViewController] setUpdatingState:kDisconnected];
     }
+
+    waitingForNewsFeedRefresh = NO;
 }
 
 #pragma mark GravatarServiceDelegate implementation

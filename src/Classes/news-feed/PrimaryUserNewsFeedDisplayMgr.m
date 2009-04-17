@@ -37,7 +37,7 @@
                                    gitHubService:aGitHubService
                                  gravatarService:aGravatarService];
 
-    networkAwareViewController.delegate = self;
+    networkAwareViewController.delegate = spr;
 
     return self = spr;
 }
