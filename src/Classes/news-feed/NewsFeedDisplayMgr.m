@@ -240,36 +240,15 @@
 {
     [self setSelectedRssItem:rssItem];
 
-    if ([rssItem.type isEqualToString:@"WatchEvent"]) {
-        RepoKey * repoKey = [rssItem repoKey];
+    [[self newsFeedItemViewController] updateWithRssItem:rssItem];
+    UIImage * avatar = [self cachedAvatarForUsername:rssItem.author];
+    [[self newsFeedItemViewController] updateWithAvatar:avatar];
 
-        if (repoKey)
-            [repoSelector user:repoKey.username didSelectRepo:repoKey.repoName];
-        else {
-            NSLog(@"Failed to parse RSS item: '%@'.", rssItem);
-            NSString * title =
-                NSLocalizedString(@"newsfeed.item.display.failed.title", @"");
-            NSString * message =
-                NSLocalizedString(@"newsfeed.item.parse.failed.message", @"");
-
-            UIAlertView * alertView =
-                [UIAlertView simpleAlertViewWithTitle:title
-                                              message:message];
-            [alertView show];
-
-            [[self newsFeedViewController] viewWillAppear:NO];
-        }
-    } else {
-        [[self newsFeedItemViewController] updateWithRssItem:rssItem];
-        UIImage * avatar = [self cachedAvatarForUsername:rssItem.author];
-        [[self newsFeedItemViewController] updateWithAvatar:avatar];
-
-        [navigationController
-            pushViewController:[self newsFeedItemViewController]
-            animated:YES];
-    }
-    
     [newsFeedItemViewController scrollToTop];
+
+    [navigationController
+        pushViewController:[self newsFeedItemViewController]
+        animated:YES];
 }
 
 #pragma mark NewsFeedItemViewControllerDelegate implementation
