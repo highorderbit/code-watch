@@ -368,14 +368,14 @@ enum
 
 - (void)updateWithAvatar:(UIImage *)anAvatar
 {
-    [self setAvatar:anAvatar];
+    [self setAvatar:anAvatar ? anAvatar : [UIImage imageUnavailableImage]];
 
     [self updateDisplay];
 }
 
 - (void)updateDisplay
 {
-    avatarImageView.image = avatar ? avatar : [UIImage imageUnavailableImage];
+    avatarImageView.image = avatar;
 
     NSString * committerName =
         [[commitInfo.details objectForKey:@"committer"] objectForKey:@"name"];
