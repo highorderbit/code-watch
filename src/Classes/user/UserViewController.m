@@ -208,13 +208,17 @@ enum Section
     willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = [self effectiveSectionForSection:indexPath.section];
-    NSString * detailKey =
-        [[nonFeaturedDetails allKeys] objectAtIndex:indexPath.row];
 
-    return section == kUserDetailsSection &&
-        ![detailKey isEqual:[[self class] blogKey]] ?
-        nil :
-        indexPath;
+    if (section == kUserDetailsSection) {
+        NSString * detailKey =
+            [[nonFeaturedDetails allKeys] objectAtIndex:indexPath.row];
+        return
+            ![detailKey isEqual:[[self class] blogKey]] ?
+            nil :
+            indexPath;
+    }
+
+    return indexPath;
 }
 
 - (void)tableView:(UITableView *)tv
