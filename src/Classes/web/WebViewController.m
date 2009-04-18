@@ -25,8 +25,8 @@
             // enable us to embed CSS or image files into the HTML later if
             // desired without any additional code.
             NSString * path = [[NSBundle mainBundle] bundlePath];
-            NSURL * url = [NSURL URLWithString:path];
-    
+            NSURL * url = [NSURL fileURLWithPath:path];
+
             [webView loadHTMLString:html baseURL:url];
         } else
             NSLog(@"Failed to load html file.");
