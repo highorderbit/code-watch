@@ -180,9 +180,11 @@
 
 - (UINavigationController *)navigationController
 {
-    if (!navigationController)
+    if (!navigationController) {
         navigationController = [[UINavigationController alloc]
             initWithRootViewController:self.logInViewController];
+        navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    }
 
     return navigationController;
 }
