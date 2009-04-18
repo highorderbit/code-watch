@@ -137,7 +137,8 @@
     [networkAwareViewController setCachedDataAvailable:YES];
 }
 
-- (void)failedToFetchInfoForUsername:(NSString *)aUsername error:(NSError *)error
+- (void)failedToFetchInfoForUsername:(NSString *)aUsername
+                               error:(NSError *)error
 {
     if (!gitHubFailure) {
         gitHubFailure = YES;
