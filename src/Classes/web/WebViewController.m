@@ -27,6 +27,8 @@
             NSString * path = [[NSBundle mainBundle] bundlePath];
             NSURL * url = [NSURL fileURLWithPath:path];
 
+            webView.delegate = self;
+    
             [webView loadHTMLString:html baseURL:url];
         } else
             NSLog(@"Failed to load html file.");
@@ -40,6 +42,22 @@
     // Resize the web view to account for the prompt removal
     // ...there must be a better way
     self.view.frame = CGRectMake(0, 0, 320, 416);
+}
+
+#pragma mark UIWebViewDelegate implementation
+
+- (BOOL)webView:(UIWebView *)webView
+    shouldStartLoadWithRequest:(NSURLRequest *)request
+    navigationType:(UIWebViewNavigationType)navigationType
+{
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        NSURL * url = [request URL];
+        [[UIApplication sharedApplication] openURL:url];
+
+        return NO;
+    }
+
+    return YES;
 }
 
 @end
