@@ -132,11 +132,9 @@
 
 - (UINavigationController *)navigationController
 {
-    if (!navigationController) {
+    if (!navigationController)
         navigationController = [[UINavigationController alloc]
             initWithRootViewController:self.addUserViewController];
-        navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    }
 
     return navigationController;
 }

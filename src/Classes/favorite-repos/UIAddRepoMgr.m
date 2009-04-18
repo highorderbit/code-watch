@@ -126,11 +126,9 @@
 
 - (UINavigationController *)navigationController
 {
-    if (!navigationController) {
+    if (!navigationController)
         navigationController = [[UINavigationController alloc]
             initWithRootViewController:self.addRepoViewController];
-        navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    }
 
     return navigationController;
 }

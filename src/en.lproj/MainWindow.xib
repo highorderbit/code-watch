@@ -37,13 +37,11 @@
 				<string key="NSFrameSize">{320, 480}</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MCAwIDAAA</bytes>
+					<bytes key="NSRGB">MSAxIDEAA</bytes>
 				</object>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
-					<int key="IBUIStatusBarStyle">2</int>
-				</object>
+				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<bool key="IBUIVisibleAtLaunch">YES</bool>
 			</object>
 			<object class="IBUICustomObject" id="174296820"/>
@@ -67,7 +65,6 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<int key="IBUIBarStyle">1</int>
 					</object>
 					<object class="NSMutableArray" key="IBUIViewControllers">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -104,7 +101,6 @@
 							<bool key="IBUIOpaque">NO</bool>
 							<bool key="IBUIClipsSubviews">YES</bool>
 							<bool key="IBUIMultipleTouchEnabled">YES</bool>
-							<int key="IBUIBarStyle">1</int>
 						</object>
 						<object class="NSMutableArray" key="IBUIViewControllers">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -138,7 +134,6 @@
 							<bool key="IBUIOpaque">NO</bool>
 							<bool key="IBUIClipsSubviews">YES</bool>
 							<bool key="IBUIMultipleTouchEnabled">YES</bool>
-							<int key="IBUIBarStyle">1</int>
 						</object>
 						<object class="NSMutableArray" key="IBUIViewControllers">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -173,7 +168,6 @@
 							<bool key="IBUIOpaque">NO</bool>
 							<bool key="IBUIClipsSubviews">YES</bool>
 							<bool key="IBUIMultipleTouchEnabled">YES</bool>
-							<int key="IBUIBarStyle">1</int>
 						</object>
 						<object class="NSMutableArray" key="IBUIViewControllers">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -203,7 +197,6 @@
 							<bool key="IBUIOpaque">NO</bool>
 							<bool key="IBUIClipsSubviews">YES</bool>
 							<bool key="IBUIMultipleTouchEnabled">YES</bool>
-							<int key="IBUIBarStyle">1</int>
 						</object>
 						<object class="NSMutableArray" key="IBUIViewControllers">
 							<bool key="EncodedWithXMLCoder">YES</bool>

@@ -21,9 +21,6 @@
 
 - (void) applicationDidFinishLaunching:(UIApplication*) application
 {
-    [application
-        setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
-
     [window addSubview:tabBarController.view];
     [appController start];
 }
