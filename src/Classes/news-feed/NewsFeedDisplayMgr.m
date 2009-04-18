@@ -312,11 +312,11 @@
 - (void)failedToFetchActivityFeedForUsername:(NSString *)user
                                        error:(NSError *)error
 {
+    NSLog(@"Failed to retrieve news feed for username: '%@' error: '%@'.", user,
+        error);
+
     if (!gitHubFailure) {
         gitHubFailure = YES;
-        NSLog(@"Failed to retrieve news feed for username: '%@' error: '%@'.",
-            user, error);
-
         NSString * title =
             NSLocalizedString(@"github.newsfeedupdate.failed.alert.title", @"");
         UIAlertView * alertView =
@@ -380,9 +380,21 @@
 - (void)failedToFetchInfoForUsername:(NSString *)user
                                error:(NSError *)error
 {
-    // log the error, but otherwise ignore it; there's not much we can do
-
     NSLog(@"Failed to fetch info for user: '%@' error: '%@'.", user, error);
+
+    if (!gitHubFailure) {
+        gitHubFailure = YES;
+
+        NSString * title =
+            NSLocalizedString(@"github.userupdate.failed.alert.title", @"");
+        UIAlertView * alertView =
+            [UIAlertView simpleAlertViewWithTitle:title
+                                          message:error.localizedDescription];
+
+        [alertView show];
+
+        [[self networkAwareViewController] setUpdatingState:kDisconnected];
+    }
 }
 
 #pragma mark Working with avatars
