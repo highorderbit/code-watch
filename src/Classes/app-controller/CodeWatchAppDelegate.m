@@ -20,9 +20,9 @@
 
 - (void) applicationDidFinishLaunching:(UIApplication*) application
 {
-    // fix tab bar text
-    
-    
+    [application
+        setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
+
     [window addSubview:tabBarController.view];
     [appController start];
 }
