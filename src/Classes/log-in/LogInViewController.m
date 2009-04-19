@@ -104,8 +104,6 @@ enum HelpSection
     self.tokenCell.nameLabel.text =
         NSLocalizedString(@"login.token.label", @"");
 
-    [self.usernameCell.textField becomeFirstResponder];
-    
     [self promptForLogIn];
 }
 
@@ -251,6 +249,8 @@ enum HelpSection
     self.navigationItem.prompt = NSLocalizedString(@"login.view.prompt", @"");
     self.usernameCell.textField.enabled = YES;
     self.tokenCell.textField.enabled = YES;
+    [self.usernameCell.textField becomeFirstResponder];
+    
 }
 
 - (void)updateUIForCommunicating
