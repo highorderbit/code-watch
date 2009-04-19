@@ -45,6 +45,11 @@
 - (void)viewWillAppear
 {
     [super viewWillAppear];
+
+    // make sure that if the view is refreshed if application state
+    // changed (e.g. the user has logged out or logged in)
+    if (logInStateReader.login != username)
+        [self updateNewsFeed];
 }
 
 - (void)updateNewsFeed
