@@ -135,6 +135,8 @@
 
         [[self networkAwareViewController].navigationItem
             setRightBarButtonItem:refreshButton animated:NO];
+
+        waitingForNewsFeedRefresh = NO;
     }
 
     return self;
@@ -147,6 +149,7 @@
 
 - (void)requestRefreshDisplay
 {
+    waitingForNewsFeedRefresh = NO;
     [delegate userDidRequestRefresh];
 }
 
@@ -164,10 +167,13 @@
             setNoConnectionText:
             NSLocalizedString(@"nodata.noconnection.text", @"")];
 
-        [newsFeedService fetchNewsFeedForPrimaryUser];
+        if (!waitingForNewsFeedRefresh) {
+            [newsFeedService fetchNewsFeedForPrimaryUser];
+            waitingForNewsFeedRefresh = YES;
 
-        [[self networkAwareViewController]
-            setUpdatingState:kConnectedAndUpdating];    
+            [[self networkAwareViewController]
+                setUpdatingState:kConnectedAndUpdating];    
+        }
 
         NSArray * cachedRssItems = [newsFeedCacheReader primaryUserNewsFeed];
         [self updateDisplay:cachedRssItems];
@@ -192,10 +198,13 @@
 {
     self.username = user;
 
-    [newsFeedService fetchActivityFeedForUsername:user];
+    if (!waitingForNewsFeedRefresh) {
+        [newsFeedService fetchActivityFeedForUsername:user];
+        waitingForNewsFeedRefresh = YES;
 
-    [[self networkAwareViewController]
-     setUpdatingState:kConnectedAndUpdating];    
+        [[self networkAwareViewController]
+            setUpdatingState:kConnectedAndUpdating];
+    }
 
     NSArray * cachedRssItems =
         [newsFeedCacheReader activityFeedForUsername:user];
@@ -213,7 +222,6 @@
         setNoConnectionText:
         NSLocalizedString(@"nodata.noconnection.text", @"")];
 
-    //NSArray * rssItems = [self cachedNewsFeedForUsername:username];
     if (cachedRssItems && cachedRssItems.count > 0) {
         NSDictionary * avatars = [self cachedAvatarsForRssItems:cachedRssItems];
         [[self newsFeedViewController] updateRssItems:cachedRssItems];
@@ -232,36 +240,15 @@
 {
     [self setSelectedRssItem:rssItem];
 
-    if ([rssItem.type isEqualToString:@"WatchEvent"]) {
-        RepoKey * repoKey = [rssItem repoKey];
+    [[self newsFeedItemViewController] updateWithRssItem:rssItem];
+    UIImage * avatar = [self cachedAvatarForUsername:rssItem.author];
+    [[self newsFeedItemViewController] updateWithAvatar:avatar];
 
-        if (repoKey)
-            [repoSelector user:repoKey.username didSelectRepo:repoKey.repoName];
-        else {
-            NSLog(@"Failed to parse RSS item: '%@'.", rssItem);
-            NSString * title =
-                NSLocalizedString(@"newsfeed.item.display.failed.title", @"");
-            NSString * message =
-                NSLocalizedString(@"newsfeed.item.parse.failed.message", @"");
-
-            UIAlertView * alertView =
-                [UIAlertView simpleAlertViewWithTitle:title
-                                              message:message];
-            [alertView show];
-
-            [[self newsFeedViewController] viewWillAppear:NO];
-        }
-    } else {
-        [[self newsFeedItemViewController] updateWithRssItem:rssItem];
-        UIImage * avatar = [self cachedAvatarForUsername:rssItem.author];
-        [[self newsFeedItemViewController] updateWithAvatar:avatar];
-
-        [navigationController
-            pushViewController:[self newsFeedItemViewController]
-            animated:YES];
-    }
-    
     [newsFeedItemViewController scrollToTop];
+
+    [navigationController
+        pushViewController:[self newsFeedItemViewController]
+        animated:YES];
 }
 
 #pragma mark NewsFeedItemViewControllerDelegate implementation
@@ -318,16 +305,18 @@
     [[self networkAwareViewController]
         setUpdatingState:kConnectedAndNotUpdating];
     [[self networkAwareViewController] setCachedDataAvailable:YES];
+
+    waitingForNewsFeedRefresh = NO;
 }
 
 - (void)failedToFetchActivityFeedForUsername:(NSString *)user
                                        error:(NSError *)error
 {
+    NSLog(@"Failed to retrieve news feed for username: '%@' error: '%@'.", user,
+        error);
+
     if (!gitHubFailure) {
         gitHubFailure = YES;
-        NSLog(@"Failed to retrieve news feed for username: '%@' error: '%@'.",
-            user, error);
-
         NSString * title =
             NSLocalizedString(@"github.newsfeedupdate.failed.alert.title", @"");
         UIAlertView * alertView =
@@ -338,6 +327,8 @@
 
         [[self networkAwareViewController] setUpdatingState:kDisconnected];
     }
+
+    waitingForNewsFeedRefresh = NO;
 }
 
 #pragma mark GravatarServiceDelegate implementation
@@ -389,9 +380,21 @@
 - (void)failedToFetchInfoForUsername:(NSString *)user
                                error:(NSError *)error
 {
-    // log the error, but otherwise ignore it; there's not much we can do
-
     NSLog(@"Failed to fetch info for user: '%@' error: '%@'.", user, error);
+
+    if (!gitHubFailure) {
+        gitHubFailure = YES;
+
+        NSString * title =
+            NSLocalizedString(@"github.userupdate.failed.alert.title", @"");
+        UIAlertView * alertView =
+            [UIAlertView simpleAlertViewWithTitle:title
+                                          message:error.localizedDescription];
+
+        [alertView show];
+
+        [[self networkAwareViewController] setUpdatingState:kDisconnected];
+    }
 }
 
 #pragma mark Working with avatars

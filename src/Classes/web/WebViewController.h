@@ -4,7 +4,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WebViewController : UIViewController
+@interface WebViewController : UIViewController <UIWebViewDelegate>
 
 - (id)initWithHtmlFilename:(NSString *)htmlFilename;
 

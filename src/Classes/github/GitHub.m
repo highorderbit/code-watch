@@ -3,32 +3,26 @@
 //
 
 #import "GitHub.h"
-#import "GitHubApi.h"
-#import "GitHubApiRequest.h"
+#import "WebServiceApi.h"
 #import "GitHubApiParser.h"
 
 #import "NSString+NSDataAdditions.h"
+#import "NSDictionary+NonRetainedKeyAdditions.h"
 #import "NSError+InstantiationAdditions.h"
 
 @interface GitHub (Private)
-+ (GitHubApiRequest *)requestForUrl:(NSString *)urlString;
-+ (GitHubApiRequest *)requestForUrl:(NSString *)urlString
-                           username:(NSString *)username
-                              token:(NSString *)token;
+
+- (NSInvocation *)invocationForRequest:(NSURLRequest *)request;
+- (void)setInvocation:(NSInvocation *)invocation
+           forRequest:(NSURLRequest *)request;
+- (void)removeInvocationForRequest:(NSURLRequest *)request;
 
 - (NSString *)baseApiUrl;
-- (NSInvocation *)invocationForRequest:(GitHubApiRequest *)request;
-- (void)setInvocation:(NSInvocation *)invocation
-           forRequest:(GitHubApiRequest *)request;
-- (void)removeInvocationForRequest:(GitHubApiRequest *)request;
-
-+ (NSValue *)keyForRequest:(GitHubApiRequest *)request;
-+ (GitHubApiRequest *)requestFromKey:(NSValue *)key;
-
 - (void)setDelegate:(id<GitHubDelegate>)aDelegate;
 - (void)setBaseUrl:(NSURL *)url;
-- (void)setApi:(GitHubApi *)anApi;
+- (void)setApi:(WebServiceApi *)anApi;
 - (void)setParser:(GitHubApiParser *)aParser;
+
 @end
 
 @implementation GitHub
@@ -54,7 +48,8 @@
     if (self = [super init]) {
         [self setDelegate:aDelegate];
         [self setBaseUrl:url];
-        [self setApi:[[[GitHubApi alloc] initWithDelegate:self] autorelease]];
+        [self setApi:
+            [[[WebServiceApi alloc] initWithDelegate:self] autorelease]];
         [self setParser:[GitHubApiParser parserWithApiFormat:format]];
 
         apiFormat = format;
@@ -70,17 +65,17 @@
 
 - (void)fetchInfoForUsername:(NSString *)username token:(NSString *)token
 {
-    NSURL * url =
-        [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",
-            [self baseApiUrl], username]];
-    GitHubApiRequest * req;
+    NSString * url =
+        [NSString stringWithFormat:@"%@/%@", [self baseApiUrl], username];
 
-    if (token) {
-        NSDictionary * args = [NSDictionary dictionaryWithObjectsAndKeys:
-            username, @"login", token, @"token", nil];
-        req = [[GitHubApiRequest alloc] initWithBaseUrl:url arguments:args];
-    } else
-        req = [[GitHubApiRequest alloc] initWithBaseUrl:url];
+    NSDictionary * args =
+        token ?
+        [NSDictionary dictionaryWithObjectsAndKeys:
+        username, @"login", token, @"token", nil] :
+        nil;
+
+    NSURLRequest * req =
+        [NSURLRequest requestWithBaseUrlString:url getArguments:args];
 
     SEL sel = @selector(handleUserInfoResponse:toRequest:username:token:);
     NSMethodSignature * sig = [self methodSignatureForSelector:sel];
@@ -103,17 +98,18 @@
                 username:(NSString *)username
                    token:(NSString *)token
 {
-    NSURL * url = [NSURL URLWithString:
+    NSString * url =
         [NSString stringWithFormat:@"%@/%@/%@/commits/master",
-        [self baseApiUrl], username, repo]];
-    GitHubApiRequest * req;
+        [self baseApiUrl], username, repo];
 
-    if (token) {
-        NSDictionary * args = [NSDictionary dictionaryWithObjectsAndKeys:
-            username, @"login", token, @"token", nil];
-        req = [[GitHubApiRequest alloc] initWithBaseUrl:url arguments:args];
-    } else
-        req = [[GitHubApiRequest alloc] initWithBaseUrl:url];
+    NSDictionary * args =
+        token ?
+        [NSDictionary dictionaryWithObjectsAndKeys:
+        username, @"login", token, @"token", nil] :
+        nil;
+
+    NSURLRequest * req =
+        [NSURLRequest requestWithBaseUrlString:url getArguments:args];
 
     SEL sel = @selector(handleRepoResponse:toRequest:username:token:repo:);
     NSMethodSignature * sig = [self methodSignatureForSelector:sel];
@@ -136,11 +132,18 @@
                   username:(NSString *)username
                      token:(NSString *)token
 {
-    NSString * urlString = [NSString stringWithFormat:@"%@/%@/%@/commit/%@",
+    NSString * url =
+        [NSString stringWithFormat:@"%@/%@/%@/commit/%@",
         [self baseApiUrl], username, repo, commitKey];
 
-    GitHubApiRequest * req =
-        [[self class] requestForUrl:urlString username:username token:token];
+    NSDictionary * args =
+        token ?
+        [NSDictionary dictionaryWithObjectsAndKeys:
+        username, @"login", token, @"token", nil] :
+        nil;
+
+    NSURLRequest * req =
+        [NSURLRequest requestWithBaseUrlString:url getArguments:args];
 
     SEL sel =
         @selector(handleCommitResponse:toRequest:username:token:repo:commit:);
@@ -164,10 +167,11 @@
 
 - (void)search:(NSString *)searchString
 {
-    NSString * urlString = [NSString stringWithFormat:@"%@/search/%@",
+    NSString * url = [NSString stringWithFormat:@"%@/search/%@",
         [self baseApiUrl], searchString];
 
-    GitHubApiRequest * req = [[self class] requestForUrl:urlString];
+    NSURLRequest * req =
+        [NSURLRequest requestWithBaseUrlString:url getArguments:nil];
 
     SEL sel = @selector(handleSearchResults:toRequest:searchString:);
     NSMethodSignature * sig = [self methodSignatureForSelector:sel];
@@ -185,7 +189,7 @@
 
 #pragma mark GitHubApiDelegate functions
 
-- (void)request:(GitHubApiRequest *)request
+- (void)request:(NSURLRequest *)request
     didCompleteWithResponse:(NSData *)response
 {
     NSLog(@"Request: '%@' succeeded: received %d bytes in response.", request,
@@ -200,7 +204,7 @@
     [self removeInvocationForRequest:request];
 }
 
-- (void)request:(GitHubApiRequest *)request
+- (void)request:(NSURLRequest *)request
     didFailWithError:(NSError *)error
 {
     NSLog(@"Request: '%@' failed: '%@'.", request, error);
@@ -217,7 +221,7 @@
 #pragma mark Processing API responses
 
 - (void)handleUserInfoResponse:(id)response
-                     toRequest:(GitHubApiRequest *)request
+                     toRequest:(NSURLRequest *)request
                       username:(NSString *)username
                          token:(NSString *)token
 {
@@ -239,7 +243,7 @@
 }
 
 - (void)handleRepoResponse:(id)response
-                 toRequest:(GitHubApiRequest *)request
+                 toRequest:(NSURLRequest *)request
                   username:(NSString *)username
                      token:(NSString *)token
                       repo:(NSString *)repo
@@ -265,7 +269,7 @@
 }
 
 - (void)handleCommitResponse:(id)response
-                   toRequest:(GitHubApiRequest *)request
+                   toRequest:(NSURLRequest *)request
                     username:(NSString *)username
                        token:(NSString *)token
                         repo:(NSString *)repo
@@ -295,7 +299,7 @@
 }
 
 - (void)handleSearchResults:(id)response
-                  toRequest:(GitHubApiRequest *)request
+                  toRequest:(NSURLRequest *)request
                searchString:(NSString *)searchString
 {
     if ([response isKindOfClass:[NSError class]]) {
@@ -316,28 +320,6 @@
 }
 
 #pragma mark Functions to help with building API URLs
-
-+ (GitHubApiRequest *)requestForUrl:(NSString *)urlString
-{
-    return [[self class] requestForUrl:urlString username:nil token:nil];
-}
-
-+ (GitHubApiRequest *)requestForUrl:(NSString *)urlString
-                           username:(NSString *)username
-                              token:(NSString *)token
-{
-    NSURL * url = [NSURL URLWithString:urlString];
-
-    GitHubApiRequest * req;
-    if (token) {
-        NSDictionary * args = [NSDictionary dictionaryWithObjectsAndKeys:
-            username, @"login", token, @"token", nil];
-        req = [[GitHubApiRequest alloc] initWithBaseUrl:url arguments:args];
-    } else
-        req = [[GitHubApiRequest alloc] initWithBaseUrl:url];
-    
-    return req;
-}
 
 - (NSString *)baseApiUrl
 {
@@ -372,35 +354,20 @@
 
 #pragma mark Tracking requests
 
-- (NSInvocation *)invocationForRequest:(GitHubApiRequest *)request
+- (NSInvocation *)invocationForRequest:(NSURLRequest *)request
 {
-    NSValue * key = [[self class] keyForRequest:request];
-    return [requests objectForKey:key];
+    return [requests objectForNonRetainedKey:request];
 }
 
 - (void)setInvocation:(NSInvocation *)invocation
-           forRequest:(GitHubApiRequest *)request
+           forRequest:(NSURLRequest *)request
 {
-    NSValue * key = [[self class] keyForRequest:request];
-    [requests setObject:invocation forKey:key];
+    [requests setObject:invocation forNonRetainedKey:request];
 }
 
-- (void)removeInvocationForRequest:(GitHubApiRequest *)request
+- (void)removeInvocationForRequest:(NSURLRequest *)request
 {
-    NSValue * key = [[self class] keyForRequest:request];
-    [requests removeObjectForKey:key];
-
-    [request autorelease];
-}
-
-+ (NSValue *)keyForRequest:(GitHubApiRequest *)request
-{
-    return [NSValue valueWithNonretainedObject:request];
-}
-
-+ (GitHubApiRequest *)requestFromKey:(NSValue *)key
-{
-    return [key nonretainedObjectValue];
+    [requests removeObjectForNonRetainedKey:request];
 }
 
 #pragma mark Accessors
@@ -419,7 +386,7 @@
     baseUrl = url;
 }
 
-- (void)setApi:(GitHubApi *)anApi
+- (void)setApi:(WebServiceApi *)anApi
 {
     [anApi retain];
     [api release];

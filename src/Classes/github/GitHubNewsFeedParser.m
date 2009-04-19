@@ -43,7 +43,7 @@
     if (error) return nil;
 
     NSArray * entries = [xmlDoc nodesForXPath:@"//entry" error:&error];
-    if (error || entries.count == 0) return nil;
+    if (error) return nil;
 
     NSMutableArray * newsItems =
         [NSMutableArray arrayWithCapacity:entries.count];

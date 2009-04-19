@@ -168,7 +168,7 @@ enum HelpSection
             withString:string];
 
         self.navigationItem.rightBarButtonItem.enabled =
-            [self checkUsernameValid:text];
+            [self checkUsernameValid:[text lowercaseString]];
     }
     
     return YES;
@@ -176,7 +176,7 @@ enum HelpSection
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if ([self checkUsernameValid:textField.text])
+    if ([self checkUsernameValid:[textField.text lowercaseString]])
         [self userDidSave];
 
     return NO;
@@ -197,7 +197,7 @@ enum HelpSection
     self.helpCell.selectionStyle = UITableViewCellSelectionStyleNone;
     [self updateUIForCommunicating];
             
-    NSString * username = usernameTextField.text;
+    NSString * username = [usernameTextField.text lowercaseString];
     [delegate userProvidedUsername:username];
 }
 
@@ -212,7 +212,7 @@ enum HelpSection
 - (void)promptForUsername
 {
     self.navigationItem.rightBarButtonItem.enabled =
-        [self checkUsernameValid:usernameTextField.text];
+        [self checkUsernameValid:[usernameTextField.text lowercaseString]];
     self.navigationItem.prompt = NSLocalizedString(@"adduser.view.prompt", @"");
     self.usernameCell.textField.enabled = YES;
 }

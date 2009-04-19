@@ -248,6 +248,11 @@
 
     [self setCommits:newCommits];
 
+    // update display with commits
+    [repoViewController updateWithCommits:commits
+                                  forRepo:repoName
+                                     info:repoInfo];
+
     // update display with cached avatars
     NSSet * emails = [self uniqueEmailsForCommits:commits];
     NSDictionary * cachedAvatars = [self cachedAvatarsForEmailAddresses:emails];
@@ -256,13 +261,13 @@
         [repoViewController updateWithAvatar:avatar forEmailAddress:email];
     }
 
-    // refresh avatars
-    [self fetchAvatarsForEmailAddresses:emails];
+    if (emails.count > 0)
+        [self fetchAvatarsForEmailAddresses:emails];
 
-    [repoViewController updateWithCommits:commits
-                                  forRepo:repoName
-                                     info:repoInfo];
-
+    // We set the state to connected and updating even though we might be
+    // fetching avatars because we don't track the avatars that we're
+    // waiting for and update the display after they've all been received.
+    // Consider refactoring to provide the correct display later.
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];
 }

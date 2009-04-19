@@ -36,6 +36,8 @@
     NSString * featuredDetail2Key;
     
     NSMutableDictionary * nonFeaturedDetails;
+
+    UIImage * avatar;
 }
 
 @property (nonatomic, retain) NSObject<UserViewControllerDelegate> * delegate;

@@ -23,6 +23,7 @@ enum Section
 - (NSInteger)effectiveSectionForSection:(NSInteger)section;
 - (UITableViewCell *)createCellForSection:(NSInteger)section;
 - (NSString *)reuseIdentifierForSection:(NSInteger)section;
+- (void)setAvatar:(UIImage *)anAvatar;
 + (NSString *)blogKey;
 + (NSString *)companyKey;
 + (NSString *)emailKey;
@@ -61,6 +62,8 @@ enum Section
     [userInfo release];
     
     [nonFeaturedDetails release];
+
+    [avatar release];
     
     [super dealloc];
 }
@@ -112,6 +115,8 @@ enum Section
     // the logout action sheet is shown
     self.tableView.contentInset = UIEdgeInsetsZero;
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
+
+    avatarView.image = avatar;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -213,13 +218,17 @@ enum Section
     willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = [self effectiveSectionForSection:indexPath.section];
-    NSString * detailKey =
-        [[nonFeaturedDetails allKeys] objectAtIndex:indexPath.row];
 
-    return section == kUserDetailsSection &&
-        ![detailKey isEqual:[[self class] blogKey]] ?
-        nil :
-        indexPath;
+    if (section == kUserDetailsSection) {
+        NSString * detailKey =
+            [[nonFeaturedDetails allKeys] objectAtIndex:indexPath.row];
+        return
+            ![detailKey isEqual:[[self class] blogKey]] ?
+            nil :
+            indexPath;
+    }
+
+    return indexPath;
 }
 
 - (void)tableView:(UITableView *)tv
@@ -227,24 +236,27 @@ enum Section
 {
     NSInteger effectiveSection =
         [self effectiveSectionForSection:indexPath.section];
-    NSString * repo = [userInfo.repoKeys objectAtIndex:indexPath.row];
-    NSString * detailKey =
-        [[nonFeaturedDetails allKeys] objectAtIndex:indexPath.row];
-    NSString * detailValue = [nonFeaturedDetails objectForKey:detailKey];
     switch (effectiveSection) {
         case kRepoSection:
-            [delegate userDidSelectRepo:repo];
+            [delegate userDidSelectRepo:
+                [userInfo.repoKeys objectAtIndex:indexPath.row]];
             break;
         case kRecentActivitySection:
             [delegate userDidSelectRecentActivity];
             break;
-        case kUserDetailsSection:
+        case kUserDetailsSection: {
+            NSString * detailKey =
+                [[nonFeaturedDetails allKeys] objectAtIndex:indexPath.row];
+            NSString * detailValue =
+                [nonFeaturedDetails objectForKey:detailKey];
+
             if ([detailKey isEqual:[[self class] blogKey]]) {
                 NSLog(@"Opening blog in Safari: %@", detailValue);
                 NSURL * url = [NSURL URLWithString:detailValue];
                 [[UIApplication sharedApplication] openURL:url];
             }
             break;
+        }
     }
 }
 
@@ -270,9 +282,11 @@ enum Section
     [self.tableView reloadData];
 }
 
-- (void)updateWithAvatar:(UIImage *)avatar
+- (void)updateWithAvatar:(UIImage *)anAvatar
 {
-    avatarView.image = avatar ? avatar : [UIImage imageUnavailableImage];
+    [self setAvatar:anAvatar ? anAvatar : [UIImage imageUnavailableImage]];
+
+    avatarView.image = avatar;
 }
 
 - (void)setFeaturedDetail1Key:(NSString *)key
@@ -291,11 +305,6 @@ enum Section
     featuredDetail2Key = key;
     
     [self updateNonFeaturedDetails];
-}
-
-- (void)setAvatarFilename:(NSString *)filename
-{
-    avatarView.image = [UIImage imageNamed:filename];
 }
 
 #pragma mark Helper methods
@@ -405,6 +414,13 @@ enum Section
 - (void)scrollToTop
 {
     [self.tableView scrollRectToVisible:self.tableView.frame animated:NO];
+}
+
+- (void)setAvatar:(UIImage *)anAvatar
+{
+    UIImage * tmp = [anAvatar retain];
+    [avatar release];
+    avatar = tmp;
 }
 
 #pragma mark User detail keys

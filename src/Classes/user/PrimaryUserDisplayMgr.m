@@ -121,6 +121,8 @@
     NSString * email = [info.details objectForKey:@"email"];
     if (email)
         [gravatarService fetchAvatarForEmailAddress:email];
+    else
+        [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error

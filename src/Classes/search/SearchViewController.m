@@ -167,6 +167,7 @@ static const CGFloat IPHONE_WIDTH = 320;
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    searchText = [searchText lowercaseString];
     NSLog(@"Searching service for '%@'...", searchText);
     [searchService searchForText:searchText];
 }
@@ -187,7 +188,7 @@ static const CGFloat IPHONE_WIDTH = 320;
     [self refreshView];
     loadingLabel.hidden = NO;
     [activityIndicator startAnimating];
-    [searchService searchForText:searchBar.text];
+    [searchService searchForText:[searchBar.text lowercaseString]];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar

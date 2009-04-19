@@ -104,8 +104,6 @@ enum HelpSection
     self.tokenCell.nameLabel.text =
         NSLocalizedString(@"login.token.label", @"");
 
-    [self.usernameCell.textField becomeFirstResponder];
-    
     [self promptForLogIn];
 }
 
@@ -189,7 +187,7 @@ enum HelpSection
             stringByReplacingCharactersInRange:range withString:string];
 
         // TODO: For testing only; remove when appropriate
-        NSString * user = usernameTextField.text;
+        NSString * user = [usernameTextField.text lowercaseString];
         if ([user isEqual:@"jad"] && [token isEqual:@"898"]) {
             textField.text = @"898dd101a9c690b6d48f91187d8c4652";
             return NO;
@@ -228,7 +226,7 @@ enum HelpSection
 {
     self.helpCell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    NSString * username = usernameTextField.text;
+    NSString * username = [usernameTextField.text lowercaseString];
     NSString * token =
         tokenTextField.text.length > 0 ? tokenTextField.text : nil;
 
@@ -251,6 +249,8 @@ enum HelpSection
     self.navigationItem.prompt = NSLocalizedString(@"login.view.prompt", @"");
     self.usernameCell.textField.enabled = YES;
     self.tokenCell.textField.enabled = YES;
+    [self.usernameCell.textField becomeFirstResponder];
+    
 }
 
 - (void)updateUIForCommunicating

@@ -9,6 +9,25 @@ h3 {
     margin-bottom: -40px;
 }
 
+a,
+a:visited,
+a:active,
+a:hover {
+    text-decoration: none;
+}
+
 p.example {
     color: #2a385b;
+}
+
+img.token-screenshot {
+    /* Native size: 549x289 */
+    width: 823.5px;
+    height: 433.5px;
+}
+
+img.centered {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }

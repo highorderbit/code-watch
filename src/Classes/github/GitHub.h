@@ -7,11 +7,11 @@
 #import "GitHubApiFormat.h"
 #import "GitHubApiVersion.h"
 
-#import "GitHubApiDelegate.h"
+#import "WebServiceApiDelegate.h"
 
-@class GitHubApi, GitHubApiRequest, GitHubApiParser;
+@class WebServiceApi, GitHubApiParser;
 
-@interface GitHub : NSObject <GitHubApiDelegate>
+@interface GitHub : NSObject <WebServiceApiDelegate>
 {
     id<GitHubDelegate> delegate;
 
@@ -19,7 +19,7 @@
     GitHubApiFormat apiFormat;
     GitHubApiVersion apiVersion;
 
-    GitHubApi * api;
+    WebServiceApi * api;
     GitHubApiParser * parser;
 
     NSMutableDictionary * requests;

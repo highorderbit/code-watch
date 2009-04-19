@@ -4,6 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import "WebServiceApiDelegate.h"
+#import "NSURLRequest+WebServiceApiAdditions.h"
 
 @interface WebServiceApi : NSObject
 {
