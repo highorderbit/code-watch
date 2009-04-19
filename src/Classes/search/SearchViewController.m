@@ -62,6 +62,8 @@ static const CGFloat IPHONE_WIDTH = 320;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+
     self.navigationItem.title = @"";
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
@@ -69,17 +71,21 @@ static const CGFloat IPHONE_WIDTH = 320;
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+
     self.navigationController.navigationBarHidden = YES;
     searchBar.hidden = NO;
     tableView.frame = [[self class] defaultFrame];
-    self.view.frame = [[self class] transitionFrame];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     searchBar.hidden = YES;
     self.navigationController.navigationBarHidden = NO;
+
+    // in case search field active
     tableView.frame = [[self class] transitionFrame];
+
     [searchBar resignFirstResponder];
 }
 
@@ -179,6 +185,8 @@ static const CGFloat IPHONE_WIDTH = 320;
     [self refreshView];
     canceled = YES;
     searchBar.text = @"";
+    
+    self.view.frame = [[self class] transitionFrame];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar
