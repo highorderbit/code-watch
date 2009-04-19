@@ -129,12 +129,14 @@
 
 - (void)logInFailed:(NSString *)username error:(NSError *)error
 {
+    NSLog(@"Log in failed: username: '%@', error: '%@'.", username, error);
     if ([self.expectedUsername isEqual:username]) {
         NSString * title =
             NSLocalizedString(@"github.login.failed.alert.title", @"");
         NSString * cancelTitle =
             NSLocalizedString(@"github.login.failed.alert.ok", @"");
-        NSString * message = error.localizedDescription;
+        NSString * message =
+            NSLocalizedString(@"github.login.failed.alert.message", @"");
 
         UIAlertView * alertView =
             [[[UIAlertView alloc]

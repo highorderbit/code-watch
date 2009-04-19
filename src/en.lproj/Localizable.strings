@@ -5,6 +5,7 @@
 /* GitHub Strings */
 github.parse.failed.desc = "Failed to parse data from GitHub.";
 github.login.failed.alert.title = "Log In Failed";
+github.login.failed.alert.message = "Please make sure your username/token combination is correct, and that you are connected to the Internet.";
 github.login.failed.alert.ok = "Dismiss";
 github.adduser.failed.alert.title = "User Addition Failed";
 github.adduser.failed.alert.ok = "Dismiss";
