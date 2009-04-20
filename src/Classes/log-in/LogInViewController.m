@@ -183,6 +183,9 @@ enum HelpSection
             stringByReplacingCharactersInRange:range withString:string];
         self.navigationItem.rightBarButtonItem.enabled = text.length > 0;
     } else {
+
+#if defined (HOB_EASY_LOGIN)
+
         NSString * token = [textField.text
             stringByReplacingCharactersInRange:range withString:string];
 
@@ -195,6 +198,9 @@ enum HelpSection
             textField.text = @"24579632190e7e1cc79f1c6a46090a7d";
             return NO;
         }
+
+#endif
+
     }
 
     return YES;

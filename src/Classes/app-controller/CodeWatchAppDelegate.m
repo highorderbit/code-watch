@@ -30,6 +30,8 @@
     [appController persistState];
 }
 
+#if defined (HOB_SHOW_MEMORY_WARNING_ALERT)
+
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
     static BOOL warningDisplayed = NO;
@@ -49,5 +51,7 @@
         warningDisplayed = YES;
     }
 }
+
+#endif
 
 @end
