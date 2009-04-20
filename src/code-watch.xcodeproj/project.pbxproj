@@ -276,7 +276,6 @@
 		05B8805D0F7AF5210030DF3A /* ChangesetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChangesetViewController.m; path = commit/ChangesetViewController.m; sourceTree = "<group>"; };
 		05B880600F7AF53D0030DF3A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ChangesetView.xib; sourceTree = "<group>"; };
 		05B880630F7AF56D0030DF3A /* CommitViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitViewControllerDelegate.h; path = commit/CommitViewControllerDelegate.h; sourceTree = "<group>"; };
-		05B98F440F7053EF0039602B /* GitHubApiVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiVersion.h; path = github/GitHubApiVersion.h; sourceTree = "<group>"; };
 		05B990160F7062B10039602B /* RepoInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoInfo.h; path = repo/RepoInfo.h; sourceTree = "<group>"; };
 		05B990170F7062B10039602B /* RepoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepoInfo.m; path = repo/RepoInfo.m; sourceTree = "<group>"; };
 		05B990810F7079F20039602B /* RepoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoViewController.h; path = repo/RepoViewController.h; sourceTree = "<group>"; };
@@ -740,7 +739,6 @@
 				051CDCDD0F6C0CEC0049D2BD /* GitHub.m */,
 				051CDCE40F6C0EAF0049D2BD /* GitHubDelegate.h */,
 				054C06560F6F07EB00999FEA /* GitHubApiFormat.h */,
-				05B98F440F7053EF0039602B /* GitHubApiVersion.h */,
 				05F4CF2D0F6C5ECB00B107BB /* GitHubApiParser.h */,
 				05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */,
 				051CDCE00F6C0D140049D2BD /* JsonGitHubApiParserImpl.h */,
