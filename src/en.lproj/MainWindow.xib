@@ -8,6 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="332"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -48,17 +49,18 @@
 			<object class="IBUITabBarController" id="1034742383">
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<object class="IBUINavigationController" key="IBUISelectedViewController" id="1055176006">
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="362836990">
-						<string key="IBUITitle">Home</string>
+				<object class="IBUINavigationController" key="IBUISelectedViewController" id="289767912">
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="465501186">
+						<string key="IBUITitle">Following</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">HomeIcon.png</string>
+							<string key="NSResourceName">UsersIcon.png</string>
 						</object>
+						<reference key="IBUITabBar"/>
 					</object>
 					<reference key="IBUIParentViewController" ref="1034742383"/>
 					<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-					<object class="IBUINavigationBar" key="IBUINavigationBar" id="337069084">
+					<object class="IBUINavigationBar" key="IBUINavigationBar" id="86836187">
 						<nil key="NSNextResponder"/>
 						<int key="NSvFlags">256</int>
 						<string key="NSFrameSize">{0, 0}</string>
@@ -68,22 +70,57 @@
 					</object>
 					<object class="NSMutableArray" key="IBUIViewControllers">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="IBUIViewController" id="21393406">
-							<object class="IBUINavigationItem" key="IBUINavigationItem" id="370618374">
-								<string key="IBUITitle">News Feed</string>
-								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="109946423">
-									<string key="IBUITitle">Log In</string>
+						<object class="IBUITableViewController" id="789866461">
+							<object class="IBUINavigationItem" key="IBUINavigationItem" id="438693328">
+								<reference key="IBUINavigationBar"/>
+								<string key="IBUITitle">Followed Users</string>
+								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="238640406">
 									<int key="IBUIStyle">1</int>
+									<int key="IBUISystemItemIdentifier">4</int>
 								</object>
 							</object>
-							<reference key="IBUIParentViewController" ref="1055176006"/>
+							<reference key="IBUIParentViewController" ref="289767912"/>
+							<string key="IBUINibName">FavoriteUsersView</string>
 							<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 						</object>
 					</object>
 				</object>
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<reference ref="1055176006"/>
+					<object class="IBUINavigationController" id="1055176006">
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="362836990">
+							<string key="IBUITitle">Home</string>
+							<object class="NSCustomResource" key="IBUIImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">HomeIcon.png</string>
+							</object>
+							<reference key="IBUITabBar"/>
+						</object>
+						<reference key="IBUIParentViewController" ref="1034742383"/>
+						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+						<object class="IBUINavigationBar" key="IBUINavigationBar" id="337069084">
+							<nil key="NSNextResponder"/>
+							<int key="NSvFlags">256</int>
+							<string key="NSFrameSize">{0, 0}</string>
+							<bool key="IBUIOpaque">NO</bool>
+							<bool key="IBUIClipsSubviews">YES</bool>
+							<bool key="IBUIMultipleTouchEnabled">YES</bool>
+						</object>
+						<object class="NSMutableArray" key="IBUIViewControllers">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIViewController" id="21393406">
+								<object class="IBUINavigationItem" key="IBUINavigationItem" id="370618374">
+									<string key="IBUITitle">News Feed</string>
+									<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="109946423">
+										<string key="IBUITitle">Log In</string>
+										<int key="IBUIStyle">1</int>
+									</object>
+								</object>
+								<reference key="IBUIParentViewController" ref="1055176006"/>
+								<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+							</object>
+						</object>
+					</object>
 					<object class="IBUINavigationController" id="953169716">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="1066642194">
 							<string key="IBUITitle">User</string>
@@ -91,6 +128,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">UserIcon.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -117,47 +155,11 @@
 							</object>
 						</object>
 					</object>
-					<object class="IBUINavigationController" id="289767912">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="465501186">
-							<string key="IBUITitle">Users</string>
-							<object class="NSCustomResource" key="IBUIImage">
-								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">UsersIcon.png</string>
-							</object>
-						</object>
-						<reference key="IBUIParentViewController" ref="1034742383"/>
-						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-						<object class="IBUINavigationBar" key="IBUINavigationBar" id="86836187">
-							<nil key="NSNextResponder"/>
-							<int key="NSvFlags">256</int>
-							<string key="NSFrameSize">{0, 0}</string>
-							<bool key="IBUIOpaque">NO</bool>
-							<bool key="IBUIClipsSubviews">YES</bool>
-							<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						</object>
-						<object class="NSMutableArray" key="IBUIViewControllers">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUITableViewController" id="789866461">
-								<object class="IBUINavigationItem" key="IBUINavigationItem" id="438693328">
-									<string key="IBUITitle">Favorite Users</string>
-									<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="238640406">
-										<int key="IBUIStyle">1</int>
-										<int key="IBUISystemItemIdentifier">4</int>
-									</object>
-								</object>
-								<reference key="IBUIParentViewController" ref="289767912"/>
-								<string key="IBUINibName">FavoriteUsersView</string>
-								<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-							</object>
-						</object>
-					</object>
+					<reference ref="289767912"/>
 					<object class="IBUINavigationController" id="801315089">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="1070274417">
-							<string key="IBUITitle">Repos</string>
-							<object class="NSCustomResource" key="IBUIImage">
-								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">ReposIcon.png</string>
-							</object>
+							<int key="IBUISystemItemIdentifier">1</int>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -187,6 +189,7 @@
 					<object class="IBUINavigationController" id="212505514">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="346955201">
 							<int key="IBUISystemItemIdentifier">8</int>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -2848,7 +2851,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIApplication</string>
 					<string>UIResponder</string>
-					<string>{{183, 54}, {320, 480}}</string>
+					<string>{{184, 172}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
