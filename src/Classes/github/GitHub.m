@@ -27,7 +27,7 @@
 
 @implementation GitHub
 
-@synthesize delegate, baseUrl, apiFormat, apiVersion;
+@synthesize delegate, baseUrl, apiFormat;
 
 - (void)dealloc
 {
@@ -42,7 +42,6 @@
 
 - (id)initWithBaseUrl:(NSURL *)url
                format:(GitHubApiFormat)format
-              version:(GitHubApiVersion)version
              delegate:(id<GitHubDelegate>)aDelegate
 {
     if (self = [super init]) {
@@ -53,7 +52,6 @@
         [self setParser:[GitHubApiParser parserWithApiFormat:format]];
 
         apiFormat = format;
-        apiVersion = version;
 
         requests = [[NSMutableDictionary alloc] init];
     }
@@ -325,7 +323,7 @@
 {
     //
     // GitHub API URL format is:
-    //     http://github.com/api/version/format/username/
+    //     http://github.com/api/version/format/args...
     //
 
     NSString * responseFormat;
@@ -338,18 +336,7 @@
             break;
     }
 
-    NSString * version;
-    switch (apiVersion) {
-        case GitHubApiVersion1:
-            version = @"v1";
-            break;
-        default:
-            NSAssert1(0, @"Unknown GitHub version: %d.", apiVersion);
-            break;
-    }
-
-    return [NSString stringWithFormat:@"%@%@/%@",
-        baseUrl, version, responseFormat];
+    return [NSString stringWithFormat:@"%@v1/%@", baseUrl, responseFormat];
 }
 
 #pragma mark Tracking requests

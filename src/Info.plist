@@ -32,8 +32,6 @@
 	<string>https://github.com/api/</string>
 	<key>GitHubApiFormat</key>
 	<string>1</string>
-	<key>GitHubApiVersion</key>
-	<string>1</string>
 	<key>GitHubNewsFeedBaseUrl</key>
 	<string>https://github.com/</string>
 	<key>GravatarApiBaseUrl</key>
