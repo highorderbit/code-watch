@@ -9,8 +9,6 @@
 {
     NSObject<FavoriteUsersViewControllerDelegate> * delegate;
     NSMutableArray * sortedUsernames;
-    
-    UIBarButtonItem * rightButton;
 }
 
 @property (nonatomic, retain)

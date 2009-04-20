@@ -108,8 +108,7 @@
 		9152A1860F6ACE4A0037A52F /* UserIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1850F6ACE4A0037A52F /* UserIcon.png */; };
 		9152A1970F6ADAD20037A52F /* HomeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1960F6ADAD20037A52F /* HomeIcon.png */; };
 		9152A1F40F6AFF8A0037A52F /* UsersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1F30F6AFF8A0037A52F /* UsersIcon.png */; };
-		9157D9D40F7A9E9900DF83FF /* FavoriteUsersState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9157D9D30F7A9E9900DF83FF /* FavoriteUsersState.m */; };
-		9157DA150F7AA9AF00DF83FF /* FavoriteUsersPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9157DA140F7AA9AF00DF83FF /* FavoriteUsersPersistenceStore.m */; };
+		916B8D720F9D37710000FC5A /* FavoriteUsersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916B8D700F9D37710000FC5A /* FavoriteUsersView.xib */; };
 		91806B860F95213F00F08005 /* log-in-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 91806B830F95213F00F08005 /* log-in-help.html */; };
 		91806B870F95213F00F08005 /* new-repo-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 91806B840F95213F00F08005 /* new-repo-help.html */; };
 		91806B880F95213F00F08005 /* new-user-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 91806B850F95213F00F08005 /* new-user-help.html */; };
@@ -143,12 +142,9 @@
 		91D8BD530F8BA5700041EC91 /* HOTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8BD520F8BA5700041EC91 /* HOTableViewCell.m */; };
 		91D8BDBB0F8BB02F0041EC91 /* UIState.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8BDBA0F8BB02F0041EC91 /* UIState.m */; };
 		91D8BDD00F8BB3810041EC91 /* UIStatePersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8BDCF0F8BB3810041EC91 /* UIStatePersistenceStore.m */; };
-		91E25E540F79B3B100E1594E /* FavoriteUsersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E25E520F79B3B100E1594E /* FavoriteUsersView.xib */; };
 		91E25E5A0F79B7C400E1594E /* FavoriteUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */; };
 		91E25E700F79B96900E1594E /* FavoriteUsersDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */; };
 		91E25EE00F79D5F900E1594E /* AddUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E25EDE0F79D5F900E1594E /* AddUserView.xib */; };
-		91E25EE80F79D6A200E1594E /* AddUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25EE70F79D6A200E1594E /* AddUserViewController.m */; };
-		91E25F030F79DD0E00E1594E /* UIAddUserMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25F020F79DD0E00E1594E /* UIAddUserMgr.m */; };
 		91F89B2B0F7057C500993921 /* NewsFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F89B290F7057C500993921 /* NewsFeedTableViewCell.xib */; };
 		91F89B400F705EB300993921 /* NewsFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B3D0F705EB300993921 /* NewsFeedTableViewCell.m */; };
 		91F89B410F705EB300993921 /* NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B3F0F705EB300993921 /* NewsFeedViewController.m */; };
@@ -379,12 +375,7 @@
 		9152A1850F6ACE4A0037A52F /* UserIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UserIcon.png; sourceTree = "<group>"; };
 		9152A1960F6ADAD20037A52F /* HomeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeIcon.png; sourceTree = "<group>"; };
 		9152A1F30F6AFF8A0037A52F /* UsersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UsersIcon.png; sourceTree = "<group>"; };
-		9157D9D20F7A9E9900DF83FF /* FavoriteUsersState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersState.h; path = "favorite-users/FavoriteUsersState.h"; sourceTree = "<group>"; };
-		9157D9D30F7A9E9900DF83FF /* FavoriteUsersState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteUsersState.m; path = "favorite-users/FavoriteUsersState.m"; sourceTree = "<group>"; };
-		9157D9D50F7A9F5100DF83FF /* FavoriteUsersStateReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersStateReader.h; path = "favorite-users/FavoriteUsersStateReader.h"; sourceTree = "<group>"; };
-		9157DA040F7AA79900DF83FF /* FavoriteUsersStateSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersStateSetter.h; path = "favorite-users/FavoriteUsersStateSetter.h"; sourceTree = "<group>"; };
-		9157DA130F7AA9AF00DF83FF /* FavoriteUsersPersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersPersistenceStore.h; path = "favorite-users/FavoriteUsersPersistenceStore.h"; sourceTree = "<group>"; };
-		9157DA140F7AA9AF00DF83FF /* FavoriteUsersPersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteUsersPersistenceStore.m; path = "favorite-users/FavoriteUsersPersistenceStore.m"; sourceTree = "<group>"; };
+		916B8D710F9D37710000FC5A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FavoriteUsersView.xib; sourceTree = "<group>"; };
 		91806B830F95213F00F08005 /* log-in-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "log-in-help.html"; sourceTree = "<group>"; };
 		91806B840F95213F00F08005 /* new-repo-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "new-repo-help.html"; sourceTree = "<group>"; };
 		91806B850F95213F00F08005 /* new-user-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "new-user-help.html"; sourceTree = "<group>"; };
@@ -451,19 +442,12 @@
 		91D8BDBA0F8BB02F0041EC91 /* UIState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIState.m; sourceTree = "<group>"; };
 		91D8BDCE0F8BB3810041EC91 /* UIStatePersistenceStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIStatePersistenceStore.h; sourceTree = "<group>"; };
 		91D8BDCF0F8BB3810041EC91 /* UIStatePersistenceStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIStatePersistenceStore.m; sourceTree = "<group>"; };
-		91E25E530F79B3B100E1594E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FavoriteUsersView.xib; sourceTree = "<group>"; };
 		91E25E580F79B7C400E1594E /* FavoriteUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersViewController.h; path = "favorite-users/FavoriteUsersViewController.h"; sourceTree = "<group>"; };
 		91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteUsersViewController.m; path = "favorite-users/FavoriteUsersViewController.m"; sourceTree = "<group>"; };
 		91E25E6E0F79B96900E1594E /* FavoriteUsersDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersDisplayMgr.h; path = "favorite-users/FavoriteUsersDisplayMgr.h"; sourceTree = "<group>"; };
 		91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteUsersDisplayMgr.m; path = "favorite-users/FavoriteUsersDisplayMgr.m"; sourceTree = "<group>"; };
 		91E25E960F79C6FD00E1594E /* FavoriteUsersViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersViewControllerDelegate.h; path = "favorite-users/FavoriteUsersViewControllerDelegate.h"; sourceTree = "<group>"; };
 		91E25EDF0F79D5F900E1594E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AddUserView.xib; sourceTree = "<group>"; };
-		91E25EE60F79D6A200E1594E /* AddUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddUserViewController.h; path = "favorite-users/AddUserViewController.h"; sourceTree = "<group>"; };
-		91E25EE70F79D6A200E1594E /* AddUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddUserViewController.m; path = "favorite-users/AddUserViewController.m"; sourceTree = "<group>"; };
-		91E25EE90F79D84200E1594E /* AddUserViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddUserViewControllerDelegate.h; path = "favorite-users/AddUserViewControllerDelegate.h"; sourceTree = "<group>"; };
-		91E25EFE0F79DC8000E1594E /* AddUserMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddUserMgr.h; path = "favorite-users/AddUserMgr.h"; sourceTree = "<group>"; };
-		91E25F010F79DD0E00E1594E /* UIAddUserMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIAddUserMgr.h; path = "favorite-users/UIAddUserMgr.h"; sourceTree = "<group>"; };
-		91E25F020F79DD0E00E1594E /* UIAddUserMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIAddUserMgr.m; path = "favorite-users/UIAddUserMgr.m"; sourceTree = "<group>"; };
 		91F89B2A0F7057C500993921 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NewsFeedTableViewCell.xib; sourceTree = "<group>"; };
 		91F89B3C0F705EB300993921 /* NewsFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedTableViewCell.h; sourceTree = "<group>"; };
 		91F89B3D0F705EB300993921 /* NewsFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedTableViewCell.m; sourceTree = "<group>"; };
@@ -527,6 +511,7 @@
 		05158A6E0F6AC251009A7995 /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
+				916B8D700F9D37710000FC5A /* FavoriteUsersView.xib */,
 				91E25EDE0F79D5F900E1594E /* AddUserView.xib */,
 				059936380F6975A80005B934 /* MainWindow.xib */,
 				910D80CA0F697DB30068CBF3 /* UserView.xib */,
@@ -541,7 +526,6 @@
 				05AFEA2D0F79BD4F0008A91C /* CommitView.xib */,
 				05B8805F0F7AF53D0030DF3A /* ChangesetView.xib */,
 				055DF4C20F7B0B9F003A8D94 /* DiffView.xib */,
-				91E25E520F79B3B100E1594E /* FavoriteUsersView.xib */,
 				913693CF0F7E78D90054E512 /* FavoriteReposView.xib */,
 				9136949E0F7ECCB80054E512 /* AddRepoView.xib */,
 				054FF5DE0F8ACAF80096C011 /* NewsFeedView.xib */,
@@ -1049,23 +1033,11 @@
 			children = (
 				9181367F0F7AFC81002B1153 /* UIUserDisplayMgr.h */,
 				918136800F7AFC81002B1153 /* UIUserDisplayMgr.m */,
-				9157DA040F7AA79900DF83FF /* FavoriteUsersStateSetter.h */,
 				91E25E580F79B7C400E1594E /* FavoriteUsersViewController.h */,
 				91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */,
 				91E25E6E0F79B96900E1594E /* FavoriteUsersDisplayMgr.h */,
 				91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */,
 				91E25E960F79C6FD00E1594E /* FavoriteUsersViewControllerDelegate.h */,
-				91E25EE60F79D6A200E1594E /* AddUserViewController.h */,
-				91E25EE70F79D6A200E1594E /* AddUserViewController.m */,
-				91E25EE90F79D84200E1594E /* AddUserViewControllerDelegate.h */,
-				91E25EFE0F79DC8000E1594E /* AddUserMgr.h */,
-				91E25F010F79DD0E00E1594E /* UIAddUserMgr.h */,
-				91E25F020F79DD0E00E1594E /* UIAddUserMgr.m */,
-				9157D9D20F7A9E9900DF83FF /* FavoriteUsersState.h */,
-				9157D9D30F7A9E9900DF83FF /* FavoriteUsersState.m */,
-				9157D9D50F7A9F5100DF83FF /* FavoriteUsersStateReader.h */,
-				9157DA130F7AA9AF00DF83FF /* FavoriteUsersPersistenceStore.h */,
-				9157DA140F7AA9AF00DF83FF /* FavoriteUsersPersistenceStore.m */,
 				918136EC0F7BD473002B1153 /* UserDisplayMgr.h */,
 			);
 			name = "favorite-users";
@@ -1174,7 +1146,6 @@
 				05B9908A0F707DD20039602B /* RepoActivityTableViewCell.xib in Resources */,
 				91FD171F0F715018004549F9 /* NoDataView.xib in Resources */,
 				05AFEA2F0F79BD4F0008A91C /* CommitView.xib in Resources */,
-				91E25E540F79B3B100E1594E /* FavoriteUsersView.xib in Resources */,
 				91E25EE00F79D5F900E1594E /* AddUserView.xib in Resources */,
 				05B880610F7AF53D0030DF3A /* ChangesetView.xib in Resources */,
 				055DF4C40F7B0B9F003A8D94 /* DiffView.xib in Resources */,
@@ -1193,6 +1164,7 @@
 				91806B920F9521ED00F08005 /* style.css in Resources */,
 				91806D5D0F97B6F400F08005 /* Default.png in Resources */,
 				05118B400F996B72001406CD /* token-location-screenshot.png in Resources */,
+				916B8D720F9D37710000FC5A /* FavoriteUsersView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1256,10 +1228,6 @@
 				05DE59250F79C8F900189369 /* CommitDisplayMgr.m in Sources */,
 				91E25E5A0F79B7C400E1594E /* FavoriteUsersViewController.m in Sources */,
 				91E25E700F79B96900E1594E /* FavoriteUsersDisplayMgr.m in Sources */,
-				91E25EE80F79D6A200E1594E /* AddUserViewController.m in Sources */,
-				91E25F030F79DD0E00E1594E /* UIAddUserMgr.m in Sources */,
-				9157D9D40F7A9E9900DF83FF /* FavoriteUsersState.m in Sources */,
-				9157DA150F7AA9AF00DF83FF /* FavoriteUsersPersistenceStore.m in Sources */,
 				918136810F7AFC81002B1153 /* UIUserDisplayMgr.m in Sources */,
 				05B8805E0F7AF5210030DF3A /* ChangesetViewController.m in Sources */,
 				055DF4B30F7B08F1003A8D94 /* DiffViewController.m in Sources */,
@@ -1455,20 +1423,20 @@
 			name = AddRepoView.xib;
 			sourceTree = "<group>";
 		};
+		916B8D700F9D37710000FC5A /* FavoriteUsersView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				916B8D710F9D37710000FC5A /* en */,
+			);
+			name = FavoriteUsersView.xib;
+			sourceTree = "<group>";
+		};
 		91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				91B6205D0F6C54830077CDB9 /* en */,
 			);
 			name = UserDetailTableViewCell.xib;
-			sourceTree = "<group>";
-		};
-		91E25E520F79B3B100E1594E /* FavoriteUsersView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				91E25E530F79B3B100E1594E /* en */,
-			);
-			name = FavoriteUsersView.xib;
 			sourceTree = "<group>";
 		};
 		91E25EDE0F79D5F900E1594E /* AddUserView.xib */ = {

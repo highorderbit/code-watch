@@ -13,24 +13,14 @@
 {
     [delegate release];
     [sortedUsernames release];
-    [rightButton release];
     [super dealloc];
 }
 
 #pragma mark General view controller methods
 
-- (void)viewDidLoad
-{
-    rightButton = [self.navigationItem.rightBarButtonItem retain];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    UIBarButtonItem * leftBarButtonItem =
-        [sortedUsernames count] > 0 ? self.editButtonItem : nil;
-    [self.navigationItem setLeftBarButtonItem:leftBarButtonItem animated:NO];
     
     [delegate viewWillAppear];
     [self setEditing:NO animated:NO];
@@ -73,21 +63,6 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tv
-    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-    forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSString * username = [sortedUsernames objectAtIndex:indexPath.row];
-        [delegate removedUsername:username];
-        
-        [tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-            withRowAnimation:UITableViewRowAnimationFade];
-        
-        [tv reloadData];
-    }
-}
-
 - (void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -98,50 +73,6 @@
     accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewCellAccessoryDisclosureIndicator;
-}
-
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
-{
-    [super setEditing:editing animated:animated];
-    
-    if (editing)
-        [self.navigationItem setRightBarButtonItem:nil animated:NO];
-    else {
-        [self.navigationItem setRightBarButtonItem:rightButton animated:NO];
-        
-        UIBarButtonItem * leftBarButtonItem =
-            [sortedUsernames count] > 0 ? self.editButtonItem : nil;
-        [self.navigationItem setLeftBarButtonItem:leftBarButtonItem
-            animated:NO];
-    }
-}
-
-- (BOOL)tableView:(UITableView *)tv
-    canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
-- (NSIndexPath *)tableView:(UITableView *)tv
-    targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath 
-    toProposedIndexPath:(NSIndexPath *)destinationIndexPath
-{
-    // Allow the proposed destination.
-    return destinationIndexPath;
-}
-
-- (void)     tableView:(UITableView *)tv
-    moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
-           toIndexPath:(NSIndexPath *)toIndexPath
-{
-    NSObject * objectToMove =
-        [[sortedUsernames objectAtIndex:fromIndexPath.row] retain];
-    [sortedUsernames removeObjectAtIndex:fromIndexPath.row];
-    [sortedUsernames insertObject:objectToMove atIndex:toIndexPath.row];
-
-    [delegate setUsernameSortOrder:sortedUsernames];
-
-    [objectToMove release];
 }
 
 #pragma mark Data updating methods

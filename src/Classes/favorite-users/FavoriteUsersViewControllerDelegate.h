@@ -7,8 +7,6 @@
 @protocol FavoriteUsersViewControllerDelegate
 
 - (void)viewWillAppear;
-- (void)removedUsername:(NSString *)username;
-- (void)setUsernameSortOrder:(NSArray *)sortedUsernames;
 - (void)selectedUsername:(NSString *)username;
 
 @end

@@ -5,8 +5,6 @@
 #import <Foundation/Foundation.h>
 #import "UserInfo.h"
 #import "UserViewControllerDelegate.h"
-#import "FavoriteUsersStateSetter.h"
-#import "FavoriteUsersStateReader.h"
 #import "RecentActivityDisplayMgr.h"
 #import "ContactCacheReader.h"
 #import "ContactMgr.h"
@@ -15,8 +13,6 @@
 {
     IBOutlet NSObject<UserViewControllerDelegate> * delegate;
     IBOutlet ContactMgr * contactMgr;
-    IBOutlet NSObject<FavoriteUsersStateSetter> * favoriteUsersStateSetter;
-    IBOutlet NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
     IBOutlet NSObject<RecentActivityDisplayMgr> * recentActivityDisplayMgr;
     IBOutlet NSObject<ContactCacheReader> * contactCacheReader;
 
@@ -26,7 +22,6 @@
     IBOutlet UILabel * usernameLabel;    
     IBOutlet UILabel * featuredDetail1Label;
     IBOutlet UILabel * featuredDetail2Label;
-    IBOutlet UIButton * addToFavoritesButton;
     IBOutlet UIButton * addToContactsButton;
         
     NSString * username;
@@ -43,10 +38,6 @@
 @property (nonatomic, retain) NSObject<UserViewControllerDelegate> * delegate;
 @property (nonatomic, retain) ContactMgr * contactMgr;
 @property (nonatomic, retain)
-    NSObject<FavoriteUsersStateSetter> * favoriteUsersStateSetter;
-@property (nonatomic, retain)
-    NSObject<FavoriteUsersStateReader> * favoriteUsersStateReader;
-@property (nonatomic, retain)
     NSObject<RecentActivityDisplayMgr> * recentActivityDisplayMgr;
 @property (nonatomic, retain)
     NSObject<ContactCacheReader> * contactCacheReader;
@@ -59,7 +50,6 @@
 - (void)setFeaturedDetail2Key:(NSString *)key;
 
 - (IBAction)addContact:(id)sender;
-- (IBAction)addFavorite:(id)sender;
 
 - (void)scrollToTop;
 

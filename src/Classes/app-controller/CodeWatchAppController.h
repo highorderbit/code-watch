@@ -10,7 +10,6 @@
 #import "NewsFeedDisplayMgr.h"
 #import "NewsFeedDisplayMgrDelegate.h"
 #import "FavoriteUsersViewController.h"
-#import "FavoriteUsersState.h"
 #import "ConfigReader.h"
 #import "FavoriteReposViewController.h"
 #import "FavoriteReposState.h"
@@ -39,10 +38,8 @@
     IBOutlet NewsFeedDisplayMgrFactory * newsFeedDisplayMgrFactory;
     NewsFeedDisplayMgr * newsFeedDisplayMgr;
 
-    IBOutlet NSObject<PersistenceStore> * favoriteUsersPersistenceStore;
     IBOutlet UINavigationController * favoriteUsersNavController;
     IBOutlet FavoriteUsersViewController * favoriteUsersViewController;
-    IBOutlet FavoriteUsersState * favoriteUsersState;
 
     IBOutlet NSObject<PersistenceStore> * favoriteReposPersistenceStore;    
     IBOutlet FavoriteReposViewController * favoriteReposViewController;

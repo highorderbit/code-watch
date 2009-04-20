@@ -8,7 +8,6 @@
 #import "RepoSelectorFactory.h"
 #import "UserCache.h"
 #import "AvatarCache.h"
-#import "FavoriteUsersState.h"
 #import "UserDisplayMgr.h"
 #import "ContactCache.h"
 #import "ContactMgr.h"
@@ -21,7 +20,6 @@
     IBOutlet RepoSelectorFactory * repoSelectorFactory;
     IBOutlet UserCache * userCache;
     IBOutlet AvatarCache * avatarCache;
-    IBOutlet FavoriteUsersState * favoriteUsersState;
     IBOutlet ContactCache * contactCache;
     IBOutlet ContactMgr * contactMgr;
     IBOutlet NewsFeedDisplayMgrFactory * newsFeedDisplayMgrFactory;

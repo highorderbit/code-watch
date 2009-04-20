@@ -30,7 +30,6 @@
     [repoSelectorFactory release];
     [userCache release];
     [avatarCache release];
-    [favoriteUsersState release];
     [newsFeedDisplayMgrFactory release];
     [super dealloc];
 }
@@ -102,8 +101,6 @@
     UserViewController * userViewController =
         [[[UserViewController alloc] initWithNibName:@"UserView" bundle:nil]
         autorelease];
-    userViewController.favoriteUsersStateReader = favoriteUsersState;
-    userViewController.favoriteUsersStateSetter = favoriteUsersState;
     userViewController.contactCacheReader = contactCache;
     userViewController.contactMgr = contactMgr;
     

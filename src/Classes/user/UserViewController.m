@@ -35,8 +35,6 @@ enum Section
 
 @synthesize delegate;
 @synthesize contactMgr;
-@synthesize favoriteUsersStateSetter;
-@synthesize favoriteUsersStateReader;
 @synthesize recentActivityDisplayMgr;
 @synthesize contactCacheReader;
 
@@ -44,8 +42,6 @@ enum Section
 {
     [delegate release];
     [contactMgr release];
-    [favoriteUsersStateSetter release];
-    [favoriteUsersStateReader release];
     [recentActivityDisplayMgr release];
     [contactCacheReader release];
     
@@ -55,7 +51,6 @@ enum Section
     [usernameLabel release];
     [featuredDetail1Label release];
     [featuredDetail2Label release];
-    [addToFavoritesButton release];
     [addToContactsButton release];
 
     [username release];
@@ -81,9 +76,6 @@ enum Section
     footerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.tableFooterView = footerView;
     
-    [addToFavoritesButton setTitleColor:[UIColor grayColor]
-        forState:UIControlStateDisabled];
-        
     [addToContactsButton setTitleColor:[UIColor grayColor]
         forState:UIControlStateDisabled];
 }
@@ -102,9 +94,6 @@ enum Section
         featuredDetail2Label.text = email ? email : @"";
     }
     
-    addToFavoritesButton.enabled =
-        ![favoriteUsersStateReader.favoriteUsers containsObject:username];
-
     // allow adding to contacts iff not already added or not in the address book
     ABRecordID recordId = [contactCacheReader recordIdForUser:username];
     ABRecordRef person =
@@ -402,13 +391,6 @@ enum Section
     ABPersonSetImageData(person, (CFDataRef)data, &error);
 
     [contactMgr userDidAddContact:person forUser:username];
-}
-
-- (IBAction)addFavorite:(id)sender
-{
-    NSLog(@"Adding user '%@' to favorites...", username);
-    [favoriteUsersStateSetter addFavoriteUser:username];
-    addToFavoritesButton.enabled = NO;
 }
 
 - (void)scrollToTop
