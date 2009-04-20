@@ -115,6 +115,7 @@
 		91806B880F95213F00F08005 /* new-user-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 91806B850F95213F00F08005 /* new-user-help.html */; };
 		91806B920F9521ED00F08005 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 91806B910F9521ED00F08005 /* style.css */; };
 		91806BC60F95333B00F08005 /* NSString+WebViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 91806BC50F95333B00F08005 /* NSString+WebViewAdditions.m */; };
+		91806D5D0F97B6F400F08005 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 91806D5C0F97B6F400F08005 /* Default.png */; };
 		918136810F7AFC81002B1153 /* UIUserDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 918136800F7AFC81002B1153 /* UIUserDisplayMgr.m */; };
 		91AB1E0E0F733272005AC590 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AB1E0D0F733272005AC590 /* AddressBook.framework */; };
 		91AB1E290F733BB6005AC590 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AB1E280F733BB6005AC590 /* AddressBookUI.framework */; };
@@ -390,6 +391,7 @@
 		91806B910F9521ED00F08005 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		91806BC40F95333B00F08005 /* NSString+WebViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WebViewAdditions.h"; sourceTree = "<group>"; };
 		91806BC50F95333B00F08005 /* NSString+WebViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WebViewAdditions.m"; sourceTree = "<group>"; };
+		91806D5C0F97B6F400F08005 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		9181367F0F7AFC81002B1153 /* UIUserDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIUserDisplayMgr.h; path = "favorite-users/UIUserDisplayMgr.h"; sourceTree = "<group>"; };
 		918136800F7AFC81002B1153 /* UIUserDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIUserDisplayMgr.m; path = "favorite-users/UIUserDisplayMgr.m"; sourceTree = "<group>"; };
 		918136EC0F7BD473002B1153 /* UserDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserDisplayMgr.h; path = "favorite-users/UserDisplayMgr.h"; sourceTree = "<group>"; };
@@ -985,6 +987,7 @@
 		9152A1E90F6AFC240037A52F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				91806D5C0F97B6F400F08005 /* Default.png */,
 				913EE04F0F86B4EC00A3967B /* private-icon.png */,
 				913EE0500F86B4EC00A3967B /* public-icon.png */,
 				91C248B60F7C8C1E007F8B05 /* ReposIcon.png */,
@@ -1188,6 +1191,7 @@
 				91806B870F95213F00F08005 /* new-repo-help.html in Resources */,
 				91806B880F95213F00F08005 /* new-user-help.html in Resources */,
 				91806B920F9521ED00F08005 /* style.css in Resources */,
+				91806D5D0F97B6F400F08005 /* Default.png in Resources */,
 				05118B400F996B72001406CD /* token-location-screenshot.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
