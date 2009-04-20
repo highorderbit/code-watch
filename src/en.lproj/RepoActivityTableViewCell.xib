@@ -38,7 +38,7 @@
 							<object class="IBUILabel" id="471122428">
 								<reference key="NSNextResponder" ref="245263736"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{77, 8}, {168, 21}}</string>
+								<string key="NSFrame">{{77, 8}, {139, 21}}</string>
 								<reference key="NSSuperview" ref="245263736"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -257,7 +257,7 @@ dWVudCBHaXRIdWIgcXVlcmllcyBjb3JyZWN0bHkuA</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>RepoActivityTableViewCell</string>
-					<string>{{463, 908}, {320, 76}}</string>
+					<string>{{463, 780}, {320, 76}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -318,6 +318,13 @@ dWVudCBHaXRIdWIgcXVlcmllcyBjb3JyZWN0bHkuA</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/repo/RepoActivityTableViewCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UILabel</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/shared/UILabel+DrawingAdditions.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
