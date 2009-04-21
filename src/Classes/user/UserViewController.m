@@ -243,6 +243,11 @@ enum Section
                 NSLog(@"Opening blog in Safari: %@", detailValue);
                 NSURL * url = [NSURL URLWithString:detailValue];
                 [[UIApplication sharedApplication] openURL:url];
+                // Because some URLS fail to load without notification the
+                // following attempts to identify them and deselect the cell
+                if ([detailValue rangeOfString:@"http"].location == NSNotFound)
+                        [self.tableView deselectRowAtIndexPath:indexPath
+                            animated:YES];
             }
             break;
         }
