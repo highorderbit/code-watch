@@ -91,12 +91,8 @@
     GitHubApiFormat apiFormat =
         [[configReader valueForKey:@"GitHubApiFormat"] intValue];
 
-    GitHubApiVersion apiVersion =
-        [[configReader valueForKey:@"GitHubApiVersion"] intValue];
-
     gitHub = [[GitHub alloc] initWithBaseUrl:gitHubApiBaseUrl
                                       format:apiFormat
-                                     version:apiVersion
                                     delegate:self];
 }
 
@@ -157,6 +153,15 @@
 
     [gitHub
         fetchInfoForCommit:commitKey repo:repo username:username token:token];
+}
+
+#pragma mark Fetching followers
+
+- (void)fetchFollowersForUsername:(NSString *)username
+{
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
+    [gitHub fetchFollowersForUsername:username];
 }
 
 #pragma mark Searching GitHub
@@ -231,6 +236,17 @@
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
+- (void)failedToFetchInfoForRepo:(NSString *)repo
+                        username:(NSString *)username
+                           error:(NSError *)error
+{
+    SEL selector = @selector(failedToFetchInfoForRepo:username:error:);
+    if ([delegate respondsToSelector:selector])
+        [delegate failedToFetchInfoForRepo:repo username:username error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
 - (void)commitDetails:(NSDictionary *)details
     fetchedForCommit:(NSString *)commitKey repo:(NSString *)repo
     username:(NSString *)username token:(NSString *)token
@@ -251,17 +267,6 @@
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
-- (void)failedToFetchInfoForRepo:(NSString *)repo
-                        username:(NSString *)username
-                           error:(NSError *)error
-{
-    SEL selector = @selector(failedToFetchInfoForRepo:username:error:);
-    if ([delegate respondsToSelector:selector])
-        [delegate failedToFetchInfoForRepo:repo username:username error:error];
-
-    [[UIApplication sharedApplication] networkActivityDidFinish];
-}
-
 - (void)failedToFetchInfoForCommit:(NSString *)commit repo:(NSString *)repo
     username:(NSString *)username token:(NSString *)token error:(NSError *)error
 {
@@ -269,6 +274,28 @@
     if ([delegate respondsToSelector:selector])
         [delegate failedToFetchInfoForCommit:commit repo:repo username:username
             error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)followers:(NSDictionary *)results
+    fetchedForUsername:(NSString *)username
+{
+    NSArray * followers = [results objectForKey:@"users"];
+
+    SEL sel = @selector(followers:fetchedForUsername:);
+    if ([delegate respondsToSelector:sel])
+        [delegate followers:followers fetchedForUsername:username];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)failedToFetchFollowersForUsername:(NSString *)username
+    error:(NSError *)error
+{
+    SEL sel = @selector(failedToFetchFollowersForUsername:error:);
+    if ([delegate respondsToSelector:sel])
+        [delegate failedToFetchFollowersForUsername:username error:error];
 
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }

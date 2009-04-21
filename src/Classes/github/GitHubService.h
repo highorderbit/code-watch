@@ -73,6 +73,10 @@
                       repo:(NSString *)repo
                   username:(NSString *)username;
 
+#pragma mark Fetching followers
+
+- (void)fetchFollowersForUsername:(NSString *)username;
+
 #pragma mark Searching GitHub
 
 - (void)searchRepos:(NSString *)searchString;
