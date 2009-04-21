@@ -123,8 +123,6 @@
         [gravatarService fetchAvatarForEmailAddress:email];
     else
         [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
-
-    [gitHubService fetchFollowersForUsername:username];
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
