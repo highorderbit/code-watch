@@ -43,10 +43,8 @@
     [newsFeedDisplayMgr release];
     [newsFeedDisplayMgrFactory release];
     
-    [favoriteUsersPersistenceStore release];
     [favoriteUsersViewController release];
     [favoriteUsersNavController release];
-    [favoriteUsersState release];
     
     [favoriteReposPersistenceStore release];
     [favoriteReposViewController release];
@@ -92,7 +90,6 @@
     [commitCachePersistenceStore save];
     [contactCachePersistenceStore save];
     [avatarCachePersistenceStore save];
-    [favoriteUsersPersistenceStore save];
     [favoriteReposPersistenceStore save];
     [uiStatePersistenceStore save];
 }
@@ -106,7 +103,6 @@
     [commitCachePersistenceStore load];
     [contactCachePersistenceStore load];
     [avatarCachePersistenceStore load];
-    [favoriteUsersPersistenceStore load];
     [favoriteReposPersistenceStore load];
     [uiStatePersistenceStore load];
 }
@@ -130,8 +126,6 @@
     FavoriteUsersDisplayMgr * favoriteUsersDisplayMgr =
         [[FavoriteUsersDisplayMgr alloc]
         initWithViewController:favoriteUsersViewController
-        stateReader:favoriteUsersState
-        stateSetter:favoriteUsersState
         userDisplayMgr:userDisplayMgr];
 
     favoriteUsersViewController.delegate = favoriteUsersDisplayMgr;

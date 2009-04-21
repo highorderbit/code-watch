@@ -8,6 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="337"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -48,17 +49,18 @@
 			<object class="IBUITabBarController" id="1034742383">
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<object class="IBUINavigationController" key="IBUISelectedViewController" id="1055176006">
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="362836990">
-						<string key="IBUITitle">Home</string>
+				<object class="IBUINavigationController" key="IBUISelectedViewController" id="289767912">
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="465501186">
+						<string key="IBUITitle">Following</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">HomeIcon.png</string>
+							<string key="NSResourceName">UsersIcon.png</string>
 						</object>
+						<reference key="IBUITabBar"/>
 					</object>
 					<reference key="IBUIParentViewController" ref="1034742383"/>
 					<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-					<object class="IBUINavigationBar" key="IBUINavigationBar" id="337069084">
+					<object class="IBUINavigationBar" key="IBUINavigationBar" id="86836187">
 						<nil key="NSNextResponder"/>
 						<int key="NSvFlags">256</int>
 						<string key="NSFrameSize">{0, 0}</string>
@@ -68,22 +70,53 @@
 					</object>
 					<object class="NSMutableArray" key="IBUIViewControllers">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="IBUIViewController" id="21393406">
-							<object class="IBUINavigationItem" key="IBUINavigationItem" id="370618374">
-								<string key="IBUITitle">News Feed</string>
-								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="109946423">
-									<string key="IBUITitle">Log In</string>
-									<int key="IBUIStyle">1</int>
-								</object>
+						<object class="IBUITableViewController" id="789866461">
+							<object class="IBUINavigationItem" key="IBUINavigationItem" id="438693328">
+								<reference key="IBUINavigationBar"/>
+								<string key="IBUITitle">Followed Users</string>
 							</object>
-							<reference key="IBUIParentViewController" ref="1055176006"/>
+							<reference key="IBUIParentViewController" ref="289767912"/>
+							<string key="IBUINibName">FavoriteUsersView</string>
 							<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 						</object>
 					</object>
 				</object>
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<reference ref="1055176006"/>
+					<object class="IBUINavigationController" id="1055176006">
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="362836990">
+							<string key="IBUITitle">Home</string>
+							<object class="NSCustomResource" key="IBUIImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">HomeIcon.png</string>
+							</object>
+							<reference key="IBUITabBar"/>
+						</object>
+						<reference key="IBUIParentViewController" ref="1034742383"/>
+						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+						<object class="IBUINavigationBar" key="IBUINavigationBar" id="337069084">
+							<nil key="NSNextResponder"/>
+							<int key="NSvFlags">256</int>
+							<string key="NSFrameSize">{0, 0}</string>
+							<bool key="IBUIOpaque">NO</bool>
+							<bool key="IBUIClipsSubviews">YES</bool>
+							<bool key="IBUIMultipleTouchEnabled">YES</bool>
+						</object>
+						<object class="NSMutableArray" key="IBUIViewControllers">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIViewController" id="21393406">
+								<object class="IBUINavigationItem" key="IBUINavigationItem" id="370618374">
+									<string key="IBUITitle">News Feed</string>
+									<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="109946423">
+										<string key="IBUITitle">Log In</string>
+										<int key="IBUIStyle">1</int>
+									</object>
+								</object>
+								<reference key="IBUIParentViewController" ref="1055176006"/>
+								<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+							</object>
+						</object>
+					</object>
 					<object class="IBUINavigationController" id="953169716">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="1066642194">
 							<string key="IBUITitle">User</string>
@@ -91,6 +124,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">UserIcon.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -117,47 +151,11 @@
 							</object>
 						</object>
 					</object>
-					<object class="IBUINavigationController" id="289767912">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="465501186">
-							<string key="IBUITitle">Users</string>
-							<object class="NSCustomResource" key="IBUIImage">
-								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">UsersIcon.png</string>
-							</object>
-						</object>
-						<reference key="IBUIParentViewController" ref="1034742383"/>
-						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-						<object class="IBUINavigationBar" key="IBUINavigationBar" id="86836187">
-							<nil key="NSNextResponder"/>
-							<int key="NSvFlags">256</int>
-							<string key="NSFrameSize">{0, 0}</string>
-							<bool key="IBUIOpaque">NO</bool>
-							<bool key="IBUIClipsSubviews">YES</bool>
-							<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						</object>
-						<object class="NSMutableArray" key="IBUIViewControllers">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUITableViewController" id="789866461">
-								<object class="IBUINavigationItem" key="IBUINavigationItem" id="438693328">
-									<string key="IBUITitle">Favorite Users</string>
-									<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="238640406">
-										<int key="IBUIStyle">1</int>
-										<int key="IBUISystemItemIdentifier">4</int>
-									</object>
-								</object>
-								<reference key="IBUIParentViewController" ref="289767912"/>
-								<string key="IBUINibName">FavoriteUsersView</string>
-								<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-							</object>
-						</object>
-					</object>
+					<reference ref="289767912"/>
 					<object class="IBUINavigationController" id="801315089">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="1070274417">
-							<string key="IBUITitle">Repos</string>
-							<object class="NSCustomResource" key="IBUIImage">
-								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">ReposIcon.png</string>
-							</object>
+							<int key="IBUISystemItemIdentifier">1</int>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -187,6 +185,7 @@
 					<object class="IBUINavigationController" id="212505514">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="346955201">
 							<int key="IBUISystemItemIdentifier">8</int>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -1005,30 +1004,6 @@
 					<int key="connectionID">365</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">addUser:</string>
-						<reference key="source" ref="238640406"/>
-						<reference key="destination" ref="1021056545"/>
-					</object>
-					<int key="connectionID">370</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">rootViewController</string>
-						<reference key="source" ref="1021056545"/>
-						<reference key="destination" ref="1034742383"/>
-					</object>
-					<int key="connectionID">371</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">gitHub</string>
-						<reference key="source" ref="1021056545"/>
-						<reference key="destination" ref="367099613"/>
-					</object>
-					<int key="connectionID">374</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="367099613"/>
@@ -1110,51 +1085,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">favoriteUsersStateSetter</string>
-						<reference key="source" ref="1021056545"/>
-						<reference key="destination" ref="64959627"/>
-					</object>
-					<int key="connectionID">390</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">commitCacheReader</string>
 						<reference key="source" ref="48078022"/>
 						<reference key="destination" ref="1027588999"/>
 					</object>
 					<int key="connectionID">392</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">favoriteUsersPersistenceStore</string>
-						<reference key="source" ref="517652571"/>
-						<reference key="destination" ref="1069993124"/>
-					</object>
-					<int key="connectionID">394</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">stateReader</string>
-						<reference key="source" ref="1069993124"/>
-						<reference key="destination" ref="64959627"/>
-					</object>
-					<int key="connectionID">395</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">stateSetter</string>
-						<reference key="source" ref="1069993124"/>
-						<reference key="destination" ref="64959627"/>
-					</object>
-					<int key="connectionID">396</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">favoriteUsersStateReader</string>
-						<reference key="source" ref="1021056545"/>
-						<reference key="destination" ref="64959627"/>
-					</object>
-					<int key="connectionID">398</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -1179,30 +1114,6 @@
 						<reference key="destination" ref="174296820"/>
 					</object>
 					<int key="connectionID">409</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">favoriteUsersState</string>
-						<reference key="source" ref="517652571"/>
-						<reference key="destination" ref="64959627"/>
-					</object>
-					<int key="connectionID">411</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">favoriteUsersStateSetter</string>
-						<reference key="source" ref="881094522"/>
-						<reference key="destination" ref="64959627"/>
-					</object>
-					<int key="connectionID">414</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">favoriteUsersStateReader</string>
-						<reference key="source" ref="881094522"/>
-						<reference key="destination" ref="64959627"/>
-					</object>
-					<int key="connectionID">415</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -1451,14 +1362,6 @@
 						<reference key="destination" ref="387677741"/>
 					</object>
 					<int key="connectionID">463</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">favoriteUsersState</string>
-						<reference key="source" ref="166877055"/>
-						<reference key="destination" ref="64959627"/>
-					</object>
-					<int key="connectionID">475</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -2490,7 +2393,6 @@
 						<reference key="object" ref="438693328"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="238640406"/>
 						</object>
 						<reference key="parent" ref="789866461"/>
 					</object>
@@ -2511,11 +2413,6 @@
 							<reference ref="931599344"/>
 						</object>
 						<reference key="parent" ref="1001417940"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">343</int>
-						<reference key="object" ref="238640406"/>
-						<reference key="parent" ref="438693328"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">347</int>
@@ -2782,7 +2679,6 @@
 					<string>332.IBPluginDependency</string>
 					<string>338.CustomClassName</string>
 					<string>338.IBPluginDependency</string>
-					<string>343.IBPluginDependency</string>
 					<string>347.CustomClassName</string>
 					<string>347.IBPluginDependency</string>
 					<string>349.CustomClassName</string>
@@ -2848,7 +2744,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIApplication</string>
 					<string>UIResponder</string>
-					<string>{{183, 54}, {320, 480}}</string>
+					<string>{{184, 172}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -2929,7 +2825,6 @@
 					<string>{{0, 665}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>NetworkAwareViewController</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>CommitDisplayMgr</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -3063,8 +2958,6 @@
 							<string>favoriteReposState</string>
 							<string>favoriteReposViewController</string>
 							<string>favoriteUsersNavController</string>
-							<string>favoriteUsersPersistenceStore</string>
-							<string>favoriteUsersState</string>
 							<string>favoriteUsersViewController</string>
 							<string>gitHubServiceFactory</string>
 							<string>logInMgr</string>
@@ -3091,8 +2984,6 @@
 							<string>FavoriteReposState</string>
 							<string>FavoriteReposViewController</string>
 							<string>UINavigationController</string>
-							<string>NSObject</string>
-							<string>FavoriteUsersState</string>
 							<string>FavoriteUsersViewController</string>
 							<string>GitHubServiceFactory</string>
 							<string>NSObject</string>
@@ -3303,35 +3194,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/favorite-repos/FavoriteReposViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">FavoriteUsersPersistenceStore</string>
-					<string key="superclassName">NSObject</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>stateReader</string>
-							<string>stateSetter</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>NSObject</string>
-							<string>NSObject</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/favorite-users/FavoriteUsersPersistenceStore.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">FavoriteUsersState</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/favorite-users/FavoriteUsersState.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -3887,35 +3749,6 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">UIAddUserMgr</string>
-					<string key="superclassName">NSObject</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">addUser:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>favoriteUsersStateReader</string>
-							<string>favoriteUsersStateSetter</string>
-							<string>gitHub</string>
-							<string>rootViewController</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>NSObject</string>
-							<string>NSObject</string>
-							<string>GitHubService</string>
-							<string>UIViewController</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/favorite-users/UIAddUserMgr.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
 					<string key="className">UIApplication</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
@@ -4024,7 +3857,6 @@
 							<string>avatarCache</string>
 							<string>contactCache</string>
 							<string>contactMgr</string>
-							<string>favoriteUsersState</string>
 							<string>gitHubServiceFactory</string>
 							<string>gravatarServiceFactory</string>
 							<string>newsFeedDisplayMgrFactory</string>
@@ -4036,7 +3868,6 @@
 							<string>AvatarCache</string>
 							<string>ContactCache</string>
 							<string>ContactMgr</string>
-							<string>FavoriteUsersState</string>
 							<string>GitHubServiceFactory</string>
 							<string>GravatarServiceFactory</string>
 							<string>NewsFeedDisplayMgrFactory</string>
@@ -4074,30 +3905,18 @@
 					<string key="className">UserViewController</string>
 					<string key="superclassName">UITableViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSMutableArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>addContact:</string>
-							<string>addFavorite:</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-						</object>
+						<string key="NS.key.0">addContact:</string>
+						<string key="NS.object.0">id</string>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addToContactsButton</string>
-							<string>addToFavoritesButton</string>
 							<string>avatarView</string>
 							<string>contactCacheReader</string>
 							<string>contactMgr</string>
 							<string>delegate</string>
-							<string>favoriteUsersStateReader</string>
-							<string>favoriteUsersStateSetter</string>
 							<string>featuredDetail1Label</string>
 							<string>featuredDetail2Label</string>
 							<string>footerView</string>
@@ -4108,12 +3927,9 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
-							<string>UIButton</string>
 							<string>UIImageView</string>
 							<string>NSObject</string>
 							<string>ContactMgr</string>
-							<string>NSObject</string>
-							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
