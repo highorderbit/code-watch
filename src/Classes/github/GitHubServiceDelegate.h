@@ -49,7 +49,17 @@
                           username:(NSString *)username
                              error:(NSError *)error;
 
+#pragma mark Fetching followers
+
+@optional
+
+- (void)followers:(NSArray *)followers fetchedForUsername:(NSString *)username;
+- (void)failedToFetchFollowersForUsername:(NSString *)username
+                                    error:(NSError *)error;
+
 #pragma mark Searching repositories
+
+@optional
 
 - (void)repos:(NSArray *)repos foundForSearchString:(NSString *)searchString;
 - (void)failedToSearchReposForString:(NSString *)searchString

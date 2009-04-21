@@ -31,6 +31,13 @@
     username:(NSString *)username token:(NSString *)token
     error:(NSError *)error;
 
+#pragma mark Fetching followers
+
+- (void)followers:(NSDictionary *)followers
+    fetchedForUsername:(NSString *)username;
+- (void)failedToFetchFollowersForUsername:(NSString *)username
+    error:(NSError *)error;
+
 #pragma mark Search results
 
 - (void)searchResults:(NSDictionary *)results

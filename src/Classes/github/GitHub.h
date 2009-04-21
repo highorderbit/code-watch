@@ -50,6 +50,10 @@
                   username:(NSString *)username
                      token:(NSString *)token;
 
+#pragma mark Fetching followers
+
+- (void)fetchFollowersForUsername:(NSString *)username;
+
 #pragma mark Searching GitHub
 
 - (void)search:(NSString *)searchString;

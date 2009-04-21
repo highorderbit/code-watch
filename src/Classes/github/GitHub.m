@@ -17,7 +17,7 @@
            forRequest:(NSURLRequest *)request;
 - (void)removeInvocationForRequest:(NSURLRequest *)request;
 
-- (NSString *)baseApiUrl;
+- (NSString *)baseApiUrlForVersion:(NSUInteger)apiVersion;
 - (void)setDelegate:(id<GitHubDelegate>)aDelegate;
 - (void)setBaseUrl:(NSURL *)url;
 - (void)setApi:(WebServiceApi *)anApi;
@@ -64,7 +64,8 @@
 - (void)fetchInfoForUsername:(NSString *)username token:(NSString *)token
 {
     NSString * url =
-        [NSString stringWithFormat:@"%@/%@", [self baseApiUrl], username];
+        [NSString stringWithFormat:@"%@/%@", [self baseApiUrlForVersion:1],
+        username];
 
     NSDictionary * args =
         token ?
@@ -98,7 +99,7 @@
 {
     NSString * url =
         [NSString stringWithFormat:@"%@/%@/%@/commits/master",
-        [self baseApiUrl], username, repo];
+        [self baseApiUrlForVersion:1], username, repo];
 
     NSDictionary * args =
         token ?
@@ -132,7 +133,7 @@
 {
     NSString * url =
         [NSString stringWithFormat:@"%@/%@/%@/commit/%@",
-        [self baseApiUrl], username, repo, commitKey];
+        [self baseApiUrlForVersion:1], username, repo, commitKey];
 
     NSDictionary * args =
         token ?
@@ -161,12 +162,37 @@
     [api sendRequest:req];
 }
 
+#pragma mark Fetching followers
+
+- (void)fetchFollowersForUsername:(NSString *)username
+{
+    NSString * url =
+        [NSString stringWithFormat:@"%@/user/show/%@/following",
+        [self baseApiUrlForVersion:2], username];
+
+    NSURLRequest * req =
+        [NSURLRequest requestWithBaseUrlString:url getArguments:nil];
+
+    SEL sel = @selector(handleFollowersResponse:toRequest:username:);
+    NSMethodSignature * sig = [self methodSignatureForSelector:sel];
+    NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
+
+    [inv setTarget:self];
+    [inv setSelector:sel];
+    [inv setArgument:&username atIndex:4];
+    [inv retainArguments];
+
+    [self setInvocation:inv forRequest:req];
+
+    [api sendRequest:req];
+}
+
 #pragma mark Searching GitHub
 
 - (void)search:(NSString *)searchString
 {
     NSString * url = [NSString stringWithFormat:@"%@/search/%@",
-        [self baseApiUrl], searchString];
+        [self baseApiUrlForVersion:1], searchString];
 
     NSURLRequest * req =
         [NSURLRequest requestWithBaseUrlString:url getArguments:nil];
@@ -296,6 +322,27 @@
     }
 }
 
+- (void)handleFollowersResponse:(id)response
+                      toRequest:(NSURLRequest *)request
+                       username:(NSString *)username
+{
+    if ([response isKindOfClass:[NSError class]]) {
+        [delegate failedToFetchFollowersForUsername:username error:response];
+        return;
+    }
+
+    NSDictionary * followers = [parser parseResponse:response];
+    NSLog(@"Have followers for username '%@': '%@'", username, followers);
+
+    if (followers)
+        [delegate followers:followers fetchedForUsername:username];
+    else {
+        NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
+        NSError * err = [NSError errorWithLocalizedDescription:desc];
+        [delegate failedToFetchFollowersForUsername:username error:err];
+    }
+}
+
 - (void)handleSearchResults:(id)response
                   toRequest:(NSURLRequest *)request
                searchString:(NSString *)searchString
@@ -319,7 +366,7 @@
 
 #pragma mark Functions to help with building API URLs
 
-- (NSString *)baseApiUrl
+- (NSString *)baseApiUrlForVersion:(NSUInteger)apiVersion
 {
     //
     // GitHub API URL format is:
@@ -336,7 +383,8 @@
             break;
     }
 
-    return [NSString stringWithFormat:@"%@v1/%@", baseUrl, responseFormat];
+    return [NSString stringWithFormat:@"%@v%d/%@", baseUrl, apiVersion,
+        responseFormat];
 }
 
 #pragma mark Tracking requests
