@@ -30,6 +30,7 @@
     
     IBOutlet UIBarButtonItem * homeBarButtonItem;
     IBOutlet UIBarButtonItem * userBarButtonItem;
+    IBOutlet UIBarButtonItem * followedUsersBarButtonItem;
     IBOutlet UITabBarItem * userTabBarItem;
     IBOutlet UINavigationItem * homeNavigationItem;
     IBOutlet UINavigationItem * userNavigationItem;

@@ -36,6 +36,7 @@
 
     [homeBarButtonItem release];
     [userBarButtonItem release];
+    [followedUsersBarButtonItem release];
     [userTabBarItem release];
     [homeNavigationItem release];
     [userNavigationItem release];
@@ -203,6 +204,8 @@
             NSLocalizedString(@"loginmgr.logout.text", @"");
         userBarButtonItem.title =
             NSLocalizedString(@"loginmgr.logout.text", @"");
+        followedUsersBarButtonItem.title =
+            NSLocalizedString(@"loginmgr.logout.text", @"");
         static const NSInteger MAX_USER_TAB_NAME_LENGTH = 12;
         userTabBarItem.title =
             [logInStateReader.login length] > MAX_USER_TAB_NAME_LENGTH ?
@@ -220,6 +223,8 @@
         homeBarButtonItem.title =
             NSLocalizedString(@"loginmgr.login.text", @"");
         userBarButtonItem.title =
+            NSLocalizedString(@"loginmgr.login.text", @"");
+        followedUsersBarButtonItem.title =
             NSLocalizedString(@"loginmgr.login.text", @"");
         userTabBarItem.title =
             NSLocalizedString(@"loginmgr.user.text", @"");
