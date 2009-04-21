@@ -54,6 +54,9 @@ nodata.noconnection.text = "No Connection";
 /* UserDisplayMgr Strings */
 userdisplaymgr.login.text = "Please Log In to View Personal Info";
 
+/* FavoriteUsersDisplayMgr Strings */
+favoriteuserdisplaymgr.login.text = "Please Log In to View Your Followed Users";
+
 /* NewsFeedDisplayMgr Strings */
 newsfeeddisplaymgr.login.text = "Please Log In to View News Feed";
 newsfeeddisplaymgr.view.title = "Recent Activity";

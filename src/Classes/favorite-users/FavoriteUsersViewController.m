@@ -18,14 +18,6 @@
 
 #pragma mark General view controller methods
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [delegate viewWillAppear];
-    [self setEditing:NO animated:NO];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];

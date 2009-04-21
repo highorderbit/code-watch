@@ -8,16 +8,32 @@
 #import "UserViewController.h"
 #import "NetworkAwareViewController.h"
 #import "UIUserDisplayMgr.h"
+#import "GitHubService.h"
 
 @interface FavoriteUsersDisplayMgr :
-    NSObject <FavoriteUsersViewControllerDelegate>
+    NSObject
+    <FavoriteUsersViewControllerDelegate, NetworkAwareViewControllerDelegate,
+    GitHubServiceDelegate>
 {
     FavoriteUsersViewController * viewController;
+    NetworkAwareViewController * networkAwareViewController;
     
     NSObject<UserDisplayMgr> * userDisplayMgr;
+    NSObject<LogInStateReader> * logInState;
+    GitHubService * gitHubService;
+
+    BOOL gitHubFailure;
 }
 
-- (id)initWithViewController:(FavoriteUsersViewController *)viewController
-    userDisplayMgr:(NSObject<UserDisplayMgr> *)userDisplayMgr;
+- (id)initWithViewController:
+    (FavoriteUsersViewController *)viewController
+    networkAwareViewController:
+    (NetworkAwareViewController *)networkAwareViewController
+    userDisplayMgr:
+    (NSObject<UserDisplayMgr> *)userDisplayMgr
+    logInState:
+    (NSObject<LogInStateReader> *)logInState
+    gitHubService:
+    (GitHubService *)gitHubService;
 
 @end

@@ -6,7 +6,6 @@
 
 @protocol FavoriteUsersViewControllerDelegate
 
-- (void)viewWillAppear;
 - (void)selectedUsername:(NSString *)username;
 
 @end

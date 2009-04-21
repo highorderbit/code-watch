@@ -32,7 +32,7 @@
     [logInMgr release];
     [logInState release];
     [logInPersistenceStore release];
-    
+
     [userCachePersistenceStore release];
     [newsFeedPersistenceStore release];
     [repoCachePersistenceStore release];
@@ -42,24 +42,25 @@
 
     [newsFeedDisplayMgr release];
     [newsFeedDisplayMgrFactory release];
-    
+
     [favoriteUsersViewController release];
     [favoriteUsersNavController release];
-    
+    [favoriteUserNetworkAwareController release];
+
     [favoriteReposPersistenceStore release];
     [favoriteReposViewController release];
     [favoriteReposState release];
     [favoriteReposNavController release];
-    
+
     [gitHubServiceFactory release];
 
     [userDisplayMgrFactory release];
     [repoSelectorFactory release];
-    
+
     [uiState release];
     [tabBarController release];
     [uiStatePersistenceStore release];
-    
+
     [super dealloc];
 }
 
@@ -123,11 +124,17 @@
         [userDisplayMgrFactory
         createUserDisplayMgrWithNavigationContoller:favoriteUsersNavController];
 
+    GitHubService * gitHubService = [gitHubServiceFactory createGitHubService];
+
     FavoriteUsersDisplayMgr * favoriteUsersDisplayMgr =
         [[FavoriteUsersDisplayMgr alloc]
         initWithViewController:favoriteUsersViewController
-        userDisplayMgr:userDisplayMgr];
+        networkAwareViewController:favoriteUserNetworkAwareController
+        userDisplayMgr:userDisplayMgr
+        logInState:logInState
+        gitHubService:gitHubService];
 
+    favoriteUserNetworkAwareController.delegate = favoriteUsersDisplayMgr;
     favoriteUsersViewController.delegate = favoriteUsersDisplayMgr;
 }
 
@@ -136,6 +143,7 @@
     NSObject<RepoSelector> * repoSelector =
         [repoSelectorFactory
         createRepoSelectorWithNavigationController:favoriteReposNavController];
+
     FavoriteReposDisplayMgr * favoriteReposDisplayMgr =
         [[FavoriteReposDisplayMgr alloc]
         initWithViewController:favoriteReposViewController
