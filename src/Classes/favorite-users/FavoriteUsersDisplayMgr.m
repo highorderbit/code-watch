@@ -65,7 +65,7 @@
             setNoConnectionText:
             NSLocalizedString(@"nodata.noconnection.text", @"")];
         
-        [gitHubService fetchFollowersForUsername:logInState.login];
+        [gitHubService fetchFollowingForUsername:logInState.login];
         
         NSArray * followedUsers = nil;
         // followedUsers = networkCache ...
@@ -88,14 +88,14 @@
 
 #pragma mark GitHubServiceDelegate implementation
 
-- (void)followers:(NSArray *)followers fetchedForUsername:(NSString *)username
+- (void)following:(NSArray *)followers fetchedForUsername:(NSString *)username
 {
     [viewController setUsernames:followers];
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];
 }
 
-- (void)failedToFetchFollowersForUsername:(NSString *)username
+- (void)failedToFetchFollowingForUsername:(NSString *)username
     error:(NSError *)error
 {
     if (!gitHubFailure) {
