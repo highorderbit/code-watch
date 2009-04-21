@@ -172,6 +172,14 @@
         token:logInStateReader.token];
 }
 
+- (void)unfollowUsername:(NSString *)followee
+{
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
+    [gitHub unfollowUsername:followee follower:logInStateReader.login
+        token:logInStateReader.token];
+}
+
 #pragma mark Searching GitHub
 
 - (void)searchRepos:(NSString *)searchString
@@ -326,6 +334,28 @@
     if ([delegate respondsToSelector:sel])
         [delegate
             failedToFollowUsername:followee follower:follower error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)username:(NSString *)follower didUnfollow:(NSString *)followee
+    token:(NSString *)token
+{
+    SEL sel = @selector(username:didUnfollow:);
+    if ([delegate respondsToSelector:sel])
+        [delegate username:follower didUnfollow:followee];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)failedToUnfollowUsername:(NSString *)followee
+    follower:(NSString *)follower token:(NSString *)token
+    error:(NSError *)error
+{
+    SEL sel = @selector(failedToUnfollowUsername:follower:error:);
+    if ([delegate respondsToSelector:sel])
+        [delegate
+            failedToUnfollowUsername:followee follower:follower error:error];
 
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
