@@ -9,6 +9,7 @@
 #import "NetworkAwareViewController.h"
 #import "UIUserDisplayMgr.h"
 #import "GitHubService.h"
+#import "UserNetworkCacheReader.h"
 
 @interface FavoriteUsersDisplayMgr :
     NSObject
@@ -21,6 +22,7 @@
     NSObject<UserDisplayMgr> * userDisplayMgr;
     NSObject<LogInStateReader> * logInState;
     GitHubService * gitHubService;
+    NSObject<UserNetworkCacheReader> * userNetworkCacheReader;
 
     BOOL gitHubFailure;
 }
@@ -34,6 +36,8 @@
     logInState:
     (NSObject<LogInStateReader> *)logInState
     gitHubService:
-    (GitHubService *)gitHubService;
+    (GitHubService *)gitHubService
+    userNetworkCacheReader:
+    (NSObject<UserNetworkCacheReader> *)userNetworkCacheReader;
 
 @end

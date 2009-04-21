@@ -18,6 +18,7 @@
 #import "RepoSelectorFactory.h"
 #import "UIState.h"
 #import "UIStatePersistenceStore.h"
+#import "UserNetworkCache.h"
 
 @interface CodeWatchAppController :
     NSObject <UITabBarDelegate, NewsFeedDisplayMgrDelegate>
@@ -41,6 +42,7 @@
     IBOutlet UINavigationController * favoriteUsersNavController;
     IBOutlet FavoriteUsersViewController * favoriteUsersViewController;
     IBOutlet NetworkAwareViewController * favoriteUserNetworkAwareController;
+    IBOutlet UserNetworkCache * userNetworkCache;
 
     IBOutlet NSObject<PersistenceStore> * favoriteReposPersistenceStore;    
     IBOutlet FavoriteReposViewController * favoriteReposViewController;

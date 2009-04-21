@@ -84,6 +84,8 @@
     NSMutableArray * mutableCopy = [usernames mutableCopy];
     [sortedUsernames release];
     sortedUsernames = mutableCopy;
+    
+    [self.tableView reloadData];
 }
 
 @end

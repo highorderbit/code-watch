@@ -132,7 +132,8 @@
         networkAwareViewController:favoriteUserNetworkAwareController
         userDisplayMgr:userDisplayMgr
         logInState:logInState
-        gitHubService:gitHubService];
+        gitHubService:gitHubService
+        userNetworkCacheReader:userNetworkCache];
 
     gitHubService.delegate = favoriteUsersDisplayMgr;
     favoriteUserNetworkAwareController.delegate = favoriteUsersDisplayMgr;

@@ -109,6 +109,7 @@
 		9152A1970F6ADAD20037A52F /* HomeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1960F6ADAD20037A52F /* HomeIcon.png */; };
 		9152A1F40F6AFF8A0037A52F /* UsersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1F30F6AFF8A0037A52F /* UsersIcon.png */; };
 		916B8D720F9D37710000FC5A /* FavoriteUsersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916B8D700F9D37710000FC5A /* FavoriteUsersView.xib */; };
+		916B8E790F9E53270000FC5A /* UserNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 916B8E780F9E53270000FC5A /* UserNetworkCache.m */; };
 		91806B860F95213F00F08005 /* log-in-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 91806B830F95213F00F08005 /* log-in-help.html */; };
 		91806B870F95213F00F08005 /* new-repo-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 91806B840F95213F00F08005 /* new-repo-help.html */; };
 		91806B880F95213F00F08005 /* new-user-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 91806B850F95213F00F08005 /* new-user-help.html */; };
@@ -375,6 +376,10 @@
 		9152A1960F6ADAD20037A52F /* HomeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HomeIcon.png; sourceTree = "<group>"; };
 		9152A1F30F6AFF8A0037A52F /* UsersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UsersIcon.png; sourceTree = "<group>"; };
 		916B8D710F9D37710000FC5A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FavoriteUsersView.xib; sourceTree = "<group>"; };
+		916B8E770F9E53270000FC5A /* UserNetworkCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserNetworkCache.h; path = "favorite-users/UserNetworkCache.h"; sourceTree = "<group>"; };
+		916B8E780F9E53270000FC5A /* UserNetworkCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserNetworkCache.m; path = "favorite-users/UserNetworkCache.m"; sourceTree = "<group>"; };
+		916B8E7A0F9E53460000FC5A /* UserNetworkCacheReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserNetworkCacheReader.h; path = "favorite-users/UserNetworkCacheReader.h"; sourceTree = "<group>"; };
+		916B8E7D0F9E535E0000FC5A /* UserNetworkCacheSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserNetworkCacheSetter.h; path = "favorite-users/UserNetworkCacheSetter.h"; sourceTree = "<group>"; };
 		91806B830F95213F00F08005 /* log-in-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "log-in-help.html"; sourceTree = "<group>"; };
 		91806B840F95213F00F08005 /* new-repo-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "new-repo-help.html"; sourceTree = "<group>"; };
 		91806B850F95213F00F08005 /* new-user-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "new-user-help.html"; sourceTree = "<group>"; };
@@ -1037,6 +1042,10 @@
 				91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */,
 				91E25E960F79C6FD00E1594E /* FavoriteUsersViewControllerDelegate.h */,
 				918136EC0F7BD473002B1153 /* UserDisplayMgr.h */,
+				916B8E770F9E53270000FC5A /* UserNetworkCache.h */,
+				916B8E780F9E53270000FC5A /* UserNetworkCache.m */,
+				916B8E7A0F9E53460000FC5A /* UserNetworkCacheReader.h */,
+				916B8E7D0F9E535E0000FC5A /* UserNetworkCacheSetter.h */,
 			);
 			name = "favorite-users";
 			sourceTree = "<group>";
@@ -1287,6 +1296,7 @@
 				91806BC60F95333B00F08005 /* NSString+WebViewAdditions.m in Sources */,
 				05378FE00F98F88200CE4C19 /* WebServiceApi.m in Sources */,
 				05378FE40F98FCB000CE4C19 /* NSURLRequest+WebServiceApiAdditions.m in Sources */,
+				916B8E790F9E53270000FC5A /* UserNetworkCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

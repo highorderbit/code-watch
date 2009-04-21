@@ -13,6 +13,7 @@
     [userDisplayMgr release];
     [logInState release];
     [gitHubService release];
+    [userNetworkCacheReader release];
     [super dealloc];
 }
 
@@ -26,6 +27,8 @@
     (NSObject<LogInStateReader> *)aLogInState
     gitHubService:
     (GitHubService *)aGitHubService
+    userNetworkCacheReader:
+    (NSObject<UserNetworkCacheReader> *)aUserNetworkCacheReader
 {
     if (self = [super init]) {
         viewController = [aViewController retain];
@@ -33,6 +36,7 @@
         userDisplayMgr = [aUserDisplayMgr retain];
         logInState = [aLogInState retain];
         gitHubService = [aGitHubService retain];
+        userNetworkCacheReader = [aUserNetworkCacheReader retain];
         
         UIBarButtonItem * refreshButton =
             [[[UIBarButtonItem alloc]
@@ -67,10 +71,9 @@
         
         [gitHubService fetchFollowingForUsername:logInState.login];
         
-        NSArray * followedUsers = nil;
-        // followedUsers = networkCache ...
-
-        // viewController.following = ...
+        NSArray * followedUsers =
+            [userNetworkCacheReader followingForPrimaryUser];
+        [viewController setUsernames:followedUsers];
 
         [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
         [networkAwareViewController setCachedDataAvailable:!!followedUsers];
