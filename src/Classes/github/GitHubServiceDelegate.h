@@ -62,6 +62,10 @@
                       follower:(NSString *)follower
                          error:(NSError *)error;
 
+- (void)username:(NSString *)follower didUnfollow:(NSString *)followee;
+- (void)failedToUnfollowUsername:(NSString *)followee
+    follower:(NSString *)follower error:(NSError *)error;
+
 #pragma mark Searching repositories
 
 @optional

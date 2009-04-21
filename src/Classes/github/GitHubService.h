@@ -77,6 +77,7 @@
 
 - (void)fetchFollowingForUsername:(NSString *)username;
 - (void)followUsername:(NSString *)followee;
+- (void)unfollowUsername:(NSString *)followee;
 
 #pragma mark Searching GitHub
 

@@ -44,6 +44,12 @@
     follower:(NSString *)follower token:(NSString *)token
     error:(NSError *)error;
 
+- (void)username:(NSString *)follower didUnfollow:(NSString *)followee
+    token:(NSString *)token;
+- (void)failedToUnfollowUsername:(NSString *)followee
+    follower:(NSString *)follower token:(NSString *)token
+    error:(NSError *)error;
+
 #pragma mark Search results
 
 - (void)searchResults:(NSDictionary *)results
