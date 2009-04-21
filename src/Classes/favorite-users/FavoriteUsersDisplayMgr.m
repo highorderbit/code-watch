@@ -33,6 +33,15 @@
         userDisplayMgr = [aUserDisplayMgr retain];
         logInState = [aLogInState retain];
         gitHubService = [aGitHubService retain];
+        
+        UIBarButtonItem * refreshButton =
+            [[[UIBarButtonItem alloc]
+            initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+            target:self
+            action:@selector(viewWillAppear)] autorelease];
+
+        [networkAwareViewController.navigationItem
+            setRightBarButtonItem:refreshButton animated:NO];
     }
 
     return self;
@@ -56,7 +65,7 @@
             setNoConnectionText:
             NSLocalizedString(@"nodata.noconnection.text", @"")];
         
-        // gitHubService fetchFollowingForUsername
+        [gitHubService fetchFollowersForUsername:logInState.login];
         
         NSArray * followedUsers = nil;
         // followedUsers = networkCache ...
@@ -79,8 +88,38 @@
 
 #pragma mark GitHubServiceDelegate implementation
 
-// fetched following list
+- (void)followers:(NSArray *)followers fetchedForUsername:(NSString *)username
+{
+    [viewController setUsernames:followers];
+    [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
+    [networkAwareViewController setCachedDataAvailable:YES];
+}
 
-// failed to fetch following list
+- (void)failedToFetchFollowersForUsername:(NSString *)username
+    error:(NSError *)error
+{
+    if (!gitHubFailure) {
+        gitHubFailure = YES;
+        NSLog(@"Failed to retrieve following list for user: '%@' error: '%@'.",
+            username, error);
+
+        NSString * title =
+            NSLocalizedString(@"github.followingupdate.failed.alert.title",
+            @"");
+        NSString * cancelTitle =
+            NSLocalizedString(@"github.followingupdate.failed.alert.ok", @"");
+        NSString * message = error.localizedDescription;
+
+        UIAlertView * alertView =
+            [[[UIAlertView alloc]
+            initWithTitle:title message:message delegate:self
+            cancelButtonTitle:cancelTitle otherButtonTitles:nil]
+            autorelease];
+
+        [alertView show];
+
+        [networkAwareViewController setUpdatingState:kDisconnected];
+    }
+}
 
 @end

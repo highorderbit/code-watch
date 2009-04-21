@@ -24,6 +24,7 @@
 @synthesize expectedUsername;
 @synthesize homeRefreshButton;
 @synthesize userRefreshButton;
+@synthesize followedUsersRefreshButton;
 
 - (void)dealloc
 {
@@ -38,8 +39,10 @@
     [userTabBarItem release];
     [homeNavigationItem release];
     [userNavigationItem release];
+    [followedUsersNavigationItem release];
     [homeRefreshButton release];
     [userRefreshButton release];
+    [followedUsersRefreshButton release];
     
     [homeNavigationController release];
     [userNavigationController release];
@@ -66,6 +69,8 @@
     if (self = [super init]) {
         self.homeRefreshButton = homeNavigationItem.rightBarButtonItem;
         self.userRefreshButton = userNavigationItem.rightBarButtonItem;
+        self.followedUsersRefreshButton =
+            followedUsersNavigationItem.rightBarButtonItem;
         [self updateUI];
     }
 
@@ -209,6 +214,8 @@
             animated:NO];
         [userNavigationItem setRightBarButtonItem:self.userRefreshButton
             animated:NO];
+        [followedUsersNavigationItem
+            setRightBarButtonItem:self.followedUsersRefreshButton animated:NO];
     } else {
         homeBarButtonItem.title =
             NSLocalizedString(@"loginmgr.login.text", @"");
@@ -219,6 +226,7 @@
             
         [homeNavigationItem setRightBarButtonItem:nil animated:NO];
         [userNavigationItem setRightBarButtonItem:nil animated:NO];
+        [followedUsersNavigationItem setRightBarButtonItem:nil animated:NO];
     }
 }
 
