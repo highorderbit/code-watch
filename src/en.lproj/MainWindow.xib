@@ -294,7 +294,8 @@
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 			</object>
-			<object class="IBUICustomObject" id="807656054"/>
+			<object class="IBUICustomObject" id="637894024"/>
+			<object class="IBUICustomObject" id="130876135"/>
 			<object class="IBUICustomObject" id="181758423"/>
 			<object class="IBUICustomObject" id="898401093"/>
 			<object class="IBUICustomObject" id="964114462"/>
@@ -2089,9 +2090,17 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">userNetworkCache</string>
 						<reference key="source" ref="517652571"/>
-						<reference key="destination" ref="807656054"/>
+						<reference key="destination" ref="637894024"/>
 					</object>
 					<int key="connectionID">609</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">userNetworkPersistenceStore</string>
+						<reference key="source" ref="517652571"/>
+						<reference key="destination" ref="130876135"/>
+					</object>
+					<int key="connectionID">611</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2624,7 +2633,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">608</int>
-						<reference key="object" ref="807656054"/>
+						<reference key="object" ref="637894024"/>
+						<reference key="parent" ref="957960031"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">610</int>
+						<reference key="object" ref="130876135"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
 				</object>
@@ -2767,6 +2781,8 @@
 					<string>605.IBPluginDependency</string>
 					<string>608.CustomClassName</string>
 					<string>608.IBPluginDependency</string>
+					<string>610.CustomClassName</string>
+					<string>610.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2912,6 +2928,8 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UserNetworkCache</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>UserNetworkPersistenceStore</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -2934,7 +2952,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">609</int>
+			<int key="maxID">611</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3000,6 +3018,7 @@
 							<string>userCachePersistenceStore</string>
 							<string>userDisplayMgrFactory</string>
 							<string>userNetworkCache</string>
+							<string>userNetworkPersistenceStore</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3028,6 +3047,7 @@
 							<string>NSObject</string>
 							<string>UserDisplayMgrFactory</string>
 							<string>UserNetworkCache</string>
+							<string>NSObject</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -3920,6 +3940,27 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/favorite-users/UserNetworkCache.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UserNetworkPersistenceStore</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>userNetworkCacheReader</string>
+							<string>userNetworkCacheSetter</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSObject</string>
+							<string>NSObject</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/favorite-users/UserNetworkPersistenceStore.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

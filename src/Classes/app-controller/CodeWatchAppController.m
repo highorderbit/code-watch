@@ -35,6 +35,7 @@
 
     [userCachePersistenceStore release];
     [newsFeedPersistenceStore release];
+    [userNetworkPersistenceStore release];
     [repoCachePersistenceStore release];
     [commitCachePersistenceStore release];
     [contactCachePersistenceStore release];
@@ -86,6 +87,7 @@
     
     [logInPersistenceStore save];
     [userCachePersistenceStore save];
+    [userNetworkPersistenceStore save];
     [newsFeedPersistenceStore save];
     [repoCachePersistenceStore save];
     [commitCachePersistenceStore save];
@@ -99,6 +101,7 @@
 {
     [logInPersistenceStore load];
     [userCachePersistenceStore load];
+    [userNetworkPersistenceStore load];
     [newsFeedPersistenceStore load];
     [repoCachePersistenceStore load];
     [commitCachePersistenceStore load];

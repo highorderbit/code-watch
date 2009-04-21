@@ -31,6 +31,7 @@
     
     IBOutlet NSObject<PersistenceStore> * userCachePersistenceStore;
     IBOutlet NSObject<PersistenceStore> * newsFeedPersistenceStore;
+    IBOutlet NSObject<PersistenceStore> * userNetworkPersistenceStore;
     IBOutlet NSObject<PersistenceStore> * repoCachePersistenceStore;
     IBOutlet NSObject<PersistenceStore> * commitCachePersistenceStore;
     IBOutlet NSObject<PersistenceStore> * contactCachePersistenceStore;
