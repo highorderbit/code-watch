@@ -164,7 +164,7 @@
 
 #pragma mark Fetching followers
 
-- (void)fetchFollowersForUsername:(NSString *)username
+- (void)fetchFollowingForUsername:(NSString *)username
 {
     NSString * url =
         [NSString stringWithFormat:@"%@/user/show/%@/following",
@@ -173,7 +173,7 @@
     NSURLRequest * req =
         [NSURLRequest requestWithBaseUrlString:url getArguments:nil];
 
-    SEL sel = @selector(handleFollowersResponse:toRequest:username:);
+    SEL sel = @selector(handleFollowingResponse:toRequest:username:);
     NSMethodSignature * sig = [self methodSignatureForSelector:sel];
     NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
 
@@ -322,24 +322,24 @@
     }
 }
 
-- (void)handleFollowersResponse:(id)response
+- (void)handleFollowingResponse:(id)response
                       toRequest:(NSURLRequest *)request
                        username:(NSString *)username
 {
     if ([response isKindOfClass:[NSError class]]) {
-        [delegate failedToFetchFollowersForUsername:username error:response];
+        [delegate failedToFetchFollowingForUsername:username error:response];
         return;
     }
 
-    NSDictionary * followers = [parser parseResponse:response];
-    NSLog(@"Have followers for username '%@': '%@'", username, followers);
+    NSDictionary * following = [parser parseResponse:response];
+    NSLog(@"Have following for username '%@': '%@'", username, following);
 
-    if (followers)
-        [delegate followers:followers fetchedForUsername:username];
+    if (following)
+        [delegate following:following fetchedForUsername:username];
     else {
         NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
         NSError * err = [NSError errorWithLocalizedDescription:desc];
-        [delegate failedToFetchFollowersForUsername:username error:err];
+        [delegate failedToFetchFollowingForUsername:username error:err];
     }
 }
 

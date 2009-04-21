@@ -33,9 +33,9 @@
 
 #pragma mark Fetching followers
 
-- (void)followers:(NSDictionary *)followers
+- (void)following:(NSDictionary *)following
     fetchedForUsername:(NSString *)username;
-- (void)failedToFetchFollowersForUsername:(NSString *)username
+- (void)failedToFetchFollowingForUsername:(NSString *)username
     error:(NSError *)error;
 
 #pragma mark Search results
