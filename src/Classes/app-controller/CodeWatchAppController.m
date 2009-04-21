@@ -134,6 +134,7 @@
         logInState:logInState
         gitHubService:gitHubService];
 
+    gitHubService.delegate = favoriteUsersDisplayMgr;
     favoriteUserNetworkAwareController.delegate = favoriteUsersDisplayMgr;
     favoriteUsersViewController.delegate = favoriteUsersDisplayMgr;
 }
