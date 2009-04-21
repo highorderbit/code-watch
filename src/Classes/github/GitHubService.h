@@ -18,6 +18,7 @@
 #import "UserCache.h"
 #import "RepoCache.h"
 #import "CommitCache.h"
+#import "UserNetworkCache.h"
 
 @class GitHub;
 
@@ -35,6 +36,7 @@
     IBOutlet NSObject<RepoCacheReader> * repoCacheReader;
     IBOutlet NSObject<CommitCacheSetter> * commitCacheSetter;
     IBOutlet NSObject<CommitCacheReader> * commitCacheReader;
+    IBOutlet NSObject<UserNetworkCacheSetter> * userNetworkCacheSetter;
 
     NSString * usernameForLogInAttempt;
 
@@ -48,7 +50,8 @@
 - (id)initWithConfigReader:(NSObject<ConfigReader> *)aConfigReader
     logInState:(LogInState *)logInState
     userCache:(UserCache*)userCache repoCache:(RepoCache *)repoCache
-    commitCache:(CommitCache *)commitCache;
+    commitCache:(CommitCache *)commitCache
+    userNetworkCache:(UserNetworkCache *)userNetworkCache;
 
 #pragma mark Logging in
 

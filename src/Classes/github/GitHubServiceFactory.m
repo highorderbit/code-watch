@@ -7,6 +7,7 @@
 #import "UserCache.h"
 #import "RepoCache.h"
 #import "CommitCache.h"
+#import "UserNetworkCache.h"
 #import "GitHubService.h"
 
 @implementation GitHubServiceFactory
@@ -18,6 +19,7 @@
     [userCache release];
     [repoCache release];
     [commitCache release];
+    [userNetworkCache release];
     [super dealloc];
 }
 
@@ -25,7 +27,7 @@
 {
     return [[[GitHubService alloc] initWithConfigReader:configReader
         logInState:logInState userCache:userCache repoCache:repoCache
-        commitCache:commitCache] autorelease];
+        commitCache:commitCache userNetworkCache:userNetworkCache] autorelease];
 }
 
 @end

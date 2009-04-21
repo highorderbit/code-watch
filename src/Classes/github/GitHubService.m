@@ -51,6 +51,7 @@
     [userCacheReader release];
     [repoCacheSetter release];
     [repoCacheReader release];
+    [userNetworkCacheSetter release];
 
     [usernameForLogInAttempt release];
 
@@ -65,6 +66,7 @@
     logInState:(LogInState *)logInState
     userCache:(UserCache*)userCache repoCache:(RepoCache *)repoCache
     commitCache:(CommitCache *)commitCache
+    userNetworkCache:(UserNetworkCache *)aUserNetworkCache
 {
     if (self = [super init]) {
         configReader = [aConfigReader retain];
@@ -76,7 +78,8 @@
         repoCacheSetter = [repoCache retain];
         commitCacheReader = [commitCache retain];
         commitCacheSetter = [commitCache retain];
-        
+        userNetworkCacheSetter = [aUserNetworkCache retain];
+
         [self awakeFromNib];
     }
     
@@ -298,6 +301,7 @@
     fetchedForUsername:(NSString *)username
 {
     NSArray * following = [results objectForKey:@"users"];
+    [userNetworkCacheSetter setFollowingForPrimaryUser:following];
 
     SEL sel = @selector(following:fetchedForUsername:);
     if ([delegate respondsToSelector:sel])
@@ -319,6 +323,10 @@
 - (void)username:(NSString *)follower isFollowing:(NSString *)followee
     token:(NSString *)token
 {
+    //
+    // TODO: Write to user network cache.
+    //
+
     SEL sel = @selector(username:isFollowing:);
     if ([delegate respondsToSelector:sel])
         [delegate username:follower isFollowing:followee];
