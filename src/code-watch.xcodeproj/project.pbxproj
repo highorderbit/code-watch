@@ -315,7 +315,6 @@
 		05F4CF2D0F6C5ECB00B107BB /* GitHubApiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiParser.h; path = github/GitHubApiParser.h; sourceTree = "<group>"; };
 		05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubApiParser.m; path = github/GitHubApiParser.m; sourceTree = "<group>"; };
 		05F4CF480F6C614A00B107BB /* GitHubApiParserImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiParserImpl.h; path = github/GitHubApiParserImpl.h; sourceTree = "<group>"; };
-		05F4CFC30F6C65A300B107BB /* GitHubApiDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiDelegate.h; path = github/GitHubApiDelegate.h; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Code Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -728,7 +727,6 @@
 				051CDCE00F6C0D140049D2BD /* JsonGitHubApiParserImpl.h */,
 				051CDCE10F6C0D140049D2BD /* JsonGitHubApiParserImpl.m */,
 				05F4CF480F6C614A00B107BB /* GitHubApiParserImpl.h */,
-				05F4CFC30F6C65A300B107BB /* GitHubApiDelegate.h */,
 				91B889950F8061F400215C8B /* GitHubServiceFactory.h */,
 				91B889960F8061F400215C8B /* GitHubServiceFactory.m */,
 				054848A60F84229B00735643 /* GitHubNewsFeed.h */,
