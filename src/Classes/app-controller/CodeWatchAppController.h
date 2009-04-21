@@ -40,6 +40,7 @@
 
     IBOutlet UINavigationController * favoriteUsersNavController;
     IBOutlet FavoriteUsersViewController * favoriteUsersViewController;
+    IBOutlet NetworkAwareViewController * favoriteUserNetworkAwareController;
 
     IBOutlet NSObject<PersistenceStore> * favoriteReposPersistenceStore;    
     IBOutlet FavoriteReposViewController * favoriteReposViewController;
