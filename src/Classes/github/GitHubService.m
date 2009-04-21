@@ -157,11 +157,11 @@
 
 #pragma mark Fetching followers
 
-- (void)fetchFollowersForUsername:(NSString *)username
+- (void)fetchFollowingForUsername:(NSString *)username
 {
     [[UIApplication sharedApplication] networkActivityIsStarting];
 
-    [gitHub fetchFollowersForUsername:username];
+    [gitHub fetchFollowingForUsername:username];
 }
 
 #pragma mark Searching GitHub
@@ -278,24 +278,24 @@
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
-- (void)followers:(NSDictionary *)results
+- (void)following:(NSDictionary *)results
     fetchedForUsername:(NSString *)username
 {
-    NSArray * followers = [results objectForKey:@"users"];
+    NSArray * following = [results objectForKey:@"users"];
 
-    SEL sel = @selector(followers:fetchedForUsername:);
+    SEL sel = @selector(following:fetchedForUsername:);
     if ([delegate respondsToSelector:sel])
-        [delegate followers:followers fetchedForUsername:username];
+        [delegate following:following fetchedForUsername:username];
 
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
-- (void)failedToFetchFollowersForUsername:(NSString *)username
+- (void)failedToFetchFollowingForUsername:(NSString *)username
     error:(NSError *)error
 {
-    SEL sel = @selector(failedToFetchFollowersForUsername:error:);
+    SEL sel = @selector(failedToFetchFollowingForUsername:error:);
     if ([delegate respondsToSelector:sel])
-        [delegate failedToFetchFollowersForUsername:username error:error];
+        [delegate failedToFetchFollowingForUsername:username error:error];
 
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }

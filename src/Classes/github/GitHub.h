@@ -52,7 +52,7 @@
 
 #pragma mark Fetching followers
 
-- (void)fetchFollowersForUsername:(NSString *)username;
+- (void)fetchFollowingForUsername:(NSString *)username;
 
 #pragma mark Searching GitHub
 
