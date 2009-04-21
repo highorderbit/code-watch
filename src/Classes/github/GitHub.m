@@ -187,6 +187,40 @@
     [api sendRequest:req];
 }
 
+- (void)followUsername:(NSString *)followee
+              follower:(NSString *)follower
+                 token:(NSString *)token
+{
+    NSString * url =
+        [NSString stringWithFormat:@"%@/user/follow/%@",
+        [self baseApiUrlForVersion:2], followee];
+
+    NSString * requestString =
+        [NSString stringWithFormat:@"login=%@&token=%@", follower, token];
+
+    NSMutableURLRequest * req =
+        [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [req setHTTPMethod:@"POST"];
+    [req setHTTPBody:[requestString dataUsingEncoding:NSUTF8StringEncoding]];
+
+    SEL sel =
+        @selector(handleFollowResponse:toRequest:followee:follower:token:);
+    NSMethodSignature * sig = [self methodSignatureForSelector:sel];
+    NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
+
+    [inv setTarget:self];
+    [inv setSelector:sel];
+    [inv setArgument:&followee atIndex:4];
+    [inv setArgument:&follower atIndex:5];
+    [inv setArgument:&token atIndex:6];
+    [inv retainArguments];
+
+    [self setInvocation:inv forRequest:req];
+
+    [api sendRequest:req];
+}
+
+
 #pragma mark Searching GitHub
 
 - (void)search:(NSString *)searchString
@@ -340,6 +374,34 @@
         NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
         NSError * err = [NSError errorWithLocalizedDescription:desc];
         [delegate failedToFetchFollowingForUsername:username error:err];
+    }
+}
+
+- (void)handleFollowResponse:(id)response
+                   toRequest:(NSURLRequest *)request
+                    followee:(NSString *)followee
+                    follower:(NSString *)follower
+                       token:(NSString *)token
+{
+    if ([response isKindOfClass:[NSError class]]) {
+        [delegate
+            failedToFollowUsername:followee follower:follower token:token
+            error:response];
+        return;
+    }
+
+    NSDictionary * following = [parser parseResponse:response];
+    NSLog(@"'%@' is now following '%@'. Followers: '%@'.", follower, followee,
+        following);
+
+    if (following)
+        [delegate username:follower isFollowing:followee token:token];
+    else {
+        NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
+        NSError * err = [NSError errorWithLocalizedDescription:desc];
+        [delegate
+            failedToFollowUsername:followee follower:follower token:token
+            error:err];
     }
 }
 

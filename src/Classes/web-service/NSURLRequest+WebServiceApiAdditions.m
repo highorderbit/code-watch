@@ -39,7 +39,7 @@
     NSURL * url = [[self class] urlWithBaseUrlString:baseUrlString
                                         getArguments:getArguments];
 
-    return [[NSURLRequest alloc] initWithURL:url];
+    return self = [self initWithURL:url];
 }
 
 - (id)initWithBaseUrlString:(NSString *)baseUrlString
@@ -50,9 +50,8 @@
     NSURL * url = [[self class] urlWithBaseUrlString:baseUrlString
                                         getArguments:getArguments];
 
-    return [[NSURLRequest alloc] initWithURL:url
-                                 cachePolicy:cachePolicy
-                             timeoutInterval:timeoutInterval];
+    return [self initWithURL:url cachePolicy:cachePolicy
+        timeoutInterval:timeoutInterval];
 }
 
 #pragma mark Helper methods

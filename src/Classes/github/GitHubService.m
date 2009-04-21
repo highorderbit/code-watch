@@ -164,6 +164,14 @@
     [gitHub fetchFollowingForUsername:username];
 }
 
+- (void)followUsername:(NSString *)followee
+{
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
+    [gitHub followUsername:followee follower:logInStateReader.login
+        token:logInStateReader.token];
+}
+
 #pragma mark Searching GitHub
 
 - (void)searchRepos:(NSString *)searchString
@@ -296,6 +304,28 @@
     SEL sel = @selector(failedToFetchFollowingForUsername:error:);
     if ([delegate respondsToSelector:sel])
         [delegate failedToFetchFollowingForUsername:username error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)username:(NSString *)follower isFollowing:(NSString *)followee
+    token:(NSString *)token
+{
+    SEL sel = @selector(username:isFollowing:);
+    if ([delegate respondsToSelector:sel])
+        [delegate username:follower isFollowing:followee];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)failedToFollowUsername:(NSString *)followee
+    follower:(NSString *)follower token:(NSString *)token
+    error:(NSError *)error
+{
+    SEL sel = @selector(failedToFollowUsername:follower:error:);
+    if ([delegate respondsToSelector:sel])
+        [delegate
+            failedToFollowUsername:followee follower:follower error:error];
 
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }

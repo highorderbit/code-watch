@@ -38,6 +38,12 @@
 - (void)failedToFetchFollowingForUsername:(NSString *)username
     error:(NSError *)error;
 
+- (void)username:(NSString *)follower isFollowing:(NSString *)followee
+    token:(NSString *)token;
+- (void)failedToFollowUsername:(NSString *)followee
+    follower:(NSString *)follower token:(NSString *)token
+    error:(NSError *)error;
+
 #pragma mark Search results
 
 - (void)searchResults:(NSDictionary *)results
