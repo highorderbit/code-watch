@@ -66,7 +66,7 @@ static const CGFloat IPHONE_WIDTH = 320;
 
     self.navigationItem.title = @"";
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
-    [tableView deselectRowAtIndexPath:selectedRow animated:NO];
+    [tableView deselectRowAtIndexPath:selectedRow animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
