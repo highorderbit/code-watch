@@ -28,6 +28,8 @@ enum UpdatingState
     NSString * noConnectionText;
     
     UIView * updatingView;
+    
+    BOOL visible;
 }
 
 @property (nonatomic, retain)
