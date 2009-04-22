@@ -75,10 +75,9 @@
 
     tabBarController.selectedIndex = uiState.selectedTab;
 
+    [logInMgr init];
     if ([logInState prompt])
         [logInMgr collectCredentials:self];
-    else
-        [logInMgr init];
 }
 
 - (void)persistState
