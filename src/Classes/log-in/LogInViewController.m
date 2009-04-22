@@ -216,14 +216,17 @@ enum HelpSection
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
-
-    if (textField == usernameTextField)
+    if (textField == usernameTextField) {
+        [textField resignFirstResponder];
         [self.tokenTextField becomeFirstResponder];
-    else if (textField == tokenTextField)
+        return YES;
+    } else if (textField == tokenTextField && usernameTextField.text.length) {
+        [textField resignFirstResponder];
         [self userDidSave];
+        return YES;
+    }
 
-    return YES;
+    return NO;
 }
 
 #pragma mark User actions
