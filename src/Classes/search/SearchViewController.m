@@ -197,6 +197,9 @@ static const CGFloat IPHONE_WIDTH = 320;
     loadingLabel.hidden = NO;
     [activityIndicator startAnimating];
     [searchService searchForText:[searchBar.text lowercaseString]];
+    
+    self.view.frame = [[self class] transitionFrame];    
+    tableView.frame = [[self class] defaultFrame];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
