@@ -46,7 +46,7 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
     [self initWithTargetViewController:targetViewController];
 }
 
-- (id)initWithTargetViewController:(UIViewController *) aTargetViewController
+- (id)initWithTargetViewController:(UIViewController *)aTargetViewController
 {
     if (self = [super init]) {
         [self noDataViewController].view.backgroundColor =
@@ -76,12 +76,14 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    visible = YES;
     [targetViewController.view.superview addSubview:[self updatingView]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    visible = NO;
     [[self updatingView] removeFromSuperview];
 }
 
@@ -99,7 +101,7 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
         !cachedDataAvailable && available && ![[self updatingView] superview];
     cachedDataAvailable = available;
     [self updateView];
-    if (transitioningToAvailable)
+    if (transitioningToAvailable && visible)
         [targetViewController.view.superview addSubview:[self updatingView]];
 }
 

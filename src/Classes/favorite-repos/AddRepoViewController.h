@@ -29,5 +29,6 @@
 
 - (void)promptForRepo;
 - (void)repoAccepted;
+- (void)repoRejected;
 
 @end

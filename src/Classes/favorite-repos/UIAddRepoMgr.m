@@ -86,6 +86,7 @@
             NSString * message =
                 [NSString stringWithFormat:formatString, self.repoName, username];
             [self presentErrorAlert:message];
+            [addRepoViewController repoRejected];
         }
     }
 }
