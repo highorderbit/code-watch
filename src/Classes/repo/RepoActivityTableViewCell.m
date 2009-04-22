@@ -6,6 +6,7 @@
 #import "NSDate+StringHelpers.h"
 #import "UIColor+CodeWatchColors.h"
 #import "UIImage+AvatarHelpers.h"
+#import "UILabel+DrawingAdditions.h"
 
 @interface RepoActivityTableViewCell (Private)
 
@@ -38,6 +39,21 @@
 - (void)awakeFromNib
 {
     [self setNonselectedTextColors];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+
+    static const CGFloat USABLE_WIDTH = 220.0;
+
+    [dateLabel sizeToFit:UILabelSizeToFitAlignmentRight];
+
+    CGFloat width = USABLE_WIDTH - dateLabel.frame.size.width - 5.0;
+
+    CGRect committerFrame = committerLabel.frame;
+    committerFrame.size.width = width;
+    committerLabel.frame = committerFrame;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

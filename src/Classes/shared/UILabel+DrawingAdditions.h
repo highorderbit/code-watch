@@ -4,8 +4,15 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum UILabelSizeToFitAlignment {
+    UILabelSizeToFitAlignmentLeft,
+    UILabelSizeToFitAlignmentRight
+} UILabelSizeToFitAlignment;
+
 @interface UILabel (DrawingAdditions)
 
 - (CGFloat)heightForString:(NSString *)s;
+
+- (void)sizeToFit:(UILabelSizeToFitAlignment)alignment;
 
 @end

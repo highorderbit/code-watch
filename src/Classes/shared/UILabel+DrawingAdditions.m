@@ -21,4 +21,20 @@
     return size.height;
 }
 
+- (void)sizeToFit:(UILabelSizeToFitAlignment)alignment
+{
+    if (alignment == UILabelSizeToFitAlignmentLeft)
+        [self sizeToFit];
+    else {
+        CGFloat xright = self.frame.origin.x + self.frame.size.width;
+
+        [self sizeToFit];
+
+        CGRect frame = self.frame;
+        frame.origin.x = xright - frame.size.width;
+
+        self.frame = frame;
+    }
+}
+
 @end
