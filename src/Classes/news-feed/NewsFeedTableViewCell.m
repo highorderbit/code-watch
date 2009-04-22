@@ -6,6 +6,7 @@
 #import "NSDate+StringHelpers.h"
 #import "UIColor+CodeWatchColors.h"
 #import "UIImage+AvatarHelpers.h"
+#import "UILabel+DrawingAdditions.h"
 
 @interface NewsFeedTableViewCell (Private)
 
@@ -27,6 +28,19 @@
 - (void)awakeFromNib
 {
     [self setNonSelectedTextColors];
+}
+
+- (void)layoutSubviews
+{
+    static const CGFloat USABLE_WIDTH = 220.0;
+
+    [pubDateLabel sizeToFit:UILabelSizeToFitAlignmentRight];
+
+    CGFloat width = USABLE_WIDTH - pubDateLabel.frame.size.width - 5.0;
+
+    CGRect authorFrame = authorLabel.frame;
+    authorFrame.size.width = width;
+    authorLabel.frame = authorFrame;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
