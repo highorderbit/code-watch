@@ -24,7 +24,7 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
 
 @implementation NetworkAwareViewController
 
-@synthesize delegate;
+@synthesize delegate, cachedDataAvailable;
 
 - (void)dealloc {
     [delegate release];

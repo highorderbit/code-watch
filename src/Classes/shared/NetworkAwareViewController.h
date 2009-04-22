@@ -32,6 +32,7 @@ enum UpdatingState
 
 @property (nonatomic, retain)
     NSObject<NetworkAwareViewControllerDelegate> * delegate;
+@property (nonatomic) BOOL cachedDataAvailable;
 
 - (id)initWithTargetViewController:(UIViewController *)targetViewController;
 

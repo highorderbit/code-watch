@@ -321,11 +321,12 @@
     }
 
     NSDictionary * details = [parser parseResponse:response];
-    NSLog(@"Have user details: '%@'.", details);
-
-    if (details)
+    if (details) {
         [delegate userInfo:details fetchedForUsername:username token:token];
-    else {  // parsing failed
+        NSLog(@"Have user details: '%@'.", details);
+    } else {  // parsing failed
+        NSLog(@"Failed to parse user info response: '%@'.",
+            [NSString stringWithUTF8EncodedData:response]);
         NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
         NSError * err = [NSError errorWithLocalizedDescription:desc];
         [delegate failedToFetchInfoForUsername:username error:err];

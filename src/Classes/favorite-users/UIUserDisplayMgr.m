@@ -126,6 +126,9 @@
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
     fetchedForUsername:(NSString *)username
 {
+    BOOL cachedDataWasAvailable =
+        networkAwareViewController.cachedDataAvailable;
+
     [userViewController updateWithUserInfo:info];
 
     NSString * email = [info.details objectForKey:@"email"];
@@ -135,6 +138,9 @@
         [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
 
     [networkAwareViewController setCachedDataAvailable:YES];
+
+    if (!cachedDataWasAvailable)
+        [userViewController scrollToTop];
 }
 
 - (void)failedToFetchInfoForUsername:(NSString *)aUsername
@@ -206,6 +212,8 @@
 
 - (void)displayUserInfoForUsername:(NSString *)aUsername
 {
+    BOOL needsToScrollToTop = ![username isEqualToString:aUsername];
+
     aUsername = [aUsername copy];
     [username release];
     username = aUsername;
@@ -215,10 +223,11 @@
     networkAwareViewController.navigationItem.title =
         NSLocalizedString(@"user.view.title", @"");
 
-    [userViewController scrollToTop];
-
     [navigationController
         pushViewController:networkAwareViewController animated:YES];
+
+    if (needsToScrollToTop)
+        [userViewController scrollToTop];
 }
 
 #pragma mark NewsFeedDisplayMgrDelegate

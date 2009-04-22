@@ -36,6 +36,10 @@
 
     IBOutlet GravatarServiceFactory * gravatarServiceFactory;
     GravatarService * gravatarService;
+
+    NSString * username;
+    NSString * repoName;
+    NSString * commitKey;
     
     BOOL gitHubFailure;
     BOOL avatarFailure;
