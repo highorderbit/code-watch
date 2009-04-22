@@ -273,6 +273,11 @@ enum HelpSection
     self.repoNameCell.textField.text = @"";
 }
 
+- (void)repoRejected
+{
+     [self.usernameCell.textField becomeFirstResponder];   
+}
+
 #pragma mark Accessors
 
 - (NameValueTextEntryTableViewCell *)usernameCell
