@@ -118,10 +118,9 @@
 
 + (NSMutableString *)hackXmlStringIfNecessary:(NSMutableString *)xmlString
 {
-//
-    // Need to hack strings from certain CI servers (e.g. TeamCity) to
-    // remove xmlns attributes from the root node. If it contains these,
-    // all xpath operations fail.
+    //
+    // Need to hack strings to remove xmlns attributes from the root node. If it
+    // contains these, all xpath operations fail.
     //
 
     static NSString * xmlnsHackRegex = @"<feed(.*\\s+(xmlns=.*))>";
