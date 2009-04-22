@@ -149,15 +149,19 @@
 
 - (void)user:(NSString *)user didSelectRepo:(NSString *)repo
 {
+    BOOL needsToScrollToTop =
+        ![username isEqualToString:user] || ![repoName isEqualToString:repo];
+
     [self setUsername:user];
     [self setRepoName:repo];
     
     [self refreshRepoInfo];
 
-    [repoViewController scrollToTop];
-
     [navigationController
         pushViewController:networkAwareViewController animated:YES];
+
+    if (needsToScrollToTop)
+        [repoViewController scrollToTop];
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -264,12 +268,17 @@
     if (emails.count > 0)
         [self fetchAvatarsForEmailAddresses:emails];
 
+    BOOL dataWasCached = networkAwareViewController.cachedDataAvailable;
+
     // We set the state to connected and updating even though we might be
     // fetching avatars because we don't track the avatars that we're
     // waiting for and update the display after they've all been received.
     // Consider refactoring to provide the correct display later.
     [networkAwareViewController setUpdatingState:kConnectedAndNotUpdating];
     [networkAwareViewController setCachedDataAvailable:YES];
+
+    if (!dataWasCached)
+        [repoViewController scrollToTop];
 }
 
 - (void)failedToFetchInfoForRepo:(NSString *)repo

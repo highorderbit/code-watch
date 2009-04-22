@@ -196,6 +196,8 @@
 
 - (void)updateActivityFeedForUsername:(NSString *)user
 {
+    BOOL needsToScrollToTop = ![self.username isEqualToString:user];
+
     self.username = user;
 
     if (!waitingForNewsFeedRefresh) {
@@ -214,6 +216,9 @@
         NSLocalizedString(@"newsfeeddisplaymgr.view.title", @"");
     [navigationController
          pushViewController:[self networkAwareViewController] animated:YES];
+
+    if (needsToScrollToTop)
+        [newsFeedViewController scrollToTop];
 }
 
 - (void)updateDisplay:(NSArray *)cachedRssItems
@@ -244,11 +249,11 @@
     UIImage * avatar = [self cachedAvatarForUsername:rssItem.author];
     [[self newsFeedItemViewController] updateWithAvatar:avatar];
 
-    [newsFeedItemViewController scrollToTop];
-
     [navigationController
         pushViewController:[self newsFeedItemViewController]
         animated:YES];
+
+    [newsFeedItemViewController scrollToTop];
 }
 
 #pragma mark NewsFeedItemViewControllerDelegate implementation
@@ -301,12 +306,18 @@
 
     [self fetchUserInfoForUnknownUsersInRssItems:newsItems];
 
+    BOOL cachedDataWasAvailable =
+        networkAwareViewController.cachedDataAvailable;
+
     // update the network aware view controller
     [[self networkAwareViewController]
         setUpdatingState:kConnectedAndNotUpdating];
     [[self networkAwareViewController] setCachedDataAvailable:YES];
 
     waitingForNewsFeedRefresh = NO;
+
+    if (!cachedDataWasAvailable)
+        [newsFeedViewController scrollToTop];
 }
 
 - (void)failedToFetchActivityFeedForUsername:(NSString *)user

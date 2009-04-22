@@ -115,6 +115,11 @@
     [self.tableView reloadData];
 }
 
+- (void)scrollToTop
+{
+    [self.tableView scrollRectToVisible:self.tableView.frame animated:NO];
+}
+
 #pragma mark Accessors
 
 - (void)setRssItems:(NSArray *)someRssItems

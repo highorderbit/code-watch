@@ -321,11 +321,13 @@
     }
 
     NSDictionary * details = [parser parseResponse:response];
-    NSLog(@"Have user details: '%@'.", details);
-
-    if (details)
+    if (details) {
         [delegate userInfo:details fetchedForUsername:username token:token];
-    else {  // parsing failed
+        NSLog(@"Have user details: '%@'.", details);
+    } else {  // parsing failed
+        NSLog(@"Failed to parse user info response for username: '%@', "
+            "token: '%@', response: '%@'.", username, token,
+            [NSString stringWithUTF8EncodedData:response]);
         NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
         NSError * err = [NSError errorWithLocalizedDescription:desc];
         [delegate failedToFetchInfoForUsername:username error:err];
@@ -346,12 +348,14 @@
     }
 
     NSDictionary * details = [parser parseResponse:response];
-    NSLog(@"Have repo details: '%@'", details);
-
-    if (details)
+    if (details) {
        [delegate
             commits:details fetchedForRepo:repo username:username token:token];
-    else {
+        NSLog(@"Have repo details: '%@'", details);
+    } else {
+        NSLog(@"Failed to parse repo info response for username: '%@', repo: "
+            "'%@', token: '%@', response: '%@'.", username, repo, token,
+            [NSString stringWithUTF8EncodedData:response]);
         NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
         NSError * err = [NSError errorWithLocalizedDescription:desc];
         [delegate failedToFetchInfoForUsername:username error:err];
@@ -375,12 +379,15 @@
     }
 
     NSDictionary * details = [parser parseResponse:response];
-    NSLog(@"Have commit details: '%@'", details);
-
-    if (details)
+    if (details) {
         [delegate commitDetails:details fetchedForCommit:commitKey
            repo:repo username:username token:token];
-    else {
+        NSLog(@"Have commit details: '%@'", details);
+    } else {
+        NSLog(@"Failed to parse commit info response for username: '%@', repo: "
+            "'%@', commit key: '%@', token: '%@', response: '%@'.", username,
+            repo, commitKey, token,
+            [NSString stringWithUTF8EncodedData:response]);
         NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
         NSError * err = [NSError errorWithLocalizedDescription:desc];
         [delegate failedToFetchInfoForCommit:commitKey repo:repo
@@ -398,11 +405,13 @@
     }
 
     NSDictionary * following = [parser parseResponse:response];
-    NSLog(@"Have following for username '%@': '%@'", username, following);
-
-    if (following)
+    if (following) {
         [delegate following:following fetchedForUsername:username];
-    else {
+        NSLog(@"Have following for username '%@': '%@'", username, following);
+    } else {
+        NSLog(@"Failed to parse following response for username: '%@', "
+            "response: '%@'.", username,
+            [NSString stringWithUTF8EncodedData:response]);
         NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
         NSError * err = [NSError errorWithLocalizedDescription:desc];
         [delegate failedToFetchFollowingForUsername:username error:err];
@@ -423,12 +432,15 @@
     }
 
     NSDictionary * following = [parser parseResponse:response];
-    NSLog(@"'%@' is now following '%@'. Following: '%@'.", follower, followee,
-        following);
 
-    if (following)
+    if (following) {
         [delegate username:follower isFollowing:followee token:token];
-    else {
+        NSLog(@"'%@' is now following '%@'. Following: '%@'.", follower,
+            followee, following);
+    } else {
+        NSLog(@"Failed to parse follow response for follower: '%@', "
+            "followee: '%@', token: '%@', response: '%@'.", follower,
+            followee, token, [NSString stringWithUTF8EncodedData:response]);
         NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
         NSError * err = [NSError errorWithLocalizedDescription:desc];
         [delegate
@@ -451,12 +463,14 @@
     }
 
     NSDictionary * following = [parser parseResponse:response];
-    NSLog(@"'%@' is no longer following '%@'. Following: '%@'.", follower,
-        followee, following);
-
-    if (following)
+    if (following) {
+        NSLog(@"'%@' is no longer following '%@'. Following: '%@'.", follower,
+            followee, following);
         [delegate username:follower didUnfollow:followee token:token];
-    else {
+    } else {
+        NSLog(@"Failed to parse unfollow response for follower: '%@', "
+            "followee: '%@', token: '%@', response: '%@'.", follower,
+            followee, token, [NSString stringWithUTF8EncodedData:response]);
         NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
         NSError * err = [NSError errorWithLocalizedDescription:desc];
         [delegate
@@ -475,11 +489,15 @@
     }
 
     NSDictionary * results = [parser parseResponse:response];
-    NSLog(@"Search for '%@' returned results: '%@'.", searchString, results);
 
-    if (results)
+    if (results) {
+        NSLog(@"Search for '%@' returned results: '%@'.", searchString,
+            results);
         [delegate searchResults:results foundForSearchString:searchString];
-    else {
+    } else {
+        NSLog(@"Failed to parse search results for search string: '%@', "
+            "response: '%@'.", searchString,
+            [NSString stringWithUTF8EncodedData:response]);
         NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
         NSError * err = [NSError errorWithLocalizedDescription:desc];
         [delegate failedToSearchForString:searchString error:err];

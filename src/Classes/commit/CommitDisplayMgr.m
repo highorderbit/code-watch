@@ -20,6 +20,10 @@
 - (ChangesetViewController *)changesetViewController;
 - (DiffViewController *)diffViewController;
 
+@property (nonatomic, copy) NSString * username;
+@property (nonatomic, copy) NSString * repoName;
+@property (nonatomic, copy) NSString * commitKey;
+
 @end
 
 @implementation CommitDisplayMgr
@@ -34,6 +38,9 @@
     [gitHubService release];
     [gravatarService release];
     [gravatarServiceFactory release];
+    [username release];
+    [repoName release];
+    [commitKey release];
     [super dealloc];
 }
 
@@ -71,9 +78,18 @@
 
 #pragma mark CommitSelector implementation
 
-- (void)user:(NSString *)username didSelectCommit:(NSString *)commitKey
-    forRepo:(NSString *)repoName
+- (void)user:(NSString *)user didSelectCommit:(NSString *)commit
+    forRepo:(NSString *)repo
 {
+    BOOL needsToScrollToTop =
+        ![username isEqualToString:user] ||
+        ![repoName isEqualToString:repo] ||
+        ![commitKey isEqualToString:commit];
+
+    self.username = user;
+    self.repoName = repo;
+    self.commitKey = commit;
+
     gitHubFailure = NO;
     avatarFailure = NO;
 
@@ -111,7 +127,9 @@
 
     [navigationController
         pushViewController:[self networkAwareViewController] animated:YES];
-    [commitViewController scrollToTop];
+
+    if (needsToScrollToTop)
+        [commitViewController scrollToTop];
 }
 
 #pragma mark CommitViewControllerDelegate implementation
@@ -137,20 +155,26 @@
 #pragma mark GitHubServiceDelegate implementation
 
 - (void)commitInfo:(CommitInfo *)commitInfo
-  fetchedForCommit:(NSString *)commitKey
+  fetchedForCommit:(NSString *)commit
               repo:(NSString *)repo
-          username:(NSString *)username
+          username:(NSString *)user
 {
+    BOOL cachedDataWasAvailable =
+        networkAwareViewController.cachedDataAvailable;
+
     [[self commitViewController] updateWithCommitInfo:commitInfo forRepo:repo];
 
     [[self networkAwareViewController]
         setUpdatingState:kConnectedAndNotUpdating];
     [[self networkAwareViewController] setCachedDataAvailable:YES];
+
+    if (!cachedDataWasAvailable)
+        [commitViewController scrollToTop];
 }
 
-- (void)failedToFetchInfoForCommit:(NSString *)commitKey
+- (void)failedToFetchInfoForCommit:(NSString *)commit
                               repo:(NSString *)repo
-                          username:(NSString *)username
+                          username:(NSString *)user
                              error:(NSError *)error
 {
     if (!gitHubFailure) {
@@ -269,6 +293,27 @@
             initWithNibName:@"DiffView" bundle:nil];
 
     return diffViewController;
+}
+
+- (void)setUsername:(NSString *)aUsername
+{
+    NSString * tmp = [aUsername copy];
+    [username release];
+    username = tmp;
+}
+
+- (void)setRepoName:(NSString *)aRepoName
+{
+    NSString * tmp = [aRepoName copy];
+    [repoName release];
+    repoName = tmp;
+}
+
+- (void)setCommitKey:(NSString *)aCommitKey
+{
+    NSString * tmp = [aCommitKey copy];
+    [commitKey release];
+    commitKey = tmp;
 }
 
 @end
