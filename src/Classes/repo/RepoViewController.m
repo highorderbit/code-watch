@@ -50,7 +50,7 @@
 {
     [super viewDidLoad];
 
-    [self setAvatars:[[NSMutableDictionary alloc] init]];
+    [self setAvatars:[NSMutableDictionary dictionary]];
 
     self.tableView.tableHeaderView = headerView;
     self.tableView.tableFooterView = footerView;
