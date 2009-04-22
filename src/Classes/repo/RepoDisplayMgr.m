@@ -169,6 +169,9 @@
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
     fetchedForUsername:(NSString *)updatedUsername
 {
+    if (![username isEqualToString:updatedUsername])
+        return;  // this is not the update we're waiting for
+
     //
     // HACK: Because GitHub sometimes gives us incorrect user/repo
     // ownership data (e.g. jad/code-watch rather than
@@ -209,6 +212,9 @@
 - (void)failedToFetchInfoForUsername:(NSString *)user
                                error:(NSError *)error
 {
+    if (![username isEqualToString:user])
+        return;  // this is not the update we're waiting for
+
     if (!gitHubFailure) {
         gitHubFailure = YES;
         
@@ -240,14 +246,16 @@
 }
 
 - (void)commits:(NSDictionary*)newCommits
- fetchedForRepo:(NSString *)updatedRepoName
+ fetchedForRepo:(NSString *)repo
        username:(NSString *)user
 {
-    [self setUsername:user];
-    [self setRepoName:updatedRepoName];
+    if (![username isEqualToString:user] || ![repoName isEqualToString:repo])
+        return;  // this is not the update we're waiting for
 
-    RepoInfo * info =
-        [self cachedRepoInfoForUsername:user repoName:updatedRepoName];
+    [self setUsername:user];
+    [self setRepoName:repo];
+
+    RepoInfo * info = [self cachedRepoInfoForUsername:user repoName:repo];
     [self setRepoInfo:info];
 
     [self setCommits:newCommits];
@@ -285,6 +293,9 @@
                         username:(NSString *)user
                            error:(NSError *)error
 {
+    if (![username isEqualToString:user] || ![repoName isEqualToString:repo])
+        return;  // this is not the update we're waiting for
+
     if (!gitHubFailure) {
         gitHubFailure = YES;
 
