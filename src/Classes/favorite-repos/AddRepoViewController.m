@@ -200,20 +200,23 @@ enum HelpSection
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
-    
-    if (textField == usernameTextField)
+    BOOL validInput = YES;
+
+    if (textField == usernameTextField) {
+        [textField resignFirstResponder];
         [repoNameTextField becomeFirstResponder];
-    else {
-        BOOL validInput =
+    } else {
+        validInput =
             [self checkValidityUsername:[usernameTextField.text lowercaseString]
             repoName:[repoNameTextField.text lowercaseString]];
         
-        if (validInput)
+        if (validInput) {
+            [textField resignFirstResponder];
             [self userDidSave];
+        }
     }
 
-    return YES;
+    return validInput;
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
