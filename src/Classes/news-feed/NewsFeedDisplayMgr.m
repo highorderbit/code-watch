@@ -291,8 +291,11 @@
 }
 
 - (void)activityFeed:(NSArray *)newsItems
-    fetchedForUsername:(NSString *)username
+    fetchedForUsername:(NSString *)user
 {
+    if (![username isEqualToString:user])
+        return;  // this is not the update we're waiting for
+
     // display any available cached avatars
     NSDictionary * avatars = [self cachedAvatarsForRssItems:newsItems];
 
@@ -325,6 +328,9 @@
 {
     NSLog(@"Failed to retrieve news feed for username: '%@' error: '%@'.", user,
         error);
+
+    if (![username isEqualToString:user])
+        return;  // this is not the update we're waiting for
 
     if (!gitHubFailure) {
         gitHubFailure = YES;

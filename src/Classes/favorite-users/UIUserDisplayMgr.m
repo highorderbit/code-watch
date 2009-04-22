@@ -124,8 +124,11 @@
 #pragma mark GitHubServiceDelegate implementation
 
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
-    fetchedForUsername:(NSString *)username
+    fetchedForUsername:(NSString *)user
 {
+    if (![username isEqualToString:user])
+        return;  // this is not the update we're waiting for
+
     BOOL cachedDataWasAvailable =
         networkAwareViewController.cachedDataAvailable;
 
@@ -143,13 +146,16 @@
         [userViewController scrollToTop];
 }
 
-- (void)failedToFetchInfoForUsername:(NSString *)aUsername
+- (void)failedToFetchInfoForUsername:(NSString *)user
                                error:(NSError *)error
 {
+    NSLog(@"Failed to retrieve info for user: '%@' error: '%@'.", user, error);
+
+    if (![username isEqualToString:user])
+        return;  // this is not the update we're waiting for
+
     if (!gitHubFailure) {
         gitHubFailure = YES;
-        NSLog(@"Failed to retrieve info for user: '%@' error: '%@'.", aUsername,
-              error);
 
         NSString * title =
             NSLocalizedString(@"github.userupdate.failed.alert.title", @"");
