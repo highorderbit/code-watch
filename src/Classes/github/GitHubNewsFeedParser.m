@@ -18,7 +18,7 @@
 + (CXMLElement *)singleNodeAtXpath:(NSString *)xpath
                      withinElement:(CXMLElement *)element
                              error:(NSError **)error;
-+ (NSString *)hackXmlStringIfNecessary:(NSString *)xmlString;
++ (NSMutableString *)hackXmlStringIfNecessary:(NSMutableString *)xmlString;
 
 @end
 
@@ -37,7 +37,7 @@
 
     NSString * xmlString =
         [[self class] hackXmlStringIfNecessary:
-           [NSString stringWithUTF8EncodedData:xmlData]];
+           [NSMutableString stringWithUTF8EncodedData:xmlData]];
     CXMLDocument * xmlDoc = [[[CXMLDocument alloc]
          initWithXMLString:xmlString options:0 error:&error] autorelease];
     if (error) return nil;
@@ -116,7 +116,7 @@
     return *error || values.count != 1 ? nil : [values lastObject];
 }
 
-+ (NSString *)hackXmlStringIfNecessary:(NSString *)xmlString
++ (NSMutableString *)hackXmlStringIfNecessary:(NSMutableString *)xmlString
 {
 //
     // Need to hack strings from certain CI servers (e.g. TeamCity) to
@@ -127,9 +127,10 @@
     static NSString * xmlnsHackRegex = @"<feed(.*\\s+(xmlns=.*))>";
     static NSString * xmlnsHackReplacementString = @"<feed>";
 
-    return [xmlString
-        stringByReplacingOccurrencesOfRegex:xmlnsHackRegex
-                                 withString:xmlnsHackReplacementString];
+    [xmlString replaceOccurrencesOfRegex:xmlnsHackRegex
+                              withString:xmlnsHackReplacementString];
+
+    return xmlString;
 }    
 
 @end

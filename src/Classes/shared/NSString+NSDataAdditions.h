@@ -10,3 +10,11 @@
 + (NSString *)stringWithData:(NSData *)data encoding:(NSStringEncoding)encoding;
 
 @end
+
+@interface NSMutableString (NSDataAdditions)
+
++ (NSMutableString *)stringWithUTF8EncodedData:(NSData *)data;
++ (NSMutableString *)stringWithData:(NSData *)data
+                           encoding:(NSStringEncoding)encoding;
+
+@end
