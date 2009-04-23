@@ -275,15 +275,18 @@ enum
 
     NSArray * added = [commitInfo.changesets objectForKey:@"added"];
     NSArray * removed = [commitInfo.changesets objectForKey:@"removed"];
-    NSArray * modifeddiffs = [commitInfo.changesets objectForKey:@"modified"];
-    NSMutableArray * modified = [NSMutableArray array];
-    for (NSDictionary * d in modifeddiffs)
-        [modified addObject:[d objectForKey:@"filename"]];
+    NSArray * modified = [commitInfo.changesets objectForKey:@"modified"];
 
-    NSMutableArray * files = [NSMutableArray array];
-    [files addObjectsFromArray:added];
-    [files addObjectsFromArray:removed];
-    [files addObjectsFromArray:modified];
+    NSMutableArray * files =
+        [NSMutableArray
+        arrayWithCapacity:added.count + removed.count + modified.count];
+
+    for (NSDictionary * d in added)
+        [files addObject:[d objectForKey:@"filename"]];
+    for (NSDictionary * d in removed)
+        [files addObject:[d objectForKey:@"filename"]];
+    for (NSDictionary * d in modified)
+        [files addObject:[d objectForKey:@"filename"]];
 
     NSMutableString * filelist = [NSMutableString string];
     for (NSString * filename in files)
