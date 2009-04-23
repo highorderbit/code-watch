@@ -76,6 +76,10 @@ static const CGFloat IPHONE_WIDTH = 320;
     self.navigationController.navigationBarHidden = YES;
     searchBar.hidden = NO;
     tableView.frame = [[self class] defaultFrame];
+    
+    // this is a hack to fix an occasional bug exhibited on the device where the
+    // selected cell isn't deselected
+    [tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
