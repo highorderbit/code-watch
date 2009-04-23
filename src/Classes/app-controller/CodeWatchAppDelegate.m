@@ -5,6 +5,12 @@
 #import "CodeWatchAppDelegate.h"
 #import "UIAlertView+CreationHelpers.h"
 
+#if defined (HOB_SHOW_MEMORY_WARNING_ALERT)
+
+static BOOL displayWarning = NO;
+
+#endif
+
 @implementation CodeWatchAppDelegate
 
 @synthesize window;
@@ -34,22 +40,34 @@
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
-    static BOOL warningDisplayed = NO;
-
     NSLog(@"WARNING: application received memory warning.");
 
-    if (!warningDisplayed) {
+    if (!displayWarning) {
         NSString * title = @"Memory Warning Received";
         NSString * message =
-            @"The application has received a request to release some memory. "
-            "This alert will not be shown again, but future occurrences will "
-            "be logged.";
-        UIAlertView * alert =
-            [UIAlertView simpleAlertViewWithTitle:title message:message];
-        [alert show];
+            @"The application has received a request to release some memory."
+            "\n\nTap \"Show Again\" to show this alert the next time a memory "
+            "warning is received.";
 
-        warningDisplayed = YES;
+        NSString * nextButtonTitle = @"Show Again";
+        NSString * okButtonTitle = @"Dismiss";
+
+        UIAlertView * alert =
+            [[[UIAlertView alloc] initWithTitle:title message:message
+            delegate:self cancelButtonTitle:nextButtonTitle
+            otherButtonTitles:okButtonTitle, nil] autorelease];
+
+        [alert show];
     }
+}
+
+#pragma mark UIAlertViewDelegate implementation
+
+- (void)alertView:(UIAlertView *)alertView
+    clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+        displayWarning = NO;
 }
 
 #endif
