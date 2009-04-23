@@ -109,7 +109,7 @@ enum Section
     self.tableView.contentInset = UIEdgeInsetsZero;
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
     
-    avatarView.image = avatar;
+    avatarView.image = avatar ? avatar : [UIImage imageUnavailableImage];
 }
 
 - (void)viewDidAppear:(BOOL)animated

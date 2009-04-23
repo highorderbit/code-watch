@@ -389,8 +389,8 @@
 		91806BC40F95333B00F08005 /* NSString+WebViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WebViewAdditions.h"; sourceTree = "<group>"; };
 		91806BC50F95333B00F08005 /* NSString+WebViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WebViewAdditions.m"; sourceTree = "<group>"; };
 		91806D5C0F97B6F400F08005 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		9181367F0F7AFC81002B1153 /* UIUserDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIUserDisplayMgr.h; path = "favorite-users/UIUserDisplayMgr.h"; sourceTree = "<group>"; };
-		918136800F7AFC81002B1153 /* UIUserDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIUserDisplayMgr.m; path = "favorite-users/UIUserDisplayMgr.m"; sourceTree = "<group>"; };
+		9181367F0F7AFC81002B1153 /* UIUserDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIUserDisplayMgr.h; path = "../favorite-users/UIUserDisplayMgr.h"; sourceTree = "<group>"; };
+		918136800F7AFC81002B1153 /* UIUserDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIUserDisplayMgr.m; path = "../favorite-users/UIUserDisplayMgr.m"; sourceTree = "<group>"; };
 		918136EC0F7BD473002B1153 /* UserDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserDisplayMgr.h; path = "favorite-users/UserDisplayMgr.h"; sourceTree = "<group>"; };
 		91AB1E0D0F733272005AC590 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = /System/Library/Frameworks/AddressBook.framework; sourceTree = "<absolute>"; };
 		91AB1E280F733BB6005AC590 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
@@ -898,6 +898,8 @@
 		9127DD010F6B1065009CDBD5 /* user */ = {
 			isa = PBXGroup;
 			children = (
+				9181367F0F7AFC81002B1153 /* UIUserDisplayMgr.h */,
+				918136800F7AFC81002B1153 /* UIUserDisplayMgr.m */,
 				91B620590F6C54540077CDB9 /* UserDetailTableViewCell.h */,
 				91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */,
 				9127DD020F6B1065009CDBD5 /* UserViewController.h */,
@@ -1035,8 +1037,6 @@
 		91E25E5B0F79B81300E1594E /* favorite-users */ = {
 			isa = PBXGroup;
 			children = (
-				9181367F0F7AFC81002B1153 /* UIUserDisplayMgr.h */,
-				918136800F7AFC81002B1153 /* UIUserDisplayMgr.m */,
 				91E25E580F79B7C400E1594E /* FavoriteUsersViewController.h */,
 				91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */,
 				91E25E6E0F79B96900E1594E /* FavoriteUsersDisplayMgr.h */,
