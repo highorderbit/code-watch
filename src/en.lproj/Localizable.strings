@@ -71,7 +71,7 @@ newsfeeditem.email.url = "mailto:?subject=%@&body=%@";
 newsfeeditem.view.title = "Details";
 newsfeeditem.details.label = "Details";
 newsfeeditem.safari.label = "Open in Safari";
-newsfeeditem.email.label = "Send Email";
+newsfeeditem.email.label = "Send in Email";
 
 /* NewsFeedItemDetailsView Strings */
 newsitemdetails.view.title = "Details";
@@ -117,7 +117,7 @@ commit.removed.plural.formatstring = "Removed %d files";
 commit.modified.singular.formatstring = "Modified %d file";
 commit.modified.plural.formatstring = "Modified %d files";
 commit.safari.label = "Open in Safari";
-commit.email.label = "Send Email";
+commit.email.label = "Send in Email";
 commit.email.url = "mailto:?subject=%@&body=%@";
 commit.email.subject.formatstring = "Commit to %@ by %@: %@";
 commit.email.repository = "Repository";
