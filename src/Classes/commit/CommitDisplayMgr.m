@@ -159,6 +159,10 @@
               repo:(NSString *)repo
           username:(NSString *)user
 {
+    if (![username isEqualToString:user] || ![repoName isEqualToString:repo] ||
+        ![commitKey isEqualToString:commit])
+        return;  // this is not the update we're waiting for
+
     BOOL cachedDataWasAvailable =
         networkAwareViewController.cachedDataAvailable;
 
@@ -177,6 +181,10 @@
                           username:(NSString *)user
                              error:(NSError *)error
 {
+    if (![username isEqualToString:user] || ![repoName isEqualToString:repo] ||
+        ![commitKey isEqualToString:commit])
+        return;  // this is not the update we're waiting for
+
     if (!gitHubFailure) {
         gitHubFailure = YES;
         
