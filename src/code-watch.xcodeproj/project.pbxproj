@@ -1611,7 +1611,7 @@
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: High Order Bit, Inc.";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1624,7 +1624,7 @@
 					"-licucore",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FF2307A9-E956-4014-94D2-C1CE0F9E103C";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = "Distribution - App Store";
