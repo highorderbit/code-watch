@@ -214,8 +214,12 @@
 
     [self networkAwareViewController].navigationItem.title =
         NSLocalizedString(@"newsfeeddisplaymgr.view.title", @"");
-    [navigationController
-         pushViewController:[self networkAwareViewController] animated:YES];
+
+    UIViewController * topViewController =
+        navigationController.topViewController;
+    if (topViewController != [self networkAwareViewController])
+        [navigationController
+            pushViewController:[self networkAwareViewController] animated:YES];
 
     if (needsToScrollToTop)
         [newsFeedViewController scrollToTop];
