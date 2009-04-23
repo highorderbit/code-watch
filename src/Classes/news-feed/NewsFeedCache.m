@@ -19,8 +19,8 @@ static NSString * PRIMARY_USER_NEWS_FEED_KEY = @"code-watch-news-feed";
 - (id)init
 {
     if (self = [super init]) {
-        primaryUserItems = [[RecentHistoryCache alloc] initWithCacheLimit:100];
-        userItems = [[RecentHistoryCache alloc] init];
+        primaryUserItems = [[RecentHistoryCache alloc] init];
+        userItems = [[RecentHistoryCache alloc] initWithCacheLimit:3];
     }
 
     return self;
