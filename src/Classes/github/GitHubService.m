@@ -544,7 +544,7 @@
     NSMutableDictionary * commitInfos = [NSMutableDictionary dictionary];
 
     for (NSDictionary * commit in [gitHubInfo objectForKey:@"commits"]) {
-        NSMutableDictionary * details = [commit mutableCopy];
+        NSMutableDictionary * details = [[commit mutableCopy] autorelease];
         NSString * commitKey = [details objectForKey:@"id"];
 
         [details removeObjectForKey:@"id"];

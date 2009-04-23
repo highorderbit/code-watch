@@ -43,8 +43,6 @@ static BOOL displayWarning = NO;
     [appController persistState];
 }
 
-#if defined (HOB_SHOW_MEMORY_WARNING_ALERT)
-
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
     NSLog(@"WARNING: application received memory warning.");
@@ -54,6 +52,8 @@ static BOOL displayWarning = NO;
     [commitCacheSetter clear];
     [newsFeedCacheSetter clear];
     [avatarCacheSetter clear];
+
+#if defined (HOB_SHOW_MEMORY_WARNING_ALERT)
 
     if (!displayWarning) {
         NSString * title = @"Memory Warning Received";
@@ -72,9 +72,14 @@ static BOOL displayWarning = NO;
 
         [alert show];
     }
+
+#endif
+
 }
 
 #pragma mark UIAlertViewDelegate implementation
+
+#if defined (HOB_SHOW_MEMORY_WARNING_ALERT)
 
 - (void)alertView:(UIAlertView *)alertView
     clickedButtonAtIndex:(NSInteger)buttonIndex
