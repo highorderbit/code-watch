@@ -22,16 +22,23 @@ static BOOL displayWarning = NO;
     [tabBarController release];
     [appController release];
     [window release];
+
+    [userCacheSetter release];
+    [repoCacheSetter release];
+    [commitCacheSetter release];
+    [newsFeedCacheSetter release];
+    [avatarCacheSetter release];
+
     [super dealloc];
 }
 
-- (void) applicationDidFinishLaunching:(UIApplication*) application
+- (void) applicationDidFinishLaunching:(UIApplication*)application
 {
     [window addSubview:tabBarController.view];
     [appController start];
 }
 
-- (void) applicationWillTerminate:(UIApplication*) application
+- (void) applicationWillTerminate:(UIApplication*)application
 {
     [appController persistState];
 }
@@ -41,6 +48,12 @@ static BOOL displayWarning = NO;
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
     NSLog(@"WARNING: application received memory warning.");
+
+    [userCacheSetter clear];
+    [repoCacheSetter clear];
+    [commitCacheSetter clear];
+    [newsFeedCacheSetter clear];
+    [avatarCacheSetter clear];
 
     if (!displayWarning) {
         NSString * title = @"Memory Warning Received";

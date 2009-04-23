@@ -7,5 +7,6 @@
 @protocol AvatarCacheSetter <NSObject>
 
 - (void)setAvatar:(UIImage *)avatar forEmailAddress:(NSString *)emailAddress;
+- (void)clear;
 
 @end
