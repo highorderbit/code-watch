@@ -73,12 +73,12 @@
 
         UserInfo * userInfo = [userCache primaryUser];
         UIImage * avatar = [self cachedAvatarForUserInfo:userInfo];
-
+        
         if (avatar)
             [userViewController updateWithAvatar:avatar];
         [userViewController setUsername:logInState.login];
         [userViewController updateWithUserInfo:userInfo];
-    
+            
         [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
         [networkAwareViewController setCachedDataAvailable:!!userInfo];
     } else {

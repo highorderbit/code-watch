@@ -93,18 +93,21 @@ enum Section
         NSString * email = [userInfo.details objectForKey:featuredDetail2Key];
         featuredDetail2Label.text = email ? email : @"";
     }
-    
+
     // allow adding to contacts iff not already added or not in the address book
     ABRecordID recordId = [contactCacheReader recordIdForUser:username];
+    ABAddressBookRef addressBook = ABAddressBookCreate();
     ABRecordRef person =
-        ABAddressBookGetPersonWithRecordID(ABAddressBookCreate(), recordId);
-    addToContactsButton.enabled = recordId == kABRecordInvalidID || !person;
-    
+        ABAddressBookGetPersonWithRecordID(addressBook, recordId);
+        addToContactsButton.enabled = recordId == kABRecordInvalidID || !person;
+    if (person)
+        CFRelease(person);
+    CFRelease(addressBook);
     // fixes a bug where the scroll indicator region is incorrectly set after
     // the logout action sheet is shown
     self.tableView.contentInset = UIEdgeInsetsZero;
     self.tableView.scrollIndicatorInsets = UIEdgeInsetsZero;
-
+    
     avatarView.image = avatar;
 }
 
