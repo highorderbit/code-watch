@@ -406,8 +406,24 @@
 
     NSDictionary * following = [parser parseResponse:response];
     if (following) {
-        [delegate following:following fetchedForUsername:username];
-        NSLog(@"Have following for username '%@': '%@'", username, following);
+
+        // following could contain an error.
+        if ([following objectForKey:@"error"]) {
+            NSString * msg =
+                [[[following objectForKey:@"error"]
+                objectAtIndex:0]
+                objectForKey:@"error"];
+
+            NSLog(@"Failed to retrieve response for username: '%@', "
+                "error: '%@'.", username, following);
+
+            NSError * err = [NSError errorWithLocalizedDescription:msg];
+            [delegate failedToFetchFollowingForUsername:username error:err];
+        } else {
+            [delegate following:following fetchedForUsername:username];
+            NSLog(@"Have following for username '%@': '%@'", username,
+                following);
+        }
     } else {
         NSLog(@"Failed to parse following response for username: '%@', "
             "response: '%@'.", username,
@@ -434,6 +450,7 @@
     NSDictionary * following = [parser parseResponse:response];
 
     if (following) {
+        // TODO: Add handling for a GitHub error received in the response.
         [delegate username:follower isFollowing:followee token:token];
         NSLog(@"'%@' is now following '%@'. Following: '%@'.", follower,
             followee, following);
@@ -464,6 +481,7 @@
 
     NSDictionary * following = [parser parseResponse:response];
     if (following) {
+        // TODO: Add handling for a GitHub error received in the response.
         NSLog(@"'%@' is no longer following '%@'. Following: '%@'.", follower,
             followee, following);
         [delegate username:follower didUnfollow:followee token:token];
