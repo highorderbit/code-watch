@@ -4,7 +4,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UserInfo : NSObject
+@interface UserInfo : NSObject <NSCopying>
 {
     NSDictionary * details;
     NSArray * repoKeys;

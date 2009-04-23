@@ -4,7 +4,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RssItem : NSObject {
+@interface RssItem : NSObject <NSCopying>
+{
     NSString * type;
     NSString * author;
     NSDate * pubDate;

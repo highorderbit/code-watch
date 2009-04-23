@@ -42,8 +42,7 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    return [[[self class] allocWithZone:zone]
-        initWithDetails:details changesets:changesets];
+    return [self retain];  // object is immutable
 }
 
 @end

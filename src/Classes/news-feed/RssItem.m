@@ -60,9 +60,7 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    return [[[self class] allocWithZone:zone]
-        initWithType:type author:author pubDate:pubDate subject:subject
-        summary:summary link:link];
+    return [self retain];  // object is immutable
 }
 
 @end
