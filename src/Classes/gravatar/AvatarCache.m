@@ -20,6 +20,11 @@
     [cache setObject:avatar forKey:emailAddress];
 }
 
+- (void)clear
+{
+    [cache clear];
+}
+
 - (UIImage *)avatarForEmailAddress:(NSString *)emailAddress
 {
     return [cache objectForKey:emailAddress];
