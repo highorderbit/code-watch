@@ -12,12 +12,6 @@
     UIWindow * window;
     UITabBarController * tabBarController;
     CodeWatchAppController * appController;
-    
-    IBOutlet NSObject<UserCacheSetter> * userCacheSetter;
-    IBOutlet NSObject<RepoCacheSetter> * repoCacheSetter;
-    IBOutlet NSObject<CommitCacheSetter> * commitCacheSetter;
-    IBOutlet NSObject<NewsFeedCacheSetter> * newsFeedCacheSetter;
-    IBOutlet NSObject<AvatarCacheSetter> * avatarCacheSetter;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow * window;

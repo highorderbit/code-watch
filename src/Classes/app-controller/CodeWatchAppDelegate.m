@@ -23,12 +23,6 @@ static BOOL displayWarning = NO;
     [appController release];
     [window release];
 
-    [userCacheSetter release];
-    [repoCacheSetter release];
-    [commitCacheSetter release];
-    [newsFeedCacheSetter release];
-    [avatarCacheSetter release];
-
     [super dealloc];
 }
 
@@ -46,12 +40,6 @@ static BOOL displayWarning = NO;
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
     NSLog(@"WARNING: application received memory warning.");
-
-    [userCacheSetter clear];
-    [repoCacheSetter clear];
-    [commitCacheSetter clear];
-    [newsFeedCacheSetter clear];
-    [avatarCacheSetter clear];
 
 #if defined (HOB_SHOW_MEMORY_WARNING_ALERT)
 
