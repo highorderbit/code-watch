@@ -225,6 +225,9 @@
     for (NSString * newValue in newValues)
         ABMultiValueAddValueAndLabel(value, newValue, kABHomeLabel, NULL);
     ABRecordSetValue(toContact, property, value, &error);
+
+    if (value)
+        CFRelease(value);
 }
 
 @end

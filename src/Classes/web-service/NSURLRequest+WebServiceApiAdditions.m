@@ -76,7 +76,11 @@
         }
     }
 
-    return [NSURL URLWithString:[urlString urlEncodedString]];
+    NSURL * url = [NSURL URLWithString:[urlString urlEncodedString]];
+
+    [urlString release];
+
+    return url;
 }
 
 @end
