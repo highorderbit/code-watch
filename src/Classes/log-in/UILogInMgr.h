@@ -13,6 +13,7 @@
 #import "RepoCacheSetter.h"
 #import "CommitCacheSetter.h"
 #import "NewsFeedCacheSetter.h"
+#import "UserNetworkCacheSetter.h"
 
 @class GitHubService;
 @class LogInViewController;
@@ -52,6 +53,7 @@
     IBOutlet NSObject<RepoCacheSetter> * repoCacheSetter;
     IBOutlet NSObject<CommitCacheSetter> * commitCacheSetter;
     IBOutlet NSObject<NewsFeedCacheSetter> * newsFeedCacheSetter;
+    IBOutlet NSObject<UserNetworkCacheSetter> * userNetworkCacheSetter;
 
     IBOutlet GitHubService * gitHub;
 

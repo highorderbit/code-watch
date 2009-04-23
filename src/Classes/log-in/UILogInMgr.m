@@ -57,6 +57,7 @@
     [repoCacheSetter release];
     [commitCacheSetter release];
     [newsFeedCacheSetter release];
+    [userNetworkCacheSetter release];
 
     [gitHub release];
     
@@ -256,6 +257,7 @@
         [repoCacheSetter clear];
         [commitCacheSetter clear];
         [newsFeedCacheSetter clear];
+        [userNetworkCacheSetter setFollowingForPrimaryUser:nil];
 
         // pop all nav controllers' stacks to top
         [homeNavigationController popToRootViewControllerAnimated:NO];
