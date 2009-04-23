@@ -97,12 +97,13 @@ enum Section
     // allow adding to contacts iff not already added or not in the address book
     ABRecordID recordId = [contactCacheReader recordIdForUser:username];
     ABAddressBookRef addressBook = ABAddressBookCreate();
+
     ABRecordRef person =
         ABAddressBookGetPersonWithRecordID(addressBook, recordId);
-        addToContactsButton.enabled = recordId == kABRecordInvalidID || !person;
-    if (person)
-        CFRelease(person);
+    addToContactsButton.enabled = recordId == kABRecordInvalidID || !person;
+
     CFRelease(addressBook);
+
     // fixes a bug where the scroll indicator region is incorrectly set after
     // the logout action sheet is shown
     self.tableView.contentInset = UIEdgeInsetsZero;
@@ -399,6 +400,8 @@ enum Section
     ABPersonSetImageData(person, (CFDataRef)data, &error);
 
     [contactMgr userDidAddContact:person forUser:username];
+    
+    CFRelease(person);
 }
 
 - (void)scrollToTop

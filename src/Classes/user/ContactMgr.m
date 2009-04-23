@@ -19,13 +19,15 @@
     
 @implementation ContactMgr
 
-@synthesize contactToAdd;
 @synthesize username;
 
 - (void)dealloc
 {
     [tabViewController release];
     [contactCacheSetter release];
+
+    if(contactToAdd)
+        CFRelease(contactToAdd);
 
     [username release];
 
@@ -36,7 +38,7 @@
 {
     self.contactToAdd = person;
     self.username = aUsername;
-    
+
     UIActionSheet * actionSheet =
         [[[UIActionSheet alloc]
         initWithTitle:nil delegate:self
@@ -129,6 +131,7 @@
         ABAddressBookRemoveRecord(addressBook, person, &error);
         ABAddressBookAddRecord(addressBook, person, &error);
         ABAddressBookSave(addressBook, &error);
+        CFRelease(addressBook);
     
         ABRecordID recordId = ABRecordGetRecordID(person);
         [contactCacheSetter setRecordId:recordId forUser:username];
@@ -157,6 +160,25 @@
     [tabViewController dismissModalViewControllerAnimated:YES];
 }
 
+#pragma mark Accessor methods
+
+- (ABRecordRef)contactToAdd
+{
+    return contactToAdd;
+}
+
+- (void)setContactToAdd:(ABRecordRef)aContactToAdd
+{
+    if (contactToAdd != aContactToAdd) {
+        if (contactToAdd)
+            CFRelease(contactToAdd);
+        if (aContactToAdd)
+            CFRetain(aContactToAdd);
+
+        contactToAdd = aContactToAdd;
+    }
+}
+
 #pragma mark Contact management methods
 
 - (void)createNewContact
@@ -166,7 +188,8 @@
     ABNewPersonViewController * personViewController =
         [[ABNewPersonViewController alloc] init];
     personViewController.displayedPerson = contactToAdd;
-    personViewController.addressBook = ABAddressBookCreate();
+    ABAddressBookRef addressBook = ABAddressBookCreate();
+    personViewController.addressBook = addressBook;
     personViewController.newPersonViewDelegate = self;
     
     UINavigationController * addContactNavController =
@@ -178,6 +201,7 @@
     
     [addContactNavController release];
     [personViewController release];
+    CFRelease(addressBook);
 }
 
 - (void)addToExistingContact
