@@ -191,6 +191,8 @@ enum
                     cell.text = NSLocalizedString(@"commit.email.label", @"");
                     break;
             }
+            cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            cell.textColor = [UIColor blackColor];
             break;
     }
 
