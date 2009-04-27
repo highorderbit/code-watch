@@ -26,6 +26,7 @@ enum Section
 - (NSString *)reuseIdentifierForSection:(NSInteger)section;
 - (void)setAvatar:(UIImage *)anAvatar;
 + (NSString *)blogKey;
++ (NSString *)locationKey;
 + (NSString *)companyKey;
 + (NSString *)emailKey;
 + (NSString *)nameKey;
@@ -182,7 +183,8 @@ enum Section
             [detailCell setKeyText:key];
             [detailCell setValueText:value];
             detailCell.selectionStyle =
-                [key isEqual:[[self class] blogKey]] ?
+                [key isEqual:[[self class] blogKey]] ||
+                [key isEqual:[[self class] locationKey]] ?
                 UITableViewCellSelectionStyleBlue :
                 UITableViewCellSelectionStyleNone;
             break;
@@ -223,7 +225,8 @@ enum Section
         NSString * detailKey =
             [[nonFeaturedDetails allKeys] objectAtIndex:indexPath.row];
         return
-            ![detailKey isEqual:[[self class] blogKey]] ?
+            ![detailKey isEqual:[[self class] blogKey]] &&
+            ![detailKey isEqual:[[self class] locationKey]]?
             nil :
             indexPath;
     }
@@ -259,6 +262,19 @@ enum Section
                 if ([detailValue rangeOfString:@"http"].location == NSNotFound)
                         [self.tableView deselectRowAtIndexPath:indexPath
                             animated:YES];
+            } else if ([detailKey isEqual:[[self class] locationKey]]) {
+                NSLog(@"Opening location in Maps: %@", detailValue);
+                NSString * locationWithoutCommas =
+                    [detailValue stringByReplacingOccurrencesOfString:@","
+                    withString:@""];
+                NSString * urlString =
+                    [[NSString
+                    stringWithFormat:@"maps://maps.google.com/maps?q=%@",
+                    locationWithoutCommas]
+                    stringByAddingPercentEscapesUsingEncoding:
+                    NSUTF8StringEncoding];
+                NSURL * url = [NSURL URLWithString:urlString];
+                [[UIApplication sharedApplication] openURL:url];
             }
             break;
         }
@@ -440,6 +456,11 @@ enum Section
 + (NSString *)blogKey
 {
     return @"blog";
+}
+
++ (NSString *)locationKey
+{
+    return @"location";
 }
 
 + (NSString *)companyKey
