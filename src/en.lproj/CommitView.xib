@@ -88,26 +88,6 @@
 							<string key="NSResourceName">DefaultAvatar.png</string>
 						</object>
 					</object>
-					<object class="IBUILabel" id="965433249">
-						<reference key="NSNextResponder" ref="359447417"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{89, 39}, {211, 20}}</string>
-						<reference key="NSSuperview" ref="359447417"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">john@highorderbit.com</string>
-						<object class="NSFont" key="IBUIFont" id="652708902">
-							<string key="NSName">Helvetica</string>
-							<double key="NSSize">1.400000e+01</double>
-							<int key="NSfFlags">16</int>
-						</object>
-						<reference key="IBUITextColor" ref="478820165"/>
-						<nil key="IBUIHighlightedColor"/>
-						<int key="IBUIBaselineAdjustment">1</int>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-						<float key="IBUIMinimumFontSize">1.000000e+01</float>
-					</object>
 					<object class="IBUILabel" id="821697483">
 						<reference key="NSNextResponder" ref="359447417"/>
 						<int key="NSvFlags">292</int>
@@ -117,7 +97,11 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">3/31/09 10:52 PM</string>
-						<reference key="IBUIFont" ref="652708902"/>
+						<object class="NSFont" key="IBUIFont" id="652708902">
+							<string key="NSName">Helvetica</string>
+							<double key="NSSize">1.400000e+01</double>
+							<int key="NSfFlags">16</int>
+						</object>
 						<reference key="IBUITextColor" ref="478820165"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -140,6 +124,32 @@
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 						<float key="IBUIMinimumFontSize">1.000000e+01</float>
 						<int key="IBUINumberOfLines">0</int>
+					</object>
+					<object class="IBUIButton" id="589719149">
+						<reference key="NSNextResponder" ref="359447417"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{89, 39}, {211, 20}}</string>
+						<reference key="NSSuperview" ref="359447417"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">1.500000e+01</double>
+							<int key="NSfFlags">16</int>
+						</object>
+						<string key="IBUIHighlightedTitle">john@highorderbit.com</string>
+						<string key="IBUIDisabledTitle">john@highorderbit.com</string>
+						<string key="IBUISelectedTitle">john@highorderbit.com</string>
+						<string key="IBUINormalTitle">john@highorderbit.com</string>
+						<object class="NSColor" key="IBUIHighlightedTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MSAxIDEAA</bytes>
+						</object>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+						</object>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 134}</string>
@@ -199,14 +209,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">emailLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="965433249"/>
-					</object>
-					<int key="connectionID">16</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">messageLabel</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="242631610"/>
@@ -228,6 +230,23 @@
 						<reference key="destination" ref="821697483"/>
 					</object>
 					<int key="connectionID">22</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">emailButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="589719149"/>
+					</object>
+					<int key="connectionID">24</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">sendEmail:</string>
+						<reference key="source" ref="589719149"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">25</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -266,7 +285,7 @@
 							<reference ref="657909452"/>
 							<reference ref="242631610"/>
 							<reference ref="821697483"/>
-							<reference ref="965433249"/>
+							<reference ref="589719149"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -281,11 +300,6 @@
 						<reference key="parent" ref="359447417"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">13</int>
-						<reference key="object" ref="965433249"/>
-						<reference key="parent" ref="359447417"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">17</int>
 						<reference key="object" ref="242631610"/>
 						<reference key="parent" ref="359447417"/>
@@ -293,6 +307,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">21</int>
 						<reference key="object" ref="821697483"/>
+						<reference key="parent" ref="359447417"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">23</int>
+						<reference key="object" ref="589719149"/>
 						<reference key="parent" ref="359447417"/>
 					</object>
 				</object>
@@ -305,11 +324,10 @@
 					<string>-2.CustomClassName</string>
 					<string>10.IBPluginDependency</string>
 					<string>11.IBPluginDependency</string>
-					<string>13.IBEditorWindowLastContentRect</string>
-					<string>13.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
 					<string>21.IBEditorWindowLastContentRect</string>
 					<string>21.IBPluginDependency</string>
+					<string>23.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>8.IBEditorWindowLastContentRect</string>
 					<string>8.IBPluginDependency</string>
@@ -320,10 +338,9 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{312, 742}, {220, 34}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{312, 742}, {220, 34}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{435, 609}, {320, 134}}</string>
@@ -350,7 +367,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">22</int>
+			<int key="maxID">25</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -358,13 +375,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">CommitViewController</string>
 					<string key="superclassName">UITableViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">sendEmail:</string>
+						<string key="NS.object.0">id</string>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>avatarImageView</string>
 							<string>delegate</string>
-							<string>emailLabel</string>
+							<string>emailButton</string>
 							<string>headerView</string>
 							<string>messageLabel</string>
 							<string>nameLabel</string>
@@ -374,7 +395,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIImageView</string>
 							<string>NSObject</string>
-							<string>UILabel</string>
+							<string>UIButton</string>
 							<string>UIView</string>
 							<string>UILabel</string>
 							<string>UILabel</string>

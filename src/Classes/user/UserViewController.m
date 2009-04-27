@@ -51,7 +51,7 @@ enum Section
     [avatarView release];
     [usernameLabel release];
     [featuredDetail1Label release];
-    [featuredDetail2Label release];
+    [featuredDetail2Button release];
     [addToContactsButton release];
 
     [username release];
@@ -94,7 +94,11 @@ enum Section
         featuredDetail1Label.text = name ? name : @"";
         
         NSString * email = [userInfo.details objectForKey:featuredDetail2Key];
-        featuredDetail2Label.text = email ? email : @"";
+        NSString * emailText = email ? email : @"";
+        [featuredDetail2Button setTitle:emailText
+            forState:UIControlStateNormal];
+        [featuredDetail2Button setTitle:emailText
+            forState:UIControlStateHighlighted];
     }
 
     // allow adding to contacts iff not already added or not in the address book
@@ -405,6 +409,18 @@ enum Section
     [contactMgr userDidAddContact:person forUser:username];
     
     CFRelease(person);
+}
+
+- (IBAction)sendEmail:(id)sender
+{
+    NSString * to = [featuredDetail2Button titleForState:UIControlStateNormal];
+    NSString * urlString =
+        [[NSString stringWithFormat:@"mailto:%@", to]
+        stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL * url = [[NSURL alloc] initWithString:urlString];
+    [[UIApplication sharedApplication] openURL:url];
+    [url release];
 }
 
 - (void)scrollToTop

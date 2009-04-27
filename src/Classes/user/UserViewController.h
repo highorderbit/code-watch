@@ -21,7 +21,7 @@
     IBOutlet UIImageView * avatarView;
     IBOutlet UILabel * usernameLabel;    
     IBOutlet UILabel * featuredDetail1Label;
-    IBOutlet UILabel * featuredDetail2Label;
+    IBOutlet UIButton * featuredDetail2Button;
     IBOutlet UIButton * addToContactsButton;
         
     NSString * username;
@@ -50,6 +50,7 @@
 - (void)setFeaturedDetail2Key:(NSString *)key;
 
 - (IBAction)addContact:(id)sender;
+- (IBAction)sendEmail:(id)sender;
 
 - (void)scrollToTop;
 
