@@ -70,6 +70,10 @@
 
 @optional
 
+- (void)users:(NSArray *)users foundForSearchString:(NSString *)searchString;
+- (void)failedToSearchUsersForString:(NSString *)searchString
+                               error:(NSError *)error;
+
 - (void)repos:(NSArray *)repos foundForSearchString:(NSString *)searchString;
 - (void)failedToSearchReposForString:(NSString *)searchString
                                error:(NSError *)error;

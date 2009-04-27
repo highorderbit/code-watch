@@ -52,6 +52,11 @@
 
 #pragma mark Search results
 
+- (void)userSearchResults:(NSDictionary *)results
+    foundForSearchString:(NSString *)searchString;
+- (void)failedToSearchUsersForString:(NSString *)searchString
+    error:(NSError *)error;
+
 - (void)repoSearchResults:(NSDictionary *)results
     foundForSearchString:(NSString *)searchString;
 - (void)failedToSearchReposForString:(NSString *)searchString

@@ -255,6 +255,28 @@
 
 #pragma mark Searching GitHub
 
+- (void)searchUsers:(NSString *)searchString
+{
+    NSString * url = [NSString stringWithFormat:@"%@/user/search/%@",
+        [self baseApiUrlForVersion:2], searchString];
+
+    NSURLRequest * req =
+        [NSURLRequest requestWithBaseUrlString:url getArguments:nil];
+
+    SEL sel = @selector(handleUserSearchResults:toRequest:searchString:);
+    NSMethodSignature * sig = [self methodSignatureForSelector:sel];
+    NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
+
+    [inv setTarget:self];
+    [inv setSelector:sel];
+    [inv setArgument:&searchString atIndex:4];
+    [inv retainArguments];
+
+    [self setInvocation:inv forRequest:req];
+
+    [api sendRequest:req];
+}
+
 - (void)searchRepos:(NSString *)searchString
 {
     NSString * url = [NSString stringWithFormat:@"%@/search/%@",
@@ -494,6 +516,31 @@
         [delegate
             failedToUnfollowUsername:followee follower:follower token:token
             error:err];
+    }
+}
+
+- (void)handleUserSearchResults:(id)response
+                      toRequest:(NSURLRequest *)request
+                   searchString:(NSString *)searchString
+{
+    if ([response isKindOfClass:[NSError class]]) {
+        [delegate failedToSearchUsersForString:searchString error:response];
+        return;
+    }
+
+    NSDictionary * results = [parser parseResponse:response];
+
+    if (results) {
+        NSLog(@"User search for '%@' returned results: '%@'.", searchString,
+            results);
+        [delegate userSearchResults:results foundForSearchString:searchString];
+    } else {
+        NSLog(@"Failed to parse user search results for search string: '%@', "
+            "response: '%@'.", searchString,
+            [NSString stringWithUTF8EncodedData:response]);
+        NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
+        NSError * err = [NSError errorWithLocalizedDescription:desc];
+        [delegate failedToSearchUsersForString:searchString error:err];
     }
 }
 

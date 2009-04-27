@@ -185,6 +185,13 @@
 
 #pragma mark Searching GitHub
 
+- (void)searchUsers:(NSString *)searchString
+{
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
+    [gitHub searchUsers:searchString];
+}
+
 - (void)searchRepos:(NSString *)searchString
 {
     [[UIApplication sharedApplication] networkActivityIsStarting];
@@ -364,6 +371,28 @@
     if ([delegate respondsToSelector:sel])
         [delegate
             failedToUnfollowUsername:followee follower:follower error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)userSearchResults:(NSDictionary *)results
+    foundForSearchString:(NSString *)searchString
+{
+    NSArray * users = [results objectForKey:@"users"];
+
+    SEL selector = @selector(users:foundForSearchString:);
+    if ([delegate respondsToSelector:selector])
+        [delegate users:users foundForSearchString:searchString];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)failedToSearchUsersForString:(NSString *)searchString
+    error:(NSError *)error
+{
+    SEL selector = @selector(failedToSearchUsersForString:error:);
+    if ([delegate respondsToSelector:selector])
+        [delegate failedToSearchUsersForString:searchString error:error];
 
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
