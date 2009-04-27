@@ -64,7 +64,7 @@ enum
     [headerView release];
 
     [nameLabel release];
-    [emailLabel release];
+    [emailButton release];
     [timestampLabel release];
     [messageLabel release];
     [avatarImageView release];
@@ -82,6 +82,8 @@ enum
 
     headerView.backgroundColor = [UIColor codeWatchBackgroundColor];
     self.tableView.tableHeaderView = headerView;
+    
+    self.tableView.backgroundColor = [UIColor codeWatchBackgroundColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -360,6 +362,18 @@ enum
     [self.tableView scrollRectToVisible:self.tableView.frame animated:NO];
 }
 
+- (IBAction)sendEmail:(id)sender
+{
+    NSString * to = [emailButton titleForState:UIControlStateNormal];
+    NSString * urlString =
+        [[NSString stringWithFormat:@"mailto:%@", to]
+        stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL * url = [[NSURL alloc] initWithString:urlString];
+    [[UIApplication sharedApplication] openURL:url];
+    [url release];
+}
+
 #pragma mark Updating the view with new data
 
 - (void)updateWithCommitInfo:(CommitInfo *)info
@@ -395,7 +409,8 @@ enum
         [NSDate dateWithGitHubString:timestampstring] : nil;
 
     nameLabel.text = committerName;
-    emailLabel.text = committerEmail;
+    [emailButton setTitle:committerEmail forState:UIControlStateNormal];
+    [emailButton setTitle:committerEmail forState:UIControlStateHighlighted];
     timestampLabel.text = [timestamp shortDateAndTimeDescription];
 
     CGFloat height = [messageLabel heightForString:message];

@@ -14,7 +14,7 @@
     IBOutlet UIView * headerView;
 
     IBOutlet UILabel * nameLabel;
-    IBOutlet UILabel * emailLabel;
+    IBOutlet UIButton * emailButton;
     IBOutlet UILabel * timestampLabel;
     IBOutlet UILabel * messageLabel;
     IBOutlet UIImageView * avatarImageView;
@@ -32,6 +32,7 @@
 @property (nonatomic, retain) NSObject<CommitViewControllerDelegate> * delegate;
 
 - (void)scrollToTop;
+- (IBAction)sendEmail:(id)sender;
 
 #pragma mark Updating the view with new data
 
