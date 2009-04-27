@@ -89,7 +89,7 @@
 
 + (NSString *)userServiceKey
 {
-    return @"User";
+    return @"Users";
 }
 
 + (NSString *)repoServiceKey

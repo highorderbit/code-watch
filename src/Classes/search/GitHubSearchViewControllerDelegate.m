@@ -59,7 +59,7 @@
 
 + (NSString *)userSectionKey
 {
-    return @"User";
+    return @"Users";
 }
 
 @end

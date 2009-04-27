@@ -25,26 +25,29 @@
 
 - (void)searchForText:(NSString *)text
 {
-    [gitHubService fetchInfoForUsername:text];
+    [gitHubService searchUsers:text];
 }
 
 #pragma mark GitHubServiceDelegate implementation
 
-- (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
-    fetchedForUsername:(NSString *)username
+- (void)users:(NSArray *)users foundForSearchString:(NSString *)searchString
 {
-    NSArray * usernameArray = [NSArray arrayWithObject:username];
+    NSMutableArray * usernames = [NSMutableArray arrayWithCapacity:users.count];
+    for (NSDictionary * user in users)
+        [usernames addObject:[user objectForKey:@"username"]];
+
     NSDictionary * usernameDict =
-        [NSDictionary dictionaryWithObject:usernameArray forKey:@"username"];
-    [delegate processSearchResults:usernameDict withSearchText:username
+        [NSDictionary dictionaryWithObject:usernames forKey:@"usernames"];
+    [delegate processSearchResults:usernameDict withSearchText:searchString
         fromSearchService:self];
 }
 
-- (void)failedToFetchInfoForUsername:(NSString *)username error:(NSError *)error
+- (void)failedToSearchUsersForString:(NSString *)searchString
+    error:(NSError *)error
 {
     // not found, so return an empty array
     [delegate processSearchResults:[NSDictionary dictionary]
-        withSearchText:username fromSearchService:self];
+        withSearchText:searchString fromSearchService:self];
 }
 
 @end
