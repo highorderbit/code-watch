@@ -11,6 +11,7 @@
 #import "UIImage+AvatarHelpers.h"
 #import "NSDate+StringHelpers.h"
 #import "HOTableViewCell.h"
+#import "UIColor+CodeWatchColors.h"
 
 static NSUInteger NUM_SECTIONS = 3;
 enum Sections
@@ -84,8 +85,10 @@ enum ActionSectionRows
 {
     [super viewDidLoad];
 
-    headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    headerView.backgroundColor = [UIColor codeWatchBackgroundColor];
     self.tableView.tableHeaderView = headerView;
+
+    self.tableView.backgroundColor = [UIColor codeWatchBackgroundColor];
 
     self.navigationItem.title =
         NSLocalizedString(@"newsfeeditem.view.title", @"");

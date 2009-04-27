@@ -3,6 +3,7 @@
 //
 
 #import "SearchViewController.h"
+#import "UIColor+CodeWatchColors.h"
 
 static const CGFloat IPHONE_WIDTH = 320;
 
@@ -51,7 +52,7 @@ static const CGFloat IPHONE_WIDTH = 320;
 
 - (void)viewDidLoad
 {
-    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.view.backgroundColor = [UIColor codeWatchBackgroundColor];
     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     

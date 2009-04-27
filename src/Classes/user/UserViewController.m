@@ -9,6 +9,7 @@
 #import "UIAlertView+CreationHelpers.h"
 #import "UIImage+AvatarHelpers.h"
 #import <AddressBookUI/ABPersonViewController.h>
+#import "UIColor+CodeWatchColors.h"
 
 enum Section
 {
@@ -70,11 +71,13 @@ enum Section
     [self setFeaturedDetail1Key:@"name"];
     [self setFeaturedDetail2Key:@"email"];
     
-    headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    headerView.backgroundColor = [UIColor codeWatchBackgroundColor];
     self.tableView.tableHeaderView = headerView;
         
-    footerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    footerView.backgroundColor = [UIColor codeWatchBackgroundColor];
     self.tableView.tableFooterView = footerView;
+    
+    self.tableView.backgroundColor = [UIColor codeWatchBackgroundColor];
     
     [addToContactsButton setTitleColor:[UIColor grayColor]
         forState:UIControlStateDisabled];
