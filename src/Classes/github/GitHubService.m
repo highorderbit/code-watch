@@ -167,6 +167,13 @@
     [gitHub fetchFollowingForUsername:username];
 }
 
+- (void)fetchFollowersForUsername:(NSString *)username
+{
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
+    [gitHub fetchFollowersForUsername:username];
+}
+
 - (void)followUsername:(NSString *)followee
 {
     [[UIApplication sharedApplication] networkActivityIsStarting];
@@ -323,6 +330,32 @@
     SEL sel = @selector(failedToFetchFollowingForUsername:error:);
     if ([delegate respondsToSelector:sel])
         [delegate failedToFetchFollowingForUsername:username error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)followers:(NSDictionary *)results
+    fetchedForUsername:(NSString *)username
+{
+    //
+    // TODO: Write to user network cache.
+    //
+
+    NSArray * followers = [results objectForKey:@"users"];
+
+    SEL sel = @selector(followers:fetchedForUsername:);
+    if ([delegate respondsToSelector:sel])
+        [delegate followers:followers fetchedForUsername:username];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)failedToFetchFollowersForUsername:(NSString *)username
+    error:(NSError *)error
+{
+    SEL sel = @selector(failedToFetchFollowersForUsername:error:);
+    if ([delegate respondsToSelector:sel])
+        [delegate failedToFetchFollowersForUsername:username error:error];
 
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }

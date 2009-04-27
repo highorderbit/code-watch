@@ -79,6 +79,8 @@
 #pragma mark Fetching followers
 
 - (void)fetchFollowingForUsername:(NSString *)username;
+- (void)fetchFollowersForUsername:(NSString *)username;
+
 - (void)followUsername:(NSString *)followee;
 - (void)unfollowUsername:(NSString *)followee;
 

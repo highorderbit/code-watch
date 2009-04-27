@@ -57,6 +57,11 @@
 - (void)failedToFetchFollowingForUsername:(NSString *)username
                                     error:(NSError *)error;
 
+- (void)followers:(NSArray *)followers
+    fetchedForUsername:(NSString *)username;
+- (void)failedToFetchFollowersForUsername:(NSString *)username
+    error:(NSError *)error;
+
 - (void)username:(NSString *)username isFollowing:(NSString *)followee;
 - (void)failedToFollowUsername:(NSString *)followee
                       follower:(NSString *)follower
