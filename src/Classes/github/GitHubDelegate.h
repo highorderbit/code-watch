@@ -52,9 +52,9 @@
 
 #pragma mark Search results
 
-- (void)searchResults:(NSDictionary *)results
+- (void)repoSearchResults:(NSDictionary *)results
     foundForSearchString:(NSString *)searchString;
-- (void)failedToSearchForString:(NSString *)searchString
+- (void)failedToSearchReposForString:(NSString *)searchString
     error:(NSError *)error;
 
 @end

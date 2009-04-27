@@ -60,6 +60,6 @@
 
 #pragma mark Searching GitHub
 
-- (void)search:(NSString *)searchString;
+- (void)searchRepos:(NSString *)searchString;
 
 @end

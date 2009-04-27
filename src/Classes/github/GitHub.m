@@ -255,7 +255,7 @@
 
 #pragma mark Searching GitHub
 
-- (void)search:(NSString *)searchString
+- (void)searchRepos:(NSString *)searchString
 {
     NSString * url = [NSString stringWithFormat:@"%@/search/%@",
         [self baseApiUrlForVersion:1], searchString];
@@ -263,7 +263,7 @@
     NSURLRequest * req =
         [NSURLRequest requestWithBaseUrlString:url getArguments:nil];
 
-    SEL sel = @selector(handleSearchResults:toRequest:searchString:);
+    SEL sel = @selector(handleRepoSearchResults:toRequest:searchString:);
     NSMethodSignature * sig = [self methodSignatureForSelector:sel];
     NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
 
@@ -497,28 +497,28 @@
     }
 }
 
-- (void)handleSearchResults:(id)response
-                  toRequest:(NSURLRequest *)request
-               searchString:(NSString *)searchString
+- (void)handleRepoSearchResults:(id)response
+                      toRequest:(NSURLRequest *)request
+                   searchString:(NSString *)searchString
 {
     if ([response isKindOfClass:[NSError class]]) {
-        [delegate failedToSearchForString:searchString error:response];
+        [delegate failedToSearchReposForString:searchString error:response];
         return;
     }
 
     NSDictionary * results = [parser parseResponse:response];
 
     if (results) {
-        NSLog(@"Search for '%@' returned results: '%@'.", searchString,
+        NSLog(@"Repo search for '%@' returned results: '%@'.", searchString,
             results);
-        [delegate searchResults:results foundForSearchString:searchString];
+        [delegate repoSearchResults:results foundForSearchString:searchString];
     } else {
-        NSLog(@"Failed to parse search results for search string: '%@', "
+        NSLog(@"Failed to parse repo search results for search string: '%@', "
             "response: '%@'.", searchString,
             [NSString stringWithUTF8EncodedData:response]);
         NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
         NSError * err = [NSError errorWithLocalizedDescription:desc];
-        [delegate failedToSearchForString:searchString error:err];
+        [delegate failedToSearchReposForString:searchString error:err];
     }
 }
 

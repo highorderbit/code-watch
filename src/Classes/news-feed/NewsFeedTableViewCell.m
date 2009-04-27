@@ -32,6 +32,8 @@
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
+
     static const CGFloat USABLE_WIDTH = 220.0;
 
     [pubDateLabel sizeToFit:UILabelSizeToFitAlignmentRight];
