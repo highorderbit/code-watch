@@ -187,6 +187,29 @@
     [api sendRequest:req];
 }
 
+- (void)fetchFollowersForUsername:(NSString *)username
+{
+    NSString * url =
+        [NSString stringWithFormat:@"%@/user/show/%@/followers",
+        [self baseApiUrlForVersion:2], username];
+
+    NSURLRequest * req =
+        [NSURLRequest requestWithBaseUrlString:url getArguments:nil];
+
+    SEL sel = @selector(handleFollowerResponse:toRequest:username:);
+    NSMethodSignature * sig = [self methodSignatureForSelector:sel];
+    NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
+
+    [inv setTarget:self];
+    [inv setSelector:sel];
+    [inv setArgument:&username atIndex:4];
+    [inv retainArguments];
+
+    [self setInvocation:inv forRequest:req];
+
+    [api sendRequest:req];
+}
+
 - (void)followUsername:(NSString *)followee
               follower:(NSString *)follower
                  token:(NSString *)token
@@ -254,6 +277,28 @@
 }
 
 #pragma mark Searching GitHub
+
+- (void)searchUsers:(NSString *)searchString
+{
+    NSString * url = [NSString stringWithFormat:@"%@/user/search/%@",
+        [self baseApiUrlForVersion:2], searchString];
+
+    NSURLRequest * req =
+        [NSURLRequest requestWithBaseUrlString:url getArguments:nil];
+
+    SEL sel = @selector(handleUserSearchResults:toRequest:searchString:);
+    NSMethodSignature * sig = [self methodSignatureForSelector:sel];
+    NSInvocation * inv = [NSInvocation invocationWithMethodSignature:sig];
+
+    [inv setTarget:self];
+    [inv setSelector:sel];
+    [inv setArgument:&searchString atIndex:4];
+    [inv retainArguments];
+
+    [self setInvocation:inv forRequest:req];
+
+    [api sendRequest:req];
+}
 
 - (void)searchRepos:(NSString *)searchString
 {
@@ -415,7 +460,7 @@
                 objectForKey:@"error"];
 
             NSLog(@"Failed to retrieve response for username: '%@', "
-                "error: '%@'.", username, following);
+                "error: '%@'.", username, msg);
 
             NSError * err = [NSError errorWithLocalizedDescription:msg];
             [delegate failedToFetchFollowingForUsername:username error:err];
@@ -431,6 +476,44 @@
         NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
         NSError * err = [NSError errorWithLocalizedDescription:desc];
         [delegate failedToFetchFollowingForUsername:username error:err];
+    }
+}
+
+- (void)handleFollowerResponse:(id)response
+                     toRequest:(NSURLRequest *)request
+                      username:(NSString *)username
+{
+    if ([response isKindOfClass:[NSError class]]) {
+        [delegate failedToFetchFollowersForUsername:username error:response];
+        return;
+    }
+
+    NSDictionary * followers = [parser parseResponse:response];
+    if (followers) {
+        // following could contain an error.
+        if ([followers objectForKey:@"error"]) {
+            NSString * msg =
+                [[[followers objectForKey:@"error"]
+                objectAtIndex:0]
+                objectForKey:@"error"];
+
+            NSLog(@"Failed to retrieve response for username: '%@', "
+                "error: '%@'.", username, msg);
+
+            NSError * err = [NSError errorWithLocalizedDescription:msg];
+            [delegate failedToFetchFollowersForUsername:username error:err];
+        } else {
+            [delegate followers:followers fetchedForUsername:username];
+            NSLog(@"Have followers for username '%@': '%@'", username,
+                followers);
+        }
+    } else {
+        NSLog(@"Failed to parse follower response for username: '%@', "
+            "response: '%@'.", username,
+            [NSString stringWithUTF8EncodedData:response]);
+        NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
+        NSError * err = [NSError errorWithLocalizedDescription:desc];
+        [delegate failedToFetchFollowersForUsername:username error:err];
     }
 }
 
@@ -494,6 +577,31 @@
         [delegate
             failedToUnfollowUsername:followee follower:follower token:token
             error:err];
+    }
+}
+
+- (void)handleUserSearchResults:(id)response
+                      toRequest:(NSURLRequest *)request
+                   searchString:(NSString *)searchString
+{
+    if ([response isKindOfClass:[NSError class]]) {
+        [delegate failedToSearchUsersForString:searchString error:response];
+        return;
+    }
+
+    NSDictionary * results = [parser parseResponse:response];
+
+    if (results) {
+        NSLog(@"User search for '%@' returned results: '%@'.", searchString,
+            results);
+        [delegate userSearchResults:results foundForSearchString:searchString];
+    } else {
+        NSLog(@"Failed to parse user search results for search string: '%@', "
+            "response: '%@'.", searchString,
+            [NSString stringWithUTF8EncodedData:response]);
+        NSString * desc = NSLocalizedString(@"github.parse.failed.desc", @"");
+        NSError * err = [NSError errorWithLocalizedDescription:desc];
+        [delegate failedToSearchUsersForString:searchString error:err];
     }
 }
 

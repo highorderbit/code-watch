@@ -79,11 +79,14 @@
 #pragma mark Fetching followers
 
 - (void)fetchFollowingForUsername:(NSString *)username;
+- (void)fetchFollowersForUsername:(NSString *)username;
+
 - (void)followUsername:(NSString *)followee;
 - (void)unfollowUsername:(NSString *)followee;
 
 #pragma mark Searching GitHub
 
+- (void)searchUsers:(NSString *)searchString;
 - (void)searchRepos:(NSString *)searchString;
 
 @end

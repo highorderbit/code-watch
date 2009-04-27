@@ -57,6 +57,11 @@
 - (void)failedToFetchFollowingForUsername:(NSString *)username
                                     error:(NSError *)error;
 
+- (void)followers:(NSArray *)followers
+    fetchedForUsername:(NSString *)username;
+- (void)failedToFetchFollowersForUsername:(NSString *)username
+    error:(NSError *)error;
+
 - (void)username:(NSString *)username isFollowing:(NSString *)followee;
 - (void)failedToFollowUsername:(NSString *)followee
                       follower:(NSString *)follower
@@ -69,6 +74,10 @@
 #pragma mark Searching repositories
 
 @optional
+
+- (void)users:(NSArray *)users foundForSearchString:(NSString *)searchString;
+- (void)failedToSearchUsersForString:(NSString *)searchString
+                               error:(NSError *)error;
 
 - (void)repos:(NSArray *)repos foundForSearchString:(NSString *)searchString;
 - (void)failedToSearchReposForString:(NSString *)searchString

@@ -167,6 +167,13 @@
     [gitHub fetchFollowingForUsername:username];
 }
 
+- (void)fetchFollowersForUsername:(NSString *)username
+{
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
+    [gitHub fetchFollowersForUsername:username];
+}
+
 - (void)followUsername:(NSString *)followee
 {
     [[UIApplication sharedApplication] networkActivityIsStarting];
@@ -184,6 +191,13 @@
 }
 
 #pragma mark Searching GitHub
+
+- (void)searchUsers:(NSString *)searchString
+{
+    [[UIApplication sharedApplication] networkActivityIsStarting];
+
+    [gitHub searchUsers:searchString];
+}
 
 - (void)searchRepos:(NSString *)searchString
 {
@@ -320,6 +334,32 @@
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
+- (void)followers:(NSDictionary *)results
+    fetchedForUsername:(NSString *)username
+{
+    //
+    // TODO: Write to user network cache.
+    //
+
+    NSArray * followers = [results objectForKey:@"users"];
+
+    SEL sel = @selector(followers:fetchedForUsername:);
+    if ([delegate respondsToSelector:sel])
+        [delegate followers:followers fetchedForUsername:username];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)failedToFetchFollowersForUsername:(NSString *)username
+    error:(NSError *)error
+{
+    SEL sel = @selector(failedToFetchFollowersForUsername:error:);
+    if ([delegate respondsToSelector:sel])
+        [delegate failedToFetchFollowersForUsername:username error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
 - (void)username:(NSString *)follower isFollowing:(NSString *)followee
     token:(NSString *)token
 {
@@ -364,6 +404,28 @@
     if ([delegate respondsToSelector:sel])
         [delegate
             failedToUnfollowUsername:followee follower:follower error:error];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)userSearchResults:(NSDictionary *)results
+    foundForSearchString:(NSString *)searchString
+{
+    NSArray * users = [results objectForKey:@"users"];
+
+    SEL selector = @selector(users:foundForSearchString:);
+    if ([delegate respondsToSelector:selector])
+        [delegate users:users foundForSearchString:searchString];
+
+    [[UIApplication sharedApplication] networkActivityDidFinish];
+}
+
+- (void)failedToSearchUsersForString:(NSString *)searchString
+    error:(NSError *)error
+{
+    SEL selector = @selector(failedToSearchUsersForString:error:);
+    if ([delegate respondsToSelector:selector])
+        [delegate failedToSearchUsersForString:searchString error:error];
 
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
