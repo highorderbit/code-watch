@@ -7,5 +7,6 @@
 @protocol UserNetworkCacheReader
 
 - (NSArray *)followingForPrimaryUser;
+- (NSArray *)followersForPrimaryUser;
 
 @end

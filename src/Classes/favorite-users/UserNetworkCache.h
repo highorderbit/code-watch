@@ -10,8 +10,10 @@
     NSObject <UserNetworkCacheReader, UserNetworkCacheSetter>
 {
     NSArray * primaryUserFollowing;
+    NSArray * primaryUserFollowers;
 }
 
 @property (nonatomic, copy) NSArray * primaryUserFollowing;
+@property (nonatomic, copy) NSArray * primaryUserFollowers;
 
 @end

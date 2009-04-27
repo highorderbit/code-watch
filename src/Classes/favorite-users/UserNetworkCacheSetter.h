@@ -7,5 +7,6 @@
 @protocol UserNetworkCacheSetter
 
 - (void)setFollowingForPrimaryUser:(NSArray *)following;
+- (void)setFollowersForPrimaryUser:(NSArray *)followers;
 
 @end
