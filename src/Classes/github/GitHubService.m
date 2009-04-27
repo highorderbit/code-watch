@@ -189,7 +189,7 @@
 {
     [[UIApplication sharedApplication] networkActivityIsStarting];
 
-    [gitHub search:searchString];
+    [gitHub searchRepos:searchString];
 }
 
 #pragma mark GitHubDelegate implementation
@@ -368,7 +368,7 @@
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
-- (void)searchResults:(NSDictionary *)results
+- (void)repoSearchResults:(NSDictionary *)results
     foundForSearchString:(NSString *)searchString
 {
     NSArray * repos = [results objectForKey:@"repositories"];
@@ -380,7 +380,8 @@
     [[UIApplication sharedApplication] networkActivityDidFinish];
 }
 
-- (void)failedToSearchForString:(NSString *)searchString error:(NSError *)error
+- (void)failedToSearchReposForString:(NSString *)searchString
+    error:(NSError *)error
 {
     SEL selector = @selector(failedToSearchReposForString:error:);
     if ([delegate respondsToSelector:selector])
