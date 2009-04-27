@@ -11,6 +11,7 @@
 #import "NSDate+StringHelpers.h"
 #import "NSDate+GitHubStringHelpers.h"
 #import "HOTableViewCell.h"
+#import "UIColor+CodeWatchColors.h"
 
 static const NSUInteger NUM_SECTIONS = 2;
 enum
@@ -79,7 +80,7 @@ enum
 {
     [super viewDidLoad];
 
-    headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    headerView.backgroundColor = [UIColor codeWatchBackgroundColor];
     self.tableView.tableHeaderView = headerView;
 }
 

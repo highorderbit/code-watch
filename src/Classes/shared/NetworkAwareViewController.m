@@ -3,6 +3,7 @@
 //
 
 #import "NetworkAwareViewController.h"
+#import "UIColor+CodeWatchColors.h"
 
 @interface NetworkAwareViewController (Private)
 
@@ -50,7 +51,7 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
 {
     if (self = [super init]) {
         [self noDataViewController].view.backgroundColor =
-            [UIColor groupTableViewBackgroundColor];
+            [UIColor codeWatchBackgroundColor];
         
         [self setUpdatingText:NSLocalizedString(@"nodata.updating.text", @"")];
         [self setLoadingText:NSLocalizedString(@"nodata.loading.text", @"")];
@@ -156,7 +157,7 @@ static const CGFloat ACTIVITY_INDICATOR_LENGTH = 20;
         // this seems to get overwritten on the device occasionally, so force
         // it here
         [self noDataViewController].view.backgroundColor =
-            [UIColor groupTableViewBackgroundColor];
+            [UIColor codeWatchBackgroundColor];
 
         // set no data text
         NSString * labelText =

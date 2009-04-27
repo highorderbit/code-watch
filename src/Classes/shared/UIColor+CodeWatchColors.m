@@ -21,4 +21,9 @@
     return [UIColor colorWithRed:.318 green:.4 blue:.569 alpha:1];
 }
 
++ (UIColor *)codeWatchBackgroundColor
+{
+    return [UIColor colorWithRed:.925 green:.933 blue:.953 alpha:1];
+}
+
 @end

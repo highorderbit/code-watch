@@ -8,8 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="25"/>
 			<integer value="13"/>
+			<integer value="25"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -135,8 +135,8 @@
 				<string key="NSFrameSize">{320, 375}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">2</int>
-					<bytes key="NSRGB">MC44ODYyNzQ1OCAwLjkwNTg4MjQyIDAuOTI5NDExODMAA</bytes>
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MC45MjU0OTAyIDAuOTMzMzMzMzQgMC45NTI5NDExOAA</bytes>
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 			</object>
@@ -370,7 +370,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>RepoViewController</string>
 					<string>UIResponder</string>
-					<string>{{665, 483}, {320, 375}}</string>
+					<string>{{265, 632}, {320, 375}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -428,6 +428,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>addToFavoritesButton</string>
 							<string>delegate</string>
+							<string>favoriteReposStateReader</string>
+							<string>favoriteReposStateSetter</string>
 							<string>footerView</string>
 							<string>headerView</string>
 							<string>repoDescriptionLabel</string>
@@ -438,6 +440,8 @@
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
+							<string>NSObject</string>
+							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>UIView</string>
 							<string>UIView</string>
