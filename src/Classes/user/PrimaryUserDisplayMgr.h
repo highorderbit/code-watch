@@ -18,7 +18,10 @@
 #import "RepoCacheReader.h"
 
 @class NewsFeedDisplayMgrFactory, NewsFeedDisplayMgr;
-@class GitHubService, GravatarService, GravatarServiceFactory;
+@class GitHubService, GitHubServiceFactory;
+@class GravatarService, GravatarServiceFactory;
+@class FollowersDisplayMgr, FollowingDisplayMgr;
+@class UserDisplayMgrFactory;
 
 @interface PrimaryUserDisplayMgr :
     NSObject
@@ -42,9 +45,15 @@
     NewsFeedDisplayMgr * newsFeedDisplayMgr;
     
     IBOutlet GitHubService * gitHubService;
+    IBOutlet GitHubServiceFactory * gitHubServiceFactory;
 
     GravatarService * gravatarService;
     IBOutlet GravatarServiceFactory * gravatarServiceFactory;
+
+    IBOutlet UserDisplayMgrFactory * userDisplayMgrFactory;
+
+    FollowersDisplayMgr * followersDisplayMgr;
+    FollowingDisplayMgr * followingDisplayMgr;
     
     BOOL gitHubFailure;
     BOOL avatarFailure;

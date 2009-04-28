@@ -8,12 +8,18 @@
 #import "GravatarServiceFactory.h"
 #import "NewsFeedDisplayMgr.h"
 #import "NewsFeedDisplayMgrFactory.h"
+#import "FollowingDisplayMgr.h"
+#import "FollowersDisplayMgr.h"
+#import "UserDisplayMgrFactory.h"
 
 @interface PrimaryUserDisplayMgr (Private)
 
 - (UIImage *)cachedAvatarForUserInfo:(UserInfo *)info;
 - (NewsFeedDisplayMgr *)newsFeedDisplayMgr;
 - (void)setRepoAccessRights:(UserInfo*)userInfo;
+
+- (FollowingDisplayMgr *)followingDisplayMgr;
+- (FollowersDisplayMgr *)followersDisplayMgr;
 
 @end
 
@@ -34,9 +40,15 @@
     [repoSelector release];
     
     [gitHubService release];
+    [gitHubServiceFactory release];
 
     [gravatarService release];
     [gravatarServiceFactory release];
+
+    [userDisplayMgrFactory release];
+
+    [followersDisplayMgr release];
+    [followingDisplayMgr release];
     
     [super dealloc];
 }
@@ -124,10 +136,12 @@
 
 - (void)userDidSelectFollowing
 {
+    [[self followingDisplayMgr] displayFollowingForUsername:logInState.login];
 }
 
 - (void)userDidSelectFollowers
 {
+    [[self followersDisplayMgr] displayFollowersForUsername:logInState.login];
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -247,6 +261,40 @@
     }
 
     return newsFeedDisplayMgr;
+}
+
+- (FollowersDisplayMgr *)followersDisplayMgr
+{
+    if (!followersDisplayMgr) {
+        GitHubService * ghs = [gitHubServiceFactory createGitHubService];
+        NSObject<UserDisplayMgr> * udm =
+            [userDisplayMgrFactory
+            createUserDisplayMgrWithNavigationContoller:navigationController];
+
+        followersDisplayMgr =
+            [[FollowersDisplayMgr alloc]
+            initWithNavigationController:navigationController
+            gitHubService:ghs userDisplayMgr:udm];
+    }
+
+    return followersDisplayMgr;
+}
+
+- (FollowingDisplayMgr *)followingDisplayMgr
+{
+    if (!followingDisplayMgr) {
+        GitHubService * ghs = [gitHubServiceFactory createGitHubService];
+        NSObject<UserDisplayMgr> * udm =
+            [userDisplayMgrFactory
+            createUserDisplayMgrWithNavigationContoller:navigationController];
+
+        followingDisplayMgr =
+            [[FollowingDisplayMgr alloc]
+            initWithNavigationController:navigationController
+            gitHubService:ghs userDisplayMgr:udm];
+    }
+
+    return followingDisplayMgr;
 }
 
 @end
