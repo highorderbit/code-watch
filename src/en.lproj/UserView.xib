@@ -128,13 +128,17 @@
 						<string key="IBUIDisabledTitle">john.doe@highorderbit.com</string>
 						<string key="IBUISelectedTitle">john.doe@highorderbit.com</string>
 						<string key="IBUINormalTitle">john.doe@highorderbit.com</string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="567769935">
+						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MSAxIDEAA</bytes>
+							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+						</object>
+						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">HighlightedButtonBackground.png</string>
 						</object>
 					</object>
 				</object>
@@ -169,7 +173,10 @@
 						<string key="IBUIDisabledTitle">Add to Contacts</string>
 						<string key="IBUISelectedTitle">Add to Contacts</string>
 						<string key="IBUINormalTitle">Add to Contacts</string>
-						<reference key="IBUIHighlightedTitleColor" ref="567769935"/>
+						<object class="NSColor" key="IBUIHighlightedTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MSAxIDEAA</bytes>
+						</object>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>

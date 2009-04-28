@@ -106,6 +106,7 @@
 		913694A80F7ECF140054E512 /* UIAddRepoMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 913694A70F7ECF140054E512 /* UIAddRepoMgr.m */; };
 		913EE0510F86B4EC00A3967B /* private-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 913EE04F0F86B4EC00A3967B /* private-icon.png */; };
 		913EE0520F86B4EC00A3967B /* public-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 913EE0500F86B4EC00A3967B /* public-icon.png */; };
+		913F9B170FA78B9A008FFE45 /* HighlightedButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 913F9B160FA78B9A008FFE45 /* HighlightedButtonBackground.png */; };
 		9152A0F70F6A1F540037A52F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A0F60F6A1F540037A52F /* Icon.png */; };
 		9152A10F0F6AB24B0037A52F /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */; };
 		9152A1280F6AB7570037A52F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152A1270F6AB7570037A52F /* Security.framework */; };
@@ -126,6 +127,7 @@
 		91AB1E290F733BB6005AC590 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AB1E280F733BB6005AC590 /* AddressBookUI.framework */; };
 		91B010000F8407980073E81F /* GitHubRepoSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B00FFF0F8407980073E81F /* GitHubRepoSearchService.m */; };
 		91B012550F8589980073E81F /* ContactCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B012540F8589980073E81F /* ContactCache.m */; };
+		91B423EE0FA7A073004C5B20 /* LiteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B423ED0FA7A073004C5B20 /* LiteIcon.png */; };
 		91B6205B0F6C54540077CDB9 /* UserDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */; };
 		91B6205E0F6C54830077CDB9 /* UserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */; };
 		91B889140F8002D400215C8B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B889130F8002D400215C8B /* SearchViewController.m */; };
@@ -383,6 +385,7 @@
 		913694A70F7ECF140054E512 /* UIAddRepoMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIAddRepoMgr.m; path = "favorite-repos/UIAddRepoMgr.m"; sourceTree = "<group>"; };
 		913EE04F0F86B4EC00A3967B /* private-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "private-icon.png"; sourceTree = "<group>"; };
 		913EE0500F86B4EC00A3967B /* public-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "public-icon.png"; sourceTree = "<group>"; };
+		913F9B160FA78B9A008FFE45 /* HighlightedButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HighlightedButtonBackground.png; sourceTree = "<group>"; };
 		9152A0F60F6A1F540037A52F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9152A10D0F6AB24B0037A52F /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
@@ -415,6 +418,7 @@
 		91B012540F8589980073E81F /* ContactCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactCache.m; sourceTree = "<group>"; };
 		91B012560F8589A20073E81F /* ContactCacheReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCacheReader.h; sourceTree = "<group>"; };
 		91B0125A0F8589B30073E81F /* ContactCacheSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactCacheSetter.h; sourceTree = "<group>"; };
+		91B423ED0FA7A073004C5B20 /* LiteIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LiteIcon.png; sourceTree = "<group>"; };
 		91B620590F6C54540077CDB9 /* UserDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailTableViewCell.h; sourceTree = "<group>"; };
 		91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailTableViewCell.m; sourceTree = "<group>"; };
 		91B6205D0F6C54830077CDB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UserDetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -1014,6 +1018,8 @@
 		9152A1E90F6AFC240037A52F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				91B423ED0FA7A073004C5B20 /* LiteIcon.png */,
+				913F9B160FA78B9A008FFE45 /* HighlightedButtonBackground.png */,
 				91806D5C0F97B6F400F08005 /* Default.png */,
 				913EE04F0F86B4EC00A3967B /* private-icon.png */,
 				913EE0500F86B4EC00A3967B /* public-icon.png */,
@@ -1215,6 +1221,8 @@
 				916B8D720F9D37710000FC5A /* FavoriteUsersView.xib in Resources */,
 				91F54CC20FA672E0000582EA /* RepoTableViewCell.xib in Resources */,
 				05C872190FA7AC380069BC72 /* upgrade-help.html in Resources */,
+				913F9B170FA78B9A008FFE45 /* HighlightedButtonBackground.png in Resources */,
+				91B423EE0FA7A073004C5B20 /* LiteIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
