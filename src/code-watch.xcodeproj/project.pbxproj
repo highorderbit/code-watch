@@ -149,6 +149,8 @@
 		91E25E5A0F79B7C400E1594E /* FavoriteUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */; };
 		91E25E700F79B96900E1594E /* FavoriteUsersDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */; };
 		91E25EE00F79D5F900E1594E /* AddUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E25EDE0F79D5F900E1594E /* AddUserView.xib */; };
+		91F54CC20FA672E0000582EA /* RepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F54CC00FA672E0000582EA /* RepoTableViewCell.xib */; };
+		91F54CC60FA673CF000582EA /* RepoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F54CC50FA673CF000582EA /* RepoTableViewCell.m */; };
 		91F89B2B0F7057C500993921 /* NewsFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F89B290F7057C500993921 /* NewsFeedTableViewCell.xib */; };
 		91F89B400F705EB300993921 /* NewsFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B3D0F705EB300993921 /* NewsFeedTableViewCell.m */; };
 		91F89B410F705EB300993921 /* NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B3F0F705EB300993921 /* NewsFeedViewController.m */; };
@@ -461,6 +463,9 @@
 		91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteUsersDisplayMgr.m; path = "favorite-users/FavoriteUsersDisplayMgr.m"; sourceTree = "<group>"; };
 		91E25E960F79C6FD00E1594E /* FavoriteUsersViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteUsersViewControllerDelegate.h; path = "favorite-users/FavoriteUsersViewControllerDelegate.h"; sourceTree = "<group>"; };
 		91E25EDF0F79D5F900E1594E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AddUserView.xib; sourceTree = "<group>"; };
+		91F54CC10FA672E0000582EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RepoTableViewCell.xib; sourceTree = "<group>"; };
+		91F54CC40FA673CF000582EA /* RepoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoTableViewCell.h; sourceTree = "<group>"; };
+		91F54CC50FA673CF000582EA /* RepoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoTableViewCell.m; sourceTree = "<group>"; };
 		91F89B2A0F7057C500993921 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NewsFeedTableViewCell.xib; sourceTree = "<group>"; };
 		91F89B3C0F705EB300993921 /* NewsFeedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedTableViewCell.h; sourceTree = "<group>"; };
 		91F89B3D0F705EB300993921 /* NewsFeedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedTableViewCell.m; sourceTree = "<group>"; };
@@ -544,6 +549,7 @@
 				054FF5DE0F8ACAF80096C011 /* NewsFeedView.xib */,
 				0532C9FC0F867F7F0047BE56 /* NewsFeedItemView.xib */,
 				0532CA6D0F868C650047BE56 /* NewsFeedItemDetailsView.xib */,
+				91F54CC00FA672E0000582EA /* RepoTableViewCell.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -945,6 +951,8 @@
 				91BA43D30F85B43700E42100 /* ContactCachePersistenceStore.m */,
 				91D8BC370F8AD6A70041EC91 /* ContactMgr.h */,
 				91D8BC380F8AD6A70041EC91 /* ContactMgr.m */,
+				91F54CC40FA673CF000582EA /* RepoTableViewCell.h */,
+				91F54CC50FA673CF000582EA /* RepoTableViewCell.m */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -1195,6 +1203,7 @@
 				91806D5D0F97B6F400F08005 /* Default.png in Resources */,
 				05118B400F996B72001406CD /* token-location-screenshot.png in Resources */,
 				916B8D720F9D37710000FC5A /* FavoriteUsersView.xib in Resources */,
+				91F54CC20FA672E0000582EA /* RepoTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1323,6 +1332,7 @@
 				916B8EAC0F9E5F6E0000FC5A /* UserNetworkPersistenceStore.m in Sources */,
 				059E4E870FA66BCA00E46350 /* FollowersDisplayMgr.m in Sources */,
 				059E4E8A0FA672B900E46350 /* UserNetworkDisplayMgr.m in Sources */,
+				91F54CC60FA673CF000582EA /* RepoTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1479,6 +1489,14 @@
 				91E25EDF0F79D5F900E1594E /* en */,
 			);
 			name = AddUserView.xib;
+			sourceTree = "<group>";
+		};
+		91F54CC00FA672E0000582EA /* RepoTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91F54CC10FA672E0000582EA /* en */,
+			);
+			name = RepoTableViewCell.xib;
 			sourceTree = "<group>";
 		};
 		91F89B290F7057C500993921 /* NewsFeedTableViewCell.xib */ = {

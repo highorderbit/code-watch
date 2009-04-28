@@ -10,6 +10,7 @@
 #import "UIImage+AvatarHelpers.h"
 #import <AddressBookUI/ABPersonViewController.h>
 #import "UIColor+CodeWatchColors.h"
+#import "RepoTableViewCell.h"
 
 enum Section
 {
@@ -33,6 +34,7 @@ enum RecentActivityRows
 - (NSString *)reuseIdentifierForSection:(NSInteger)section;
 - (void)setAvatar:(UIImage *)anAvatar;
 + (NSString *)blogKey;
++ (NSString *)locationKey;
 + (NSString *)companyKey;
 + (NSString *)emailKey;
 + (NSString *)nameKey;
@@ -63,6 +65,7 @@ enum RecentActivityRows
 
     [username release];
     [userInfo release];
+    [repoAccessRights release];
     
     [nonFeaturedDetails release];
 
@@ -88,6 +91,8 @@ enum RecentActivityRows
     
     [addToContactsButton setTitleColor:[UIColor grayColor]
         forState:UIControlStateDisabled];
+        
+    repoAccessRights = [[NSMutableDictionary dictionary] retain];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -180,6 +185,7 @@ enum RecentActivityRows
         cell = [self createCellForSection:indexPath.section];
     
     UserDetailTableViewCell * detailCell;
+    RepoTableViewCell * repoCell;
     switch ([self effectiveSectionForSection:indexPath.section]) {
         case kUserDetailsSection:
             detailCell = (UserDetailTableViewCell *)cell;
@@ -189,7 +195,8 @@ enum RecentActivityRows
             [detailCell setKeyText:key];
             [detailCell setValueText:value];
             detailCell.selectionStyle =
-                [key isEqual:[[self class] blogKey]] ?
+                [key isEqual:[[self class] blogKey]] ||
+                [key isEqual:[[self class] locationKey]] ?
                 UITableViewCellSelectionStyleBlue :
                 UITableViewCellSelectionStyleNone;
             break;
@@ -210,7 +217,17 @@ enum RecentActivityRows
             }
             break;
         case kRepoSection:
+            repoCell = (RepoTableViewCell *)cell;
             cell.text = [userInfo.repoKeys objectAtIndex:indexPath.row];
+            NSNumber * private = [repoAccessRights objectForKey:cell.text];
+            if (private) {
+                BOOL privateAsBool = [private boolValue];
+                repoCell.icon =
+                    privateAsBool ?
+                    [UIImage imageNamed:@"private-icon.png"] :
+                    [UIImage imageNamed:@"public-icon.png"];
+            } else
+                repoCell.icon = nil;
             break;
     }
     
@@ -243,7 +260,8 @@ enum RecentActivityRows
         NSString * detailKey =
             [[nonFeaturedDetails allKeys] objectAtIndex:indexPath.row];
         return
-            ![detailKey isEqual:[[self class] blogKey]] ?
+            ![detailKey isEqual:[[self class] blogKey]] &&
+            ![detailKey isEqual:[[self class] locationKey]]?
             nil :
             indexPath;
     }
@@ -289,6 +307,19 @@ enum RecentActivityRows
                 if ([detailValue rangeOfString:@"http"].location == NSNotFound)
                         [self.tableView deselectRowAtIndexPath:indexPath
                             animated:YES];
+            } else if ([detailKey isEqual:[[self class] locationKey]]) {
+                NSLog(@"Opening location in Maps: %@", detailValue);
+                NSString * locationWithoutCommas =
+                    [detailValue stringByReplacingOccurrencesOfString:@","
+                    withString:@""];
+                NSString * urlString =
+                    [[NSString
+                    stringWithFormat:@"maps://maps.google.com/maps?q=%@",
+                    locationWithoutCommas]
+                    stringByAddingPercentEscapesUsingEncoding:
+                    NSUTF8StringEncoding];
+                NSURL * url = [NSURL URLWithString:urlString];
+                [[UIApplication sharedApplication] openURL:url];
             }
             break;
         }
@@ -367,12 +398,17 @@ enum RecentActivityRows
 - (UITableViewCell *)createCellForSection:(NSInteger)section
 {
     UITableViewCell * cell;
-    
     NSArray * nib;
     switch ([self effectiveSectionForSection:section]) {
         case kUserDetailsSection:
             nib =
                 [[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell"
+                owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+            break;
+        case kRepoSection:
+            nib =
+                [[NSBundle mainBundle] loadNibNamed:@"RepoTableViewCell"
                 owner:self options:nil];
             cell = [nib objectAtIndex:0];
             break;
@@ -389,8 +425,20 @@ enum RecentActivityRows
 
 - (NSString *)reuseIdentifierForSection:(NSInteger)section
 {
-    return ([self effectiveSectionForSection:section] == kUserDetailsSection) ?
-        @"UserDetailTableViewCell" : @"UITableViewCell";
+    NSString * cellIdentifier;
+    switch ([self effectiveSectionForSection:section]) {
+        case kUserDetailsSection:
+            cellIdentifier = @"UserDetailTableViewCell";
+            break;
+        case kRepoSection:
+            cellIdentifier = @"RepoTableViewCell";
+            break;
+        default:
+            cellIdentifier = @"UITableViewCell";
+            break;
+    }
+    
+    return cellIdentifier;
 }
 
 - (IBAction)addContact:(id)sender
@@ -465,11 +513,22 @@ enum RecentActivityRows
     avatar = tmp;
 }
 
+- (void)setAccess:(BOOL)access forRepoName:(NSString *)repoKey
+{
+    [repoAccessRights setObject:[NSNumber numberWithBool:access]
+        forKey:repoKey];
+}
+
 #pragma mark User detail keys
 
 + (NSString *)blogKey
 {
     return @"blog";
+}
+
++ (NSString *)locationKey
+{
+    return @"location";
 }
 
 + (NSString *)companyKey
