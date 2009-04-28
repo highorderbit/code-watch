@@ -7,10 +7,16 @@
 #import "GravatarService.h"
 #import "NewsFeedDisplayMgr.h"
 #import "NewsFeedDisplayMgrFactory.h"
+#import "GitHubServiceFactory.h"
+#import "FollowersDisplayMgr.h"
+#import "FollowingDisplayMgr.h"
+#import "UserDisplayMgrFactory.h"
 
 @interface UIUserDisplayMgr (Private)
 
 - (NewsFeedDisplayMgr *)newsFeedDisplayMgr;
+- (FollowersDisplayMgr *)followersDisplayMgr;
+- (FollowingDisplayMgr *)followingDisplayMgr;
 
 @end
 
@@ -31,6 +37,10 @@
     [contactCacheSetter release];
     [newsFeedDisplayMgrFactory release];
     [newsFeedDisplayMgr release];
+    [gitHubServiceFactory release];
+    [userDisplayMgrFactory release];
+    [followersDisplayMgr release];
+    [followingDisplayMgr release];
 
     [username release];
     
@@ -56,7 +66,11 @@
     contactCacheSetter:
     (NSObject<ContactCacheSetter> *)aContactCacheSetter
     newsFeedDisplayMgrFactory:
-    (NewsFeedDisplayMgrFactory *)aNewsFeedDisplayMgrFactory;
+    (NewsFeedDisplayMgrFactory *)aNewsFeedDisplayMgrFactory
+    gitHubServiceFactory:
+    (GitHubServiceFactory *)aGitHubServiceFactory
+    userDisplayMgrFactory:
+    (UserDisplayMgrFactory *)aUserDisplayMgrFactory
 {
     if (self = [super init]) {
         navigationController = [aNavigationController retain];
@@ -69,6 +83,8 @@
         gravatarService = [aGravatarService retain];
         contactCacheSetter = [aContactCacheSetter retain];
         newsFeedDisplayMgrFactory = [aNewsFeedDisplayMgrFactory retain];
+        gitHubServiceFactory = [aGitHubServiceFactory retain];
+        userDisplayMgrFactory = [aUserDisplayMgrFactory retain];
         
         [networkAwareViewController
             setNoConnectionText:
@@ -119,6 +135,16 @@
 - (void)userDidSelectRecentActivity
 {
     [[self newsFeedDisplayMgr] updateActivityFeedForUsername:username];
+}
+
+- (void)userDidSelectFollowing
+{
+    [[self followingDisplayMgr] displayFollowingForUsername:username];
+}
+
+- (void)userDidSelectFollowers
+{
+    [[self followersDisplayMgr] displayFollowersForUsername:username];
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -255,6 +281,40 @@
     }
 
     return newsFeedDisplayMgr;
+}
+
+- (FollowersDisplayMgr *)followersDisplayMgr
+{
+    if (!followersDisplayMgr) {
+        GitHubService * ghs = [gitHubServiceFactory createGitHubService];
+        NSObject<UserDisplayMgr> * udm =
+            [userDisplayMgrFactory
+            createUserDisplayMgrWithNavigationContoller:navigationController];
+
+        followersDisplayMgr =
+            [[FollowersDisplayMgr alloc]
+            initWithNavigationController:navigationController
+            gitHubService:ghs userDisplayMgr:udm];
+    }
+
+    return followersDisplayMgr;
+}
+
+- (FollowingDisplayMgr *)followingDisplayMgr
+{
+    if (!followingDisplayMgr) {
+        GitHubService * ghs = [gitHubServiceFactory createGitHubService];
+        NSObject<UserDisplayMgr> * udm =
+            [userDisplayMgrFactory
+            createUserDisplayMgrWithNavigationContoller:navigationController];
+
+        followingDisplayMgr =
+            [[FollowingDisplayMgr alloc]
+            initWithNavigationController:navigationController
+            gitHubService:ghs userDisplayMgr:udm];
+    }
+
+    return followingDisplayMgr;
 }
 
 @end

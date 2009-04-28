@@ -9,6 +9,7 @@
 
 + (NSString *)plistName;
 + (NSString *)primaryUserFollowingKey;
++ (NSString *)primaryUserFollowersKey;
 
 @end
 
@@ -28,8 +29,11 @@
 
     NSArray * primaryUserFollowing =
         [dict objectForKey:[[self class] primaryUserFollowingKey]];
-
     [userNetworkCacheSetter setFollowingForPrimaryUser:primaryUserFollowing];
+
+    NSArray * primaryUserFollowers =
+        [dict objectForKey:[[self class] primaryUserFollowersKey]];
+    [userNetworkCacheSetter setFollowersForPrimaryUser:primaryUserFollowers];
 }
 
 - (void)save
@@ -43,6 +47,12 @@
         [dict setObject:primaryUserFollowing
             forKey:[[self class] primaryUserFollowingKey]];
 
+    NSArray * primaryUserFollowers =
+        [userNetworkCacheReader followersForPrimaryUser];
+    if (primaryUserFollowers)
+        [dict setObject:primaryUserFollowers
+             forKey:[[self class] primaryUserFollowersKey]];
+
     [PlistUtils saveDictionary:dict toPlist:[[self class] plistName]];
 }
 
@@ -54,6 +64,11 @@
 + (NSString *)primaryUserFollowingKey
 {
     return @"primaryUserFollowing";
+}
+
++ (NSString *)primaryUserFollowersKey
+{
+    return @"primaryUserFollowers";
 }
 
 @end

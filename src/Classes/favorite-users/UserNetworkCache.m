@@ -6,11 +6,12 @@
 
 @implementation UserNetworkCache
 
-@synthesize primaryUserFollowing;
+@synthesize primaryUserFollowing, primaryUserFollowers;
 
 - (void)dealloc
 {
     [primaryUserFollowing release];
+    [primaryUserFollowers release];
     [super dealloc];
 }
 
@@ -19,9 +20,19 @@
     return self.primaryUserFollowing;
 }
 
+- (NSArray *)followersForPrimaryUser
+{
+    return self.primaryUserFollowers;
+}
+
 - (void)setFollowingForPrimaryUser:(NSArray *)following
 {
     self.primaryUserFollowing = following;
+}
+
+- (void)setFollowersForPrimaryUser:(NSArray *)followers
+{
+    self.primaryUserFollowers = followers;
 }
 
 @end

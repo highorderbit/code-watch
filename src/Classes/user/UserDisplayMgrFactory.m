@@ -64,7 +64,9 @@
         avatarCacheReader:avatarCache repoSelector:repoSelector
         gitHubService:gitHubService gravatarService:gravatarService
         contactCacheSetter:contactCache
-        newsFeedDisplayMgrFactory:newsFeedDisplayMgrFactory] autorelease];
+        newsFeedDisplayMgrFactory:newsFeedDisplayMgrFactory
+        gitHubServiceFactory:gitHubServiceFactory
+        userDisplayMgrFactory:self] autorelease];
         
     userViewController.delegate = userDisplayMgr;
     gitHubService.delegate = userDisplayMgr;
