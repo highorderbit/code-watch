@@ -87,6 +87,8 @@
 
 - (void)followers:(NSArray *)followers fetchedForUsername:(NSString *)aUsername
 {
+    gitHubFailure = NO;
+
     if ([username isEqualToString:aUsername]) {
         [userNetworkDisplayMgr setNetwork:followers forUsername:aUsername];
         [userNetworkDisplayMgr setUpdatingState:kConnectedAndNotUpdating];
