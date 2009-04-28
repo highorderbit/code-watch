@@ -54,7 +54,11 @@
 
     gitHubFailure = NO;
 
-    [gitHubService fetchFollowersForUsername:username];
+    // Perform fetch after a brief delay because the results can be
+    // returned before the navigation controller's push animation is
+    // completed, which causes a weird UI glitch.
+    SEL sel = @selector(fetchFollowersForUsername:);
+    [gitHubService performSelector:sel withObject:username afterDelay:0.2];
 
     [userNetworkDisplayMgr setNetwork:nil forUsername:username];
     [userNetworkDisplayMgr setUpdatingState:kConnectedAndUpdating];
@@ -90,8 +94,8 @@
     gitHubFailure = NO;
 
     if ([username isEqualToString:aUsername]) {
-        [userNetworkDisplayMgr setNetwork:followers forUsername:aUsername];
         [userNetworkDisplayMgr setUpdatingState:kConnectedAndNotUpdating];
+        [userNetworkDisplayMgr setNetwork:followers forUsername:aUsername];
     }
 }
 
