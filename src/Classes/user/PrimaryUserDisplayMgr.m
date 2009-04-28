@@ -117,8 +117,6 @@
             [userViewController
                 setAccess:[[repoInfo.details objectForKey:@"private"] boolValue]
                 forRepoName:repoName];
-        else
-            [gitHubService fetchInfoForRepo:repoName username:logInState.login];
     }
 }
 
