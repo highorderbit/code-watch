@@ -54,6 +54,7 @@
 		0599363C0F6975A80005B934 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059936380F6975A80005B934 /* MainWindow.xib */; };
 		059E4E870FA66BCA00E46350 /* FollowersDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E4E860FA66BCA00E46350 /* FollowersDisplayMgr.m */; };
 		059E4E8A0FA672B900E46350 /* UserNetworkDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E4E890FA672B900E46350 /* UserNetworkDisplayMgr.m */; };
+		059E4F520FA6989400E46350 /* FollowingDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E4F510FA6989400E46350 /* FollowingDisplayMgr.m */; };
 		05AFEA2F0F79BD4F0008A91C /* CommitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05AFEA2D0F79BD4F0008A91C /* CommitView.xib */; };
 		05AFEA330F79BD9A0008A91C /* CommitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AFEA320F79BD9A0008A91C /* CommitViewController.m */; };
 		05B8805E0F7AF5210030DF3A /* ChangesetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8805D0F7AF5210030DF3A /* ChangesetViewController.m */; };
@@ -276,6 +277,8 @@
 		059E4E880FA672B900E46350 /* UserNetworkDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserNetworkDisplayMgr.h; path = "user-network/UserNetworkDisplayMgr.h"; sourceTree = "<group>"; };
 		059E4E890FA672B900E46350 /* UserNetworkDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserNetworkDisplayMgr.m; path = "user-network/UserNetworkDisplayMgr.m"; sourceTree = "<group>"; };
 		059E4F060FA68DC000E46350 /* UserNetworkDisplayMgrDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserNetworkDisplayMgrDelegate.h; path = "user-network/UserNetworkDisplayMgrDelegate.h"; sourceTree = "<group>"; };
+		059E4F500FA6989400E46350 /* FollowingDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FollowingDisplayMgr.h; path = "user-network/FollowingDisplayMgr.h"; sourceTree = "<group>"; };
+		059E4F510FA6989400E46350 /* FollowingDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FollowingDisplayMgr.m; path = "user-network/FollowingDisplayMgr.m"; sourceTree = "<group>"; };
 		05AFEA2E0F79BD4F0008A91C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CommitView.xib; sourceTree = "<group>"; };
 		05AFEA310F79BD9A0008A91C /* CommitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitViewController.h; path = commit/CommitViewController.h; sourceTree = "<group>"; };
 		05AFEA320F79BD9A0008A91C /* CommitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitViewController.m; path = commit/CommitViewController.m; sourceTree = "<group>"; };
@@ -713,6 +716,8 @@
 			children = (
 				059E4E850FA66BCA00E46350 /* FollowersDisplayMgr.h */,
 				059E4E860FA66BCA00E46350 /* FollowersDisplayMgr.m */,
+				059E4F500FA6989400E46350 /* FollowingDisplayMgr.h */,
+				059E4F510FA6989400E46350 /* FollowingDisplayMgr.m */,
 				059E4E880FA672B900E46350 /* UserNetworkDisplayMgr.h */,
 				059E4E890FA672B900E46350 /* UserNetworkDisplayMgr.m */,
 				059E4F060FA68DC000E46350 /* UserNetworkDisplayMgrDelegate.h */,
@@ -1333,6 +1338,7 @@
 				059E4E870FA66BCA00E46350 /* FollowersDisplayMgr.m in Sources */,
 				059E4E8A0FA672B900E46350 /* UserNetworkDisplayMgr.m in Sources */,
 				91F54CC60FA673CF000582EA /* RepoTableViewCell.m in Sources */,
+				059E4F520FA6989400E46350 /* FollowingDisplayMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

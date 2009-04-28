@@ -20,7 +20,7 @@
 
 @class NewsFeedDisplayMgrFactory, NewsFeedDisplayMgr;
 @class GitHubService, GitHubServiceFactory, GravatarService;
-@class UserDisplayMgrFactory, FollowersDisplayMgr;
+@class UserDisplayMgrFactory, FollowersDisplayMgr, FollowingDisplayMgr;
 
 @interface UIUserDisplayMgr :
     NSObject
@@ -47,6 +47,7 @@
     GitHubServiceFactory * gitHubServiceFactory;
     UserDisplayMgrFactory * userDisplayMgrFactory;
     FollowersDisplayMgr * followersDisplayMgr;
+    FollowingDisplayMgr * followingDisplayMgr;
 
     NSString * username;
     

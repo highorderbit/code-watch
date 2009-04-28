@@ -30,8 +30,6 @@
 
 - (UserInfo *)cachedUserInfoForUsername:(NSString *)username;
 
-//- (NSArray *)cachedNewsFeedForUsername:(NSString *)user;
-
 - (NSString *)usernameForEmailAddress:(NSString *)emailAddress;
 - (void)username:(NSString *)username
     mapsToEmailAddress:(NSString *)emailAddress;

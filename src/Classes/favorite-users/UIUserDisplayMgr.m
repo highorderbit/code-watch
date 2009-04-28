@@ -9,12 +9,14 @@
 #import "NewsFeedDisplayMgrFactory.h"
 #import "GitHubServiceFactory.h"
 #import "FollowersDisplayMgr.h"
+#import "FollowingDisplayMgr.h"
 #import "UserDisplayMgrFactory.h"
 
 @interface UIUserDisplayMgr (Private)
 
 - (NewsFeedDisplayMgr *)newsFeedDisplayMgr;
 - (FollowersDisplayMgr *)followersDisplayMgr;
+- (FollowingDisplayMgr *)followingDisplayMgr;
 
 @end
 
@@ -37,7 +39,8 @@
     [newsFeedDisplayMgr release];
     [gitHubServiceFactory release];
     [userDisplayMgrFactory release];
-    [FollowersDisplayMgr release];
+    [followersDisplayMgr release];
+    [followingDisplayMgr release];
 
     [username release];
     
@@ -136,6 +139,7 @@
 
 - (void)userDidSelectFollowing
 {
+    [[self followingDisplayMgr] displayFollowingForUsername:username];
 }
 
 - (void)userDidSelectFollowers
@@ -294,6 +298,23 @@
     }
 
     return followersDisplayMgr;
+}
+
+- (FollowingDisplayMgr *)followingDisplayMgr
+{
+    if (!followingDisplayMgr) {
+        GitHubService * ghs = [gitHubServiceFactory createGitHubService];
+        NSObject<UserDisplayMgr> * udm =
+            [userDisplayMgrFactory
+            createUserDisplayMgrWithNavigationContoller:navigationController];
+
+        followingDisplayMgr =
+            [[FollowingDisplayMgr alloc]
+            initWithNavigationController:navigationController
+            gitHubService:ghs userDisplayMgr:udm];
+    }
+
+    return followingDisplayMgr;
 }
 
 @end

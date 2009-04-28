@@ -53,6 +53,9 @@ user.followers.label = "Followers";
 /* Followers View */
 followers.view.title.formatstring = "%@'s Followers";
 
+/* Following View */
+following.view.title.formatstring = "%@ Is Following";
+
 /* NoDataView Strings */
 nodata.updating.text = "Updating...";
 nodata.loading.text = "Loading...";
