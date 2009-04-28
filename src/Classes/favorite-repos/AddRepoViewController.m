@@ -4,6 +4,7 @@
 
 #import "AddRepoViewController.h"
 #import "RepoKey.h"
+#import "UIColor+CodeWatchColors.h"
 
 static const NSInteger NUM_SECTIONS = 2;
 enum Sections
@@ -91,6 +92,8 @@ enum HelpSection
     
     self.usernameCell.textField = usernameTextField;
     self.repoNameCell.textField = repoNameTextField;
+
+    self.tableView.backgroundColor = [UIColor codeWatchBackgroundColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated

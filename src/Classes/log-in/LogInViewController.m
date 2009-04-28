@@ -4,6 +4,7 @@
 
 #import "LogInViewController.h"
 #import "NameValueTextEntryTableViewCell.h"
+#import "UIColor+CodeWatchColors.h"
 
 static const NSInteger NUM_SECTIONS = 2;
 enum Sections
@@ -88,6 +89,8 @@ enum HelpSection
 
     self.usernameCell.textField = self.usernameTextField;
     self.tokenCell.textField = self.tokenTextField;
+    
+    self.tableView.backgroundColor = [UIColor codeWatchBackgroundColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated
