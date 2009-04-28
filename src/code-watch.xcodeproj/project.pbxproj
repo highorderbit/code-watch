@@ -302,7 +302,6 @@
 		05B990A80F708B660039602B /* RepoSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoSelector.h; path = repo/RepoSelector.h; sourceTree = "<group>"; };
 		05B990C10F7154640039602B /* UserViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewControllerDelegate.h; sourceTree = "<group>"; };
 		05BAED700F7BFEF200BD8BAD /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		05C8718F0FA79F6E0069BC72 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = "<group>"; };
 		05C872180FA7AC380069BC72 /* upgrade-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "upgrade-help.html"; sourceTree = "<group>"; };
 		05C9E7C40F85277400F7C62E /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
 		05C9E7C50F85277400F7C62E /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
@@ -887,7 +886,6 @@
 				9152A1E90F6AFC240037A52F /* Images */,
 				05158A6E0F6AC251009A7995 /* NIBs */,
 				910D82890F69DFD50068CBF3 /* PLists */,
-				05C8718F0FA79F6E0069BC72 /* Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1553,6 +1551,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HOB_APPLICATION_ICON_NAME = Icon.png;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1599,6 +1598,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HOB_APPLICATION_ICON_NAME = Icon.png;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-ljson",
@@ -1638,6 +1638,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HOB_APPLICATION_ICON_NAME = Icon.png;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-ljson",
@@ -1682,6 +1683,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1729,6 +1731,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-ljson",
@@ -1773,6 +1776,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1820,6 +1824,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-ljson",
@@ -1860,6 +1865,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-ljson",
@@ -1899,6 +1905,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HOB_APPLICATION_ICON_NAME = Icon.png;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-ljson",
@@ -1938,6 +1945,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HOB_APPLICATION_ICON_NAME = Icon.png;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-ljson",
@@ -2015,6 +2023,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HOB_APPLICATION_ICON_NAME = Icon.png;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2043,6 +2052,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HOB_APPLICATION_ICON_NAME = Icon.png;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-ljson",
