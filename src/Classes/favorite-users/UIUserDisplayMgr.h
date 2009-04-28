@@ -19,7 +19,8 @@
 #import "GravatarServiceDelegate.h"
 
 @class NewsFeedDisplayMgrFactory, NewsFeedDisplayMgr;
-@class GitHubService, GravatarService;
+@class GitHubService, GitHubServiceFactory, GravatarService;
+@class UserDisplayMgrFactory, FollowersDisplayMgr;
 
 @interface UIUserDisplayMgr :
     NSObject
@@ -43,6 +44,10 @@
     NewsFeedDisplayMgrFactory * newsFeedDisplayMgrFactory;
     NewsFeedDisplayMgr * newsFeedDisplayMgr;
     
+    GitHubServiceFactory * gitHubServiceFactory;
+    UserDisplayMgrFactory * userDisplayMgrFactory;
+    FollowersDisplayMgr * followersDisplayMgr;
+
     NSString * username;
     
     BOOL gitHubFailure;
@@ -68,7 +73,11 @@
     contactCacheSetter:
     (NSObject<ContactCacheSetter> *)aContactCacheSetter
     newsFeedDisplayMgrFactory:
-    (NewsFeedDisplayMgrFactory *)aNewsFeedDisplayMgrFactory;
+    (NewsFeedDisplayMgrFactory *)aNewsFeedDisplayMgrFactory
+    gitHubServiceFactory:
+    (GitHubServiceFactory *)aGitHubServiceFactory
+    userDisplayMgrFactory:
+    (UserDisplayMgrFactory *)aUserDisplayMgrFactory;
     
 - (void)displayUserInfo;
     

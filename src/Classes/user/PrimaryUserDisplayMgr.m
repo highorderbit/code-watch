@@ -105,6 +105,14 @@
     [[self newsFeedDisplayMgr] updateActivityFeedForPrimaryUser];
 }
 
+- (void)userDidSelectFollowing
+{
+}
+
+- (void)userDidSelectFollowers
+{
+}
+
 #pragma mark GitHubServiceDelegate implementation
 
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos

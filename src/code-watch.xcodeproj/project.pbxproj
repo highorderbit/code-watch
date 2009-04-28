@@ -52,6 +52,8 @@
 		05951F9D0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951F9C0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.m */; };
 		05951FF30F7EC9D100B86921 /* NSString+CryptoAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951FF20F7EC9D100B86921 /* NSString+CryptoAdditions.m */; };
 		0599363C0F6975A80005B934 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059936380F6975A80005B934 /* MainWindow.xib */; };
+		059E4E870FA66BCA00E46350 /* FollowersDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E4E860FA66BCA00E46350 /* FollowersDisplayMgr.m */; };
+		059E4E8A0FA672B900E46350 /* UserNetworkDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E4E890FA672B900E46350 /* UserNetworkDisplayMgr.m */; };
 		05AFEA2F0F79BD4F0008A91C /* CommitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05AFEA2D0F79BD4F0008A91C /* CommitView.xib */; };
 		05AFEA330F79BD9A0008A91C /* CommitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AFEA320F79BD9A0008A91C /* CommitViewController.m */; };
 		05B8805E0F7AF5210030DF3A /* ChangesetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8805D0F7AF5210030DF3A /* ChangesetViewController.m */; };
@@ -267,6 +269,11 @@
 		05951FF20F7EC9D100B86921 /* NSString+CryptoAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+CryptoAdditions.m"; path = "crypto/NSString+CryptoAdditions.m"; sourceTree = "<group>"; };
 		059520060F7ECBD900B86921 /* GravatarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GravatarDelegate.h; path = gravatar/GravatarDelegate.h; sourceTree = "<group>"; };
 		059936390F6975A80005B934 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		059E4E850FA66BCA00E46350 /* FollowersDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FollowersDisplayMgr.h; path = "user-network/FollowersDisplayMgr.h"; sourceTree = "<group>"; };
+		059E4E860FA66BCA00E46350 /* FollowersDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FollowersDisplayMgr.m; path = "user-network/FollowersDisplayMgr.m"; sourceTree = "<group>"; };
+		059E4E880FA672B900E46350 /* UserNetworkDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserNetworkDisplayMgr.h; path = "user-network/UserNetworkDisplayMgr.h"; sourceTree = "<group>"; };
+		059E4E890FA672B900E46350 /* UserNetworkDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserNetworkDisplayMgr.m; path = "user-network/UserNetworkDisplayMgr.m"; sourceTree = "<group>"; };
+		059E4F060FA68DC000E46350 /* UserNetworkDisplayMgrDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserNetworkDisplayMgrDelegate.h; path = "user-network/UserNetworkDisplayMgrDelegate.h"; sourceTree = "<group>"; };
 		05AFEA2E0F79BD4F0008A91C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CommitView.xib; sourceTree = "<group>"; };
 		05AFEA310F79BD9A0008A91C /* CommitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitViewController.h; path = commit/CommitViewController.h; sourceTree = "<group>"; };
 		05AFEA320F79BD9A0008A91C /* CommitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitViewController.m; path = commit/CommitViewController.m; sourceTree = "<group>"; };
@@ -695,6 +702,18 @@
 			name = crypto;
 			sourceTree = "<group>";
 		};
+		059E4E770FA66B7A00E46350 /* user-network */ = {
+			isa = PBXGroup;
+			children = (
+				059E4E850FA66BCA00E46350 /* FollowersDisplayMgr.h */,
+				059E4E860FA66BCA00E46350 /* FollowersDisplayMgr.m */,
+				059E4E880FA672B900E46350 /* UserNetworkDisplayMgr.h */,
+				059E4E890FA672B900E46350 /* UserNetworkDisplayMgr.m */,
+				059E4F060FA68DC000E46350 /* UserNetworkDisplayMgrDelegate.h */,
+			);
+			name = "user-network";
+			sourceTree = "<group>";
+		};
 		05B990150F7062850039602B /* repo */ = {
 			isa = PBXGroup;
 			children = (
@@ -797,6 +816,7 @@
 				05BB60AA0F6B20F40005A635 /* github */,
 				05951F1B0F7E914C00B86921 /* gravatar */,
 				9127DD010F6B1065009CDBD5 /* user */,
+				059E4E770FA66B7A00E46350 /* user-network */,
 				05B990150F7062850039602B /* repo */,
 				0524D2CF0F719BAE006BA721 /* commit */,
 				9152A10B0F6AB24B0037A52F /* vendor */,
@@ -1301,6 +1321,8 @@
 				05378FE40F98FCB000CE4C19 /* NSURLRequest+WebServiceApiAdditions.m in Sources */,
 				916B8E790F9E53270000FC5A /* UserNetworkCache.m in Sources */,
 				916B8EAC0F9E5F6E0000FC5A /* UserNetworkPersistenceStore.m in Sources */,
+				059E4E870FA66BCA00E46350 /* FollowersDisplayMgr.m in Sources */,
+				059E4E8A0FA672B900E46350 /* UserNetworkDisplayMgr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

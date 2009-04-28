@@ -47,6 +47,11 @@ loginhelp.view.title = "Help";
 user.view.title = "User Info";
 user.repo.header.label = "Repositories";
 user.recent.activity.label = "Recent Activity";
+user.following.label = "Following";
+user.followers.label = "Followers";
+
+/* Followers View */
+followers.view.title.formatstring = "%@'s Followers";
 
 /* NoDataView Strings */
 nodata.updating.text = "Updating...";

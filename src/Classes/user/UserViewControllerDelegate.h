@@ -11,4 +11,7 @@
 
 - (void)userDidSelectRecentActivity;
 
+- (void)userDidSelectFollowing;
+- (void)userDidSelectFollowers;
+
 @end

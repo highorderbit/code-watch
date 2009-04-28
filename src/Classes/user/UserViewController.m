@@ -18,6 +18,13 @@ enum Section
     kRepoSection
 };
 
+enum RecentActivityRows
+{
+    kRecentActivityRow,
+    kFollowingRow,
+    kFollowersRow
+};
+
 @interface UserViewController (Private)
 
 - (void)updateNonFeaturedDetails;
@@ -152,7 +159,7 @@ enum Section
             numRows = [nonFeaturedDetails count];
             break;
         case kRecentActivitySection:
-            numRows = 1;
+            numRows = 3;
             break;
         case kRepoSection:
             numRows = [userInfo.repoKeys count];
@@ -187,7 +194,20 @@ enum Section
                 UITableViewCellSelectionStyleNone;
             break;
         case kRecentActivitySection:
-            cell.text = NSLocalizedString(@"user.recent.activity.label", @"");
+            switch (indexPath.row) {
+                case kRecentActivityRow:
+                    cell.text =
+                        NSLocalizedString(@"user.recent.activity.label", @"");
+                    break;
+                case kFollowingRow:
+                    cell.text =
+                        NSLocalizedString(@"user.following.label", @"");
+                    break;
+                case kFollowersRow:
+                    cell.text =
+                        NSLocalizedString(@"user.followers.label", @"");
+                    break;
+            }
             break;
         case kRepoSection:
             cell.text = [userInfo.repoKeys objectAtIndex:indexPath.row];
@@ -242,7 +262,17 @@ enum Section
                 [userInfo.repoKeys objectAtIndex:indexPath.row]];
             break;
         case kRecentActivitySection:
-            [delegate userDidSelectRecentActivity];
+            switch (indexPath.row) {
+                case kRecentActivityRow:
+                    [delegate userDidSelectRecentActivity];
+                    break;
+                case kFollowingRow:
+                    [delegate userDidSelectFollowing];
+                    break;
+                case kFollowersRow:
+                    [delegate userDidSelectFollowers];
+                    break;
+            }
             break;
         case kUserDetailsSection: {
             NSString * detailKey =

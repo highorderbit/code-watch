@@ -7,10 +7,14 @@
 #import "GravatarService.h"
 #import "NewsFeedDisplayMgr.h"
 #import "NewsFeedDisplayMgrFactory.h"
+#import "GitHubServiceFactory.h"
+#import "FollowersDisplayMgr.h"
+#import "UserDisplayMgrFactory.h"
 
 @interface UIUserDisplayMgr (Private)
 
 - (NewsFeedDisplayMgr *)newsFeedDisplayMgr;
+- (FollowersDisplayMgr *)followersDisplayMgr;
 
 @end
 
@@ -31,6 +35,9 @@
     [contactCacheSetter release];
     [newsFeedDisplayMgrFactory release];
     [newsFeedDisplayMgr release];
+    [gitHubServiceFactory release];
+    [userDisplayMgrFactory release];
+    [FollowersDisplayMgr release];
 
     [username release];
     
@@ -56,7 +63,11 @@
     contactCacheSetter:
     (NSObject<ContactCacheSetter> *)aContactCacheSetter
     newsFeedDisplayMgrFactory:
-    (NewsFeedDisplayMgrFactory *)aNewsFeedDisplayMgrFactory;
+    (NewsFeedDisplayMgrFactory *)aNewsFeedDisplayMgrFactory
+    gitHubServiceFactory:
+    (GitHubServiceFactory *)aGitHubServiceFactory
+    userDisplayMgrFactory:
+    (UserDisplayMgrFactory *)aUserDisplayMgrFactory
 {
     if (self = [super init]) {
         navigationController = [aNavigationController retain];
@@ -69,6 +80,8 @@
         gravatarService = [aGravatarService retain];
         contactCacheSetter = [aContactCacheSetter retain];
         newsFeedDisplayMgrFactory = [aNewsFeedDisplayMgrFactory retain];
+        gitHubServiceFactory = [aGitHubServiceFactory retain];
+        userDisplayMgrFactory = [aUserDisplayMgrFactory retain];
         
         [networkAwareViewController
             setNoConnectionText:
@@ -119,6 +132,15 @@
 - (void)userDidSelectRecentActivity
 {
     [[self newsFeedDisplayMgr] updateActivityFeedForUsername:username];
+}
+
+- (void)userDidSelectFollowing
+{
+}
+
+- (void)userDidSelectFollowers
+{
+    [[self followersDisplayMgr] displayFollowersForUsername:username];
 }
 
 #pragma mark GitHubServiceDelegate implementation
@@ -255,6 +277,23 @@
     }
 
     return newsFeedDisplayMgr;
+}
+
+- (FollowersDisplayMgr *)followersDisplayMgr
+{
+    if (!followersDisplayMgr) {
+        GitHubService * ghs = [gitHubServiceFactory createGitHubService];
+        NSObject<UserDisplayMgr> * udm =
+            [userDisplayMgrFactory
+            createUserDisplayMgrWithNavigationContoller:navigationController];
+
+        followersDisplayMgr =
+            [[FollowersDisplayMgr alloc]
+            initWithNavigationController:navigationController
+            gitHubService:ghs userDisplayMgr:udm];
+    }
+
+    return followersDisplayMgr;
 }
 
 @end

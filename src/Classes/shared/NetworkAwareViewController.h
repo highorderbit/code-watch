@@ -6,12 +6,12 @@
 #import "NoDataViewController.h"
 #import "NetworkAwareViewControllerDelegate.h"
 
-enum UpdatingState
+typedef enum UpdatingState
 {
     kConnectedAndUpdating,
     kConnectedAndNotUpdating,
     kDisconnected
-};
+} UpdatingState;
 
 @interface NetworkAwareViewController : UIViewController
 {
