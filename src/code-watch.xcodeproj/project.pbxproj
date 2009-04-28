@@ -67,6 +67,172 @@
 		05B990A50F70886E0039602B /* RepoDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B990A40F70886E0039602B /* RepoDisplayMgr.m */; };
 		05BAED710F7BFEF200BD8BAD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05BAED6F0F7BFEF200BD8BAD /* Localizable.strings */; };
 		05C872190FA7AC380069BC72 /* upgrade-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 05C872180FA7AC380069BC72 /* upgrade-help.html */; };
+		05C8729B0FA7B9410069BC72 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059936380F6975A80005B934 /* MainWindow.xib */; };
+		05C8729C0FA7B9410069BC72 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D80CA0F697DB30068CBF3 /* UserView.xib */; };
+		05C8729D0FA7B9410069BC72 /* LogInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D81140F6987EB0068CBF3 /* LogInView.xib */; };
+		05C8729E0FA7B9410069BC72 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D81290F699C680068CBF3 /* SearchView.xib */; };
+		05C8729F0FA7B9410069BC72 /* NameValueTextEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053420350F69EAE6000EECB1 /* NameValueTextEntryTableViewCell.xib */; };
+		05C872A00FA7B9410069BC72 /* LogInState.plist in Resources */ = {isa = PBXBuildFile; fileRef = 910D828A0F69E0180068CBF3 /* LogInState.plist */; };
+		05C872A10FA7B9410069BC72 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A0F60F6A1F540037A52F /* Icon.png */; };
+		05C872A20FA7B9410069BC72 /* UserIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1850F6ACE4A0037A52F /* UserIcon.png */; };
+		05C872A30FA7B9410069BC72 /* HomeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1960F6ADAD20037A52F /* HomeIcon.png */; };
+		05C872A40FA7B9410069BC72 /* UsersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A1F30F6AFF8A0037A52F /* UsersIcon.png */; };
+		05C872A50FA7B9410069BC72 /* UserDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B6205C0F6C54830077CDB9 /* UserDetailTableViewCell.xib */; };
+		05C872A60FA7B9410069BC72 /* DefaultAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 91129B2A0F6C7EBC00D32C90 /* DefaultAvatar.png */; };
+		05C872A70FA7B9410069BC72 /* NewsFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F89B290F7057C500993921 /* NewsFeedTableViewCell.xib */; };
+		05C872A80FA7B9410069BC72 /* RepoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B990840F707B6E0039602B /* RepoView.xib */; };
+		05C872A90FA7B9410069BC72 /* RepoActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B990880F707DD20039602B /* RepoActivityTableViewCell.xib */; };
+		05C872AA0FA7B9410069BC72 /* NoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91FD171D0F715018004549F9 /* NoDataView.xib */; };
+		05C872AB0FA7B9410069BC72 /* CommitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05AFEA2D0F79BD4F0008A91C /* CommitView.xib */; };
+		05C872AC0FA7B9410069BC72 /* AddUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E25EDE0F79D5F900E1594E /* AddUserView.xib */; };
+		05C872AD0FA7B9410069BC72 /* ChangesetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B8805F0F7AF53D0030DF3A /* ChangesetView.xib */; };
+		05C872AE0FA7B9410069BC72 /* DiffView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055DF4C20F7B0B9F003A8D94 /* DiffView.xib */; };
+		05C872AF0FA7B9410069BC72 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05BAED6F0F7BFEF200BD8BAD /* Localizable.strings */; };
+		05C872B00FA7B9410069BC72 /* ReposIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91C248B60F7C8C1E007F8B05 /* ReposIcon.png */; };
+		05C872B10FA7B9410069BC72 /* FavoriteReposView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913693CF0F7E78D90054E512 /* FavoriteReposView.xib */; };
+		05C872B20FA7B9410069BC72 /* AddRepoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9136949E0F7ECCB80054E512 /* AddRepoView.xib */; };
+		05C872B30FA7B9410069BC72 /* NewsFeedItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0532C9FC0F867F7F0047BE56 /* NewsFeedItemView.xib */; };
+		05C872B40FA7B9410069BC72 /* NewsFeedItemDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0532CA6D0F868C650047BE56 /* NewsFeedItemDetailsView.xib */; };
+		05C872B50FA7B9410069BC72 /* private-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 913EE04F0F86B4EC00A3967B /* private-icon.png */; };
+		05C872B60FA7B9410069BC72 /* public-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 913EE0500F86B4EC00A3967B /* public-icon.png */; };
+		05C872B70FA7B9410069BC72 /* NewsFeedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 054FF5DE0F8ACAF80096C011 /* NewsFeedView.xib */; };
+		05C872B80FA7B9410069BC72 /* log-in-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 91806B830F95213F00F08005 /* log-in-help.html */; };
+		05C872B90FA7B9410069BC72 /* new-repo-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 91806B840F95213F00F08005 /* new-repo-help.html */; };
+		05C872BA0FA7B9410069BC72 /* new-user-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 91806B850F95213F00F08005 /* new-user-help.html */; };
+		05C872BB0FA7B9410069BC72 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 91806B910F9521ED00F08005 /* style.css */; };
+		05C872BC0FA7B9410069BC72 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 91806D5C0F97B6F400F08005 /* Default.png */; };
+		05C872BD0FA7B9410069BC72 /* token-location-screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 05118B3F0F996B72001406CD /* token-location-screenshot.png */; };
+		05C872BE0FA7B9410069BC72 /* FavoriteUsersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 916B8D700F9D37710000FC5A /* FavoriteUsersView.xib */; };
+		05C872BF0FA7B9410069BC72 /* RepoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F54CC00FA672E0000582EA /* RepoTableViewCell.xib */; };
+		05C872C00FA7B9410069BC72 /* upgrade-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 05C872180FA7AC380069BC72 /* upgrade-help.html */; };
+		05C872C10FA7B9410069BC72 /* HighlightedButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 913F9B160FA78B9A008FFE45 /* HighlightedButtonBackground.png */; };
+		05C872C20FA7B9410069BC72 /* LiteIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B423ED0FA7A073004C5B20 /* LiteIcon.png */; };
+		05C872C40FA7B9410069BC72 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		05C872C50FA7B9410069BC72 /* CodeWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05A0F69C83E0031A852 /* CodeWatchAppController.m */; };
+		05C872C60FA7B9410069BC72 /* CodeWatchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A05C0F69C83E0031A852 /* CodeWatchAppDelegate.m */; };
+		05C872C70FA7B9410069BC72 /* UILogInMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 0560A0610F69C83E0031A852 /* UILogInMgr.m */; };
+		05C872C80FA7B9410069BC72 /* NameValueTextEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420320F69E987000EECB1 /* NameValueTextEntryTableViewCell.m */; };
+		05C872C90FA7B9410069BC72 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0534203F0F69EBC4000EECB1 /* LogInViewController.m */; };
+		05C872CA0FA7B9410069BC72 /* UITableViewCell+CodeWatchAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053420780F69F16B000EECB1 /* UITableViewCell+CodeWatchAdditions.m */; };
+		05C872CB0FA7B9410069BC72 /* LogInState.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D82230F69CAC90068CBF3 /* LogInState.m */; };
+		05C872CC0FA7B9410069BC72 /* LogInPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D823D0F69D4F50068CBF3 /* LogInPersistenceStore.m */; };
+		05C872CD0FA7B9410069BC72 /* PListUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D82820F69DDF00068CBF3 /* PListUtils.m */; };
+		05C872CE0FA7B9410069BC72 /* InfoPlistConfigReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 910D82870F69DE0B0068CBF3 /* InfoPlistConfigReader.m */; };
+		05C872CF0FA7B9410069BC72 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */; };
+		05C872D00FA7B9410069BC72 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9127DD030F6B1065009CDBD5 /* UserViewController.m */; };
+		05C872D10FA7B9410069BC72 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9127DDC20F6C25C1009CDBD5 /* UserInfo.m */; };
+		05C872D20FA7B9410069BC72 /* NSObject+RuntimeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051FBA8F0F6AE2C900DB8696 /* NSObject+RuntimeAdditions.m */; };
+		05C872D30FA7B9410069BC72 /* GitHub.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDCDD0F6C0CEC0049D2BD /* GitHub.m */; };
+		05C872D40FA7B9410069BC72 /* JsonGitHubApiParserImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDCE10F6C0D140049D2BD /* JsonGitHubApiParserImpl.m */; };
+		05C872D50FA7B9410069BC72 /* NSString+NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDD2B0F6C29690049D2BD /* NSString+NSDataAdditions.m */; };
+		05C872D60FA7B9410069BC72 /* NSString+UrlAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 051CDD3E0F6C33FE0049D2BD /* NSString+UrlAdditions.m */; };
+		05C872D70FA7B9410069BC72 /* GitHubApiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */; };
+		05C872D80FA7B9410069BC72 /* UserDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B6205A0F6C54540077CDB9 /* UserDetailTableViewCell.m */; };
+		05C872D90FA7B9410069BC72 /* NetworkAwareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52340F6C9D98000AD3FB /* NetworkAwareViewController.m */; };
+		05C872DA0FA7B9410069BC72 /* UserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC52DB0F6DC6C4000AD3FB /* UserCache.m */; };
+		05C872DB0FA7B9410069BC72 /* GitHubService.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C06F60F6F0D5000999FEA /* GitHubService.m */; };
+		05C872DC0FA7B9410069BC72 /* PrimaryUserDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC53590F6EC311000AD3FB /* PrimaryUserDisplayMgr.m */; };
+		05C872DD0FA7B9410069BC72 /* UserPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F9715A0F6F24F5007B2AB1 /* UserPersistenceStore.m */; };
+		05C872DE0FA7B9410069BC72 /* NSError+InstantiationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053B7B3E0F700C3B0084B219 /* NSError+InstantiationAdditions.m */; };
+		05C872DF0FA7B9410069BC72 /* UIApplication+NetworkActivityIndicatorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053B7B600F700EA00084B219 /* UIApplication+NetworkActivityIndicatorAdditions.m */; };
+		05C872E00FA7B9410069BC72 /* NewsFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B3D0F705EB300993921 /* NewsFeedTableViewCell.m */; };
+		05C872E10FA7B9410069BC72 /* NewsFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B3F0F705EB300993921 /* NewsFeedViewController.m */; };
+		05C872E20FA7B9410069BC72 /* RssItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89B4B0F7060F600993921 /* RssItem.m */; };
+		05C872E30FA7B9410069BC72 /* NSDate+IsToday.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89BA10F7072D500993921 /* NSDate+IsToday.m */; };
+		05C872E40FA7B9410069BC72 /* NSDate+StringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89BA30F7072D500993921 /* NSDate+StringHelpers.m */; };
+		05C872E50FA7B9410069BC72 /* RepoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B990170F7062B10039602B /* RepoInfo.m */; };
+		05C872E60FA7B9410069BC72 /* RepoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B990820F7079F20039602B /* RepoViewController.m */; };
+		05C872E70FA7B9410069BC72 /* RepoActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B9908D0F7080940039602B /* RepoActivityTableViewCell.m */; };
+		05C872E80FA7B9410069BC72 /* RepoDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B990A40F70886E0039602B /* RepoDisplayMgr.m */; };
+		05C872E90FA7B9410069BC72 /* NewsFeedDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89BF70F70836A00993921 /* NewsFeedDisplayMgr.m */; };
+		05C872EA0FA7B9410069BC72 /* NewsFeedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F89C0C0F708B0000993921 /* NewsFeedCache.m */; };
+		05C872EB0FA7B9410069BC72 /* NoDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD17250F7152A7004549F9 /* NoDataViewController.m */; };
+		05C872EC0FA7B9410069BC72 /* NewsFeedPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD17610F715D2F004549F9 /* NewsFeedPersistenceStore.m */; };
+		05C872ED0FA7B9410069BC72 /* CommitInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524D2D10F719BC3006BA721 /* CommitInfo.m */; };
+		05C872EE0FA7B9410069BC72 /* RepoCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD18450F71A388004549F9 /* RepoCache.m */; };
+		05C872EF0FA7B9410069BC72 /* NSDate+GitHubStringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524D4370F71AFBF006BA721 /* NSDate+GitHubStringHelpers.m */; };
+		05C872F00FA7B9410069BC72 /* RepoPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD190B0F71DD91004549F9 /* RepoPersistenceStore.m */; };
+		05C872F10FA7B9410069BC72 /* CommitCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD19DF0F72C0EE004549F9 /* CommitCache.m */; };
+		05C872F20FA7B9410069BC72 /* RecentHistoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD19E90F72C4A5004549F9 /* RecentHistoryCache.m */; };
+		05C872F30FA7B9410069BC72 /* CommitPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD1A190F72D895004549F9 /* CommitPersistenceStore.m */; };
+		05C872F40FA7B9410069BC72 /* UIColor+CodeWatchColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FD1A880F731586004549F9 /* UIColor+CodeWatchColors.m */; };
+		05C872F50FA7B9410069BC72 /* CommitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AFEA320F79BD9A0008A91C /* CommitViewController.m */; };
+		05C872F60FA7B9410069BC72 /* CommitDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DE59240F79C8F900189369 /* CommitDisplayMgr.m */; };
+		05C872F70FA7B9410069BC72 /* FavoriteUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25E590F79B7C400E1594E /* FavoriteUsersViewController.m */; };
+		05C872F80FA7B9410069BC72 /* FavoriteUsersDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E25E6F0F79B96900E1594E /* FavoriteUsersDisplayMgr.m */; };
+		05C872F90FA7B9410069BC72 /* UIUserDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 918136800F7AFC81002B1153 /* UIUserDisplayMgr.m */; };
+		05C872FA0FA7B9410069BC72 /* ChangesetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8805D0F7AF5210030DF3A /* ChangesetViewController.m */; };
+		05C872FB0FA7B9410069BC72 /* DiffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055DF4B20F7B08F1003A8D94 /* DiffViewController.m */; };
+		05C872FC0FA7B9410069BC72 /* UIRecentActivityDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C248430F7C3456007F8B05 /* UIRecentActivityDisplayMgr.m */; };
+		05C872FD0FA7B9410069BC72 /* Gravatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951F2B0F7E91BD00B86921 /* Gravatar.m */; };
+		05C872FE0FA7B9410069BC72 /* NSDictionary+NonRetainedKeyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951F9C0F7EC43300B86921 /* NSDictionary+NonRetainedKeyAdditions.m */; };
+		05C872FF0FA7B9410069BC72 /* NSString+CryptoAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05951FF20F7EC9D100B86921 /* NSString+CryptoAdditions.m */; };
+		05C873000FA7B9410069BC72 /* FavoriteReposViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 913693DD0F7E7BA00054E512 /* FavoriteReposViewController.m */; };
+		05C873010FA7B9410069BC72 /* RepoKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 913693E90F7E871B0054E512 /* RepoKey.m */; };
+		05C873020FA7B9410069BC72 /* FavoriteReposDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 913694030F7E8F470054E512 /* FavoriteReposDisplayMgr.m */; };
+		05C873030FA7B9410069BC72 /* FavoriteReposState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9136945E0F7EA45F0054E512 /* FavoriteReposState.m */; };
+		05C873040FA7B9410069BC72 /* FavoriteReposPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9136946A0F7EA5120054E512 /* FavoriteReposPersistenceStore.m */; };
+		05C873050FA7B9410069BC72 /* AddRepoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9136948F0F7EC4140054E512 /* AddRepoViewController.m */; };
+		05C873060FA7B9410069BC72 /* UIAddRepoMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 913694A70F7ECF140054E512 /* UIAddRepoMgr.m */; };
+		05C873070FA7B9410069BC72 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B889130F8002D400215C8B /* SearchViewController.m */; };
+		05C873080FA7B9410069BC72 /* GitHubSearchInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B889870F804E1800215C8B /* GitHubSearchInitializer.m */; };
+		05C873090FA7B9410069BC72 /* GitHubUserSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B8898B0F80506200215C8B /* GitHubUserSearchService.m */; };
+		05C8730A0FA7B9410069BC72 /* GitHubServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B889960F8061F400215C8B /* GitHubServiceFactory.m */; };
+		05C8730B0FA7B9410069BC72 /* UILabel+DrawingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05226ADA0F80302000DA73A8 /* UILabel+DrawingAdditions.m */; };
+		05C8730C0FA7B9410069BC72 /* GitHubSearchViewControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B88AC40F82CA2A00215C8B /* GitHubSearchViewControllerDelegate.m */; };
+		05C8730D0FA7B9410069BC72 /* GitHubSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B88ACB0F82CC7600215C8B /* GitHubSearchService.m */; };
+		05C8730E0FA7B9410069BC72 /* UserDisplayMgrFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B88B770F82EFBF00215C8B /* UserDisplayMgrFactory.m */; };
+		05C8730F0FA7B9410069BC72 /* RepoSelectorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B88B7D0F82F35400215C8B /* RepoSelectorFactory.m */; };
+		05C873100FA7B9410069BC72 /* CommitSelectorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B88B800F82F48100215C8B /* CommitSelectorFactory.m */; };
+		05C873110FA7B9410069BC72 /* GitHubRepoSearchService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B00FFF0F8407980073E81F /* GitHubRepoSearchService.m */; };
+		05C873120FA7B9410069BC72 /* GitHubNewsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 054848A70F84229B00735643 /* GitHubNewsFeed.m */; };
+		05C873130FA7B9410069BC72 /* GitHubNewsFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 054848AF0F84442F00735643 /* GitHubNewsFeedParser.m */; };
+		05C873140FA7B9410069BC72 /* GitHubNewsFeedService.m in Sources */ = {isa = PBXBuildFile; fileRef = 054848C40F84493D00735643 /* GitHubNewsFeedService.m */; };
+		05C873150FA7B9410069BC72 /* GitHubNewsFeedServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0548492A0F84581600735643 /* GitHubNewsFeedServiceFactory.m */; };
+		05C873160FA7B9410069BC72 /* ContactCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B012540F8589980073E81F /* ContactCache.m */; };
+		05C873170FA7B9410069BC72 /* ContactCachePersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BA43D30F85B43700E42100 /* ContactCachePersistenceStore.m */; };
+		05C873180FA7B9410069BC72 /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7C50F85277400F7C62E /* CXMLDocument.m */; };
+		05C873190FA7B9410069BC72 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7C70F85277400F7C62E /* CXMLDocument_CreationExtensions.m */; };
+		05C8731A0FA7B9410069BC72 /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7C90F85277400F7C62E /* CXMLDocument_PrivateExtensions.m */; };
+		05C8731B0FA7B9410069BC72 /* CXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7CB0F85277400F7C62E /* CXMLElement.m */; };
+		05C8731C0FA7B9410069BC72 /* CXMLElement_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7CD0F85277400F7C62E /* CXMLElement_CreationExtensions.m */; };
+		05C8731D0FA7B9410069BC72 /* CXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7CF0F85277400F7C62E /* CXMLNode.m */; };
+		05C8731E0FA7B9410069BC72 /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7D10F85277400F7C62E /* CXMLNode_CreationExtensions.m */; };
+		05C8731F0FA7B9410069BC72 /* CXMLNode_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7D30F85277400F7C62E /* CXMLNode_PrivateExtensions.m */; };
+		05C873200FA7B9410069BC72 /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7D50F85277400F7C62E /* CXMLNode_XPathExtensions.m */; };
+		05C873210FA7B9410069BC72 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E87B0F852D7D00F7C62E /* RegexKitLite.m */; };
+		05C873220FA7B9410069BC72 /* NSString+RegexKitLiteHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E9860F85405100F7C62E /* NSString+RegexKitLiteHelpers.m */; };
+		05C873230FA7B9410069BC72 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91BA44700F86835200E42100 /* WebViewController.m */; };
+		05C873240FA7B9410069BC72 /* UIAlertView+CreationHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532C9D30F86717E0047BE56 /* UIAlertView+CreationHelpers.m */; };
+		05C873250FA7B9410069BC72 /* NewsFeedItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532C9F20F867D390047BE56 /* NewsFeedItemViewController.m */; };
+		05C873260FA7B9410069BC72 /* NewsFeedItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532CA550F868B5B0047BE56 /* NewsFeedItemDetailsViewController.m */; };
+		05C873270FA7B9410069BC72 /* RssItem+ParsingHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0532CB1B0F8696550047BE56 /* RssItem+ParsingHelpers.m */; };
+		05C873280FA7B9410069BC72 /* GravatarService.m in Sources */ = {isa = PBXBuildFile; fileRef = 052D3DA60F87C693005EBD25 /* GravatarService.m */; };
+		05C873290FA7B9410069BC72 /* GravatarServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 052D3DAB0F87CC94005EBD25 /* GravatarServiceFactory.m */; };
+		05C8732A0FA7B9410069BC72 /* AvatarCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 052D3E000F87D91B005EBD25 /* AvatarCache.m */; };
+		05C8732B0FA7B9410069BC72 /* AvatarPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 052D3E030F87D92C005EBD25 /* AvatarPersistenceStore.m */; };
+		05C8732C0FA7B9410069BC72 /* UIImage+AvatarHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 0565D5300F884D35002C950E /* UIImage+AvatarHelpers.m */; };
+		05C8732D0FA7B9410069BC72 /* PrimaryUserNewsFeedDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 054FF5D60F8AC07E0096C011 /* PrimaryUserNewsFeedDisplayMgr.m */; };
+		05C8732E0FA7B9410069BC72 /* NewsFeedDisplayMgrFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 054FF5D90F8AC0900096C011 /* NewsFeedDisplayMgrFactory.m */; };
+		05C8732F0FA7B9410069BC72 /* ContactMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8BC380F8AD6A70041EC91 /* ContactMgr.m */; };
+		05C873300FA7B9410069BC72 /* HOTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8BD520F8BA5700041EC91 /* HOTableViewCell.m */; };
+		05C873310FA7B9410069BC72 /* UIState.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8BDBA0F8BB02F0041EC91 /* UIState.m */; };
+		05C873320FA7B9410069BC72 /* UIStatePersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D8BDCF0F8BB3810041EC91 /* UIStatePersistenceStore.m */; };
+		05C873330FA7B9410069BC72 /* NSString+WebViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 91806BC50F95333B00F08005 /* NSString+WebViewAdditions.m */; };
+		05C873340FA7B9410069BC72 /* WebServiceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 05378FDE0F98F88200CE4C19 /* WebServiceApi.m */; };
+		05C873350FA7B9410069BC72 /* NSURLRequest+WebServiceApiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05378FE30F98FCB000CE4C19 /* NSURLRequest+WebServiceApiAdditions.m */; };
+		05C873360FA7B9410069BC72 /* UserNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 916B8E780F9E53270000FC5A /* UserNetworkCache.m */; };
+		05C873370FA7B9410069BC72 /* UserNetworkPersistenceStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 916B8EAB0F9E5F6E0000FC5A /* UserNetworkPersistenceStore.m */; };
+		05C873380FA7B9410069BC72 /* FollowersDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E4E860FA66BCA00E46350 /* FollowersDisplayMgr.m */; };
+		05C873390FA7B9410069BC72 /* UserNetworkDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E4E890FA672B900E46350 /* UserNetworkDisplayMgr.m */; };
+		05C8733A0FA7B9410069BC72 /* RepoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F54CC50FA673CF000582EA /* RepoTableViewCell.m */; };
+		05C8733B0FA7B9410069BC72 /* FollowingDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E4F510FA6989400E46350 /* FollowingDisplayMgr.m */; };
+		05C8733D0FA7B9410069BC72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		05C8733E0FA7B9410069BC72 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		05C8733F0FA7B9410069BC72 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
+		05C873400FA7B9410069BC72 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152A1270F6AB7570037A52F /* Security.framework */; };
+		05C873410FA7B9410069BC72 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AB1E0D0F733272005AC590 /* AddressBook.framework */; };
+		05C873420FA7B9410069BC72 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91AB1E280F733BB6005AC590 /* AddressBookUI.framework */; };
 		05C9E7D70F85277400F7C62E /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7C50F85277400F7C62E /* CXMLDocument.m */; };
 		05C9E7D80F85277400F7C62E /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7C70F85277400F7C62E /* CXMLDocument_CreationExtensions.m */; };
 		05C9E7D90F85277400F7C62E /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7C90F85277400F7C62E /* CXMLDocument_PrivateExtensions.m */; };
@@ -303,6 +469,8 @@
 		05B990C10F7154640039602B /* UserViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewControllerDelegate.h; sourceTree = "<group>"; };
 		05BAED700F7BFEF200BD8BAD /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05C872180FA7AC380069BC72 /* upgrade-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "upgrade-help.html"; sourceTree = "<group>"; };
+		05C873500FA7B9410069BC72 /* Code Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		05C873520FA7B9410069BC72 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = "<group>"; };
 		05C9E7C40F85277400F7C62E /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
 		05C9E7C50F85277400F7C62E /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
 		05C9E7C60F85277400F7C62E /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
@@ -519,6 +687,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		05C8733C0FA7B9410069BC72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C8733D0FA7B9410069BC72 /* Foundation.framework in Frameworks */,
+				05C8733E0FA7B9410069BC72 /* UIKit.framework in Frameworks */,
+				05C8733F0FA7B9410069BC72 /* CoreGraphics.framework in Frameworks */,
+				05C873400FA7B9410069BC72 /* Security.framework in Frameworks */,
+				05C873410FA7B9410069BC72 /* AddressBook.framework in Frameworks */,
+				05C873420FA7B9410069BC72 /* AddressBookUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -852,6 +1033,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Code Watch.app */,
+				05C873500FA7B9410069BC72 /* Code Watch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -886,6 +1068,7 @@
 				9152A1E90F6AFC240037A52F /* Images */,
 				05158A6E0F6AC251009A7995 /* NIBs */,
 				910D82890F69DFD50068CBF3 /* PLists */,
+				05C873520FA7B9410069BC72 /* Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1135,6 +1318,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		05C872990FA7B9410069BC72 /* Code Watch Open Source */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05C873430FA7B9410069BC72 /* Build configuration list for PBXNativeTarget "Code Watch Open Source" */;
+			buildPhases = (
+				05C8729A0FA7B9410069BC72 /* Resources */,
+				05C872C30FA7B9410069BC72 /* Sources */,
+				05C8733C0FA7B9410069BC72 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Code Watch Open Source";
+			productName = "code-watch";
+			productReference = 05C873500FA7B9410069BC72 /* Code Watch.app */;
+			productType = "com.apple.product-type.application";
+		};
 		1D6058900D05DD3D006BFB54 /* Code Watch */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Code Watch" */;
@@ -1172,11 +1372,59 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Code Watch */,
+				05C872990FA7B9410069BC72 /* Code Watch Open Source */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		05C8729A0FA7B9410069BC72 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C8729B0FA7B9410069BC72 /* MainWindow.xib in Resources */,
+				05C8729C0FA7B9410069BC72 /* UserView.xib in Resources */,
+				05C8729D0FA7B9410069BC72 /* LogInView.xib in Resources */,
+				05C8729E0FA7B9410069BC72 /* SearchView.xib in Resources */,
+				05C8729F0FA7B9410069BC72 /* NameValueTextEntryTableViewCell.xib in Resources */,
+				05C872A00FA7B9410069BC72 /* LogInState.plist in Resources */,
+				05C872A10FA7B9410069BC72 /* Icon.png in Resources */,
+				05C872A20FA7B9410069BC72 /* UserIcon.png in Resources */,
+				05C872A30FA7B9410069BC72 /* HomeIcon.png in Resources */,
+				05C872A40FA7B9410069BC72 /* UsersIcon.png in Resources */,
+				05C872A50FA7B9410069BC72 /* UserDetailTableViewCell.xib in Resources */,
+				05C872A60FA7B9410069BC72 /* DefaultAvatar.png in Resources */,
+				05C872A70FA7B9410069BC72 /* NewsFeedTableViewCell.xib in Resources */,
+				05C872A80FA7B9410069BC72 /* RepoView.xib in Resources */,
+				05C872A90FA7B9410069BC72 /* RepoActivityTableViewCell.xib in Resources */,
+				05C872AA0FA7B9410069BC72 /* NoDataView.xib in Resources */,
+				05C872AB0FA7B9410069BC72 /* CommitView.xib in Resources */,
+				05C872AC0FA7B9410069BC72 /* AddUserView.xib in Resources */,
+				05C872AD0FA7B9410069BC72 /* ChangesetView.xib in Resources */,
+				05C872AE0FA7B9410069BC72 /* DiffView.xib in Resources */,
+				05C872AF0FA7B9410069BC72 /* Localizable.strings in Resources */,
+				05C872B00FA7B9410069BC72 /* ReposIcon.png in Resources */,
+				05C872B10FA7B9410069BC72 /* FavoriteReposView.xib in Resources */,
+				05C872B20FA7B9410069BC72 /* AddRepoView.xib in Resources */,
+				05C872B30FA7B9410069BC72 /* NewsFeedItemView.xib in Resources */,
+				05C872B40FA7B9410069BC72 /* NewsFeedItemDetailsView.xib in Resources */,
+				05C872B50FA7B9410069BC72 /* private-icon.png in Resources */,
+				05C872B60FA7B9410069BC72 /* public-icon.png in Resources */,
+				05C872B70FA7B9410069BC72 /* NewsFeedView.xib in Resources */,
+				05C872B80FA7B9410069BC72 /* log-in-help.html in Resources */,
+				05C872B90FA7B9410069BC72 /* new-repo-help.html in Resources */,
+				05C872BA0FA7B9410069BC72 /* new-user-help.html in Resources */,
+				05C872BB0FA7B9410069BC72 /* style.css in Resources */,
+				05C872BC0FA7B9410069BC72 /* Default.png in Resources */,
+				05C872BD0FA7B9410069BC72 /* token-location-screenshot.png in Resources */,
+				05C872BE0FA7B9410069BC72 /* FavoriteUsersView.xib in Resources */,
+				05C872BF0FA7B9410069BC72 /* RepoTableViewCell.xib in Resources */,
+				05C872C00FA7B9410069BC72 /* upgrade-help.html in Resources */,
+				05C872C10FA7B9410069BC72 /* HighlightedButtonBackground.png in Resources */,
+				05C872C20FA7B9410069BC72 /* LiteIcon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1227,6 +1475,133 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		05C872C30FA7B9410069BC72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05C872C40FA7B9410069BC72 /* main.m in Sources */,
+				05C872C50FA7B9410069BC72 /* CodeWatchAppController.m in Sources */,
+				05C872C60FA7B9410069BC72 /* CodeWatchAppDelegate.m in Sources */,
+				05C872C70FA7B9410069BC72 /* UILogInMgr.m in Sources */,
+				05C872C80FA7B9410069BC72 /* NameValueTextEntryTableViewCell.m in Sources */,
+				05C872C90FA7B9410069BC72 /* LogInViewController.m in Sources */,
+				05C872CA0FA7B9410069BC72 /* UITableViewCell+CodeWatchAdditions.m in Sources */,
+				05C872CB0FA7B9410069BC72 /* LogInState.m in Sources */,
+				05C872CC0FA7B9410069BC72 /* LogInPersistenceStore.m in Sources */,
+				05C872CD0FA7B9410069BC72 /* PListUtils.m in Sources */,
+				05C872CE0FA7B9410069BC72 /* InfoPlistConfigReader.m in Sources */,
+				05C872CF0FA7B9410069BC72 /* SFHFKeychainUtils.m in Sources */,
+				05C872D00FA7B9410069BC72 /* UserViewController.m in Sources */,
+				05C872D10FA7B9410069BC72 /* UserInfo.m in Sources */,
+				05C872D20FA7B9410069BC72 /* NSObject+RuntimeAdditions.m in Sources */,
+				05C872D30FA7B9410069BC72 /* GitHub.m in Sources */,
+				05C872D40FA7B9410069BC72 /* JsonGitHubApiParserImpl.m in Sources */,
+				05C872D50FA7B9410069BC72 /* NSString+NSDataAdditions.m in Sources */,
+				05C872D60FA7B9410069BC72 /* NSString+UrlAdditions.m in Sources */,
+				05C872D70FA7B9410069BC72 /* GitHubApiParser.m in Sources */,
+				05C872D80FA7B9410069BC72 /* UserDetailTableViewCell.m in Sources */,
+				05C872D90FA7B9410069BC72 /* NetworkAwareViewController.m in Sources */,
+				05C872DA0FA7B9410069BC72 /* UserCache.m in Sources */,
+				05C872DB0FA7B9410069BC72 /* GitHubService.m in Sources */,
+				05C872DC0FA7B9410069BC72 /* PrimaryUserDisplayMgr.m in Sources */,
+				05C872DD0FA7B9410069BC72 /* UserPersistenceStore.m in Sources */,
+				05C872DE0FA7B9410069BC72 /* NSError+InstantiationAdditions.m in Sources */,
+				05C872DF0FA7B9410069BC72 /* UIApplication+NetworkActivityIndicatorAdditions.m in Sources */,
+				05C872E00FA7B9410069BC72 /* NewsFeedTableViewCell.m in Sources */,
+				05C872E10FA7B9410069BC72 /* NewsFeedViewController.m in Sources */,
+				05C872E20FA7B9410069BC72 /* RssItem.m in Sources */,
+				05C872E30FA7B9410069BC72 /* NSDate+IsToday.m in Sources */,
+				05C872E40FA7B9410069BC72 /* NSDate+StringHelpers.m in Sources */,
+				05C872E50FA7B9410069BC72 /* RepoInfo.m in Sources */,
+				05C872E60FA7B9410069BC72 /* RepoViewController.m in Sources */,
+				05C872E70FA7B9410069BC72 /* RepoActivityTableViewCell.m in Sources */,
+				05C872E80FA7B9410069BC72 /* RepoDisplayMgr.m in Sources */,
+				05C872E90FA7B9410069BC72 /* NewsFeedDisplayMgr.m in Sources */,
+				05C872EA0FA7B9410069BC72 /* NewsFeedCache.m in Sources */,
+				05C872EB0FA7B9410069BC72 /* NoDataViewController.m in Sources */,
+				05C872EC0FA7B9410069BC72 /* NewsFeedPersistenceStore.m in Sources */,
+				05C872ED0FA7B9410069BC72 /* CommitInfo.m in Sources */,
+				05C872EE0FA7B9410069BC72 /* RepoCache.m in Sources */,
+				05C872EF0FA7B9410069BC72 /* NSDate+GitHubStringHelpers.m in Sources */,
+				05C872F00FA7B9410069BC72 /* RepoPersistenceStore.m in Sources */,
+				05C872F10FA7B9410069BC72 /* CommitCache.m in Sources */,
+				05C872F20FA7B9410069BC72 /* RecentHistoryCache.m in Sources */,
+				05C872F30FA7B9410069BC72 /* CommitPersistenceStore.m in Sources */,
+				05C872F40FA7B9410069BC72 /* UIColor+CodeWatchColors.m in Sources */,
+				05C872F50FA7B9410069BC72 /* CommitViewController.m in Sources */,
+				05C872F60FA7B9410069BC72 /* CommitDisplayMgr.m in Sources */,
+				05C872F70FA7B9410069BC72 /* FavoriteUsersViewController.m in Sources */,
+				05C872F80FA7B9410069BC72 /* FavoriteUsersDisplayMgr.m in Sources */,
+				05C872F90FA7B9410069BC72 /* UIUserDisplayMgr.m in Sources */,
+				05C872FA0FA7B9410069BC72 /* ChangesetViewController.m in Sources */,
+				05C872FB0FA7B9410069BC72 /* DiffViewController.m in Sources */,
+				05C872FC0FA7B9410069BC72 /* UIRecentActivityDisplayMgr.m in Sources */,
+				05C872FD0FA7B9410069BC72 /* Gravatar.m in Sources */,
+				05C872FE0FA7B9410069BC72 /* NSDictionary+NonRetainedKeyAdditions.m in Sources */,
+				05C872FF0FA7B9410069BC72 /* NSString+CryptoAdditions.m in Sources */,
+				05C873000FA7B9410069BC72 /* FavoriteReposViewController.m in Sources */,
+				05C873010FA7B9410069BC72 /* RepoKey.m in Sources */,
+				05C873020FA7B9410069BC72 /* FavoriteReposDisplayMgr.m in Sources */,
+				05C873030FA7B9410069BC72 /* FavoriteReposState.m in Sources */,
+				05C873040FA7B9410069BC72 /* FavoriteReposPersistenceStore.m in Sources */,
+				05C873050FA7B9410069BC72 /* AddRepoViewController.m in Sources */,
+				05C873060FA7B9410069BC72 /* UIAddRepoMgr.m in Sources */,
+				05C873070FA7B9410069BC72 /* SearchViewController.m in Sources */,
+				05C873080FA7B9410069BC72 /* GitHubSearchInitializer.m in Sources */,
+				05C873090FA7B9410069BC72 /* GitHubUserSearchService.m in Sources */,
+				05C8730A0FA7B9410069BC72 /* GitHubServiceFactory.m in Sources */,
+				05C8730B0FA7B9410069BC72 /* UILabel+DrawingAdditions.m in Sources */,
+				05C8730C0FA7B9410069BC72 /* GitHubSearchViewControllerDelegate.m in Sources */,
+				05C8730D0FA7B9410069BC72 /* GitHubSearchService.m in Sources */,
+				05C8730E0FA7B9410069BC72 /* UserDisplayMgrFactory.m in Sources */,
+				05C8730F0FA7B9410069BC72 /* RepoSelectorFactory.m in Sources */,
+				05C873100FA7B9410069BC72 /* CommitSelectorFactory.m in Sources */,
+				05C873110FA7B9410069BC72 /* GitHubRepoSearchService.m in Sources */,
+				05C873120FA7B9410069BC72 /* GitHubNewsFeed.m in Sources */,
+				05C873130FA7B9410069BC72 /* GitHubNewsFeedParser.m in Sources */,
+				05C873140FA7B9410069BC72 /* GitHubNewsFeedService.m in Sources */,
+				05C873150FA7B9410069BC72 /* GitHubNewsFeedServiceFactory.m in Sources */,
+				05C873160FA7B9410069BC72 /* ContactCache.m in Sources */,
+				05C873170FA7B9410069BC72 /* ContactCachePersistenceStore.m in Sources */,
+				05C873180FA7B9410069BC72 /* CXMLDocument.m in Sources */,
+				05C873190FA7B9410069BC72 /* CXMLDocument_CreationExtensions.m in Sources */,
+				05C8731A0FA7B9410069BC72 /* CXMLDocument_PrivateExtensions.m in Sources */,
+				05C8731B0FA7B9410069BC72 /* CXMLElement.m in Sources */,
+				05C8731C0FA7B9410069BC72 /* CXMLElement_CreationExtensions.m in Sources */,
+				05C8731D0FA7B9410069BC72 /* CXMLNode.m in Sources */,
+				05C8731E0FA7B9410069BC72 /* CXMLNode_CreationExtensions.m in Sources */,
+				05C8731F0FA7B9410069BC72 /* CXMLNode_PrivateExtensions.m in Sources */,
+				05C873200FA7B9410069BC72 /* CXMLNode_XPathExtensions.m in Sources */,
+				05C873210FA7B9410069BC72 /* RegexKitLite.m in Sources */,
+				05C873220FA7B9410069BC72 /* NSString+RegexKitLiteHelpers.m in Sources */,
+				05C873230FA7B9410069BC72 /* WebViewController.m in Sources */,
+				05C873240FA7B9410069BC72 /* UIAlertView+CreationHelpers.m in Sources */,
+				05C873250FA7B9410069BC72 /* NewsFeedItemViewController.m in Sources */,
+				05C873260FA7B9410069BC72 /* NewsFeedItemDetailsViewController.m in Sources */,
+				05C873270FA7B9410069BC72 /* RssItem+ParsingHelpers.m in Sources */,
+				05C873280FA7B9410069BC72 /* GravatarService.m in Sources */,
+				05C873290FA7B9410069BC72 /* GravatarServiceFactory.m in Sources */,
+				05C8732A0FA7B9410069BC72 /* AvatarCache.m in Sources */,
+				05C8732B0FA7B9410069BC72 /* AvatarPersistenceStore.m in Sources */,
+				05C8732C0FA7B9410069BC72 /* UIImage+AvatarHelpers.m in Sources */,
+				05C8732D0FA7B9410069BC72 /* PrimaryUserNewsFeedDisplayMgr.m in Sources */,
+				05C8732E0FA7B9410069BC72 /* NewsFeedDisplayMgrFactory.m in Sources */,
+				05C8732F0FA7B9410069BC72 /* ContactMgr.m in Sources */,
+				05C873300FA7B9410069BC72 /* HOTableViewCell.m in Sources */,
+				05C873310FA7B9410069BC72 /* UIState.m in Sources */,
+				05C873320FA7B9410069BC72 /* UIStatePersistenceStore.m in Sources */,
+				05C873330FA7B9410069BC72 /* NSString+WebViewAdditions.m in Sources */,
+				05C873340FA7B9410069BC72 /* WebServiceApi.m in Sources */,
+				05C873350FA7B9410069BC72 /* NSURLRequest+WebServiceApiAdditions.m in Sources */,
+				05C873360FA7B9410069BC72 /* UserNetworkCache.m in Sources */,
+				05C873370FA7B9410069BC72 /* UserNetworkPersistenceStore.m in Sources */,
+				05C873380FA7B9410069BC72 /* FollowersDisplayMgr.m in Sources */,
+				05C873390FA7B9410069BC72 /* UserNetworkDisplayMgr.m in Sources */,
+				05C8733A0FA7B9410069BC72 /* RepoTableViewCell.m in Sources */,
+				05C8733B0FA7B9410069BC72 /* FollowingDisplayMgr.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1536,97 +1911,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		05226AC50F802BFF00DA73A8 /* Debug - Paid - Doug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Douglas Kurth";
-				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					HOB_EASY_LOGIN,
-					HOB_SHOW_MEMORY_WARNING_ALERT,
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				HOB_APPLICATION_ICON_NAME = Icon.png;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-ljson",
-					"-lxml2",
-					"-licucore",
-				);
-				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
-				SDKROOT = iphoneos2.2.1;
-			};
-			name = "Debug - Paid - Doug";
-		};
-		05226AC60F802BFF00DA73A8 /* Debug - Paid - Doug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = "Code Watch";
-			};
-			name = "Debug - Paid - Doug";
-		};
-		05226AC70F802C0A00DA73A8 /* Release - Paid - Doug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Douglas Kurth";
-				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					HOB_EASY_LOGIN,
-					HOB_SHOW_MEMORY_WARNING_ALERT,
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				HOB_APPLICATION_ICON_NAME = Icon.png;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-ljson",
-					"-lxml2",
-					"-licucore",
-				);
-				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
-				SDKROOT = iphoneos2.2.1;
-			};
-			name = "Release - Paid - Doug";
-		};
-		05226AC80F802C0A00DA73A8 /* Release - Paid - Doug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = "Code Watch";
-			};
-			name = "Release - Paid - Doug";
-		};
 		05B37E230F6976AB006644A2 /* Distribution - Beta Users - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1667,23 +1951,22 @@
 			};
 			name = "Distribution - Beta Users - John";
 		};
-		05C8719E0FA7A0580069BC72 /* Debug - Lite - John */ = {
+		05C8722A0FA7AF5A0069BC72 /* Debug - Doug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Douglas Kurth";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					HOB_CODE_WATCH_LITE,
 					HOB_EASY_LOGIN,
 					HOB_SHOW_MEMORY_WARNING_ALERT,
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
+				HOB_APPLICATION_ICON_NAME = Icon.png;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1692,12 +1975,12 @@
 					"-licucore",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65F56E4F-6A27-47E8-A5D6-49F183B14B54";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
 				SDKROOT = iphoneos2.2.1;
 			};
-			name = "Debug - Lite - John";
+			name = "Debug - Doug";
 		};
-		05C8719F0FA7A0580069BC72 /* Debug - Lite - John */ = {
+		05C8722B0FA7AF5A0069BC72 /* Debug - Doug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1713,25 +1996,24 @@
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
-			name = "Debug - Lite - John";
+			name = "Debug - Doug";
 		};
-		05C871A00FA7A0860069BC72 /* Release - Lite - John */ = {
+		05C8722C0FA7AF650069BC72 /* Release - Doug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Douglas Kurth";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					HOB_CODE_WATCH_LITE,
 					HOB_EASY_LOGIN,
 					HOB_SHOW_MEMORY_WARNING_ALERT,
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
+				HOB_APPLICATION_ICON_NAME = Icon.png;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-ljson",
@@ -1739,12 +2021,12 @@
 					"-licucore",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65F56E4F-6A27-47E8-A5D6-49F183B14B54";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
 				SDKROOT = iphoneos2.2.1;
 			};
-			name = "Release - Lite - John";
+			name = "Release - Doug";
 		};
-		05C871A10FA7A0860069BC72 /* Release - Lite - John */ = {
+		05C8722D0FA7AF650069BC72 /* Release - Doug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1758,143 +2040,163 @@
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
-			name = "Release - Lite - John";
+			name = "Release - Doug";
 		};
-		05C8722A0FA7AF5A0069BC72 /* Debug - Lite - Doug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Douglas Kurth";
-				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					HOB_CODE_WATCH_LITE,
-					HOB_EASY_LOGIN,
-					HOB_SHOW_MEMORY_WARNING_ALERT,
-				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-ljson",
-					"-lxml2",
-					"-licucore",
-				);
-				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
-				SDKROOT = iphoneos2.2.1;
-			};
-			name = "Debug - Lite - Doug";
-		};
-		05C8722B0FA7AF5A0069BC72 /* Debug - Lite - Doug */ = {
+		05C873450FA7B9410069BC72 /* Debug - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+					"\\\"$(SRCROOT)/../../../../Library/Frameworks\\\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = "Code Watch";
-			};
-			name = "Debug - Lite - Doug";
-		};
-		05C8722C0FA7AF650069BC72 /* Release - Lite - Doug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Douglas Kurth";
-				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
-				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					HOB_CODE_WATCH_LITE,
 					HOB_EASY_LOGIN,
 					HOB_SHOW_MEMORY_WARNING_ALERT,
 				);
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-ljson",
-					"-lxml2",
-					"-licucore",
-				);
-				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
-				SDKROOT = iphoneos2.2.1;
+				INFOPLIST_FILE = "/Users/jad/src/hob/code-watch/src/Info copy.plist";
+				PRODUCT_NAME = "Code Watch";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
 			};
-			name = "Release - Lite - Doug";
+			name = "Debug - John";
 		};
-		05C8722D0FA7AF650069BC72 /* Release - Lite - Doug */ = {
+		05C873470FA7B9410069BC72 /* Release - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+					"\\\"$(SRCROOT)/../../../../Library/Frameworks\\\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					HOB_CODE_WATCH_LITE,
+					HOB_EASY_LOGIN,
+					HOB_SHOW_MEMORY_WARNING_ALERT,
+				);
+				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
+				INFOPLIST_FILE = "/Users/jad/src/hob/code-watch/src/Info copy.plist";
 				PRODUCT_NAME = "Code Watch";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
 			};
-			name = "Release - Lite - Doug";
+			name = "Release - John";
 		};
-		05C8722E0FA7AF890069BC72 /* Distribution - Lite - App Store */ = {
+		05C873480FA7B9410069BC72 /* Debug - Doug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: High Order Bit, Inc.";
-				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
-				GCC_C_LANGUAGE_STANDARD = c99;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/../../../../Library/Frameworks\\\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					HOB_CODE_WATCH_LITE,
+					HOB_EASY_LOGIN,
+					HOB_SHOW_MEMORY_WARNING_ALERT,
+				);
+				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
+				INFOPLIST_FILE = "/Users/jad/src/hob/code-watch/src/Info copy.plist";
+				PRODUCT_NAME = "Code Watch";
+			};
+			name = "Debug - Doug";
+		};
+		05C8734A0FA7B9410069BC72 /* Release - Doug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/../../../../Library/Frameworks\\\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					HOB_CODE_WATCH_LITE,
+					HOB_EASY_LOGIN,
+					HOB_SHOW_MEMORY_WARNING_ALERT,
+				);
+				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
+				INFOPLIST_FILE = "/Users/jad/src/hob/code-watch/src/Info copy.plist";
+				PRODUCT_NAME = "Code Watch";
+			};
+			name = "Release - Doug";
+		};
+		05C8734C0FA7B9410069BC72 /* Distribution - Beta Users - John */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/../../../../Library/Frameworks\\\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = HOB_CODE_WATCH_LITE;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-ljson",
-					"-lxml2",
-					"-licucore",
-				);
-				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FF2307A9-E956-4014-94D2-C1CE0F9E103C";
-				SDKROOT = iphoneos2.2.1;
+				INFOPLIST_FILE = "/Users/jad/src/hob/code-watch/src/Info copy.plist";
+				PRODUCT_NAME = "Code Watch";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
 			};
-			name = "Distribution - Lite - App Store";
+			name = "Distribution - Beta Users - John";
 		};
-		05C8722F0FA7AF890069BC72 /* Distribution - Lite - App Store */ = {
+		05C8734D0FA7B9410069BC72 /* Distribution - Beta Users - Doug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+					"\\\"$(SRCROOT)/../../../../Library/Frameworks\\\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					HOB_CODE_WATCH_LITE,
+					HOB_EASY_LOGIN,
+					HOB_SHOW_MEMORY_WARNING_ALERT,
+				);
+				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
+				INFOPLIST_FILE = "/Users/jad/src/hob/code-watch/src/Info copy.plist";
 				PRODUCT_NAME = "Code Watch";
 			};
-			name = "Distribution - Lite - App Store";
+			name = "Distribution - Beta Users - Doug";
 		};
-		05F631D10F9D05A4001FE1C3 /* Distribution - Paid - App Store */ = {
+		05C8734E0FA7B9410069BC72 /* Distribution - App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/../../../../Library/Frameworks\\\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = HOB_CODE_WATCH_LITE;
+				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
+				INFOPLIST_FILE = "/Users/jad/src/hob/code-watch/src/Info copy.plist";
+				PRODUCT_NAME = "Code Watch";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0C82ABA3-1579-43BF-8860-0B260BAC61CD";
+			};
+			name = "Distribution - App Store";
+		};
+		05F631D10F9D05A4001FE1C3 /* Distribution - App Store */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
@@ -1916,9 +2218,9 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FF2307A9-E956-4014-94D2-C1CE0F9E103C";
 				SDKROOT = iphoneos2.2.1;
 			};
-			name = "Distribution - Paid - App Store";
+			name = "Distribution - App Store";
 		};
-		05F631D20F9D05A4001FE1C3 /* Distribution - Paid - App Store */ = {
+		05F631D20F9D05A4001FE1C3 /* Distribution - App Store */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1932,7 +2234,7 @@
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
-			name = "Distribution - Paid - App Store";
+			name = "Distribution - App Store";
 		};
 		05F631DF0F9D06A0001FE1C3 /* Distribution - Beta Users - Doug */ = {
 			isa = XCBuildConfiguration;
@@ -1974,7 +2276,7 @@
 			};
 			name = "Distribution - Beta Users - Doug";
 		};
-		1D6058940D05DD3E006BFB54 /* Debug - Paid - John */ = {
+		1D6058940D05DD3E006BFB54 /* Debug - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1990,9 +2292,9 @@
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
-			name = "Debug - Paid - John";
+			name = "Debug - John";
 		};
-		1D6058950D05DD3E006BFB54 /* Release - Paid - John */ = {
+		1D6058950D05DD3E006BFB54 /* Release - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2006,9 +2308,9 @@
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
-			name = "Release - Paid - John";
+			name = "Release - John";
 		};
-		C01FCF4F08A954540054247B /* Debug - Paid - John */ = {
+		C01FCF4F08A954540054247B /* Debug - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
@@ -2035,9 +2337,9 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65F56E4F-6A27-47E8-A5D6-49F183B14B54";
 				SDKROOT = iphoneos2.2.1;
 			};
-			name = "Debug - Paid - John";
+			name = "Debug - John";
 		};
-		C01FCF5008A954540054247B /* Release - Paid - John */ = {
+		C01FCF5008A954540054247B /* Release - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
@@ -2063,48 +2365,52 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65F56E4F-6A27-47E8-A5D6-49F183B14B54";
 				SDKROOT = iphoneos2.2.1;
 			};
-			name = "Release - Paid - John";
+			name = "Release - John";
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		05C873430FA7B9410069BC72 /* Build configuration list for PBXNativeTarget "Code Watch Open Source" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05C873450FA7B9410069BC72 /* Debug - John */,
+				05C873480FA7B9410069BC72 /* Debug - Doug */,
+				05C873470FA7B9410069BC72 /* Release - John */,
+				05C8734A0FA7B9410069BC72 /* Release - Doug */,
+				05C8734C0FA7B9410069BC72 /* Distribution - Beta Users - John */,
+				05C8734D0FA7B9410069BC72 /* Distribution - Beta Users - Doug */,
+				05C8734E0FA7B9410069BC72 /* Distribution - App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Debug - John";
+		};
 		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Code Watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				05C8719F0FA7A0580069BC72 /* Debug - Lite - John */,
-				1D6058940D05DD3E006BFB54 /* Debug - Paid - John */,
-				05C871A10FA7A0860069BC72 /* Release - Lite - John */,
-				1D6058950D05DD3E006BFB54 /* Release - Paid - John */,
-				05C8722B0FA7AF5A0069BC72 /* Debug - Lite - Doug */,
-				05226AC60F802BFF00DA73A8 /* Debug - Paid - Doug */,
-				05C8722D0FA7AF650069BC72 /* Release - Lite - Doug */,
-				05226AC80F802C0A00DA73A8 /* Release - Paid - Doug */,
+				1D6058940D05DD3E006BFB54 /* Debug - John */,
+				05C8722B0FA7AF5A0069BC72 /* Debug - Doug */,
+				1D6058950D05DD3E006BFB54 /* Release - John */,
+				05C8722D0FA7AF650069BC72 /* Release - Doug */,
 				05B37E240F6976AB006644A2 /* Distribution - Beta Users - John */,
 				05F631E00F9D06A0001FE1C3 /* Distribution - Beta Users - Doug */,
-				05F631D20F9D05A4001FE1C3 /* Distribution - Paid - App Store */,
-				05C8722F0FA7AF890069BC72 /* Distribution - Lite - App Store */,
+				05F631D20F9D05A4001FE1C3 /* Distribution - App Store */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Debug - Paid - John";
+			defaultConfigurationName = "Debug - John";
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "code-watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				05C8719E0FA7A0580069BC72 /* Debug - Lite - John */,
-				C01FCF4F08A954540054247B /* Debug - Paid - John */,
-				05C871A00FA7A0860069BC72 /* Release - Lite - John */,
-				C01FCF5008A954540054247B /* Release - Paid - John */,
-				05C8722A0FA7AF5A0069BC72 /* Debug - Lite - Doug */,
-				05226AC50F802BFF00DA73A8 /* Debug - Paid - Doug */,
-				05C8722C0FA7AF650069BC72 /* Release - Lite - Doug */,
-				05226AC70F802C0A00DA73A8 /* Release - Paid - Doug */,
+				C01FCF4F08A954540054247B /* Debug - John */,
+				05C8722A0FA7AF5A0069BC72 /* Debug - Doug */,
+				C01FCF5008A954540054247B /* Release - John */,
+				05C8722C0FA7AF650069BC72 /* Release - Doug */,
 				05B37E230F6976AB006644A2 /* Distribution - Beta Users - John */,
 				05F631DF0F9D06A0001FE1C3 /* Distribution - Beta Users - Doug */,
-				05F631D10F9D05A4001FE1C3 /* Distribution - Paid - App Store */,
-				05C8722E0FA7AF890069BC72 /* Distribution - Lite - App Store */,
+				05F631D10F9D05A4001FE1C3 /* Distribution - App Store */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Debug - Paid - John";
+			defaultConfigurationName = "Debug - John";
 		};
 /* End XCConfigurationList section */
 	};
