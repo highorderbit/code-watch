@@ -37,3 +37,20 @@ desc 'List available targets'
 task :list_targets do |t|
   puts %x{ #{xcodebuild} -list }
 end
+
+desc 'Pull latest from Git'
+task :pull do |t|
+  branch = ENV.include?('branch') ? ENV['branch'] : 'master'
+  puts %x{ git pull origin #{branch} }
+  Rake::Task['build_tags'].invoke
+end
+
+desc 'Push latest to Git'
+task :push do |t|
+  branch = ENV.include?('branch') ? ENV['branch'] : 'master'
+  puts %x{ git push origin #{branch} }
+end
+
+task :build_tags do |t|
+  puts %x{ ctags --language-force=objc --objc-kinds=+PiIMCZ -f src/Classes/tags src/Classes/** }
+end
