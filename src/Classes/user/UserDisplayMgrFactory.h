@@ -12,6 +12,7 @@
 #import "ContactCache.h"
 #import "ContactMgr.h"
 #import "NewsFeedDisplayMgrFactory.h"
+#import "RepoCache.h"
 
 @interface UserDisplayMgrFactory : NSObject
 {
@@ -19,6 +20,7 @@
     IBOutlet GravatarServiceFactory * gravatarServiceFactory;
     IBOutlet RepoSelectorFactory * repoSelectorFactory;
     IBOutlet UserCache * userCache;
+    IBOutlet RepoCache * repoCache;
     IBOutlet AvatarCache * avatarCache;
     IBOutlet ContactCache * contactCache;
     IBOutlet ContactMgr * contactMgr;

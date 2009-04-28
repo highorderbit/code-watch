@@ -17,6 +17,7 @@
 - (NewsFeedDisplayMgr *)newsFeedDisplayMgr;
 - (FollowersDisplayMgr *)followersDisplayMgr;
 - (FollowingDisplayMgr *)followingDisplayMgr;
+- (void)setRepoAccessRights:(UserInfo*)userInfo;
 
 @end
 
@@ -29,6 +30,7 @@
     [userViewController release];
 
     [userCacheReader release];
+    [repoCacheReader release];
     [avatarCacheReader release];
     [repoSelector release];
     [avatarCacheReader release];
@@ -55,6 +57,8 @@
     (UserViewController *)aUserViewController
     userCacheReader:
     (NSObject<UserCacheReader> *)aUserCacheReader
+    repoCacheReader:
+    (NSObject<RepoCacheReader> *)aRepoCacheReader
     avatarCacheReader:
     (NSObject<AvatarCacheReader> *)anAvatarCacheReader
     repoSelector:
@@ -77,6 +81,7 @@
         networkAwareViewController = [aNetworkAwareViewController retain];
         userViewController = [aUserViewController retain];
         userCacheReader = [aUserCacheReader retain];
+        repoCacheReader = [aRepoCacheReader retain];
         avatarCacheReader = [anAvatarCacheReader retain];
         repoSelector = [aRepoSelector retain];
         gitHubService = [aGitHubService retain];
@@ -120,9 +125,26 @@
 
     [userViewController setUsername:username];
     [userViewController updateWithUserInfo:userInfo];
-    
+
+    if (userInfo)
+        [self setRepoAccessRights:userInfo];
+
     [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
     [networkAwareViewController setCachedDataAvailable:!!userInfo];
+}
+
+- (void)setRepoAccessRights:(UserInfo*)userInfo
+{
+    for (NSString * repoName in userInfo.repoKeys) {
+        RepoInfo * repoInfo =
+            [repoCacheReader primaryUserRepoWithName:repoName];
+        if (repoInfo)
+            [userViewController
+                setAccess:[[repoInfo.details objectForKey:@"private"] boolValue]
+                forRepoName:repoName];
+        else
+            [gitHubService fetchInfoForRepo:repoName username:username];
+    }
 }
 
 #pragma mark UserViewControllerDelegate implementation
@@ -157,6 +179,12 @@
 
     BOOL cachedDataWasAvailable =
         networkAwareViewController.cachedDataAvailable;
+
+    for (NSString * repoName in [repos allKeys]) {
+        RepoInfo * repoInfo = [repos objectForKey:repoName];
+        BOOL private = [[repoInfo.details objectForKey:@"private"] boolValue];
+        [userViewController setAccess:private forRepoName:repoName];
+    }
 
     [userViewController updateWithUserInfo:info];
 

@@ -135,13 +135,13 @@
 - (void)userInfo:(UserInfo *)info repoInfos:(NSDictionary *)repos
     fetchedForUsername:(NSString *)username
 {
-    UIImage * avatar = [self cachedAvatarForUserInfo:info];
-
     for (NSString * repoName in [repos allKeys]) {
         RepoInfo * repoInfo = [repos objectForKey:repoName];
         BOOL private = [[repoInfo.details objectForKey:@"private"] boolValue];
         [userViewController setAccess:private forRepoName:repoName];
     }
+
+    UIImage * avatar = [self cachedAvatarForUserInfo:info];
 
     if (avatar)
         [userViewController updateWithAvatar:avatar];

@@ -29,6 +29,7 @@
     [gravatarServiceFactory release];
     [repoSelectorFactory release];
     [userCache release];
+    [repoCache release];
     [avatarCache release];
     [newsFeedDisplayMgrFactory release];
     [super dealloc];
@@ -61,9 +62,9 @@
         initWithNavigationController:navigationController
         networkAwareViewController:networkAwareViewController
         userViewController:userViewController userCacheReader:userCache
-        avatarCacheReader:avatarCache repoSelector:repoSelector
-        gitHubService:gitHubService gravatarService:gravatarService
-        contactCacheSetter:contactCache
+        repoCacheReader:repoCache avatarCacheReader:avatarCache
+        repoSelector:repoSelector gitHubService:gitHubService
+        gravatarService:gravatarService contactCacheSetter:contactCache
         newsFeedDisplayMgrFactory:newsFeedDisplayMgrFactory
         gitHubServiceFactory:gitHubServiceFactory
         userDisplayMgrFactory:self] autorelease];

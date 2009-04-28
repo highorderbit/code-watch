@@ -17,6 +17,7 @@
 #import "ContactCacheSetter.h"
 #import "GitHubServiceDelegate.h"
 #import "GravatarServiceDelegate.h"
+#import "RepoCacheReader.h"
 
 @class NewsFeedDisplayMgrFactory, NewsFeedDisplayMgr;
 @class GitHubService, GitHubServiceFactory, GravatarService;
@@ -32,6 +33,7 @@
     UserViewController * userViewController;
     
     NSObject<UserCacheReader> * userCacheReader;
+    NSObject<RepoCacheReader> * repoCacheReader;
     NSObject<RepoSelector> * repoSelector;
 
     NSObject<AvatarCacheReader> * avatarCacheReader;
@@ -63,6 +65,8 @@
     (UserViewController *)aUserViewController
     userCacheReader:
     (NSObject<UserCacheReader> *)aUserCacheReader
+    repoCacheReader:
+    (NSObject<RepoCacheReader> *)aRepoCacheReader
     avatarCacheReader:
     (NSObject<AvatarCacheReader> *)anAvatarCacheReader
     repoSelector:
