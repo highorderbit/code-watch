@@ -21,6 +21,7 @@
 @synthesize navigationController;
 @synthesize logInViewController;
 @synthesize helpViewController;
+@synthesize upgradeViewController;
 @synthesize expectedUsername;
 @synthesize homeRefreshButton;
 @synthesize userRefreshButton;
@@ -33,6 +34,7 @@
     [navigationController release];
     [logInViewController release];
     [helpViewController release];
+    [upgradeViewController release];
 
     [homeBarButtonItem release];
     [userBarButtonItem release];
@@ -121,6 +123,13 @@
             pushViewController:self.helpViewController animated:YES];
 }
 
+- (void)provideUpgradeHelp
+{
+    if (!expectedUsername)
+        [self.navigationController
+            pushViewController:self.upgradeViewController animated:YES];
+}
+
 #pragma mark GitHubDelegate implementation
 
 - (void)logInSucceeded:(NSString *)username
@@ -185,6 +194,18 @@
     }
 
     return helpViewController;
+}
+
+- (WebViewController *)upgradeViewController
+{
+    if (!upgradeViewController) {
+        upgradeViewController =
+            [[WebViewController alloc] initWithHtmlFilename:@"upgrade-help"];
+        upgradeViewController.title =
+            NSLocalizedString(@"upgradehelp.view.title", @"");
+    }
+
+    return upgradeViewController;
 }
 
 - (UINavigationController *)navigationController

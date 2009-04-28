@@ -37,11 +37,16 @@ login.view.prompt = "Provide your GitHub username and token";
 login.login.label = "Log In";
 login.username.label = "username";
 login.token.label = "api token";
+login.token.placeholder.lite.label = "Unavailable in Lite";
 login.help.label = "Help";
+login.upgrade.label = "Upgrade to See Private Repos";
 login.communicating.prompt = "Logging in...";
 
 /* LogInHelpView Strings */
 loginhelp.view.title = "Help";
+
+/* UpgradeHelpView Strings */
+upgradehelp.view.title = "Upgrading";
 
 /* UserView Strings */
 user.view.title = "User Info";

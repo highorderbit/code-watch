@@ -16,6 +16,21 @@ a:hover {
     text-decoration: none;
 }
 
+.upgrade a,
+.upgrade a:visited,
+.upgrade a:active,
+.upgrade a:hover {
+    text-decoration: none;
+    color: #2a385b;
+}
+
+.upgrade {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-align: center;
+}
+
 p.example {
     color: #2a385b;
 }

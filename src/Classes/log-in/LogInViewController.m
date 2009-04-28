@@ -23,6 +23,7 @@ enum CredentialsSection
 static const NSInteger NUM_HELP_ROWS = 1;
 enum HelpSection
 {
+    kUpgradeRow,
     kHelpRow
 };
 
@@ -39,7 +40,7 @@ enum HelpSection
 
 @synthesize delegate;
 @synthesize tableView;
-@synthesize usernameCell, tokenCell, helpCell;
+@synthesize usernameCell, tokenCell, upgradeCell, helpCell;
 @synthesize usernameTextField, tokenTextField;
 
 - (void)dealloc
@@ -49,6 +50,7 @@ enum HelpSection
     [usernameCell release];
     [tokenCell release];
     [helpCell release];
+    [upgradeCell release];
     [usernameTextField release];
     [tokenTextField release];
     [super dealloc];
@@ -98,6 +100,7 @@ enum HelpSection
     [super viewWillAppear:animated];
 
     self.helpCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    self.upgradeCell.selectionStyle = UITableViewCellSelectionStyleBlue;
 
     NSIndexPath * selection = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selection animated:NO];
@@ -133,10 +136,28 @@ enum HelpSection
 
     switch (section) {
         case kCredentialsSection:
+#if defined(HOB_CODE_WATCH_LITE)
+
+            nrows = NUM_CREDENTIALS_ROWS - 1;
+
+#else
             nrows = NUM_CREDENTIALS_ROWS;
+
+#endif
+
             break;
         case kHelpSection:
+
+#if defined(HOB_CODE_WATCH_LITE)
+
+            nrows = NUM_HELP_ROWS + 1;
+
+#else
+
             nrows = NUM_HELP_ROWS;
+
+#endif
+
             break;
     }
 
@@ -155,15 +176,41 @@ enum HelpSection
                 cell = self.usernameCell;
                 break;
             case kTokenRow:
+
+#if defined(HOB_CODE_WATCH_LITE)
+
+                self.tokenTextField.placeholder =
+                    NSLocalizedString(@"login.token.placeholder.lite.label",
+                    @"");
+                self.tokenTextField.enabled = NO;
+                self.usernameTextField.returnKeyType = UIReturnKeyDone;
+
+#endif
+
                 cell = self.tokenCell;
                 break;
         }
-    else if (indexPath.section == kHelpSection)
-        switch (indexPath.row) {
+    else if (indexPath.section == kHelpSection) {
+
+#if defined (HOB_CODE_WATCH_LITE)
+
+        NSUInteger row = indexPath.row;
+
+#else
+
+        NSUInteger row = indexPath.row + 1;
+
+#endif
+
+        switch (row) {
+            case kUpgradeRow:
+                cell = self.upgradeCell;
+                break;
             case kHelpRow:
                 cell = self.helpCell;
                 break;
         }
+    }
 
     return cell;
 }
@@ -173,6 +220,8 @@ enum HelpSection
 {
     if (indexPath.section == kHelpSection && indexPath.row == kHelpRow)
         [delegate provideHelp];
+    else if (indexPath.section == kHelpSection && indexPath.row == kUpgradeRow)
+        [delegate provideUpgradeHelp];
 }
 
 #pragma mark UITextFieldDelegate functions
@@ -220,9 +269,23 @@ enum HelpSection
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if (textField == usernameTextField) {
+
+#if defined(HOB_CODE_WATCH_LITE)
+
+        if (usernameTextField.text.length > 0) {
+            [textField resignFirstResponder];
+            [self userDidSave];
+            return YES;
+        }
+
+#else
+
         [textField resignFirstResponder];
         [self.tokenTextField becomeFirstResponder];
         return YES;
+
+#endif
+
     } else if (textField == tokenTextField && usernameTextField.text.length) {
         [textField resignFirstResponder];
         [self userDidSave];
@@ -237,6 +300,7 @@ enum HelpSection
 - (void)userDidSave
 {
     self.helpCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.upgradeCell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     NSString * username = [usernameTextField.text lowercaseString];
     NSString * token =
@@ -314,6 +378,22 @@ enum HelpSection
     }
 
     return helpCell;
+}
+
+- (UITableViewCell *)upgradeCell
+{
+    if (upgradeCell == nil) {
+        static NSString * reuseIdentifier = @"UpgradeTableViewCell";
+
+        upgradeCell =
+            [[UITableViewCell
+                createStandardInstanceWithReuseIdentifier:reuseIdentifier]
+             retain];
+        upgradeCell.text = NSLocalizedString(@"login.upgrade.label", @"");
+        upgradeCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+
+    return upgradeCell;
 }
 
 #pragma mark Helper methods

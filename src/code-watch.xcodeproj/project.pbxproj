@@ -66,6 +66,7 @@
 		05B9908E0F7080940039602B /* RepoActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B9908D0F7080940039602B /* RepoActivityTableViewCell.m */; };
 		05B990A50F70886E0039602B /* RepoDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B990A40F70886E0039602B /* RepoDisplayMgr.m */; };
 		05BAED710F7BFEF200BD8BAD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 05BAED6F0F7BFEF200BD8BAD /* Localizable.strings */; };
+		05C872190FA7AC380069BC72 /* upgrade-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 05C872180FA7AC380069BC72 /* upgrade-help.html */; };
 		05C9E7D70F85277400F7C62E /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7C50F85277400F7C62E /* CXMLDocument.m */; };
 		05C9E7D80F85277400F7C62E /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7C70F85277400F7C62E /* CXMLDocument_CreationExtensions.m */; };
 		05C9E7D90F85277400F7C62E /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C9E7C90F85277400F7C62E /* CXMLDocument_PrivateExtensions.m */; };
@@ -299,6 +300,8 @@
 		05B990A80F708B660039602B /* RepoSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoSelector.h; path = repo/RepoSelector.h; sourceTree = "<group>"; };
 		05B990C10F7154640039602B /* UserViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewControllerDelegate.h; sourceTree = "<group>"; };
 		05BAED700F7BFEF200BD8BAD /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		05C8718F0FA79F6E0069BC72 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = "<group>"; };
+		05C872180FA7AC380069BC72 /* upgrade-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "upgrade-help.html"; sourceTree = "<group>"; };
 		05C9E7C40F85277400F7C62E /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
 		05C9E7C50F85277400F7C62E /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
 		05C9E7C60F85277400F7C62E /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
@@ -880,6 +883,7 @@
 				9152A1E90F6AFC240037A52F /* Images */,
 				05158A6E0F6AC251009A7995 /* NIBs */,
 				910D82890F69DFD50068CBF3 /* PLists */,
+				05C8718F0FA79F6E0069BC72 /* Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1026,6 +1030,7 @@
 		91806B820F95213F00F08005 /* help-files */ = {
 			isa = PBXGroup;
 			children = (
+				05C872180FA7AC380069BC72 /* upgrade-help.html */,
 				05118B3F0F996B72001406CD /* token-location-screenshot.png */,
 				91806B830F95213F00F08005 /* log-in-help.html */,
 				91806B840F95213F00F08005 /* new-repo-help.html */,
@@ -1126,9 +1131,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* code-watch */ = {
+		1D6058900D05DD3D006BFB54 /* Code Watch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "code-watch" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Code Watch" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -1138,7 +1143,7 @@
 			);
 			dependencies = (
 			);
-			name = "code-watch";
+			name = "Code Watch";
 			productName = "code-watch";
 			productReference = 1D6058910D05DD3D006BFB54 /* Code Watch.app */;
 			productType = "com.apple.product-type.application";
@@ -1162,7 +1167,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* code-watch */,
+				1D6058900D05DD3D006BFB54 /* Code Watch */,
 			);
 		};
 /* End PBXProject section */
@@ -1209,6 +1214,7 @@
 				05118B400F996B72001406CD /* token-location-screenshot.png in Resources */,
 				916B8D720F9D37710000FC5A /* FavoriteUsersView.xib in Resources */,
 				91F54CC20FA672E0000582EA /* RepoTableViewCell.xib in Resources */,
+				05C872190FA7AC380069BC72 /* upgrade-help.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1524,7 +1530,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		05226AC50F802BFF00DA73A8 /* Debug - Doug */ = {
+		05226AC50F802BFF00DA73A8 /* Debug - Paid - Doug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
@@ -1550,9 +1556,9 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
 				SDKROOT = iphoneos2.2.1;
 			};
-			name = "Debug - Doug";
+			name = "Debug - Paid - Doug";
 		};
-		05226AC60F802BFF00DA73A8 /* Debug - Doug */ = {
+		05226AC60F802BFF00DA73A8 /* Debug - Paid - Doug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1568,9 +1574,9 @@
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
-			name = "Debug - Doug";
+			name = "Debug - Paid - Doug";
 		};
-		05226AC70F802C0A00DA73A8 /* Release - Doug */ = {
+		05226AC70F802C0A00DA73A8 /* Release - Paid - Doug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
@@ -1595,9 +1601,9 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
 				SDKROOT = iphoneos2.2.1;
 			};
-			name = "Release - Doug";
+			name = "Release - Paid - Doug";
 		};
-		05226AC80F802C0A00DA73A8 /* Release - Doug */ = {
+		05226AC80F802C0A00DA73A8 /* Release - Paid - Doug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1611,7 +1617,7 @@
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
-			name = "Release - Doug";
+			name = "Release - Paid - Doug";
 		};
 		05B37E230F6976AB006644A2 /* Distribution - Beta Users - John */ = {
 			isa = XCBuildConfiguration;
@@ -1652,7 +1658,229 @@
 			};
 			name = "Distribution - Beta Users - John";
 		};
-		05F631D10F9D05A4001FE1C3 /* Distribution - App Store */ = {
+		05C8719E0FA7A0580069BC72 /* Debug - Lite - John */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					HOB_CODE_WATCH_LITE,
+					HOB_EASY_LOGIN,
+					HOB_SHOW_MEMORY_WARNING_ALERT,
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ljson",
+					"-lxml2",
+					"-licucore",
+				);
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65F56E4F-6A27-47E8-A5D6-49F183B14B54";
+				SDKROOT = iphoneos2.2.1;
+			};
+			name = "Debug - Lite - John";
+		};
+		05C8719F0FA7A0580069BC72 /* Debug - Lite - John */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "Code Watch";
+			};
+			name = "Debug - Lite - John";
+		};
+		05C871A00FA7A0860069BC72 /* Release - Lite - John */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					HOB_CODE_WATCH_LITE,
+					HOB_EASY_LOGIN,
+					HOB_SHOW_MEMORY_WARNING_ALERT,
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ljson",
+					"-lxml2",
+					"-licucore",
+				);
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65F56E4F-6A27-47E8-A5D6-49F183B14B54";
+				SDKROOT = iphoneos2.2.1;
+			};
+			name = "Release - Lite - John";
+		};
+		05C871A10FA7A0860069BC72 /* Release - Lite - John */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "Code Watch";
+			};
+			name = "Release - Lite - John";
+		};
+		05C8722A0FA7AF5A0069BC72 /* Debug - Lite - Doug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Douglas Kurth";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					HOB_CODE_WATCH_LITE,
+					HOB_EASY_LOGIN,
+					HOB_SHOW_MEMORY_WARNING_ALERT,
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ljson",
+					"-lxml2",
+					"-licucore",
+				);
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
+				SDKROOT = iphoneos2.2.1;
+			};
+			name = "Debug - Lite - Doug";
+		};
+		05C8722B0FA7AF5A0069BC72 /* Debug - Lite - Doug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "Code Watch";
+			};
+			name = "Debug - Lite - Doug";
+		};
+		05C8722C0FA7AF650069BC72 /* Release - Lite - Doug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Douglas Kurth";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					HOB_CODE_WATCH_LITE,
+					HOB_EASY_LOGIN,
+					HOB_SHOW_MEMORY_WARNING_ALERT,
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ljson",
+					"-lxml2",
+					"-licucore",
+				);
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
+				SDKROOT = iphoneos2.2.1;
+			};
+			name = "Release - Lite - Doug";
+		};
+		05C8722D0FA7AF650069BC72 /* Release - Lite - Doug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "Code Watch";
+			};
+			name = "Release - Lite - Doug";
+		};
+		05C8722E0FA7AF890069BC72 /* Distribution - Lite - App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: High Order Bit, Inc.";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = HOB_CODE_WATCH_LITE;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ljson",
+					"-lxml2",
+					"-licucore",
+				);
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FF2307A9-E956-4014-94D2-C1CE0F9E103C";
+				SDKROOT = iphoneos2.2.1;
+			};
+			name = "Distribution - Lite - App Store";
+		};
+		05C8722F0FA7AF890069BC72 /* Distribution - Lite - App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "Code Watch";
+			};
+			name = "Distribution - Lite - App Store";
+		};
+		05F631D10F9D05A4001FE1C3 /* Distribution - Paid - App Store */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
@@ -1673,9 +1901,9 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FF2307A9-E956-4014-94D2-C1CE0F9E103C";
 				SDKROOT = iphoneos2.2.1;
 			};
-			name = "Distribution - App Store";
+			name = "Distribution - Paid - App Store";
 		};
-		05F631D20F9D05A4001FE1C3 /* Distribution - App Store */ = {
+		05F631D20F9D05A4001FE1C3 /* Distribution - Paid - App Store */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1689,7 +1917,7 @@
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
-			name = "Distribution - App Store";
+			name = "Distribution - Paid - App Store";
 		};
 		05F631DF0F9D06A0001FE1C3 /* Distribution - Beta Users - Doug */ = {
 			isa = XCBuildConfiguration;
@@ -1730,7 +1958,7 @@
 			};
 			name = "Distribution - Beta Users - Doug";
 		};
-		1D6058940D05DD3E006BFB54 /* Debug - John */ = {
+		1D6058940D05DD3E006BFB54 /* Debug - Paid - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1746,9 +1974,9 @@
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
-			name = "Debug - John";
+			name = "Debug - Paid - John";
 		};
-		1D6058950D05DD3E006BFB54 /* Release - John */ = {
+		1D6058950D05DD3E006BFB54 /* Release - Paid - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1762,9 +1990,9 @@
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
-			name = "Release - John";
+			name = "Release - Paid - John";
 		};
-		C01FCF4F08A954540054247B /* Debug - John */ = {
+		C01FCF4F08A954540054247B /* Debug - Paid - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
@@ -1790,9 +2018,9 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65F56E4F-6A27-47E8-A5D6-49F183B14B54";
 				SDKROOT = iphoneos2.2.1;
 			};
-			name = "Debug - John";
+			name = "Debug - Paid - John";
 		};
-		C01FCF5008A954540054247B /* Release - John */ = {
+		C01FCF5008A954540054247B /* Release - Paid - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
@@ -1817,38 +2045,48 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "65F56E4F-6A27-47E8-A5D6-49F183B14B54";
 				SDKROOT = iphoneos2.2.1;
 			};
-			name = "Release - John";
+			name = "Release - Paid - John";
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "code-watch" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Code Watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1D6058940D05DD3E006BFB54 /* Debug - John */,
-				05226AC60F802BFF00DA73A8 /* Debug - Doug */,
-				1D6058950D05DD3E006BFB54 /* Release - John */,
-				05226AC80F802C0A00DA73A8 /* Release - Doug */,
+				05C8719F0FA7A0580069BC72 /* Debug - Lite - John */,
+				1D6058940D05DD3E006BFB54 /* Debug - Paid - John */,
+				05C871A10FA7A0860069BC72 /* Release - Lite - John */,
+				1D6058950D05DD3E006BFB54 /* Release - Paid - John */,
+				05C8722B0FA7AF5A0069BC72 /* Debug - Lite - Doug */,
+				05226AC60F802BFF00DA73A8 /* Debug - Paid - Doug */,
+				05C8722D0FA7AF650069BC72 /* Release - Lite - Doug */,
+				05226AC80F802C0A00DA73A8 /* Release - Paid - Doug */,
 				05B37E240F6976AB006644A2 /* Distribution - Beta Users - John */,
 				05F631E00F9D06A0001FE1C3 /* Distribution - Beta Users - Doug */,
-				05F631D20F9D05A4001FE1C3 /* Distribution - App Store */,
+				05F631D20F9D05A4001FE1C3 /* Distribution - Paid - App Store */,
+				05C8722F0FA7AF890069BC72 /* Distribution - Lite - App Store */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Debug - John";
+			defaultConfigurationName = "Debug - Paid - John";
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "code-watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C01FCF4F08A954540054247B /* Debug - John */,
-				05226AC50F802BFF00DA73A8 /* Debug - Doug */,
-				C01FCF5008A954540054247B /* Release - John */,
-				05226AC70F802C0A00DA73A8 /* Release - Doug */,
+				05C8719E0FA7A0580069BC72 /* Debug - Lite - John */,
+				C01FCF4F08A954540054247B /* Debug - Paid - John */,
+				05C871A00FA7A0860069BC72 /* Release - Lite - John */,
+				C01FCF5008A954540054247B /* Release - Paid - John */,
+				05C8722A0FA7AF5A0069BC72 /* Debug - Lite - Doug */,
+				05226AC50F802BFF00DA73A8 /* Debug - Paid - Doug */,
+				05C8722C0FA7AF650069BC72 /* Release - Lite - Doug */,
+				05226AC70F802C0A00DA73A8 /* Release - Paid - Doug */,
 				05B37E230F6976AB006644A2 /* Distribution - Beta Users - John */,
 				05F631DF0F9D06A0001FE1C3 /* Distribution - Beta Users - Doug */,
-				05F631D10F9D05A4001FE1C3 /* Distribution - App Store */,
+				05F631D10F9D05A4001FE1C3 /* Distribution - Paid - App Store */,
+				05C8722E0FA7AF890069BC72 /* Distribution - Lite - App Store */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Debug - John";
+			defaultConfigurationName = "Debug - Paid - John";
 		};
 /* End XCConfigurationList section */
 	};

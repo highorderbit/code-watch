@@ -28,6 +28,7 @@
     UINavigationController * navigationController;
     LogInViewController * logInViewController;
     WebViewController * helpViewController;
+    WebViewController * upgradeViewController;
     
     IBOutlet UIBarButtonItem * homeBarButtonItem;
     IBOutlet UIBarButtonItem * userBarButtonItem;
@@ -63,6 +64,7 @@
 @property (nonatomic, retain) UINavigationController * navigationController;
 @property (nonatomic, retain) LogInViewController * logInViewController;
 @property (nonatomic, retain) WebViewController * helpViewController;
+@property (nonatomic, retain) WebViewController * upgradeViewController;
 @property (nonatomic, copy) NSString * expectedUsername;
 @property (nonatomic, retain) UIBarButtonItem * homeRefreshButton;
 @property (nonatomic, retain) UIBarButtonItem * userRefreshButton;

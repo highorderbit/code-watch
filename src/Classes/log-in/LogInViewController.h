@@ -17,6 +17,7 @@
     NameValueTextEntryTableViewCell * usernameCell;
     NameValueTextEntryTableViewCell * tokenCell;
     UITableViewCell * helpCell;
+    UITableViewCell * upgradeCell;
 
     UITextField * usernameTextField;
     UITextField * tokenTextField;
@@ -27,6 +28,7 @@
 @property (nonatomic, retain) NameValueTextEntryTableViewCell * usernameCell;
 @property (nonatomic, retain) NameValueTextEntryTableViewCell * tokenCell;
 @property (nonatomic, retain) UITableViewCell * helpCell;
+@property (nonatomic, retain) UITableViewCell * upgradeCell;
 @property (nonatomic, retain) IBOutlet UITextField * usernameTextField;
 @property (nonatomic, retain) IBOutlet UITextField * tokenTextField;
 
