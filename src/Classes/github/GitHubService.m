@@ -315,7 +315,9 @@
     fetchedForUsername:(NSString *)username
 {
     NSArray * following = [results objectForKey:@"users"];
-    [userNetworkCacheSetter setFollowingForPrimaryUser:following];
+
+    if ([self isPrimaryUser:username])
+        [userNetworkCacheSetter setFollowingForPrimaryUser:following];
 
     SEL sel = @selector(following:fetchedForUsername:);
     if ([delegate respondsToSelector:sel])
