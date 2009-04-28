@@ -10,6 +10,7 @@
 #import "UIImage+AvatarHelpers.h"
 #import <AddressBookUI/ABPersonViewController.h>
 #import "UIColor+CodeWatchColors.h"
+#import "RepoTableViewCell.h"
 
 enum Section
 {
@@ -57,6 +58,7 @@ enum Section
 
     [username release];
     [userInfo release];
+    [repoAccessRights release];
     
     [nonFeaturedDetails release];
 
@@ -82,6 +84,8 @@ enum Section
     
     [addToContactsButton setTitleColor:[UIColor grayColor]
         forState:UIControlStateDisabled];
+        
+    repoAccessRights = [[NSMutableDictionary dictionary] retain];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -174,6 +178,7 @@ enum Section
         cell = [self createCellForSection:indexPath.section];
     
     UserDetailTableViewCell * detailCell;
+    RepoTableViewCell * repoCell;
     switch ([self effectiveSectionForSection:indexPath.section]) {
         case kUserDetailsSection:
             detailCell = (UserDetailTableViewCell *)cell;
@@ -192,7 +197,17 @@ enum Section
             cell.text = NSLocalizedString(@"user.recent.activity.label", @"");
             break;
         case kRepoSection:
+            repoCell = (RepoTableViewCell *)cell;
             cell.text = [userInfo.repoKeys objectAtIndex:indexPath.row];
+            NSNumber * private = [repoAccessRights objectForKey:cell.text];
+            if (private) {
+                BOOL privateAsBool = [private boolValue];
+                repoCell.icon =
+                    privateAsBool ?
+                    [UIImage imageNamed:@"private-icon.png"] :
+                    [UIImage imageNamed:@"public-icon.png"];
+            } else
+                repoCell.icon = nil;
             break;
     }
     
@@ -353,12 +368,17 @@ enum Section
 - (UITableViewCell *)createCellForSection:(NSInteger)section
 {
     UITableViewCell * cell;
-    
     NSArray * nib;
     switch ([self effectiveSectionForSection:section]) {
         case kUserDetailsSection:
             nib =
                 [[NSBundle mainBundle] loadNibNamed:@"UserDetailTableViewCell"
+                owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+            break;
+        case kRepoSection:
+            nib =
+                [[NSBundle mainBundle] loadNibNamed:@"RepoTableViewCell"
                 owner:self options:nil];
             cell = [nib objectAtIndex:0];
             break;
@@ -375,8 +395,20 @@ enum Section
 
 - (NSString *)reuseIdentifierForSection:(NSInteger)section
 {
-    return ([self effectiveSectionForSection:section] == kUserDetailsSection) ?
-        @"UserDetailTableViewCell" : @"UITableViewCell";
+    NSString * cellIdentifier;
+    switch ([self effectiveSectionForSection:section]) {
+        case kUserDetailsSection:
+            cellIdentifier = @"UserDetailTableViewCell";
+            break;
+        case kRepoSection:
+            cellIdentifier = @"RepoTableViewCell";
+            break;
+        default:
+            cellIdentifier = @"UITableViewCell";
+            break;
+    }
+    
+    return cellIdentifier;
 }
 
 - (IBAction)addContact:(id)sender
@@ -449,6 +481,12 @@ enum Section
     UIImage * tmp = [anAvatar retain];
     [avatar release];
     avatar = tmp;
+}
+
+- (void)setAccess:(BOOL)access forRepoName:(NSString *)repoKey
+{
+    [repoAccessRights setObject:[NSNumber numberWithBool:access]
+        forKey:repoKey];
 }
 
 #pragma mark User detail keys

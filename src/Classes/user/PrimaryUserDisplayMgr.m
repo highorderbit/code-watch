@@ -13,6 +13,7 @@
 
 - (UIImage *)cachedAvatarForUserInfo:(UserInfo *)info;
 - (NewsFeedDisplayMgr *)newsFeedDisplayMgr;
+- (void)setRepoAccessRights:(UserInfo*)userInfo;
 
 @end
 
@@ -25,6 +26,7 @@
     [userViewController release];
     
     [userCache release];
+    [repoCache release];
     [logInState release];
     [contactCacheSetter release];
     [avatarCache release];
@@ -78,6 +80,8 @@
             [userViewController updateWithAvatar:avatar];
         [userViewController setUsername:logInState.login];
         [userViewController updateWithUserInfo:userInfo];
+        if (userInfo)
+            [self setRepoAccessRights:userInfo];
             
         [networkAwareViewController setUpdatingState:kConnectedAndUpdating];
         [networkAwareViewController setCachedDataAvailable:!!userInfo];
@@ -90,6 +94,19 @@
             NSLocalizedString(@"userdisplaymgr.login.text", @"")];
         [networkAwareViewController setUpdatingState:kDisconnected];
         [networkAwareViewController setCachedDataAvailable:NO];
+    }
+}
+
+- (void)setRepoAccessRights:(UserInfo *)userInfo
+{
+    for (NSString * repoName in userInfo.repoKeys) {
+        RepoInfo * repoInfo = [repoCache primaryUserRepoWithName:repoName];
+        if (repoInfo)
+            [userViewController
+                setAccess:[[repoInfo.details objectForKey:@"private"] boolValue]
+                forRepoName:repoName];
+        else
+            [gitHubService fetchInfoForRepo:repoName username:logInState.login];
     }
 }
 
@@ -111,6 +128,12 @@
     fetchedForUsername:(NSString *)username
 {
     UIImage * avatar = [self cachedAvatarForUserInfo:info];
+
+    for (NSString * repoName in [repos allKeys]) {
+        RepoInfo * repoInfo = [repos objectForKey:repoName];
+        BOOL private = [[repoInfo.details objectForKey:@"private"] boolValue];
+        [userViewController setAccess:private forRepoName:repoName];
+    }
 
     if (avatar)
         [userViewController updateWithAvatar:avatar];
@@ -152,7 +175,7 @@
         [networkAwareViewController setUpdatingState:kDisconnected];
     }
 }
-
+    
 - (void)avatar:(UIImage *)avatar
     fetchedForEmailAddress:(NSString *)emailAddress
 {

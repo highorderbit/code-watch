@@ -19,13 +19,14 @@
     IBOutlet UIView * headerView;
     IBOutlet UIView * footerView;
     IBOutlet UIImageView * avatarView;
-    IBOutlet UILabel * usernameLabel;    
+    IBOutlet UILabel * usernameLabel;
     IBOutlet UILabel * featuredDetail1Label;
     IBOutlet UIButton * featuredDetail2Button;
     IBOutlet UIButton * addToContactsButton;
         
     NSString * username;
     UserInfo * userInfo;
+    NSMutableDictionary * repoAccessRights;
     
     NSString * featuredDetail1Key;
     NSString * featuredDetail2Key;
@@ -53,5 +54,7 @@
 - (IBAction)sendEmail:(id)sender;
 
 - (void)scrollToTop;
+
+- (void)setAccess:(BOOL)access forRepoName:(NSString *)repoKey;
 
 @end
