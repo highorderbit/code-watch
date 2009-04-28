@@ -51,10 +51,10 @@ user.following.label = "Following";
 user.followers.label = "Followers";
 
 /* Followers View */
-followers.view.title.formatstring = "%@'s Followers";
+followers.view.title = "Followers";
 
 /* Following View */
-following.view.title.formatstring = "%@ Is Following";
+following.view.title = "Following";
 
 /* NoDataView Strings */
 nodata.updating.text = "Updating...";

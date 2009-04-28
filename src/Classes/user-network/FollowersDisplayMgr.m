@@ -70,10 +70,7 @@
 
 - (NSString *)titleForNavigationItem
 {
-    return
-        [NSString stringWithFormat:
-        NSLocalizedString(@"followers.view.title.formatstring", @""),
-        username];
+    return NSLocalizedString(@"followers.view.title", @"");
 }
 
 - (UIBarButtonItem *)rightBarButtonItem
