@@ -105,6 +105,7 @@
 		913694A80F7ECF140054E512 /* UIAddRepoMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 913694A70F7ECF140054E512 /* UIAddRepoMgr.m */; };
 		913EE0510F86B4EC00A3967B /* private-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 913EE04F0F86B4EC00A3967B /* private-icon.png */; };
 		913EE0520F86B4EC00A3967B /* public-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 913EE0500F86B4EC00A3967B /* public-icon.png */; };
+		913F9B170FA78B9A008FFE45 /* HighlightedButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 913F9B160FA78B9A008FFE45 /* HighlightedButtonBackground.png */; };
 		9152A0F70F6A1F540037A52F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9152A0F60F6A1F540037A52F /* Icon.png */; };
 		9152A10F0F6AB24B0037A52F /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */; };
 		9152A1280F6AB7570037A52F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152A1270F6AB7570037A52F /* Security.framework */; };
@@ -380,6 +381,7 @@
 		913694A70F7ECF140054E512 /* UIAddRepoMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIAddRepoMgr.m; path = "favorite-repos/UIAddRepoMgr.m"; sourceTree = "<group>"; };
 		913EE04F0F86B4EC00A3967B /* private-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "private-icon.png"; sourceTree = "<group>"; };
 		913EE0500F86B4EC00A3967B /* public-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "public-icon.png"; sourceTree = "<group>"; };
+		913F9B160FA78B9A008FFE45 /* HighlightedButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HighlightedButtonBackground.png; sourceTree = "<group>"; };
 		9152A0F60F6A1F540037A52F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		9152A10D0F6AB24B0037A52F /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		9152A10E0F6AB24B0037A52F /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
@@ -1010,6 +1012,7 @@
 		9152A1E90F6AFC240037A52F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				913F9B160FA78B9A008FFE45 /* HighlightedButtonBackground.png */,
 				91806D5C0F97B6F400F08005 /* Default.png */,
 				913EE04F0F86B4EC00A3967B /* private-icon.png */,
 				913EE0500F86B4EC00A3967B /* public-icon.png */,
@@ -1209,6 +1212,7 @@
 				05118B400F996B72001406CD /* token-location-screenshot.png in Resources */,
 				916B8D720F9D37710000FC5A /* FavoriteUsersView.xib in Resources */,
 				91F54CC20FA672E0000582EA /* RepoTableViewCell.xib in Resources */,
+				913F9B170FA78B9A008FFE45 /* HighlightedButtonBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
