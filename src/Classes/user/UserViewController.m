@@ -314,7 +314,7 @@ enum RecentActivityRows
                     withString:@""];
                 NSString * urlString =
                     [[NSString
-                    stringWithFormat:@"maps://maps.google.com/maps?q=%@",
+                    stringWithFormat:@"http://maps.google.com/maps?q=%@",
                     locationWithoutCommas]
                     stringByAddingPercentEscapesUsingEncoding:
                     NSUTF8StringEncoding];
