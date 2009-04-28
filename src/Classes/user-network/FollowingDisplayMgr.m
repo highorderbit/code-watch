@@ -71,10 +71,7 @@
 
 - (NSString *)titleForNavigationItem
 {
-    return
-        [NSString stringWithFormat:
-        NSLocalizedString(@"following.view.title.formatstring", @""),
-        username];
+    return NSLocalizedString(@"following.view.title", @"");
 }
 
 - (UIBarButtonItem *)rightBarButtonItem

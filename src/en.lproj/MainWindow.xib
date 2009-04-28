@@ -8,6 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="594"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -55,6 +56,7 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">UsersIcon.png</string>
 						</object>
+						<reference key="IBUITabBar"/>
 					</object>
 					<reference key="IBUIParentViewController" ref="1034742383"/>
 					<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -70,7 +72,8 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="IBUIViewController" id="899253576">
 							<object class="IBUINavigationItem" key="IBUINavigationItem" id="1018619359">
-								<string key="IBUITitle">Followed Users</string>
+								<reference key="IBUINavigationBar"/>
+								<string key="IBUITitle">Following</string>
 								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="903719158">
 									<string key="IBUITitle">Log In</string>
 									<int key="IBUIStyle">1</int>
@@ -90,6 +93,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">HomeIcon.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -123,6 +127,7 @@
 								<string key="NSClassName">NSImage</string>
 								<string key="NSResourceName">UserIcon.png</string>
 							</object>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -153,6 +158,7 @@
 					<object class="IBUINavigationController" id="801315089">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="1070274417">
 							<int key="IBUISystemItemIdentifier">1</int>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -182,6 +188,7 @@
 					<object class="IBUINavigationController" id="212505514">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="346955201">
 							<int key="IBUISystemItemIdentifier">8</int>
+							<reference key="IBUITabBar"/>
 						</object>
 						<reference key="IBUIParentViewController" ref="1034742383"/>
 						<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
