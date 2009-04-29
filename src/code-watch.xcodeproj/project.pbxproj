@@ -1956,7 +1956,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: High Order Bit, Inc.";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1969,7 +1969,7 @@
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				INFOPLIST_FILE = InfoOpenSource.plist;
 				PRODUCT_NAME = CodeWatch;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0C82ABA3-1579-43BF-8860-0B260BAC61CD";
 			};
 			name = "Distribution - App Store - Code Watch Open Source";
 		};
