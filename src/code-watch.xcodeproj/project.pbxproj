@@ -469,7 +469,7 @@
 		05B990C10F7154640039602B /* UserViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewControllerDelegate.h; sourceTree = "<group>"; };
 		05BAED700F7BFEF200BD8BAD /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05C872180FA7AC380069BC72 /* upgrade-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "upgrade-help.html"; sourceTree = "<group>"; };
-		05C873500FA7B9410069BC72 /* Code Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		05C873500FA7B9410069BC72 /* CodeWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05C9E7C40F85277400F7C62E /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
 		05C9E7C50F85277400F7C62E /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
 		05C9E7C60F85277400F7C62E /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
@@ -1033,7 +1033,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Code Watch.app */,
-				05C873500FA7B9410069BC72 /* Code Watch.app */,
+				05C873500FA7B9410069BC72 /* CodeWatch.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1332,7 +1332,7 @@
 			);
 			name = "Code Watch Open Source";
 			productName = "code-watch";
-			productReference = 05C873500FA7B9410069BC72 /* Code Watch.app */;
+			productReference = 05C873500FA7B9410069BC72 /* CodeWatch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1D6058900D05DD3D006BFB54 /* Code Watch */ = {
@@ -1911,6 +1911,68 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		052324DA0FA7F67200F17429 /* Distribution - App Store - Code Watch Open Source */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: High Order Bit, Inc.";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HOB_APPLICATION_ICON_NAME = Icon.png;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-ljson",
+					"-lxml2",
+					"-licucore",
+				);
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0C82ABA3-1579-43BF-8860-0B260BAC61CD";
+				SDKROOT = iphoneos2.2.1;
+			};
+			name = "Distribution - App Store - Code Watch Open Source";
+		};
+		052324DB0FA7F67200F17429 /* Distribution - App Store - Code Watch Open Source */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "Code Watch";
+			};
+			name = "Distribution - App Store - Code Watch Open Source";
+		};
+		052324DC0FA7F67200F17429 /* Distribution - App Store - Code Watch Open Source */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)/../../../../Library/Frameworks\\\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = HOB_CODE_WATCH_LITE;
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
+				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
+				INFOPLIST_FILE = InfoOpenSource.plist;
+				PRODUCT_NAME = CodeWatch;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
+			};
+			name = "Distribution - App Store - Code Watch Open Source";
+		};
 		05B37E230F6976AB006644A2 /* Distribution - Beta Users - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2066,7 +2128,7 @@
 				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				INFOPLIST_FILE = InfoOpenSource.plist;
-				PRODUCT_NAME = "Code Watch";
+				PRODUCT_NAME = CodeWatch;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
 			};
 			name = "Debug - John";
@@ -2090,7 +2152,7 @@
 				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				INFOPLIST_FILE = InfoOpenSource.plist;
-				PRODUCT_NAME = "Code Watch";
+				PRODUCT_NAME = CodeWatch;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
 			};
 			name = "Release - John";
@@ -2116,7 +2178,7 @@
 				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				INFOPLIST_FILE = InfoOpenSource.plist;
-				PRODUCT_NAME = "Code Watch";
+				PRODUCT_NAME = CodeWatch;
 			};
 			name = "Debug - Doug";
 		};
@@ -2139,7 +2201,7 @@
 				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				INFOPLIST_FILE = InfoOpenSource.plist;
-				PRODUCT_NAME = "Code Watch";
+				PRODUCT_NAME = CodeWatch;
 			};
 			name = "Release - Doug";
 		};
@@ -2158,7 +2220,7 @@
 				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				INFOPLIST_FILE = InfoOpenSource.plist;
-				PRODUCT_NAME = "Code Watch";
+				PRODUCT_NAME = CodeWatch;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
 			};
 			name = "Distribution - Beta Users - John";
@@ -2178,14 +2240,15 @@
 				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				INFOPLIST_FILE = InfoOpenSource.plist;
-				PRODUCT_NAME = "Code Watch";
+				PRODUCT_NAME = CodeWatch;
 			};
 			name = "Distribution - Beta Users - Doug";
 		};
-		05C8734E0FA7B9410069BC72 /* Distribution - App Store */ = {
+		05C8734E0FA7B9410069BC72 /* Distribution - App Store - Code Watch */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2197,12 +2260,12 @@
 				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				INFOPLIST_FILE = InfoOpenSource.plist;
-				PRODUCT_NAME = "Code Watch";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0C82ABA3-1579-43BF-8860-0B260BAC61CD";
+				PRODUCT_NAME = CodeWatch;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
 			};
-			name = "Distribution - App Store";
+			name = "Distribution - App Store - Code Watch";
 		};
-		05F631D10F9D05A4001FE1C3 /* Distribution - App Store */ = {
+		05F631D10F9D05A4001FE1C3 /* Distribution - App Store - Code Watch */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "$HOME/Library/SDKs/JSON/$(PLATFORM_NAME).sdk";
@@ -2224,9 +2287,9 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FF2307A9-E956-4014-94D2-C1CE0F9E103C";
 				SDKROOT = iphoneos2.2.1;
 			};
-			name = "Distribution - App Store";
+			name = "Distribution - App Store - Code Watch";
 		};
-		05F631D20F9D05A4001FE1C3 /* Distribution - App Store */ = {
+		05F631D20F9D05A4001FE1C3 /* Distribution - App Store - Code Watch */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2241,7 +2304,7 @@
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
-			name = "Distribution - App Store";
+			name = "Distribution - App Store - Code Watch";
 		};
 		05F631DF0F9D06A0001FE1C3 /* Distribution - Beta Users - Doug */ = {
 			isa = XCBuildConfiguration;
@@ -2300,6 +2363,7 @@
 				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
 			};
 			name = "Debug - John";
 		};
@@ -2317,6 +2381,7 @@
 				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
 			};
 			name = "Release - John";
 		};
@@ -2389,7 +2454,8 @@
 				05C8734A0FA7B9410069BC72 /* Release - Doug */,
 				05C8734C0FA7B9410069BC72 /* Distribution - Beta Users - John */,
 				05C8734D0FA7B9410069BC72 /* Distribution - Beta Users - Doug */,
-				05C8734E0FA7B9410069BC72 /* Distribution - App Store */,
+				05C8734E0FA7B9410069BC72 /* Distribution - App Store - Code Watch */,
+				052324DC0FA7F67200F17429 /* Distribution - App Store - Code Watch Open Source */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Debug - John";
@@ -2403,7 +2469,8 @@
 				05C8722D0FA7AF650069BC72 /* Release - Doug */,
 				05B37E240F6976AB006644A2 /* Distribution - Beta Users - John */,
 				05F631E00F9D06A0001FE1C3 /* Distribution - Beta Users - Doug */,
-				05F631D20F9D05A4001FE1C3 /* Distribution - App Store */,
+				05F631D20F9D05A4001FE1C3 /* Distribution - App Store - Code Watch */,
+				052324DB0FA7F67200F17429 /* Distribution - App Store - Code Watch Open Source */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Debug - John";
@@ -2417,7 +2484,8 @@
 				05C8722C0FA7AF650069BC72 /* Release - Doug */,
 				05B37E230F6976AB006644A2 /* Distribution - Beta Users - John */,
 				05F631DF0F9D06A0001FE1C3 /* Distribution - Beta Users - Doug */,
-				05F631D10F9D05A4001FE1C3 /* Distribution - App Store */,
+				05F631D10F9D05A4001FE1C3 /* Distribution - App Store - Code Watch */,
+				052324DA0FA7F67200F17429 /* Distribution - App Store - Code Watch Open Source */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Debug - John";
