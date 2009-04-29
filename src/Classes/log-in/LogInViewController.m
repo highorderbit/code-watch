@@ -89,6 +89,12 @@ enum HelpSection
     self.usernameTextField.delegate = self;
     self.tokenTextField.delegate = self;
 
+#if defined(HOB_CODE_WATCH_LITE)
+
+    self.usernameTextField.returnKeyType = UIReturnKeyDone;
+
+#endif
+
     self.usernameCell.textField = self.usernameTextField;
     self.tokenCell.textField = self.tokenTextField;
     
@@ -176,17 +182,6 @@ enum HelpSection
                 cell = self.usernameCell;
                 break;
             case kTokenRow:
-
-#if defined(HOB_CODE_WATCH_LITE)
-
-                self.tokenTextField.placeholder =
-                    NSLocalizedString(@"login.token.placeholder.lite.label",
-                    @"");
-                self.tokenTextField.enabled = NO;
-                self.usernameTextField.returnKeyType = UIReturnKeyDone;
-
-#endif
-
                 cell = self.tokenCell;
                 break;
         }
