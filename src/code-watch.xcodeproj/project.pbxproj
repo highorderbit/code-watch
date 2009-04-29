@@ -470,7 +470,6 @@
 		05BAED700F7BFEF200BD8BAD /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		05C872180FA7AC380069BC72 /* upgrade-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "upgrade-help.html"; sourceTree = "<group>"; };
 		05C873500FA7B9410069BC72 /* Code Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Code Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		05C873520FA7B9410069BC72 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = "<group>"; };
 		05C9E7C40F85277400F7C62E /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
 		05C9E7C50F85277400F7C62E /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
 		05C9E7C60F85277400F7C62E /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
@@ -498,6 +497,7 @@
 		05DE59230F79C8F900189369 /* CommitDisplayMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommitDisplayMgr.h; path = commit/CommitDisplayMgr.h; sourceTree = "<group>"; };
 		05DE59240F79C8F900189369 /* CommitDisplayMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommitDisplayMgr.m; path = commit/CommitDisplayMgr.m; sourceTree = "<group>"; };
 		05DE59680F79D81000189369 /* RepoViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepoViewControllerDelegate.h; path = repo/RepoViewControllerDelegate.h; sourceTree = "<group>"; };
+		05E04E280FA7D53000DA2256 /* InfoOpenSource.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoOpenSource.plist; sourceTree = "<group>"; };
 		05F4CF2D0F6C5ECB00B107BB /* GitHubApiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiParser.h; path = github/GitHubApiParser.h; sourceTree = "<group>"; };
 		05F4CF2E0F6C5ECB00B107BB /* GitHubApiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GitHubApiParser.m; path = github/GitHubApiParser.m; sourceTree = "<group>"; };
 		05F4CF480F6C614A00B107BB /* GitHubApiParserImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GitHubApiParserImpl.h; path = github/GitHubApiParserImpl.h; sourceTree = "<group>"; };
@@ -1064,11 +1064,11 @@
 			children = (
 				91806B820F95213F00F08005 /* help-files */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				05E04E280FA7D53000DA2256 /* InfoOpenSource.plist */,
 				05BAED6F0F7BFEF200BD8BAD /* Localizable.strings */,
 				9152A1E90F6AFC240037A52F /* Images */,
 				05158A6E0F6AC251009A7995 /* NIBs */,
 				910D82890F69DFD50068CBF3 /* PLists */,
-				05C873520FA7B9410069BC72 /* Info copy.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1946,6 +1946,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
@@ -1993,6 +1994,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
@@ -2037,6 +2039,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
@@ -2060,8 +2063,9 @@
 					HOB_EASY_LOGIN,
 					HOB_SHOW_MEMORY_WARNING_ALERT,
 				);
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
-				INFOPLIST_FILE = "/Users/jad/src/hob/code-watch/src/Info copy.plist";
+				INFOPLIST_FILE = InfoOpenSource.plist;
 				PRODUCT_NAME = "Code Watch";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
 			};
@@ -2083,8 +2087,9 @@
 					HOB_EASY_LOGIN,
 					HOB_SHOW_MEMORY_WARNING_ALERT,
 				);
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
-				INFOPLIST_FILE = "/Users/jad/src/hob/code-watch/src/Info copy.plist";
+				INFOPLIST_FILE = InfoOpenSource.plist;
 				PRODUCT_NAME = "Code Watch";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
 			};
@@ -2108,8 +2113,9 @@
 					HOB_EASY_LOGIN,
 					HOB_SHOW_MEMORY_WARNING_ALERT,
 				);
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
-				INFOPLIST_FILE = "/Users/jad/src/hob/code-watch/src/Info copy.plist";
+				INFOPLIST_FILE = InfoOpenSource.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
 			name = "Debug - Doug";
@@ -2130,8 +2136,9 @@
 					HOB_EASY_LOGIN,
 					HOB_SHOW_MEMORY_WARNING_ALERT,
 				);
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
-				INFOPLIST_FILE = "/Users/jad/src/hob/code-watch/src/Info copy.plist";
+				INFOPLIST_FILE = InfoOpenSource.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
 			name = "Release - Doug";
@@ -2148,8 +2155,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = HOB_CODE_WATCH_LITE;
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
-				INFOPLIST_FILE = "/Users/jad/src/hob/code-watch/src/Info copy.plist";
+				INFOPLIST_FILE = InfoOpenSource.plist;
 				PRODUCT_NAME = "Code Watch";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
 			};
@@ -2166,13 +2174,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					HOB_CODE_WATCH_LITE,
-					HOB_EASY_LOGIN,
-					HOB_SHOW_MEMORY_WARNING_ALERT,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = HOB_CODE_WATCH_LITE;
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
-				INFOPLIST_FILE = "/Users/jad/src/hob/code-watch/src/Info copy.plist";
+				INFOPLIST_FILE = InfoOpenSource.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
 			name = "Distribution - Beta Users - Doug";
@@ -2189,8 +2194,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = HOB_CODE_WATCH_LITE;
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatchopensource;
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
-				INFOPLIST_FILE = "/Users/jad/src/hob/code-watch/src/Info copy.plist";
+				INFOPLIST_FILE = InfoOpenSource.plist;
 				PRODUCT_NAME = "Code Watch";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0C82ABA3-1579-43BF-8860-0B260BAC61CD";
 			};
@@ -2231,6 +2237,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
@@ -2271,6 +2278,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
@@ -2289,6 +2297,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
@@ -2305,6 +2314,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = code_watch_Prefix.pch;
+				HOB_APPLICATION_BUNDLE_IDENTIFIER = com.highorderbit.codewatch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = "Code Watch";
 			};
