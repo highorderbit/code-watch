@@ -195,6 +195,7 @@ enum
                     break;
             }
             cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+            cell.accessoryType = UITableViewCellAccessoryNone;
             cell.textColor = [UIColor blackColor];
             break;
     }
