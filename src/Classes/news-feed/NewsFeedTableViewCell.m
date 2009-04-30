@@ -28,6 +28,11 @@
 - (void)awakeFromNib
 {
     [self setNonSelectedTextColors];
+
+    UIImage * backgroundImage =
+        [UIImage imageNamed:@"TableViewCellGradient.png"];
+    self.backgroundView =
+        [[[UIImageView alloc] initWithImage:backgroundImage] autorelease];
 }
 
 - (void)layoutSubviews

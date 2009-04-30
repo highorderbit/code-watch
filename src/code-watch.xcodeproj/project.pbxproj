@@ -250,6 +250,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765080DF74369002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
+		9100C2ED0FA9423B003C2ECF /* TableViewCellGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 9100C2EC0FA9423B003C2ECF /* TableViewCellGradient.png */; };
 		910D80CC0F697DB30068CBF3 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D80CA0F697DB30068CBF3 /* UserView.xib */; };
 		910D81160F6987EB0068CBF3 /* LogInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D81140F6987EB0068CBF3 /* LogInView.xib */; };
 		910D812B0F699C680068CBF3 /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 910D81290F699C680068CBF3 /* SearchView.xib */; };
@@ -508,6 +509,7 @@
 		28A0AB4B0D9B1048005BE974 /* code_watch_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = code_watch_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9100C2EC0FA9423B003C2ECF /* TableViewCellGradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TableViewCellGradient.png; sourceTree = "<group>"; };
 		910D80CB0F697DB30068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UserView.xib; sourceTree = "<group>"; };
 		910D81150F6987EB0068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LogInView.xib; sourceTree = "<group>"; };
 		910D812A0F699C680068CBF3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SearchView.xib; sourceTree = "<group>"; };
@@ -1199,6 +1201,7 @@
 		9152A1E90F6AFC240037A52F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9100C2EC0FA9423B003C2ECF /* TableViewCellGradient.png */,
 				91B423ED0FA7A073004C5B20 /* LiteIcon.png */,
 				913F9B160FA78B9A008FFE45 /* HighlightedButtonBackground.png */,
 				91806D5C0F97B6F400F08005 /* Default.png */,
@@ -1469,6 +1472,7 @@
 				05C872190FA7AC380069BC72 /* upgrade-help.html in Resources */,
 				913F9B170FA78B9A008FFE45 /* HighlightedButtonBackground.png in Resources */,
 				91B423EE0FA7A073004C5B20 /* LiteIcon.png in Resources */,
+				9100C2ED0FA9423B003C2ECF /* TableViewCellGradient.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
