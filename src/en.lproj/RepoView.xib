@@ -8,8 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="13"/>
 			<integer value="25"/>
+			<integer value="13"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -36,7 +36,7 @@
 				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<string key="NSFrameSize">{320, 460}</string>
-				<object class="NSColor" key="IBUIBackgroundColor" id="549915196">
+				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
 				</object>
@@ -44,7 +44,7 @@
 				<bool key="IBUIClipsSubviews">YES</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<double key="IBUIContentInset.top">-3.000000e+02</double>
-				<double key="IBUIContentInset.bottom">0.000000e+00</double>
+				<double key="IBUIContentInset.bottom">-2.340000e+02</double>
 				<double key="IBUIContentInset.left">0.000000e+00</double>
 				<double key="IBUIContentInset.right">0.000000e+00</double>
 				<bool key="IBUIBouncesZoom">NO</bool>
@@ -174,9 +174,12 @@
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 66}</string>
+				<string key="NSFrameSize">{320, 300}</string>
 				<reference key="NSSuperview"/>
-				<reference key="IBUIBackgroundColor" ref="549915196"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MC45NDExNzY0NyAwLjk0MTE3NjQ3IDAuOTQxMTc2NDcAA</bytes>
+				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 			</object>
 		</object>
@@ -370,13 +373,13 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>RepoViewController</string>
 					<string>UIResponder</string>
-					<string>{{265, 632}, {320, 375}}</string>
+					<string>{{356, 509}, {320, 375}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{558, 549}, {320, 66}}</string>
+					<string>{{769, 703}, {320, 300}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{312, 351}, {320, 480}}</string>

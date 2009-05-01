@@ -2089,7 +2089,7 @@
 					"-licucore",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "673A86B7-3643-4B98-86EC-5FC4F2D7EDA4";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = "Release - Doug";
