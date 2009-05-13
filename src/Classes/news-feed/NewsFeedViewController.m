@@ -5,8 +5,6 @@
 #import "NewsFeedViewController.h"
 #import "RssItem.h"
 #import "NewsFeedTableViewCell.h"
-#import "NSString+RegexKitLiteHelpers.h"
-#import "RegexKitLite.h"
 
 @interface NewsFeedViewController (Private)
 
