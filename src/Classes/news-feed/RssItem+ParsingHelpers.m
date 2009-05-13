@@ -11,9 +11,9 @@
 - (RepoKey *)repoKey
 {
     NSString * user =
-        [self.subject stringByMatchingRegex:@"([^ ]+?)/.+$"];
+        [self.subject stringByMatchingRegex:@"([^ ]+?)/[^\\s]+"];
     NSString * repo =
-        [self.subject stringByMatchingRegex:@"\\s.+/(.+)$"];
+        [self.subject stringByMatchingRegex:@"\\s.+/([^\\s]+)"];
 
     if (user && repo)
         return [RepoKey keyWithUsername:user repoName:repo];
