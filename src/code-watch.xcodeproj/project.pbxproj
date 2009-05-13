@@ -2175,7 +2175,6 @@
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				INFOPLIST_FILE = InfoOpenSource.plist;
 				PRODUCT_NAME = CodeWatch;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
 			};
 			name = "Distribution - Beta Users - John";
 		};
@@ -2280,7 +2279,6 @@
 				HOB_APPLICATION_ICON_NAME = LiteIcon.png;
 				INFOPLIST_FILE = InfoOpenSource.plist;
 				PRODUCT_NAME = CodeWatch;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3A3DE543-7F27-48C1-A189-5A0D286D3125";
 			};
 			name = "Release - John";
 		};
