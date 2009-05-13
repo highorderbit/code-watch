@@ -122,6 +122,16 @@ enum HelpSection
     [self promptForLogIn];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    // must be called in viewDidAppear in iPhone OS 3.0; if called in
+    // viewWillAppear:, the keyboard will appear on the screen *before* the
+    // rest of the view elements.
+    [self.usernameCell.textField becomeFirstResponder];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];  // Releases the view if it doesn't have a
@@ -323,8 +333,6 @@ enum HelpSection
     self.navigationItem.prompt = NSLocalizedString(@"login.view.prompt", @"");
     self.usernameCell.textField.enabled = YES;
     self.tokenCell.textField.enabled = YES;
-    [self.usernameCell.textField becomeFirstResponder];
-    
 }
 
 - (void)updateUIForCommunicating

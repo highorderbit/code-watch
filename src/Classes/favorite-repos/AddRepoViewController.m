@@ -111,12 +111,20 @@ enum HelpSection
     self.repoNameCell.nameLabel.text =
         NSLocalizedString(@"addrepo.repoName.label", @"");
     
-    [self.usernameCell.textField becomeFirstResponder];
-    
     // forcing the table view to reload itself is required in iPhone OS 3.0
     [self.tableView reloadData];
 
     [self promptForRepo];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    // must be called in viewDidAppear in iPhone OS 3.0; if called in
+    // viewWillAppear:, the keyboard will appear on the screen *before* the
+    // rest of the view elements.
+    [self.usernameCell.textField becomeFirstResponder];
 }
 
 #pragma mark Table view methods
