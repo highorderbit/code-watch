@@ -27,6 +27,8 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
+
     [self setNonSelectedTextColors];
 
     UIImage * backgroundImage =
@@ -54,7 +56,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-        
+
     if (selected) {
         authorLabel.textColor = self.selectedTextColor;
         pubDateLabel.textColor = self.selectedTextColor;
