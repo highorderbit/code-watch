@@ -74,6 +74,8 @@
     [self createAndInitFavoriteReposDisplayMgr];
 
     tabBarController.selectedIndex = uiState.selectedTab;
+    if (tabBarController.selectedIndex == 0)
+        [newsFeedDisplayMgr updateNewsFeed];
 
     [logInMgr init];
     if ([logInState prompt])
