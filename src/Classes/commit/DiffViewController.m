@@ -22,6 +22,16 @@
     [super dealloc];
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+#if defined(__IPHONE_3_0)
+    webView.dataDetectorTypes =
+        UIDataDetectorTypePhoneNumber | UIDataDetectorTypeLink;
+#endif
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
