@@ -29,6 +29,9 @@
     [super awakeFromNib];
 
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    // needed for iPhone OS 3.0 beta 5
+    self.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
