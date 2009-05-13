@@ -141,6 +141,7 @@ static const CGFloat IPHONE_WIDTH = 320;
         [nonZeroSearchResultKeys objectAtIndex:indexPath.section];
     NSArray * results = [nonZeroSearchResults objectForKey:key];
     cell.text = [[results objectAtIndex:indexPath.row] description];
+    cell.accessoryType = UITableViewCellAccessoryNone;
 
     return cell;
 }
@@ -157,12 +158,6 @@ static const CGFloat IPHONE_WIDTH = 320;
     NSObject * selection = [results objectAtIndex:indexPath.row];
     
     [delegate processSelection:selection fromSection:section];
-}
-
-- (UITableViewCellAccessoryType)tableView:(UITableView *)aTableView
-    accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    return UITableViewCellAccessoryNone;
 }
 
 - (NSString *)tableView:(UITableView *)aTableView

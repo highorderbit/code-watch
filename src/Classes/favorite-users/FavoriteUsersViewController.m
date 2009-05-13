@@ -64,6 +64,7 @@
             reuseIdentifier:CellIdentifier] autorelease];
     
     cell.text = [sortedUsernames objectAtIndex:indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
 }
@@ -72,12 +73,6 @@
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [delegate selectedUsername:[sortedUsernames objectAtIndex:indexPath.row]];
-}
-
-- (UITableViewCellAccessoryType)tableView:(UITableView *)tableView
-    accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    return UITableViewCellAccessoryDisclosureIndicator;
 }
 
 #pragma mark Data updating methods

@@ -72,6 +72,7 @@
             reuseIdentifier:CellIdentifier] autorelease];
     
     cell.text = [[sortedRepoKeys objectAtIndex:indexPath.row] description];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     return cell;
 }
@@ -95,12 +96,6 @@
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [delegate selectedRepoKey:[sortedRepoKeys objectAtIndex:indexPath.row]];
-}
-
-- (UITableViewCellAccessoryType)tableView:(UITableView *)tableView
-    accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    return UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated

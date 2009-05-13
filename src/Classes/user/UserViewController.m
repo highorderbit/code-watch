@@ -199,6 +199,7 @@ enum RecentActivityRows
                 [key isEqual:[[self class] locationKey]] ?
                 UITableViewCellSelectionStyleBlue :
                 UITableViewCellSelectionStyleNone;
+            detailCell.accessoryType = UITableViewCellAccessoryNone;
             break;
         case kRecentActivitySection:
             switch (indexPath.row) {
@@ -215,6 +216,7 @@ enum RecentActivityRows
                         NSLocalizedString(@"user.followers.label", @"");
                     break;
             }
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case kRepoSection:
             repoCell = (RepoTableViewCell *)cell;
@@ -228,6 +230,7 @@ enum RecentActivityRows
                     [UIImage imageNamed:@"public-icon.png"];
             } else
                 repoCell.icon = nil;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
     }
     
@@ -240,15 +243,6 @@ enum RecentActivityRows
     return [self effectiveSectionForSection:section] == kRepoSection &&
         userInfo.repoKeys && [userInfo.repoKeys count] > 0 ?
         NSLocalizedString(@"user.repo.header.label", @"") : nil;
-}
-
-- (UITableViewCellAccessoryType) tableView:(UITableView*)tv
-    accessoryTypeForRowWithIndexPath:(NSIndexPath*)indexPath
-{
-    NSInteger section = [self effectiveSectionForSection:indexPath.section];
-    return (section == kRecentActivitySection || section == kRepoSection) ?
-        UITableViewCellAccessoryDisclosureIndicator :
-        UITableViewCellAccessoryNone;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tv
