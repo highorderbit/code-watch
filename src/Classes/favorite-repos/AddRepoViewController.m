@@ -113,6 +113,9 @@ enum HelpSection
     
     [self.usernameCell.textField becomeFirstResponder];
     
+    // forcing the table view to reload itself is required in iPhone OS 3.0
+    [self.tableView reloadData];
+
     [self promptForRepo];
 }
 

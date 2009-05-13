@@ -116,6 +116,9 @@ enum HelpSection
     self.tokenCell.nameLabel.text =
         NSLocalizedString(@"login.token.label", @"");
 
+    // forcing the table view to reload itself is required in iPhone OS 3.0
+    [self.tableView reloadData];
+
     [self promptForLogIn];
 }
 
@@ -174,7 +177,7 @@ enum HelpSection
 - (UITableViewCell *)tableView:(UITableView *)tv
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell;
+    UITableViewCell * cell = nil;
 
     if (indexPath.section == kCredentialsSection)
         switch (indexPath.row) {
