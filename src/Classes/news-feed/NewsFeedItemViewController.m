@@ -266,7 +266,7 @@ enum ActionSectionRows
 
     authorLabel.text = rssItem.author;
 
-    if ([self haveGitHubUserInRssItem] && [self haveGitHubUserInRssItem])
+    if ([self haveGitHubUserInRssItem] && [self haveGitHubRepoInRssItem])
         descriptionLabel.text = [[rssItem repoKey] description];
     else
         descriptionLabel.text = nil;
