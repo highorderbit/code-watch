@@ -396,13 +396,21 @@ enum
 
 - (void)updateDisplay
 {
-    avatarImageView.image = avatar;
-
     NSString * committerName =
         [[commitInfo.details objectForKey:@"committer"] objectForKey:@"name"];
     NSString * committerEmail =
         [[commitInfo.details objectForKey:@"committer"] objectForKey:@"email"];
     NSString * message = [commitInfo.details objectForKey:@"message"];
+
+    CGFloat height = [messageLabel heightForString:message];
+
+    CGRect headerFrame = headerView.frame;
+    headerFrame.size.height = 89.0 + height;
+    headerView.frame = headerFrame;
+
+    self.tableView.tableHeaderView = headerView;
+
+    avatarImageView.image = avatar;
 
     NSString * timestampstring =
         [commitInfo.details objectForKey:@"committed_date"];
@@ -414,19 +422,11 @@ enum
     [emailButton setTitle:committerEmail forState:UIControlStateHighlighted];
     timestampLabel.text = [timestamp shortDateAndTimeDescription];
 
-    CGFloat height = [messageLabel heightForString:message];
-
     CGRect newFrame = messageLabel.frame;
     newFrame.size.height = height;
 
     messageLabel.frame = newFrame;
     messageLabel.text = message;
-
-    CGRect headerFrame = headerView.frame;
-    headerFrame.size.height = 89.0 + height;
-    headerView.frame = headerFrame;
-
-    self.tableView.tableHeaderView = headerView;
 
     [self.tableView reloadData];
 }

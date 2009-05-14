@@ -262,6 +262,14 @@ enum ActionSectionRows
 
 - (void)updateDisplay
 {
+    CGFloat height = [subjectLabel heightForString:rssItem.subject];
+
+    CGRect headerFrame = headerView.frame;
+    headerFrame.size.height = 89.0 + height;
+    headerView.frame = headerFrame;
+
+    self.tableView.tableHeaderView = headerView;
+
     avatarImageView.image = avatar ? avatar : [UIImage imageUnavailableImage];
 
     authorLabel.text = rssItem.author;
@@ -273,19 +281,11 @@ enum ActionSectionRows
 
     timestampLabel.text = [rssItem.pubDate shortDateAndTimeDescription];
 
-    CGFloat height = [subjectLabel heightForString:rssItem.subject];
-
     CGRect newFrame = subjectLabel.frame;
     newFrame.size.height = height;
 
     subjectLabel.frame = newFrame;
     subjectLabel.text = rssItem.subject;
-
-    CGRect headerFrame = headerView.frame;
-    headerFrame.size.height = 89.0 + height;
-    headerView.frame = headerFrame;
-
-    self.tableView.tableHeaderView = headerView;
 
     [self.tableView reloadData];
 }

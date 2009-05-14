@@ -169,15 +169,8 @@
 
 - (void)updateHeaderView
 {
-    repoNameLabel.text = repoName;
-
     NSString * repoDesc = [repoInfo.details objectForKey:@"description"];
     CGFloat height = [repoDescriptionLabel heightForString:repoDesc];
-
-    CGRect labelFrame = repoDescriptionLabel.frame;
-    labelFrame.size.height = height;
-    repoDescriptionLabel.frame = labelFrame;
-    repoDescriptionLabel.text = repoDesc;
 
     CGRect headerViewFrame = headerView.frame;
     headerViewFrame.size.height = 357.0 + height;
@@ -185,6 +178,13 @@
 
     // force the header view to redraw
     self.tableView.tableHeaderView = headerView;
+
+    repoNameLabel.text = repoName;
+
+    CGRect labelFrame = repoDescriptionLabel.frame;
+    labelFrame.size.height = height;
+    repoDescriptionLabel.frame = labelFrame;
+    repoDescriptionLabel.text = repoDesc;
 
     NSInteger nwatchers =
         [[repoInfo.details objectForKey:@"watchers"] integerValue];
