@@ -10,6 +10,5 @@
 - (void)userDidCancel;
 
 - (void)provideHelp;
-- (void)provideUpgradeHelp;
 
 @end

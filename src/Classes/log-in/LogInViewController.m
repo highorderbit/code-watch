@@ -4,6 +4,7 @@
 
 #import "LogInViewController.h"
 #import "NameValueTextEntryTableViewCell.h"
+#import "HOTableViewCell.h"
 #import "UIColor+CodeWatchColors.h"
 
 static const NSInteger NUM_SECTIONS = 2;
@@ -23,7 +24,6 @@ enum CredentialsSection
 static const NSInteger NUM_HELP_ROWS = 1;
 enum HelpSection
 {
-    kUpgradeRow,
     kHelpRow
 };
 
@@ -166,17 +166,7 @@ enum HelpSection
 
             break;
         case kHelpSection:
-
-#if defined(HOB_CODE_WATCH_LITE)
-
-            nrows = NUM_HELP_ROWS + 1;
-
-#else
-
             nrows = NUM_HELP_ROWS;
-
-#endif
-
             break;
     }
 
@@ -199,21 +189,7 @@ enum HelpSection
                 break;
         }
     else if (indexPath.section == kHelpSection) {
-
-#if defined (HOB_CODE_WATCH_LITE)
-
-        NSUInteger row = indexPath.row;
-
-#else
-
-        NSUInteger row = indexPath.row + 1;
-
-#endif
-
-        switch (row) {
-            case kUpgradeRow:
-                cell = self.upgradeCell;
-                break;
+        switch (indexPath.row) {
             case kHelpRow:
                 cell = self.helpCell;
                 break;
@@ -228,8 +204,6 @@ enum HelpSection
 {
     if (indexPath.section == kHelpSection && indexPath.row == kHelpRow)
         [delegate provideHelp];
-    else if (indexPath.section == kHelpSection && indexPath.row == kUpgradeRow)
-        [delegate provideUpgradeHelp];
 }
 
 #pragma mark UITextFieldDelegate functions
@@ -376,9 +350,9 @@ enum HelpSection
         static NSString * reuseIdentifier = @"HelpTableViewCell";
 
         helpCell =
-            [[UITableViewCell
-                createStandardInstanceWithReuseIdentifier:reuseIdentifier]
-             retain];
+            [[HOTableViewCell alloc]
+             initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier
+             tableViewStyle:UITableViewStyleGrouped];
         helpCell.text = NSLocalizedString(@"login.help.label", @"");
         helpCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
