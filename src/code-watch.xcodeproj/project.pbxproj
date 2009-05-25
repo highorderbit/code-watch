@@ -2415,7 +2415,7 @@
 					"-licucore",
 				);
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BA2A4D0-E0C3-4743-88E1-8CFDFBE6C586";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "113276B5-85EA-4707-AF31-51D9354BA5CA";
 				SDKROOT = iphoneos2.2.1;
 			};
 			name = "Distribution - Beta Users - Doug";
