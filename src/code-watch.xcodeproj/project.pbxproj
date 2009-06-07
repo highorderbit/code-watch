@@ -55,6 +55,7 @@
 		059E4E870FA66BCA00E46350 /* FollowersDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E4E860FA66BCA00E46350 /* FollowersDisplayMgr.m */; };
 		059E4E8A0FA672B900E46350 /* UserNetworkDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E4E890FA672B900E46350 /* UserNetworkDisplayMgr.m */; };
 		059E4F520FA6989400E46350 /* FollowingDisplayMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E4F510FA6989400E46350 /* FollowingDisplayMgr.m */; };
+		05A088730FDC158F0036F9A1 /* TableViewCellGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 9100C2EC0FA9423B003C2ECF /* TableViewCellGradient.png */; };
 		05AFEA2F0F79BD4F0008A91C /* CommitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05AFEA2D0F79BD4F0008A91C /* CommitView.xib */; };
 		05AFEA330F79BD9A0008A91C /* CommitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AFEA320F79BD9A0008A91C /* CommitViewController.m */; };
 		05B8805E0F7AF5210030DF3A /* ChangesetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B8805D0F7AF5210030DF3A /* ChangesetViewController.m */; };
@@ -1425,6 +1426,7 @@
 				05C872C00FA7B9410069BC72 /* upgrade-help.html in Resources */,
 				05C872C10FA7B9410069BC72 /* HighlightedButtonBackground.png in Resources */,
 				05C872C20FA7B9410069BC72 /* LiteIcon.png in Resources */,
+				05A088730FDC158F0036F9A1 /* TableViewCellGradient.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
