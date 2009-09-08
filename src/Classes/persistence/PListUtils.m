@@ -47,7 +47,7 @@
         errorDescription:&errorDesc];
 
     if (!temp) {
-        NSLog(errorDesc);
+        NSLog(@"%@", errorDesc);
 
         // must be released by caller per Apple documentation
         [errorDesc release];  
@@ -68,7 +68,7 @@
     if (plistData)
         [plistData writeToFile:path atomically:YES];
     else {
-        NSLog(errorDesc);
+        NSLog(@"%@", errorDesc);
 
         // must be released by caller per Apple documentation
         [errorDesc release];  
@@ -105,7 +105,7 @@
                                                toPath:fullPath
                                                 error:&error];
         if (!fileCopied)
-            NSLog([error description]);
+            NSLog(@"%@", [error description]);
     }
     
     return [PlistUtils readDictionaryFromPlist:fullPath];
@@ -130,7 +130,7 @@
                                                toPath:fullPath
                                                 error:&error];
         if (!fileCopied)
-            NSLog([error description]);
+            NSLog(@"%@", [error description]);
     }
 
     return [PlistUtils readArrayFromPlist:fullPath];
@@ -153,14 +153,14 @@
         BOOL fileRemoved = [fileManager removeItemAtPath:fullPath error:&error];
         
         if (!fileRemoved)
-            NSLog([error description]);
+            NSLog(@"%@", [error description]);
         else {
             NSString * bundlePath = [PlistUtils fullBundlePathForPlist:plist];
             BOOL fileCopied =
             [fileManager copyItemAtPath:bundlePath toPath:fullPath
                                   error:&error];
             if (!fileCopied)
-                NSLog([error description]);
+                NSLog(@"%@", [error description]);
         }
     }    
 }
