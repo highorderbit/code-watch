@@ -34,6 +34,7 @@ gravatar.repoupdate.failed.alert.ok = "Dismiss";
 /* LogInView Strings */
 login.view.title = "Account Info";
 login.view.prompt = "Provide your GitHub username and token";
+login.view.prompt.lite = "Provide your GitHub username";
 login.login.label = "Log In";
 login.username.label = "username";
 login.token.label = "api token";

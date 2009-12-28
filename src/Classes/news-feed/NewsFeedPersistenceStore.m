@@ -166,7 +166,7 @@
     return @"author";
 }
 
-+ (NSDate *)pubDateKey
++ (NSString *)pubDateKey
 {
     return @"pubDate";
 }

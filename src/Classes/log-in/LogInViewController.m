@@ -60,8 +60,8 @@ enum HelpSection
 {
     [super viewDidLoad];
 
+
     self.navigationItem.title = NSLocalizedString(@"login.view.title", @"");
-    self.navigationItem.prompt = NSLocalizedString(@"login.view.prompt", @"");
 
     UIBarButtonItem * logInButtonItem =
         [[UIBarButtonItem alloc]
@@ -104,6 +104,17 @@ enum HelpSection
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+#if defined(HOB_CODE_WATCH_LITE)
+
+    self.navigationItem.prompt =
+        NSLocalizedString(@"login.view.prompt.lite", @"");
+
+#else
+
+    self.navigationItem.prompt = NSLocalizedString(@"login.view.prompt", @"");
+
+#endif
 
     self.helpCell.selectionStyle = UITableViewCellSelectionStyleBlue;
     self.upgradeCell.selectionStyle = UITableViewCellSelectionStyleBlue;
@@ -304,7 +315,6 @@ enum HelpSection
     NSString * username = usernameTextField.text;
     self.navigationItem.rightBarButtonItem.enabled =
         [self checkUsernameValid:username];
-    self.navigationItem.prompt = NSLocalizedString(@"login.view.prompt", @"");
     self.usernameCell.textField.enabled = YES;
     self.tokenCell.textField.enabled = YES;
 }
