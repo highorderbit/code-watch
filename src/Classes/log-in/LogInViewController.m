@@ -227,25 +227,6 @@ enum HelpSection
         NSString * text = [textField.text
             stringByReplacingCharactersInRange:range withString:string];
         self.navigationItem.rightBarButtonItem.enabled = text.length > 0;
-    } else {
-
-#if defined (HOB_EASY_LOGIN)
-
-        NSString * token = [textField.text
-            stringByReplacingCharactersInRange:range withString:string];
-
-        // TODO: For testing only; remove when appropriate
-        NSString * user = [usernameTextField.text lowercaseString];
-        if ([user isEqual:@"jad"] && [token isEqual:@"898"]) {
-            textField.text = @"898dd101a9c690b6d48f91187d8c4652";
-            return NO;
-        } else if ([user isEqual:@"highorderbit"] && [token isEqual:@"245"]) {
-            textField.text = @"24579632190e7e1cc79f1c6a46090a7d";
-            return NO;
-        }
-
-#endif
-
     }
 
     return YES;
